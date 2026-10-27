@@ -1,0 +1,4 @@
+bundle.js
+__pycache__/
+*.pyc
+node_modules/
