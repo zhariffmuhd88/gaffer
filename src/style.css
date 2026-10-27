@@ -248,3 +248,10 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .awgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 320px); gap: 14px; }
 @media (max-width: 760px) { .awgrid { grid-template-columns: minmax(0, 1fr); } }
 .tossvg { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+
+/* clickable names */
+.lnk { cursor: pointer; text-decoration: underline dotted; text-decoration-color: rgba(255,255,255,.35); text-underline-offset: 3px; }
+.lnk:hover, .lnk:focus-visible { color: var(--yel); text-decoration-color: var(--yel); }
+.band .lnk { text-decoration-color: currentColor; }
+.modal .band > span { flex: 1; min-width: 0; }
+.x.back { order: -1; font-size: 26px; padding: 0 8px 0 0; }
