@@ -14,6 +14,7 @@ A retro, CM 01/02-inspired football management game with real Premier League 202
 
 ```bash
 python3 build.py      # writes gaffer.html + bundle.js
+python3 build_pwa.py  # writes the web app: index.html, manifest, sw.js, icons/
 ```
 
 `src/vis.js` is an older draft of the 2D view and is not part of the build.

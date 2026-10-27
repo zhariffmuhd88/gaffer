@@ -205,7 +205,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 
 /* start screen */
 .start { max-width: 1080px; margin: 0 auto; padding-block: 24px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.title { font-family: var(--f-disp); font-size: clamp(56px, 12vw, 120px); line-height: .85; color: var(--yel); letter-spacing: 2px; text-shadow: 5px 5px 0 var(--band); }
+.title { font-family: var(--f-disp); font-size: clamp(36px, 13vw, 120px); line-height: .85; max-width: 100%; overflow-wrap: anywhere; color: var(--yel); letter-spacing: 2px; text-shadow: 5px 5px 0 var(--band); }
 .title span { color: var(--cyan); }
 .strap { font-family: var(--f-disp); font-size: 24px; color: var(--cyan); margin: 8px 0 20px; }
 .clubs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
