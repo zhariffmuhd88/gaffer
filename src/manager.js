@@ -64,7 +64,7 @@ function makePlayingCareer(mp) {
   const bg = mp.bg; mp.caps = 0; mp.igoals = 0; mp.pclubs = [];
   if (bg === 'none') { mp.pos = null; return; }
   mp.pos = FORMER_POS[Math.floor(r() * FORMER_POS.length)];
-  const pool = bg === 'amateur' ? LOWER.map(x => x[0] + ' Sunday XI') : bg === 'semi' ? LOWER.map(x => x[0]) : CHAMP.map(x => x[0]).concat(Object.values(EURO).flat().map(x => x[0]).slice(0, 40)).concat(bg === 'intl' ? PL_CLUBS.map(c => c.name) : []);
+  const pool = bg === 'amateur' ? LOWER.map(x => x[0] + ' Sunday XI') : bg === 'semi' ? LOWER.map(x => x[0]) : CH_CLUBS.map(x => x.name).concat(Object.values(EURO).flat().map(x => x[0]).slice(0, 40)).concat(bg === 'intl' ? PL_CLUBS.map(c => c.name) : []);
   const end = (mp.born || 1985) + 33 + Math.floor(r() * 3); let y = (mp.born || 1985) + 18;
   const n = bg === 'amateur' ? 1 : 2 + Math.floor(r() * 3);
   for (let i = 0; i < n && y < end; i++) {

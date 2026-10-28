@@ -387,7 +387,7 @@ function finalizeMatch(M) {
     for (const e of S.ps) {
       const p = e.p; if (p.pseudo || !e.mins) continue;
       playedIds.add(p.id);
-      const st = p.st; st.a++; if (!e.subOn) st.s++; st.g += e.g; if (M.comp === 'PL') { st.lg = (st.lg || 0) + e.g; st.la = (st.la || 0) + 1; st.lr = (st.lr || 0) + e.rt; st.las = (st.las || 0) + e.as; } st.as += e.as; st.r += e.rt; if (e.yc) st.y++; if (e.rc) st.rc++;
+      const st = p.st; st.a++; if (!e.subOn) st.s++; st.g += e.g; if (M.comp === 'PL' || M.comp === 'CH') { st.lg = (st.lg || 0) + e.g; st.la = (st.la || 0) + 1; st.lr = (st.lr || 0) + e.rt; st.las = (st.las || 0) + e.as; } st.as += e.as; st.r += e.rt; if (e.yc) st.y++; if (e.rc) st.rc++;
       if (mom === e) st.mom++;
       if (e.role === 'GK' && M.score[1 - i] === 0 && e.mins >= 60) st.cs++;
       p.car.a++; p.car.g += e.g;

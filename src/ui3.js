@@ -4,8 +4,9 @@ function scrPrematch() {
   if (!f) { UI.scr = 'inbox'; return scrInbox(); }
   const issues = validateLineup(G.user);
   const home = f.h === G.user, opp = home ? f.a : f.h, ot = T(opp);
-  const tb = leagueTable(); const pos = (t) => { const i = tb.findIndex(r => r.t === t); return i >= 0 ? ordinal(i + 1) : '-'; };
-  const formOf = (t) => { const r = tb.find(x => x.t === t); return r ? `<span class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</span>` : ''; };
+  const tbs = { PL: leagueTable(), CH: champTable() }; const tbOf = (t) => tbs[divOf(t)] || [];
+  const pos = (t) => { const i = tbOf(t).findIndex(r => r.t === t); return i >= 0 ? ordinal(i + 1) + (divOf(t) === 'CH' && divOf(G.user) !== 'CH' ? ' (Championship)' : '') : '-'; };
+  const formOf = (t) => { const r = tbOf(t).find(x => x.t === t); return r ? `<span class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</span>` : ''; };
   const tac = userTeam().tac;
   const xi = tac.xi.map(P);
   const slots = FORMS[tac.form];
@@ -126,17 +127,17 @@ function finishLive() {
 function seasonModal() {
   const L = G.lastSeason; if (!L) return;
   UI.modal = `<div class="band yel"><span>Season review ${L.s}</span><button class="x" style="color:#111" data-a="close" aria-label="Close">×</button></div><div class="mc">
-    <div class="grid3"><div><label class="lb">Champions</label><div style="font-size:18px;font-weight:700">${tLink(L.champ, true)}</div></div><div><label class="lb">Your finish</label><div class="big">${ordinal(L.upos)}</div></div><div><label class="lb">Trophies</label><div>${esc(L.cupsWon.join(', ') || 'None')}</div></div></div>
+    <div class="grid3"><div><label class="lb">Premier League champions</label><div style="font-size:18px;font-weight:700">${tLink(L.champ, true)}</div>${L.chChamp ? `<label class="lb" style="margin-top:8px">Championship winners</label><div style="font-weight:700">${tLink(L.chChamp, true)}</div>` : ''}</div><div><label class="lb">Your finish${L.div ? ' · ' + COMP_NAME[L.div] : ''}</label><div class="big">${ordinal(L.upos)}</div></div><div><label class="lb">Trophies</label><div>${esc(L.cupsWon.join(', ') || 'None')}</div></div></div>
     <p style="margin-top:12px">${esc(L.verdict)}</p>
-    <dl class="kv"><dt>Golden Boot</dt><dd>${L.top ? esc(L.top.n + ' (' + (L.top.st.lg || 0) + ')') : '-'}</dd><dt>Player of the Season</dt><dd>${L.best ? esc(L.best.n) : '-'}</dd><dt>Young Player</dt><dd>${L.young ? esc(L.young.n) : '-'}</dd><dt>Relegated</dt><dd>${esc(L.rel.map(t => tName(t)).join(', '))}</dd><dt>Promoted</dt><dd>${esc(L.prom.map(t => tName(t)).join(', '))}</dd></dl>
+    <dl class="kv"><dt>Golden Boot</dt><dd>${L.top ? esc(L.top.n + ' (' + (L.top.st.lg || 0) + ')') : '-'}</dd><dt>Player of the Season</dt><dd>${L.best ? esc(L.best.n) : '-'}</dd><dt>Young Player</dt><dd>${L.young ? esc(L.young.n) : '-'}</dd><dt>Relegated from the PL</dt><dd>${esc(L.rel.map(t => tName(t)).join(', '))}</dd><dt>Promoted to the PL</dt><dd>${esc(L.prom.map(t => tName(t)).join(', '))}</dd>${L.chRel ? `<dt>Relegated to League One</dt><dd>${esc(L.chRel.map(t => tName(t)).join(', '))}</dd><dt>Up from League One</dt><dd>${esc((L.l1prom || []).map(t => tName(t)).join(', '))}</dd>` : ''}</dl>
     <div class="row" style="margin-top:14px">${G.sacked ? '<button class="btn pri" data-a="jobs">Look for a new job</button>' : '<button class="btn pri" data-a="close">Start pre-season</button>'}</div></div>`;
   render();
 }
 function jobsModal() {
   let offers = jobOffers();
-  if (!offers.length) offers = G.pl.filter(t => t !== G.user).sort((a, b) => T(a).rep - T(b).rep).slice(0, 4);
-  UI.modal = `<div class="band"><span>Job centre</span></div><div class="mc"><p>${esc(G.mgr)} is out of work. These Premier League clubs are interested:</p>
-  <div class="tw"><table class="t"><tbody>${offers.map(t => `<tr><td>${tLink(t, true)}</td><td class="dim">${esc(cap1(boardTarget(t).txt))}</td><td class="n">Rep ${T(t).rep}</td><td><button class="btn pri" data-a="takejob" data-v="${t}">Accept job</button></td></tr>`).join('')}</tbody></table></div></div>`;
+  if (!offers.length) offers = fullTeams().filter(t => t !== G.user).sort((a, b) => T(a).rep - T(b).rep).slice(0, 4);
+  UI.modal = `<div class="band"><span>Job centre</span></div><div class="mc"><p>${esc(G.mgr)} is out of work. These clubs are interested:</p>
+  <div class="tw"><table class="t"><tbody>${offers.map(t => `<tr><td>${tLink(t, true)} <span class="dim mono" style="font-size:12px">${COMP_SHORT[divOf(t)] || ''}</span></td><td class="dim">${esc(cap1(boardTarget(t).txt))}</td><td class="n">Rep ${T(t).rep}</td><td><button class="btn pri" data-a="takejob" data-v="${t}">Accept job</button></td></tr>`).join('')}</tbody></table></div></div>`;
   render();
 }
 
@@ -189,7 +190,7 @@ const ACT = {
   renew: (v) => { const r = renewContract(v, +$('#rw').value, +$('#ry').value); toast(r.msg); if (r.ok) { autosave(); playerModal(v); } },
   releaseAsk: (v) => { const p = P(v); const cost = Math.round(p.wage * 52 * Math.max(0, p.con - G.year) / 1000 * 0.5 * 10) / 10; actForm(`<p style="margin-top:0">Releasing ${esc(p.n)} costs a settlement of about <b>${money(cost)}</b>. This cannot be undone.</p><button class="btn warn" data-a="release" data-v="${v}">Release ${esc(p.n)}</button>`); },
   release: (v) => { const r = releasePlayer(v); toast(r.msg); UI.modal = null; autosave(); render(); },
-  faOpen: (v) => { const p = P(v); const d = calcWageDemand(p, userTeam().rep); actForm(`<p style="margin-top:0">${esc(p.n)} wants about <b>${wageStr(d)}</b>.</p><div class="row"><input class="f" id="fw" type="number" value="${d}" style="width:110px"><select class="f" id="fy">${[1, 2, 3].map(y => `<option>${y}</option>`).join('')}</select><button class="btn pri" data-a="fasign" data-v="${v}">Offer contract</button></div>`); },
+  faOpen: (v) => { const p = P(v); const d = wageFor(p, G.user); actForm(`<p style="margin-top:0">${esc(p.n)} wants about <b>${wageStr(d)}</b>.</p><div class="row"><input class="f" id="fw" type="number" value="${d}" style="width:110px"><select class="f" id="fy">${[1, 2, 3].map(y => `<option>${y}</option>`).join('')}</select><button class="btn pri" data-a="fasign" data-v="${v}">Offer contract</button></div>`); },
   fasign: (v) => { const r = freeAgentSign(v, +$('#fw').value, +$('#fy').value); toast(r.msg); if (r.ok) { UI.modal = null; autosave(); render(); } },
   kickoff: () => { const f = userFixtureOn(G.date); if (f) startLive(f.id); },
   quicksim: () => { const f = userFixtureOn(G.date); if (f) startLive(f.id, true); },

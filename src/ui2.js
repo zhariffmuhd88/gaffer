@@ -71,13 +71,13 @@ function scrFixtures() {
   if (tab === 'mine') {
     body = `<div class="tw"><table class="t"><thead><tr><th>Date</th><th>Comp</th><th>Round</th><th>Opponent</th><th class="c">H/A</th><th class="c">Result</th><th>Scorers</th></tr></thead><tbody>${fs.map(f => { const home = f.h === G.user, opp = home ? f.a : f.h; let res = ''; if (f.r) { const gf = home ? f.r[0] : f.r[1], ga = home ? f.r[1] : f.r[0]; let w = gf > ga ? 'W' : gf < ga ? 'L' : 'D'; if (f.pen) { const pw = home ? f.pen[0] > f.pen[1] : f.pen[1] > f.pen[0]; w = pw ? 'W' : 'L'; } res = `<span class="form"><span class="${w}">${w}</span></span> <b class="mono">${gf}-${ga}</b>${f.pen ? ' <span class="dim">p</span>' : f.et ? ' <span class="dim">aet</span>' : ''}`; } const sc = f.sc ? f.sc.filter(s => s[2] === 'G' && s[1] === (home ? 0 : 1)).map(s => esc(surname(P(s[3]) ? P(s[3]).n : '?')) + ' ' + s[0] + "'").join(', ') : ''; return `<tr class="click ${f.d === G.date && !f.r ? 'me' : ''}" data-a="report" data-v="${f.id}"><td class="mono">${dNice(f.d)}</td><td class="mono dim">${COMP_SHORT[f.comp]}</td><td class="dim">${esc(f.rnd ? (typeof f.rnd === 'number' ? 'Round ' + f.rnd : f.rnd + (f.leg ? ' (leg ' + f.leg + ')' : '')) : '')}</td><td>${tLink(opp)}</td><td class="c">${f.neutral ? 'N' : home ? 'H' : 'A'}</td><td class="c">${res || '<span class="dim">' + (f.d < G.date ? '' : 'v') + '</span>'}</td><td class="dim" style="white-space:normal;min-width:140px">${sc}</td></tr>`; }).join('')}</tbody></table></div>`;
   } else {
-    const rounds = G.league.rounds;
+    const rounds = tab === 'ch' && G.chLeague ? G.chLeague.rounds : G.league.rounds;
     const ri = UI.tab.round != null ? UI.tab.round : Math.max(0, rounds.findIndex(r => r.some(id => !G.fx[id].r)));
     const r = rounds[ri] || rounds[rounds.length - 1];
-    body = `<div class="row" style="margin-bottom:8px"><button class="btn" data-a="round" data-v="${Math.max(0, ri - 1)}">◂ Prev</button><b class="yel" style="font-family:var(--f-disp);font-size:22px">Matchweek ${ri + 1} · ${dNice(G.fx[r[0]].d, false)}</b><button class="btn" data-a="round" data-v="${Math.min(37, ri + 1)}">Next ▸</button></div><div class="tw">${resTable(r.map(id => G.fx[id]), false)}</div>`;
+    body = `<div class="row" style="margin-bottom:8px"><button class="btn" data-a="round" data-v="${Math.max(0, ri - 1)}">◂ Prev</button><b class="yel" style="font-family:var(--f-disp);font-size:22px">Matchweek ${ri + 1} · ${dNice(G.fx[r[0]].d, false)}</b><button class="btn" data-a="round" data-v="${Math.min(rounds.length - 1, ri + 1)}">Next ▸</button></div><div class="tw">${resTable(r.map(id => G.fx[id]), false)}</div>`;
   }
   return `<div class="band">Fixtures &amp; results<small>${seasonLabel(G.year)}</small></div>
-  <div class="tabs" style="margin-top:8px"><button class="${tab === 'mine' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="mine">${esc(userTeam().short)}</button><button class="${tab === 'pl' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="pl">Premier League rounds</button></div>${body}`;
+  <div class="tabs" style="margin-top:8px"><button class="${tab === 'mine' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="mine">${esc(userTeam().short)}</button><button class="${tab === 'pl' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="pl">Premier League rounds</button>${G.chLeague ? `<button class="${tab === 'ch' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="ch">Championship rounds</button>` : ''}</div>${body}`;
 }
 function matchReport(fid) {
   const f = G.fx[fid]; if (!f) return;
@@ -110,9 +110,9 @@ function tableHtml(rows, zones, opts = {}) {
   </tbody></table></div>`;
 }
 function scrTable() {
-  const tab = UI.tab.tb || 'pl';
+  const tab = UI.tab.tb || (userDiv() === 'CH' ? 'ch' : 'pl');
   const body = tab === 'pl' ? tableHtml(leagueTable(), i => i < 5 ? 'zone-ucl' : i < 7 ? 'zone-uel' : i < 8 ? 'zone-uecl' : i >= 17 ? 'zone-rel' : '', { form: true }) + `<p class="dim" style="margin-top:6px"><span class="cyan">▌</span> Champions League · <span class="amb">▌</span> Europa League · <span class="grn">▌</span> Conference League · <span class="red">▌</span> Relegation. FA Cup and Carabao Cup winners can take European places.</p>`
-    : tableHtml(champTable(), i => i < 2 ? 'zone-ucl' : i < 6 ? 'zone-uel' : '') + `<p class="dim" style="margin-top:6px">Championship results are simulated at team level. Top two go up; third to sixth play off for the last place.</p>`;
+    : tableHtml(champTable(), i => i < 2 ? 'zone-ucl' : i < (G.chLeague ? 8 : 6) ? 'zone-uel' : G.chLeague && i >= 21 ? 'zone-rel' : '', { form: !!G.chLeague }) + (G.chLeague ? `<p class="dim" style="margin-top:6px"><span class="cyan">▌</span> Automatic promotion · <span class="amb">▌</span> Play-offs (new for 2026/27: 5th v 8th and 6th v 7th eliminators, then two-legged semi-finals with 3rd and 4th, final at Wembley) · <span class="red">▌</span> Relegation to League One.${Object.keys(G.ded || {}).length ? ' ' + Object.entries(G.ded).map(([t, n]) => `${tName(t)} were deducted ${n} points.`).join(' ') : ''}</p>${poHtml()}` : `<p class="dim" style="margin-top:6px">This season's Championship is simulated at team level (your save started before the Championship had real squads). Full Championship fixtures start next season.</p>`);
   return `<div class="band">League tables<small>${seasonLabel(G.year)}</small></div><div class="tabs" style="margin-top:8px"><button class="${tab === 'pl' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="pl">Premier League</button><button class="${tab === 'ch' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="ch">Championship</button></div>${body}`;
 }
 
@@ -141,13 +141,14 @@ function tiesTable(r) {
 
 // ---------- stats ----------
 function scrStats() {
-  const tab = UI.tab.st || 'g';
-  const pls = Object.values(G.players).filter(p => G.pl.includes(p.c) && (p.st.la || 0) > 0);
+  const tab = UI.tab.st || 'g'; const lg = UI.tab.stl || userDiv();
+  const pls = Object.values(G.players).filter(p => divOf(p.c) === lg && (p.st.la || 0) > 0);
   const defs = { g: ['League goals', p => p.st.lg || 0], as: ['League assists', p => p.st.las || 0], r: ['Average rating (min 5 apps)', p => (p.st.la || 0) >= 5 ? p.st.lr / p.st.la : 0], cs: ['Clean sheets (all comps)', p => p.pos === 'GK' ? p.st.cs : 0], mom: ['Player of the match awards', p => p.st.mom] };
   const [lab, fn] = defs[tab];
   const list = pls.filter(p => fn(p) > 0).sort((a, b) => fn(b) - fn(a)).slice(0, 30);
-  return `<div class="band">Statistics<small>Premier League ${seasonLabel(G.year)}</small></div>
-  <div class="tabs" style="margin-top:8px">${Object.entries(defs).map(([k, [l]]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="st" data-v="${k}">${l.split(' (')[0]}</button>`).join('')}</div>
+  return `<div class="band">Statistics<small>${COMP_NAME[lg]} ${seasonLabel(G.year)}</small></div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="stl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:4px">${Object.entries(defs).map(([k, [l]]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="st" data-v="${k}">${l.split(' (')[0]}</button>`).join('')}</div>
   <div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th>Pos</th><th class="n">Apps</th><th class="n">${esc(lab.split(' (')[0])}</th></tr></thead><tbody>
   ${list.map((p, i) => `<tr class="click ${p.c === G.user ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}</td><td>${tLink(p.c)}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.st.la || 0}</td><td class="n"><b>${tab === 'r' ? fn(p).toFixed(2) : fn(p)}</b></td></tr>`).join('') || '<tr><td colspan="6" class="dim">No matches played yet.</td></tr>'}
   </tbody></table></div>`;
@@ -160,7 +161,8 @@ function scrTransfers() {
   let body = '';
   if (tab === 'search') {
     const f = UI.filt;
-    let list = Object.values(G.players).filter(p => G.pl.includes(p.c) && p.c !== G.user);
+    let list = Object.values(G.players).filter(p => divOf(p.c) && p.c !== G.user);
+    if (f.lg) list = list.filter(p => divOf(p.c) === f.lg);
     if (f.q) { const q = f.q.toLowerCase(); list = list.filter(p => p.n.toLowerCase().includes(q)); }
     if (f.grp) list = list.filter(p => f.grp.includes(p.pos));
     if (f.club) list = list.filter(p => p.c === f.club);
@@ -171,12 +173,13 @@ function scrTransfers() {
     body = `<div class="row" style="margin-bottom:8px">
       <div><label class="lb" for="fq">Name</label><input class="f" id="fq" data-a="filt" data-k="q" value="${esc(f.q)}" placeholder="e.g. Saka"></div>
       <div><label class="lb" for="fg">Position</label><select class="f" id="fg" data-a="filt" data-k="grp"><option value="">Any</option>${[['GK', 'Goalkeeper'], ['CB', 'Centre-back'], ['LB,RB', 'Full-back'], ['DM,CM', 'Central midfield'], ['AM', 'Attacking midfield'], ['LW,RW', 'Winger'], ['ST', 'Striker']].map(([v, l]) => `<option value="${v}" ${f.grp === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
-      <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${G.pl.filter(t => t !== G.user).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</select></div>
+      <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${['PL', 'CH'].map(d => `<optgroup label="${COMP_NAME[d]}">${divTeams(d).filter(t => t !== G.user).slice().sort((a, b) => tName(a) < tName(b) ? -1 : 1).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</optgroup>`).join('')}</select></div>
+      <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}</select></div>
       <div><label class="lb" for="fm">Max value £m</label><input class="f" id="fm" type="number" min="0" style="width:90px" data-a="filt" data-k="max" value="${esc(f.max)}"></div>
       <div><label class="lb" for="fa">Max age</label><input class="f" id="fa" type="number" min="15" style="width:70px" data-a="filt" data-k="age" value="${esc(f.age || '')}"></div>
     </div><p class="dim" style="margin:0 0 6px">${list.length} players match${list.length > 120 ? ', showing the top 120 by rating' : ''}.</p>${playerTable(shown, { club: true, hide: ['no', 'mor', 'fa'] })}`;
   } else if (tab === 'short') {
-    const list = UI.short.map(P).filter(p => p && G.pl.includes(p.c) && p.c !== G.user);
+    const list = UI.short.map(P).filter(p => p && divOf(p.c) && p.c !== G.user);
     body = list.length ? playerTable(list, { club: true, hide: ['no', 'mor'] }) : '<p class="dim">Your shortlist is empty. Open a player and choose Add to shortlist.</p>';
   } else if (tab === 'deals') {
     const mine = G.offers.filter(o => o.user && o.st !== 'void');
@@ -218,7 +221,7 @@ function scrFinance() {
 // ---------- club ----------
 function scrClub() {
   const t = userTeam(); const tgt = boardTarget();
-  const pos = leagueTable().findIndex(r => r.t === G.user) + 1;
+  const pos = userTable().findIndex(r => r.t === G.user) + 1;
   const hon = G.honours[G.user] || [];
   const conf = Math.round(G.board);
   return `<div class="band">${esc(t.name)}<small>${esc(t.stadium)} · capacity ${t.cap.toLocaleString('en-GB')}</small></div>
@@ -229,7 +232,7 @@ function scrClub() {
   </div>
   <h2 class="sect">Honours with this save</h2><div class="box pad">${hon.length ? hon.map(h => `<div>🏆 ${esc(h)}</div>`).join('') : '<span class="dim">None yet.</span>'}</div>
   <h2 class="sect">Season history</h2><div class="tw"><table class="t"><thead><tr><th>Season</th><th>Club</th><th class="n">Finish</th><th>Champions</th><th>Trophies</th><th>Golden Boot</th></tr></thead><tbody>${G.hist.map(h => `<tr><td class="mono">${h.s}</td><td>${tLink(h.team)}</td><td class="n">${ordinal(h.upos)}</td><td>${tLink(h.champ)}</td><td>${esc(h.cups.join(', ') || '-')}</td><td>${h.top ? esc(h.top[0] + ' (' + h.top[2] + ')') : ''}</td></tr>`).join('') || '<tr><td colspan="6" class="dim">Your first season is under way.</td></tr>'}</tbody></table></div>
-  <h2 class="sect">Other clubs</h2><div class="tw"><table class="t"><thead><tr><th>Club</th><th>Manager</th><th>Stadium</th><th class="n">Rep</th><th class="n">Squad</th></tr></thead><tbody>${G.pl.map(id => `<tr class="click" data-a="clubview" data-v="${id}"><td>${tLink(id, true)}</td><td>${esc(T(id).mgr)}</td><td>${esc(T(id).stadium)}</td><td class="n">${T(id).rep}</td><td class="n">${G.sq[id].length}</td></tr>`).join('')}</tbody></table></div>`;
+  <h2 class="sect">Other clubs</h2><div class="tw"><table class="t"><thead><tr><th>Club</th><th>League</th><th>Manager</th><th>Stadium</th><th class="n">Rep</th><th class="n">Squad</th></tr></thead><tbody>${fullTeams().map(id => `<tr class="click" data-a="clubview" data-v="${id}"><td>${tLink(id, true)}</td><td class="mono dim">${COMP_SHORT[divOf(id)]}</td><td>${esc(T(id).mgr)}</td><td>${esc(T(id).stadium)}</td><td class="n">${T(id).rep}</td><td class="n">${G.sq[id].length}</td></tr>`).join('')}</tbody></table></div>`;
 }
 function clubModal(tid) {
   const t = T(tid);

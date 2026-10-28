@@ -4,7 +4,7 @@
 // ---- link helpers ----
 function pLink(pid, text) { const p = P(pid); const t = text != null ? text : (p ? p.n : '?'); return p ? `<span class="lnk" data-a="player" data-v="${esc(pid)}">${esc(t)}</span>` : esc(t); }
 tLink = function (tid, full) { if (!T(tid)) return esc(tid || ''); return `<span class="lnk" data-a="clubview" data-v="${esc(tid)}">${badge(tid)} ${esc(tName(tid, full))}</span>`; };
-const COMP_LINK = { 'Premier League': 'PL', 'Championship': 'CH', 'Carabao Cup': 'LC', 'League Cup': 'LC', 'FA Cup': 'FA', 'Champions League': 'UCL', 'Europa League': 'UEL', 'Conference League': 'UECL' };
+const COMP_LINK = { 'Premier League': 'PL', 'Championship play-offs': 'PO', 'Championship': 'CH', 'Carabao Cup': 'LC', 'League Cup': 'LC', 'FA Cup': 'FA', 'Champions League': 'UCL', 'Europa League': 'UEL', 'Conference League': 'UECL' };
 function cLink(code, text) { return `<span class="lnk" data-a="gocomp" data-v="${code}">${esc(text || COMP_NAME[code] || code)}</span>`; }
 
 // ---- name index (rebuilt when the player/team count changes) ----
@@ -87,7 +87,7 @@ function linkify(root) {
 // ---- competitions ----
 function goComp(code) {
   UI.modal = null; UI.mstack = []; UI.mcur = null;
-  if (code === 'PL' || code === 'CH') { UI.scr = 'table'; UI.tab.tb = code === 'PL' ? 'pl' : 'ch'; }
+  if (code === 'PL' || code === 'CH' || code === 'PO') { UI.scr = 'table'; UI.tab.tb = code === 'PL' ? 'pl' : 'ch'; }
   else { UI.scr = 'comps'; UI.tab.cp = code; }
   render(); window.scrollTo(0, 0);
 }

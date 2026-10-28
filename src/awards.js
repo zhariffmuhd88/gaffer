@@ -1,7 +1,7 @@
 // ===== AWARDS: monthly and season =====
 function awStore() { if (!G.awards) G.awards = { m: [], s: [] }; return G.awards; }
 function monthLabel(key) { return MON[+key.slice(5) - 1] + ' ' + key.slice(0, 4); }
-function plFixtures(pred) { return Object.values(G.fx).filter(f => f.comp === 'PL' && f.r && pred(f)); }
+function plFixtures(pred, comp) { comp = comp || 'PL'; return Object.values(G.fx).filter(f => f.comp === comp && f.r && pred(f)); }
 function ratingTable(fs) {
   const m = new Map();
   for (const f of fs) for (let i = 0; i < 2; i++) for (const [pid, rt, g, as] of (f.rt ? f.rt[i] || [] : [])) {
@@ -23,25 +23,26 @@ function userAward(name, repUp, txt) {
   msg(name, txt);
 }
 function playerAwardBoost(pid, mor) { const p = P(pid); if (p && p.c === G.user) { p.mor = clamp(p.mor + mor, 5, 100); if (typeof setHap === 'function') setHap(p, mor / 2); } }
-function monthAwards() {
+function monthAwards(comp) {
+  comp = comp || 'PL'; const LN = COMP_NAME[comp]; const glob = comp === userDiv();
   const d = dParse(G.date); d.setUTCMonth(d.getUTCMonth() - 1); const key = dStr(d).slice(0, 7);
-  const A = awStore(); if (A.m.some(x => x.key === key)) return;
-  const fs = plFixtures(f => f.d.startsWith(key)); if (fs.length < 20) return;
-  const rounds = Math.round(fs.length / 10), minA = Math.max(1, Math.ceil(rounds * .6));
+  const A = awStore(); if (A.m.some(x => x.key === key && (x.lg || 'PL') === comp)) return;
+  const fs = plFixtures(f => f.d.startsWith(key), comp); if (fs.length < 20) return;
+  const rounds = Math.round(fs.length / (comp === 'CH' ? 12 : 10)), minA = Math.max(1, Math.ceil(rounds * .6));
   const rt = ratingTable(fs).filter(x => x.a >= minA).sort((a, b) => b.sc - a.sc);
   const potm = rt[0], ypotm = rt.find(x => x.age <= 21);
   const ct = clubTable(fs).filter(x => x.p >= minA); const motm = ct[0];
   if (!potm && !motm) return;
-  const gotm = (G.gotm || []).find(x => x.m === key);
-  const rec = { key, s: seasonLabel(G.year), potm: potm && { pid: potm.pid, n: potm.n, club: potm.club, avg: +potm.avg.toFixed(2), g: potm.g, as: potm.as, a: potm.a }, ypotm: ypotm && { pid: ypotm.pid, n: ypotm.n, club: ypotm.club, avg: +ypotm.avg.toFixed(2), g: ypotm.g, as: ypotm.as }, motm: motm && { tid: motm.tid, mgr: mgrName(motm.tid), rec: `${motm.w}-${motm.d}-${motm.l}`, pts: motm.pts }, gotm: gotm && { n: gotm.n, club: gotm.club, st: gotm.st, opp: gotm.opp } };
+  const gotm = comp === 'PL' ? (G.gotm || []).find(x => x.m === key) : null;
+  const rec = { key, lg: comp, s: seasonLabel(G.year), potm: potm && { pid: potm.pid, n: potm.n, club: potm.club, avg: +potm.avg.toFixed(2), g: potm.g, as: potm.as, a: potm.a }, ypotm: ypotm && { pid: ypotm.pid, n: ypotm.n, club: ypotm.club, avg: +ypotm.avg.toFixed(2), g: ypotm.g, as: ypotm.as }, motm: motm && { tid: motm.tid, mgr: mgrName(motm.tid), rec: `${motm.w}-${motm.d}-${motm.l}`, pts: motm.pts }, gotm: gotm && { n: gotm.n, club: gotm.club, st: gotm.st, opp: gotm.opp } };
   A.m.push(rec);
   const ml = monthLabel(key);
-  if (potm) { news('Player of the Month', `${potm.n} (${tName(potm.club)}) is the Premier League Player of the Month for ${ml}: ${potm.g} goals, ${potm.as} assists, average rating ${potm.avg.toFixed(2)}.`, potm.club, true); playerAwardBoost(potm.pid, 8); }
-  if (ypotm && ypotm !== potm) { news('Young Player of the Month', `${ypotm.n} (${tName(ypotm.club)}) wins Young Player of the Month for ${ml}.`, ypotm.club, true); playerAwardBoost(ypotm.pid, 6); }
-  if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the Premier League Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, true); }
+  if (potm) { news('Player of the Month', `${potm.n} (${tName(potm.club)}) is the ${LN} Player of the Month for ${ml}: ${potm.g} goals, ${potm.as} assists, average rating ${potm.avg.toFixed(2)}.`, potm.club, glob); playerAwardBoost(potm.pid, 8); }
+  if (ypotm && ypotm !== potm) { news('Young Player of the Month', `${ypotm.n} (${tName(ypotm.club)}) wins Young Player of the Month for ${ml}.`, ypotm.club, glob); playerAwardBoost(ypotm.pid, 6); }
+  if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the ${LN} Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, glob); }
 }
 const _gom0 = goalOfMonth;
-goalOfMonth = function () { _gom0(); try { monthAwards(); } catch (e) { console.error(e); } };
+goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); } catch (e) { console.error(e); } };
 
 function teamOfSeason(rt) {
   const pool = rt.filter(x => x.a >= 15).sort((a, b) => b.avg - a.avg);
@@ -50,9 +51,10 @@ function teamOfSeason(rt) {
   const slots = [['GK', gk[0]], ['DR', rb[0]], ['DC', cb[0]], ['DC', cb[1]], ['DL', lb[0]], ['MC', mid[0]], ['DM', mid[1]], ['MC', mid[2]], ['AMR', rw[0]], ['FC', st[0]], ['AML', lw[0]]];
   return slots.filter(s => s[1]).map(([r, x]) => ({ r, pid: x.pid, n: x.n, club: x.club, avg: +x.avg.toFixed(2) }));
 }
-function seasonAwards() {
-  const A = awStore(); const s = seasonLabel(G.year); if (A.s.some(x => x.s === s)) return;
-  const fs = plFixtures(() => true); if (fs.length < 100) return;
+function seasonAwards(comp) {
+  comp = comp || 'PL'; const LN = COMP_NAME[comp]; const glob = comp === userDiv();
+  const A = awStore(); const s = seasonLabel(G.year); if (A.s.some(x => x.s === s && (x.lg || 'PL') === comp)) return;
+  const fs = plFixtures(() => true, comp); if (fs.length < 100) return;
   const rt = ratingTable(fs);
   const elig = rt.filter(x => x.a >= 20);
   const best = elig.slice().sort((a, b) => b.sc - a.sc)[0];
@@ -63,25 +65,25 @@ function seasonAwards() {
   for (const f of fs) for (let i = 0; i < 2; i++) if (f.r[1 - i] === 0) { const gk = (f.rt[i] || []).find(([pid, , , , on]) => !on && P(pid) && P(pid).pos === 'GK'); if (gk) cs.set(gk[0], (cs.get(gk[0]) || 0) + 1); }
   const glove = [...cs.entries()].sort((a, b) => b[1] - a[1])[0];
   // manager of the season: biggest finish above expectation, champions get a bonus
-  const tb = leagueTable(); const exp = G.pl.slice().sort((a, b) => bestXIRating(squad(b)) - bestXIRating(squad(a)));
+  const tb = tableOf(comp); const exp = divTeams(comp).slice().sort((a, b) => bestXIRating(squad(b)) - bestXIRating(squad(a)));
   const mos = tb.map((r, i) => ({ tid: r.t, pos: i + 1, sc: (exp.indexOf(r.t) + 1) - (i + 1) + (i === 0 ? 6 : 0) + (i < 4 ? 1 : 0) })).sort((a, b) => b.sc - a.sc)[0];
   const tos = teamOfSeason(rt);
-  const gos = typeof goalOfSeason === 'function' ? goalOfSeason() : null;
+  const gos = comp === 'PL' && typeof goalOfSeason === 'function' ? goalOfSeason() : null;
   const pk = (x) => x && { pid: x.pid, n: x.n, club: x.club, avg: +x.avg.toFixed(2), g: x.g, as: x.as, a: x.a };
-  const rec = { s, best: pk(best), young: pk(young), boot: pk(boot), play: pk(play), glove: glove && { pid: glove[0], n: P(glove[0]).n, club: P(glove[0]).c, cs: glove[1] }, mos: mos && { tid: mos.tid, mgr: mgrName(mos.tid), pos: mos.pos }, tos, gos: gos && { n: gos.n, club: gos.club, st: gos.st, opp: gos.opp } };
+  const rec = { s, lg: comp, best: pk(best), young: pk(young), boot: pk(boot), play: pk(play), glove: glove && { pid: glove[0], n: P(glove[0]).n, club: P(glove[0]).c, cs: glove[1] }, mos: mos && { tid: mos.tid, mgr: mgrName(mos.tid), pos: mos.pos }, tos, gos: gos && { n: gos.n, club: gos.club, st: gos.st, opp: gos.opp } };
   A.s.push(rec);
-  if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the Premier League Player of the Season.`, best.club, true); playerAwardBoost(best.pid, 12); }
-  if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the Young Player of the Season.`, young.club, true); playerAwardBoost(young.pid, 10); }
-  if (boot) news('Golden Boot', `${boot.n} (${tName(boot.club)}) wins the Golden Boot with ${boot.g} league goals.`, boot.club, true);
-  if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, true);
-  if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, true);
-  if (mos) { if (mos.tid === G.user) userAward('Manager of the Season', 5, `${G.mgr} is named Premier League Manager of the Season after leading ${T(G.user).name} to ${ordinal(mos.pos)}.`); else news('Manager of the Season', `${mgrName(mos.tid)} (${tName(mos.tid)}) is Manager of the Season.`, mos.tid, true); }
+  if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the ${LN} Player of the Season.`, best.club, glob); playerAwardBoost(best.pid, 12); }
+  if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the ${LN} Young Player of the Season.`, young.club, glob); playerAwardBoost(young.pid, 10); }
+  if (boot) news('Golden Boot', `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
+  if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, glob);
+  if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, glob);
+  if (mos) { if (mos.tid === G.user) userAward('Manager of the Season', 5, `${G.mgr} is named ${LN} Manager of the Season after leading ${T(G.user).name} to ${ordinal(mos.pos)}.`); else news('Manager of the Season', `${mgrName(mos.tid)} (${tName(mos.tid)}) is ${LN} Manager of the Season.`, mos.tid, glob); }
   const mine = tos.filter(x => P(x.pid) && P(x.pid).c === G.user);
-  if (mine.length) msg('Team of the Season', `${mine.map(x => x.n).join(', ')} ${mine.length > 1 ? 'are' : 'is'} named in the Premier League Team of the Season.`);
+  if (mine.length) msg('Team of the Season', `${mine.map(x => x.n).join(', ')} ${mine.length > 1 ? 'are' : 'is'} named in the ${LN} Team of the Season.`);
   for (const x of mine) playerAwardBoost(x.pid, 5);
 }
 const _se1 = seasonEnd;
-seasonEnd = function () { try { monthAwards(); seasonAwards(); } catch (e) { console.error(e); } _se1(); };
+seasonEnd = function () { try { for (const c of ['PL', 'CH']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
 
 // ---------- UI ----------
 function awPlayer(x, extra) { if (!x) return '<span class="dim">-</span>'; const p = P(x.pid); return `<span class="${p ? 'click' : ''}" ${p ? `data-a="player" data-v="${x.pid}"` : ''}><b>${esc(x.n)}</b></span> <span class="dim">${esc(tName(x.club))}</span>${extra ? ` <span class="mono dim">${extra}</span>` : ''}`; }
@@ -96,17 +98,18 @@ function tosSvg(tos) {
   return `<svg viewBox="0 0 100 100" class="tossvg" role="img" aria-label="Team of the Season"><rect width="100" height="100" fill="#1b6a37"/><g fill="none" stroke="rgba(255,255,255,.55)" stroke-width=".5"><rect x="2" y="2" width="96" height="96"/><line x1="2" y1="50" x2="98" y2="50"/><circle cx="50" cy="50" r="10"/><rect x="25" y="84" width="50" height="14"/><rect x="25" y="2" width="50" height="14"/></g>${out}</svg>`;
 }
 function scrAwards() {
-  const A = awStore(); const tab = UI.tab.aw || 'month';
+  const A = awStore(); const tab = UI.tab.aw || 'month'; const lg = UI.tab.awl || userDiv();
   const cur = seasonLabel(G.year);
   let body;
   if (tab === 'month') {
     const seasons = [...new Set(A.m.map(x => x.s).concat([cur]))].reverse();
     const ss = UI.tab.aws && seasons.includes(UI.tab.aws) ? UI.tab.aws : seasons[0];
-    const rows = A.m.filter(x => x.s === ss);
+    const rows = A.m.filter(x => x.s === ss && (x.lg || 'PL') === lg);
     body = `<div class="row" style="margin-bottom:8px"><label class="lb" for="aws" style="margin:0">Season</label><select class="f" id="aws" data-a="aws">${seasons.map(s => `<option ${s === ss ? 'selected' : ''}>${s}</option>`).join('')}</select></div>
     ${rows.length ? `<div class="tw"><table class="t"><thead><tr><th>Month</th><th>Player of the Month</th><th>Young Player</th><th>Manager of the Month</th><th>Goal of the Month</th></tr></thead><tbody>${rows.map(r => `<tr class="${r.motm && r.motm.tid === G.user ? 'me' : ''}"><td class="mono">${monthLabel(r.key)}</td><td>${awPlayer(r.potm, r.potm ? `${r.potm.g}G ${r.potm.as}A · ${r.potm.avg.toFixed(2)}` : '')}</td><td>${awPlayer(r.ypotm, r.ypotm ? r.ypotm.avg.toFixed(2) : '')}</td><td>${r.motm ? `<b>${esc(r.motm.mgr)}</b> <span class="dim">${esc(tName(r.motm.tid))} · ${r.motm.rec}</span>` : '-'}</td><td>${r.gotm ? `<b>${esc(r.gotm.n)}</b> <span class="dim">${esc(STYLE_N[r.gotm.st] || '')} v ${esc(tName(r.gotm.opp))}</span>` : '-'}</td></tr>`).join('')}</tbody></table></div>` : '<p class="dim">Monthly awards are announced on the first day of each month, once enough league games have been played.</p>'}`;
   } else if (tab === 'season') {
-    body = A.s.length ? A.s.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
+    const SA = A.s.filter(x => (x.lg || 'PL') === lg);
+    body = SA.length ? SA.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
       <dt>Player of the Season</dt><dd>${awPlayer(r.best, r.best ? r.best.avg.toFixed(2) : '')}</dd>
       <dt>Young Player</dt><dd>${awPlayer(r.young, r.young ? r.young.avg.toFixed(2) : '')}</dd>
       <dt>Golden Boot</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
@@ -116,14 +119,15 @@ function scrAwards() {
       <dt>Goal of the Season</dt><dd>${r.gos ? `<b>${esc(r.gos.n)}</b> <span class="dim">${esc(STYLE_N[r.gos.st] || '')} v ${esc(tName(r.gos.opp))}</span>` : '-'}</dd></dl>
       <div><label class="lb">Team of the Season</label>${tosSvg(r.tos)}</div></div></div>`).join('') : '<p class="dim">Season awards are presented when the season ends in May.</p>';
   } else {
-    const rt = ratingTable(plFixtures(f => true)).filter(x => x.a >= 5);
+    const rt = ratingTable(plFixtures(f => true, lg)).filter(x => x.a >= 5);
     const best = rt.slice().sort((a, b) => b.sc - a.sc).slice(0, 10);
     const young = rt.filter(x => x.age <= 21).sort((a, b) => b.sc - a.sc).slice(0, 5);
     const row = (x, i) => `<tr class="click ${P(x.pid) && P(x.pid).c === G.user ? 'me' : ''}" data-a="player" data-v="${x.pid}"><td class="n">${i + 1}</td><td>${esc(x.n)}</td><td>${tLink(x.club)}</td><td class="n">${x.a}</td><td class="n">${x.g}</td><td class="n">${x.as}</td><td class="n"><b>${x.avg.toFixed(2)}</b></td></tr>`;
     const hd = '<thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th class="n">Apps</th><th class="n">G</th><th class="n">A</th><th class="n">Avg</th></tr></thead>';
     body = `<p class="dim" style="margin-top:0">Who is leading the race this season (league games, at least 5 appearances).</p><h2 class="sect">Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${best.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div><h2 class="sect">Young Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${young.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div>`;
   }
-  return `<div class="band">Awards<small>Premier League monthly and season awards</small></div>
-  <div class="tabs" style="margin-top:8px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
+  return `<div class="band">Awards<small>${COMP_NAME[lg]} monthly and season awards</small></div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:4px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'aws') { UI.tab.aws = el.value; render(); } });

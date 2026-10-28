@@ -1,13 +1,14 @@
 # GAFFER 26/27
 
-A retro, CM 01/02-inspired football management game with real Premier League 2026/27 squads. It runs in the browser as a single HTML file and saves to browser storage.
+A retro, CM 01/02-inspired football management game with real Premier League and Championship 2026/27 squads. It runs in the browser as a single HTML file and saves to browser storage.
 
 ## Layout
 
 - `src/`: game source (data, match engine, season, transfers, UI, 2D matchday, awards, manager profile, styles)
 - `build.py`: joins `src/` into `gaffer.html` (and `bundle.js` for tests)
 - `gaffer.html`: the latest built game
-- `tests/`: Node simulation tests and Playwright smoke tests (run from the repo root after building)
+- `tests/`: Node simulation tests and Playwright smoke tests (run from the repo root after building), e.g. `node tests/ch_test.js WHU 2`
+- `tools/build_ch.py`: builds `src/data_ch.js` (Championship squads) from the raw lists in `tools/ch_raw/` (FotMob team pages, 24-28 Oct 2026); ratings are game estimates
 - `docs/screenshots/`: reference screenshots
 
 ## Build

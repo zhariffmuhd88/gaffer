@@ -163,7 +163,7 @@ function playerModal(pid) {
       <button class="btn warn" data-a="releaseAsk" data-v="${p.id}">Release</button>`;
   } else if (p.c === 'FA') {
     acts = `<button class="btn pri" data-a="faOpen" data-v="${p.id}">Offer contract (free agent)</button>`;
-  } else if (G.pl.includes(p.c)) {
+  } else if (divOf(p.c)) {
     acts = `<button class="btn pri" data-a="bidOpen" data-v="${p.id}">Make an offer</button><button class="btn" data-a="shortlist" data-v="${p.id}">${shortlisted ? 'Remove from shortlist' : 'Add to shortlist'}</button>`;
   }
   UI.modal = `<div class="band"><span>${p.no ? p.no + '. ' : ''}${esc(p.n)}</span><button class="x" data-a="close" aria-label="Close">×</button></div>
@@ -174,7 +174,7 @@ function playerModal(pid) {
         <dt>Club</dt><dd>${club ? tLink(p.c, true) : esc(p.c === 'FA' ? 'Free agent' : p.gone || p.c)}</dd>
         <dt>Position</dt><dd>${POS_LABEL[p.pos]} <span class="dim">(also ${esc(fams)})</span></dd>
         <dt>Age / Nation</dt><dd>${p.age} · ${esc(p.nat)}</dd>
-        <dt>Value</dt><dd>${money(calcValue(p))}${!own && G.pl.includes(p.c) ? ` <span class="dim">· asking around ${money(askingPrice(p))}</span>` : ''}</dd>
+        <dt>Value</dt><dd>${money(calcValue(p))}${!own && divOf(p.c) ? ` <span class="dim">· asking around ${money(askingPrice(p))}</span>` : ''}</dd>
         <dt>Contract</dt><dd>${wageStr(p.wage)} until ${p.con}</dd>
         <dt>Condition</dt><dd class="${condCls(p.cond)}">${Math.round(p.cond)}% · morale ${Math.round(p.mor)}</dd>
         ${p.inj > 0 ? `<dt>Injury</dt><dd class="red">${esc(p.injT)}, about ${Math.ceil(p.inj / 7)} week(s)</dd>` : ''}

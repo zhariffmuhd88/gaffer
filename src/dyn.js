@@ -25,7 +25,7 @@ function concerns(p) {
 // weekly update, called from weekly()
 function weeklyDynamics() {
   const n = teamGames();
-  const tb = leagueTable(); const pos = tb.findIndex(r => r.t === G.user) + 1; const tgt = boardTarget().pos;
+  const tb = userTable(); const pos = tb.findIndex(r => r.t === G.user) + 1; const tgt = boardTarget().pos;
   for (const p of squad(G.user)) {
     if (p.hap == null) p.hap = 65;
     let d = (65 - p.hap) * 0.04; // drift
@@ -59,7 +59,7 @@ function randomStory() {
   const opts = [];
   const unhappy = sq.filter(p => hap(p) < 35); if (unhappy.length) { const p = R.pick(unhappy); opts.push(() => mediaStory(`Sources close to ${p.n} say he is frustrated with his situation at ${userTeam().short}.`, -1)); }
   const star = sq.filter(p => p.ca >= 82 && +formAvg(p) >= 7.2); if (star.length) { const p = R.pick(star); opts.push(() => mediaStory(`${p.n} is attracting attention from abroad after a strong run of form.`, 0)); }
-  const tb = leagueTable(); const pos = tb.findIndex(r => r.t === G.user) + 1;
+  const tb = userTable(); const pos = tb.findIndex(r => r.t === G.user) + 1;
   if (teamGames() >= 5) { if (pos <= boardTarget().pos) opts.push(() => mediaStory(`Pundits praise ${G.mgr}'s work at ${userTeam().short}, who sit ${ordinal(pos)}.`, 3)); else opts.push(() => mediaStory(`Questions are being asked about ${G.mgr}'s future with ${userTeam().short} ${ordinal(pos)} in the table.`, -2)); }
   if (opts.length) R.pick(opts)();
 }
@@ -116,7 +116,7 @@ function talkTo(pid, k) {
 // ---- press conferences ----
 function pressFor(f) {
   const home = f.h === G.user, opp = home ? f.a : f.h; const on = tName(opp);
-  const tb = leagueTable(); const myPos = tb.findIndex(r => r.t === G.user) + 1; const oPos = tb.findIndex(r => r.t === opp) + 1;
+  const tb = userTable(); const myPos = tb.findIndex(r => r.t === G.user) + 1; const oPos = tb.findIndex(r => r.t === opp) + 1;
   const myForm = (tb.find(r => r.t === G.user) || { form: [] }).form.slice(-4);
   const losses = myForm.filter(x => x === 'L').length;
   const inj = squad(G.user).filter(p => p.inj > 0 && p.ca >= 80);
@@ -124,7 +124,7 @@ function pressFor(f) {
   if (isRival(G.user, opp)) return { q: `It's a derby against ${on}. What does this game mean to you and the fans?` };
   if (losses >= 2) return { q: `Your team has lost ${losses} of the last four. Is there a problem in the dressing room?` };
   if (inj.length) return { q: `How big a blow is it to be without ${inj[0].n}?` };
-  if (oPos && myPos && oPos <= 4 && f.comp === 'PL') return { q: `${on} are ${ordinal(oPos)} in the table. Can you get something from this game?` };
+  if (oPos && myPos && oPos <= 4 && LEAGUE_COMPS.includes(f.comp)) return { q: `${on} are ${ordinal(oPos)} in the table. Can you get something from this game?` };
   if (T(opp).lite) return { q: `Is there a danger of underestimating ${on}?` };
   return { q: `What are you expecting from ${on}?` };
 }

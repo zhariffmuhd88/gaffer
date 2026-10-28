@@ -275,6 +275,14 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .modal .band > span { flex: 1; min-width: 0; }
 .x.back { order: -1; font-size: 26px; padding: 0 8px 0 0; }
 
+/* development chart */
+.progsvg { width: 100%; max-width: 520px; height: auto; display: block; margin-top: 6px; }
+.progsvg .pband { fill: var(--cyan); opacity: .14; }
+.progsvg .pgrid { stroke: var(--line, rgba(255,255,255,.12)); stroke-width: 1; }
+.progsvg .pline { fill: none; stroke: var(--yel); stroke-width: 2.2; stroke-linejoin: round; }
+.progsvg .pdot { fill: var(--yel); }
+.progsvg .plab { fill: var(--dim, #9aa3c7); font: 9px var(--f-mono, monospace); }
+
 html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
 </style>
 </head>
@@ -845,8 +853,8 @@ const PL_CLUBS = [
 ];
 
 // Championship (simulated at team level; used for cups and promotion)
-const CHAMP = [['West Ham',72,'London Stadium',62500],['Wolves',69,'Molineux',31750],['Burnley',68,'Turf Moor',21944],['Leicester City',67,'King Power Stadium',32259],['Southampton',66,"St Mary's Stadium",32384],['Middlesbrough',65,'Riverside Stadium',34742],['Sheffield United',64,'Bramall Lane',32050],['Norwich City',63,'Carrow Road',27359],['West Brom',63,'The Hawthorns',26850],['Watford',61,'Vicarage Road',22200],['Millwall',61,'The Den',20146],['Bristol City',62,'Ashton Gate',27000],['Swansea City',60,'Swansea.com Stadium',21088],['Stoke City',61,'bet365 Stadium',30089],['Derby County',60,'Pride Park',32956],['QPR',59,'Loftus Road',18439],['Preston',59,'Deepdale',23404],['Blackburn',59,'Ewood Park',31367],['Birmingham City',63,"St Andrew's",29409],['Wrexham',62,'Racecourse Ground',12600],['Charlton',58,'The Valley',27111],['Portsmouth',58,'Fratton Park',20867],['Oxford United',56,'Kassam Stadium',12500],['Sheffield Wednesday',55,'Hillsborough',39732]];
-const LOWER = [['Cardiff City',53],['Luton Town',54],['Plymouth Argyle',52],['Bolton',54],['Stockport County',53],['Huddersfield',53],['Barnsley',52],['Wigan',51],['Reading',51],['Peterborough',50],['Lincoln City',50],['Mansfield',49],['Wycombe',50],['Exeter City',48],['Blackpool',49],['Leyton Orient',49],['Burton Albion',47],['Northampton',47],['Doncaster',47],['Bradford City',48],['AFC Wimbledon',46],['MK Dons',45],['Notts County',45],['Port Vale',45],['Fleetwood',44],['Gillingham',44],['Grimsby',44],['Salford City',44],['Swindon',43],['Walsall',43],['Chesterfield',43],['Crewe',42],['Bromley',42],['Tranmere',41],['Barrow',41],['Colchester',41]];
+// League One and below are simulated at team level. Leicester, Oxford and Sheffield Wednesday were relegated from the Championship in May 2026.
+const LOWER = [['Leicester City',62],['Sheffield Wednesday',55],['Oxford United',56],['Luton Town',54],['Plymouth Argyle',52],['Stockport County',53],['Huddersfield',53],['Barnsley',52],['Wigan',51],['Reading',51],['Peterborough',50],['Mansfield',49],['Wycombe',50],['Exeter City',48],['Blackpool',49],['Leyton Orient',49],['Burton Albion',47],['Northampton',47],['Doncaster',47],['Bradford City',48],['AFC Wimbledon',46],['MK Dons',45],['Notts County',45],['Port Vale',45],['Fleetwood',44],['Gillingham',44],['Grimsby',44],['Salford City',44],['Swindon',43],['Walsall',43],['Chesterfield',43],['Crewe',42],['Bromley',42],['Tranmere',41],['Barrow',41],['Colchester',41]];
 const EURO = {
  UCL:[['Real Madrid',89],['Barcelona',88],['Paris SG',89],['Bayern Munich',89],['Inter',86],['Atletico Madrid',84],['Juventus',82],['Napoli',83],['Bayer Leverkusen',82],['Borussia Dortmund',82],['Benfica',79],['FC Porto',79],['Sporting CP',80],['PSV',78],['Ajax',77],['Feyenoord',76],['Club Brugge',76],['Galatasaray',77],['Marseille',79],['Monaco',78],['AC Milan',82],['Atalanta',81],['RB Leipzig',80],['VfB Stuttgart',78],['Eintracht Frankfurt',78],['Celtic',74],['Olympiacos',74],['Union SG',73],['Slavia Prague',72],['FC Copenhagen',72],['Red Star Belgrade',71]],
  UEL:[['Roma',80],['Lazio',77],['Real Sociedad',77],['Villarreal',79],['Real Betis',78],['Lyon',78],['Lille',78],['Nice',75],['Lens',76],['Freiburg',77],['Wolfsburg',74],['Hoffenheim',75],['Fenerbahce',77],['Besiktas',75],['AZ Alkmaar',75],['Twente',72],['Braga',75],['Rangers',74],['Bodo/Glimt',75],['Midtjylland',72],['Ferencvaros',70],['Dinamo Zagreb',71],['Shakhtar Donetsk',72],['RB Salzburg',74],['Sturm Graz',70],['Young Boys',71],['Basel',71],['Viktoria Plzen',70],['Maccabi Tel Aviv',68],['PAOK',72],['Ludogorets',68],['Malmo',69],['Fiorentina',77]],
@@ -858,6 +866,696 @@ const EURO_NAMES = {UCL:'Champions League',UEL:'Europa League',UECL:'Conference 
 // Name pools for youth intake / generated squads (fictional)
 const FIRST = ['Jack','Harry','Leo','Oliver','Charlie','Alfie','Theo','Mason','Kai','Ethan','Noah','Callum','Ryan','Lewis','Jamie','Rhys','Ben','Tom','Sam','Max','Luca','Marco','Diego','Mateo','Lucas','Hugo','Jonas','Emil','Lars','Kofi','Yaw','Ibrahim','Musa','Tariq','Rafael','Joao','Andre','Kian','Finn','Owen','Ellis','Reece','Jayden','Tyler','Kieran','Josh','Dylan','Aaron','Nathan','Elijah'];
 const LAST = ['Walker','Hughes','Turner','Bennett','Carter','Morris','Cooper','Ward','Clarke','Baker','Price','Mitchell','Doyle','Fletcher','Harper','Lowe','Barnes','Reid','Shaw','Holland','Kelly','Nash','Pearce','Quinn','Rowe','Stone','Tate','Vaughan','Wells','Yates','Mensah','Owusu','Diallo','Traore','Silva','Costa','Moreno','Ruiz','Novak','Berg','Jansen','Larsen','Okoro','Adeyemi','Bakari','Kone','Fofana','Murray','Gallagher','Brennan','Okafor','Lindqvist','De Vries','Rossi','Marchetti','Dubois','Lambert','Hartley','Ashworth','Penrose'];
+
+// ===== DATA: EFL Championship 2026/27 (squads from FotMob team pages, 24-28 Oct 2026; ratings are game estimates) =====
+// Southampton started 2026/27 with a 4-point deduction. Burnley sacked Nicky Hayen on 24 Oct 2026 (caretaker in charge).
+const CH_CLUBS = [
+{"id": "WHU", "name": "West Ham United", "short": "West Ham", "c1": "#7a263a", "c2": "#1bb1e7", "stadium": "London Stadium", "cap": 62500, "mgr": "Nuno Espírito Santo", "capt": "Jarrod Bowen", "rep": 72, "bal": 60, "form": "4-2-3-1",sq:`
+1|Mads Hermansen|GK|26|DEN|77
+23|Alphonse Areola|GK|33|FRA|72
+49|Finlay Herrick|GK|20|ENG|58
+2|Kyle Walker-Peters|RB|29|ENG|75
+34|Joël Veltman|RB|34|NED|67
+3|Maximilian Kilman|CB|29|ENG|76
+5|Morato|CB|25|BRA|72
+15|Konstantinos Mavropanos|CB|28|GRE|74
+18|Adama Boiro|LB|24|ESP|70
+30|Ollie Scarles|LB|20|ENG|66
+4|Edson Álvarez|DM|29|MEX|76
+27|Soungoutou Magassa|DM|23|FRA|71
+61|Lewis Orford|DM|20|ENG|62
+7|Arne Engels|CM|23|BEL|73
+17|Mohamadou Kanté|CM|21|FRA|68
+28|Tomás Souček|CM|31|CZE|74
+20|Jarrod Bowen|RW|29|ENG|80
+14|Divine Mukasa|AM|19|ENG|66
+66|Joshua Ajala|AM|19|ENG|60
+22|Maxwel Cornet|RW|30|CIV|70
+10|Manor Solomon|LW|27|ISR|73
+21|Keiber Lamadrid|LW|22|VEN|66
+35|Edvin Austbø|LW|21|NOR|63
+9|Joël Piroe|ST|27|SUR|72
+11|Valentín Castellanos|ST|28|ARG|74
+19|Pablo|ST|22|BRA|68
+`},
+{"id": "WOL", "name": "Wolverhampton Wanderers", "short": "Wolves", "c1": "#fdb913", "c2": "#231f20", "stadium": "Molineux Stadium", "cap": 31750, "mgr": "César Peixoto", "capt": "Toti Gomes", "rep": 70, "bal": 45, "form": "3-4-2-1",sq:`
+1|José Sá|GK|33|POR|75
+13|João Virgínia|GK|27|POR|68
+26|John Ruddy|GK|40|ENG|60
+2|Kieran Trippier|RB|36|ENG|72
+15|Yerson Mosquera|CB|25|COL|75
+24|Toti Gomes|CB|27|POR|73
+34|Nasser Djiga|CB|23|BFA|70
+37|Ladislav Krejcí|CB|27|CZE|74
+33|Ghislain Konan|LB|30|CIV|69
+3|Hugo Bueno|LB|24|ESP|71
+5|Marshall Munetsi|DM|30|ZIM|72
+7|André|DM|25|BRA|74
+8|Jordan James|DM|22|WAL|72
+12|Boubacar Traoré|DM|25|MLI|69
+20|Tommy Doyle|DM|25|ENG|71
+27|Jean-Ricner Bellegarde|CM|28|HAI|73
+38|Jackson Tchatchoua|RB|25|CMR|71
+28|Fer López|AM|22|ESP|72
+36|Mateus Mané|AM|19|POR|70
+11|Bertrand Traoré|RW|31|BFA|68
+21|Rodrigo Gomes|RW|23|POR|71
+19|Rafiki Saïd|LW|26|COM|71
+23|Tawanda Chirewa|LW|23|ZIM|66
+9|Raúl Jiménez|ST|35|MEX|69
+10|Adam Armstrong|ST|29|ENG|72
+14|Sean Neave|ST|19|ENG|63
+`},
+{"id": "BUR", "name": "Burnley", "short": "Burnley", "c1": "#6c1d45", "c2": "#99d6ea", "stadium": "Turf Moor", "cap": 21990, "mgr": "Caretaker manager", "capt": "Josh Cullen", "rep": 68, "bal": 45, "form": "4-2-3-1",sq:`
+1|Max Weiß|GK|22|GER|71
+13|Ben Amos|GK|36|ENG|58
+37|Grégoire Coudert|GK|27|FRA|64
+2|Kyle Walker|RB|36|ENG|72
+14|Connor Roberts|RB|31|WAL|68
+20|Shurandy Sambo|RB|25|CUW|66
+22|Oliver Sonne|RB|25|PER|68
+3|Max Alleyne|CB|21|ENG|66
+6|Bashir Humphreys|CB|23|ENG|70
+15|Anel Ahmedhodžić|CB|27|BIH|72
+18|Hjalmar Ekdal|CB|27|SWE|71
+36|Jordan Beyer|CB|26|GER|69
+44|Igor Julio|CB|28|BRA|72
+23|Lucas Pires|LB|25|BRA|69
+8|Ugo Raghouber|DM|23|FRA|67
+29|Josh Laurent|DM|31|ENG|68
+5|Reo Hatate|CM|28|JPN|74
+24|Josh Cullen|CM|30|IRL|70
+21|Aaron Ramsey|AM|23|ENG|70
+28|Hannibal Mejbri|AM|23|TUN|71
+30|Lluc Castell|AM|20|ESP|62
+10|Marcus Edwards|RW|27|CYP|70
+31|Mike Trésor|LW|27|BEL|71
+7|Jacob Bruun Larsen|LW|28|DEN|69
+11|Jaydon Banel|LW|21|NED|66
+19|Largie Ramazani|LW|25|BEL|71
+40|Michael Obafemi|ST|26|IRL|66
+9|Jamie Vardy|ST|39|ENG|66
+12|Zeki Amdouni|ST|25|SUI|71
+17|Andréas Hountondji|ST|24|BEN|69
+27|Armando Broja|ST|25|ALB|71
+35|Ashley Barnes|ST|36|ENG|61
+`},
+{"id": "SOU", "name": "Southampton", "short": "Southampton", "c1": "#d71920", "c2": "#f4f4f4", "stadium": "St Mary's Stadium", "cap": 32384, "mgr": "Tonda Eckert", "capt": "Jack Stephens", "rep": 67, "bal": 40, "form": "4-2-3-1", "ded": 4,sq:`
+1|Daniel Peretz|GK|26|ISR|71
+25|George Long|GK|32|ENG|64
+40|Jamie Jones|GK|37|ENG|58
+6|Zach Abbott|RB|20|ENG|66
+14|James Bree|RB|28|ENG|68
+5|Jack Stephens|CB|32|ENG|68
+13|Keven Schlotterbeck|CB|29|GER|70
+15|Nathan Wood|CB|24|ENG|68
+3|Ryan Manning|LB|30|IRL|69
+34|Welington|LB|25|BRA|68
+4|Flynn Downes|DM|27|ENG|71
+8|Caspar Jander|DM|23|GER|71
+26|Cameron Bragg|DM|21|SCO|64
+30|James Ward-Prowse|DM|31|ENG|73
+2|Mads Roerslev|RB|27|DEN|67
+10|Finn Azaz|AM|26|IRL|72
+18|Tom Fellows|RW|23|ENG|71
+27|Kuryu Matsuki|RW|23|JPN|68
+7|Léo Scienza|LW|28|BRA|70
+23|Samuel Edozie|LW|23|ENG|68
+9|Cyle Larin|ST|31|CAN|70
+11|Lewis Dobbin|ST|23|ENG|67
+28|Divin Mubama|ST|21|ENG|65
+`},
+{"id": "MID", "name": "Middlesbrough", "short": "Middlesbrough", "c1": "#e11b22", "c2": "#f4f4f4", "stadium": "Riverside Stadium", "cap": 34742, "mgr": "Kim Hellberg", "capt": "Luke Ayling", "rep": 66, "bal": 30, "form": "4-2-3-1",sq:`
+1|Radek Vítek|GK|22|CZE|71
+31|Solomon Brynn|GK|25|ENG|62
+33|Jon McLaughlin|GK|39|SCO|58
+2|Callum Brittain|RB|28|ENG|68
+4|Ashley Phillips|CB|21|WAL|68
+5|Alfie Jones|CB|28|CAN|69
+12|Luke Ayling|CB|35|ENG|65
+25|George Edmundson|CB|29|ENG|67
+29|Adilson Malanda|CB|24|FRA|70
+30|Neto Borges|CB|30|BRA|67
+3|Sam Byram|LB|32|ENG|64
+24|Alex Bangura|LB|27|SLE|66
+17|Max Arfsten|LB|25|USA|69
+6|Sebastian Berhalter|DM|25|USA|71
+18|Connor Barron|DM|24|SCO|68
+10|Aidan Morris|DM|24|USA|71
+28|Law McCabe|DM|20|ENG|63
+19|Leo Castledine|CM|21|ENG|64
+8|Riley McGree|AM|27|AUS|71
+21|Rokas Pukštas|AM|22|USA|69
+11|Amario Cozier-Duberry|RW|21|ENG|66
+14|Myles Peart-Harris|LW|23|ENG|66
+16|Jeremy Sarmiento|LW|24|ECU|68
+20|Micah Hamilton|LW|22|ENG|66
+22|Kyle Joseph|LW|25|SCO|67
+7|Will Lankshear|ST|21|ENG|70
+9|Tommy Conway|ST|24|SCO|69
+13|David Strelec|ST|25|SVK|69
+`},
+{"id": "SHU", "name": "Sheffield United", "short": "Sheff Utd", "c1": "#ee2737", "c2": "#111111", "stadium": "Bramall Lane", "cap": 32050, "mgr": "Chris Wilder", "capt": "Japhet Tanganga", "rep": 65, "bal": 25, "form": "3-5-2",sq:`
+1|Michael Cooper|GK|27|ENG|69
+17|Adam Davies|GK|34|WAL|62
+8|Hamza Choudhury|RB|29|BAN|67
+38|Femi Seriki|RB|24|ENG|65
+2|Matt Doherty|CB|34|IRL|66
+5|Japhet Tanganga|CB|27|ENG|69
+15|Liam Kitching|CB|27|IRL|67
+25|Mark McGuinness|CB|25|IRL|66
+33|Jamal Baptiste|CB|22|ENG|64
+3|Sam McCallum|LB|26|ENG|66
+14|Harrison Burrows|LB|24|ENG|69
+30|Rhys Norrington-Davies|LB|27|WAL|65
+7|Joe Rothwell|DM|31|ENG|66
+42|Sydie Peck|DM|22|ENG|68
+44|Jaïro Riedewald|DM|30|NED|64
+4|Oliver Arblaster|CM|22|ENG|68
+27|Kalvin Phillips|CM|30|ENG|70
+16|Jamie Shackleton|RW|27|ENG|64
+11|Romelle Donovan|RW|19|ENG|63
+19|Tahith Chong|RW|26|CUW|67
+22|Ben Brereton|RW|27|CHI|68
+9|Thomas Cannon|ST|23|IRL|69
+10|Jordan Ayew|ST|35|GHA|66
+23|Tyrese Campbell|ST|26|ENG|68
+26|Ryan Oné|ST|20|SCO|62
+45|Patrick Bamford|ST|33|ENG|66
+`},
+{"id": "NOR", "name": "Norwich City", "short": "Norwich", "c1": "#fff200", "c2": "#00a650", "stadium": "Carrow Road", "cap": 27359, "mgr": "Philippe Clement", "capt": "Kenny McLean", "rep": 64, "bal": 25, "form": "4-2-3-1",sq:`
+1|Vladan Kovačević|GK|28|BIH|69
+32|Daniel Grimshaw|GK|28|ENG|63
+3|Jack Stacey|RB|30|ENG|66
+35|Kellen Fisher|RB|22|ENG|66
+6|Harry Darling|CB|27|ENG|69
+13|Darlin Yongwa|CB|26|CMR|66
+15|Ruairi McConville|CB|21|NIR|65
+28|Bruno Alves|CB|21|BRA|63
+33|José Córdoba|CB|25|PAN|67
+12|Lucien Mahovo|LB|21|ENG|63
+14|Ben Chrisene|LB|22|ENG|63
+7|Pelle Mattsson|DM|25|DEN|69
+16|Jacob Wright|DM|21|ENG|67
+22|Mirko Topić|DM|25|SRB|68
+23|Kenny McLean|DM|34|SCO|65
+26|Sam Field|DM|28|ENG|64
+20|Anis Ben Slimane|AM|25|TUN|67
+25|Paris Maghoma|AM|25|ENG|65
+11|Andre Brooks|RW|23|JAM|66
+17|Ante Crnac|RW|22|CRO|70
+19|Papa Diallo|RW|22|SEN|65
+24|Jovon Makama|RW|22|ENG|65
+29|Oscar Schwartau|LW|20|DEN|66
+37|Ali Ahmed|LW|26|CAN|64
+49|Anthony Musaba|LW|25|NED|65
+21|Mohamed Touré|ST|22|AUS|66
+30|Mathias Kvistgaarden|ST|24|DEN|70
+`},
+{"id": "POR", "name": "Portsmouth", "short": "Portsmouth", "c1": "#001489", "c2": "#f4f4f4", "stadium": "Fratton Park", "cap": 20867, "mgr": "John Mousinho", "capt": "Marlon Pack", "rep": 59, "bal": 12, "form": "4-2-3-1",sq:`
+1|Nicolas Schmid|GK|29|AUT|67
+30|Ben Killip|GK|30|ENG|60
+31|Daniel Bielica|GK|27|POL|62
+24|Terry Devlin|RB|22|NIR|66
+2|Benjamin Arthur|CB|21|ENG|62
+3|Connor Ogilvie|CB|30|ENG|65
+5|Regan Poole|CB|28|WAL|66
+6|Conor Shaughnessy|CB|30|IRL|66
+55|Madiodio Dia|CB|22|SEN|65
+16|Jayden Meghoma|LB|20|ENG|63
+22|Zak Swanson|LB|26|ENG|64
+7|Marlon Pack|DM|35|ENG|63
+18|Márk Kosznovszky|DM|24|HUN|66
+27|Odin Bailey|DM|26|ENG|64
+38|Ebou Adams|DM|30|GAM|64
+19|Rocco Shein|CM|23|EST|65
+37|Iyad Mohamed|CM|25|COM|64
+8|John Swift|AM|31|ENG|66
+10|Adrian Segečić|RW|22|CRO|67
+11|Abu Kamara|RW|23|ENG|67
+15|Franco Umeh-Chibueze|RW|21|IRL|61
+21|Keshi Anderson|LW|31|ENG|62
+23|Josh Murphy|LW|31|ENG|65
+34|Harvey Blair|LW|23|ENG|63
+9|Colby Bishop|ST|29|ENG|67
+17|Tyrese Shade|ST|26|SKN|64
+20|Thomas Waddingham|ST|21|AUS|64
+29|Marezi|ST|23|SRB|62
+`},
+{"id": "WBA", "name": "West Bromwich Albion", "short": "West Brom", "c1": "#122f67", "c2": "#f4f4f4", "stadium": "The Hawthorns", "cap": 26850, "mgr": "James Morrison", "capt": "George Campbell", "rep": 63, "bal": 20, "form": "4-2-3-1",sq:`
+1|Max O'Leary|GK|30|IRL|67
+13|Matt Ingram|GK|32|ENG|62
+2|Chris Mepham|CB|28|WAL|68
+3|Nathaniel Phillips|CB|29|ENG|68
+6|George Campbell|CB|25|USA|68
+18|Brayann Pereira|CB|23|CGO|65
+4|Callum Styles|LB|26|HUN|69
+22|Conor Townsend|LB|33|ENG|63
+25|Nolan Galves|RB|23|FRA|64
+15|Toby Collyer|DM|22|ENG|67
+7|Felix Myhre|CM|27|NOR|67
+8|Jayson Molumby|CM|27|IRL|68
+17|Ousmane Diakité|CM|26|MLI|69
+20|Rabby Nzingoula|CM|20|FRA|63
+11|Jimmy-Jay Morgan|AM|20|ENG|63
+21|Isaac Price|AM|23|NIR|68
+29|Harry Whitwell|AM|20|ENG|61
+10|Mikey Johnston|RW|27|IRL|68
+23|Tammer Bany|RW|23|JOR|66
+26|Kareem Tunde|RW|21|ESP|62
+9|Barney Stewart|ST|22|SCO|64
+19|Aune Heggebø|ST|25|NOR|67
+`},
+{"id": "WAT", "name": "Watford", "short": "Watford", "c1": "#fbee23", "c2": "#111111", "stadium": "Vicarage Road", "cap": 22200, "mgr": "Alessio Dionisi", "capt": "Mattie Pollock", "rep": 63, "bal": 20, "form": "4-3-3",sq:`
+1|Federico Ravaglia|GK|26|ITA|66
+24|Sam Walker|GK|35|ENG|58
+26|Daniel Bachmann|GK|32|AUT|66
+2|Jeremy Ngakia|RB|26|COD|66
+15|Krépin Diatta|RB|27|SEN|69
+23|Omar Haktab Traoré|RB|28|GER|66
+3|Soumaïla Coulibaly|CB|23|FRA|67
+4|Kévin Keben|CB|22|CMR|66
+6|Mattie Pollock|CB|25|ENG|68
+29|Branimir Mlačić|CB|19|CRO|60
+53|James Clarridge|CB|22|ENG|60
+16|Marc Bola|LB|28|ENG|65
+33|Jordan Zemura|LB|26|ZIM|66
+5|Hector Kyprianou|DM|25|CYP|69
+8|Edoardo Bove|DM|24|ITA|72
+39|Edo Kayembe|DM|28|COD|66
+40|Joshua Mullins|CM|20|ENG|60
+22|Martín Payero|CM|28|ARG|69
+43|Jack Grieves|CM|21|ENG|60
+17|Iker Bravo|AM|21|ESP|66
+14|Kwadwo Baah|RW|23|GER|67
+7|Othmane Maamma|RW|21|MAR|68
+21|Amin Nabizada|RW|19|AFG|60
+11|Rocco Vata|LW|21|IRL|64
+45|Stephy Mavididi|LW|28|ENG|69
+9|Luca Kjerrumgaard|ST|23|DEN|67
+10|Myron Boadu|ST|25|NED|68
+18|Michail Antonio|ST|36|JAM|64
+20|Mamadou Doumbia|ST|20|MLI|62
+`},
+{"id": "MIL", "name": "Millwall", "short": "Millwall", "c1": "#001d5e", "c2": "#f4f4f4", "stadium": "The Den", "cap": 20146, "mgr": "Alex Neil", "capt": "Jake Cooper", "rep": 62, "bal": 15, "form": "4-2-3-1",sq:`
+1|Lukas Jensen|GK|27|DEN|68
+15|Max Crocombe|GK|33|NZL|62
+34|Filip Marschall|GK|23|ENG|60
+2|Jordi Osei-Tutu|RB|28|ENG|65
+4|Tristan Crama|RB|24|FRA|67
+18|Ryan Leonard|RB|34|ENG|61
+5|Jake Cooper|CB|31|ENG|67
+6|Caleb Taylor|CB|23|ENG|66
+12|Elkan Baggott|CB|24|IDN|66
+23|Danny Batth|CB|36|ENG|61
+3|Zak Sturge|LB|22|ENG|64
+45|Alfie Doughty|LB|26|ENG|66
+8|Mathis Servais|DM|21|BEL|63
+14|Jenson Metcalfe|DM|22|ENG|64
+16|Daniel Kelly|DM|21|SCO|62
+21|Massimo Luongo|DM|34|AUS|63
+24|Casper De Norre|DM|29|BEL|68
+49|Derek Mazou-Sacko|DM|22|FRA|62
+10|Camiel Neghli|AM|24|ALG|69
+25|Luke Cundle|AM|24|ENG|66
+17|Mark Sykes|RW|29|IRL|66
+11|Romain Esse|RW|21|ENG|67
+22|Kyrell Lisbie|LW|22|ENG|63
+35|Yanis Issoufou|LW|19|FRA|60
+7|Taïryk Arconte|ST|22|GLP|67
+9|Mihailo Ivanović|ST|21|SRB|69
+13|Lyndon Dykes|ST|31|SCO|65
+19|Josh Coburn|ST|23|ENG|66
+29|Zak Lovelace|ST|20|ENG|61
+`},
+{"id": "BRC", "name": "Bristol City", "short": "Bristol City", "c1": "#e21a23", "c2": "#f4f4f4", "stadium": "Ashton Gate", "cap": 26462, "mgr": "Michael Skubala", "capt": "Jason Knight", "rep": 62, "bal": 15, "form": "3-4-2-1",sq:`
+1|Sam Tickle|GK|24|ENG|68
+32|Lewis Thomas|GK|29|WAL|60
+40|Bradley Collins|GK|29|ENG|60
+2|Lisav Eissat|CB|21|ROU|63
+5|Rob Atkinson|CB|28|ENG|66
+15|Luke McNally|CB|27|IRL|68
+16|Rob Dickie|CB|30|ENG|67
+19|George Tanner|CB|26|ENG|65
+38|Noah Eile|CB|24|SWE|67
+3|Cameron Pring|LB|28|ENG|66
+21|Rio Cardines|LB|20|TRI|62
+4|Adam Randell|DM|26|ENG|68
+6|Brian De Keersmaecker|DM|26|BEL|67
+8|Joe Williams|DM|29|ENG|65
+12|Jason Knight|DM|25|IRL|70
+27|Gibson Yah|DM|23|NED|63
+10|Scott Twine|AM|27|ENG|70
+14|Tomi Horvat|AM|27|SVN|67
+7|Yu Hirakawa|RW|25|JPN|68
+17|Jed Wallace|RW|32|ENG|64
+20|Sam Greenwood|LW|24|ENG|66
+11|Sam Bell|LW|24|ENG|67
+9|Lorent Tolaj|ST|24|SUI|67
+23|Dom Ballard|ST|21|ENG|63
+45|Elijah Adebayo|ST|28|ENG|67
+`},
+{"id": "SWA", "name": "Swansea City", "short": "Swansea", "c1": "#f4f4f4", "c2": "#121212", "stadium": "Swansea.com Stadium", "cap": 21088, "mgr": "Vítor Matos", "capt": "Ben Cabango", "rep": 62, "bal": 15, "form": "4-2-3-1",sq:`
+1|Andy Fisher|GK|28|ENG|66
+22|Lawrence Vigouroux|GK|32|CHI|66
+29|Paul Farman|GK|36|ENG|57
+2|Joshua Key|RB|26|ENG|67
+26|Filip Lissah|RB|21|CZE|62
+3|Jenson Seelt|CB|23|NED|66
+5|Ben Cabango|CB|26|WAL|68
+15|Cameron Burgess|CB|31|AUS|66
+20|Tiago Parente|CB|20|POR|61
+23|Stephen Welsh|CB|26|SCO|65
+14|Josh Tymon|LB|27|ENG|66
+4|Jay Fulton|DM|32|SCO|63
+6|Marko Stamenić|DM|24|NZL|68
+46|Stephen Eustaquio|CM|29|CAN|72
+7|Melker Widell|AM|24|SWE|66
+8|Elijah Just|AM|26|NZL|67
+16|Tom Iorpenda|AM|21|ENG|62
+17|Gonçalo Franco|AM|25|POR|68
+12|Jeremy Monga|RW|17|ENG|64
+35|Ronald|RW|25|BRA|69
+10|Eom Ji-sung|LW|24|KOR|68
+30|Joseph Opoku|LW|21|GHA|63
+49|Moussa Yeo|LW|22|MLI|63
+9|Žan Vipotnik|ST|24|SVN|68
+31|Ross Stewart|ST|30|SCO|64
+33|Adam Idah|ST|25|IRL|69
+`},
+{"id": "STK", "name": "Stoke City", "short": "Stoke", "c1": "#e03a3e", "c2": "#f4f4f4", "stadium": "bet365 Stadium", "cap": 30089, "mgr": "Mark Robins", "capt": "Viktor Johansson", "rep": 62, "bal": 20, "form": "4-2-3-1",sq:`
+1|Viktor Johansson|GK|28|SWE|69
+24|Josh Griffiths|GK|25|ENG|64
+34|Frank Fielding|GK|38|ENG|56
+22|Junior Tchamadeu|RB|22|CMR|68
+8|Ethan Galbraith|RB|25|NIR|68
+5|Luke Graham|CB|22|SCO|64
+16|Ben Wilmot|CB|26|ENG|69
+18|Bosun Lawal|CB|23|IRL|67
+23|Ben Gibson|CB|33|ENG|63
+40|Maksym Talovierov|CB|26|UKR|64
+2|Ben Johnson|LB|26|ENG|66
+3|Aaron Cresswell|LB|36|ENG|63
+17|Eric Bocat|LB|27|FRA|65
+21|Luca Bombino|LB|20|USA|63
+13|Justin Devenny|CM|23|NIR|66
+4|Ben Pearson|DM|31|ENG|66
+6|Svante Ingelsson|DM|28|SWE|65
+19|Tomáš Rigo|DM|24|SVK|67
+7|Jack McGlynn|CM|23|USA|68
+27|Djibril Soumaré|CM|23|SEN|67
+10|Bae Jun-ho|AM|23|KOR|69
+42|Million Manhoef|RW|24|NED|69
+9|Róbert Boženík|ST|26|SVK|67
+11|Lamine Cissé|ST|23|FRA|66
+15|George Hirst|ST|27|SCO|67
+20|Sam Gallagher|ST|31|ENG|64
+`},
+{"id": "DER", "name": "Derby County", "short": "Derby", "c1": "#f4f4f4", "c2": "#111111", "stadium": "Pride Park Stadium", "cap": 33597, "mgr": "John Eustace", "capt": "Lewis Travis", "rep": 61, "bal": 15, "form": "3-4-2-1",sq:`
+1|Jacob Widell Zetterström|GK|28|SWE|68
+12|Richard O'Donnell|GK|38|ENG|56
+31|Josh Vickers|GK|30|ENG|62
+22|Max Johnston|RB|22|SCO|66
+23|Joe Ward|RB|31|ENG|64
+24|Ryan Nyambe|RB|28|NAM|66
+5|Matt Clarke|CB|30|ENG|67
+6|Sondre Langås|CB|25|NOR|67
+28|Dion Sanderson|CB|26|ENG|68
+44|Eiran Cashin|CB|24|IRL|68
+2|Derry John Murkin|LB|27|ENG|64
+3|Craig Forsyth|LB|37|SCO|60
+18|Charlie Taylor|LB|33|ENG|62
+26|Ryan Hedges|LW|31|WAL|63
+4|David Ozoh|DM|21|ENG|66
+20|Alex Mowatt|DM|31|ENG|63
+27|Lewis Travis|DM|29|ENG|67
+29|Oscar Fraulo|DM|22|DEN|64
+8|Bobby Clark|AM|21|ENG|66
+11|Sam Szmodics|AM|31|IRL|66
+13|Filip Bilbija|AM|26|GER|66
+16|Mohammed Fuseini|RW|24|GHA|66
+10|Rhian Brewster|LW|26|ENG|65
+33|Corey Blackett-Taylor|LW|29|ENG|63
+7|Patrick Agyemang|ST|25|USA|69
+9|Carlton Morris|ST|30|ENG|68
+15|Lars-Jørgen Salvesen|ST|30|NOR|66
+19|Henrik Meister|ST|22|DEN|66
+`},
+{"id": "QPR", "name": "Queens Park Rangers", "short": "QPR", "c1": "#1d5ba4", "c2": "#f4f4f4", "stadium": "Loftus Road", "cap": 18439, "mgr": "Julien Stéphan", "capt": "Jimmy Dunne", "rep": 60, "bal": 10, "form": "4-2-3-1",sq:`
+1|Pierce Charles|GK|21|NIR|66
+13|Calum Ward|GK|26|ENG|62
+2|Kealey Adamson|RB|23|AUS|63
+27|Amadou Mbengue|RB|24|SEN|64
+3|Jimmy Dunne|CB|29|IRL|67
+4|Liam Morrison|CB|23|SCO|65
+5|Ronnie Edwards|CB|23|ENG|67
+6|Jake Clarke-Salter|CB|29|ENG|67
+12|Boy Kemper|LB|27|NED|65
+19|Dennis Cirkin|LB|24|LVA|65
+48|Tariq Lamptey|LB|26|GHA|67
+18|Glen Kamara|CM|30|FIN|68
+23|Isak Alemayehu|CM|20|SWE|62
+24|Nicolas Madsen|CM|26|DEN|67
+40|Jonathan Varane|CM|25|MTQ|66
+20|Harvey Vale|RW|23|IRL|65
+11|Paul Smyth|LW|29|NIR|66
+14|Koki Saito|LW|25|JPN|67
+7|Karamoko Dembélé|RW|23|ENG|66
+17|Kwame Poku|RW|25|GHA|66
+10|Ilias Chair|LW|28|MAR|69
+15|Alfie Lloyd|ST|23|ENG|62
+16|Rumarn Burrell|ST|25|JAM|65
+22|Richard Kone|ST|23|CIV|67
+25|Justin Obikwu|ST|22|TRI|62
+26|Rayan Kolli|ST|21|ALG|63
+`},
+{"id": "PNE", "name": "Preston North End", "short": "Preston", "c1": "#f4f4f4", "c2": "#001e5b", "stadium": "Deepdale", "cap": 23408, "mgr": "Graham Alexander", "capt": "Ali McCann", "rep": 60, "bal": 10, "form": "3-4-2-1",sq:`
+1|Daniel Iversen|GK|29|DEN|69
+21|Lee Nicholls|GK|34|ENG|60
+6|Liam Lindsay|CB|31|SCO|66
+14|Jordan Storey|CB|29|ENG|66
+16|Andrew Hughes|CB|34|WAL|64
+19|Lewis Gibson|CB|26|ENG|66
+24|Odeluga Offiah|CB|24|ENG|65
+3|Andrija Vukčević|LB|30|MNE|64
+4|Harry Clarke|RB|25|ENG|67
+44|Brad Potts|RB|32|ENG|63
+11|Thierry Small|LB|22|ENG|67
+27|Léo Leroy|DM|26|FRA|67
+7|Alfie Devine|CM|22|ENG|68
+8|Ali McCann|CM|26|NIR|68
+15|Jordan Thompson|CM|29|NIR|66
+23|Andrew Moran|CM|23|IRL|64
+2|Pol Valentín|RW|29|ESP|66
+12|Caleb Wiley|LB|21|USA|68
+25|Theo Carroll|RW|19|ENG|59
+17|Stanley Mills|RW|23|ENG|66
+20|Liam Gibbs|RW|23|ENG|62
+37|Delano Burgzorg|LW|27|SUR|66
+9|Jusef Erabi|ST|23|SWE|65
+10|Callum Lang|ST|28|ENG|67
+38|Johnny Kenny|ST|23|IRL|67
+`},
+{"id": "BLB", "name": "Blackburn Rovers", "short": "Blackburn", "c1": "#009ee0", "c2": "#f4f4f4", "stadium": "Ewood Park", "cap": 31367, "mgr": "Tony Mowbray", "capt": "Todd Cantwell", "rep": 60, "bal": 10, "form": "3-4-2-1",sq:`
+1|Aynsley Pears|GK|28|ENG|66
+22|Balázs Tóth|GK|29|HUN|66
+6|Tom Atcheson|CB|20|NIR|61
+15|Sean McLoughlin|CB|29|IRL|66
+16|Scott Wharton|CB|29|ENG|65
+17|Hayden Carter|CB|26|ENG|66
+33|Lewis Miller|CB|26|AUS|67
+2|Ryan Alebiosu|RB|24|NGA|66
+11|Jayden Fevrier|RB|23|ENG|63
+3|Harry Pickering|LB|27|ENG|65
+4|Yuri Ribeiro|LB|29|POR|66
+14|Dion De Neve|LB|25|BEL|64
+8|Sam Morsy|DM|35|EGY|67
+24|Moussa Baradji|DM|25|FRA|66
+28|Adam Forshaw|DM|35|ENG|62
+31|Kristi Montgomery|DM|22|SCO|62
+27|Gady Beyuku|RW|20|FRA|61
+7|Augustus Kargbo|LW|27|SLE|64
+10|Todd Cantwell|AM|28|ENG|69
+25|Ryoya Morishita|AM|29|JPN|68
+21|Oladapo Afolayan|LW|29|ENG|65
+9|Andri Guðjohnsen|ST|24|ISL|67
+23|Yuki Ohashi|ST|30|JPN|67
+29|Mathias Jørgensen|ST|26|DEN|64
+`},
+{"id": "BIR", "name": "Birmingham City", "short": "Birmingham", "c1": "#1641a6", "c2": "#f4f4f4", "stadium": "St Andrew's", "cap": 29409, "mgr": "Chris Davies", "capt": "Christoph Klarer", "rep": 64, "bal": 30, "form": "4-2-3-1",sq:`
+1|James Beadle|GK|22|ENG|69
+21|Ryan Allsop|GK|34|ENG|63
+30|Bradley Mayo|GK|22|ENG|58
+26|Bright Osayi-Samuel|RB|28|NGA|69
+24|Tomoki Iwata|RB|29|JPN|69
+4|Christoph Klarer|CB|26|AUT|70
+5|Phil Neumann|CB|29|GER|67
+23|Dael Fry|CB|29|ENG|66
+2|Ethan Laird|LB|25|ENG|67
+3|Lee Buchanan|LB|25|ENG|66
+20|Alex Cochrane|LB|26|ENG|66
+25|Kristoffer Lund|LB|24|USA|67
+8|Paik Seung-ho|DM|29|KOR|69
+12|Marc Leonard|DM|24|SCO|67
+14|Jhon Solís|DM|22|COL|66
+18|Max Bird|DM|26|ENG|67
+19|Taylor Gardner-Hickman|DM|24|ENG|67
+28|Jay Stansfield|AM|23|ENG|71
+7|Carlos Vicente|RW|27|ESP|68
+16|Patrick Roberts|RW|29|ENG|67
+10|Demarai Gray|LW|30|JAM|68
+11|Scott Wright|LW|29|SCO|66
+17|Liam Millar|LW|27|CAN|67
+9|August Priske|ST|22|DEN|67
+32|Luis Vázquez|ST|25|ARG|66
+33|Marvin Ducksch|ST|32|GER|67
+`},
+{"id": "WRE", "name": "Wrexham", "short": "Wrexham", "c1": "#d71920", "c2": "#f4f4f4", "stadium": "Racecourse Ground", "cap": 10771, "mgr": "Phil Parkinson", "capt": "Dominic Hyam", "rep": 62, "bal": 25, "form": "3-5-2",sq:`
+1|Danny Ward|GK|33|WAL|66
+22|Anthony Patterson|GK|26|ENG|69
+25|Callum Burton|GK|30|ENG|60
+30|Danny Imray|RB|23|ENG|65
+2|Callum Doyle|CB|23|ENG|70
+4|Max Cleworth|CB|24|ENG|67
+5|Dominic Hyam|CB|30|SCO|67
+6|Joe Worrall|CB|29|ENG|68
+26|Zak Vyner|CB|29|KEN|66
+3|Jacques Ekomié|LB|23|GAB|65
+12|Issa Kaboré|RB|25|BFA|68
+34|Aaron James|RB|21|ENG|61
+47|Ryan Longman|RB|25|ENG|66
+13|Liberato Cacace|LB|26|NZL|69
+14|George Thomason|CM|25|ENG|67
+23|Sebastian Revan|LB|23|ENG|62
+8|Ben Whiteman|DM|30|ENG|67
+18|Ben Sheaf|DM|28|ENG|68
+37|Matty James|DM|35|ENG|62
+15|George Dobson|CM|28|ENG|67
+10|Josh Windass|AM|32|ENG|68
+17|Callum O'Hare|AM|28|ENG|68
+20|Oliver Rathbone|AM|30|ENG|67
+27|Lewis O'Brien|AM|28|ENG|67
+33|Nathan Broadhead|AM|28|WAL|69
+11|Bailey Cadamarteri|ST|21|JAM|64
+19|Kieffer Moore|ST|34|WAL|66
+28|Sam Smith|ST|28|ENG|66
+`},
+{"id": "CHA", "name": "Charlton Athletic", "short": "Charlton", "c1": "#d4021d", "c2": "#f4f4f4", "stadium": "The Valley", "cap": 27111, "mgr": "Nathan Jones", "capt": "Greg Docherty", "rep": 59, "bal": 12, "form": "4-4-2",sq:`
+13|Arthur Okonkwo|GK|25|NGA|66
+21|Tiernan Brooks|GK|24|IRL|60
+25|Will Mannion|GK|28|ENG|59
+20|Dan McNamara|RB|27|ENG|65
+2|Kayne Ramsay|CB|25|ENG|63
+5|Lloyd Jones|CB|31|ENG|66
+12|Billy Koumetio|CB|23|FRA|64
+17|Amari'i Bell|CB|32|JAM|64
+28|Collins Sichenje|CB|23|KEN|63
+32|Reece Burke|CB|30|ENG|64
+44|Tyler Bindon|CB|21|NZL|66
+3|Joshua Edwards|LB|26|SCO|64
+18|Ivan Mesík|LB|25|SVK|64
+6|Conor Coventry|DM|26|IRL|67
+15|Nathaniel Chalobah|DM|31|ENG|66
+16|Timothy Noor Ouma|DM|22|KEN|63
+34|Oliver Skipp|DM|26|ENG|69
+10|Greg Docherty|CM|30|SCO|67
+8|Harvey Knibbs|AM|27|ENG|66
+14|Sonny Carey|AM|25|ENG|66
+26|Joe Rankin-Costello|AM|27|ENG|64
+30|Rob Apter|RW|23|SCO|63
+7|Tyreece Campbell|LW|23|JAM|67
+9|Karlan Grant|LW|29|ENG|66
+19|Millenic Alli|LW|26|IRL|63
+35|Junior Nkeng|LW|19|ENG|60
+11|Miles Leaburn|ST|22|ENG|67
+23|Charlie Kelman|ST|24|ENG|64
+24|Matt Godden|ST|35|ENG|63
+33|Micah Mbick|ST|19|ENG|59
+`},
+{"id": "BOL", "name": "Bolton Wanderers", "short": "Bolton", "c1": "#f4f4f4", "c2": "#263c7e", "stadium": "Toughsheet Community Stadium", "cap": 28723, "mgr": "Steven Schumacher", "capt": "Eoin Toal", "rep": 58, "bal": 10, "form": "4-2-3-1",sq:`
+1|Jack Bonham|GK|33|ENG|61
+13|Nathan Broome|GK|23|ENG|60
+31|Gavin Bazunu|GK|24|IRL|67
+5|Lewis Brunt|RB|25|ENG|63
+3|Chris Forino-Joseph|CB|26|LCA|63
+6|Ben Davies|CB|31|ENG|64
+18|Eoin Toal|CB|27|NIR|66
+14|Akin Famewo|LB|27|ENG|63
+25|Max Conway|LB|23|ENG|62
+4|Xavier Simons|DM|23|ENG|65
+8|Josh Sheehan|DM|31|WAL|65
+17|Atsuki Ito|DM|28|JPN|65
+21|Ethan Erhahon|DM|25|SCO|64
+12|David Watson|CM|21|SCO|63
+22|Gaizka Larrazabal|RW|28|ESP|64
+27|Luca Stephenson|RW|23|ENG|63
+20|Rúben Rodrigues|AM|30|POR|64
+45|John McAtee|AM|27|ENG|66
+16|Samuel Iling-Junior|RW|23|ENG|66
+26|Jayden Nelson|LW|24|CAN|64
+7|Kyliane Dong|LW|22|FRA|64
+11|Thierry Gale|LW|24|BRB|63
+9|Thelonius Bair|ST|27|CAN|64
+10|Sam Dalby|ST|26|ENG|63
+39|Ryan Hardie|ST|29|SCO|62
+`},
+{"id": "CAR", "name": "Cardiff City", "short": "Cardiff", "c1": "#0070b5", "c2": "#f4f4f4", "stadium": "Cardiff City Stadium", "cap": 33280, "mgr": "Brian Barry-Murphy", "capt": "Calum Chambers", "rep": 58, "bal": 10, "form": "4-2-3-1",sq:`
+1|Nathan Trott|GK|27|ENG|65
+30|Harry Tyrer|GK|24|ENG|59
+41|Matthew Turner|GK|24|WAL|60
+38|Perry Ng|RB|30|ENG|65
+44|Ronan Kpakio|RB|19|WAL|62
+2|Will Fish|CB|23|ENG|64
+4|Gabriel Osho|CB|28|NGA|64
+5|Krystian Bielik|CB|28|POL|67
+12|Calum Chambers|CB|31|ENG|66
+48|Dylan Lawlor|CB|20|WAL|61
+3|Joel Bagan|LB|25|IRL|64
+23|Calum Scanlon|LB|21|ENG|62
+14|David Turnbull|DM|27|SCO|68
+18|Alex Robertson|DM|23|AUS|65
+8|Jack Moylan|AM|25|IRL|64
+10|Rubin Colwill|AM|24|WAL|66
+27|Joel Colwill|AM|21|WAL|64
+11|Ollie Tanner|RW|24|ENG|65
+45|Cian Ashford|RW|22|WAL|65
+16|Chris Willock|LW|28|ENG|64
+39|Isaak Davies|LW|25|WAL|64
+9|Yousef Salech|ST|24|DEN|65
+47|Callum Robinson|ST|31|IRL|63
+`},
+{"id": "LIN", "name": "Lincoln City", "short": "Lincoln", "c1": "#e2231a", "c2": "#f4f4f4", "stadium": "Sincil Bank", "cap": 11400, "mgr": "Chris Cohen & Tom Shaw", "capt": "Tendayi Darikwa", "rep": 56, "bal": 6, "form": "4-2-3-1",sq:`
+1|George Wickens|GK|24|ENG|64
+21|Jamie Pardington|GK|26|ENG|58
+46|Joe Gauci|GK|26|AUS|60
+2|Tendayi Darikwa|RB|34|ZIM|60
+4|Andrei Coubiș|CB|23|ROU|62
+6|Ryley Towler|CB|24|ENG|62
+15|Sonny Bradley|CB|35|ENG|60
+22|Tom Hamer|CB|27|ENG|62
+25|Deji Elerewe|CB|23|ENG|60
+3|Adam Reach|LB|33|ENG|61
+20|Callum Elder|LB|31|AUS|61
+23|Joshua Honohan|LB|25|IRL|61
+8|Tom Bayliss|DM|27|ENG|63
+14|Conor McGrandles|DM|31|SCO|62
+24|Ivan Varfolomeev|DM|22|UKR|63
+26|Yunus Konak|DM|20|TUR|60
+33|Daniel Oyegoke|RW|23|ENG|62
+27|Chiedozie Ogbene|AM|29|IRL|66
+7|Reeco Hackett|RW|28|LCA|61
+16|Dom Jefferies|LW|24|WAL|61
+18|Ben House|LW|27|SCO|63
+10|Mason Melia|ST|19|IRL|64
+11|Mikkel Ladefoged|ST|23|DEN|64
+17|Rob Street|ST|25|ENG|63
+19|Isaac Olaofe|ST|26|ENG|62
+29|Ethan Wheatley|ST|20|ENG|62
+34|Freddie Draper|ST|22|ENG|61
+`}
+];
+// legacy lite-team ids used by saves made before the Championship had real squads
+const CH_LEGACY = {C_WestHam:'WHU',C_Wolves:'WOL',C_Burnley:'BUR',C_Southampton:'SOU',C_Middlesbrough:'MID',C_SheffieldUnited:'SHU',C_NorwichCity:'NOR',C_WestBrom:'WBA',C_Watford:'WAT',C_Millwall:'MIL',C_BristolCity:'BRC',C_SwanseaCity:'SWA',C_StokeCity:'STK',C_DerbyCounty:'DER',C_QPR:'QPR',C_Preston:'PNE',C_Blackburn:'BLB',C_BirminghamCity:'BIR',C_Wrexham:'WRE',C_Charlton:'CHA',C_Portsmouth:'POR',L_Bolton:'BOL',L_CardiffCity:'CAR',L_LincolnCity:'LIN'};
 
 // ===== CORE: utilities, players, tactics =====
 let G = null; // whole game state
@@ -1008,6 +1706,12 @@ function calcValue(p) {
   return Math.max(0.05, v);
 }
 function calcWageDemand(p, rep) { const r = rep || 75; return Math.max(3, Math.round(7 * Math.exp(0.08 * (p.ca - 40)) * (0.55 + 0.5 * r / 93) * (p.age >= 32 ? .8 : 1))); }
+
+// ---- divisions ----
+function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; return null; }
+function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite)); }
+function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : G.pl; }
+function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * (divOf(tid) === 'CH' ? 0.45 : 1))); }
 
 let _pid = 0;
 function mkPlayer(o) {
@@ -1421,7 +2125,7 @@ function finalizeMatch(M) {
     for (const e of S.ps) {
       const p = e.p; if (p.pseudo || !e.mins) continue;
       playedIds.add(p.id);
-      const st = p.st; st.a++; if (!e.subOn) st.s++; st.g += e.g; if (M.comp === 'PL') { st.lg = (st.lg || 0) + e.g; st.la = (st.la || 0) + 1; st.lr = (st.lr || 0) + e.rt; st.las = (st.las || 0) + e.as; } st.as += e.as; st.r += e.rt; if (e.yc) st.y++; if (e.rc) st.rc++;
+      const st = p.st; st.a++; if (!e.subOn) st.s++; st.g += e.g; if (M.comp === 'PL' || M.comp === 'CH') { st.lg = (st.lg || 0) + e.g; st.la = (st.la || 0) + 1; st.lr = (st.lr || 0) + e.rt; st.las = (st.las || 0) + e.as; } st.as += e.as; st.r += e.rt; if (e.yc) st.y++; if (e.rc) st.rc++;
       if (mom === e) st.mom++;
       if (e.role === 'GK' && M.score[1 - i] === 0 && e.mins >= 60) st.cs++;
       p.car.a++; p.car.g += e.g;
@@ -1495,7 +2199,8 @@ function shot(M, si, e, ae, type) {
   let pg = clamp(xg * Math.pow(72 / gk, 1.0), .01, .9);
   if (type === 'pen') pg = clamp(.76 + (a.Fin - 13) * .01 - (gk - 70) * .004, .6, .9);
   if (M.wx === 'rain' && type !== 'pen') pg = Math.min(.9, pg * 1.05);
-  if (G.normF && type !== 'pen') pg *= G.normF;
+  const nf = M.comp === 'CH' && G.normCH ? G.normCH : G.normF;
+  if (nf && type !== 'pen') pg *= nf;
   S.st.sh++; S.st.xg += xg;
   const sname = cap1(pn(e.p));
   const gkE = O.ps.find(x => x.on && x.role === 'GK');
@@ -1586,39 +2291,54 @@ const CAL = {
     UEL: { md: ['2026-09-17', '2026-10-01', '2026-10-22', '2026-11-05', '2026-11-26', '2026-12-10', '2027-01-21', '2027-01-28'], ko: [['Knockout play-off', ['2027-02-18', '2027-02-25']], ['Round of 16', ['2027-03-11', '2027-03-18']], ['Quarter-final', ['2027-04-08', '2027-04-15']], ['Semi-final', ['2027-04-29', '2027-05-06']], ['Final', ['2027-05-19'], 1]] },
     UECL: { md: ['2026-09-17', '2026-10-01', '2026-10-22', '2026-11-05', '2026-11-26', '2026-12-10', '2027-01-21', '2027-01-28'], ko: [['Knockout play-off', ['2027-02-18', '2027-02-25']], ['Round of 16', ['2027-03-11', '2027-03-18']], ['Quarter-final', ['2027-04-08', '2027-04-15']], ['Semi-final', ['2027-04-29', '2027-05-06']], ['Final', ['2027-05-26'], 1]] }
   },
-  FA_DRAW: '2026-12-01', WIN1_CLOSE: '2026-09-01', WIN2_OPEN: '2027-01-01', WIN2_CLOSE: '2027-02-01', END: '2027-06-08', START: '2026-08-20'
+  FA_DRAW: '2026-12-01', WIN1_CLOSE: '2026-09-01', WIN2_OPEN: '2027-01-01', WIN2_CLOSE: '2027-02-01', END: '2027-06-08', START: '2026-08-13',
+  // Championship: 46 rounds, 15 Aug 2026 - 1 May 2027 (real season 14 Aug - 1 May); no games on international or FA Cup weekends
+  ch: ['2026-08-15', '2026-08-18', '2026-08-22', '2026-08-29', '2026-09-01', '2026-09-05', '2026-09-12', '2026-09-15', '2026-09-19', '2026-09-29', '2026-10-10', '2026-10-17', '2026-10-20', '2026-10-24', '2026-10-31', '2026-11-03', '2026-11-07', '2026-11-21', '2026-11-24', '2026-11-28', '2026-12-01', '2026-12-05', '2026-12-12', '2026-12-19', '2026-12-26', '2026-12-29', '2027-01-02', '2027-01-16', '2027-01-19', '2027-01-23', '2027-01-30', '2027-02-06', '2027-02-13', '2027-02-16', '2027-02-27', '2027-03-06', '2027-03-09', '2027-03-13', '2027-03-16', '2027-03-20', '2027-04-03', '2027-04-10', '2027-04-13', '2027-04-17', '2027-04-24', '2027-05-01'],
+  // play-offs (new 2026/27 format): 5v8 and 6v7 eliminators, two-legged semis with 3rd and 4th, final at Wembley
+  PO: [['Eliminator', ['2027-05-05']], ['Semi-final', ['2027-05-09', '2027-05-13']], ['Final', ['2027-05-29'], 1]], PO_DRAW: '2027-05-02'
 };
 function sd(s) { return addDays(s, 364 * (G.year - BASE_YEAR)); } // shift a base date to the current season
-const COMP_NAME = { PL: 'Premier League', LC: 'Carabao Cup', FA: 'FA Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League' };
-const COMP_SHORT = { PL: 'PL', LC: 'LC', FA: 'FAC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL' };
+const COMP_NAME = { PL: 'Premier League', CH: 'Championship', PO: 'Championship play-offs', LC: 'Carabao Cup', FA: 'FA Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League' };
+const COMP_SHORT = { PL: 'PL', CH: 'CH', PO: 'PO', LC: 'LC', FA: 'FAC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL' };
+const LEAGUE_COMPS = ['PL', 'CH'];
+const PARACHUTE = [45, 37]; // £m per season for the two seasons after relegation from the Premier League
 
 function slug(s) { return s.replace(/[^A-Za-z0-9]/g, ''); }
 function newGame(userId, mgrName) {
   _pid = 0; _attrCache.clear();
   G = { v: 1, year: BASE_YEAR, user: userId, mgr: mgrName || 'Manager', mgrRep: 55, date: CAL.START, teams: {}, players: {}, sq: {}, pl: [], champ: null, fx: {}, byDate: {}, news: [], newsId: 0, offers: [], hist: [], honours: {}, fa: [], board: 70, fid: 0, tasks: [], window: true, euroNext: null, sacked: false, records: {}, lastResults: [], seasonEnded: false };
-  for (const c of PL_CLUBS) {
-    const t = { id: c.id, name: c.name, short: c.short || c.name, c1: c.c1, c2: c.c2, stadium: c.stadium, cap: c.cap, mgr: c.mgr, rep: c.rep, bal: c.bal, lite: false, tac: { form: PREF_FORM[c.id], xi: [], bench: [], ment: 3, press: 2, tempo: 2, width: 2, pass: 2 }, fin: newFin() };
-    G.teams[c.id] = t; G.sq[c.id] = []; G.pl.push(c.id);
-    for (const line of c.sq.trim().split('\n')) {
-      const [no, n, pos, age, nat, ca] = line.split('|');
-      const p = mkPlayer({ n, c: c.id, no: +no, pos, age: +age, nat, ca: +ca + ({ COV: 3, HUL: 3, IPS: 2, LEE: 1 }[c.id] || 0) });
-      p.con = BASE_YEAR + R.i(p.age >= 32 ? 1 : 2, p.age >= 30 ? 2 : p.age <= 21 ? 5 : 4);
-      G.players[p.id] = p; G.sq[c.id].push(p.id);
-    }
-  }
-  for (const id of G.pl) { for (const p of squad(id)) { p.wage = calcWageDemand(p, T(id).rep) * R.i(85, 110) / 100; p.val = calcValue(p); } setBudgets(id, true); }
-  // lite teams
-  for (const [n, s, st, cap] of CHAMP) addLite('C_' + slug(n), n, s, st, cap);
+  G.champTeams = CH_CLUBS.map(c => c.id);
+  for (const c of PL_CLUBS) addFullTeam(c, 'PL');
+  for (const c of CH_CLUBS) addFullTeam(c, 'CH');
+  for (const id of fullTeams()) { for (const p of squad(id)) { p.wage = wageFor(p, id) * R.i(85, 110) / 100 * (T(id).para ? 1.25 : 1); p.val = calcValue(p); } setBudgets(id, true); }
+  // lite teams: League One and below, European clubs
   for (const [n, s] of LOWER) addLite('L_' + slug(n), n, s);
   for (const k in EURO) for (const [n, s] of EURO[k]) addLite('E_' + slug(n), n, s);
-  G.champTeams = CHAMP.map(c => 'C_' + slug(c[0]));
   G.lowerTeams = LOWER.map(c => 'L_' + slug(c[0]));
+  G.l1 = G.lowerTeams.slice(0, 24);
+  G.ded = {}; for (const c of CH_CLUBS) if (c.ded) G.ded[c.id] = c.ded;
   G.euroIn = JSON.parse(JSON.stringify(EURO_START));
-  for (const id of G.pl) autoPick(id);
+  for (const id of fullTeams()) autoPick(id);
   buildSeason();
   migrate();
   welcomeNews();
   return G;
+}
+function addFullTeam(c, div) {
+  const t = { id: c.id, name: c.name, short: c.short || c.name, c1: c.c1, c2: c.c2, stadium: c.stadium, cap: c.cap, mgr: c.mgr, rep: c.rep, bal: c.bal, lite: false, tac: { form: c.form || PREF_FORM[c.id] || '4-2-3-1', xi: [], bench: [], ment: 3, press: 2, tempo: 2, width: 2, pass: 2 }, fin: newFin() };
+  if (c.capt) t.captN = c.capt;
+  if (div === 'CH' && c.rep >= 68) t.para = PARACHUTE.slice(); // relegated from the Premier League in May 2026
+  G.teams[c.id] = t; G.sq[c.id] = []; if (div === 'PL') G.pl.push(c.id);
+  addSquadRows(c.id, c.sq, div === 'PL' ? ({ COV: 3, HUL: 3, IPS: 2, LEE: 1 }[c.id] || 0) : 0);
+  return t;
+}
+function addSquadRows(tid, sq, boost) {
+  for (const line of sq.trim().split('\n')) {
+    const [no, n, pos, age, nat, ca] = line.split('|');
+    const p = mkPlayer({ n, c: tid, no: +no, pos, age: +age, nat, ca: +ca + (boost || 0) });
+    p.con = G.year + R.i(p.age >= 32 ? 1 : 2, p.age >= 30 ? 2 : p.age <= 21 ? 5 : 4);
+    G.players[p.id] = p; G.sq[tid].push(p.id);
+  }
 }
 function addLite(id, name, str, stadium, cap) { G.teams[id] = { id, name, short: name, str, lite: true, stadium: stadium || name + ' ground', cap: cap || 20000, c1: '#8a8f99', c2: '#ffffff' }; }
 function newFin() { return { in: { gate: 0, tv: 0, com: 0, prize: 0, sales: 0 }, out: { wages: 0, buys: 0, other: 0 } }; }
@@ -1641,15 +2361,17 @@ function roundRobin(ids) {
   }
   return rounds;
 }
-function leagueNorm() {
+function leagueNorm(teams) {
   const avg = (a) => a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0;
   const gk = [], att = [];
-  for (const t of G.pl) { const sq = squad(t); const g = sq.filter(p => p.pos === 'GK').sort((a, b) => b.ca - a.ca)[0]; if (g) gk.push(g.ca); att.push(avg(sq.filter(p => ['ST', 'LW', 'RW', 'AM'].includes(p.pos)).sort((a, b) => b.ca - a.ca).slice(0, 3).map(p => p.ca))); }
+  for (const t of (teams || G.pl)) { const sq = squad(t); const g = sq.filter(p => p.pos === 'GK').sort((a, b) => b.ca - a.ca)[0]; if (g) gk.push(g.ca); att.push(avg(sq.filter(p => ['ST', 'LW', 'RW', 'AM'].includes(p.pos)).sort((a, b) => b.ca - a.ca).slice(0, 3).map(p => p.ca))); }
   return avg(att) - avg(gk);
 }
 function buildSeason() {
   const gap = leagueNorm(); if (G.norm0 == null) G.norm0 = gap;
   G.normF = clamp(Math.exp(-(gap - G.norm0) * .035), .8, 1.2);
+  // the Championship gets its own calibration (about 2.6 goals a game, as in recent seasons)
+  if (divTeams('CH').length) { const gc = leagueNorm(divTeams('CH')); if (G.normCH0 == null) G.normCH0 = gc; G.normCH = 0.86 * clamp(Math.exp(-(gc - G.normCH0) * .035), .8, 1.2); }
   G.fx = {}; G.byDate = {}; G.tasks = [];
   // Premier League
   const order = R.shuffle(G.pl);
@@ -1661,9 +2383,15 @@ function buildSeason() {
   const h1 = R.shuffle(first), h2 = R.shuffle(second);
   const lr = h1.concat(h2);
   G.league = { rounds: lr.map((pairs, ri) => pairs.map(([h, a]) => addFx({ comp: 'PL', d: sd(CAL.league[ri]), h, a, rnd: ri + 1 }).id)) };
-  // Championship (team-level simulation)
-  const co = R.shuffle(G.champTeams); const cr = roundRobin(co); const cr2 = cr.map(r => r.map(([a, b]) => [b, a]));
-  G.champ = { rounds: cr.concat(cr2).map(r => r.map(([h, a]) => ({ h, a, r: null }))), played: 0 };
+  // Championship: real fixtures when the division has full squads (legacy saves keep a team-level table until their next season)
+  if (divTeams('CH').length === G.champTeams.length) {
+    const cr = roundRobin(R.shuffle(G.champTeams)); const ch1 = R.shuffle(cr), ch2 = R.shuffle(cr.map(r => r.map(([a, b]) => [b, a])));
+    G.chLeague = { rounds: ch1.concat(ch2).map((pairs, ri) => pairs.map(([h, a]) => addFx({ comp: 'CH', d: sd(CAL.ch[ri]), h, a, rnd: ri + 1 }).id)) };
+    G.champ = null;
+  } else {
+    const cr = roundRobin(R.shuffle(G.champTeams)); const cr2 = cr.map(r => r.map(([a, b]) => [b, a]));
+    G.champ = { rounds: cr.concat(cr2).map(r => r.map(([h, a]) => ({ h, a, r: null }))), played: 0 }; G.chLeague = null;
+  }
   // Carabao Cup
   const euroPL = [].concat(G.euroIn.UCL, G.euroIn.UEL, G.euroIn.UECL);
   G.cups = {};
@@ -1672,12 +2400,15 @@ function buildSeason() {
   drawRound('LC', 0, lcR2);
   G.cups.FA = { id: 'FA', rounds: CAL.FA.map(([n, ds, neu]) => ({ n, d: ds.map(sd), neutral: !!neu, ties: [], done: false })), ri: 0, winner: null };
   G.tasks.push({ d: sd(CAL.FA_DRAW), t: 'drawFA' });
+  // Championship play-offs
+  G.cups.PO = { id: 'PO', rounds: CAL.PO.map(([n, ds, neu]) => ({ n, d: ds.map(sd), neutral: !!neu, ties: [], done: false })), ri: 0, winner: null, seeds: [] };
+  if (G.chLeague) G.tasks.push({ d: sd(CAL.PO_DRAW), t: 'drawPO' });
   // Europe
   G.euro = {};
   for (const c of ['UCL', 'UEL', 'UECL']) buildEuro(c);
   G.window = true;
   G.tasks.push({ d: sd(CAL.WIN1_CLOSE), t: 'winClose' }, { d: sd(CAL.WIN2_OPEN), t: 'winOpen' }, { d: sd(CAL.WIN2_CLOSE), t: 'winClose' }, { d: sd(CAL.END), t: 'seasonEnd' });
-  for (const id of G.pl) T(id).fin = newFin();
+  for (const id of fullTeams()) T(id).fin = newFin();
 }
 function drawRound(cid, ri, teams) {
   const cup = G.cups[cid]; const rd = cup.rounds[ri];
@@ -1714,9 +2445,10 @@ function checkCupProgress(cid) {
   if (cup.ri === cup.rounds.length - 1) {
     cup.winner = winners[0]; honour(cup.winner, COMP_NAME[cid]);
     news(COMP_NAME[cid] + ' winners', `${tName(cup.winner, false)} win the ${COMP_NAME[cid]}!`, cup.winner, true);
-    prize(cup.winner, cid === 'FA' ? 4 : 2.5);
+    if (cid !== 'PO') prize(cup.winner, cid === 'FA' ? 4 : 2.5);
     return;
   }
+  if (cid === 'PO') { poNextRound(); return; }
   let next = winners;
   if (cid === 'LC' && cup.ri === 0) { const euroPL = [].concat(G.euroIn.UCL, G.euroIn.UEL, G.euroIn.UECL); next = winners.concat(euroPL); const restC = G.champTeams.filter(t => !rd.ties.some(x => x.t.includes(t))); next = next.concat(R.shuffle(restC).concat(R.shuffle(G.lowerTeams))).slice(0, 32); }
   drawRound(cid, cup.ri + 1, next);
@@ -1724,6 +2456,31 @@ function checkCupProgress(cid) {
   const ut = cup.rounds[cup.ri].ties.find(t => t.t.includes(u));
   if (ut) { const opp = ut.t[0] === u ? ut.t[1] : ut.t[0]; news(COMP_NAME[cid] + ' draw', `${cup.rounds[cup.ri].n}: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(cup.rounds[cup.ri].d[0], false)}).`, u); }
   for (const t of rd.ties) if (!T(t.w).lite) prize(t.w, cid === 'FA' ? 0.3 * (cup.ri + 1) : 0.15 * (cup.ri + 1));
+}
+// fixed pairings (first-named team hosts the first leg / the single game)
+function drawFixed(cid, ri, pairs) {
+  const cup = G.cups[cid]; const rd = cup.rounds[ri]; rd.ties = [];
+  for (const [h, a] of pairs) {
+    const tie = { t: [h, a], fx: [], w: null };
+    if (rd.d.length === 2) { const l1 = addFx({ comp: cid, d: rd.d[0], h, a, rnd: rd.n, leg: 1 }); const l2 = addFx({ comp: cid, d: rd.d[1], h: a, a: h, rnd: rd.n, leg: 2, l1: l1.id, need: true }); tie.fx = [l1.id, l2.id]; }
+    else { const f = addFx({ comp: cid, d: rd.d[0], h, a, rnd: rd.n, need: true, neutral: rd.neutral }); tie.fx = [f.id]; }
+    rd.ties.push(tie);
+  }
+  cup.ri = ri;
+  const ut = rd.ties.find(t => t.t.includes(G.user));
+  if (ut) news(COMP_NAME[cid], `${rd.n}: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(rd.d[0], false)}${rd.d[1] ? ' and ' + dNice(rd.d[1], false) : ''}).`, G.user);
+}
+// play-offs: 5th v 8th and 6th v 7th (higher seed at home), then 3rd v lowest remaining and 4th v the other over two legs
+function drawPO() {
+  const ct = champTable(); const seeds = ct.slice(2, 8).map(r => r.t); G.cups.PO.seeds = seeds;
+  drawFixed('PO', 0, [[seeds[2], seeds[5]], [seeds[3], seeds[4]]]);
+  news('Championship play-offs', `Play-off places: ${seeds.map((t, i) => (i + 3) + '. ' + tName(t)).join(', ')}.`, null, true);
+}
+function poNextRound() {
+  const cup = G.cups.PO; const seeds = cup.seeds;
+  const w = cup.rounds[cup.ri].ties.map(t => t.w);
+  if (cup.ri === 0) { const rest = w.sort((a, b) => seeds.indexOf(a) - seeds.indexOf(b)); drawFixed('PO', 1, [[rest[1], seeds[0]], [rest[0], seeds[1]]]); }
+  else drawFixed('PO', 2, [[w[0], w[1]]]);
 }
 
 // ---- Europe ----
@@ -1803,18 +2560,23 @@ function euroDraw(c, ki, pairs) {
 function ordinal(n) { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
 
 // ---- league table ----
-function leagueTable() {
+function divTable(teams, rounds, ded) {
   const tb = {};
-  for (const t of G.pl) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, form: [] };
-  for (const r of G.league.rounds) for (const fid of r) { const f = G.fx[fid]; if (!f.r) continue; addRes(tb[f.h], f.r[0], f.r[1]); addRes(tb[f.a], f.r[1], f.r[0]); tb[f.h].form.push(f.r[0] > f.r[1] ? 'W' : f.r[0] < f.r[1] ? 'L' : 'D'); tb[f.a].form.push(f.r[1] > f.r[0] ? 'W' : f.r[1] < f.r[0] ? 'L' : 'D'); }
+  for (const t of teams) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: -((ded && ded[t]) || 0), form: [], ded: (ded && ded[t]) || 0 };
+  for (const r of rounds) for (const fid of r) { const f = G.fx[fid]; if (!f || !f.r || !tb[f.h] || !tb[f.a]) continue; addRes(tb[f.h], f.r[0], f.r[1]); addRes(tb[f.a], f.r[1], f.r[0]); tb[f.h].form.push(f.r[0] > f.r[1] ? 'W' : f.r[0] < f.r[1] ? 'L' : 'D'); tb[f.a].form.push(f.r[1] > f.r[0] ? 'W' : f.r[1] < f.r[0] ? 'L' : 'D'); }
   return Object.values(tb).sort(sortTable);
 }
+function leagueTable() { return divTable(G.pl, G.league.rounds, G.ded); }
 function champTable() {
+  if (G.chLeague) return divTable(G.champTeams, G.chLeague.rounds, G.ded);
   const tb = {};
-  for (const t of G.champTeams) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
+  for (const t of G.champTeams) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, form: [] };
   for (const r of G.champ.rounds) for (const f of r) if (f.r) { addRes(tb[f.h], f.r[0], f.r[1]); addRes(tb[f.a], f.r[1], f.r[0]); }
   return Object.values(tb).sort(sortTable);
 }
+function tableOf(div) { return div === 'CH' ? champTable() : leagueTable(); }
+function userDiv() { return divOf(G.user) || 'PL'; }
+function userTable() { return tableOf(userDiv()); }
 
 // ---- quick sim (team level) ----
 function teamStrength(tid) {
@@ -1852,11 +2614,13 @@ function postMatch(f, pre) {
   for (const id of pre) { const p = P(id); if (p && p.sus > 0) p.sus--; }
   // gate receipts and TV
   if (!f.neutral && !T(f.h).lite) {
-    const t = T(f.h); const fill = clamp(0.8 + t.rep / 600 + (f.comp !== 'PL' ? -0.08 : 0), 0.5, 1);
-    const gate = t.cap * fill * (20 + t.rep * 0.38) / 1e6 * (f.comp === 'PL' ? 1 : 0.8);
+    const t = T(f.h); const ch = divOf(f.h) === 'CH'; const lg = LEAGUE_COMPS.includes(f.comp);
+    const fill = ch ? clamp(0.55 + t.rep / 250 + (lg ? 0 : -0.12), 0.4, 0.97) : clamp(0.8 + t.rep / 600 + (lg ? 0 : -0.08), 0.5, 1);
+    const gate = t.cap * fill * (ch ? 8 + t.rep * 0.33 : 20 + t.rep * 0.38) / 1e6 * (lg ? 1 : 0.8);
     t.bal += gate; t.fin.in.gate += gate; f.att = Math.round(t.cap * fill);
   }
   if (f.comp === 'PL') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 1.5; t.fin.in.tv += 1.5; }
+  if (f.comp === 'CH') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 0.12; t.fin.in.tv += 0.12; }
   if (['UCL', 'UEL', 'UECL'].includes(f.comp) && f.rnd && String(f.rnd).startsWith('Matchday')) {
     const win = f.r[0] > f.r[1] ? f.h : f.r[1] > f.r[0] ? f.a : null;
     const per = f.comp === 'UCL' ? 2.1 : f.comp === 'UEL' ? .45 : .4;
@@ -1880,10 +2644,18 @@ function welcomeNews() {
   const t = userTeam();
   const exp = boardTarget();
   msg('Welcome to ' + t.name, `The board welcomes ${G.mgr} as the new manager of ${t.name}. Your transfer budget is ${money(t.tb)} and the wage budget is ${wageStr(t.wb)}. The board expects you to ${exp.txt} this season. The summer transfer window closes on ${dNice(sd(CAL.WIN1_CLOSE))}.`);
-  msg('Squad data', 'Squads reflect the 2026/27 Premier League first-team rosters as of 24 October 2026, after the summer window. Player ratings and attributes are game estimates. Lower-league and European opponents are simulated at team level.');
+  msg('Squad data', 'Squads reflect the 2026/27 Premier League and Championship first-team rosters as of late October 2026, after the summer window. Player ratings and attributes are game estimates. League One, lower-league and European opponents are simulated at team level. Southampton start the Championship season with a 4-point deduction.');
 }
 function boardTarget(tid) {
   const t = T(tid || G.user);
+  if (divOf(t.id) === 'CH') {
+    const rc = divTeams('CH').slice().sort((a, b) => T(b).rep - T(a).rep).indexOf(t.id) + 1;
+    if (rc <= 2) return { pos: 2, txt: 'win promotion' };
+    if (rc <= 6) return { pos: 6, txt: 'reach the play-offs' };
+    if (rc <= 12) return { pos: 12, txt: 'finish in the top half' };
+    if (rc <= 18) return { pos: 18, txt: 'finish in mid-table' };
+    return { pos: 21, txt: 'avoid relegation' };
+  }
   const ranks = G.pl.slice().sort((a, b) => T(b).rep - T(a).rep);
   const rk = ranks.indexOf(t.id) + 1;
   if (rk <= 2) return { pos: 2, txt: 'challenge for the title' };
@@ -1898,7 +2670,7 @@ function boardReact(f) {
   const exp = (teamStrength(u) - teamStrength(opp)) / 10;
   const res = gf > ga ? 1 : gf === ga ? 0 : -1;
   let delta = res === 1 ? 1.5 - exp * .5 : res === 0 ? -exp : -2 - exp * .5;
-  if (f.comp !== 'PL') delta *= .6;
+  if (!LEAGUE_COMPS.includes(f.comp)) delta *= .6;
   G.board = clamp(G.board + delta, 0, 100);
 }
 
@@ -1937,13 +2709,13 @@ function finishDay() {
   const ids = (G.byDate[G.date] || []).slice();
   const played = [];
   for (const id of ids) { const f = G.fx[id]; if (!f.r) { playFixture(id); played.push(id); } }
-  // championship rounds alongside PL rounds
-  if (ids.some(id => G.fx[id].comp === 'PL')) {
+  // legacy saves: team-level Championship rounds alongside PL rounds
+  if (G.champ && G.champ.rounds && ids.some(id => G.fx[id].comp === 'PL')) {
     const plRound = G.fx[ids.find(id => G.fx[id].comp === 'PL')].rnd;
     const target = Math.floor(plRound * 46 / 38);
     while (G.champ.played < target && G.champ.played < 46) { for (const f of G.champ.rounds[G.champ.played]) f.r = quickScore(f.h, f.a); G.champ.played++; }
   }
-  for (const c of ['LC', 'FA']) checkCupProgress(c);
+  for (const c of ['LC', 'FA', 'PO']) if (G.cups[c]) checkCupProgress(c);
   for (const c of ['UCL', 'UEL', 'UECL']) checkEuroProgress(c);
   G.lastResults = ids;
   checkBoard();
@@ -1967,6 +2739,7 @@ function dailyTick() {
   // tasks
   for (const tk of G.tasks.filter(t => t.d === G.date)) {
     if (tk.t === 'drawFA') { const ent = G.pl.concat(G.champTeams, R.shuffle(G.lowerTeams).slice(0, 20)); drawRound('FA', 0, ent); const ut = G.cups.FA.rounds[0].ties.find(t => t.t.includes(G.user)); if (ut) news('FA Cup draw', `Third Round: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(G.cups.FA.rounds[0].d[0], false)}).`, G.user); }
+    if (tk.t === 'drawPO') drawPO();
     if (tk.t === 'winOpen') { G.window = true; msg('Transfer window open', `The January transfer window is now open until ${dNice(sd(CAL.WIN2_CLOSE))}.`); }
     if (tk.t === 'winClose') { G.window = false; msg('Transfer window closed', 'The transfer window has closed. Squads are locked until the next window.'); G.offers = G.offers.filter(o => o.st === 'done'); }
     if (tk.t === 'seasonEnd') { seasonEnd(); return { type: 'season' }; }
@@ -1975,8 +2748,9 @@ function dailyTick() {
   return null;
 }
 function weekly() {
-  for (const tid of G.pl) {
+  for (const tid of fullTeams()) {
     const t = T(tid);
+    if (t.para && t.para.length) { const pp = t.para[0] / 52; t.bal += pp; t.fin.in.tv += pp; }
     const w = (wageBill(tid) + (tid === G.user ? staffWages() : 0)) / 1000; t.bal -= w; t.fin.out.wages += w;
     const com = Math.pow(t.rep / 100, 4) * 2.5; t.bal += com; t.fin.in.com += com;
     for (const p of squad(tid)) { if (p.mor < 65) p.mor += 1; if (p.mor > 80) p.mor -= 1; }
@@ -1984,12 +2758,16 @@ function weekly() {
   if (!G.sacked && T(G.user) && !T(G.user).lite) weeklyDynamics();
   // AI manager changes occasionally
   if (dDiff(sd('2026-10-01'), G.date) > 0 && dDiff(G.date, sd('2027-04-15')) > 0 && R.chance(0.08)) {
-    const tb = leagueTable(); const cand = tb.slice(10).map(r => r.t).filter(t => t !== G.user && (tb.findIndex(r => r.t === t) + 1) > boardTarget(t).pos + 3);
+    const tb = R.chance(.5) ? leagueTable() : champTable(); const cand = tb.slice(Math.round(tb.length / 2)).map(r => r.t).filter(t => t !== G.user && !T(t).lite && (tb.findIndex(r => r.t === t) + 1) > boardTarget(t).pos + 3);
     if (cand.length) { const t = T(R.pick(cand)); const old = t.mgr; t.mgr = genName(); news('Manager', `${t.name} have sacked ${old} and appointed ${t.mgr} as the new head coach.`, t.id, true); }
+  }
+  // caretakers are replaced after a few weeks
+  for (const tid of fullTeams()) { const t = T(tid); if (tid !== G.user && /caretaker/i.test(t.mgr || '') && R.chance(0.3)) { t.mgr = genName(); news('Manager', `${t.name} have appointed ${t.mgr} as their new head coach.`, tid, true); }
   }
 }
 function checkBoard() {
-  if (G.board < 8 && !G.sacked && G.league.rounds.flat().filter(id => G.fx[id].r).length > 60) {
+  const ur = userDiv() === 'CH' && G.chLeague ? G.chLeague.rounds : G.league.rounds;
+  if (G.board < 8 && !G.sacked && ur.flat().filter(id => G.fx[id].r).length > ur.flat().length / 6) {
     G.sacked = true; msg('Sacked', `The ${userTeam().name} board has lost patience after a run of poor results and has terminated your contract.`);
   }
 }
@@ -2046,12 +2824,12 @@ function resolveUserBids() {
     if (sp && (sp.c !== G.user || playerInterest(sp, o.from) === 'no')) { o.st = 'rejected'; msg('Transfer: ' + p.n, `${sp ? sp.n : 'The player you offered'} does not want to move to ${tName(o.from)}, so the swap is off.`); continue; }
     const sv = sp ? swapValue(sp, o.from) : 0;
     if (interest === 'no') { o.st = 'rejected'; msg('Transfer: ' + p.n, `${p.n} has told ${tName(p.c)} he is not interested in joining ${userTeam().name}.`); continue; }
-    if (o.fee + sv >= ask) { o.st = 'accepted'; o.wage = Math.round(calcWageDemand(p, userTeam().rep) * (interest === 'maybe' ? 1.25 : 1.05) * dofWage()); msg('Transfer: ' + p.n, `${tName(p.c)} have accepted your ${money(o.fee)}${sp ? ' plus ' + sp.n : ''} bid for ${p.n}. He is asking for ${wageStr(o.wage)}. Open Transfers to agree personal terms.`, { k: 'terms', o: o.id }); }
+    if (o.fee + sv >= ask) { o.st = 'accepted'; o.wage = Math.round(wageFor(p, G.user) * (interest === 'maybe' ? 1.25 : 1.05) * dofWage()); msg('Transfer: ' + p.n, `${tName(p.c)} have accepted your ${money(o.fee)}${sp ? ' plus ' + sp.n : ''} bid for ${p.n}. He is asking for ${wageStr(o.wage)}. Open Transfers to agree personal terms.`, { k: 'terms', o: o.id }); }
     else if (o.fee + sv >= ask * .75) { o.st = 'countered'; o.counter = Math.max(0.1, Math.round((ask - sv) * 10) / 10); msg('Transfer: ' + p.n, `${tName(p.c)} rejected your ${money(o.fee)} bid for ${p.n} but would accept ${money(o.counter)}.`, { k: 'counter', o: o.id }); }
     else { o.st = 'rejected'; msg('Transfer: ' + p.n, `${tName(p.c)} rejected your ${money(o.fee)} bid for ${p.n} out of hand. They value him at well over that.`); }
   }
 }
-function acceptCounter(oid) { const o = G.offers.find(x => x.id === oid); if (!o || o.st !== 'countered') return { ok: false, msg: 'Offer no longer available.' }; if (o.counter > userTeam().tb) return { ok: false, msg: 'Not enough transfer budget.' }; o.fee = o.counter; o.st = 'accepted'; const p = P(o.pid); o.wage = Math.round(calcWageDemand(p, userTeam().rep) * 1.08 * dofWage()); return { ok: true, msg: `Fee agreed at ${money(o.fee)}. ${p.n} wants ${wageStr(o.wage)}.` }; }
+function acceptCounter(oid) { const o = G.offers.find(x => x.id === oid); if (!o || o.st !== 'countered') return { ok: false, msg: 'Offer no longer available.' }; if (o.counter > userTeam().tb) return { ok: false, msg: 'Not enough transfer budget.' }; o.fee = o.counter; o.st = 'accepted'; const p = P(o.pid); o.wage = Math.round(wageFor(p, G.user) * 1.08 * dofWage()); return { ok: true, msg: `Fee agreed at ${money(o.fee)}. ${p.n} wants ${wageStr(o.wage)}.` }; }
 function offerTerms(oid, wage, years) {
   const o = G.offers.find(x => x.id === oid); if (!o || o.st !== 'accepted') return { ok: false, msg: 'This deal is no longer available.' };
   const p = P(o.pid); const u = userTeam();
@@ -2063,14 +2841,14 @@ function offerTerms(oid, wage, years) {
   const sp = o.swap ? P(o.swap) : null;
   if (sp && sp.c !== G.user) return { ok: false, msg: `${sp.n} is no longer at the club, so the swap cannot go ahead.` };
   completeTransfer(p, G.user, o.fee, wage, years);
-  if (sp) completeTransfer(sp, o.from, 0, Math.round(calcWageDemand(sp, T(o.from).rep)), 4);
+  if (sp) completeTransfer(sp, o.from, 0, Math.round(wageFor(sp, o.from)), 4);
   o.st = 'done';
   return { ok: true, msg: `${p.n} signs for ${u.name} for ${money(o.fee)} on ${wageStr(wage)} until ${G.year + years}.` };
 }
 function freeAgentSign(pid, wage, years) {
   const p = P(pid); const u = userTeam();
   if (!G.window) return { ok: false, msg: 'Free agents can only be signed while a transfer window is open.' };
-  const dem = calcWageDemand(p, u.rep);
+  const dem = wageFor(p, G.user);
   if (wage < dem * .93) return { ok: false, msg: `${p.n} wants at least ${wageStr(dem)}.` };
   if (wageBill(G.user) + wage > u.wb + 0.5) return { ok: false, msg: 'That would exceed your wage budget.' };
   G.fa = G.fa.filter(x => x !== pid);
@@ -2101,11 +2879,11 @@ function respondOffer(oid, accept, counter) {
   if (!G.window) { o.st = 'expired'; return { ok: false, msg: 'The window has closed.' }; }
   if (accept) {
     o.st = 'done';
-    if (o.abroad) sellAbroad(p, o.fee, o.buyer); else completeTransfer(p, o.to, o.fee, Math.round(calcWageDemand(p, T(o.to).rep)), R.i(3, 5));
+    if (o.abroad) sellAbroad(p, o.fee, o.buyer); else completeTransfer(p, o.to, o.fee, Math.round(wageFor(p, o.to)), R.i(3, 5));
     return { ok: true, msg: `${p.n} has been sold for ${money(o.fee)}.` };
   }
   if (counter) {
-    if (R.chance(o.fee / counter > .85 ? .55 : .2)) { o.fee = counter; o.st = 'done'; if (o.abroad) sellAbroad(p, o.fee, o.buyer); else completeTransfer(p, o.to, o.fee, Math.round(calcWageDemand(p, T(o.to).rep)), R.i(3, 5)); return { ok: true, msg: `They agreed to ${money(counter)}. ${p.n} has been sold.` }; }
+    if (R.chance(o.fee / counter > .85 ? .55 : .2)) { o.fee = counter; o.st = 'done'; if (o.abroad) sellAbroad(p, o.fee, o.buyer); else completeTransfer(p, o.to, o.fee, Math.round(wageFor(p, o.to)), R.i(3, 5)); return { ok: true, msg: `They agreed to ${money(counter)}. ${p.n} has been sold.` }; }
     o.st = 'rejected'; return { ok: false, msg: `${o.abroad ? o.buyer : tName(o.to)} walked away from the deal.` };
   }
   o.st = 'rejected'; return { ok: true, msg: 'Offer rejected.' };
@@ -2117,7 +2895,7 @@ function transferAI() {
     const cands = squad(G.user).filter(p => !p.loan && (p.listed || p.req || p.ca >= 76 || R.chance(.15)) && !G.offers.some(o => o.pid === p.id && o.st === 'incoming'));
     if (cands.length) {
       const p = R.wpick(cands, q => (q.listed || q.req ? 5 : 1) * (q.ca - 60));
-      const buyers = G.pl.filter(t => t !== G.user && T(t).tb > calcValue(p) * .9 && T(t).rep >= p.ca - 18);
+      const buyers = fullTeams().filter(t => t !== G.user && T(t).tb > calcValue(p) * .9 && T(t).rep >= p.ca - 18);
       const abroad = R.chance(buyers.length ? .4 : 1);
       const fee = Math.round(calcValue(p) * (p.listed ? R.i(70, 100) : R.i(85, 125)) / 10) / 10;
       if (fee >= .1) {
@@ -2130,15 +2908,15 @@ function transferAI() {
     }
   }
   // AI to AI transfers (a few per window)
-  if (R.chance(0.06)) {
-    const buyer = R.pick(G.pl.filter(t => t !== G.user));
+  if (R.chance(0.1)) {
+    const buyer = R.pick(fullTeams().filter(t => t !== G.user));
     const bt = T(buyer);
     const grp = R.pick(['D', 'M', 'A']);
-    const target = R.pick(Object.values(G.players).filter(p => G.pl.includes(p.c) && !p.loan && p.c !== G.user && p.c !== buyer && POS_GROUP[p.pos] === grp && p.ca >= bt.rep - 12 && p.ca <= bt.rep + 2 && importance(p) !== 'key' && askingPrice(p) < bt.tb && playerInterest(p, buyer) === 'yes'));
-    if (target && squad(target.c).length > 20) { const fee = askingPrice(target); bt.tb -= fee; completeTransfer(target, buyer, fee, calcWageDemand(target, bt.rep), R.i(3, 5)); }
+    const target = R.pick(Object.values(G.players).filter(p => divOf(p.c) && !p.loan && p.c !== G.user && p.c !== buyer && POS_GROUP[p.pos] === grp && p.ca >= bt.rep - 12 && p.ca <= bt.rep + 2 && importance(p) !== 'key' && askingPrice(p) < bt.tb && playerInterest(p, buyer) === 'yes'));
+    if (target && squad(target.c).length > 20) { const fee = askingPrice(target); bt.tb -= fee; completeTransfer(target, buyer, fee, wageFor(target, buyer), R.i(3, 5)); }
   }
   // AI signs free agents if short
-  for (const tid of G.pl) if (tid !== G.user && squad(tid).length < 22 && G.fa.length) { const best = G.fa.map(P).sort((a, b) => b.ca - a.ca)[0]; if (best) { G.fa = G.fa.filter(x => x !== best.id); completeTransfer(best, tid, 0, calcWageDemand(best, T(tid).rep), 2); } }
+  for (const tid of fullTeams()) if (tid !== G.user && squad(tid).length < 22 && G.fa.length) { const best = G.fa.map(P).sort((a, b) => b.ca - a.ca)[0]; if (best) { G.fa = G.fa.filter(x => x !== best.id); completeTransfer(best, tid, 0, wageFor(best, tid), 2); } }
   // expire stale incoming offers
   for (const o of G.offers) if (o.st === 'incoming' && dDiff(o.d, G.date) > 6) o.st = 'expired';
 }
@@ -2151,7 +2929,7 @@ function releasePlayer(pid) {
   news('Transfer', `${p.n} has been released by ${t.name}.`, G.user);
   return { ok: true, msg: `${p.n} released. Settlement cost: ${money(cost)}.` };
 }
-function renewDemand(p) { const h = hap(p); return Math.round(Math.max(p.wage * 1.05, calcWageDemand(p, userTeam().rep)) * (h < 60 ? 1 + (60 - h) / 100 : 1)); }
+function renewDemand(p) { const h = hap(p); return Math.round(Math.max(p.wage * 1.05, wageFor(p, G.user)) * (h < 60 ? 1 + (60 - h) / 100 : 1)); }
 function renewContract(pid, wage, years) {
   const p = P(pid); const d = renewDemand(p);
   if (p.req || hap(p) < 20) return { ok: false, msg: `${p.n} is not interested in a new contract while he is this unhappy.` };
@@ -2165,69 +2943,114 @@ function renewContract(pid, wage, years) {
 
 // ===== SEASON END =====
 function seasonEnd() {
-  const tb = leagueTable();
-  const y = G.year;
+  const tb = leagueTable(), ct = champTable();
+  const y = G.year, udiv = userDiv();
   const champ = tb[0].t; honour(champ, 'Premier League');
+  const chChamp = ct[0].t; if (!T(chChamp).lite) honour(chChamp, 'Championship');
   // merit payments
   tb.forEach((r, i) => prize(r.t, (20 - i) * 2.8 + 8));
   // awards
   const pls = Object.values(G.players).filter(p => G.pl.includes(p.c) || p.st.a > 0);
-  const top = pls.slice().sort((a, b) => (b.st.lg || 0) - (a.st.lg || 0))[0];
-  const best = pls.filter(p => p.st.a >= 15).sort((a, b) => b.st.r / b.st.a - a.st.r / a.st.a)[0];
-  const young = pls.filter(p => p.st.a >= 12 && p.age <= 21).sort((a, b) => b.st.r / b.st.a - a.st.r / a.st.a)[0];
-  const upos = tb.findIndex(r => r.t === G.user) + 1;
+  const plOnly = pls.filter(p => G.pl.includes(p.c));
+  const top = plOnly.slice().sort((a, b) => (b.st.lg || 0) - (a.st.lg || 0))[0];
+  const best = plOnly.filter(p => p.st.a >= 15).sort((a, b) => b.st.r / b.st.a - a.st.r / a.st.a)[0];
+  const young = plOnly.filter(p => p.st.a >= 12 && p.age <= 21).sort((a, b) => b.st.r / b.st.a - a.st.r / a.st.a)[0];
+  const utab = udiv === 'CH' ? ct : tb;
+  const upos = utab.findIndex(r => r.t === G.user) + 1;
   const rel = tb.slice(17).map(r => r.t);
-  const ct = champTable();
-  // play-offs among 3-6
-  const s1 = quickPO(ct[2].t, ct[5].t), s2 = quickPO(ct[3].t, ct[4].t), poW = quickPO(s1, s2, true);
+  // promotion from the Championship: top two plus the play-off winner
+  let poW = G.cups.PO && G.cups.PO.winner;
+  if (!poW) { const s1 = quickPO(ct[2].t, ct[5].t), s2 = quickPO(ct[3].t, ct[4].t); poW = quickPO(s1, s2, true); }
   const prom = [ct[0].t, ct[1].t, poW];
+  const chRel = ct.slice(21).map(r => r.t);
+  const l1 = simLeagueOne();
   const target = boardTarget();
   const cupsWon = [];
   for (const c of ['LC', 'FA']) if (G.cups[c].winner === G.user) cupsWon.push(COMP_NAME[c]);
   for (const c of ['UCL', 'UEL', 'UECL']) if (G.euro[c].winner === G.user) cupsWon.push(EURO_NAMES[c]);
-  G.hist.push({ s: seasonLabel(y), champ, upos, team: G.user, cups: cupsWon, top: top ? [top.n, tName(top.c), top.st.lg || 0] : null, best: best ? [best.n, tName(best.c)] : null, young: young ? [young.n, tName(young.c)] : null, rel: rel.map(t => tName(t)), prom: prom.map(t => tName(t)) });
+  const promoted = udiv === 'CH' && prom.includes(G.user);
+  const relegated = (udiv === 'PL' && rel.includes(G.user)) || (udiv === 'CH' && chRel.includes(G.user));
+  G.hist.push({ s: seasonLabel(y), div: udiv, champ, chChamp, upos, team: G.user, cups: cupsWon, top: top ? [top.n, tName(top.c), top.st.lg || 0] : null, best: best ? [best.n, tName(best.c)] : null, young: young ? [young.n, tName(young.c)] : null, rel: rel.map(t => tName(t)), prom: prom.map(t => tName(t)), chRel: chRel.map(t => tName(t)), l1prom: l1.prom.map(t => tName(t)), promoted, relegated });
   // board review
   let verdict;
   const gap = upos - target.pos;
-  G.board = clamp(G.board - gap * 4 + cupsWon.length * 10 + (upos === 1 ? 20 : 0), 0, 100);
-  G.mgrRep = clamp(G.mgrRep + (target.pos - upos) * 1.5 + cupsWon.length * 6 + (upos === 1 ? 10 : 0), 20, 99);
-  if (rel.includes(G.user)) { G.sacked = true; verdict = `${userTeam().name} have been relegated and the board has dismissed you.`; }
+  G.board = clamp(G.board - gap * 4 + cupsWon.length * 10 + (upos === 1 ? 20 : 0) + (promoted ? 25 : 0) - (relegated ? 30 : 0), 0, 100);
+  G.mgrRep = clamp(G.mgrRep + (target.pos - upos) * (udiv === 'CH' ? 0.8 : 1.5) + cupsWon.length * 6 + (upos === 1 ? (udiv === 'CH' ? 5 : 10) : 0) + (promoted ? 6 : 0) - (relegated ? 5 : 0), 20, 99);
+  const uname = userTeam().name;
+  if (relegated && udiv === 'CH') { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
+  else if (relegated && G.board < 40) { G.sacked = true; verdict = `${uname} have been relegated and the board has dismissed you.`; }
+  else if (relegated) verdict = `${uname} have been relegated to the Championship. The board wants an immediate promotion push next season.`;
   else if (G.board < 20) { G.sacked = true; verdict = `The board is unhappy with a ${ordinal(upos)}-place finish against a target of ${target.txt}. You have been dismissed.`; }
+  else if (promoted) verdict = `Promotion! ${uname} will play in the Premier League next season${ct[0].t === G.user ? ' as Championship winners' : poW === G.user ? ' after winning the play-off final' : ''}.`;
   else verdict = gap <= 0 ? `The board is delighted: ${ordinal(upos)} place met the target to ${target.txt}.` : `The board expected you to ${target.txt}. ${ordinal(upos)} place falls short, but they will give you another season.`;
-  G.lastSeason = { s: seasonLabel(y), champ, upos, top, best, young, rel, prom, verdict, cupsWon, tb: tb.map(r => [r.t, r.pts]) };
-  msg('Season review ' + seasonLabel(y), `${tName(champ, false)} are champions. You finished ${ordinal(upos)}. ${verdict}${top ? ` Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}${best ? ` Player of the Season: ${best.n}.` : ''}`);
+  G.lastSeason = { s: seasonLabel(y), div: udiv, champ, chChamp, upos, top, best, young, rel, prom, chRel, l1prom: l1.prom, verdict, cupsWon, tb: tb.map(r => [r.t, r.pts]), ct: ct.map(r => [r.t, r.pts]) };
+  msg('Season review ' + seasonLabel(y), `${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. ${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
+  news('Promotion and relegation', `Promoted to the Premier League: ${prom.map(t => tName(t)).join(', ')}. Relegated to the Championship: ${rel.map(t => tName(t)).join(', ')}. Relegated to League One: ${chRel.map(t => tName(t)).join(', ')}. Promoted from League One: ${l1.prom.map(t => tName(t)).join(', ')}.`, null, true);
   // European places next season
   const faW = G.cups.FA.winner, lcW = G.cups.LC.winner;
   const order = tb.map(r => r.t).filter(t => !rel.includes(t));
   const ucl = order.slice(0, 5);
   let uel = [order[5]]; if (faW && G.pl.includes(faW) && !ucl.includes(faW) && !rel.includes(faW)) uel.push(faW); else uel.push(order[6]);
   let uecl = [order.find(t => !ucl.includes(t) && !uel.includes(t))]; if (lcW && G.pl.includes(lcW) && !ucl.includes(lcW) && !uel.includes(lcW) && !rel.includes(lcW)) uecl = [lcW];
+  // parachute payments step down a year
+  for (const tid of G.champTeams) { const t = T(tid); if (t && t.para) { t.para.shift(); if (!t.para.length) delete t.para; } }
   // promotion / relegation
-  for (const t of rel) relegate(t);
-  for (const t of prom) promote(t);
+  for (const t of rel) { const tt = T(t); tt.para = PARACHUTE.slice(); tt.rep = Math.min(tt.rep, 70); for (const p of squad(t)) p.wage = Math.max(2, Math.round(p.wage * 0.6)); if (t !== G.user) relegationExodus(t, G.pl.filter(x => !rel.includes(x))); }
+  for (const t of prom) { if (T(t).lite) promote(t, 'PL'); else { const tt = T(t); delete tt.para; tt.rep = Math.max(tt.rep, 64); for (const p of squad(t)) p.wage = Math.round(p.wage * 1.5); } }
+  for (const t of chRel) if (!T(t).lite) relegate(t);
+  for (const t of l1.prom) promote(t, 'CH');
   G.pl = G.pl.filter(t => !rel.includes(t)).concat(prom);
-  G.champTeams = G.champTeams.filter(t => !prom.includes(t)).concat(rel);
+  G.champTeams = G.champTeams.filter(t => !prom.includes(t) && !chRel.includes(t)).concat(rel, l1.prom);
+  G.l1 = G.l1.filter(t => !l1.prom.includes(t)).concat(chRel);
   G.euroIn = { UCL: ucl, UEL: uel.filter(Boolean), UECL: uecl.filter(Boolean) };
+  G.ded = {};
   // players: aging, development, contracts, retirement
   returnLoans();
   developPlayers();
   youthIntake();
-  for (const tid of G.pl) if (tid !== G.user) aiRecruit(tid);
+  for (const tid of fullTeams()) if (tid !== G.user) aiRecruit(tid);
   refreshStaffPool();
-  for (const tid of G.pl) ensureCaptains(tid);
+  for (const tid of fullTeams()) ensureCaptains(tid);
   if (!G.sacked && G.user) for (const p of squad(G.user)) if (p.tf && p.age > 29 && p.tf !== 'lea') p.tf = '';
-  for (const tid of G.pl) { const t = T(tid); setBudgets(tid); if (tid === G.user) { t.tb = Math.max(5, Math.round(t.bal * .45 + (t.rep - 60) * .8 + (target.pos - upos) * 2)); } }
-  for (const tid of G.pl) { const t = T(tid); t.rep = clamp(Math.round(t.rep * .85 + (100 - (tb.findIndex(r => r.t === tid) + 1) * 2) * .15), 55, 96); }
+  for (const tid of fullTeams()) { const t = T(tid); setBudgets(tid); if (tid === G.user) { t.tb = Math.max(divOf(tid) === 'CH' ? 2 : 5, Math.round(t.bal * .45 + (t.rep - 60) * .8 + (target.pos - upos) * 2)); } }
+  for (const tid of G.pl) { if (prom.includes(tid)) continue; const t = T(tid); t.rep = clamp(Math.round(t.rep * .85 + (100 - (tb.findIndex(r => r.t === tid) + 1) * 2) * .15), 55, 96); }
+  for (const tid of divTeams('CH')) { if (rel.includes(tid)) continue; const t = T(tid); const i = ct.findIndex(r => r.t === tid); if (i >= 0) t.rep = clamp(Math.round(t.rep * .85 + (74 - i) * .15), 50, 72); }
   // new season
   G.year++;
   G.date = sd('2026-07-01');
   G.offers = []; G.board = Math.max(G.board, 45);
   for (const p of Object.values(G.players)) { p.st = newStats(); p.yel = 0; p.sus = 0; p.form = []; p.cond = 100; p.prom = null; p.low = 0; p.mi = 0; }
   buildSeason();
-  for (const tid of G.pl) { autoPick(tid); T(tid).fin = newFin(); }
+  for (const tid of fullTeams()) { autoPick(tid); T(tid).fin = newFin(); }
   G.seasonEnded = true;
-  if (!G.sacked) msg('New season ' + seasonLabel(G.year), `Pre-season has begun. The transfer window is open until ${dNice(sd(CAL.WIN1_CLOSE))}. Transfer budget: ${money(userTeam().tb)}. Wage budget: ${wageStr(userTeam().wb)}. Target: ${boardTarget().txt}.`);
+  if (!G.sacked) msg('New season ' + seasonLabel(G.year), `Pre-season has begun${divOf(G.user) === 'CH' ? ' in the Championship' : ''}. The transfer window is open until ${dNice(sd(CAL.WIN1_CLOSE))}. Transfer budget: ${money(userTeam().tb)}. Wage budget: ${wageStr(userTeam().wb)}. Target: ${boardTarget().txt}.`);
   autosave();
+}
+// relegated AI clubs lose most of their best players (relegation clauses, sales to Premier League clubs or abroad)
+function relegationExodus(tid, plClubs) {
+  const sq = squad(tid).filter(p => !p.loan).sort((a, b) => b.ca - a.ca);
+  let sold = 0;
+  for (const p of sq) {
+    const ch = p.ca >= 78 ? .85 : p.ca >= 75 ? .6 : p.ca >= 72 ? .3 : 0;
+    if (!ch || !R.chance(ch) || sold >= 9) continue;
+    const fee = Math.max(1, Math.round(calcValue(p) * R.i(60, 90)) / 100);
+    const buyers = plClubs.filter(b => T(b).rep >= p.ca - 10 && b !== G.user);
+    if (buyers.length && R.chance(.65)) { const b = R.pick(buyers); completeTransfer(p, b, fee, wageFor(p, b), R.i(3, 5)); T(b).tb = Math.max(0, T(b).tb - fee); }
+    else sellAbroad(p, fee, R.pick([].concat(EURO.UCL, EURO.UEL, EURO.UECL).filter(x => x[1] >= p.ca - 8).map(x => x[0]).concat(['Al-Hilal', 'Al-Ahli', 'Fenerbahce'])));
+    sold++;
+  }
+  if (sold) news('Transfer', `Relegated ${tName(tid)} lose ${sold} first-team players in the summer clear-out.`, tid, true);
+}
+// League One is simulated at team level once a season: top two go up, 3rd-6th play off
+function simLeagueOne() {
+  if (!G.l1 || !G.l1.length) G.l1 = G.lowerTeams.filter(t => !G.champTeams.includes(t) && !G.pl.includes(t)).slice(0, 24);
+  const tb = {}; for (const t of G.l1) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
+  const ids = G.l1.filter(t => T(t));
+  for (const h of ids) for (const a of ids) if (h !== a) { const r = quickScore(h, a); addRes(tb[h], r[0], r[1]); addRes(tb[a], r[1], r[0]); }
+  const rows = Object.values(tb).sort(sortTable);
+  const po = quickPO(quickPO(rows[2].t, rows[5].t), quickPO(rows[3].t, rows[4].t), true);
+  G.lastL1 = rows.slice(0, 6).map(r => [r.t, r.pts]);
+  return { prom: [rows[0].t, rows[1].t, po], table: rows };
 }
 function quickPO(a, b, neutral) { const r = quickScore(a, b, neutral); if (r[0] === r[1]) return R.chance(.5) ? a : b; return r[0] > r[1] ? a : b; }
 function relegate(tid) {
@@ -2236,9 +3059,9 @@ function relegate(tid) {
   for (const pid of G.sq[tid]) { const p = P(pid); if (p) { p.c = 'REL_' + tid; } }
   t.relSquad = G.sq[tid]; G.sq[tid] = [];
 }
-function promote(tid) {
-  const t = T(tid);
-  t.lite = false; t.rep = clamp(t.str + 2, 60, 75); t.bal = 35; t.mgr = t.mgr || genName(); t.short = t.short || t.name;
+function promote(tid, div) {
+  const t = T(tid); const toCH = div === 'CH';
+  t.lite = false; t.rep = toCH ? clamp(t.str + 4, 52, 66) : clamp(t.str + 2, 60, 75); t.bal = toCH ? 8 : 35; t.mgr = t.mgr || genName(); t.short = t.short || t.name;
   t.c1 = t.c1 === '#8a8f99' ? R.pick(['#1f6f43', '#7a1f2b', '#2b4a8a', '#a35a00', '#4b2a7a']) : t.c1; t.c2 = '#ffffff';
   t.tac = { form: '4-2-3-1', xi: [], bench: [], ment: 3, press: 2, tempo: 2, width: 2, pass: 2 }; t.fin = newFin();
   G.sq[tid] = [];
@@ -2247,8 +3070,9 @@ function promote(tid) {
   const have = {}; for (const p of squad(tid)) have[p.pos] = (have[p.pos] || 0) + 1;
   let no = 1;
   for (const pos in plan) for (let i = (have[pos] || 0); i < plan[pos]; i++) {
-    const p = mkPlayer({ n: genName(), c: tid, no: 0, pos, age: R.i(19, 32), nat: R.pick(NATS_YOUTH), ca: clamp(Math.round(74 + (t.str - 65) * .4 + R.gauss() * 3.5), 64, 84) });
-    p.con = G.year + R.i(2, 4); p.wage = calcWageDemand(p, t.rep); p.val = calcValue(p); p.seed = R.i(1, 999);
+    const ca = toCH ? clamp(Math.round(61 + (t.str - 50) * .45 + R.gauss() * 3), 54, 72) : clamp(Math.round(74 + (t.str - 65) * .4 + R.gauss() * 3.5), 64, 84);
+    const p = mkPlayer({ n: genName(), c: tid, no: 0, pos, age: R.i(19, 32), nat: R.pick(NATS_YOUTH), ca, gen: true });
+    p.con = G.year + R.i(2, 4); p.wage = wageFor(p, tid); p.val = calcValue(p); p.seed = R.i(1, 999);
     G.players[p.id] = p; G.sq[tid].push(p.id);
   }
   const used = new Set(); for (const p of squad(tid)) { if (!p.no || used.has(p.no)) { while (used.has(no)) no++; p.no = no; } used.add(p.no); }
@@ -2280,8 +3104,8 @@ function developPlayers() {
     if (p.con <= G.year + 1 - 0 && G.sq[p.c]) {
       if (p.c === G.user) {
         G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id); news('Contract', `${p.n}'s contract has expired and he has left the club.`, G.user); p.c = 'FA'; G.fa.push(p.id);
-      } else if (G.pl.includes(p.c)) {
-        if (p.age <= 33 && p.ca >= T(p.c).rep - 16 && R.chance(.9)) { p.con = G.year + 1 + R.i(1, 3); p.wage = calcWageDemand(p, T(p.c).rep); }
+      } else if (divOf(p.c)) {
+        if (p.age <= 33 && p.ca >= T(p.c).rep - 16 && R.chance(.9)) { p.con = G.year + 1 + R.i(1, 3); p.wage = wageFor(p, p.c); }
         else { G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id); p.c = 'FA'; G.fa.push(p.id); }
       }
     }
@@ -2290,13 +3114,13 @@ function developPlayers() {
   G.fa = G.fa.filter(id => P(id) && P(id).c === 'FA').sort((a, b) => P(b).ca - P(a).ca).slice(0, 80);
 }
 function youthIntake() {
-  for (const tid of G.pl) {
+  for (const tid of fullTeams()) {
     const t = T(tid); const n = R.i(2, 3);
     const used = new Set(squad(tid).map(p => p.no));
     for (let i = 0; i < n; i++) {
       const pos = R.pick(['GK', 'CB', 'CB', 'LB', 'RB', 'DM', 'CM', 'CM', 'AM', 'LW', 'RW', 'ST', 'ST']);
       const ca = clamp(Math.round(48 + (t.rep - 60) * .35 + R.gauss() * 5), 40, 70);
-      const p = mkPlayer({ n: genName(), c: tid, pos, age: R.i(16, 17), nat: R.pick(NATS_YOUTH), ca, pa: clamp(ca + R.i(10, 34), 55, 94), seed: R.i(1, 999) });
+      const p = mkPlayer({ n: genName(), c: tid, pos, age: R.i(16, 17), nat: R.pick(NATS_YOUTH), ca, pa: clamp(ca + R.i(10, 34), 55, 94), seed: R.i(1, 999), gen: true });
       let no = 40 + R.i(0, 50); while (used.has(no)) no++; used.add(no); p.no = no;
       p.con = G.year + 1 + 3; p.wage = 2 + Math.round(ca / 20); p.val = calcValue(p);
       G.players[p.id] = p; G.sq[tid].push(p.id);
@@ -2306,15 +3130,15 @@ function youthIntake() {
     if (tid !== G.user) {
       while (squad(tid).length < 23) {
         const best = G.fa.map(P).filter(Boolean).sort((a, b) => b.ca - a.ca)[0];
-        if (best) { G.fa = G.fa.filter(x => x !== best.id); best.c = tid; best.con = G.year + 1 + R.i(1, 3); best.wage = calcWageDemand(best, t.rep); G.sq[tid].push(best.id); }
-        else { const p = mkPlayer({ n: genName(), c: tid, pos: R.pick(['CB', 'CM', 'ST', 'LB', 'RW']), age: R.i(21, 29), nat: R.pick(NATS_YOUTH), ca: clamp(t.rep - 12, 55, 80), seed: R.i(1, 999) }); p.con = G.year + 3; p.wage = calcWageDemand(p, t.rep); p.no = 30 + squad(tid).length; G.players[p.id] = p; G.sq[tid].push(p.id); }
+        if (best) { G.fa = G.fa.filter(x => x !== best.id); best.c = tid; best.con = G.year + 1 + R.i(1, 3); best.wage = wageFor(best, tid); G.sq[tid].push(best.id); }
+        else { const p = mkPlayer({ n: genName(), c: tid, pos: R.pick(['CB', 'CM', 'ST', 'LB', 'RW']), age: R.i(21, 29), nat: R.pick(NATS_YOUTH), ca: clamp(t.rep - 12, 55, 80), seed: R.i(1, 999), gen: true }); p.con = G.year + 3; p.wage = wageFor(p, tid); p.no = 30 + squad(tid).length; G.players[p.id] = p; G.sq[tid].push(p.id); }
       }
       if (squad(tid).length > 32) { const cut = squad(tid).sort((a, b) => a.ca - b.ca).slice(0, squad(tid).length - 32); for (const p of cut) { G.sq[tid] = G.sq[tid].filter(x => x !== p.id); p.c = 'FA'; G.fa.push(p.id); } }
     }
   }
 }
 // take over a different club after dismissal / at season start
-function jobOffers() { return G.pl.filter(t => t !== G.user && T(t).rep <= Math.max(70, G.mgrRep + 8)).sort((a, b) => T(b).rep - T(a).rep).slice(0, 5); }
+function jobOffers() { return fullTeams().filter(t => t !== G.user && T(t).rep <= Math.max(70, G.mgrRep + 8)).sort((a, b) => T(b).rep - T(a).rep).slice(0, 5); }
 function takeJob(tid) {
   const old = G.user; G.user = tid; G.sacked = false; G.board = 65; T(tid).mgr = G.mgr; if (T(old)) T(old).mgr = genName();
   msg('New job', `${G.mgr} has been appointed manager of ${T(tid).name}. Target: ${boardTarget().txt}.`);
@@ -2331,8 +3155,8 @@ function aiRecruit(tid) {
       const fa = G.fa.map(P).filter(p => p && POS_GROUP[p.pos] === grp && p.ca >= t.rep - 12).sort((a, b) => b.ca - a.ca)[0];
       let p;
       if (fa) { G.fa = G.fa.filter(x => x !== fa.id); p = fa; }
-      else { p = mkPlayer({ n: genName(), pos: R.pick(posFor[grp]), age: R.i(21, 29), nat: R.pick(NATS_YOUTH), ca: clamp(t.rep - R.i(2, 9), 55, 90), seed: R.i(1, 999) }); G.players[p.id] = p; const fee = calcValue(p); t.bal -= fee; t.fin.out.buys += fee; }
-      p.c = tid; p.con = G.year + 1 + R.i(2, 4); p.wage = calcWageDemand(p, t.rep); p.listed = false;
+      else { p = mkPlayer({ n: genName(), pos: R.pick(posFor[grp]), age: R.i(21, 29), nat: R.pick(NATS_YOUTH), ca: clamp(t.rep - R.i(2, 9), 55, 90), seed: R.i(1, 999), gen: true }); G.players[p.id] = p; const fee = calcValue(p); t.bal -= fee; t.fin.out.buys += fee; }
+      p.c = tid; p.con = G.year + 1 + R.i(2, 4); p.wage = wageFor(p, tid); p.listed = false;
       const used = new Set(squad(tid).map(q => q.no)); let no = 2; while (used.has(no)) no++; p.no = no;
       G.sq[tid].push(p.id); good++;
       news('Transfer', `${tName(tid)} sign ${p.n} (${POS_LABEL[p.pos]}).`, tid, false);
@@ -2400,7 +3224,7 @@ function ensureCaptains(tid) {
   const t = T(tid); if (!t || t.lite) return;
   const sq = squad(tid);
   if (!t.capt || !sq.some(p => p.id === t.capt)) {
-    const real = REAL_CAPT[tid] && sq.find(p => p.n === REAL_CAPT[tid]);
+    const cn = REAL_CAPT[tid] || t.captN; const real = cn && sq.find(p => p.n === cn);
     if (real) { real.lb = Math.max(real.lb || 0, 4); t.capt = real.id; }
     else t.capt = (bestLeaders(tid)[0] || {}).id;
   }
@@ -2526,7 +3350,7 @@ function signProspect(pid) {
   const p = P(pid); const fee = Math.round(calcValue(p) * 0.8 * 10) / 10; const u = userTeam();
   if (!G.window) return { ok: false, msg: 'You can only sign players while a window is open.' };
   if (fee > u.tb) return { ok: false, msg: `His club wants ${money(fee)}, more than your budget.` };
-  const w = Math.round(calcWageDemand(p, u.rep) * 0.8);
+  const w = Math.round(wageFor(p, G.user) * 0.8);
   if (wageBill(G.user) + w > u.wb + .5) return { ok: false, msg: 'Not enough room in the wage budget.' };
   const where = p.gone || 'abroad';
   completeTransfer(p, G.user, fee, w, 4); p.gone = null;
@@ -2561,7 +3385,7 @@ function loanOut(pid, dest) {
   if (p.loan) return { ok: false, msg: 'He is a loan player himself.' };
   let to;
   if (dest === 'pl') { const c = G.pl.filter(t => t !== G.user && T(t).rep - 14 <= p.ca && T(t).rep < u.rep + 5); if (!c.length) return { ok: false, msg: 'No Premier League club wants him on loan.' }; to = R.pick(c); }
-  else to = R.pick(G.champTeams.filter(t => T(t).lite));
+  else { const c = divTeams('CH').filter(t => t !== G.user && T(t).rep - 16 <= p.ca); to = c.length ? R.pick(c) : R.pick(G.l1 && G.l1.length ? G.l1 : G.lowerTeams); }
   G.sq[G.user] = G.sq[G.user].filter(x => x !== p.id); const tac = u.tac; tac.xi = tac.xi.map(x => x === p.id ? null : x); tac.bench = tac.bench.filter(x => x !== p.id);
   p.loan = { from: G.user, out: true }; p.c = to; p.listed = false; p.prom = null;
   if (!T(to).lite) { G.sq[to].push(p.id); autoPick(to); }
@@ -2655,7 +3479,7 @@ function applyTheme(tid) {
 // ---- migration for older saves ----
 function migrate() {
   if (!G) return;
-  for (const id of G.pl) { const t = T(id); if (!t.lite) { ensureCaptains(id); for (const k in TAC_DEF) if (t.tac[k] == null) t.tac[k] = TAC_DEF[k]; if (!t.tac.pr) t.tac.pr = []; } }
+  for (const id of fullTeams()) { const t = T(id); if (!t.lite) { ensureCaptains(id); for (const k in TAC_DEF) if (t.tac[k] == null) t.tac[k] = TAC_DEF[k]; if (!t.tac.pr) t.tac.pr = []; } }
   ensureStaff();
   if (G.fans == null) G.fans = 60;
   if (!G.train) G.train = 'bal';
@@ -2691,7 +3515,8 @@ function venueOf(f) {
 function attendanceOf(f) {
   const v = venueOf(f); if (v.neutral) return Math.round(v.cap * .97);
   const t = T(f.h) || {}; const rep = t.rep || t.str || 60;
-  return Math.round(v.cap * clamp(0.8 + rep / 600 + (f.comp !== 'PL' ? -0.08 : 0), 0.5, 1));
+  if (divOf(f.h) === 'CH') return Math.round(v.cap * clamp(0.55 + rep / 250 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.12), 0.4, 0.97));
+  return Math.round(v.cap * clamp(0.8 + rep / 600 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.08), 0.5, 1));
 }
 function fxMeta(f) {
   const h = hash(f.id + '|' + f.d + '|' + f.h);
@@ -2915,7 +3740,7 @@ function playerModal(pid) {
       <button class="btn warn" data-a="releaseAsk" data-v="${p.id}">Release</button>`;
   } else if (p.c === 'FA') {
     acts = `<button class="btn pri" data-a="faOpen" data-v="${p.id}">Offer contract (free agent)</button>`;
-  } else if (G.pl.includes(p.c)) {
+  } else if (divOf(p.c)) {
     acts = `<button class="btn pri" data-a="bidOpen" data-v="${p.id}">Make an offer</button><button class="btn" data-a="shortlist" data-v="${p.id}">${shortlisted ? 'Remove from shortlist' : 'Add to shortlist'}</button>`;
   }
   UI.modal = `<div class="band"><span>${p.no ? p.no + '. ' : ''}${esc(p.n)}</span><button class="x" data-a="close" aria-label="Close">×</button></div>
@@ -2926,7 +3751,7 @@ function playerModal(pid) {
         <dt>Club</dt><dd>${club ? tLink(p.c, true) : esc(p.c === 'FA' ? 'Free agent' : p.gone || p.c)}</dd>
         <dt>Position</dt><dd>${POS_LABEL[p.pos]} <span class="dim">(also ${esc(fams)})</span></dd>
         <dt>Age / Nation</dt><dd>${p.age} · ${esc(p.nat)}</dd>
-        <dt>Value</dt><dd>${money(calcValue(p))}${!own && G.pl.includes(p.c) ? ` <span class="dim">· asking around ${money(askingPrice(p))}</span>` : ''}</dd>
+        <dt>Value</dt><dd>${money(calcValue(p))}${!own && divOf(p.c) ? ` <span class="dim">· asking around ${money(askingPrice(p))}</span>` : ''}</dd>
         <dt>Contract</dt><dd>${wageStr(p.wage)} until ${p.con}</dd>
         <dt>Condition</dt><dd class="${condCls(p.cond)}">${Math.round(p.cond)}% · morale ${Math.round(p.mor)}</dd>
         ${p.inj > 0 ? `<dt>Injury</dt><dd class="red">${esc(p.injT)}, about ${Math.ceil(p.inj / 7)} week(s)</dd>` : ''}
@@ -3020,13 +3845,13 @@ function scrFixtures() {
   if (tab === 'mine') {
     body = `<div class="tw"><table class="t"><thead><tr><th>Date</th><th>Comp</th><th>Round</th><th>Opponent</th><th class="c">H/A</th><th class="c">Result</th><th>Scorers</th></tr></thead><tbody>${fs.map(f => { const home = f.h === G.user, opp = home ? f.a : f.h; let res = ''; if (f.r) { const gf = home ? f.r[0] : f.r[1], ga = home ? f.r[1] : f.r[0]; let w = gf > ga ? 'W' : gf < ga ? 'L' : 'D'; if (f.pen) { const pw = home ? f.pen[0] > f.pen[1] : f.pen[1] > f.pen[0]; w = pw ? 'W' : 'L'; } res = `<span class="form"><span class="${w}">${w}</span></span> <b class="mono">${gf}-${ga}</b>${f.pen ? ' <span class="dim">p</span>' : f.et ? ' <span class="dim">aet</span>' : ''}`; } const sc = f.sc ? f.sc.filter(s => s[2] === 'G' && s[1] === (home ? 0 : 1)).map(s => esc(surname(P(s[3]) ? P(s[3]).n : '?')) + ' ' + s[0] + "'").join(', ') : ''; return `<tr class="click ${f.d === G.date && !f.r ? 'me' : ''}" data-a="report" data-v="${f.id}"><td class="mono">${dNice(f.d)}</td><td class="mono dim">${COMP_SHORT[f.comp]}</td><td class="dim">${esc(f.rnd ? (typeof f.rnd === 'number' ? 'Round ' + f.rnd : f.rnd + (f.leg ? ' (leg ' + f.leg + ')' : '')) : '')}</td><td>${tLink(opp)}</td><td class="c">${f.neutral ? 'N' : home ? 'H' : 'A'}</td><td class="c">${res || '<span class="dim">' + (f.d < G.date ? '' : 'v') + '</span>'}</td><td class="dim" style="white-space:normal;min-width:140px">${sc}</td></tr>`; }).join('')}</tbody></table></div>`;
   } else {
-    const rounds = G.league.rounds;
+    const rounds = tab === 'ch' && G.chLeague ? G.chLeague.rounds : G.league.rounds;
     const ri = UI.tab.round != null ? UI.tab.round : Math.max(0, rounds.findIndex(r => r.some(id => !G.fx[id].r)));
     const r = rounds[ri] || rounds[rounds.length - 1];
-    body = `<div class="row" style="margin-bottom:8px"><button class="btn" data-a="round" data-v="${Math.max(0, ri - 1)}">◂ Prev</button><b class="yel" style="font-family:var(--f-disp);font-size:22px">Matchweek ${ri + 1} · ${dNice(G.fx[r[0]].d, false)}</b><button class="btn" data-a="round" data-v="${Math.min(37, ri + 1)}">Next ▸</button></div><div class="tw">${resTable(r.map(id => G.fx[id]), false)}</div>`;
+    body = `<div class="row" style="margin-bottom:8px"><button class="btn" data-a="round" data-v="${Math.max(0, ri - 1)}">◂ Prev</button><b class="yel" style="font-family:var(--f-disp);font-size:22px">Matchweek ${ri + 1} · ${dNice(G.fx[r[0]].d, false)}</b><button class="btn" data-a="round" data-v="${Math.min(rounds.length - 1, ri + 1)}">Next ▸</button></div><div class="tw">${resTable(r.map(id => G.fx[id]), false)}</div>`;
   }
   return `<div class="band">Fixtures &amp; results<small>${seasonLabel(G.year)}</small></div>
-  <div class="tabs" style="margin-top:8px"><button class="${tab === 'mine' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="mine">${esc(userTeam().short)}</button><button class="${tab === 'pl' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="pl">Premier League rounds</button></div>${body}`;
+  <div class="tabs" style="margin-top:8px"><button class="${tab === 'mine' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="mine">${esc(userTeam().short)}</button><button class="${tab === 'pl' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="pl">Premier League rounds</button>${G.chLeague ? `<button class="${tab === 'ch' ? 'on' : ''}" data-a="tab" data-k="fx" data-v="ch">Championship rounds</button>` : ''}</div>${body}`;
 }
 function matchReport(fid) {
   const f = G.fx[fid]; if (!f) return;
@@ -3059,9 +3884,9 @@ function tableHtml(rows, zones, opts = {}) {
   </tbody></table></div>`;
 }
 function scrTable() {
-  const tab = UI.tab.tb || 'pl';
+  const tab = UI.tab.tb || (userDiv() === 'CH' ? 'ch' : 'pl');
   const body = tab === 'pl' ? tableHtml(leagueTable(), i => i < 5 ? 'zone-ucl' : i < 7 ? 'zone-uel' : i < 8 ? 'zone-uecl' : i >= 17 ? 'zone-rel' : '', { form: true }) + `<p class="dim" style="margin-top:6px"><span class="cyan">▌</span> Champions League · <span class="amb">▌</span> Europa League · <span class="grn">▌</span> Conference League · <span class="red">▌</span> Relegation. FA Cup and Carabao Cup winners can take European places.</p>`
-    : tableHtml(champTable(), i => i < 2 ? 'zone-ucl' : i < 6 ? 'zone-uel' : '') + `<p class="dim" style="margin-top:6px">Championship results are simulated at team level. Top two go up; third to sixth play off for the last place.</p>`;
+    : tableHtml(champTable(), i => i < 2 ? 'zone-ucl' : i < (G.chLeague ? 8 : 6) ? 'zone-uel' : G.chLeague && i >= 21 ? 'zone-rel' : '', { form: !!G.chLeague }) + (G.chLeague ? `<p class="dim" style="margin-top:6px"><span class="cyan">▌</span> Automatic promotion · <span class="amb">▌</span> Play-offs (new for 2026/27: 5th v 8th and 6th v 7th eliminators, then two-legged semi-finals with 3rd and 4th, final at Wembley) · <span class="red">▌</span> Relegation to League One.${Object.keys(G.ded || {}).length ? ' ' + Object.entries(G.ded).map(([t, n]) => `${tName(t)} were deducted ${n} points.`).join(' ') : ''}</p>${poHtml()}` : `<p class="dim" style="margin-top:6px">This season's Championship is simulated at team level (your save started before the Championship had real squads). Full Championship fixtures start next season.</p>`);
   return `<div class="band">League tables<small>${seasonLabel(G.year)}</small></div><div class="tabs" style="margin-top:8px"><button class="${tab === 'pl' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="pl">Premier League</button><button class="${tab === 'ch' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="ch">Championship</button></div>${body}`;
 }
 
@@ -3090,13 +3915,14 @@ function tiesTable(r) {
 
 // ---------- stats ----------
 function scrStats() {
-  const tab = UI.tab.st || 'g';
-  const pls = Object.values(G.players).filter(p => G.pl.includes(p.c) && (p.st.la || 0) > 0);
+  const tab = UI.tab.st || 'g'; const lg = UI.tab.stl || userDiv();
+  const pls = Object.values(G.players).filter(p => divOf(p.c) === lg && (p.st.la || 0) > 0);
   const defs = { g: ['League goals', p => p.st.lg || 0], as: ['League assists', p => p.st.las || 0], r: ['Average rating (min 5 apps)', p => (p.st.la || 0) >= 5 ? p.st.lr / p.st.la : 0], cs: ['Clean sheets (all comps)', p => p.pos === 'GK' ? p.st.cs : 0], mom: ['Player of the match awards', p => p.st.mom] };
   const [lab, fn] = defs[tab];
   const list = pls.filter(p => fn(p) > 0).sort((a, b) => fn(b) - fn(a)).slice(0, 30);
-  return `<div class="band">Statistics<small>Premier League ${seasonLabel(G.year)}</small></div>
-  <div class="tabs" style="margin-top:8px">${Object.entries(defs).map(([k, [l]]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="st" data-v="${k}">${l.split(' (')[0]}</button>`).join('')}</div>
+  return `<div class="band">Statistics<small>${COMP_NAME[lg]} ${seasonLabel(G.year)}</small></div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="stl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:4px">${Object.entries(defs).map(([k, [l]]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="st" data-v="${k}">${l.split(' (')[0]}</button>`).join('')}</div>
   <div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th>Pos</th><th class="n">Apps</th><th class="n">${esc(lab.split(' (')[0])}</th></tr></thead><tbody>
   ${list.map((p, i) => `<tr class="click ${p.c === G.user ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}</td><td>${tLink(p.c)}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.st.la || 0}</td><td class="n"><b>${tab === 'r' ? fn(p).toFixed(2) : fn(p)}</b></td></tr>`).join('') || '<tr><td colspan="6" class="dim">No matches played yet.</td></tr>'}
   </tbody></table></div>`;
@@ -3109,7 +3935,8 @@ function scrTransfers() {
   let body = '';
   if (tab === 'search') {
     const f = UI.filt;
-    let list = Object.values(G.players).filter(p => G.pl.includes(p.c) && p.c !== G.user);
+    let list = Object.values(G.players).filter(p => divOf(p.c) && p.c !== G.user);
+    if (f.lg) list = list.filter(p => divOf(p.c) === f.lg);
     if (f.q) { const q = f.q.toLowerCase(); list = list.filter(p => p.n.toLowerCase().includes(q)); }
     if (f.grp) list = list.filter(p => f.grp.includes(p.pos));
     if (f.club) list = list.filter(p => p.c === f.club);
@@ -3120,12 +3947,13 @@ function scrTransfers() {
     body = `<div class="row" style="margin-bottom:8px">
       <div><label class="lb" for="fq">Name</label><input class="f" id="fq" data-a="filt" data-k="q" value="${esc(f.q)}" placeholder="e.g. Saka"></div>
       <div><label class="lb" for="fg">Position</label><select class="f" id="fg" data-a="filt" data-k="grp"><option value="">Any</option>${[['GK', 'Goalkeeper'], ['CB', 'Centre-back'], ['LB,RB', 'Full-back'], ['DM,CM', 'Central midfield'], ['AM', 'Attacking midfield'], ['LW,RW', 'Winger'], ['ST', 'Striker']].map(([v, l]) => `<option value="${v}" ${f.grp === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
-      <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${G.pl.filter(t => t !== G.user).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</select></div>
+      <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${['PL', 'CH'].map(d => `<optgroup label="${COMP_NAME[d]}">${divTeams(d).filter(t => t !== G.user).slice().sort((a, b) => tName(a) < tName(b) ? -1 : 1).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</optgroup>`).join('')}</select></div>
+      <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}</select></div>
       <div><label class="lb" for="fm">Max value £m</label><input class="f" id="fm" type="number" min="0" style="width:90px" data-a="filt" data-k="max" value="${esc(f.max)}"></div>
       <div><label class="lb" for="fa">Max age</label><input class="f" id="fa" type="number" min="15" style="width:70px" data-a="filt" data-k="age" value="${esc(f.age || '')}"></div>
     </div><p class="dim" style="margin:0 0 6px">${list.length} players match${list.length > 120 ? ', showing the top 120 by rating' : ''}.</p>${playerTable(shown, { club: true, hide: ['no', 'mor', 'fa'] })}`;
   } else if (tab === 'short') {
-    const list = UI.short.map(P).filter(p => p && G.pl.includes(p.c) && p.c !== G.user);
+    const list = UI.short.map(P).filter(p => p && divOf(p.c) && p.c !== G.user);
     body = list.length ? playerTable(list, { club: true, hide: ['no', 'mor'] }) : '<p class="dim">Your shortlist is empty. Open a player and choose Add to shortlist.</p>';
   } else if (tab === 'deals') {
     const mine = G.offers.filter(o => o.user && o.st !== 'void');
@@ -3167,7 +3995,7 @@ function scrFinance() {
 // ---------- club ----------
 function scrClub() {
   const t = userTeam(); const tgt = boardTarget();
-  const pos = leagueTable().findIndex(r => r.t === G.user) + 1;
+  const pos = userTable().findIndex(r => r.t === G.user) + 1;
   const hon = G.honours[G.user] || [];
   const conf = Math.round(G.board);
   return `<div class="band">${esc(t.name)}<small>${esc(t.stadium)} · capacity ${t.cap.toLocaleString('en-GB')}</small></div>
@@ -3178,7 +4006,7 @@ function scrClub() {
   </div>
   <h2 class="sect">Honours with this save</h2><div class="box pad">${hon.length ? hon.map(h => `<div>🏆 ${esc(h)}</div>`).join('') : '<span class="dim">None yet.</span>'}</div>
   <h2 class="sect">Season history</h2><div class="tw"><table class="t"><thead><tr><th>Season</th><th>Club</th><th class="n">Finish</th><th>Champions</th><th>Trophies</th><th>Golden Boot</th></tr></thead><tbody>${G.hist.map(h => `<tr><td class="mono">${h.s}</td><td>${tLink(h.team)}</td><td class="n">${ordinal(h.upos)}</td><td>${tLink(h.champ)}</td><td>${esc(h.cups.join(', ') || '-')}</td><td>${h.top ? esc(h.top[0] + ' (' + h.top[2] + ')') : ''}</td></tr>`).join('') || '<tr><td colspan="6" class="dim">Your first season is under way.</td></tr>'}</tbody></table></div>
-  <h2 class="sect">Other clubs</h2><div class="tw"><table class="t"><thead><tr><th>Club</th><th>Manager</th><th>Stadium</th><th class="n">Rep</th><th class="n">Squad</th></tr></thead><tbody>${G.pl.map(id => `<tr class="click" data-a="clubview" data-v="${id}"><td>${tLink(id, true)}</td><td>${esc(T(id).mgr)}</td><td>${esc(T(id).stadium)}</td><td class="n">${T(id).rep}</td><td class="n">${G.sq[id].length}</td></tr>`).join('')}</tbody></table></div>`;
+  <h2 class="sect">Other clubs</h2><div class="tw"><table class="t"><thead><tr><th>Club</th><th>League</th><th>Manager</th><th>Stadium</th><th class="n">Rep</th><th class="n">Squad</th></tr></thead><tbody>${fullTeams().map(id => `<tr class="click" data-a="clubview" data-v="${id}"><td>${tLink(id, true)}</td><td class="mono dim">${COMP_SHORT[divOf(id)]}</td><td>${esc(T(id).mgr)}</td><td>${esc(T(id).stadium)}</td><td class="n">${T(id).rep}</td><td class="n">${G.sq[id].length}</td></tr>`).join('')}</tbody></table></div>`;
 }
 function clubModal(tid) {
   const t = T(tid);
@@ -3202,8 +4030,9 @@ function scrPrematch() {
   if (!f) { UI.scr = 'inbox'; return scrInbox(); }
   const issues = validateLineup(G.user);
   const home = f.h === G.user, opp = home ? f.a : f.h, ot = T(opp);
-  const tb = leagueTable(); const pos = (t) => { const i = tb.findIndex(r => r.t === t); return i >= 0 ? ordinal(i + 1) : '-'; };
-  const formOf = (t) => { const r = tb.find(x => x.t === t); return r ? `<span class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</span>` : ''; };
+  const tbs = { PL: leagueTable(), CH: champTable() }; const tbOf = (t) => tbs[divOf(t)] || [];
+  const pos = (t) => { const i = tbOf(t).findIndex(r => r.t === t); return i >= 0 ? ordinal(i + 1) + (divOf(t) === 'CH' && divOf(G.user) !== 'CH' ? ' (Championship)' : '') : '-'; };
+  const formOf = (t) => { const r = tbOf(t).find(x => x.t === t); return r ? `<span class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</span>` : ''; };
   const tac = userTeam().tac;
   const xi = tac.xi.map(P);
   const slots = FORMS[tac.form];
@@ -3324,17 +4153,17 @@ function finishLive() {
 function seasonModal() {
   const L = G.lastSeason; if (!L) return;
   UI.modal = `<div class="band yel"><span>Season review ${L.s}</span><button class="x" style="color:#111" data-a="close" aria-label="Close">×</button></div><div class="mc">
-    <div class="grid3"><div><label class="lb">Champions</label><div style="font-size:18px;font-weight:700">${tLink(L.champ, true)}</div></div><div><label class="lb">Your finish</label><div class="big">${ordinal(L.upos)}</div></div><div><label class="lb">Trophies</label><div>${esc(L.cupsWon.join(', ') || 'None')}</div></div></div>
+    <div class="grid3"><div><label class="lb">Premier League champions</label><div style="font-size:18px;font-weight:700">${tLink(L.champ, true)}</div>${L.chChamp ? `<label class="lb" style="margin-top:8px">Championship winners</label><div style="font-weight:700">${tLink(L.chChamp, true)}</div>` : ''}</div><div><label class="lb">Your finish${L.div ? ' · ' + COMP_NAME[L.div] : ''}</label><div class="big">${ordinal(L.upos)}</div></div><div><label class="lb">Trophies</label><div>${esc(L.cupsWon.join(', ') || 'None')}</div></div></div>
     <p style="margin-top:12px">${esc(L.verdict)}</p>
-    <dl class="kv"><dt>Golden Boot</dt><dd>${L.top ? esc(L.top.n + ' (' + (L.top.st.lg || 0) + ')') : '-'}</dd><dt>Player of the Season</dt><dd>${L.best ? esc(L.best.n) : '-'}</dd><dt>Young Player</dt><dd>${L.young ? esc(L.young.n) : '-'}</dd><dt>Relegated</dt><dd>${esc(L.rel.map(t => tName(t)).join(', '))}</dd><dt>Promoted</dt><dd>${esc(L.prom.map(t => tName(t)).join(', '))}</dd></dl>
+    <dl class="kv"><dt>Golden Boot</dt><dd>${L.top ? esc(L.top.n + ' (' + (L.top.st.lg || 0) + ')') : '-'}</dd><dt>Player of the Season</dt><dd>${L.best ? esc(L.best.n) : '-'}</dd><dt>Young Player</dt><dd>${L.young ? esc(L.young.n) : '-'}</dd><dt>Relegated from the PL</dt><dd>${esc(L.rel.map(t => tName(t)).join(', '))}</dd><dt>Promoted to the PL</dt><dd>${esc(L.prom.map(t => tName(t)).join(', '))}</dd>${L.chRel ? `<dt>Relegated to League One</dt><dd>${esc(L.chRel.map(t => tName(t)).join(', '))}</dd><dt>Up from League One</dt><dd>${esc((L.l1prom || []).map(t => tName(t)).join(', '))}</dd>` : ''}</dl>
     <div class="row" style="margin-top:14px">${G.sacked ? '<button class="btn pri" data-a="jobs">Look for a new job</button>' : '<button class="btn pri" data-a="close">Start pre-season</button>'}</div></div>`;
   render();
 }
 function jobsModal() {
   let offers = jobOffers();
-  if (!offers.length) offers = G.pl.filter(t => t !== G.user).sort((a, b) => T(a).rep - T(b).rep).slice(0, 4);
-  UI.modal = `<div class="band"><span>Job centre</span></div><div class="mc"><p>${esc(G.mgr)} is out of work. These Premier League clubs are interested:</p>
-  <div class="tw"><table class="t"><tbody>${offers.map(t => `<tr><td>${tLink(t, true)}</td><td class="dim">${esc(cap1(boardTarget(t).txt))}</td><td class="n">Rep ${T(t).rep}</td><td><button class="btn pri" data-a="takejob" data-v="${t}">Accept job</button></td></tr>`).join('')}</tbody></table></div></div>`;
+  if (!offers.length) offers = fullTeams().filter(t => t !== G.user).sort((a, b) => T(a).rep - T(b).rep).slice(0, 4);
+  UI.modal = `<div class="band"><span>Job centre</span></div><div class="mc"><p>${esc(G.mgr)} is out of work. These clubs are interested:</p>
+  <div class="tw"><table class="t"><tbody>${offers.map(t => `<tr><td>${tLink(t, true)} <span class="dim mono" style="font-size:12px">${COMP_SHORT[divOf(t)] || ''}</span></td><td class="dim">${esc(cap1(boardTarget(t).txt))}</td><td class="n">Rep ${T(t).rep}</td><td><button class="btn pri" data-a="takejob" data-v="${t}">Accept job</button></td></tr>`).join('')}</tbody></table></div></div>`;
   render();
 }
 
@@ -3387,7 +4216,7 @@ const ACT = {
   renew: (v) => { const r = renewContract(v, +$('#rw').value, +$('#ry').value); toast(r.msg); if (r.ok) { autosave(); playerModal(v); } },
   releaseAsk: (v) => { const p = P(v); const cost = Math.round(p.wage * 52 * Math.max(0, p.con - G.year) / 1000 * 0.5 * 10) / 10; actForm(`<p style="margin-top:0">Releasing ${esc(p.n)} costs a settlement of about <b>${money(cost)}</b>. This cannot be undone.</p><button class="btn warn" data-a="release" data-v="${v}">Release ${esc(p.n)}</button>`); },
   release: (v) => { const r = releasePlayer(v); toast(r.msg); UI.modal = null; autosave(); render(); },
-  faOpen: (v) => { const p = P(v); const d = calcWageDemand(p, userTeam().rep); actForm(`<p style="margin-top:0">${esc(p.n)} wants about <b>${wageStr(d)}</b>.</p><div class="row"><input class="f" id="fw" type="number" value="${d}" style="width:110px"><select class="f" id="fy">${[1, 2, 3].map(y => `<option>${y}</option>`).join('')}</select><button class="btn pri" data-a="fasign" data-v="${v}">Offer contract</button></div>`); },
+  faOpen: (v) => { const p = P(v); const d = wageFor(p, G.user); actForm(`<p style="margin-top:0">${esc(p.n)} wants about <b>${wageStr(d)}</b>.</p><div class="row"><input class="f" id="fw" type="number" value="${d}" style="width:110px"><select class="f" id="fy">${[1, 2, 3].map(y => `<option>${y}</option>`).join('')}</select><button class="btn pri" data-a="fasign" data-v="${v}">Offer contract</button></div>`); },
   fasign: (v) => { const r = freeAgentSign(v, +$('#fw').value, +$('#fy').value); toast(r.msg); if (r.ok) { UI.modal = null; autosave(); render(); } },
   kickoff: () => { const f = userFixtureOn(G.date); if (f) startLive(f.id); },
   quicksim: () => { const f = userFixtureOn(G.date); if (f) startLive(f.id, true); },
@@ -3467,7 +4296,7 @@ function concerns(p) {
 // weekly update, called from weekly()
 function weeklyDynamics() {
   const n = teamGames();
-  const tb = leagueTable(); const pos = tb.findIndex(r => r.t === G.user) + 1; const tgt = boardTarget().pos;
+  const tb = userTable(); const pos = tb.findIndex(r => r.t === G.user) + 1; const tgt = boardTarget().pos;
   for (const p of squad(G.user)) {
     if (p.hap == null) p.hap = 65;
     let d = (65 - p.hap) * 0.04; // drift
@@ -3501,7 +4330,7 @@ function randomStory() {
   const opts = [];
   const unhappy = sq.filter(p => hap(p) < 35); if (unhappy.length) { const p = R.pick(unhappy); opts.push(() => mediaStory(`Sources close to ${p.n} say he is frustrated with his situation at ${userTeam().short}.`, -1)); }
   const star = sq.filter(p => p.ca >= 82 && +formAvg(p) >= 7.2); if (star.length) { const p = R.pick(star); opts.push(() => mediaStory(`${p.n} is attracting attention from abroad after a strong run of form.`, 0)); }
-  const tb = leagueTable(); const pos = tb.findIndex(r => r.t === G.user) + 1;
+  const tb = userTable(); const pos = tb.findIndex(r => r.t === G.user) + 1;
   if (teamGames() >= 5) { if (pos <= boardTarget().pos) opts.push(() => mediaStory(`Pundits praise ${G.mgr}'s work at ${userTeam().short}, who sit ${ordinal(pos)}.`, 3)); else opts.push(() => mediaStory(`Questions are being asked about ${G.mgr}'s future with ${userTeam().short} ${ordinal(pos)} in the table.`, -2)); }
   if (opts.length) R.pick(opts)();
 }
@@ -3558,7 +4387,7 @@ function talkTo(pid, k) {
 // ---- press conferences ----
 function pressFor(f) {
   const home = f.h === G.user, opp = home ? f.a : f.h; const on = tName(opp);
-  const tb = leagueTable(); const myPos = tb.findIndex(r => r.t === G.user) + 1; const oPos = tb.findIndex(r => r.t === opp) + 1;
+  const tb = userTable(); const myPos = tb.findIndex(r => r.t === G.user) + 1; const oPos = tb.findIndex(r => r.t === opp) + 1;
   const myForm = (tb.find(r => r.t === G.user) || { form: [] }).form.slice(-4);
   const losses = myForm.filter(x => x === 'L').length;
   const inj = squad(G.user).filter(p => p.inj > 0 && p.ca >= 80);
@@ -3566,7 +4395,7 @@ function pressFor(f) {
   if (isRival(G.user, opp)) return { q: `It's a derby against ${on}. What does this game mean to you and the fans?` };
   if (losses >= 2) return { q: `Your team has lost ${losses} of the last four. Is there a problem in the dressing room?` };
   if (inj.length) return { q: `How big a blow is it to be without ${inj[0].n}?` };
-  if (oPos && myPos && oPos <= 4 && f.comp === 'PL') return { q: `${on} are ${ordinal(oPos)} in the table. Can you get something from this game?` };
+  if (oPos && myPos && oPos <= 4 && LEAGUE_COMPS.includes(f.comp)) return { q: `${on} are ${ordinal(oPos)} in the table. Can you get something from this game?` };
   if (T(opp).lite) return { q: `Is there a danger of underestimating ${on}?` };
   return { q: `What are you expecting from ${on}?` };
 }
@@ -3813,7 +4642,7 @@ function playerExtra(p) {
   let h = `<h2 class="sect">Potential &amp; character</h2><div class="row" style="gap:18px"><span>Scout's view of potential: <span class="stars" style="font-size:14px">${potStars(p)}</span></span><span>Leadership: <b class="${aClass(lead(p))}">${lead(p)}</b></span>${own && p.id === userTeam().capt ? '<span class="tag new">CAPTAIN</span>' : ''}${own && p.id === userTeam().vice ? '<span class="tag lst">VICE-CAPTAIN</span>' : ''}${p.loan && !p.loan.out ? `<span class="tag out">ON LOAN FROM ${esc(tName(p.loan.from).toUpperCase())}</span>` : ''}</div>`;
   if (own && !p.loan) h += `<div class="row" style="margin-top:8px"><label class="lb" for="ptf" style="margin:0">Training focus</label><select class="f" id="ptf" data-a="tfocus" data-v="${p.id}">${Object.entries(TRAIN_IND).filter(([k]) => k !== 'gk' || p.pos === 'GK').filter(([k]) => p.age <= 29 || k === '' || k === 'lea').map(([k, l]) => `<option value="${k}" ${(p.tf || '') === k ? 'selected' : ''}>${l}</option>`).join('')}</select>
     <button class="btn" data-a="loanout" data-k="ch" data-v="${p.id}">Loan to a Championship club</button><button class="btn" data-a="loanout" data-k="pl" data-v="${p.id}">Loan to a Premier League club</button></div>`;
-  if (!own && G.pl.includes(p.c) && !p.loan) { const imp = importance(p); if (imp !== 'key' && !(imp === 'first' && p.age > 21)) h += `<div class="row" style="margin-top:8px"><span class="dim">Loan:</span>${[50, 75, 100].map(s => `<button class="btn" data-a="loanin" data-k="${s}" data-v="${p.id}">Request loan, pay ${s}% wages</button>`).join('')}</div>`; }
+  if (!own && divOf(p.c) && !p.loan) { const imp = importance(p); if (imp !== 'key' && !(imp === 'first' && p.age > 21)) h += `<div class="row" style="margin-top:8px"><span class="dim">Loan:</span>${[50, 75, 100].map(s => `<button class="btn" data-a="loanin" data-k="${s}" data-v="${p.id}">Request loan, pay ${s}% wages</button>`).join('')}</div>`; }
   return h;
 }
 
@@ -3856,20 +4685,29 @@ const DIFF = [
   { k: 'Very hard', c: 'var(--amb)', d: 'Thin quality. A relegation scrap is likely without smart signings.' },
   { k: 'Extreme', c: 'var(--red)', d: 'The weakest squad in the league. Survival would be a miracle.' }
 ];
-function diffFromRank(rank) { return DIFF[rank <= 3 ? 0 : rank <= 7 ? 1 : rank <= 13 ? 2 : rank <= 17 ? 3 : 4]; }
+const DIFF_CH = [
+  { k: 'Easy', c: 'var(--grn)', d: 'Promotion favourites. Anything less than the top two will disappoint.' },
+  { k: 'Normal', c: 'var(--cyan)', d: 'A play-off squad with a real chance of going up.' },
+  { k: 'Hard', c: 'var(--yel)', d: 'A mid-table Championship squad. The play-offs would be a fine season.' },
+  { k: 'Very hard', c: 'var(--amb)', d: 'Short on quality. Expect a fight to stay clear of the bottom three.' },
+  { k: 'Extreme', c: 'var(--red)', d: 'One of the weakest squads in the division. Survival would be a big achievement.' }
+];
+const DIFF_BANDS = { PL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], CH: ['top 3', '4th–8th', '9th–15th', '16th–20th', 'bottom 4'] };
+function diffFromRank(rank, div) { return div === 'CH' ? DIFF_CH[rank <= 3 ? 0 : rank <= 8 ? 1 : rank <= 15 ? 2 : rank <= 20 ? 3 : 4] : DIFF[rank <= 3 ? 0 : rank <= 7 ? 1 : rank <= 13 ? 2 : rank <= 17 ? 3 : 4]; }
 // before a game exists: read ratings from the squad data
-function startRatings() {
-  const list = PL_CLUBS.map(c => {
-    const ps = c.sq.trim().split('\n').map(l => { const [, , pos, , , ca] = l.split('|'); return { pos, ca: +ca + ({ COV: 3, HUL: 3, IPS: 2, LEE: 1 }[c.id] || 0) }; });
+function startRatings(div) {
+  const list = (div === 'CH' ? CH_CLUBS : PL_CLUBS).map(c => {
+    const ps = c.sq.trim().split('\n').map(l => { const [, , pos, , , ca] = l.split('|'); return { pos, ca: +ca + (div === 'CH' ? 0 : ({ COV: 3, HUL: 3, IPS: 2, LEE: 1 }[c.id] || 0)) }; });
     return { id: c.id, r: bestXIRating(ps) };
   }).sort((a, b) => b.r - a.r);
-  const out = {}; list.forEach((x, i) => out[x.id] = { r: x.r, rank: i + 1, diff: diffFromRank(i + 1) });
+  const out = {}; list.forEach((x, i) => out[x.id] = { r: x.r, rank: i + 1, n: list.length, diff: diffFromRank(i + 1, div) });
   return out;
 }
 // during a career: live squads
-function leagueRatings() {
-  const list = G.pl.map(id => ({ id, r: bestXIRating(squad(id)) })).sort((a, b) => b.r - a.r);
-  const out = {}; list.forEach((x, i) => out[x.id] = { r: x.r, rank: i + 1, diff: diffFromRank(i + 1) });
+function leagueRatings(div) {
+  div = div || userDiv();
+  const list = divTeams(div).map(id => ({ id, r: bestXIRating(squad(id)) })).sort((a, b) => b.r - a.r);
+  const out = {}; list.forEach((x, i) => out[x.id] = { r: x.r, rank: i + 1, n: list.length, diff: diffFromRank(i + 1, div) });
   return out;
 }
 function diffChip(d) { return `<span class="dchip" style="--dc:${d.c}">${d.k}</span>`; }
@@ -3878,22 +4716,26 @@ function diffChip(d) { return `<span class="dchip" style="--dc:${d.c}">${d.k}</s
 renderStart = function () {
   const saved = loadSave();
   const sel = UI.newClub;
-  const RT = startRatings();
-  const clubs = PL_CLUBS.slice().sort((a, b) => RT[b.id].r - RT[a.id].r);
-  const sd = sel ? RT[sel] : null;
+  const div = UI.startDiv || (sel && CH_CLUBS.some(c => c.id === sel) ? 'CH' : 'PL');
+  const RT = startRatings(div);
+  const clubs = (div === 'CH' ? CH_CLUBS : PL_CLUBS).slice().sort((a, b) => RT[b.id].r - RT[a.id].r);
+  const selDiv = sel ? (CH_CLUBS.some(c => c.id === sel) ? 'CH' : 'PL') : null;
+  const sd = sel ? startRatings(selDiv)[sel] : null;
+  const selC = sel ? PL_CLUBS.concat(CH_CLUBS).find(c => c.id === sel) : null;
   app().innerHTML = `<div class="start">
     <div class="title">GAFFER<span>26/27</span></div>
-    <div class="strap">Football management · Premier League 2026/27 · real squads</div>
+    <div class="strap">Football management · Premier League &amp; Championship 2026/27 · real squads</div>
     ${saved ? `<div class="box pad row" style="margin-bottom:18px"><div><b class="yel">Saved career found</b><div class="dim">${esc(saved.mgr)} · ${esc(saved.teams[saved.user].name)} · ${dNice(saved.date)}</div></div><span class="spacer"></span><button class="btn pri" data-a="load">Continue career</button></div>` : ''}
-    <div class="band">New career<small>Clubs are ranked by team rating. Difficulty follows the rating.</small></div>
+    <div class="band">New career<small>Pick a division and a club. Clubs are ranked by team rating; difficulty follows the rating within each division.</small></div>
     <div class="box pad">
       <div class="row" style="margin-bottom:12px"><div style="min-width:220px;flex:1;max-width:340px"><label class="lb" for="mgrname">Manager name</label><input class="f" id="mgrname" style="width:100%" maxlength="28" value="${esc(UI.mgrName || 'Zhariff')}"></div>
-      ${sd ? `<div style="flex:2;min-width:220px"><label class="lb">Selected</label><b>${esc(PL_CLUBS.find(c => c.id === sel).name)}</b> · rating <b class="mono">${sd.r.toFixed(1)}</b> (${ordinal(sd.rank)} of 20) · ${diffChip(sd.diff)}<div class="dim" style="font-size:12.5px">${esc(sd.diff.d)}</div></div>` : '<div class="spacer"></div>'}
+      ${sd ? `<div style="flex:2;min-width:220px"><label class="lb">Selected</label><b>${esc(selC.name)}</b> <span class="dim">${COMP_NAME[selDiv]}</span> · rating <b class="mono">${sd.r.toFixed(1)}</b> (${ordinal(sd.rank)} of ${sd.n}) · ${diffChip(sd.diff)}<div class="dim" style="font-size:12.5px">${esc(sd.diff.d)}</div></div>` : '<div class="spacer"></div>'}
       <button class="go" data-a="start" ${sel ? '' : 'disabled'}>START ▸</button></div>
-      <div class="row dim" style="gap:12px;font-size:12.5px;margin-bottom:10px">${DIFF.map(d => `<span>${diffChip(d)} ${d === DIFF[0] ? 'top 3' : d === DIFF[1] ? '4th–7th' : d === DIFF[2] ? '8th–13th' : d === DIFF[3] ? '14th–17th' : 'bottom 3'}</span>`).join('')}</div>
-      <div class="clubs">${clubs.map(c => { const r = RT[c.id]; return `<button class="clubpick ${sel === c.id ? 'on' : ''}" data-a="pickclub" data-v="${c.id}"><span class="strip" style="background:linear-gradient(${c.c1} 0 60%,${c.c2} 60% 100%)"></span><span class="in"><span class="row" style="justify-content:space-between;gap:6px;flex-wrap:nowrap"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.name)}</b><span class="mono yel" style="font-size:15px;flex:none">${r.r.toFixed(1)}</span></span><span>${diffChip(r.diff)} <span class="dim" style="font-size:12px">#${r.rank}</span></span><small>${esc(c.mgr)} · ${esc(c.stadium)}</small><small>Budget ${money(Math.max(3, Math.round(c.bal * 0.45 + (c.rep - 60))))}</small></span></button>`; }).join('')}</div>
+      <div class="tabs" style="margin:0 0 10px">${['PL', 'CH'].map(k => `<button class="${div === k ? 'on' : ''}" data-a="startdiv" data-v="${k}">${k === 'PL' ? 'Premier League · 20 clubs' : 'Championship · 24 clubs'}</button>`).join('')}</div>
+      <div class="row dim" style="gap:12px;font-size:12.5px;margin-bottom:10px">${(div === 'CH' ? DIFF_CH : DIFF).map((d, i) => `<span>${diffChip(d)} ${DIFF_BANDS[div][i]}</span>`).join('')}</div>
+      <div class="clubs">${clubs.map(c => { const r = RT[c.id]; return `<button class="clubpick ${sel === c.id ? 'on' : ''}" data-a="pickclub" data-v="${c.id}"><span class="strip" style="background:linear-gradient(${c.c1} 0 60%,${c.c2} 60% 100%)"></span><span class="in"><span class="row" style="justify-content:space-between;gap:6px;flex-wrap:nowrap"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.name)}</b><span class="mono yel" style="font-size:15px;flex:none">${r.r.toFixed(1)}</span></span><span>${diffChip(r.diff)} <span class="dim" style="font-size:12px">#${r.rank}</span></span><small>${esc(c.mgr)} · ${esc(c.stadium)}</small><small>Budget ${money(Math.max(3, Math.round(c.bal * 0.45 + (c.rep - 60))))}${c.ded ? ` · <span class="red">−${c.ded} pts</span>` : ''}</small></span></button>`; }).join('')}</div>
     </div>
-    <p class="dim" style="max-width:70ch;margin-top:16px">Team rating is the average overall of each club's best eleven (one goalkeeper and ten outfield players). Squads follow the 2026/27 Premier League first-team rosters as of 24 October 2026. Player ratings are game estimates. Progress is saved in this browser; use Game › Export to keep a backup.</p>
+    <p class="dim" style="max-width:70ch;margin-top:16px">Team rating is the average overall of each club's best eleven (one goalkeeper and ten outfield players). Squads follow the 2026/27 Premier League and Championship first-team rosters as of late October 2026 (Championship squads from FotMob team pages). Player ratings are game estimates. Progress is saved in this browser; use Game › Export to keep a backup.</p>
   </div>`;
 };
 // club screen: rating, difficulty and league ranking
@@ -3902,7 +4744,7 @@ scrClub = function () {
   const RT = leagueRatings(); const me = RT[G.user];
   const top = Object.entries(RT).sort((a, b) => a[1].rank - b[1].rank);
   const box = me ? `<div class="grid3" style="margin-top:10px">
-    <div class="box pad"><label class="lb">Team rating</label><div class="big">${me.r.toFixed(1)}</div><div class="dim">${ordinal(me.rank)} best squad in the league</div></div>
+    <div class="box pad"><label class="lb">Team rating</label><div class="big">${me.r.toFixed(1)}</div><div class="dim">${ordinal(me.rank)} best squad in the ${COMP_NAME[userDiv()]}</div></div>
     <div class="box pad"><label class="lb">Difficulty</label><div style="margin:6px 0">${diffChip(me.diff)}</div><div class="dim" style="font-size:13px">${esc(me.diff.d)}</div></div>
     <div class="box pad"><label class="lb">Squad ratings</label><div style="max-height:110px;overflow-y:auto;font-size:13px">${top.map(([id, x]) => `<div class="row" style="justify-content:space-between;${id === G.user ? 'color:var(--yel);font-weight:700' : ''}"><span>${x.rank}. ${esc(tName(id))}</span><span class="mono">${x.r.toFixed(1)}</span></div>`).join('')}</div></div>
   </div>` : '';
@@ -3910,6 +4752,8 @@ scrClub = function () {
   const i = html.indexOf('<div class="grid3"');
   return i > 0 ? html.slice(0, i) + box + html.slice(i) : html + box;
 };
+
+Object.assign(ACT, { startdiv: (v) => { const n = $('#mgrname'); if (n) UI.mgrName = n.value; UI.startDiv = v; render(); } });
 
 // ===== MATCHDAY: stadium view, movement, skills, replays, live scores, sound =====
 // The engine decides what happens each minute; this layer stages it on a 2D pitch.
@@ -4659,9 +5503,9 @@ function finishOthers(LM) {
   }
 }
 function liveTable(LM, dScore) {
-  const tb = leagueTable().map(r => ({ ...r }));
+  const tb = tableOf(LM.M.comp === 'CH' ? 'CH' : 'PL').map(r => ({ ...r }));
   const idx = {}; tb.forEach(r => idx[r.t] = r);
-  const add = (f, sc) => { if (f.comp !== 'PL' || !idx[f.h] || !idx[f.a] || f.r) return; addRes(idx[f.h], sc[0], sc[1]); addRes(idx[f.a], sc[1], sc[0]); };
+  const add = (f, sc) => { if (f.comp !== LM.M.comp || !idx[f.h] || !idx[f.a] || f.r) return; addRes(idx[f.h], sc[0], sc[1]); addRes(idx[f.a], sc[1], sc[0]); };
   add(G.fx[LM.M.fid], dScore);
   for (const o of LM.others) if (o.M2 && !o.fin) add(o.f, o.M2.score);
   return tb.sort(sortTable);
@@ -4705,7 +5549,7 @@ function startLive(fid, instant) {
   const M = createMatch(fid, true);
   const LM = UI.match = { M, pre, speed: UI.speedPref != null ? UI.speedPref : 1, run: !instant, panel: null, sel: null, talked: false, mom: [], atmBase: atmBase(f), autoRp: UI.autoRp !== false, rtab: 'stats', ptab: 'xg', replays: [], heat: new Map() };
   LM.atm = LM.atmBase;
-  LM.prePos = {}; leagueTable().forEach((r, i) => LM.prePos[r.t] = i + 1);
+  LM.prePos = {}; tableOf(LM.M.comp === 'CH' ? 'CH' : 'PL').forEach((r, i) => LM.prePos[r.t] = i + 1);
   setupOthers(LM);
   UI.modal = null;
   if (instant) {
@@ -4825,8 +5669,8 @@ function renderMatch() {
   }
   const two = V && LM.view === '2d';
   const meta = M.meta || fxMeta(f);
-  const rtabs = [['stats', 'Stats'], ['scores', 'Scores' + (LM.vidi && LM.vidi.length ? ` (${LM.vidi.filter(v => v.k === 'goal').length})` : '')], ...(M.comp === 'PL' ? [['table', 'Live table']] : []), ['lineups', 'Line-ups']];
-  const rbody = LM.rtab === 'scores' ? scoresPanel(LM) : LM.rtab === 'table' && M.comp === 'PL' ? tablePanel(LM, dScore) : LM.rtab === 'lineups' ? `<div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${lineup(A)}${lineup(B)}</div>` : `<div class="box pad">${statBars(st)}</div>`;
+  const rtabs = [['stats', 'Stats'], ['scores', 'Scores' + (LM.vidi && LM.vidi.length ? ` (${LM.vidi.filter(v => v.k === 'goal').length})` : '')], ...(LEAGUE_COMPS.includes(M.comp) ? [['table', 'Live table']] : []), ['lineups', 'Line-ups']];
+  const rbody = LM.rtab === 'scores' ? scoresPanel(LM) : LM.rtab === 'table' && LEAGUE_COMPS.includes(M.comp) ? tablePanel(LM, dScore) : LM.rtab === 'lineups' ? `<div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${lineup(A)}${lineup(B)}</div>` : `<div class="box pad">${statBars(st)}</div>`;
   const shoutCd = LM.shoutCd && M.min < LM.shoutCd ? LM.shoutCd - M.min : 0;
   const activeShout = S.shout ? SHOUTS.find(x => x[0] === S.shout.k)[1] : null;
   let post = '';
@@ -4923,7 +5767,7 @@ document.addEventListener('change', (ev) => { const el = ev.target; if (el.datas
 // ===== AWARDS: monthly and season =====
 function awStore() { if (!G.awards) G.awards = { m: [], s: [] }; return G.awards; }
 function monthLabel(key) { return MON[+key.slice(5) - 1] + ' ' + key.slice(0, 4); }
-function plFixtures(pred) { return Object.values(G.fx).filter(f => f.comp === 'PL' && f.r && pred(f)); }
+function plFixtures(pred, comp) { comp = comp || 'PL'; return Object.values(G.fx).filter(f => f.comp === comp && f.r && pred(f)); }
 function ratingTable(fs) {
   const m = new Map();
   for (const f of fs) for (let i = 0; i < 2; i++) for (const [pid, rt, g, as] of (f.rt ? f.rt[i] || [] : [])) {
@@ -4945,25 +5789,26 @@ function userAward(name, repUp, txt) {
   msg(name, txt);
 }
 function playerAwardBoost(pid, mor) { const p = P(pid); if (p && p.c === G.user) { p.mor = clamp(p.mor + mor, 5, 100); if (typeof setHap === 'function') setHap(p, mor / 2); } }
-function monthAwards() {
+function monthAwards(comp) {
+  comp = comp || 'PL'; const LN = COMP_NAME[comp]; const glob = comp === userDiv();
   const d = dParse(G.date); d.setUTCMonth(d.getUTCMonth() - 1); const key = dStr(d).slice(0, 7);
-  const A = awStore(); if (A.m.some(x => x.key === key)) return;
-  const fs = plFixtures(f => f.d.startsWith(key)); if (fs.length < 20) return;
-  const rounds = Math.round(fs.length / 10), minA = Math.max(1, Math.ceil(rounds * .6));
+  const A = awStore(); if (A.m.some(x => x.key === key && (x.lg || 'PL') === comp)) return;
+  const fs = plFixtures(f => f.d.startsWith(key), comp); if (fs.length < 20) return;
+  const rounds = Math.round(fs.length / (comp === 'CH' ? 12 : 10)), minA = Math.max(1, Math.ceil(rounds * .6));
   const rt = ratingTable(fs).filter(x => x.a >= minA).sort((a, b) => b.sc - a.sc);
   const potm = rt[0], ypotm = rt.find(x => x.age <= 21);
   const ct = clubTable(fs).filter(x => x.p >= minA); const motm = ct[0];
   if (!potm && !motm) return;
-  const gotm = (G.gotm || []).find(x => x.m === key);
-  const rec = { key, s: seasonLabel(G.year), potm: potm && { pid: potm.pid, n: potm.n, club: potm.club, avg: +potm.avg.toFixed(2), g: potm.g, as: potm.as, a: potm.a }, ypotm: ypotm && { pid: ypotm.pid, n: ypotm.n, club: ypotm.club, avg: +ypotm.avg.toFixed(2), g: ypotm.g, as: ypotm.as }, motm: motm && { tid: motm.tid, mgr: mgrName(motm.tid), rec: `${motm.w}-${motm.d}-${motm.l}`, pts: motm.pts }, gotm: gotm && { n: gotm.n, club: gotm.club, st: gotm.st, opp: gotm.opp } };
+  const gotm = comp === 'PL' ? (G.gotm || []).find(x => x.m === key) : null;
+  const rec = { key, lg: comp, s: seasonLabel(G.year), potm: potm && { pid: potm.pid, n: potm.n, club: potm.club, avg: +potm.avg.toFixed(2), g: potm.g, as: potm.as, a: potm.a }, ypotm: ypotm && { pid: ypotm.pid, n: ypotm.n, club: ypotm.club, avg: +ypotm.avg.toFixed(2), g: ypotm.g, as: ypotm.as }, motm: motm && { tid: motm.tid, mgr: mgrName(motm.tid), rec: `${motm.w}-${motm.d}-${motm.l}`, pts: motm.pts }, gotm: gotm && { n: gotm.n, club: gotm.club, st: gotm.st, opp: gotm.opp } };
   A.m.push(rec);
   const ml = monthLabel(key);
-  if (potm) { news('Player of the Month', `${potm.n} (${tName(potm.club)}) is the Premier League Player of the Month for ${ml}: ${potm.g} goals, ${potm.as} assists, average rating ${potm.avg.toFixed(2)}.`, potm.club, true); playerAwardBoost(potm.pid, 8); }
-  if (ypotm && ypotm !== potm) { news('Young Player of the Month', `${ypotm.n} (${tName(ypotm.club)}) wins Young Player of the Month for ${ml}.`, ypotm.club, true); playerAwardBoost(ypotm.pid, 6); }
-  if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the Premier League Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, true); }
+  if (potm) { news('Player of the Month', `${potm.n} (${tName(potm.club)}) is the ${LN} Player of the Month for ${ml}: ${potm.g} goals, ${potm.as} assists, average rating ${potm.avg.toFixed(2)}.`, potm.club, glob); playerAwardBoost(potm.pid, 8); }
+  if (ypotm && ypotm !== potm) { news('Young Player of the Month', `${ypotm.n} (${tName(ypotm.club)}) wins Young Player of the Month for ${ml}.`, ypotm.club, glob); playerAwardBoost(ypotm.pid, 6); }
+  if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the ${LN} Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, glob); }
 }
 const _gom0 = goalOfMonth;
-goalOfMonth = function () { _gom0(); try { monthAwards(); } catch (e) { console.error(e); } };
+goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); } catch (e) { console.error(e); } };
 
 function teamOfSeason(rt) {
   const pool = rt.filter(x => x.a >= 15).sort((a, b) => b.avg - a.avg);
@@ -4972,9 +5817,10 @@ function teamOfSeason(rt) {
   const slots = [['GK', gk[0]], ['DR', rb[0]], ['DC', cb[0]], ['DC', cb[1]], ['DL', lb[0]], ['MC', mid[0]], ['DM', mid[1]], ['MC', mid[2]], ['AMR', rw[0]], ['FC', st[0]], ['AML', lw[0]]];
   return slots.filter(s => s[1]).map(([r, x]) => ({ r, pid: x.pid, n: x.n, club: x.club, avg: +x.avg.toFixed(2) }));
 }
-function seasonAwards() {
-  const A = awStore(); const s = seasonLabel(G.year); if (A.s.some(x => x.s === s)) return;
-  const fs = plFixtures(() => true); if (fs.length < 100) return;
+function seasonAwards(comp) {
+  comp = comp || 'PL'; const LN = COMP_NAME[comp]; const glob = comp === userDiv();
+  const A = awStore(); const s = seasonLabel(G.year); if (A.s.some(x => x.s === s && (x.lg || 'PL') === comp)) return;
+  const fs = plFixtures(() => true, comp); if (fs.length < 100) return;
   const rt = ratingTable(fs);
   const elig = rt.filter(x => x.a >= 20);
   const best = elig.slice().sort((a, b) => b.sc - a.sc)[0];
@@ -4985,25 +5831,25 @@ function seasonAwards() {
   for (const f of fs) for (let i = 0; i < 2; i++) if (f.r[1 - i] === 0) { const gk = (f.rt[i] || []).find(([pid, , , , on]) => !on && P(pid) && P(pid).pos === 'GK'); if (gk) cs.set(gk[0], (cs.get(gk[0]) || 0) + 1); }
   const glove = [...cs.entries()].sort((a, b) => b[1] - a[1])[0];
   // manager of the season: biggest finish above expectation, champions get a bonus
-  const tb = leagueTable(); const exp = G.pl.slice().sort((a, b) => bestXIRating(squad(b)) - bestXIRating(squad(a)));
+  const tb = tableOf(comp); const exp = divTeams(comp).slice().sort((a, b) => bestXIRating(squad(b)) - bestXIRating(squad(a)));
   const mos = tb.map((r, i) => ({ tid: r.t, pos: i + 1, sc: (exp.indexOf(r.t) + 1) - (i + 1) + (i === 0 ? 6 : 0) + (i < 4 ? 1 : 0) })).sort((a, b) => b.sc - a.sc)[0];
   const tos = teamOfSeason(rt);
-  const gos = typeof goalOfSeason === 'function' ? goalOfSeason() : null;
+  const gos = comp === 'PL' && typeof goalOfSeason === 'function' ? goalOfSeason() : null;
   const pk = (x) => x && { pid: x.pid, n: x.n, club: x.club, avg: +x.avg.toFixed(2), g: x.g, as: x.as, a: x.a };
-  const rec = { s, best: pk(best), young: pk(young), boot: pk(boot), play: pk(play), glove: glove && { pid: glove[0], n: P(glove[0]).n, club: P(glove[0]).c, cs: glove[1] }, mos: mos && { tid: mos.tid, mgr: mgrName(mos.tid), pos: mos.pos }, tos, gos: gos && { n: gos.n, club: gos.club, st: gos.st, opp: gos.opp } };
+  const rec = { s, lg: comp, best: pk(best), young: pk(young), boot: pk(boot), play: pk(play), glove: glove && { pid: glove[0], n: P(glove[0]).n, club: P(glove[0]).c, cs: glove[1] }, mos: mos && { tid: mos.tid, mgr: mgrName(mos.tid), pos: mos.pos }, tos, gos: gos && { n: gos.n, club: gos.club, st: gos.st, opp: gos.opp } };
   A.s.push(rec);
-  if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the Premier League Player of the Season.`, best.club, true); playerAwardBoost(best.pid, 12); }
-  if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the Young Player of the Season.`, young.club, true); playerAwardBoost(young.pid, 10); }
-  if (boot) news('Golden Boot', `${boot.n} (${tName(boot.club)}) wins the Golden Boot with ${boot.g} league goals.`, boot.club, true);
-  if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, true);
-  if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, true);
-  if (mos) { if (mos.tid === G.user) userAward('Manager of the Season', 5, `${G.mgr} is named Premier League Manager of the Season after leading ${T(G.user).name} to ${ordinal(mos.pos)}.`); else news('Manager of the Season', `${mgrName(mos.tid)} (${tName(mos.tid)}) is Manager of the Season.`, mos.tid, true); }
+  if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the ${LN} Player of the Season.`, best.club, glob); playerAwardBoost(best.pid, 12); }
+  if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the ${LN} Young Player of the Season.`, young.club, glob); playerAwardBoost(young.pid, 10); }
+  if (boot) news('Golden Boot', `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
+  if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, glob);
+  if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, glob);
+  if (mos) { if (mos.tid === G.user) userAward('Manager of the Season', 5, `${G.mgr} is named ${LN} Manager of the Season after leading ${T(G.user).name} to ${ordinal(mos.pos)}.`); else news('Manager of the Season', `${mgrName(mos.tid)} (${tName(mos.tid)}) is ${LN} Manager of the Season.`, mos.tid, glob); }
   const mine = tos.filter(x => P(x.pid) && P(x.pid).c === G.user);
-  if (mine.length) msg('Team of the Season', `${mine.map(x => x.n).join(', ')} ${mine.length > 1 ? 'are' : 'is'} named in the Premier League Team of the Season.`);
+  if (mine.length) msg('Team of the Season', `${mine.map(x => x.n).join(', ')} ${mine.length > 1 ? 'are' : 'is'} named in the ${LN} Team of the Season.`);
   for (const x of mine) playerAwardBoost(x.pid, 5);
 }
 const _se1 = seasonEnd;
-seasonEnd = function () { try { monthAwards(); seasonAwards(); } catch (e) { console.error(e); } _se1(); };
+seasonEnd = function () { try { for (const c of ['PL', 'CH']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
 
 // ---------- UI ----------
 function awPlayer(x, extra) { if (!x) return '<span class="dim">-</span>'; const p = P(x.pid); return `<span class="${p ? 'click' : ''}" ${p ? `data-a="player" data-v="${x.pid}"` : ''}><b>${esc(x.n)}</b></span> <span class="dim">${esc(tName(x.club))}</span>${extra ? ` <span class="mono dim">${extra}</span>` : ''}`; }
@@ -5018,17 +5864,18 @@ function tosSvg(tos) {
   return `<svg viewBox="0 0 100 100" class="tossvg" role="img" aria-label="Team of the Season"><rect width="100" height="100" fill="#1b6a37"/><g fill="none" stroke="rgba(255,255,255,.55)" stroke-width=".5"><rect x="2" y="2" width="96" height="96"/><line x1="2" y1="50" x2="98" y2="50"/><circle cx="50" cy="50" r="10"/><rect x="25" y="84" width="50" height="14"/><rect x="25" y="2" width="50" height="14"/></g>${out}</svg>`;
 }
 function scrAwards() {
-  const A = awStore(); const tab = UI.tab.aw || 'month';
+  const A = awStore(); const tab = UI.tab.aw || 'month'; const lg = UI.tab.awl || userDiv();
   const cur = seasonLabel(G.year);
   let body;
   if (tab === 'month') {
     const seasons = [...new Set(A.m.map(x => x.s).concat([cur]))].reverse();
     const ss = UI.tab.aws && seasons.includes(UI.tab.aws) ? UI.tab.aws : seasons[0];
-    const rows = A.m.filter(x => x.s === ss);
+    const rows = A.m.filter(x => x.s === ss && (x.lg || 'PL') === lg);
     body = `<div class="row" style="margin-bottom:8px"><label class="lb" for="aws" style="margin:0">Season</label><select class="f" id="aws" data-a="aws">${seasons.map(s => `<option ${s === ss ? 'selected' : ''}>${s}</option>`).join('')}</select></div>
     ${rows.length ? `<div class="tw"><table class="t"><thead><tr><th>Month</th><th>Player of the Month</th><th>Young Player</th><th>Manager of the Month</th><th>Goal of the Month</th></tr></thead><tbody>${rows.map(r => `<tr class="${r.motm && r.motm.tid === G.user ? 'me' : ''}"><td class="mono">${monthLabel(r.key)}</td><td>${awPlayer(r.potm, r.potm ? `${r.potm.g}G ${r.potm.as}A · ${r.potm.avg.toFixed(2)}` : '')}</td><td>${awPlayer(r.ypotm, r.ypotm ? r.ypotm.avg.toFixed(2) : '')}</td><td>${r.motm ? `<b>${esc(r.motm.mgr)}</b> <span class="dim">${esc(tName(r.motm.tid))} · ${r.motm.rec}</span>` : '-'}</td><td>${r.gotm ? `<b>${esc(r.gotm.n)}</b> <span class="dim">${esc(STYLE_N[r.gotm.st] || '')} v ${esc(tName(r.gotm.opp))}</span>` : '-'}</td></tr>`).join('')}</tbody></table></div>` : '<p class="dim">Monthly awards are announced on the first day of each month, once enough league games have been played.</p>'}`;
   } else if (tab === 'season') {
-    body = A.s.length ? A.s.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
+    const SA = A.s.filter(x => (x.lg || 'PL') === lg);
+    body = SA.length ? SA.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
       <dt>Player of the Season</dt><dd>${awPlayer(r.best, r.best ? r.best.avg.toFixed(2) : '')}</dd>
       <dt>Young Player</dt><dd>${awPlayer(r.young, r.young ? r.young.avg.toFixed(2) : '')}</dd>
       <dt>Golden Boot</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
@@ -5038,15 +5885,16 @@ function scrAwards() {
       <dt>Goal of the Season</dt><dd>${r.gos ? `<b>${esc(r.gos.n)}</b> <span class="dim">${esc(STYLE_N[r.gos.st] || '')} v ${esc(tName(r.gos.opp))}</span>` : '-'}</dd></dl>
       <div><label class="lb">Team of the Season</label>${tosSvg(r.tos)}</div></div></div>`).join('') : '<p class="dim">Season awards are presented when the season ends in May.</p>';
   } else {
-    const rt = ratingTable(plFixtures(f => true)).filter(x => x.a >= 5);
+    const rt = ratingTable(plFixtures(f => true, lg)).filter(x => x.a >= 5);
     const best = rt.slice().sort((a, b) => b.sc - a.sc).slice(0, 10);
     const young = rt.filter(x => x.age <= 21).sort((a, b) => b.sc - a.sc).slice(0, 5);
     const row = (x, i) => `<tr class="click ${P(x.pid) && P(x.pid).c === G.user ? 'me' : ''}" data-a="player" data-v="${x.pid}"><td class="n">${i + 1}</td><td>${esc(x.n)}</td><td>${tLink(x.club)}</td><td class="n">${x.a}</td><td class="n">${x.g}</td><td class="n">${x.as}</td><td class="n"><b>${x.avg.toFixed(2)}</b></td></tr>`;
     const hd = '<thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th class="n">Apps</th><th class="n">G</th><th class="n">A</th><th class="n">Avg</th></tr></thead>';
     body = `<p class="dim" style="margin-top:0">Who is leading the race this season (league games, at least 5 appearances).</p><h2 class="sect">Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${best.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div><h2 class="sect">Young Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${young.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div>`;
   }
-  return `<div class="band">Awards<small>Premier League monthly and season awards</small></div>
-  <div class="tabs" style="margin-top:8px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
+  return `<div class="band">Awards<small>${COMP_NAME[lg]} monthly and season awards</small></div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:4px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'aws') { UI.tab.aws = el.value; render(); } });
 
@@ -5116,7 +5964,7 @@ function makePlayingCareer(mp) {
   const bg = mp.bg; mp.caps = 0; mp.igoals = 0; mp.pclubs = [];
   if (bg === 'none') { mp.pos = null; return; }
   mp.pos = FORMER_POS[Math.floor(r() * FORMER_POS.length)];
-  const pool = bg === 'amateur' ? LOWER.map(x => x[0] + ' Sunday XI') : bg === 'semi' ? LOWER.map(x => x[0]) : CHAMP.map(x => x[0]).concat(Object.values(EURO).flat().map(x => x[0]).slice(0, 40)).concat(bg === 'intl' ? PL_CLUBS.map(c => c.name) : []);
+  const pool = bg === 'amateur' ? LOWER.map(x => x[0] + ' Sunday XI') : bg === 'semi' ? LOWER.map(x => x[0]) : CH_CLUBS.map(x => x.name).concat(Object.values(EURO).flat().map(x => x[0]).slice(0, 40)).concat(bg === 'intl' ? PL_CLUBS.map(c => c.name) : []);
   const end = (mp.born || 1985) + 33 + Math.floor(r() * 3); let y = (mp.born || 1985) + 18;
   const n = bg === 'amateur' ? 1 : 2 + Math.floor(r() * 3);
   for (let i = 0; i < n && y < end; i++) {
@@ -5270,7 +6118,7 @@ screen = function (s) { if (s === 'mgr') return scrManager(); if (s === 'awards'
 // ---- link helpers ----
 function pLink(pid, text) { const p = P(pid); const t = text != null ? text : (p ? p.n : '?'); return p ? `<span class="lnk" data-a="player" data-v="${esc(pid)}">${esc(t)}</span>` : esc(t); }
 tLink = function (tid, full) { if (!T(tid)) return esc(tid || ''); return `<span class="lnk" data-a="clubview" data-v="${esc(tid)}">${badge(tid)} ${esc(tName(tid, full))}</span>`; };
-const COMP_LINK = { 'Premier League': 'PL', 'Championship': 'CH', 'Carabao Cup': 'LC', 'League Cup': 'LC', 'FA Cup': 'FA', 'Champions League': 'UCL', 'Europa League': 'UEL', 'Conference League': 'UECL' };
+const COMP_LINK = { 'Premier League': 'PL', 'Championship play-offs': 'PO', 'Championship': 'CH', 'Carabao Cup': 'LC', 'League Cup': 'LC', 'FA Cup': 'FA', 'Champions League': 'UCL', 'Europa League': 'UEL', 'Conference League': 'UECL' };
 function cLink(code, text) { return `<span class="lnk" data-a="gocomp" data-v="${code}">${esc(text || COMP_NAME[code] || code)}</span>`; }
 
 // ---- name index (rebuilt when the player/team count changes) ----
@@ -5353,7 +6201,7 @@ function linkify(root) {
 // ---- competitions ----
 function goComp(code) {
   UI.modal = null; UI.mstack = []; UI.mcur = null;
-  if (code === 'PL' || code === 'CH') { UI.scr = 'table'; UI.tab.tb = code === 'PL' ? 'pl' : 'ch'; }
+  if (code === 'PL' || code === 'CH' || code === 'PO') { UI.scr = 'table'; UI.tab.tb = code === 'PL' ? 'pl' : 'ch'; }
   else { UI.scr = 'comps'; UI.tab.cp = code; }
   render(); window.scrollTo(0, 0);
 }
@@ -5408,6 +6256,176 @@ render = function () {
     }
   } catch (e) { console.error(e); }
 };
+
+// champ.js: Championship migration for older saves, monthly player progression and rating history.
+// Loaded after links.js, before boot.js.
+
+// ---------- old saves: turn the team-level Championship into real squads ----------
+function migrateChampionship() {
+  if (!G || !G.champTeams) return;
+  if (!G.ded) G.ded = {};
+  let changed = 0;
+  for (const tid of G.champTeams) {
+    const t = T(tid); if (!t || !t.lite) continue;
+    const code = CH_LEGACY[tid] || tid;
+    const c = CH_CLUBS.find(x => x.id === code);
+    if (c && !(t.relSquad && t.relSquad.length)) {
+      Object.assign(t, { name: c.name, short: c.short, c1: c.c1, c2: c.c2, stadium: c.stadium, cap: c.cap, mgr: c.mgr, rep: c.rep, bal: c.bal, lite: false, captN: c.capt, tac: { form: c.form || '4-2-3-1', xi: [], bench: [], ment: 3, press: 2, tempo: 2, width: 2, pass: 2 }, fin: newFin() });
+      if (c.rep >= 68 && G.year === BASE_YEAR) t.para = PARACHUTE.slice();
+      G.sq[tid] = [];
+      addSquadRows(tid, c.sq, 0);
+      for (const p of squad(tid)) { p.con = G.year + R.i(p.age >= 32 ? 1 : 2, p.age >= 30 ? 2 : p.age <= 21 ? 5 : 4); p.wage = wageFor(p, tid) * R.i(85, 110) / 100 * (t.para ? 1.25 : 1); p.val = calcValue(p); }
+      setBudgets(tid, true);
+    } else promote(tid, 'CH'); // former Premier League clubs get their old squads back; others get a generated squad
+    for (const k in TAC_DEF) if (t.tac[k] == null) t.tac[k] = TAC_DEF[k];
+    if (!t.tac.pr) t.tac.pr = [];
+    autoPick(tid); ensureCaptains(tid);
+    changed++;
+  }
+  if (!G.l1) G.l1 = G.lowerTeams.filter(x => !G.champTeams.includes(x) && !G.pl.includes(x)).slice(0, 24);
+  if (!G.cups.PO) G.cups.PO = { id: 'PO', rounds: CAL.PO.map(([n, ds, neu]) => ({ n, d: ds.map(sd), neutral: !!neu, ties: [], done: false })), ri: 0, winner: null, seeds: [] };
+  if (changed) msg('The Championship', `All ${G.champTeams.length} Championship clubs now have real first-team squads (as of late October 2026), so you can scout, sign and loan their players. This season's Championship table carries on as before; full Championship fixtures with the new six-team play-offs start next season, when you can also apply for Championship jobs.`);
+}
+const _migC = migrate;
+migrate = function () { _migC(); try { migrateChampionship(); } catch (e) { console.error(e); } };
+
+// ---------- monthly progression ----------
+// Yearly change by age (rating points). Most of it is applied month by month during the season
+// (Aug-May), scaled by minutes, match ratings, coaching and happiness; a smaller summer step remains.
+const GROW = [[18, 3.5], [19, 3.2], [20, 3.0], [21, 2.6], [22, 2.2], [23, 1.6], [24, 1.1], [25, .6], [26, .3], [27, .1], [28, 0], [29, -.3], [30, -.6], [31, -1], [32, -1.5], [33, -2.2]];
+function ageGrowth(age) { for (const [a, g] of GROW) if (age <= a) return g; return -3; }
+const SEASON_MONTHS = ['08', '09', '10', '11', '12', '01', '02', '03', '04', '05'];
+function monthKey(d) { return d.slice(0, 7); }
+function prevMonthStart(d) { const y = +d.slice(0, 4), m = +d.slice(5, 7); return m === 1 ? (y - 1) + '-12-01' : y + '-' + String(m - 1).padStart(2, '0') + '-01'; }
+function monthlyProgress() {
+  const now = G.date; const from = prevMonthStart(now); const mm = from.slice(5, 7);
+  if (!SEASON_MONTHS.includes(mm)) return;
+  // minutes and ratings from last month's fixtures
+  const apps = {}, rsum = {}, games = {};
+  for (const f of Object.values(G.fx)) {
+    if (!f.r || f.d < from || f.d >= now) continue;
+    for (const tid of [f.h, f.a]) games[tid] = (games[tid] || 0) + 1;
+    if (f.rt) for (const side of f.rt) if (side) for (const [id, r, , , on] of side) { apps[id] = (apps[id] || 0) + (on ? .5 : 1); rsum[id] = (rsum[id] || 0) + r; }
+  }
+  const coachU = typeof staffAb === 'function' ? staffAb('coach') : 10;
+  const ups = [], downs = [];
+  for (const p of Object.values(G.players)) {
+    if (!p || ['RETIRED', 'ABROAD', 'FA'].includes(p.c) || String(p.c).startsWith('REL_')) continue;
+    const t = T(p.c); if (!t) continue;
+    if (p.cax == null) p.cax = p.ca;
+    let g = ageGrowth(p.age);
+    const n = apps[p.id] || 0, gm = games[p.c] || 0;
+    let share = t.lite ? .75 : gm ? clamp(n / gm, 0, 1) : .3;
+    if (g > 0) {
+      g *= clamp((p.pa - p.cax) / 6, 0, 1);
+      g *= 0.45 + 0.85 * share;
+      if (n >= 1 && rsum[p.id]) { const avg = rsum[p.id] / Math.max(1, Math.ceil(n)); g *= clamp(1 + (avg - 6.6) * 0.35, .6, 1.5); }
+      g *= p.c === G.user ? 0.85 + coachU / 50 : 1.05;
+      const h = typeof hap === 'function' ? hap(p) : 65; if (h < 35) g *= .8; else if (h > 75) g *= 1.05;
+    } else if (g < 0) g *= share > .6 ? .9 : 1;
+    const d = g / 10 + R.gauss() * .22;
+    const before = p.ca;
+    p.cax = clamp(p.cax + d, 30, 96);
+    p.ca = Math.round(p.cax);
+    if (p.ca > p.pa) p.pa = p.ca;
+    if (p.ca !== before) p.val = calcValue(p);
+    // history: start month + values (last 24 months)
+    if (!t.lite || p.loan) {
+      const k = monthKey(from);
+      if (!p.ch || !p.ch.k) p.ch = { k, v: [] };
+      p.ch.v.push(p.ca);
+      if (p.ch.v.length > 24) { p.ch.v.shift(); p.ch.k = addMonths(p.ch.k, 1); }
+    }
+    const owner = p.loan && p.loan.out ? p.loan.from : p.c;
+    if (owner === G.user) {
+      const base = p.lastNews != null ? p.lastNews : before;
+      if (p.ca >= base + 2 || (p.ca > before && Math.floor(p.ca / 5) > Math.floor(before / 5) && p.age <= 24)) { ups.push(p); p.lastNews = p.ca; }
+      else if (p.ca <= base - 2) { downs.push(p); p.lastNews = p.ca; }
+    }
+  }
+  if (ups.length) news('Player development', ups.length === 1 ? `${ups[0].n} has improved to ${ups[0].ca}.` : `Improving: ${ups.slice(0, 6).map(p => `${p.n} (now ${p.ca})`).join(', ')}${ups.length > 6 ? ` and ${ups.length - 6} more` : ''}.`, G.user);
+  if (downs.length) news('Player development', `Coaching staff report a drop in sharpness: ${downs.slice(0, 5).map(p => `${p.n} (now ${p.ca})`).join(', ')}.`, G.user);
+}
+function addMonths(k, n) { let y = +k.slice(0, 4), m = +k.slice(5, 7) + n; while (m > 12) { m -= 12; y++; } while (m < 1) { m += 12; y--; } return y + '-' + String(m).padStart(2, '0'); }
+const _dtC = dailyTick;
+dailyTick = function () {
+  if (G.date.endsWith('-01')) { try { monthlyProgress(); } catch (e) { console.error(e); } }
+  return _dtC();
+};
+// smaller summer step now that most change happens during the season
+developPlayers = function () {
+  for (const p of Object.values(G.players)) {
+    if (p.c === 'RETIRED' || p.c === 'ABROAD') continue;
+    p.age++;
+    let d;
+    if (p.age <= 21) d = R.i(0, 2) + (p.c === G.user && R.chance(staffAb('coach') / 40) ? 1 : 0);
+    else if (p.age <= 24) d = R.i(0, 1);
+    else if (p.age <= 28) d = R.i(0, 2) - 1;
+    else if (p.age <= 31) d = R.i(-1, 0);
+    else if (p.age <= 33) d = R.i(-2, 0);
+    else d = R.i(-3, -1);
+    if (d > 0) d = Math.min(d, Math.max(0, p.pa - p.ca));
+    p.ca = clamp(p.ca + d, 35, 96); p.cax = p.ca;
+    if (p.ca > p.pa) p.pa = p.ca;
+    p.val = calcValue(p);
+    if (p.age >= 34 && (p.age >= 38 || R.chance((p.age - 33) * .18) || p.ca < 60)) {
+      if (G.sq[p.c]) G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id);
+      if (p.c === G.user) news('Retirement', `${p.n} has announced his retirement from professional football.`, G.user);
+      p.c = 'RETIRED'; G.fa = G.fa.filter(x => x !== p.id); continue;
+    }
+    if (p.con <= G.year + 1 && G.sq[p.c]) {
+      if (p.c === G.user) {
+        G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id); news('Contract', `${p.n}'s contract has expired and he has left the club.`, G.user); p.c = 'FA'; G.fa.push(p.id);
+      } else if (divOf(p.c)) {
+        if (p.age <= 33 && p.ca >= T(p.c).rep - 16 && R.chance(.9)) { p.con = G.year + 1 + R.i(1, 3); p.wage = wageFor(p, p.c); }
+        else { G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id); p.c = 'FA'; G.fa.push(p.id); }
+      }
+    }
+  }
+  G.fa = G.fa.filter(id => P(id) && P(id).c === 'FA').sort((a, b) => P(b).ca - P(a).ca).slice(0, 120);
+};
+
+// ---------- rating history chart in the player pop-up ----------
+function progressSvg(p) {
+  const h = p.ch; if (!h || !h.v || h.v.length < 1) return '';
+  const vals = h.v.slice();
+  const est = typeof potEstimate === 'function' ? potEstimate(p) : p.pa;
+  const spread = Math.max(1.5, (21 - (typeof staffAb === 'function' ? staffAb('scout') : 10)) / 3);
+  const lo = Math.min(...vals, est - spread) - 2, hi = Math.max(...vals, est + spread) + 2;
+  const W = 300, H = 110, pl = 26, pr = 8, pt = 8, pb = 18;
+  const x = i => pl + (vals.length === 1 ? (W - pl - pr) / 2 : i * (W - pl - pr) / (vals.length - 1));
+  const y = v => pt + (hi - v) * (H - pt - pb) / (hi - lo);
+  const line = vals.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join('');
+  const ticks = []; for (let v = Math.ceil(lo / 5) * 5; v <= hi; v += 5) ticks.push(v);
+  const labels = []; for (let i = 0; i < vals.length; i++) { const k = addMonths(h.k, i); if (i === 0 || k.endsWith('-01') || i === vals.length - 1) labels.push([i, MON[+k.slice(5) - 1] + (k.endsWith('-01') || i === 0 ? ' ' + k.slice(2, 4) : '')]); }
+  return `<svg class="progsvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Rating by month for ${esc(p.n)}: from ${vals[0]} to ${vals[vals.length - 1]}; scout's potential estimate about ${Math.round(est)}">
+    <rect x="${pl}" y="${y(est + spread).toFixed(1)}" width="${W - pl - pr}" height="${(y(est - spread) - y(est + spread)).toFixed(1)}" class="pband"/>
+    <text x="${W - pr - 2}" y="${(y(est + spread) - 2).toFixed(1)}" text-anchor="end" class="plab">potential (scout)</text>
+    ${ticks.map(v => `<line x1="${pl}" x2="${W - pr}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" class="pgrid"/><text x="${pl - 4}" y="${(y(v) + 3).toFixed(1)}" text-anchor="end" class="plab">${v}</text>`).join('')}
+    <path d="${line}" class="pline"/>
+    ${vals.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="2.2" class="pdot"><title>${addMonths(h.k, i)}: ${v}</title></circle>`).join('')}
+    ${labels.map(([i, l]) => `<text x="${x(i).toFixed(1)}" y="${H - 4}" text-anchor="middle" class="plab">${l}</text>`).join('')}
+  </svg>`;
+}
+const _pxC = playerExtra;
+playerExtra = function (p) {
+  const base = _pxC(p);
+  const ch = p.ch && p.ch.v && p.ch.v.length ? p.ch.v : null;
+  const first = ch ? ch[0] : null, last = ch ? ch[ch.length - 1] : null;
+  const box = `<h2 class="sect">Development</h2><div class="box pad"><div class="row" style="justify-content:space-between;gap:10px;align-items:baseline"><span class="dim" style="font-size:13px">Overall rating by month${ch && ch.length > 1 ? ` · ${last - first >= 0 ? '+' : ''}${last - first} since ${MON[+p.ch.k.slice(5) - 1]} ${p.ch.k.slice(0, 4)}` : ''}</span><span class="mono" style="font-size:13px">Potential (scout) ${potStars(p)}</span></div>${ch ? progressSvg(p) : '<p class="dim" style="margin:6px 0 0">Monthly ratings are recorded from the start of each month during the season.</p>'}</div>`;
+  return base + box;
+};
+
+// ---------- play-offs panel under the Championship table ----------
+function poHtml() {
+  const po = G.cups && G.cups.PO; if (!po) return '';
+  const rs = po.rounds.filter(r => r.ties.length);
+  if (!rs.length) return `<p class="dim">The play-off draw follows the final round on ${dNice(sd(CAL.ch[CAL.ch.length - 1]), false)}. Eliminators ${dNice(po.rounds[0].d[0], false)}, semi-finals ${po.rounds[1].d.map(d => dShort(d)).join(' & ')}, final at Wembley ${dNice(po.rounds[2].d[0], false)}.</p>`;
+  return `<h2 class="sect">Play-offs${po.winner ? ' · promoted: ' + tLink(po.winner, true) : ''}</h2>` + rs.slice().reverse().map(r => `<div class="dim mono" style="margin:6px 0 4px">${esc(r.n)} · ${r.d.map(d => dShort(d)).join(' & ')}${r.neutral ? ' · Wembley' : ''}</div><div class="tw">${tiesTable(r)}</div>`).join('');
+}
+
+// Championship derbies (used by press conferences and the matchday atmosphere)
+RIVALS.push(['WHU', 'MIL'], ['SOU', 'POR'], ['BIR', 'WBA'], ['WOL', 'WBA'], ['BIR', 'WOL'], ['CAR', 'SWA'], ['BRC', 'CAR'], ['BLB', 'BUR'], ['BLB', 'PNE'], ['BUR', 'PNE'], ['NOR', 'IPS'], ['DER', 'NFO'], ['CHA', 'MIL'], ['MID', 'SUN'], ['SHU', 'LEE'], ['STK', 'WOL'], ['BOL', 'BLB'], ['WRE', 'CAR'], ['LIN', 'HUL'], ['QPR', 'CHE'], ['WAT', 'BRE']);
 
 // boot (kept last)
 if (window.claude && window.claude.hot) { try { window.claude.hot.snapshot(() => ({ G, scr: UI.match ? 'inbox' : UI.scr })); } catch (e) { } }

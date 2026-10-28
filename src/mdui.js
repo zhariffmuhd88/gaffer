@@ -47,9 +47,9 @@ function finishOthers(LM) {
   }
 }
 function liveTable(LM, dScore) {
-  const tb = leagueTable().map(r => ({ ...r }));
+  const tb = tableOf(LM.M.comp === 'CH' ? 'CH' : 'PL').map(r => ({ ...r }));
   const idx = {}; tb.forEach(r => idx[r.t] = r);
-  const add = (f, sc) => { if (f.comp !== 'PL' || !idx[f.h] || !idx[f.a] || f.r) return; addRes(idx[f.h], sc[0], sc[1]); addRes(idx[f.a], sc[1], sc[0]); };
+  const add = (f, sc) => { if (f.comp !== LM.M.comp || !idx[f.h] || !idx[f.a] || f.r) return; addRes(idx[f.h], sc[0], sc[1]); addRes(idx[f.a], sc[1], sc[0]); };
   add(G.fx[LM.M.fid], dScore);
   for (const o of LM.others) if (o.M2 && !o.fin) add(o.f, o.M2.score);
   return tb.sort(sortTable);
@@ -93,7 +93,7 @@ function startLive(fid, instant) {
   const M = createMatch(fid, true);
   const LM = UI.match = { M, pre, speed: UI.speedPref != null ? UI.speedPref : 1, run: !instant, panel: null, sel: null, talked: false, mom: [], atmBase: atmBase(f), autoRp: UI.autoRp !== false, rtab: 'stats', ptab: 'xg', replays: [], heat: new Map() };
   LM.atm = LM.atmBase;
-  LM.prePos = {}; leagueTable().forEach((r, i) => LM.prePos[r.t] = i + 1);
+  LM.prePos = {}; tableOf(LM.M.comp === 'CH' ? 'CH' : 'PL').forEach((r, i) => LM.prePos[r.t] = i + 1);
   setupOthers(LM);
   UI.modal = null;
   if (instant) {
@@ -213,8 +213,8 @@ function renderMatch() {
   }
   const two = V && LM.view === '2d';
   const meta = M.meta || fxMeta(f);
-  const rtabs = [['stats', 'Stats'], ['scores', 'Scores' + (LM.vidi && LM.vidi.length ? ` (${LM.vidi.filter(v => v.k === 'goal').length})` : '')], ...(M.comp === 'PL' ? [['table', 'Live table']] : []), ['lineups', 'Line-ups']];
-  const rbody = LM.rtab === 'scores' ? scoresPanel(LM) : LM.rtab === 'table' && M.comp === 'PL' ? tablePanel(LM, dScore) : LM.rtab === 'lineups' ? `<div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${lineup(A)}${lineup(B)}</div>` : `<div class="box pad">${statBars(st)}</div>`;
+  const rtabs = [['stats', 'Stats'], ['scores', 'Scores' + (LM.vidi && LM.vidi.length ? ` (${LM.vidi.filter(v => v.k === 'goal').length})` : '')], ...(LEAGUE_COMPS.includes(M.comp) ? [['table', 'Live table']] : []), ['lineups', 'Line-ups']];
+  const rbody = LM.rtab === 'scores' ? scoresPanel(LM) : LM.rtab === 'table' && LEAGUE_COMPS.includes(M.comp) ? tablePanel(LM, dScore) : LM.rtab === 'lineups' ? `<div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${lineup(A)}${lineup(B)}</div>` : `<div class="box pad">${statBars(st)}</div>`;
   const shoutCd = LM.shoutCd && M.min < LM.shoutCd ? LM.shoutCd - M.min : 0;
   const activeShout = S.shout ? SHOUTS.find(x => x[0] === S.shout.k)[1] : null;
   let post = '';

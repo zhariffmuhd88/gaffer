@@ -55,7 +55,7 @@ function ensureCaptains(tid) {
   const t = T(tid); if (!t || t.lite) return;
   const sq = squad(tid);
   if (!t.capt || !sq.some(p => p.id === t.capt)) {
-    const real = REAL_CAPT[tid] && sq.find(p => p.n === REAL_CAPT[tid]);
+    const cn = REAL_CAPT[tid] || t.captN; const real = cn && sq.find(p => p.n === cn);
     if (real) { real.lb = Math.max(real.lb || 0, 4); t.capt = real.id; }
     else t.capt = (bestLeaders(tid)[0] || {}).id;
   }
@@ -181,7 +181,7 @@ function signProspect(pid) {
   const p = P(pid); const fee = Math.round(calcValue(p) * 0.8 * 10) / 10; const u = userTeam();
   if (!G.window) return { ok: false, msg: 'You can only sign players while a window is open.' };
   if (fee > u.tb) return { ok: false, msg: `His club wants ${money(fee)}, more than your budget.` };
-  const w = Math.round(calcWageDemand(p, u.rep) * 0.8);
+  const w = Math.round(wageFor(p, G.user) * 0.8);
   if (wageBill(G.user) + w > u.wb + .5) return { ok: false, msg: 'Not enough room in the wage budget.' };
   const where = p.gone || 'abroad';
   completeTransfer(p, G.user, fee, w, 4); p.gone = null;
@@ -216,7 +216,7 @@ function loanOut(pid, dest) {
   if (p.loan) return { ok: false, msg: 'He is a loan player himself.' };
   let to;
   if (dest === 'pl') { const c = G.pl.filter(t => t !== G.user && T(t).rep - 14 <= p.ca && T(t).rep < u.rep + 5); if (!c.length) return { ok: false, msg: 'No Premier League club wants him on loan.' }; to = R.pick(c); }
-  else to = R.pick(G.champTeams.filter(t => T(t).lite));
+  else { const c = divTeams('CH').filter(t => t !== G.user && T(t).rep - 16 <= p.ca); to = c.length ? R.pick(c) : R.pick(G.l1 && G.l1.length ? G.l1 : G.lowerTeams); }
   G.sq[G.user] = G.sq[G.user].filter(x => x !== p.id); const tac = u.tac; tac.xi = tac.xi.map(x => x === p.id ? null : x); tac.bench = tac.bench.filter(x => x !== p.id);
   p.loan = { from: G.user, out: true }; p.c = to; p.listed = false; p.prom = null;
   if (!T(to).lite) { G.sq[to].push(p.id); autoPick(to); }
@@ -310,7 +310,7 @@ function applyTheme(tid) {
 // ---- migration for older saves ----
 function migrate() {
   if (!G) return;
-  for (const id of G.pl) { const t = T(id); if (!t.lite) { ensureCaptains(id); for (const k in TAC_DEF) if (t.tac[k] == null) t.tac[k] = TAC_DEF[k]; if (!t.tac.pr) t.tac.pr = []; } }
+  for (const id of fullTeams()) { const t = T(id); if (!t.lite) { ensureCaptains(id); for (const k in TAC_DEF) if (t.tac[k] == null) t.tac[k] = TAC_DEF[k]; if (!t.tac.pr) t.tac.pr = []; } }
   ensureStaff();
   if (G.fans == null) G.fans = 60;
   if (!G.train) G.train = 'bal';

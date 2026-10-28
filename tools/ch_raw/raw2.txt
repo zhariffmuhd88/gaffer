@@ -1,0 +1,219 @@
+## WBA|James Morrison
+1|Max O'Leary|GK|30|Ireland
+13|Matt Ingram|GK|32|England
+2|Chris Mepham|CB|28|Wales
+3|Nathaniel Phillips|CB|29|England
+6|George Campbell|CB, RB|25|United States
+18|Brayann Pereira|CB, RB, RWB|23|Congo
+4|Callum Styles|LB, CM, DM, LWB, RB|26|Hungary
+22|Conor Townsend|LB|33|England
+25|Nolan Galves|RWB, RB|23|France
+15|Toby Collyer|DM|22|England
+7|Felix Myhre|CM, AM|27|Norway
+8|Jayson Molumby|CM, DM, RM, AM|27|Ireland
+17|Ousmane Diakité|CM, DM|26|Mali
+20|Rabby Nzingoula|CM, DM, RM, AM|20|France
+11|Jimmy-Jay Morgan|AM, ST|20|England
+21|Isaac Price|AM, LM, LW, RW, RM, RWB, ST|23|Northern Ireland
+29|Harry Whitwell|AM, RM|20|England
+10|Mikey Johnston|RW, LW, AM, RM|27|Ireland
+23|Tammer Bany|RW|23|Jordan
+26|Kareem Tunde|RW, LW, RM|21|Spain
+9|Barney Stewart|ST|22|Scotland
+19|Aune Heggebø|ST|25|Norway
+## WAT|Alessio Dionisi
+1|Federico Ravaglia|GK|26|Italy
+24|Sam Walker|GK|35|England
+26|Daniel Bachmann|GK|32|Austria
+2|Jeremy Ngakia|RB|26|DR Congo
+15|Krépin Diatta|RB, RWB, AM|27|Senegal
+23|Omar Haktab Traoré|RB, RWB, RM|28|Germany
+3|Soumaïla Coulibaly|CB|23|France
+4|Kévin Keben|CB, RB, LB|22|Cameroon
+6|Mattie Pollock|CB|25|England
+29|Branimir Mlačić|CB|19|Croatia
+53|James Clarridge|CB|22|England
+16|Marc Bola|LB, LM, LWB|28|England
+33|Jordan Zemura|LB, LM, LWB|26|Zimbabwe
+5|Hector Kyprianou|DM, CM, CB|25|Cyprus
+8|Edoardo Bove|DM|24|Italy
+39|Edo Kayembe|DM, CM, ST, AM|28|DR Congo
+|Joshua Mullins|CM|20|England
+22|Martín Payero|CM, AM|28|Argentina
+43|Jack Grieves|CM|21|England
+17|Iker Bravo|AM, ST, CM|21|Spain
+14|Kwadwo Baah|RW|23|Germany
+7|Othmane Maamma|RW, LW, LM, RM|21|Morocco
+21|Amin Nabizada|RW, LW|19|Afghanistan
+11|Rocco Vata|LW, LM|21|Ireland
+45|Stephy Mavididi|LW|28|England
+9|Luca Kjerrumgaard|ST|23|Denmark
+10|Myron Boadu|ST|25|Netherlands
+18|Michail Antonio|ST|36|Jamaica
+20|Mamadou Doumbia|ST, RW, AM|20|Mali
+## MIL|Alex Neil
+1|Lukas Jensen|GK|27|Denmark
+15|Max Crocombe|GK|33|New Zealand
+34|Filip Marschall|GK|23|England
+2|Jordi Osei-Tutu|RB, LW, RM|28|England
+4|Tristan Crama|RB, CB|24|France
+18|Ryan Leonard|RB|34|England
+5|Jake Cooper|CB|31|England
+6|Caleb Taylor|CB|23|England
+12|Elkan Baggott|CB, LB|24|Indonesia
+23|Danny Batth|CB|36|England
+3|Zak Sturge|LB|22|England
+45|Alfie Doughty|LB, DM|26|England
+8|Mathis Servais|LWB, DM, LM, CM|21|Belgium
+14|Jenson Metcalfe|DM, CM, AM|22|England
+16|Daniel Kelly|DM|21|Scotland
+21|Massimo Luongo|DM|34|Australia
+24|Casper De Norre|DM, CM|29|Belgium
+49|Derek Mazou-Sacko|DM|22|France
+10|Camiel Neghli|AM, LW, DM, CM|24|Algeria
+25|Luke Cundle|AM|24|England
+17|Mark Sykes|RW, RWB, RM, RB|29|Ireland
+11|Romain Esse|RW, LW|21|England
+22|Kyrell Lisbie|LW, RW|22|England
+35|Yanis Issoufou|LW|19|France
+7|Taïryk Arconte|ST, AM, RW|22|Guadeloupe
+9|Mihailo Ivanović|ST|21|Serbia
+13|Lyndon Dykes|ST, AM|31|Scotland
+19|Josh Coburn|ST|23|England
+29|Zak Lovelace|ST|20|England
+## BRC|Michael Skubala
+1|Sam Tickle|GK|24|England
+32|Lewis Thomas|GK|29|Wales
+40|Bradley Collins|GK|29|England
+2|Lisav Eissat|CB, LB|21|Romania
+5|Rob Atkinson|CB|28|England
+15|Luke McNally|CB|27|Ireland
+16|Rob Dickie|CB|30|England
+19|George Tanner|CB, RB|26|England
+38|Noah Eile|CB|24|Sweden
+3|Cameron Pring|LB, CB, LWB|28|England
+21|Rio Cardines|LB, RB, RW, RM, RWB, LWB, CM|20|Trinidad and Tobago
+4|Adam Randell|DM, CM|26|England
+6|Brian De Keersmaecker|DM, AM|26|Belgium
+8|Joe Williams|DM|29|England
+12|Jason Knight|DM, CM, RWB, CB, RB, AM|25|Ireland
+27|Gibson Yah|DM, CM|23|Netherlands
+10|Scott Twine|AM, LW, CM, RW, ST|27|England
+14|Tomi Horvat|AM, DM, RW, CM, RM|27|Slovenia
+7|Yu Hirakawa|RW, LW, AM|25|Japan
+17|Jed Wallace|RW, RM|32|England
+20|Sam Greenwood|LW, AM, LM, DM|24|England
+11|Sam Bell|LW, ST, AM, RW|24|England
+9|Lorent Tolaj|ST|24|Switzerland
+23|Dom Ballard|ST, AM|21|England
+45|Elijah Adebayo|ST|28|England
+## SWA|Vítor Matos
+1|Andy Fisher|GK|28|England
+22|Lawrence Vigouroux|GK|32|Chile
+29|Paul Farman|GK|36|England
+2|Joshua Key|RB, RWB|26|England
+26|Filip Lissah|RB, CB, LB|21|Czech Republic
+3|Jenson Seelt|CB|23|Netherlands
+5|Ben Cabango|CB|26|Wales
+15|Cameron Burgess|CB|31|Australia
+20|Tiago Parente|CB, LM|20|Portugal
+23|Stephen Welsh|CB|26|Scotland
+14|Josh Tymon|LB, LWB|27|England
+4|Jay Fulton|DM, CM|32|Scotland
+6|Marko Stamenić|DM, CM|24|New Zealand
+46|Stephen Eustaquio|CM, DM, AM|29|Canada
+7|Melker Widell|AM, LW, CM|24|Sweden
+8|Elijah Just|AM, LW, CM, ST, RW, RM|26|New Zealand
+16|Tom Iorpenda|AM, DM|21|England
+17|Gonçalo Franco|AM, DM, CM|25|Portugal
+12|Jeremy Monga|RW|17|England
+35|Ronald|RW|25|Brazil
+10|Eom Ji-sung|LW, LM, RW|24|South Korea
+30|Joseph Opoku|LW, RW, ST, AM|21|Ghana
+49|Moussa Yeo|LW, RW|22|Mali
+9|Žan Vipotnik|ST|24|Slovenia
+31|Ross Stewart|ST|30|Scotland
+33|Adam Idah|ST, AM|25|Ireland
+## STK|Mark Robins
+1|Viktor Johansson|GK|28|Sweden
+24|Josh Griffiths|GK|25|England
+34|Frank Fielding|GK|38|England
+22|Junior Tchamadeu|RB, RM, RWB|22|Cameroon
+8|Ethan Galbraith|RB, DM, CM|25|Northern Ireland
+5|Luke Graham|CB|22|Scotland
+16|Ben Wilmot|CB, RB|26|England
+18|Bosun Lawal|CB, RB, LB, DM|23|Ireland
+23|Ben Gibson|CB, LB|33|England
+40|Maksym Talovierov|CB, RB|26|Ukraine
+2|Ben Johnson|LB, RM, RB|26|England
+3|Aaron Cresswell|LB, CB|36|England
+17|Eric Bocat|LB, LM, LWB|27|France
+21|Luca Bombino|LB, RB|20|United States
+13|Justin Devenny|LWB, CM, AM, RWB, LW, LM|23|Northern Ireland
+4|Ben Pearson|DM|31|England
+6|Svante Ingelsson|DM, CM, AM|28|Sweden
+19|Tomáš Rigo|DM, AM, CM|24|Slovakia
+7|Jack McGlynn|CM, AM, RW|23|United States
+27|Djibril Soumaré|CM, DM|23|Senegal
+10|Bae Jun-ho|AM, LW|23|South Korea
+42|Million Manhoef|RW, AM|24|Netherlands
+9|Róbert Boženík|ST|26|Slovakia
+11|Lamine Cissé|ST, RW, LW|23|France
+15|George Hirst|ST|27|Scotland
+20|Sam Gallagher|ST, AM, RW|31|England
+## DER|John Eustace
+1|Jacob Widell Zetterström|GK|28|Sweden
+12|Richard O'Donnell|GK|38|England
+31|Josh Vickers|GK|30|England
+22|Max Johnston|RB, LB|22|Scotland
+23|Joe Ward|RB, RWB, RM|31|England
+24|Ryan Nyambe|RB, RWB, CB|28|Namibia
+5|Matt Clarke|CB|30|England
+6|Sondre Langås|CB, RB|25|Norway
+28|Dion Sanderson|CB|26|England
+44|Eiran Cashin|CB, LB|24|Ireland
+2|Derry John Murkin|LB|27|England
+3|Craig Forsyth|LB, CB, LWB|37|Scotland
+18|Charlie Taylor|LB, CB|33|England
+26|Ryan Hedges|LWB, RW, LB|31|Wales
+4|David Ozoh|DM|21|England
+20|Alex Mowatt|DM, CM|31|England
+27|Lewis Travis|DM, CM|29|England
+29|Oscar Fraulo|DM, CM|22|Denmark
+8|Bobby Clark|AM, DM, CM, LW|21|England
+11|Sam Szmodics|AM, LW, ST|31|Ireland
+13|Filip Bilbija|AM, RW, CM|26|Germany
+16|Mohammed Fuseini|RW, ST, AM, LW|24|Ghana
+10|Rhian Brewster|LW, ST, AM|26|England
+33|Corey Blackett-Taylor|LW|29|England
+7|Patrick Agyemang|ST, AM, LW|25|United States
+9|Carlton Morris|ST|30|England
+15|Lars-Jørgen Salvesen|ST|30|Norway
+19|Henrik Meister|ST|22|Denmark
+## QPR|Julien Stéphan
+1|Pierce Charles|GK|21|Northern Ireland
+13|Calum Ward|GK|26|England
+2|Kealey Adamson|RB|23|Australia
+27|Amadou Mbengue|RB, CB|24|Senegal
+3|Jimmy Dunne|CB, RB|29|Ireland
+4|Liam Morrison|CB|23|Scotland
+5|Ronnie Edwards|CB, RB, CM, DM|23|England
+6|Jake Clarke-Salter|CB|29|England
+12|Boy Kemper|LB, LWB|27|Netherlands
+19|Dennis Cirkin|LB, CB|24|Latvia
+48|Tariq Lamptey|LB|26|Ghana
+18|Glen Kamara|CM, DM|30|Finland
+23|Isak Alemayehu|CM|20|Sweden
+24|Nicolas Madsen|CM, DM|26|Denmark
+40|Jonathan Varane|CM, DM|25|Martinique
+20|Harvey Vale|RM, AM, ST, CM, DM|23|Ireland
+11|Paul Smyth|LM, LW, RM|29|Northern Ireland
+14|Koki Saito|LM, RW, LW, AM|25|Japan
+7|Karamoko Dembélé|RW, RM|23|England
+17|Kwame Poku|RW, RM, LM|25|Ghana
+10|Ilias Chair|LW, LM, AM|28|Morocco
+15|Alfie Lloyd|ST|23|England
+16|Rumarn Burrell|ST|25|Jamaica
+22|Richard Kone|ST, AM|23|Ivory Coast
+25|Justin Obikwu|ST|22|Trinidad and Tobago
+26|Rayan Kolli|ST|21|Algeria
