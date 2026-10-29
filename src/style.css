@@ -263,3 +263,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .progsvg .pline { fill: none; stroke: var(--yel); stroke-width: 2.2; stroke-linejoin: round; }
 .progsvg .pdot { fill: var(--yel); }
 .progsvg .plab { fill: var(--dim, #9aa3c7); font: 9px var(--f-mono, monospace); }
+
+/* youth */
+.tag.gen { background: transparent; color: var(--dim); border: 1px solid var(--dim); line-height: 14px; }
+.btn.sm { padding: 2px 8px; font-size: 12px; }

@@ -271,6 +271,10 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .progsvg .pdot { fill: var(--yel); }
 .progsvg .plab { fill: var(--dim, #9aa3c7); font: 9px var(--f-mono, monospace); }
 
+/* youth */
+.tag.gen { background: transparent; color: var(--dim); border: 1px solid var(--dim); line-height: 14px; }
+.btn.sm { padding: 2px 8px; font-size: 12px; }
+
 </style>
 <div id="app"><div style="padding:40px;font-family:monospace;color:#ffd23f">Loading GAFFER 26/27...</div></div>
 <script>
@@ -1542,6 +1546,544 @@ const CH_CLUBS = [
 // legacy lite-team ids used by saves made before the Championship had real squads
 const CH_LEGACY = {C_WestHam:'WHU',C_Wolves:'WOL',C_Burnley:'BUR',C_Southampton:'SOU',C_Middlesbrough:'MID',C_SheffieldUnited:'SHU',C_NorwichCity:'NOR',C_WestBrom:'WBA',C_Watford:'WAT',C_Millwall:'MIL',C_BristolCity:'BRC',C_SwanseaCity:'SWA',C_StokeCity:'STK',C_DerbyCounty:'DER',C_QPR:'QPR',C_Preston:'PNE',C_Blackburn:'BLB',C_BirminghamCity:'BIR',C_Wrexham:'WRE',C_Charlton:'CHA',C_Portsmouth:'POR',L_Bolton:'BOL',L_CardiffCity:'CAR',L_LincolnCity:'LIN'};
 
+// ===== DATA: real reserve (U21) and academy (U18) players, FotMob U21 team pages, 28-29 Oct 2026 =====
+// rows: level (r reserves / a academy)|name|pos|age (~ = estimated)|nat|rating (game estimate)
+// clubs not listed here have no published U21 squad and get generated (fictional) youth players
+const YOUTH = {
+WOL:`r|Adam Harrison|GK|20|ENG|54
+a|Josh Gracey|GK|18|NIR|55
+r|Lewys Benjamin|GK|20|WAL|55
+r|Alfie Brooks|GK|23|ENG|66
+a|Wes Okoduwa|RB|18|ENG|50
+r|Myles Dayman|RB|19|ENG|55
+r|Alfie White|CB|19|ENG|59
+r|Temple Ojinnaka|CB|21|ITA|60
+r|Saheed Olagunju|CB|19|ENG|55
+r|Sebastian Lochhead|CB|19|SCO|58
+r|Max Nolan-Ruddock|LB|19|ENG|52
+r|Makenzie Bradbury|DM|19|WAL|56
+a|Luke Rawlings|DM|18|ENG|48
+r|Finn Ashworth|DM|21|WAL|62
+r|Luke O'Donnell|CM|19|IRL|59
+r|Xu Bin|CM|22|ENG|61
+r|Ji Min-kyu|AM|19|KOR|56
+a|Emilio Ballard-Matthews|AM|18|ENG|52
+r|Enso González|RW|21|ENG|64
+r|Tom Edozie|LW|20|ENG|55
+r|Nathan Fraser|ST|21|IRL|61
+r|Dani Ángel|ST|20|ESP|54`,
+ARS:`r|Khari Ranson|GK|19|ENG|60
+r|Remy Mitchell|GK|22|ENG|63
+r|Lucas Nygaard|GK|20|DEN|64
+r|Habeeb Ogunneye|RB|20|ENG|62
+r|Jaden Dixon|RB|19|ENG|60
+r|Brayden Clarke|CB|19|WAL|54
+a|Elijah Upson|CB|18|ENG|52
+r|Samuel Chapman|CB|19|ENG|56
+a|Josh Ogunnaike|LB|18|ENG|56
+r|Marcell Washington|LB|19|ENG|54
+a|Ife Ibrahim|DM|18|ENG|55
+a|Theo Julienne|DM|18|ENG|52
+r|Louie Copley|CM|20|ENG|60
+r|Demiane Agustien|AM|19|NED|55
+a|Igor Tyjon|AM|18|ENG|53
+a|Ceadach O'Neill|RW|18|NIR|55
+r|Archie Stevens|RW|20|ENG|62
+r|James Scanlon|LW|20|ENG|56
+a|Evan Mooney|ST|18|SCO|55
+a|Louis Zečević-John|ST|18|SRB|56`,
+MCI:`a|Max-Edgar Chabot|GK|18|FRA|56
+r|Matty Henderson-Hall|RB|19|ENG|61
+r|Brooklyn Nfonkeu|RB|19|ENG|54
+r|Rhys Thomas|CB|19|WAL|61
+r|Harrison Parker|CB|20|ENG|59
+r|Luke Mbete|CB|23|ENG|63
+r|Kian Noble|CB|19|ENG|53
+r|Josh Wilson-Esbrand|LB|23|ENG|66
+r|Femi Fapetu|DM|19|ENG|61
+a|Ryan McAidoo|RW|18|ENG|52`,
+LIV:`r|Harvey Davies|GK|23|ENG|63
+a|DJ Esdaille|RB|18|ENG|54
+r|Isaac Mabaya|RB|22|ZIM|67
+r|Noah Adekoya|CB|19|ENG|52
+a|Talla Ndiaye|CB|18|SEN|51
+r|Wellity Lucky|CB|20|ESP|57
+r|Lucas Pitt|LB|19|ENG|54
+r|Owen Beck|LB|24|WAL|66
+r|Patrik Farkas|DM|19|HUN|58
+r|Ben Trueman|DM|20|ENG|61
+r|Michael Laffey|DM|21|ENG|66
+r|Kaide Gordon|AM|22|ENG|63
+a|Joshua Sonni-Lambie|AM|18|ENG|56
+a|Joe Bradshaw|LW|18|ENG|48
+r|Daniel Onanuga|LW|24|IRL|63
+a|Will Wright|ST|18|ENG|49`,
+MUN:`a|Cameron Byrne-Hughes|GK|18|ENG|56
+r|Fred Heath|GK|19|ENG|52
+r|Jaydan Kamason|RB|19|ENG|58
+r|Reece Munro|CB|19|WAL|53
+a|Albert Mills|CB|18|ENG|51
+a|Godwill Kukonki|CB|18|ENG|50
+r|Daniel Armer|CB|19|SCO|55
+r|Diego León|LB|19|ENG|60
+a|Jim Thwaites|CM|18|ENG|51
+r|Ashton Missin|LW|20|ENG|59
+a|Bendito Mantato|RW|18|ENG|51
+r|Samuel Lusale|LW|19|SVK|57
+a|Tynan Thompson|LW|18|ENG|55
+r|Enzo Kana Biyik|ST|19|FRA|58
+r|Victor Musa|ST|20|ENG|58
+a|Amir Ibragimov|ST|18|ENG|51`,
+CHE:`a|Olutayo Subuloye|CB|18|ENG|51
+r|Justin Osagie|CB|21|IRL|66
+a|Alfie Osborne|CB|18|SCO|57
+r|Kian Best|LB|21|ENG|59
+a|Reggie Watson|DM|16|ENG|42
+r|Harrison McMahon|DM|20|ENG|56
+r|Leo Black|CM|20|ENG|57
+r|Shaun Wade|LW|20|IRL|63
+r|Harrison Bettoni|AM|19|ENG|56
+r|Leo Cardoso|RW|19|POR|55
+r|Kendry Páez|RW|19|ECU|54
+r|Kobe Barbour|ST|19|ENG|60
+a|Sol Gordon|LW|18|ENG|49`,
+AVL:`r|James Wright|GK|21|ENG|57
+a|Owen Asemota|GK|18|ENG|52
+r|Sam Lewis|GK|20|ENG|57
+r|Ashton McWilliams|RB|19|ENG|55
+r|Woody Burgess|RB|19|ENG|56
+r|Jacob Green|CB|19|ENG|53
+r|TJ Carroll|CB|19|ENG|52
+r|Travis Patterson|LB|21|ENG|60
+a|Teddie Bloomfield|LB|18|ENG|47
+a|Fletcher Boyd|DM|18|SCO|49
+a|Alfie Lynskey|DM|18|IRL|53
+a|Max Jenner|DM|18|ENG|50
+r|Keilan Quinn|DM|19|IRL|53
+a|Vinnie Hayward|CM|18|ENG|47
+r|Cole Brannigan|AM|19|NIR|55
+r|Jamaldeen Jimoh-Aloba|AM|20|ENG|55
+r|Trai-Varn Mulley|RW|20|ENG|54
+r|Rory Wilson|ST|20|SCO|58
+r|Mason Cotcher|ST|20|ENG|57`,
+TOT:`r|Aaron Maguire|GK|22|IRL|66
+r|Carey Bloedorn|GK|21|ENG|59
+r|Samual Archer|GK|19|ENG|60
+r|Luca Furnell-Gill|RB|19|ENG|54
+r|James Rowswell|RB|20|ENG|60
+r|Alfie Dorrington|CB|21|ENG|61
+a|Malachi Hardy|CB|18|ENG|54
+r|Maxwell Adedeji|CB|19|FIN|58
+r|Maeson King|LB|21|ENG|62
+a|Harry Byrne|LB|18|IRL|52
+r|Callum Olusesi|DM|19|ENG|57
+r|Max McFadden|DM|21|ENG|58
+a|George Feeney|CM|18|NIR|48
+a|Cole Ramsey|CM|18|ENG|48
+r|Dan Batty|CM|20|ENG|60
+r|Tye Hall|CM|19|ENG|53
+r|Rio Kyerematen|AM|21|ENG|60
+r|Tyrese Hall|AM|21|JAM|58
+a|Miracle Adewole|RW|18|GER|54
+r|Elisha Sowunmi|LW|19|ENG|60
+a|Ronny Moncur|ST|18|ENG|49
+r|Ellis Lehane|ST|20|ENG|57
+a|Reiss Elliott-Parris|ST|18|ENG|48`,
+NEW:`r|Alex Walpole|GK|19|ENG|51
+a|Tyler Jones|GK|18|ENG|51
+a|Henry Johnson|RB|18|ENG|49
+r|Luke Craggs|CB|19|ENG|52
+r|Miodrag Pivaš|CB|21|SRB|59
+r|Logan Watts|CB|19|ENG|58
+a|Jake Durrant|CB|18|ENG|54
+r|Dylan Charlton|LB|20|ENG|59
+r|Scott Bailey|DM|20|ENG|55
+r|Fraser Harper|CM|20|ENG|56
+r|Johnny Emerson|RW|20|SCO|62
+r|Kyle Fitzgerald|RW|19|IRL|58
+a|Matheos Ferreira|RW|18|ENG|55
+a|Kyran Thompson|RW|17|ENG|46
+r|Guy Bloomer|ST|19|ENG|57
+r|Trevan Sanusi|LW|19|ENG|53
+r|Park Seung-soo|LW|19|KOR|57
+r|Vakhtang Salia|ST|19|ENG|54
+r|Afner Cá|ST|19|ENG|58
+a|Kacey Wooster|ST|18|ENG|55`,
+BOU:`a|Ben Westcott|GK|18|ENG|54
+r|Callan McKenna|GK|19|SCO|51
+r|Kai Crampton|GK|19|ENG|57
+r|Mack Allan|GK|20|ENG|56
+r|Harold William|CB|19|ENG|52
+a|Ademide Solanke|LB|18|IRL|54
+r|Ben Winterburn|CM|22|ENG|64
+r|Ethan Sills|CM|19|ENG|53
+a|Zac Christie|CM|16|ENG|40
+r|George Chubinidze|RW|19|ENG|53
+a|Dane Ndimukum|LW|18|ENG|51
+r|Charlie Stevens|AM|19|WAL|54
+a|Malcom DaCosta|ST|18|ECU|54
+a|Eugene Nyarko|ST|17|ENG|45
+a|Jonny Day|ST|18|ENG|52
+r|Jonny Stuttle|ST|21|ENG|64`,
+SUN:`r|Isaac Allan|GK|20|ENG|58
+r|Ben Metcalf|GK|19|NIR|56
+r|Jenson Jones|RB|20|ENG|58
+a|Joe Neild|CB|18|ENG|47
+r|Ben Kindon|CB|19|ENG|58
+a|Archie Lightfoot|LB|18|ENG|49
+r|Jaydon Jones|DM|19|ENG|58
+r|Jack Whittaker|DM|20|ENG|54
+a|Liam Hunt|DM|18|ENG|46
+r|Charlie Dinsdale|RW|19|ENG|57
+a|Felix Scott|LW|18|ENG|52
+r|Finn Geragusyan|ST|19|ENG|52
+a|Juan Angulo|ST|18|ECU|52
+r|Trey Samuel-Ogunsuyi|ST|19|BEL|55`,
+CRY:`r|Harry Lee|GK|21|ENG|63
+r|Marcus Hill|GK|19|ENG|54
+r|Taha Majni|RB|19|MAR|54
+r|Charlie Walker-Smith|CB|19|WAL|54
+r|Tyler Whyte|CB|20|USA|60
+r|George King|CB|19|ENG|55
+a|Sean Somade|CB|18|ENG|49
+r|Caleb Kporha|RB|20|ENG|62
+a|Dean Benamar|LB|18|ENG|49
+r|Sebastian Williams|DM|19|ENG|56
+a|Donte Martin|CM|17|ENG|44
+r|Kai-Reece Adams-Collman|CM|19|ENG|55
+r|Joseph Gibbard|CM|21|IRL|60
+a|Jasper Judd|RW|18|ENG|53
+a|Amaari Sealey|AM|18|ENG|51
+a|Joél Drakes-Thomas|AM|17|ENG|44
+a|David Angibeaud|ST|18|ENG|55
+r|Adler Nascimento|ST|21|POR|58
+a|Ben Casey|ST|18|ENG|53`,
+BHA:`a|Oliver Mayer|GK|18|ENG|51
+r|Steven Hall|GK|21|AUS|62
+r|Lorenz Ferdinand|GK|20|ENG|56
+r|Michael Dike|GK|20|IRL|60
+a|Liam Crutchett|CB|18|ENG|54
+a|Sebastian Ademola|CB|18|NOR|55
+r|Callum Mackley|CB|19|ENG|54
+a|Tate Ferdinand|CB|18|ENG|52
+r|Isaiah Alakiu|CB|19|ENG|54
+r|Jacob Vickers|CB|19|ENG|54
+r|Kofi Shaw|DM|19|ENG|52
+r|Shane Nti|DM|19|ENG|60
+a|Jesse Middleton|CM|18|ENG|51
+r|Darius Lane|AM|19|USA|52
+a|Younes Ibrahim|AM|18|EGY|50
+a|Tyler Silsby|RW|18|ENG|51
+a|Henry Kasvosve|RW|18|WAL|51
+r|Nehemiah Oriola|LW|19|ENG|53
+r|George Munday|ST|19|ENG|55
+r|Aidan West|ST|19|ENG|57
+a|Valentin Joseph|ST|18|ENG|53
+r|Adam Brett|ST|19|WAL|59`,
+FUL:`r|Alex Borto|GK|22|USA|65
+r|Dino Kaiser|GK|19|BIH|57
+r|Michael Allen|GK|22|ENG|65
+r|Eddy Nsasi|CB|19|ENG|52
+a|Logan Cooke|CB|18|ENG|51
+r|Bradley Slade|LB|19|ENG|51
+r|Chibby Nwoko|DM|20|ENG|56
+a|Seth Chingwaro|DM|18|ENG|47
+a|Alfie White|DM|18|ENG|52
+a|Maddox Zaidan-Jones|CM|18|ENG|49
+r|Jayden Quashie|AM|20|ENG|55
+a|Macaulay Zepa|RW|18|CMR|54
+r|Tom Olyott|RW|20|IRL|55
+r|Terrell Works|LW|21|ENG|57
+r|Dan Casey|LW|19|ENG|56
+r|Jonah Kusi-Asare|ST|19|SWE|54
+r|Jose Sani|ST|21|ENG|64`,
+EVE:`r|Fraser Barnsley|GK|22|NIR|62
+r|George Pickford|GK|19|ENG|51
+r|Odin Samuels-Smith|RB|20|JAM|61
+r|George Finney|RB|19|ENG|54
+r|Luca Davis|RB|20|ENG|59
+r|William Tamen|CB|20|ENG|57
+a|Luis Gardner|CB|18|WAL|54
+r|Aled Thomas|CB|20|WAL|57
+r|Ezra Carrington|LB|20|ENG|55
+r|Joshua van Schoor|LB|20|ENG|54
+r|Harvey Foster|DM|19|ENG|57
+r|Francis Gomez|DM|20|GAM|56
+r|Jack Patterson|DM|20|NIR|58
+r|Callum Bates|DM|21|ENG|61
+r|Justin Clarke|LW|19|ENG|56
+a|Braiden Graham|LW|18|NIR|53
+r|Martin Sherif|ST|20|NED|61
+r|Omari Benjamin|ST|20|WAL|62
+a|Ceiran Loney|ST|18|SCO|54`,
+LEE:`r|Rory Mahady|GK|20|SCO|61
+r|Darryl Ombang|GK|21|ENG|57
+r|Robert Cook|GK|19|AUS|57
+a|George Kenyon|GK|18|ENG|53
+r|Freddie Lane|RB|19|ENG|53
+r|Roman Egan-Riley|CB|19|ENG|54
+r|Louis Enahoro-Marcus|CB|20|ENG|57
+r|Luke Matykiewicz|CB|19|NIR|57
+a|Jayden Lienou|LB|18|WAL|54
+r|Coban Bird|LB|19|ENG|54
+r|Alfie Cresswell|DM|19|ENG|50
+r|Ollie Pickles|DM|19|ENG|53
+r|Rhys Chadwick|AM|19|ENG|50
+r|Josh McDonald|LW|19|SCO|54
+a|Ditmir Hodja|ST|18|ENG|54
+a|Callum Mills|ST|18|ENG|48`,
+NFO:`r|Luke Campbell|GK|20|ENG|59
+r|George Murray-Jones|GK|21|ENG|63
+r|Aaron Bott|GK|22|ENG|58
+r|Keehan Willows|GK|21|ENG|61
+r|Matthew Orr|CB|19|NIR|57
+a|Ethan Broomes|CB|18|ENG|48
+a|Bubbacar Sanneh|LB|18|ENG|53
+r|Jimmy Sinclair|RB|20|ENG|57
+r|Jamie Newton|LB|21|SCO|63
+r|Archie Whitehall|DM|20|ENG|57
+r|Blaine McClure|DM|19|NIR|56
+a|Chinaza Nwosu|DM|18|ENG|53
+a|Jonathan Whiteley|CM|18|ENG|46
+r|Kristian Clarke|RW|19|ZIM|58
+a|Grady McDonnell|AM|18|IRL|50
+a|Fuad Smith|RW|18|ENG|52
+r|Jayden Powell|ST|19|ENG|57
+a|Zyan Blake|ST|18|ENG|49
+a|Kalum Thompson|ST|18|NIR|46`,
+IPS:`r|Woody Williamson|GK|20|SCO|52
+a|Alex Noonan|GK|18|IRL|46
+r|Leon Elliott|RB|20|BRB|58
+r|Jokūbas Mažionis|CB|20|ENG|52
+r|Corbin Mthunzi|CB|19|ZIM|57
+r|Walker Shabazz-Edwards|CB|19|ENG|50
+a|Oliver Wilkinson|CB|17|ENG|49
+r|Josh Lewis|LB|20|ENG|56
+r|Ashton Boswell|LB|20|ENG|60
+r|Charlie Compton|DM|19|ENG|56
+a|Ryan Doherty|DM|18|ENG|53
+a|Bobby Sains|DM|18|ENG|48
+a|Charlie Wood|DM|18|ENG|50
+r|Tom Taylor|AM|21|ENG|58
+a|Sid Eldred|AM|18|NIR|46
+a|Nelson Eze|AM|18|ENG|49
+r|Josh Pitts|LW|19|ENG|50
+r|Gerrard Buabo|ST|21|ENG|61
+r|Frankie Runham|LW|19|ENG|53
+a|Shakil Nicolaou|LW|18|ENG|47
+r|Luca Fletcher|ST|19|ENG|55
+r|James Mauge|ST|19|ENG|53`,
+WHU:`a|Finley Hooper|GK|18|ENG|55
+a|Lanre Awesu|GK|18|ENG|47
+r|Mason Terry|GK|22|ENG|63
+r|Junior Robinson|RB|22|ENG|65
+r|Jethro Medine|RB|19|ENG|57
+r|Dimitri Colau|CB|20|FRA|56
+r|Ezra Mayers|CB|19|ENG|52
+r|Josh Briggs|CB|20|NIR|55
+a|Airidas Golambeckis|CB|18|ENG|50
+r|Regan Clayton|LB|21|ENG|64
+a|Lewis Beckford|CM|18|ENG|55
+r|Riley Hargan|CM|20|ENG|60
+a|Connor Brooks|RW|18|ENG|54
+a|Andre Dike|AM|18|ENG|54
+r|Gabriel Caliste|AM|19|ENG|59
+a|Jett Murphy|ST|18|ENG|51
+r|Daniel Cummings|ST|20|SCO|60`,
+BUR:`r|Connor Edwards|GK|19|ENG|58
+r|Lewis Forshaw|GK|20|ENG|57
+r|Oisin Cooney|GK|19|IRL|52
+r|Corey King|RB|19|ENG|58
+r|Cameron Scott|CB|19|SCO|50
+r|Emmanuel Airoboma|CB|19|ENG|51
+r|Jesse Williams|CB|20|NED|57
+a|Michael Stanley|CB|18|ENG|46
+r|Murray Campbell|CB|20|SCO|61
+r|Oliver Pimlott|LB|19|ENG|54
+r|Hamzat Balogun|RB|21|ENG|60
+r|Ellis Clark|DM|19|SCO|57
+a|George Brierley|DM|18|ENG|54
+r|Joe Bauress|DM|20|ENG|60
+a|Troy Savage|DM|18|NIR|53
+r|Enock Agyei|RW|21|BEL|61
+r|Zach Johnson|RW|19|ENG|58
+a|Brandon Pouani|LW|18|ENG|51
+a|Braidin Derbyshire|ST|18|ENG|47
+r|Zhang Jiaming|ST|19|ENG|57`,
+SOU:`a|Dylan Moody|GK|18|ENG|50
+r|Josh McNamara|GK|22|ENG|60
+a|Hansel Adjei-Afriyie|RB|18|ENG|56
+a|Davon Gbajumo|CB|18|ENG|56
+r|Max Fry|CB|19|ENG|58
+r|Nathanael Boot|CB|20|ENG|62
+r|Joachim Kayi Sanda|CB|19|FRA|56
+r|Rory Whittaker|RB|19|SCO|54
+r|Barnaby Williams|DM|19|ENG|52
+r|Sutura Kakay|DM|20|ENG|57
+r|Aston Daley|CM|19|ENG|55
+r|Korban McMullan|CM|19|ENG|54
+r|Thierry Rohart-Brown|AM|19|ENG|56
+a|Harry Gathercole|RW|18|ENG|50
+r|Brandon Charles|RW|21|ENG|60
+r|Romeo Akachukwu|LW|20|IRL|58
+r|Sufianu Sillah Dibaga|LW|19|ESP|52
+a|Lewis Bailey|ST|18|ENG|54
+r|Princewill Ehibhatiomhan|ST|21|ENG|62
+r|Baylee Dipepa|ST|19|ENG|59`,
+MID:`r|Owen Foster|GK|21|ENG|59
+r|Shea Connor|GK|20|ENG|59
+r|Abdulhalim Okunola|CB|19|ENG|52
+r|Harley Hunt|CB|19|ENG|57
+r|James Wilson|CB|19|ENG|52
+r|Luke Woolston|CB|21|ENG|61
+a|Oliver Martin|CB|18|ENG|46
+a|Ezra Tika-Lemba|RB|18|ENG|51
+r|Rio Patterson-Powell|LB|20|ENG|59
+r|Daniel James|CM|19|ENG|55
+r|Leon Parker|CM|19|ENG|51
+a|Listowell Hinneh|CM|18|GHA|54
+r|Josh Dede|RW|20|SCO|61
+a|Cayden Cole|LW|18|SLE|54
+r|George McCormick|LW|21|ENG|63
+r|Tyler Smith|LW|19|ENG|54
+r|Lucas Harrison|RW|19|ENG|50
+r|Frankie Coulson|RW|19|ENG|51
+r|Dan Rigge|LW|20|ENG|56
+a|Joe Roberts|ST|18|ENG|48
+r|Jayden Carbon|ST|21|ENG|58
+r|Layton Campbell|ST|20|ENG|58`,
+NOR:`r|Caleb Ansen|GK|21|ENG|64
+r|Luis Lines|GK|19|WAL|53
+r|Rylee Mitchell|GK|20|ENG|53
+a|Finlay Oligbo|RB|18|ENG|50
+r|Rio Mundle|RB|19|ENG|54
+r|Sonny Rowland|CB|19|ENG|50
+a|Takudzwa Gwanzura|CB|18|ENG|50
+r|Theodore Adelusi|CB|19|ENG|56
+a|Vincent Leonard|CB|18|IRL|47
+a|Zachariah Sclare|CB|18|ENG|53
+r|Tyler Williams|LB|19|ENG|56
+a|Vatan Özcan|LB|18|TUR|48
+r|Alan Domeracki|DM|20|SCO|57
+r|Luke Towler|DM|19|ENG|57
+r|Uriah Djedje|DM|20|ENG|56
+r|Elliot Myles|AM|19|WAL|57
+r|Botan Ameen|RW|19|ENG|51
+r|Gabriel Forsyth|RW|20|SCO|57
+r|Reuben Cooper|RW|19|SCO|57
+a|Luke Chukwu|LW|18|IRL|48
+r|Errol Mundle-Smith|LW|20|ENG|59
+a|Glenn McCourt|ST|18|NIR|52
+r|Toby Chilvers|LW|19|ENG|50
+a|Finlay Corke|ST|18|ENG|50
+r|Zachary Baumann|ST|19|UKR|57`,
+WBA:`r|Louis Brady|GK|19|IRL|52
+r|Brian Okonkwo|GK|20|ENG|55
+r|Ben Cisse|GK|21|ENG|63
+a|Alfie Maughan|RB|18|ENG|51
+a|Dauda Amihere|RB|18|ITA|48
+a|Abdul Abudu|CB|18|ENG|53
+r|Noah Dupont|CB|19|NZL|52
+r|Jamal Mohammed|CB|20|ENG|59
+a|Adam Letlat|LB|18|ALG|46
+a|Charlie Blackshields|DM|18|ENG|52
+a|Ryan Colesby|DM|18|ENG|46
+a|Matthew Crowther|DM|18|ENG|53
+a|Kayden Lucas|CM|18|ENG|50
+r|Nathan Dlamini|LW|19|ENG|57
+r|William Unadike|AM|19|ENG|50
+r|Rio Parmar|ST|19|ENG|58
+a|Jaiden Francis-Caesar|ST|18|ENG|50
+r|Jack Bray|ST|19|ENG|57
+r|Joe Belmont|ST|20|WAL|53`,
+STK:`r|Caleb Clothier|GK|19|ENG|55
+a|Lucas Knight|GK|18|ENG|53
+r|Noah Cooper|GK|20|ENG|60
+r|Jaden Mears|RB|20|ENG|58
+a|Pedro Nzau|RB|18|ENG|53
+a|Sanchez Phillips|RB|18|ENG|51
+r|Freddie Anderson|CB|20|USA|55
+r|Raphael-Pijus Otegbayo|CB|19|IRL|56
+a|Will Thompson|CB|18|ENG|50
+a|Laurence Giani|LB|18|ITA|46
+r|Owen Powell|LB|19|ENG|53
+a|Evan Boulter|DM|18|NIR|51
+r|Oghosaiwi Enabulele|DM|19|ENG|53
+a|Daniel Eyaife|CM|18|ENG|47
+r|George Morrison|CM|21|SCO|58
+a|Tristan Achu|CM|18|ENG|52
+r|Josh Maskall|RW|19|ENG|53
+r|Paul Makavore|LW|19|ENG|56
+r|Eric Hamelberg|AM|19|POR|52
+a|Ryan Liu|AM|18|ENG|54
+a|Elliot Fearn|RW|18|ENG|52
+r|Ato Ampah|LW|20|ENG|55
+r|Fletcher Poole|ST|19|ENG|51
+a|Tyler Martin|LW|18|ENG|51
+r|Adriel Walker|ST|20|ENG|61
+r|Jack Newall|ST|19|ENG|54
+a|Jayden Ogbebor|ST|18|ENG|48
+a|Jerome Osei|ST|18|ENG|54`,
+BLB:`r|Felix Goddard|GK|22|ENG|59
+a|Finley Taylor|GK|18|ENG|53
+r|Jack Thompson|GK|19|ENG|55
+r|Lorenze Mullarky-Matthews|RB|20|ENG|57
+r|Lucas Houghton|RB|19|ENG|52
+a|Alfie Rice|CB|18|ENG|54
+r|Bruce Leeming|CB|19|WAL|57
+r|Michael Decandia|CB|19|ENG|55
+a|Yerime Ouattara|CB|18|ENG|53
+a|Harvey Pates|LB|18|ENG|49
+r|Matty Litherland|RB|20|ENG|57
+a|Tinotenda Goremusandu|LB|18|ENG|49
+r|Frank Vare|DM|19|ENG|50
+r|Tyler Mansbridge|DM|19|ENG|58
+a|Isaac Dunn|CM|17|ENG|42
+r|James Edmondson|CM|20|ENG|58
+r|Brandon Powell|AM|21|ENG|63
+a|Freddie Leatherbarrow|AM|18|ENG|52
+a|Jayden Sergeant|LW|18|ENG|47`,
+DER:`r|Harley Price|GK|19~|ENG|50
+r|Jack Thompson|GK|19~|ENG|50
+r|Sam Kane|GK|19~|SCO|50
+r|Adisa Osayande|CB|19~|ENG|57
+r|Alfie Friars|CB|19~|NIR|54
+r|Frankie Jones|CB|19~|ENG|51
+r|Isaac Gordon|CB|19~|ENG|55
+r|Keilen Robinson|CB|19~|ENG|57
+r|Khace Gordon|CB|19~|ENG|50
+r|Luke Banks|CB|19~|ENG|52
+r|Raymond Offor|CB|19~|IRL|50
+r|Rio Canoville|CB|19~|ENG|54
+r|Tristan Gill|CB|19~|ENG|53
+r|Charlie Smith|CM|19~|ENG|50
+r|Cruz Allen|CM|19~|WAL|56
+r|Dantel Hodges|CM|19~|ENG|53
+r|Jaydan Davidson|CM|19~|ENG|50
+r|Marley Mintus|CM|19~|ENG|54
+r|Marsel Tola|CM|19~|ENG|52
+r|Owen Eames|CM|19~|ENG|55
+r|Cameron Wilson|ST|19~|SCO|57
+r|Israel Green|ST|19~|ENG|54
+r|Jerome Richards|ST|19~|ENG|54
+r|Johnson Osong|ST|19~|ENG|56
+r|Justin Oguntolu|ST|19~|ENG|54
+r|Kean Wren|ST|19~|ENG|50
+r|Niall McAndrew|ST|19~|IRL|50
+r|Sean Corry|ST|19~|NIR|52`,
+BIR:`r|Finn McGreevy|ST|19~|IRL|57
+r|Menzi Mazwi|CM|19~|ZIM|53
+r|Curran Chahal|CB|19~|ENG|50
+r|Jack Quirk|CB|19~|ENG|50
+r|William Burrell|CB|19~|ENG|51
+r|Tyrese Warmington|GK|19~|ENG|57
+r|Will O'Sullivan|GK|19~|ENG|56
+r|Junior Wilson|CB|19~|ENG|54
+r|Álvaro Ruiz Rente|ST|19~|ENG|53
+r|Caleb Sanders|ST|19~|ENG|52
+r|Alezandro Da Silva|ST|19~|ENG|50`
+};
+
 // ===== CORE: utilities, players, tactics =====
 let G = null; // whole game state
 const SAVE_KEY = 'gaffer2627.save.v1';
@@ -1695,8 +2237,24 @@ function calcWageDemand(p, rep) { const r = rep || 75; return Math.max(3, Math.r
 // ---- divisions ----
 function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; return null; }
 function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite)); }
+function youthIds(tid) { return G && G.res ? ((G.res[tid] || []).concat((G.acad && G.acad[tid]) || [])) : []; }
 function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : G.pl; }
 function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * (divOf(tid) === 'CH' ? 0.45 : 1))); }
+
+// ---- compact save format: skip default player fields, round decimals; restore fills them back ----
+const P_DEF = { listed: false, injT: '', inj: 0, sus: 0, yel: 0, ym: 0, ymr: 0, mi: 0, low: 0, prom: null };
+function saveJSON(o) {
+  return JSON.stringify(o, function (k, v) {
+    if (typeof v === 'number' && !Number.isInteger(v)) return Math.round(v * 100) / 100;
+    if (this && this.pos && this.n && this.id && this.seed !== undefined) { // a player
+      if (k in P_DEF && v === P_DEF[k]) return undefined;
+      if (k === 'form' && Array.isArray(v) && !v.length) return undefined;
+      if (k === 'st' && v && !Object.values(v).some(x => x)) return undefined;
+    }
+    return v;
+  });
+}
+function fillPlayer(p) { for (const k in P_DEF) if (p[k] === undefined) p[k] = P_DEF[k]; if (!p.form) p.form = []; if (!p.st) p.st = newStats(); if (!p.car) p.car = { a: 0, g: 0 }; return p; }
 
 let _pid = 0;
 function mkPlayer(o) {
@@ -1796,7 +2354,8 @@ function validateLineup(tid) {
     }
     if (t.tac.xi[i]) seen.add(t.tac.xi[i]);
   }
-  t.tac.bench = (t.tac.bench || []).filter(id => P(id) && sqIds.has(id) && available(P(id)) && !seen.has(id));
+  const yIds = new Set(youthIds(tid).filter(id => P(id) && P(id).c === tid && P(id).sq));
+  t.tac.bench = (t.tac.bench || []).filter(id => P(id) && (sqIds.has(id) || yIds.has(id)) && available(P(id)) && !seen.has(id));
   const rest = squad(tid).filter(p => available(p) && !seen.has(p.id) && !t.tac.bench.includes(p.id)).sort((a, b) => b.ca - a.ca);
   while (t.tac.bench.length < 9 && rest.length) { const p = rest.shift(); t.tac.bench.push(p.id); }
   t.tac.bench = t.tac.bench.slice(0, 9);
@@ -2758,9 +3317,9 @@ function checkBoard() {
 }
 
 // ---- save/load ----
-function autosave() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) { } }
+function autosave() { try { localStorage.setItem(SAVE_KEY, saveJSON(G)); } catch (e) { } }
 function loadSave() { try { const s = localStorage.getItem(SAVE_KEY); if (!s) return null; return JSON.parse(s); } catch (e) { return null; } }
-function restore(obj) { G = obj; _pid = Math.max(0, ...Object.keys(G.players).map(k => +k.slice(1) || 0)); _attrCache.clear(); }
+function restore(obj) { G = obj; for (const id in G.players) fillPlayer(G.players[id]); _pid = Math.max(0, ...Object.keys(G.players).map(k => +k.slice(1) || 0)); _attrCache.clear(); }
 
 // ===== TRANSFERS, CONTRACTS, SEASON END =====
 function importance(p) {
@@ -3583,7 +4142,8 @@ function statusTags(p) {
   if (p.sus > 0) s += `<span class="tag sus">SUS ${p.sus}</span> `;
   if (p.listed) s += `<span class="tag lst">LIST</span> `;
   if (p.loan && !p.loan.out) s += `<span class="tag out" title="On loan">LOAN</span> `;
-  if (p.con <= G.year + 1 && p.c === G.user) s += `<span class="tag out" title="Contract ends summer ${p.con}">EXP</span> `;
+  if (p.con <= G.year + 1 && p.c === G.user && !p.sq) s += `<span class="tag out" title="Contract ends summer ${p.con}">EXP</span> `;
+  if (p.gen) s += `<span class="tag gen" title="Generated player: not a real person">GEN</span> `;
   return s;
 }
 function unreadCount() { return G.news.filter(n => !n.read).length; }
@@ -4217,7 +4777,7 @@ const ACT = {
   jobs: () => jobsModal(),
   takejob: (v) => { takeJob(v); UI.modal = null; UI.scr = 'inbox'; UI.msg = null; render(); },
   save: () => { autosave(); toast(loadSave() ? 'Game saved in this browser.' : 'This browser blocked saving. Use Export backup instead.'); },
-  export: () => { const s = JSON.stringify(G); document.getElementById('exp').innerHTML = `<div class="box pad" style="margin-top:12px"><label class="lb" for="exptxt">Backup text (${Math.round(s.length / 1024)} KB). Copy it and keep it somewhere safe.</label><textarea id="exptxt" class="f" style="width:100%;height:120px" readonly>${esc(s)}</textarea><button class="btn pri" data-a="copyexp" style="margin-top:6px">Copy to clipboard</button></div>`; },
+  export: () => { const s = saveJSON(G); document.getElementById('exp').innerHTML = `<div class="box pad" style="margin-top:12px"><label class="lb" for="exptxt">Backup text (${Math.round(s.length / 1024)} KB). Copy it and keep it somewhere safe.</label><textarea id="exptxt" class="f" style="width:100%;height:120px" readonly>${esc(s)}</textarea><button class="btn pri" data-a="copyexp" style="margin-top:6px">Copy to clipboard</button></div>`; },
   copyexp: () => { const ta = $('#exptxt'); try { navigator.clipboard.writeText(ta.value).then(() => toast('Backup copied.'), () => { ta.select(); toast('Select all and copy the text manually.'); }); } catch (e) { ta.select(); toast('Select all and copy the text manually.'); } },
   import: () => { try { const o = JSON.parse($('#imp').value); if (!o || !o.players || !o.teams) throw new Error('bad'); restore(o); autosave(); UI.scr = 'inbox'; UI.msg = null; toast('Backup loaded.'); render(); } catch (e) { toast('That text is not a valid backup. Paste the full exported text.'); } },
   newAsk: () => { document.getElementById('newconf').innerHTML = `<p class="red">This replaces your current career.</p><button class="btn warn" data-a="newgo">Yes, start again</button>`; },
@@ -6300,14 +6860,18 @@ function monthlyProgress() {
     if (p.cax == null) p.cax = p.ca;
     let g = ageGrowth(p.age);
     const n = apps[p.id] || 0, gm = games[p.c] || 0;
+    // reserve and academy games count, at a lower weight than first-team minutes
     let share = t.lite ? .75 : gm ? clamp(n / gm, 0, 1) : .3;
+    const yn = p.ym || 0; if (yn) share = clamp(share + 0.6 * yn / Math.max(3, G.ywk || 4), 0, 1);
     if (g > 0) {
       g *= clamp((p.pa - p.cax) / 6, 0, 1);
       g *= 0.45 + 0.85 * share;
       if (n >= 1 && rsum[p.id]) { const avg = rsum[p.id] / Math.max(1, Math.ceil(n)); g *= clamp(1 + (avg - 6.6) * 0.35, .6, 1.5); }
-      g *= p.c === G.user ? 0.85 + coachU / 50 : 1.05;
+      else if (yn && p.ymr) { const avg = p.ymr / Math.max(1, Math.ceil(yn)); g *= clamp(1 + (avg - 6.6) * 0.25, .7, 1.35); }
+      g *= p.c === G.user ? 0.85 + coachU / 50 + (p.sq && typeof staffAb === 'function' ? (staffAb('hoyd') - 10) / 60 : 0) : 1.05;
       const h = typeof hap === 'function' ? hap(p) : 65; if (h < 35) g *= .8; else if (h > 75) g *= 1.05;
     } else if (g < 0) g *= share > .6 ? .9 : 1;
+    p.ym = 0; p.ymr = 0;
     const d = g / 10 + R.gauss() * .22;
     const before = p.ca;
     p.cax = clamp(p.cax + d, 30, 96);
@@ -6358,7 +6922,7 @@ developPlayers = function () {
       if (p.c === G.user) news('Retirement', `${p.n} has announced his retirement from professional football.`, G.user);
       p.c = 'RETIRED'; G.fa = G.fa.filter(x => x !== p.id); continue;
     }
-    if (p.con <= G.year + 1 && G.sq[p.c]) {
+    if (p.con <= G.year + 1 && G.sq[p.c] && !p.sq) {
       if (p.c === G.user) {
         G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id); news('Contract', `${p.n}'s contract has expired and he has left the club.`, G.user); p.c = 'FA'; G.fa.push(p.id);
       } else if (divOf(p.c)) {
@@ -6411,6 +6975,369 @@ function poHtml() {
 
 // Championship derbies (used by press conferences and the matchday atmosphere)
 RIVALS.push(['WHU', 'MIL'], ['SOU', 'POR'], ['BIR', 'WBA'], ['WOL', 'WBA'], ['BIR', 'WOL'], ['CAR', 'SWA'], ['BRC', 'CAR'], ['BLB', 'BUR'], ['BLB', 'PNE'], ['BUR', 'PNE'], ['NOR', 'IPS'], ['DER', 'NFO'], ['CHA', 'MIL'], ['MID', 'SUN'], ['SHU', 'LEE'], ['STK', 'WOL'], ['BOL', 'BLB'], ['WRE', 'CAR'], ['LIN', 'HUL'], ['QPR', 'CHE'], ['WAT', 'BRE']);
+
+// youth.js: reserve (U21) and academy (U18) squads, youth leagues, promotions and the summer academy intake.
+// Loaded after champ.js, before boot.js. Real players come from YOUTH (data_youth.js); generated ones carry gen: true.
+
+const YOUTH_COMPS = { PL2: 'Premier League 2', PL2D2: 'PL2 Division 2', U18: 'U18 Premier League', PDL: 'U18 Professional Development League' };
+const YLEVEL = { f: 'First team', r: 'Reserves', a: 'Academy' };
+STAFF_ROLES.hoyd = 'Head of Youth Development';
+STAFF_FX.hoyd = 'Runs the academy: stronger intakes each summer and faster progress for reserve and academy players.';
+const Y_AGE = { 15: 40, 16: 43, 17: 46, 18: 50, 19: 54, 20: 57, 21: 60, 22: 62, 23: 64, 24: 65 };
+const Y_PLAN = { r: { GK: 2, CB: 4, LB: 2, RB: 2, DM: 2, CM: 2, AM: 1, LW: 1, RW: 1, ST: 2 }, a: { GK: 2, CB: 3, LB: 1, RB: 1, DM: 1, CM: 2, AM: 1, LW: 1, RW: 1, ST: 2 } };
+
+// ---------- squad levels ----------
+function yList(tid, lvl) { const L = lvl === 'a' ? G.acad : G.res; return ((L && L[tid]) || []).map(P).filter(p => p && p.c === tid && p.sq === lvl); }
+function resSquad(tid) { return yList(tid, 'r'); }
+function acadSquad(tid) { return yList(tid, 'a'); }
+function levelOf(p) { return p.sq || (G.sq[p.c] && G.sq[p.c].includes(p.id) ? 'f' : null); }
+function freeNo(tid, from) { const used = new Set(squad(tid).map(q => q.no)); let n = from || 2; while (used.has(n)) n++; return n; }
+function yDetach(p, tid) {
+  G.sq[tid] = (G.sq[tid] || []).filter(x => x !== p.id);
+  for (const L of [G.res, G.acad]) if (L && L[tid]) L[tid] = L[tid].filter(x => x !== p.id);
+  const t = T(tid); if (t && t.tac) { t.tac.xi = t.tac.xi.map(x => x === p.id ? null : x); t.tac.bench = (t.tac.bench || []).filter(x => x !== p.id); }
+}
+function setLevel(p, lvl) {
+  const tid = p.c; if (!T(tid)) return;
+  yDetach(p, tid);
+  if (lvl === 'f') { delete p.sq; G.sq[tid].push(p.id); if (!p.no || squad(tid).some(q => q !== p && q.no === p.no)) p.no = freeNo(tid, p.age <= 21 ? 30 : 2); if (p.wage < 3) p.wage = Math.max(3, Math.round(wageFor(p, tid) * .6)); }
+  else { p.sq = lvl; const L = lvl === 'a' ? G.acad : G.res; L[tid] = (L[tid] || []).concat(p.id); }
+  if (tid === G.user) validateLineup(G.user); else if (lvl !== 'f') autoPick(tid);
+}
+function firstTeamBar(tid) { const cas = squad(tid).map(p => p.ca).sort((a, b) => b - a); return cas[17] || cas[cas.length - 1] || 55; }
+
+// ---------- creating youth players ----------
+function mkYouth(tid, lvl, o) {
+  const p = mkPlayer({ n: o.n, c: tid, pos: o.pos, age: o.age, nat: o.nat, ca: o.ca, seed: R.i(1, 999) });
+  if (o.gen) p.gen = true;
+  if (o.est) p.ageEst = true;
+  let gap = o.age <= 17 ? R.i(8, 30) : o.age <= 19 ? R.i(5, 24) : o.age <= 21 ? R.i(2, 16) : R.i(0, 8);
+  if (R.chance(.07)) gap += R.i(6, 12); // a few genuine prospects
+  p.pa = clamp(o.ca + gap + (o.paB || 0), o.ca, 94);
+  p.con = G.year + R.i(1, 3); p.no = 0;
+  p.wage = lvl === 'a' ? 1 : clamp(Math.round(1 + (o.ca - 50) / 4), 1, 8);
+  p.val = calcValue(p); p.sq = lvl; p.ys = { a: 0, g: 0, r: 0 };
+  G.players[p.id] = p;
+  const L = lvl === 'a' ? G.acad : G.res; L[tid] = (L[tid] || []).concat(p.id);
+  return p;
+}
+function clubYouthLevel(tid) { const t = T(tid); return clamp(((t.rep || 60) - 70) / 8, -3, 3); }
+function genYouth(tid, lvl, pos, age, bonus) {
+  const ca = Math.round((Y_AGE[age] || 40) + clubYouthLevel(tid) - 2 + (bonus || 0) + R.gauss() * 3);
+  return mkYouth(tid, lvl, { n: genName(), pos, age, nat: R.pick(NATS_YOUTH), ca: lvl === 'a' ? clamp(ca, 36, 62) : clamp(ca, 46, 70), gen: true, paB: bonus ? Math.round(bonus) : 0 });
+}
+function ensureYouth(tid) {
+  G.res = G.res || {}; G.acad = G.acad || {};
+  if ((G.res[tid] && G.res[tid].length) || (G.acad[tid] && G.acad[tid].length)) return;
+  G.res[tid] = []; G.acad[tid] = [];
+  const code = (typeof CH_LEGACY !== 'undefined' && CH_LEGACY[tid]) || tid;
+  const rows = YOUTH[code] && !(T(tid).relSquad) ? YOUTH[code].trim().split('\n') : [];
+  const taken = new Set(Object.values(G.players).filter(p => p.c === tid).map(p => p.n));
+  for (const row of rows) {
+    const [lvl, n, pos, age, nat, ca] = row.split('|');
+    if (taken.has(n)) continue;
+    mkYouth(tid, lvl, { n, pos, age: parseInt(age), est: age.includes('~'), nat, ca: +ca });
+  }
+  for (const lvl of ['r', 'a']) {
+    const have = {}; for (const p of yList(tid, lvl)) have[p.pos] = (have[p.pos] || 0) + 1;
+    for (const pos in Y_PLAN[lvl]) for (let i = have[pos] || 0; i < Y_PLAN[lvl][pos]; i++) genYouth(tid, lvl, pos, lvl === 'a' ? R.i(16, 18) : R.i(19, 21));
+  }
+}
+
+// ---------- youth leagues ----------
+function yLeagueTeams(c) { return c === 'PL2' || c === 'U18' ? G.pl.slice() : divTeams('CH'); }
+function yLevelOf(c) { return c === 'PL2' || c === 'PL2D2' ? 'r' : 'a'; }
+function yCompOf(tid, lvl) { const pl = G.pl.includes(tid); return lvl === 'r' ? (pl ? 'PL2' : 'PL2D2') : (pl ? 'U18' : 'PDL'); }
+function buildYouthLeagues() {
+  G.res = G.res || {}; G.acad = G.acad || {};
+  for (const tid of fullTeams()) ensureYouth(tid);
+  // clubs that dropped to League One (team level) lose their youth squads
+  for (const L of [G.res, G.acad]) for (const tid in L) if (!divOf(tid)) {
+    for (const id of L[tid]) { const p = P(id); if (p && p.c === tid && p.sq) { if (p.car && p.car.a) { p.c = 'FA'; delete p.sq; } else delete G.players[id]; } }
+    delete L[tid];
+  }
+  G.yl = {};
+  for (const c of Object.keys(YOUTH_COMPS)) { const teams = R.shuffle(yLeagueTeams(c)); G.yl[c] = { teams, rounds: roundRobin(teams), ri: 0, res: [], sc: {} }; }
+  for (const tid of fullTeams()) for (const p of resSquad(tid).concat(acadSquad(tid))) p.ys = { a: 0, g: 0, r: 0 };
+  G.ywc = 0;
+}
+function yTable(c) {
+  const L = G.yl && G.yl[c]; if (!L) return [];
+  const tb = {}; for (const t of L.teams) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, form: [] };
+  for (const [h, a, gh, ga] of L.res) { if (!tb[h] || !tb[a]) continue; addRes(tb[h], gh, ga); addRes(tb[a], ga, gh); tb[h].form.push(gh > ga ? 'W' : gh < ga ? 'L' : 'D'); tb[a].form.push(ga > gh ? 'W' : ga < gh ? 'L' : 'D'); }
+  return Object.values(tb).sort(sortTable);
+}
+function yLineup(tid, lvl) {
+  const pool = yList(tid, lvl).filter(p => p.inj <= 0);
+  const gk = pool.filter(p => p.pos === 'GK').sort((a, b) => b.ca - a.ca)[0];
+  const out = pool.filter(p => p.pos !== 'GK').map(p => [p, p.ca + R.gauss() * 4]).sort((a, b) => b[1] - a[1]).map(x => x[0]);
+  const xi = (gk ? [gk] : []).concat(out.slice(0, gk ? 10 : 11));
+  return { xi, subs: out.slice(gk ? 10 : 11, (gk ? 10 : 11) + 3) };
+}
+const Y_GW = { ST: 5, LW: 3, RW: 3, AM: 3, CM: 1.4, DM: .7, CB: .5, LB: .5, RB: .5, GK: 0 };
+const Y_AW = { ST: 2, LW: 3.5, RW: 3.5, AM: 4, CM: 2.5, DM: 1.2, CB: .4, LB: 1.4, RB: 1.4, GK: .05 };
+function yPick(list, W) { return R.wpick(list, p => (W[p.pos] || .5) * Math.pow(p.ca / 55, 2) + .01); }
+function yMatch(c, h, a) {
+  const lvl = yLevelOf(c); const L = G.yl[c];
+  const H = yLineup(h, lvl), A = yLineup(a, lvl);
+  const str = (x) => x.xi.length ? x.xi.reduce((s, p) => s + p.ca, 0) / x.xi.length - (11 - x.xi.length) * 2 : 40;
+  const d = (str(H) + 1.5 - str(A)) / 10;
+  const gh = poisson(clamp(1.5 * Math.exp(d * .6), .3, 4.5)), ga = poisson(clamp(1.3 * Math.exp(-d * .6), .3, 4.5));
+  L.res.push([h, a, gh, ga]);
+  for (const [side, goals, conc] of [[H, gh, ga], [A, ga, gh]]) {
+    const all = side.xi.concat(side.subs); if (!all.length) continue;
+    const g = {}, as = {};
+    for (let i = 0; i < goals; i++) { const s = yPick(all, Y_GW); g[s.id] = (g[s.id] || 0) + 1; L.sc[s.id] = (L.sc[s.id] || 0) + 1; if (R.chance(.75)) { const o = all.filter(p => p !== s); if (o.length) { const x = yPick(o, Y_AW); as[x.id] = (as[x.id] || 0) + 1; } } }
+    for (const p of all) {
+      const sub = side.subs.includes(p);
+      const rt = clamp(6.6 + (goals > conc ? .4 : goals < conc ? -.35 : 0) + (g[p.id] || 0) * .6 + (as[p.id] || 0) * .3 + (p.pos === 'GK' && !conc ? .5 : 0) + R.gauss() * .45 - (sub ? .2 : 0), 5, 9.6);
+      p.ys = p.ys || { a: 0, g: 0, r: 0 }; p.ys.a++; p.ys.g += g[p.id] || 0; p.ys.r += rt;
+      p.ym = (p.ym || 0) + (sub ? .5 : 1); p.ymr = (p.ymr || 0) + rt;
+      if (R.chance(.008)) { p.inj = R.i(5, 28); p.injT = 'a knock in a youth game'; }
+      if ((g[p.id] || 0) >= 3 && p.c === G.user) news('Youth football', `${p.n} scores a hat-trick for the ${YLEVEL[lvl].toLowerCase()} in the ${YOUTH_COMPS[c]}.`, G.user);
+    }
+  }
+}
+function youthWeek() {
+  if (!G.yl) buildYouthLeagues();
+  const w = Math.floor(dDiff(sd('2026-08-17'), G.date) / 7);
+  if (w < 0) return;
+  let played = 0;
+  for (const c in G.yl) {
+    const L = G.yl[c]; const target = Math.min(L.rounds.length, Math.floor((w + 1) * L.rounds.length / 34));
+    while (L.ri < target) { for (const [h, a] of L.rounds[L.ri]) if (T(h) && T(a) && divOf(h) && divOf(a)) yMatch(c, L.ri % 2 ? a : h, L.ri % 2 ? h : a); L.ri++; played = 1; }
+  }
+  if (played) G.ywc = (G.ywc || 0) + 1;
+  // youth wages, AI call-ups for injuries, prospects asking for a chance
+  for (const tid of fullTeams()) {
+    const t = T(tid); const ys = resSquad(tid).concat(acadSquad(tid));
+    const w2 = ys.reduce((s, p) => s + (p.wage || 0), 0) / 1000; t.bal -= w2; t.fin.out.wages += w2;
+    if (tid !== G.user) {
+      const avail = squad(tid).filter(available);
+      if (avail.length < 17 || !avail.some(p => p.pos === 'GK')) {
+        const need = !avail.some(p => p.pos === 'GK') ? 'GK' : null;
+        const cand = resSquad(tid).filter(p => available(p) && p.age >= 17 && (!need || p.pos === need)).sort((a, b) => b.ca - a.ca)[0];
+        if (cand) setLevel(cand, 'f');
+      }
+    }
+  }
+  if (!G.sacked && T(G.user) && !T(G.user).lite) {
+    for (const p of resSquad(G.user)) {
+      if (p.age < 19 || p.age > 23 || p.dem) continue;
+      const grp = squad(G.user).filter(q => POS_GROUP[q.pos] === POS_GROUP[p.pos]).map(q => q.ca).sort((a, b) => b - a);
+      if (p.ca >= (grp[2] || 0) - 1) { setHap(p, -1.5); if (p.askY !== G.year) { p.askY = G.year; news('Youth football', `${p.n} (${p.ca}) feels he is ready for first-team football and would like a chance.`, G.user); } }
+    }
+  }
+}
+const _wkY = weekly;
+weekly = function () { _wkY(); try { youthWeek(); } catch (e) { console.error(e); } };
+const _dtY = dailyTick;
+dailyTick = function () { if (G.date.endsWith('-01')) { G.ywk = Math.max(1, G.ywc || 0); G.ywc = 0; } return _dtY(); };
+const _bsY = buildSeason;
+buildSeason = function () { _bsY(); try { buildYouthLeagues(); } catch (e) { console.error(e); } };
+
+// ---------- summer: academy intake and squad rollover ----------
+youthIntake = function () {
+  for (const tid of fullTeams()) {
+    const t = T(tid); const user = tid === G.user;
+    for (const p of acadSquad(tid)) if (p.age >= 19) { setLevel(p, 'r'); if (user) (G._grads = G._grads || []).push(p.n); } // graduates move up before the new intake
+    const hoyd = user ? staffAb('hoyd') : 8 + Math.round(clubYouthLevel(tid) * 2);
+    const n = clamp(17 - acadSquad(tid).length + R.i(-1, 1), 4, 8) + (hoyd >= 16 ? 1 : 0);
+    const fresh = [];
+    for (let i = 0; i < n; i++) {
+      const pos = R.pick(['GK', 'CB', 'CB', 'LB', 'RB', 'DM', 'CM', 'CM', 'AM', 'LW', 'RW', 'ST', 'ST']);
+      const bonus = (hoyd - 10) * .35 + (user ? (staffAb('scout') - 10) * .1 : 0) + (R.chance(.05) ? 6 : 0);
+      fresh.push(genYouth(tid, 'a', pos, 16, bonus));
+    }
+    if (user && fresh.length) { const best = fresh.slice().sort((a, b) => b.pa - a.pa)[0]; news('Academy intake', `${fresh.length} youngsters join the academy: ${fresh.map(p => `${p.n} (${POS_LABEL[p.pos]})`).join(', ')}. The youth staff are most excited about ${best.n}.`, G.user); }
+    if (!user) {
+      // keep first-team squads workable: promote from the reserves first, then free agents, then generated players
+      let guard = 0;
+      while (squad(tid).length < 23 && guard++ < 12) {
+        const r = resSquad(tid).filter(p => p.age >= 18).sort((a, b) => b.ca - a.ca)[0];
+        if (r && r.ca >= firstTeamBar(tid) - 6) { setLevel(r, 'f'); continue; }
+        const best = G.fa.map(P).filter(Boolean).sort((a, b) => b.ca - a.ca)[0];
+        if (best) { G.fa = G.fa.filter(x => x !== best.id); best.c = tid; delete best.sq; best.con = G.year + 1 + R.i(1, 3); best.wage = wageFor(best, tid); best.no = freeNo(tid); G.sq[tid].push(best.id); }
+        else { const p = mkPlayer({ n: genName(), c: tid, pos: R.pick(['CB', 'CM', 'ST', 'LB', 'RW']), age: R.i(21, 29), nat: R.pick(NATS_YOUTH), ca: clamp(t.rep - 12, 55, 80), seed: R.i(1, 999), gen: true }); p.con = G.year + 3; p.wage = wageFor(p, tid); p.no = freeNo(tid); G.players[p.id] = p; G.sq[tid].push(p.id); }
+      }
+      if (squad(tid).length > 32) { const cut = squad(tid).sort((a, b) => a.ca - b.ca).slice(0, squad(tid).length - 32); for (const p of cut) { G.sq[tid] = G.sq[tid].filter(x => x !== p.id); p.c = 'FA'; G.fa.push(p.id); } }
+    }
+  }
+};
+function yRelease(p, why) {
+  const tid = p.c; yDetach(p, tid); delete p.sq;
+  if (p.ca >= 52) { p.c = 'FA'; G.fa.push(p.id); } else if (p.car && p.car.a) p.c = 'FA'; else delete G.players[p.id];
+  if (tid === G.user) return p.n;
+  return null;
+}
+function youthRollover() {
+  const gone = [], up = [], grads = [];
+  for (const tid of fullTeams()) {
+    const user = tid === G.user;
+    for (const p of acadSquad(tid)) if (p.age >= 19) { setLevel(p, 'r'); if (user) grads.push(p.n); }
+    if (user && G._grads) { grads.push(...G._grads); G._grads = null; }
+    for (const p of resSquad(tid)) {
+      if (p.age < 23) continue;
+      const good = p.ca >= firstTeamBar(tid) - 1;
+      if (!user && good) setLevel(p, 'f');
+      else if (!user || (p.age >= 24 && !p.dem)) { const n = yRelease(p); if (n) gone.push(n); }
+    }
+    if (!user) for (const p of resSquad(tid).concat(acadSquad(tid))) if (p.age >= 18 && p.ca >= firstTeamBar(tid) + 2) setLevel(p, 'f');
+    if (!user) { const rs = resSquad(tid).sort((a, b) => (a.ca + a.pa) - (b.ca + b.pa)); for (const p of rs.slice(0, Math.max(0, rs.length - 24))) yRelease(p); }
+    for (const p of resSquad(tid).concat(acadSquad(tid))) if (p.con <= G.year) { p.con = G.year + R.i(1, 3); p.wage = p.sq === 'a' ? 1 : clamp(Math.round(1 + (p.ca - 50) / 4), 1, 8); }
+    if (!user) autoPick(tid);
+  }
+  if (grads.length) news('Youth football', `Moving up from the academy to the reserves: ${grads.join(', ')}.`, G.user);
+  if (gone.length) news('Youth football', `Released after ageing out of the reserves: ${gone.join(', ')}.`, G.user);
+  if (resSquad(G.user).length > 28) news('Youth football', `Your reserve squad has ${resSquad(G.user).length} players. Release, loan or sell some so they all get game time.`, G.user);
+  const old = resSquad(G.user).filter(p => p.age === 23 && !p.dem);
+  if (old.length) news('Youth football', `${old.map(p => p.n).join(', ')} turn${old.length === 1 ? 's' : ''} 23. Promote, loan or sell them this season; reserves aged 24 are released in the summer.`, G.user);
+}
+const _seY = seasonEnd;
+seasonEnd = function () { _seY(); try { if (T(G.user)) youthRollover(); autosave(); } catch (e) { console.error(e); } };
+
+// ---------- keep levels consistent when players move ----------
+const _ctY = completeTransfer;
+completeTransfer = function (p, toTid, fee, wage, years) { const from = p.c, lvl = p.sq; if (lvl) { yDetach(p, from); delete p.sq; } _ctY(p, toTid, fee, wage, years); };
+const _saY = sellAbroad;
+sellAbroad = function (p, fee, club) { if (p.sq) { yDetach(p, p.c); delete p.sq; } _saY(p, fee, club); };
+const _rpY = releasePlayer;
+releasePlayer = function (pid) {
+  const p = P(pid);
+  if (p && p.sq && p.c === G.user) { yDetach(p, G.user); delete p.sq; p.c = 'FA'; p.listed = false; G.fa.push(pid); news('Transfer', `${p.n} has been released by ${userTeam().name}.`, G.user); return { ok: true, msg: `${p.n} released.` }; }
+  return _rpY(pid);
+};
+const _loY = loanOut;
+loanOut = function (pid, dest) {
+  const p = P(pid); const lvl = p && p.sq;
+  if (lvl) { G.sq[G.user].push(p.id); } // loanOut expects him in the first-team list
+  const r = _loY(pid, dest);
+  if (lvl) { if (r.ok) { yDetach(p, G.user); delete p.sq; p.loan.lvl = lvl; } else { G.sq[G.user] = G.sq[G.user].filter(x => x !== p.id); } }
+  return r;
+};
+const _rlY = returnLoans;
+returnLoans = function () {
+  const back = Object.values(G.players).filter(p => p.loan && p.loan.out && p.loan.lvl).map(p => [p, p.loan.lvl, p.loan.from]);
+  _rlY();
+  for (const [p, lvl, from] of back) if (p.c === from && T(from) && !T(from).lite) { G.sq[from] = G.sq[from].filter(x => x !== p.id); p.sq = lvl; const L = lvl === 'a' ? G.acad : G.res; L[from] = (L[from] || []).concat(p.id); }
+};
+const _impY = importance;
+importance = function (p) { return p.sq ? 'backup' : _impY(p); };
+const _ensY = ensureStaff;
+ensureStaff = function () {
+  _ensY();
+  if (G.staff && !G.staff.hoyd) G.staff.hoyd = mkStaff('hoyd', 7 + ((userTeam() || {}).rep - 60) / 3.5 + R.i(-2, 2));
+  if (G.staffPool && !G.staffPool.some(s => s.role === 'hoyd')) for (let i = 0; i < 4; i++) G.staffPool.push(mkStaff('hoyd', R.i(5, 19)));
+};
+const _migY = migrate;
+migrate = function () { _migY(); try { if (!G.res || !G.yl) buildYouthLeagues(); ensureStaff(); } catch (e) { console.error(e); } };
+
+// ================= UI =================
+function yStatsTxt(p) { const s = p.ys || { a: 0, g: 0, r: 0 }; return s.a ? `${s.a} apps · ${s.g} goals · avg ${(s.r / s.a).toFixed(2)}` : 'no youth games yet'; }
+function yTableMini(c, mark) {
+  const rows = yTable(c); if (!rows.length) return '';
+  const i = rows.findIndex(r => r.t === mark);
+  const show = rows.filter((r, k) => k < 6 || Math.abs(k - i) <= 1 || k === rows.length - 1);
+  return `<div class="tw"><table class="t"><thead><tr><th class="n">Pos</th><th>Team</th><th class="n">P</th><th class="n">GD</th><th class="n">Pts</th></tr></thead><tbody>${show.map(r => { const k = rows.indexOf(r); return `<tr class="${r.t === mark ? 'me' : ''}"><td class="n">${k + 1}</td><td>${tLink(r.t)}</td><td class="n">${r.p}</td><td class="n">${r.gf - r.ga > 0 ? '+' : ''}${r.gf - r.ga}</td><td class="n"><b>${r.pts}</b></td></tr>`; }).join('')}</tbody></table></div>`;
+}
+function yScorers(c, n, onlyTid) {
+  const L = G.yl && G.yl[c]; if (!L) return [];
+  return Object.entries(L.sc).map(([id, g]) => [P(id), g]).filter(([p]) => p && (!onlyTid || p.c === onlyTid)).sort((a, b) => b[1] - a[1]).slice(0, n);
+}
+function yLevelScreen(lvl) {
+  const tid = G.user; const list = yList(tid, lvl).sort((a, b) => POS_ORDER[a.pos] - POS_ORDER[b.pos] || b.ca - a.ca);
+  const c = yCompOf(tid, lvl); const tb = yTable(c); const pos = tb.findIndex(r => r.t === tid) + 1;
+  const wages = list.reduce((s, p) => s + (p.wage || 0), 0);
+  const real = list.filter(p => !p.gen).length;
+  const head = `<p class="dim" style="margin:6px 0">${lvl === 'r' ? 'Under-21 players (plus a few over-age ones) who play in the ' + YOUTH_COMPS[c] + '. Reserves can be named on the first-team bench from the Tactics screen, promoted, loaned out or sold. Reserves aged 24 are released in the summer.' : 'Under-18 players who play in the ' + YOUTH_COMPS[c] + '. They move up to the reserves at 19. Your Head of Youth Development shapes each summer intake.'} ${real} of ${list.length} are real players${list.length - real ? '; the rest are generated (GEN)' : ''}.</p>`;
+  const rows = list.map(p => `<tr class="click" data-a="player" data-v="${p.id}"><td><b>${esc(p.n)}</b>${p.gen ? ' <span class="tag gen" title="Generated player: not a real person">GEN</span>' : ''}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}${p.ageEst ? '<span class="dim" title="Estimated age">~</span>' : ''}</td><td class="mono dim">${esc(p.nat)}</td><td class="n"><b>${p.ca}</b></td><td class="stars">${potStars(p)}</td><td class="n">${(p.ys && p.ys.a) || 0}</td><td class="n">${(p.ys && p.ys.g) || 0}</td><td class="n">${p.ys && p.ys.a ? (p.ys.r / p.ys.a).toFixed(2) : '-'}</td><td>${statusTags(p)}</td><td style="white-space:nowrap"><button class="btn sm" data-a="ylvl" data-k="f" data-v="${p.id}">Promote</button>${lvl === 'a' ? ` <button class="btn sm" data-a="ylvl" data-k="r" data-v="${p.id}">To reserves</button>` : ''}</td></tr>`).join('');
+  const sc = yScorers(c, 8);
+  return `<div class="band">${YLEVEL[lvl]}<small>${list.length} players · ${YOUTH_COMPS[c]}${pos ? ' · ' + ordinal(pos) : ''} · wages ${wageStr(wages)}</small></div>${head}
+  <div class="tw"><table class="t"><thead><tr><th>Name</th><th>Pos</th><th class="n">Age</th><th>Nat</th><th class="n">Ovr</th><th>Potential</th><th class="n">Apps</th><th class="n">Gls</th><th class="n">Avg</th><th></th><th></th></tr></thead><tbody>${rows || '<tr><td colspan="11" class="dim">No players.</td></tr>'}</tbody></table></div>
+  <div class="grid2" style="margin-top:10px"><div><h2 class="sect" style="margin-top:0">${YOUTH_COMPS[c]}</h2>${yTableMini(c, tid)}</div><div><h2 class="sect" style="margin-top:0">Top scorers</h2><div class="tw"><table class="t"><tbody>${sc.map(([p, g], i) => `<tr class="click ${p.c === tid ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}</td><td>${tLink(p.c)}</td><td class="n"><b>${g}</b></td></tr>`).join('') || '<tr><td class="dim">No goals yet.</td></tr>'}</tbody></table></div></div></div>`;
+}
+const _sqY = scrSquad;
+scrSquad = function () {
+  const tab = UI.tab.sq || 'f';
+  const tabs = `<div class="tabs" style="margin-top:8px">${[['f', 'First team', squad(G.user).length], ['r', 'Reserves', resSquad(G.user).length], ['a', 'Academy', acadSquad(G.user).length]].map(([k, l, n]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="sq" data-v="${k}">${l} (${n})</button>`).join('')}</div>`;
+  if (tab === 'f') { const h = _sqY(); const i = h.indexOf('</div>'); return h.slice(0, i + 6) + tabs + h.slice(i + 6); }
+  const h = yLevelScreen(tab); const i = h.indexOf('</div>'); return h.slice(0, i + 6) + tabs + h.slice(i + 6);
+};
+// player pop-up: squad level, youth stats and moves between levels
+const _pxY = playerExtra;
+playerExtra = function (p) {
+  let box = '';
+  const own = p.c === G.user && !p.loan;
+  const lvl = levelOf(p);
+  if (p.sq || (own && lvl)) {
+    const c = p.sq ? yCompOf(p.c, p.sq) : null;
+    const moves = own ? [['f', 'First team'], ['r', 'Reserves'], ['a', 'Academy']].filter(([k]) => k !== lvl && (k !== 'a' || p.age <= 18)) : [];
+    box = `<h2 class="sect">Squad level</h2><div class="box pad"><div class="row" style="gap:10px;align-items:baseline;flex-wrap:wrap"><b>${YLEVEL[lvl || 'f']}</b>${c ? `<span class="dim">${YOUTH_COMPS[c]}: ${yStatsTxt(p)}</span>` : ''}${moves.length ? `<span class="spacer"></span>${moves.map(([k, l]) => `<button class="btn sm" data-a="ylvl" data-k="${k}" data-v="${p.id}">${k === 'f' ? 'Promote to first team' : 'Move to ' + l.toLowerCase()}</button>`).join(' ')}` : ''}</div>${p.gen ? '<p class="dim" style="margin:6px 0 0;font-size:12.5px">Generated player: not a real person.</p>' : ''}${p.ageEst ? '<p class="dim" style="margin:6px 0 0;font-size:12.5px">Age not published; the game uses an estimate.</p>' : ''}</div>`;
+  }
+  return _pxY(p) + box;
+};
+function yMove(pid, lvl) {
+  const p = P(pid); if (!p || p.c !== G.user) return;
+  const cur = levelOf(p);
+  if (lvl === 'f' && squad(G.user).length >= 32) return toast('The first-team squad is full (32). Move someone down first.');
+  if (cur === 'f' && squad(G.user).length <= 16) return toast('You need at least 16 players in the first-team squad.');
+  if (lvl === 'a' && p.age > 18) return toast('Only players aged 18 or under can join the academy.');
+  setLevel(p, lvl);
+  if (lvl === 'f' && cur !== 'f') { setHap(p, 8); p.mor = clamp(p.mor + 6, 0, 100); news('Youth football', `${p.n} is promoted to the first-team squad.`, G.user); }
+  if (cur === 'f' && lvl !== 'f') p.dem = true;
+  if (lvl === 'f') delete p.dem;
+  if (cur === 'f' && lvl !== 'f') { if (p.age >= 22 && p.ca >= firstTeamBar(G.user) - 3) setHap(p, -6); }
+  autosave();
+  toast(`${p.n} moves to the ${YLEVEL[lvl].toLowerCase()}.`);
+  if (UI.modal) playerModal(pid); else render();
+}
+Object.assign(ACT, { ylvl: (v, el) => yMove(v, el.dataset.k), ycomp: (v) => { UI.tab.yc = v; render(); } });
+// tactics: reserve and academy players can be named on the bench
+const _tpY = tacticsPick;
+tacticsPick = function (pid) {
+  const p = P(pid);
+  if (p && p.sq && UI.tSel && UI.tSel.type === 'xi') return toast('Reserve and academy players can only be named on the bench. Promote him to start.');
+  return _tpY(pid);
+};
+const _scrY = screen;
+screen = function (s) {
+  const html = _scrY(s);
+  if (s === 'tactics' && G && UI.tSel && UI.tSel.type === 'bench') {
+    const ys = resSquad(G.user).concat(acadSquad(G.user)).filter(available).sort((a, b) => b.ca - a.ca);
+    const tac = userTeam().tac;
+    const extra = `<h2 class="sect">Reserves &amp; academy <span class="dim" style="font-size:14px">(bench only)</span></h2><div class="tw" style="max-height:320px;overflow-y:auto"><table class="t"><tbody>${ys.map(p => `<tr class="click" data-a="tpick" data-v="${p.id}"><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${p.ca}</b></td><td class="dim">${YLEVEL[p.sq]}</td><td>${tac.bench.includes(p.id) ? '<span class="cyan mono">Bench</span>' : ''}</td></tr>`).join('')}</tbody></table></div>`;
+    const i = html.lastIndexOf('</tbody></table></div>');
+    if (i > 0) return html.slice(0, i + 22) + extra + html.slice(i + 22);
+  }
+  return html;
+};
+// league tables: youth competitions
+const _stY = scrTable;
+scrTable = function () {
+  const tab = UI.tab.tb || (userDiv() === 'CH' ? 'ch' : 'pl');
+  const yBtn = `<button class="${tab === 'y' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="y">Youth leagues</button>`;
+  if (tab !== 'y') { const h = _stY(); return h.replace('data-v="ch">Championship</button></div>', 'data-v="ch">Championship</button>' + yBtn + '</div>'); }
+  const c = UI.tab.yc && YOUTH_COMPS[UI.tab.yc] ? UI.tab.yc : yCompOf(G.user, 'r');
+  const sc = yScorers(c, 15);
+  return `<div class="band">League tables<small>${seasonLabel(G.year)}</small></div><div class="tabs" style="margin-top:8px"><button data-a="tab" data-k="tb" data-v="pl">Premier League</button><button data-a="tab" data-k="tb" data-v="ch">Championship</button>${yBtn}</div>
+  <div class="tabs" style="margin-top:4px">${Object.entries(YOUTH_COMPS).map(([k, l]) => `<button class="${c === k ? 'on' : ''}" data-a="ycomp" data-v="${k}">${l}</button>`).join('')}</div>
+  <p class="dim" style="margin:6px 0">${yLevelOf(c) === 'r' ? 'Reserve (under-21) football' : 'Academy (under-18) football'}, simulated each week for ${c === 'PL2' || c === 'U18' ? 'Premier League' : 'Championship'} clubs. One round-robin season, August to April.</p>
+  ${tableHtml(yTable(c), null, { form: true })}
+  <h2 class="sect">Top scorers</h2><div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th>Pos</th><th class="n">Age</th><th class="n">Goals</th></tr></thead><tbody>${sc.map(([p, g], i) => `<tr class="click ${p.c === G.user ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td>${tLink(p.c)}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${g}</b></td></tr>`).join('') || '<tr><td colspan="6" class="dim">No goals yet.</td></tr>'}</tbody></table></div>`;
+};
+// club pop-up: reserves and academy
+const _cmY = clubModal;
+clubModal = function (tid) {
+  _cmY(tid);
+  const t = T(tid); if (!t || t.lite || !UI.modal) return;
+  const sec = (lvl) => { const l = yList(tid, lvl).sort((a, b) => b.ca - a.ca); return l.length ? `<h2 class="sect">${YLEVEL[lvl]} <span class="dim" style="font-size:14px">${YOUTH_COMPS[yCompOf(tid, lvl)]}</span></h2><div class="tw"><table class="t"><tbody>${l.map(p => `<tr class="click" data-a="player" data-v="${p.id}"><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${p.ca}</b></td><td class="stars">${potStars(p)}</td><td class="n dim">${(p.ys && p.ys.g) || 0} gls</td></tr>`).join('')}</tbody></table></div>` : ''; };
+  UI.modal = UI.modal.replace(/<\/div>$/, sec('r') + sec('a') + '</div>');
+  render();
+};
+// clickable youth competitions
+Object.assign(COMP_LINK, { 'Premier League 2': 'PL2', 'PL2 Division 2': 'PL2D2', 'U18 Premier League': 'U18', 'U18 Professional Development League': 'PDL' });
+const _gcY = goComp;
+goComp = function (code) { if (YOUTH_COMPS[code]) { UI.modal = null; UI.mstack = []; UI.mcur = null; UI.scr = 'table'; UI.tab.tb = 'y'; UI.tab.yc = code; render(); window.scrollTo(0, 0); return; } _gcY(code); };
 
 // boot (kept last)
 if (window.claude && window.claude.hot) { try { window.claude.hot.snapshot(() => ({ G, scr: UI.match ? 'inbox' : UI.scr })); } catch (e) { } }

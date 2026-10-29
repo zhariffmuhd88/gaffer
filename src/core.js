@@ -151,8 +151,24 @@ function calcWageDemand(p, rep) { const r = rep || 75; return Math.max(3, Math.r
 // ---- divisions ----
 function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; return null; }
 function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite)); }
+function youthIds(tid) { return G && G.res ? ((G.res[tid] || []).concat((G.acad && G.acad[tid]) || [])) : []; }
 function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : G.pl; }
 function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * (divOf(tid) === 'CH' ? 0.45 : 1))); }
+
+// ---- compact save format: skip default player fields, round decimals; restore fills them back ----
+const P_DEF = { listed: false, injT: '', inj: 0, sus: 0, yel: 0, ym: 0, ymr: 0, mi: 0, low: 0, prom: null };
+function saveJSON(o) {
+  return JSON.stringify(o, function (k, v) {
+    if (typeof v === 'number' && !Number.isInteger(v)) return Math.round(v * 100) / 100;
+    if (this && this.pos && this.n && this.id && this.seed !== undefined) { // a player
+      if (k in P_DEF && v === P_DEF[k]) return undefined;
+      if (k === 'form' && Array.isArray(v) && !v.length) return undefined;
+      if (k === 'st' && v && !Object.values(v).some(x => x)) return undefined;
+    }
+    return v;
+  });
+}
+function fillPlayer(p) { for (const k in P_DEF) if (p[k] === undefined) p[k] = P_DEF[k]; if (!p.form) p.form = []; if (!p.st) p.st = newStats(); if (!p.car) p.car = { a: 0, g: 0 }; return p; }
 
 let _pid = 0;
 function mkPlayer(o) {

@@ -21,7 +21,8 @@ function statusTags(p) {
   if (p.sus > 0) s += `<span class="tag sus">SUS ${p.sus}</span> `;
   if (p.listed) s += `<span class="tag lst">LIST</span> `;
   if (p.loan && !p.loan.out) s += `<span class="tag out" title="On loan">LOAN</span> `;
-  if (p.con <= G.year + 1 && p.c === G.user) s += `<span class="tag out" title="Contract ends summer ${p.con}">EXP</span> `;
+  if (p.con <= G.year + 1 && p.c === G.user && !p.sq) s += `<span class="tag out" title="Contract ends summer ${p.con}">EXP</span> `;
+  if (p.gen) s += `<span class="tag gen" title="Generated player: not a real person">GEN</span> `;
   return s;
 }
 function unreadCount() { return G.news.filter(n => !n.read).length; }

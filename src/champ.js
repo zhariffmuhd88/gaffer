@@ -56,14 +56,18 @@ function monthlyProgress() {
     if (p.cax == null) p.cax = p.ca;
     let g = ageGrowth(p.age);
     const n = apps[p.id] || 0, gm = games[p.c] || 0;
+    // reserve and academy games count, at a lower weight than first-team minutes
     let share = t.lite ? .75 : gm ? clamp(n / gm, 0, 1) : .3;
+    const yn = p.ym || 0; if (yn) share = clamp(share + 0.6 * yn / Math.max(3, G.ywk || 4), 0, 1);
     if (g > 0) {
       g *= clamp((p.pa - p.cax) / 6, 0, 1);
       g *= 0.45 + 0.85 * share;
       if (n >= 1 && rsum[p.id]) { const avg = rsum[p.id] / Math.max(1, Math.ceil(n)); g *= clamp(1 + (avg - 6.6) * 0.35, .6, 1.5); }
-      g *= p.c === G.user ? 0.85 + coachU / 50 : 1.05;
+      else if (yn && p.ymr) { const avg = p.ymr / Math.max(1, Math.ceil(yn)); g *= clamp(1 + (avg - 6.6) * 0.25, .7, 1.35); }
+      g *= p.c === G.user ? 0.85 + coachU / 50 + (p.sq && typeof staffAb === 'function' ? (staffAb('hoyd') - 10) / 60 : 0) : 1.05;
       const h = typeof hap === 'function' ? hap(p) : 65; if (h < 35) g *= .8; else if (h > 75) g *= 1.05;
     } else if (g < 0) g *= share > .6 ? .9 : 1;
+    p.ym = 0; p.ymr = 0;
     const d = g / 10 + R.gauss() * .22;
     const before = p.ca;
     p.cax = clamp(p.cax + d, 30, 96);
@@ -114,7 +118,7 @@ developPlayers = function () {
       if (p.c === G.user) news('Retirement', `${p.n} has announced his retirement from professional football.`, G.user);
       p.c = 'RETIRED'; G.fa = G.fa.filter(x => x !== p.id); continue;
     }
-    if (p.con <= G.year + 1 && G.sq[p.c]) {
+    if (p.con <= G.year + 1 && G.sq[p.c] && !p.sq) {
       if (p.c === G.user) {
         G.sq[p.c] = G.sq[p.c].filter(x => x !== p.id); news('Contract', `${p.n}'s contract has expired and he has left the club.`, G.user); p.c = 'FA'; G.fa.push(p.id);
       } else if (divOf(p.c)) {

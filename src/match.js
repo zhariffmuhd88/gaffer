@@ -73,7 +73,8 @@ function validateLineup(tid) {
     }
     if (t.tac.xi[i]) seen.add(t.tac.xi[i]);
   }
-  t.tac.bench = (t.tac.bench || []).filter(id => P(id) && sqIds.has(id) && available(P(id)) && !seen.has(id));
+  const yIds = new Set(youthIds(tid).filter(id => P(id) && P(id).c === tid && P(id).sq));
+  t.tac.bench = (t.tac.bench || []).filter(id => P(id) && (sqIds.has(id) || yIds.has(id)) && available(P(id)) && !seen.has(id));
   const rest = squad(tid).filter(p => available(p) && !seen.has(p.id) && !t.tac.bench.includes(p.id)).sort((a, b) => b.ca - a.ca);
   while (t.tac.bench.length < 9 && rest.length) { const p = rest.shift(); t.tac.bench.push(p.id); }
   t.tac.bench = t.tac.bench.slice(0, 9);

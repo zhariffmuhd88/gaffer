@@ -491,6 +491,6 @@ function checkBoard() {
 }
 
 // ---- save/load ----
-function autosave() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch (e) { } }
+function autosave() { try { localStorage.setItem(SAVE_KEY, saveJSON(G)); } catch (e) { } }
 function loadSave() { try { const s = localStorage.getItem(SAVE_KEY); if (!s) return null; return JSON.parse(s); } catch (e) { return null; } }
-function restore(obj) { G = obj; _pid = Math.max(0, ...Object.keys(G.players).map(k => +k.slice(1) || 0)); _attrCache.clear(); }
+function restore(obj) { G = obj; for (const id in G.players) fillPlayer(G.players[id]); _pid = Math.max(0, ...Object.keys(G.players).map(k => +k.slice(1) || 0)); _attrCache.clear(); }

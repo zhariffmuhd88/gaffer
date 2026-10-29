@@ -1,0 +1,219 @@
+## WHU
+Finley Hooper|GK|18|England
+Lanre Awesu|GK|18|England
+Mason Terry|GK|22|England
+Junior Robinson|RB, RM|22|England
+Jethro Medine|RB, RWB, RM|19|England
+Dimitri Colau|CB|20|France
+Ezra Mayers|CB, LB|19|England
+Josh Briggs|CB|20|Northern Ireland
+Airidas Golambeckis|CB|18|England
+Regan Clayton|LWB, LW, LB, CB, LM, DM|21|England
+Lewis Beckford|Midfielder|18|England
+Riley Hargan|CM, DM|20|England
+Connor Brooks|RM|18|England
+Andre Dike|AM|18|England
+Gabriel Caliste|AM, RW, CM|19|Mauritius
+Jett Murphy|Attacker|18|England
+Daniel Cummings|ST|20|Scotland
+## BUR
+Connor Edwards|GK|19|England
+Lewis Forshaw|GK|20|England
+Oisin Cooney|GK|19|Ireland
+Corey King|RB|19|England
+Cameron Scott|CB, LB|19|Scotland
+Emmanuel Airoboma|CB|19|England
+Jesse Williams|CB|20|Netherlands
+Michael Stanley|CB, RB|18|England
+Murray Campbell|CB, RB|20|Scotland
+Oliver Pimlott|LB, LM|19|England
+Hamzat Balogun|RWB|21|England
+Ellis Clark|DM, CM|19|Scotland
+George Brierley|DM, CM, CB|18|England
+Joe Bauress|DM|20|England
+Troy Savage|DM, CM|18|Northern Ireland
+Enock Agyei|RW|21|Belgium
+Zach Johnson|RW, RM, LW|19|England
+Brandon Pouani|LW, AM, LM|18|England
+Braidin Derbyshire|Attacker|18|England
+Zhang Jiaming|ST|19|China
+## SOU
+Dylan Moody|GK|18|England
+Josh McNamara|GK|22|England
+Hansel Adjei-Afriyie|RB, RWB|18|England
+Davon Gbajumo|Defender|18|England
+Max Fry|CB|19|England
+Nathanael Boot|CB|20|England
+Joachim Kayi Sanda|CB|19|France
+Rory Whittaker|RWB, RB|19|Scotland
+Barnaby Williams|DM, CM|19|England
+Sutura Kakay|DM, CM|20|England
+Aston Daley|CM, DM|19|England
+Korban McMullan|CM, DM|19|England
+Thierry Rohart-Brown|AM, CM|19|England
+Harry Gathercole|RW, LWB, LW, RM, CM|18|England
+Brandon Charles|RW|21|England
+Romeo Akachukwu|LW, CM, AM, ST, LM|20|Ireland
+Sufianu Sillah Dibaga|LW, ST, AM|19|Spain
+Lewis Bailey|ST|18|England
+Princewill Ehibhatiomhan|ST, LM|21|England
+Baylee Dipepa|ST|19|England
+## MID
+Owen Foster|GK|21|England
+Shea Connor|GK|20|England
+Abdulhalim Okunola|CB, RB|19|England
+Harley Hunt|CB|19|England
+James Wilson|CB|19|England
+Luke Woolston|CB|21|England
+Oliver Martin|CB|18|England
+Ezra Tika-Lemba|RWB, RM|18|England
+Rio Patterson-Powell|LWB, RM, CM|20|England
+Daniel James|CM, DM|19|England
+Leon Parker|Midfielder|19|England
+Listowell Hinneh|CM|18|Ghana
+Josh Dede|RM, RB, CB, RWB|20|Scotland
+Cayden Cole|LM|18|Sierra Leone
+George McCormick|LM|21|England
+Tyler Smith|LM|19|England
+Lucas Harrison|RW|19|England
+Frankie Coulson|RW, ST, AM, RM|19|England
+Dan Rigge|LW|20|England
+Joe Roberts|ST|18|England
+Jayden Carbon|ST|21|England
+Layton Campbell|ST, RW|20|England
+## NOR
+Caleb Ansen|GK|21|England
+Luis Lines|GK|19|Wales
+Rylee Mitchell|GK|20|England
+Finlay Oligbo|RB|18|England
+Rio Mundle|RB, RW|19|England
+Sonny Rowland|CB|19|England
+Takudzwa Gwanzura|Defender|18|England
+Theodore Adelusi|CB, RB|19|England
+Vincent Leonard|CB|18|Ireland
+Zachariah Sclare|Defender|18|England
+Tyler Williams|LB, LWB|19|England
+Vatan Özcan|LB|18|Turkey
+Alan Domeracki|DM, CM|20|Scotland
+Luke Towler|DM, CM, AM|19|England
+Uriah Djedje|DM|20|England
+Elliot Myles|AM, LW, LM|19|Wales
+Botan Ameen|RW, ST, RM, LW|19|Iraq
+Gabriel Forsyth|RW|20|Scotland
+Reuben Cooper|RW|19|Scotland
+Luke Chukwu|LW|18|Ireland
+Errol Mundle-Smith|LW|20|England
+Glenn McCourt|Attacker|18|Northern Ireland
+Toby Chilvers|LW, AM, ST, CM|19|England
+Finlay Corke|ST|18|England
+Zachary Baumann|ST, LW|19|Ukraine
+## WBA
+Louis Brady|GK|19|Ireland
+Brian Okonkwo|GK|20|England
+Ben Cisse|GK|21|England
+Alfie Maughan|RB, LB|18|England
+Dauda Amihere|RB|18|Italy
+Abdul Abudu|CB|18|England
+Noah Dupont|CB|19|New Zealand
+Jamal Mohammed|CB|20|England
+Adam Letlat|LB, LWB|18|Algeria
+Charlie Blackshields|DM, CM|18|England
+Ryan Colesby|DM, CM, AM|18|England
+Matthew Crowther|DM, CM|18|England
+Kayden Lucas|Midfielder|18|England
+Nathan Dlamini|LM, LW|19|England
+William Unadike|AM|19|England
+Rio Parmar|ST, AM|19|England
+Jaiden Francis-Caesar|ST|18|England
+Jack Bray|ST|19|England
+Joe Belmont|ST, AM|20|Wales
+## STK
+Caleb Clothier|GK|19|England
+Lucas Knight|GK|18|England
+Noah Cooper|GK|20|England
+Jaden Mears|RB|20|England
+Pedro Nzau|RB|18|England
+Sanchez Phillips|RB|18|England
+Freddie Anderson|CB|20|United States
+Raphael-Pijus Otegbayo|CB|19|Ireland
+Will Thompson|CB|18|England
+Laurence Giani|LB|18|Italy
+Owen Powell|LB|19|England
+Evan Boulter|DM|18|Northern Ireland
+Oghosaiwi Enabulele|DM, ST, CM|19|England
+Daniel Eyaife|Midfielder|18|England
+George Morrison|CM|21|Scotland
+Tristan Achu|CM, DM, RW|18|England
+Josh Maskall|RM|19|England
+Paul Makavore|LM|19|England
+Eric Hamelberg|AM|19|Portugal
+Ryan Liu|AM|18|England
+Elliot Fearn|RW, RM, LW|18|England
+Ato Ampah|LW|20|England
+Fletcher Poole|Attacker|19|England
+Tyler Martin|LW|18|England
+Adriel Walker|ST, CM|20|England
+Jack Newall|ST|19|England
+Jayden Ogbebor|ST|18|England
+Jerome Osei|ST|18|England
+## BLB
+Felix Goddard|GK|22|England
+Finley Taylor|GK|18|England
+Jack Thompson|GK|19|England
+Lorenze Mullarky-Matthews|RB|20|England
+Lucas Houghton|RB, CB|19|England
+Alfie Rice|CB|18|England
+Bruce Leeming|Defender|19|Wales
+Michael Decandia|CB|19|England
+Yerime Ouattara|CB|18|England
+Harvey Pates|LB, LM|18|England
+Matty Litherland|RWB|20|England
+Tinotenda Goremusandu|LWB|18|England
+Frank Vare|DM|19|England
+Tyler Mansbridge|DM|19|England
+Isaac Dunn|CM, DM|17|England
+James Edmondson|CM, DM|20|England
+Brandon Powell|AM, LWB, LM|21|England
+Freddie Leatherbarrow|AM|18|England
+Jayden Sergeant|LW|18|England
+## DER
+Harley Price|GK|~19|England
+Jack Thompson|GK|~19|England
+Sam Kane|GK|~19|Scotland
+Adisa Osayande|Defender|~19|England
+Alfie Friars|Defender|~19|Northern Ireland
+Frankie Jones|Defender|~19|England
+Isaac Gordon|Defender|~19|England
+Keilen Robinson|Defender|~19|England
+Khace Gordon|Defender|~19|England
+Luke Banks|Defender|~19|England
+Raymond Offor|Defender|~19|Ireland
+Rio Canoville|Defender|~19|England
+Tristan Gill|Defender|~19|England
+Charlie Smith|Midfielder|~19|England
+Cruz Allen|Midfielder|~19|Wales
+Dantel Hodges|Midfielder|~19|England
+Jaydan Davidson|Midfielder|~19|England
+Marley Mintus|Midfielder|~19|England
+Marsel Tola|Midfielder|~19|England
+Owen Eames|Midfielder|~19|England
+Cameron Wilson|Attacker|~19|Scotland
+Israel Green|Attacker|~19|England
+Jerome Richards|Attacker|~19|England
+Johnson Osong|Attacker|~19|England
+Justin Oguntolu|Attacker|~19|England
+Kean Wren|Attacker|~19|England
+Niall McAndrew|Attacker|~19|Ireland
+Sean Corry|Attacker|~19|Northern Ireland
+## BIR
+Finn McGreevy|Attacker|~19|Ireland
+Menzi Mazwi|Midfielder|~19|Zimbabwe
+Curran Chahal|Defender|~19|England
+Jack Quirk|Defender|~19|England
+William Burrell|Defender|~19|England
+Tyrese Warmington|GK|~19|England
+Will O'Sullivan|GK|~19|England
+Junior Wilson|Defender|~19|England
+Álvaro Ruiz Rente|Attacker|~19|Cuba
+Caleb Sanders|Attacker|~19|England
+Alezandro Da Silva|Attacker|~19|England
