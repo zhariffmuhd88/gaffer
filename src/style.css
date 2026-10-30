@@ -267,3 +267,68 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 /* youth */
 .tag.gen { background: transparent; color: var(--dim); border: 1px solid var(--dim); line-height: 14px; }
 .btn.sm { padding: 2px 8px; font-size: 12px; }
+
+/* ---- stadium (club.js) ---- */
+.stadgrid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.stadfig { margin: 0; }
+.stadfig figcaption { font-size: 12px; margin-top: 4px; }
+.stadsvg { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: #0c1124; }
+.stadmini { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; margin-bottom: 8px; }
+.h3 { font-size: 15px; margin: 0 0 8px; color: var(--cyan); font-weight: 600; }
+.chipx { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; margin: 2px 4px 2px 0; border: 1px solid var(--line); background: var(--rowalt); white-space: nowrap; }
+@media (max-width: 760px) { .stadgrid, .stadmini { grid-template-columns: 1fr; } }
+
+/* ---- intro sting (intro.js) ---- */
+.intro { position: fixed; inset: 0; z-index: 1000; background: #05070f; color: var(--text); overflow: hidden; outline: none; cursor: pointer; transition: opacity .45s; padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0); }
+.intro.out { opacity: 0; }
+.intro .ic { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: max(24px, env(safe-area-inset-top, 0)) 20px max(24px, env(safe-area-inset-bottom, 0)); opacity: 0; visibility: hidden; transition: opacity .4s, visibility 0s .4s; }
+.intro .ic.on { opacity: 1; visibility: visible; transition: opacity .4s; }
+.intro .ic-skip { position: absolute; right: max(14px, env(safe-area-inset-right, 0)); bottom: max(14px, env(safe-area-inset-bottom, 0)); z-index: 3; background: transparent; border: 1px solid rgba(152,163,214,.5); color: var(--dim); padding: 6px 12px; font: 600 13px var(--f-body); cursor: pointer; }
+.intro .ic-skip:hover, .intro .ic-skip:focus-visible { color: var(--text); border-color: var(--text); }
+/* Ayep Interactive */
+.ay-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ay-mark { width: min(54vw, 230px); height: auto; overflow: visible; }
+.ay-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.ic-ayep.on .ay-draw { animation: ayDraw .55s cubic-bezier(.6, 0, .3, 1) forwards; }
+.ic-ayep.on .d1 { animation-duration: .6s; }
+.ic-ayep.on .d2 { animation-delay: .25s; animation-duration: .6s; }
+.ic-ayep.on .d3 { animation-delay: .7s; animation-duration: .3s; }
+.ic-ayep.on .d4 { animation-delay: .85s; animation-duration: .4s; }
+.ic-ayep.on .d5 { animation-delay: .95s; animation-duration: .3s; }
+.ay-ball { opacity: 0; }
+.ic-ayep.on .ay-ball { animation: ayBall .8s 1.15s cubic-bezier(.3, 0, .6, 1) forwards; }
+.ay-word { display: flex; flex-direction: column; align-items: center; line-height: .9; opacity: 0; transform: translateY(14px); }
+.ic-ayep.on .ay-word { animation: aySlide .5s 1.55s ease-out forwards; }
+.ay-1 { font-family: var(--f-disp); font-size: clamp(54px, 15vw, 92px); color: var(--yel); letter-spacing: .14em; text-shadow: 3px 3px 0 #000; padding-left: .14em; }
+.ay-2 { font-family: var(--f-disp); font-size: clamp(20px, 5.6vw, 32px); color: var(--cyan); letter-spacing: .42em; padding-left: .42em; }
+@keyframes ayDraw { to { stroke-dashoffset: 0; } }
+@keyframes ayBall { 0% { opacity: 1; transform: translateY(-150px); } 45% { transform: translateY(0); } 62% { transform: translateY(-24px); } 78% { transform: translateY(0); } 88% { transform: translateY(-6px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes aySlide { to { opacity: 1; transform: none; } }
+/* disclaimer */
+.dc { max-width: 560px; width: 100%; text-align: center; font-family: var(--f-body); }
+.dc p { font-size: 14px; line-height: 1.5; color: #c4cbec; margin: 0 0 10px; }
+.dc-h { font-family: var(--f-body); font-size: 12px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--text); margin: 10px 0; padding-left: .32em; }
+.dc-rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(152,163,214,.6), transparent); margin: 12px 0; }
+.dc .dc-c { color: var(--dim); font-size: 12.5px; margin-bottom: 18px; }
+.dc .dc-tap { color: var(--dim); font-size: 12px; letter-spacing: .08em; animation: dcBlink 1.6s ease-in-out infinite; }
+.ic-disc .dc { opacity: 0; transform: translateY(6px); }
+.ic-disc.on .dc { animation: aySlide .6s .1s ease-out forwards; }
+@keyframes dcBlink { 50% { opacity: .35; } }
+/* GAFFER logo */
+.gf-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.gf-badge { width: min(38vw, 150px); height: auto; box-shadow: 6px 6px 0 #000; }
+.ic-logo.on .gf-badge { animation: gfIn .55s .15s cubic-bezier(.2, 1.4, .4, 1) both; }
+.gf-word { font-family: var(--f-disp); font-size: clamp(46px, 13vw, 84px); line-height: 1; letter-spacing: .04em; white-space: nowrap; }
+.gf-1 { color: var(--yel); text-shadow: 3px 3px 0 #000; }
+.gf-2 { color: var(--cyan); display: inline-block; }
+.ic-logo.on .gf-1 { animation: aySlide .45s .45s ease-out both; }
+.ic-logo.on .gf-2 { animation: gfSlide .45s .7s ease-out both; }
+@keyframes gfIn { from { transform: scale(.4) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes gfSlide { from { transform: translateX(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.ic-wipe { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, var(--band) 0 40%, var(--yel) 40% 46%, var(--band2) 46%); transform: translateX(-105%); }
+.intro.wipe .ic-wipe { animation: icWipe .5s cubic-bezier(.7, 0, .3, 1); }
+@keyframes icWipe { 0% { transform: translateX(-105%); } 50% { transform: translateX(0); } 100% { transform: translateX(105%); } }
+.intro.still *, .intro.still .ic { animation: none !important; transition: none !important; }
+.intro.still .ay-draw { stroke-dashoffset: 0; }
+.intro.still .ay-ball, .intro.still .ay-word, .intro.still .ic-disc .dc { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .intro, .intro * { animation: none !important; transition: none !important; } .intro .ay-draw { stroke-dashoffset: 0; } .intro .ay-ball, .intro .ay-word, .intro .ic-disc .dc { opacity: 1; transform: none; } }

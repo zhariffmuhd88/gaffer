@@ -145,7 +145,7 @@ function buildLayers(V, M) {
   }
   for (const [x, y] of [[0, 0], [1, 0], [0, 1], [1, 1]]) { b.fillStyle = '#ffd23f'; b.fillRect(px(x) - 1, py(y) - 4, 2, 4); }
   // stand names
-  const names = V.venue.stands; const fs = Math.max(7, Math.min(13, L.sd * .3));
+  const names = V.venue.stands.slice(); const fs = Math.max(7, Math.min(13, L.sd * .3));
   b.font = `600 ${fs}px "IBM Plex Sans Condensed", Arial, sans-serif`; b.textAlign = 'center'; b.textBaseline = 'middle';
   const label = (txt, x, y, rot) => { b.save(); b.translate(x, y); if (rot) b.rotate(rot); b.fillStyle = 'rgba(255,255,255,.06)'; const tw = b.measureText(txt.toUpperCase()).width + 10; b.fillRect(-tw / 2, -fs * .7, tw, fs * 1.4); b.fillStyle = 'rgba(255,255,255,.5)'; b.fillText(txt.toUpperCase(), 0, .5); b.restore(); };
   // crowd
@@ -156,7 +156,11 @@ function buildLayers(V, M) {
   const awayCols = [uiCol(at.c1 || '#888'), uiCol(at.c1 || '#888'), at.c2 || '#fff', '#d8d8d8'];
   const neutral = V.venue.neutral;
   const awayZone = (x, y) => neutral ? x > W / 2 : (x > W - L.sd && y < L.sd + (H - 2 * L.sd) * (.28 + .12 * (1 - fill)));
+  // stands closed for building work (club.js) stay empty and show a hatch
+  const wk = V.venue.works || [];
+  const inWork = (x, y) => wk.some(i => i === 0 ? y < L.sd : i === 1 ? y > H - L.sd : i === 2 ? (x < L.sd && y > L.sd && y < H - L.sd) : (x > W - L.sd && y > L.sd && y < H - L.sd));
   const dot = (x, y) => {
+    if (inWork(x, y)) return;
     const away = awayZone(x, y);
     if (rnd() > (away ? .95 : fill)) { b.fillStyle = night ? 'rgba(80,90,110,.35)' : 'rgba(110,118,135,.55)'; b.fillRect(x - rr * .7, y - rr * .7, rr * 1.4, rr * 1.4); return; }
     const ctx = away ? a : h; const cols = away ? awayCols : homeCols;
@@ -164,6 +168,12 @@ function buildLayers(V, M) {
   };
   for (let y = gap * .7; y < L.sd - gap * .3; y += gap) for (let x = gap * .7; x < W - gap * .3; x += gap) { dot(x, y); dot(x, H - y); }
   for (let x = gap * .7; x < L.sd - gap * .3; x += gap) for (let y = L.sd + gap * .5; y < H - L.sd - gap * .3; y += gap) { dot(x, y); dot(W - x, y); }
+  for (const i of wk) {
+    const [rx, ry, rw, rh] = i === 0 ? [0, 0, W, L.sd] : i === 1 ? [0, H - L.sd, W, L.sd] : i === 2 ? [0, L.sd, L.sd, H - 2 * L.sd] : [W - L.sd, L.sd, L.sd, H - 2 * L.sd];
+    b.save(); b.beginPath(); b.rect(rx, ry, rw, rh); b.clip(); b.fillStyle = '#1b1b1b'; b.fillRect(rx, ry, rw, rh); b.strokeStyle = 'rgba(255,210,63,.55)'; b.lineWidth = 4;
+    for (let k = -H; k < W + H; k += 14) { b.beginPath(); b.moveTo(k, 0); b.lineTo(k + H, H); b.stroke(); } b.restore();
+    names[i] = names[i] + ' · BUILDING WORK';
+  }
   label(names[0], W / 2, L.sd / 2); label(names[1], W / 2, H - L.sd / 2); label(names[2], L.sd / 2, H / 2, -Math.PI / 2); label(names[3], W - L.sd / 2, H / 2, Math.PI / 2);
   if (!neutral && L.sd > 14) { b.save(); b.translate(W - L.sd / 2, L.sd + 6); b.font = `600 ${Math.max(6, fs * .75)}px "IBM Plex Sans Condensed", Arial`; b.fillStyle = 'rgba(255,255,255,.55)'; b.textAlign = 'center'; b.textBaseline = 'top'; b.fillText('AWAY', 0, 0); b.restore(); }
   // floodlight pylons

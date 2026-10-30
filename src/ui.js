@@ -32,7 +32,7 @@ function render() {
   if (UI.match) return renderMatch();
   if (!G) return renderStart();
   const scr = UI.scr;
-  const nav = [['inbox', 'Inbox'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['club', 'Club'], ['game', 'Game']];
+  const nav = [['inbox', 'Inbox'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['club', 'Club'], ['game', 'Game']];
   const nf = nextUserFixture();
   const t = userTeam();
   const nextTxt = nf ? `Next: ${COMP_SHORT[nf.comp]} · ${dShort(nf.d)} · ${nf.h === G.user ? 'v ' + tName(nf.a) + ' (H)' : 'v ' + tName(nf.h) + ' (A)'}` : (G.sacked ? 'Unemployed' : 'Season complete');

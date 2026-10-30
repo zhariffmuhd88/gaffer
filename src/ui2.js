@@ -204,7 +204,7 @@ function scrTransfers() {
 function scrFinance() {
   const t = userTeam(); const f = t.fin;
   const inT = Object.values(f.in).reduce((a, b) => a + b, 0), outT = Object.values(f.out).reduce((a, b) => a + b, 0);
-  const rows = (o, labels, tot, col) => Object.entries(labels).map(([k, l]) => `<div style="margin:6px 0"><div class="row" style="justify-content:space-between"><span>${l}</span><b class="mono">${money(o[k])}</b></div><div class="bar"><i style="width:${tot ? Math.min(100, o[k] / tot * 100) : 0}%;background:${col}"></i></div></div>`).join('');
+  const rows = (o, labels, tot, col) => Object.entries(labels).map(([k, l]) => `<div style="margin:6px 0"><div class="row" style="justify-content:space-between"><span>${l}</span><b class="mono">${money(o[k] || 0)}</b></div><div class="bar"><i style="width:${tot ? Math.min(100, (o[k] || 0) / tot * 100) : 0}%;background:${col}"></i></div></div>`).join('');
   return `<div class="band">Finances<small>${seasonLabel(G.year)} so far</small></div>
   <div class="grid3" style="margin-top:10px">
     <div class="box pad"><label class="lb">Bank balance</label><div class="big ${t.bal < 0 ? 'red' : ''}">${money(t.bal)}</div></div>
@@ -213,7 +213,7 @@ function scrFinance() {
   </div>
   <div class="grid2" style="margin-top:12px">
     <div class="box pad"><h2 class="sect" style="margin-top:0">Income · ${money(inT)}</h2>${rows(f.in, { gate: 'Matchday', tv: 'Broadcasting', com: 'Commercial', prize: 'Prize money', sales: 'Player sales' }, inT, 'var(--grn)')}</div>
-    <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, { wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, outT, 'var(--red)')}</div>
+    <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, Object.assign({ wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, f.out.build ? { build: 'Building work' } : {}), outT, 'var(--red)')}</div>
   </div>
   <p class="dim" style="margin-top:10px">Wages are paid every Monday. Home gate receipts depend on stadium size (${t.cap.toLocaleString('en-GB')} at ${esc(t.stadium)}). Selling players adds 90% of the fee to your transfer budget.</p>`;
 }

@@ -168,7 +168,7 @@ youthIntake = function () {
     const fresh = [];
     for (let i = 0; i < n; i++) {
       const pos = R.pick(['GK', 'CB', 'CB', 'LB', 'RB', 'DM', 'CM', 'CM', 'AM', 'LW', 'RW', 'ST', 'ST']);
-      const bonus = (hoyd - 10) * .35 + (user ? (staffAb('scout') - 10) * .1 : 0) + (R.chance(.05) ? 6 : 0);
+      const bonus = (hoyd - 10) * .35 + (user ? (staffAb('scout') - 10) * .1 : 0) + (typeof facLvl === 'function' ? (facLvl('yth', tid) - 10) * .2 : 0) + (R.chance(.05) ? 6 : 0);
       fresh.push(genYouth(tid, 'a', pos, 16, bonus));
     }
     if (user && fresh.length) { const best = fresh.slice().sort((a, b) => b.pa - a.pa)[0]; news('Academy intake', `${fresh.length} youngsters join the academy: ${fresh.map(p => `${p.n} (${POS_LABEL[p.pos]})`).join(', ')}. The youth staff are most excited about ${best.n}.`, G.user); }

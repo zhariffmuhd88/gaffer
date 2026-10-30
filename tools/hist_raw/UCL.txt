@@ -1,0 +1,71 @@
+1955-56|Real Madrid|Reims
+1956-57|Real Madrid|Fiorentina
+1957-58|Real Madrid|Milan
+1958-59|Real Madrid|Reims
+1959-60|Real Madrid|Eintracht Frankfurt
+1960-61|Benfica|Barcelona
+1961-62|Benfica|Real Madrid
+1962-63|Milan|Benfica
+1963-64|Inter Milan|Real Madrid
+1964-65|Inter Milan|Benfica
+1965-66|Real Madrid|Partizan
+1966-67|Celtic|Inter Milan
+1967-68|Manchester United|Benfica
+1968-69|Milan|Ajax
+1969-70|Feyenoord|Celtic
+1970-71|Ajax|Panathinaikos
+1971-72|Ajax|Inter Milan
+1972-73|Ajax|Juventus
+1973-74|Bayern Munich|Atlético Madrid
+1974-75|Bayern Munich|Leeds United
+1975-76|Bayern Munich|Saint-Étienne
+1976-77|Liverpool|Borussia Mönchengladbach
+1977-78|Liverpool|Club Brugge
+1978-79|Nottingham Forest|Malmö FF
+1979-80|Nottingham Forest|Hamburger SV
+1980-81|Liverpool|Real Madrid
+1981-82|Aston Villa|Bayern Munich
+1982-83|Hamburger SV|Juventus
+1983-84|Liverpool|Roma
+1984-85|Juventus|Liverpool
+1985-86|Steaua București|Barcelona
+1986-87|Porto|Bayern Munich
+1987-88|PSV Eindhoven|Benfica
+1988-89|Milan|Steaua București
+1989-90|Milan|Benfica
+1990-91|Red Star Belgrade|Marseille
+1991-92|Barcelona|Sampdoria
+1992-93|Marseille|Milan
+1993-94|Milan|Barcelona
+1994-95|Ajax|Milan
+1995-96|Juventus|Ajax
+1996-97|Borussia Dortmund|Juventus
+1997-98|Real Madrid|Juventus
+1998-99|Manchester United|Bayern Munich
+1999-2000|Real Madrid|Valencia
+2000-01|Bayern Munich|Valencia
+2001-02|Real Madrid|Bayer Leverkusen
+2002-03|Milan|Juventus
+2003-04|Porto|Monaco
+2004-05|Liverpool|Milan
+2005-06|Barcelona|Arsenal
+2006-07|Milan|Liverpool
+2007-08|Manchester United|Chelsea
+2008-09|Barcelona|Manchester United
+2009-10|Inter Milan|Bayern Munich
+2010-11|Barcelona|Manchester United
+2011-12|Chelsea|Bayern Munich
+2012-13|Bayern Munich|Borussia Dortmund
+2013-14|Real Madrid|Atlético Madrid
+2014-15|Barcelona|Juventus
+2015-16|Real Madrid|Atlético Madrid
+2016-17|Real Madrid|Juventus
+2017-18|Real Madrid|Liverpool
+2018-19|Liverpool|Tottenham Hotspur
+2019-20|Bayern Munich|Paris Saint-Germain
+2020-21|Chelsea|Manchester City
+2021-22|Real Madrid|Liverpool
+2022-23|Manchester City|Inter Milan
+2023-24|Real Madrid|Borussia Dortmund
+2024-25|Paris Saint-Germain|Inter Milan
+2025-26|Paris Saint-Germain|Arsenal

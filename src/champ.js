@@ -64,7 +64,8 @@ function monthlyProgress() {
       g *= 0.45 + 0.85 * share;
       if (n >= 1 && rsum[p.id]) { const avg = rsum[p.id] / Math.max(1, Math.ceil(n)); g *= clamp(1 + (avg - 6.6) * 0.35, .6, 1.5); }
       else if (yn && p.ymr) { const avg = p.ymr / Math.max(1, Math.ceil(yn)); g *= clamp(1 + (avg - 6.6) * 0.25, .7, 1.35); }
-      g *= p.c === G.user ? 0.85 + coachU / 50 + (p.sq && typeof staffAb === 'function' ? (staffAb('hoyd') - 10) / 60 : 0) : 1.05;
+      const fac = typeof facLvl === 'function' ? facLvl('tr', p.c) : 10; // training ground (club.js)
+      g *= p.c === G.user ? 0.85 + coachU / 50 + (fac - 10) / 70 + (p.sq && typeof staffAb === 'function' ? (staffAb('hoyd') - 10) / 60 : 0) : 1.05 + (fac - 10) / 120;
       const h = typeof hap === 'function' ? hap(p) : 65; if (h < 35) g *= .8; else if (h > 75) g *= 1.05;
     } else if (g < 0) g *= share > .6 ? .9 : 1;
     p.ym = 0; p.ymr = 0;

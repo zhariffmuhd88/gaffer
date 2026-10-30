@@ -1,6 +1,6 @@
 import pathlib
 src=pathlib.Path('src')
-js='\n'.join((src/f).read_text() for f in ['data.js','data_ch.js','data_youth.js','core.js','match.js','shot.js','season.js','transfers.js','ext.js','meta.js','ui.js','ui2.js','ui3.js','dyn.js','ui4.js','diff.js','matchday.js','mdui.js','awards.js','manager.js','links.js','champ.js','youth.js','boot.js'])
+js='\n'.join((src/f).read_text() for f in ['data.js','data_ch.js','data_youth.js','data_stadia.js','data_hist.js','data_mgr.js','core.js','match.js','shot.js','season.js','transfers.js','ext.js','meta.js','ui.js','ui2.js','ui3.js','dyn.js','ui4.js','diff.js','matchday.js','mdui.js','awards.js','manager.js','links.js','champ.js','youth.js','club.js','history.js','intro.js','boot.js'])
 css=(src/'style.css').read_text()
 html=f'''<title>Gaffer 26/27</title>
 <meta name="claude:viewport-fit-sides" content="cover">

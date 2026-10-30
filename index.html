@@ -287,6 +287,71 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .tag.gen { background: transparent; color: var(--dim); border: 1px solid var(--dim); line-height: 14px; }
 .btn.sm { padding: 2px 8px; font-size: 12px; }
 
+/* ---- stadium (club.js) ---- */
+.stadgrid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.stadfig { margin: 0; }
+.stadfig figcaption { font-size: 12px; margin-top: 4px; }
+.stadsvg { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: #0c1124; }
+.stadmini { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; margin-bottom: 8px; }
+.h3 { font-size: 15px; margin: 0 0 8px; color: var(--cyan); font-weight: 600; }
+.chipx { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; margin: 2px 4px 2px 0; border: 1px solid var(--line); background: var(--rowalt); white-space: nowrap; }
+@media (max-width: 760px) { .stadgrid, .stadmini { grid-template-columns: 1fr; } }
+
+/* ---- intro sting (intro.js) ---- */
+.intro { position: fixed; inset: 0; z-index: 1000; background: #05070f; color: var(--text); overflow: hidden; outline: none; cursor: pointer; transition: opacity .45s; padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0); }
+.intro.out { opacity: 0; }
+.intro .ic { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: max(24px, env(safe-area-inset-top, 0)) 20px max(24px, env(safe-area-inset-bottom, 0)); opacity: 0; visibility: hidden; transition: opacity .4s, visibility 0s .4s; }
+.intro .ic.on { opacity: 1; visibility: visible; transition: opacity .4s; }
+.intro .ic-skip { position: absolute; right: max(14px, env(safe-area-inset-right, 0)); bottom: max(14px, env(safe-area-inset-bottom, 0)); z-index: 3; background: transparent; border: 1px solid rgba(152,163,214,.5); color: var(--dim); padding: 6px 12px; font: 600 13px var(--f-body); cursor: pointer; }
+.intro .ic-skip:hover, .intro .ic-skip:focus-visible { color: var(--text); border-color: var(--text); }
+/* Ayep Interactive */
+.ay-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ay-mark { width: min(54vw, 230px); height: auto; overflow: visible; }
+.ay-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.ic-ayep.on .ay-draw { animation: ayDraw .55s cubic-bezier(.6, 0, .3, 1) forwards; }
+.ic-ayep.on .d1 { animation-duration: .6s; }
+.ic-ayep.on .d2 { animation-delay: .25s; animation-duration: .6s; }
+.ic-ayep.on .d3 { animation-delay: .7s; animation-duration: .3s; }
+.ic-ayep.on .d4 { animation-delay: .85s; animation-duration: .4s; }
+.ic-ayep.on .d5 { animation-delay: .95s; animation-duration: .3s; }
+.ay-ball { opacity: 0; }
+.ic-ayep.on .ay-ball { animation: ayBall .8s 1.15s cubic-bezier(.3, 0, .6, 1) forwards; }
+.ay-word { display: flex; flex-direction: column; align-items: center; line-height: .9; opacity: 0; transform: translateY(14px); }
+.ic-ayep.on .ay-word { animation: aySlide .5s 1.55s ease-out forwards; }
+.ay-1 { font-family: var(--f-disp); font-size: clamp(54px, 15vw, 92px); color: var(--yel); letter-spacing: .14em; text-shadow: 3px 3px 0 #000; padding-left: .14em; }
+.ay-2 { font-family: var(--f-disp); font-size: clamp(20px, 5.6vw, 32px); color: var(--cyan); letter-spacing: .42em; padding-left: .42em; }
+@keyframes ayDraw { to { stroke-dashoffset: 0; } }
+@keyframes ayBall { 0% { opacity: 1; transform: translateY(-150px); } 45% { transform: translateY(0); } 62% { transform: translateY(-24px); } 78% { transform: translateY(0); } 88% { transform: translateY(-6px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes aySlide { to { opacity: 1; transform: none; } }
+/* disclaimer */
+.dc { max-width: 560px; width: 100%; text-align: center; font-family: var(--f-body); }
+.dc p { font-size: 14px; line-height: 1.5; color: #c4cbec; margin: 0 0 10px; }
+.dc-h { font-family: var(--f-body); font-size: 12px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--text); margin: 10px 0; padding-left: .32em; }
+.dc-rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(152,163,214,.6), transparent); margin: 12px 0; }
+.dc .dc-c { color: var(--dim); font-size: 12.5px; margin-bottom: 18px; }
+.dc .dc-tap { color: var(--dim); font-size: 12px; letter-spacing: .08em; animation: dcBlink 1.6s ease-in-out infinite; }
+.ic-disc .dc { opacity: 0; transform: translateY(6px); }
+.ic-disc.on .dc { animation: aySlide .6s .1s ease-out forwards; }
+@keyframes dcBlink { 50% { opacity: .35; } }
+/* GAFFER logo */
+.gf-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.gf-badge { width: min(38vw, 150px); height: auto; box-shadow: 6px 6px 0 #000; }
+.ic-logo.on .gf-badge { animation: gfIn .55s .15s cubic-bezier(.2, 1.4, .4, 1) both; }
+.gf-word { font-family: var(--f-disp); font-size: clamp(46px, 13vw, 84px); line-height: 1; letter-spacing: .04em; white-space: nowrap; }
+.gf-1 { color: var(--yel); text-shadow: 3px 3px 0 #000; }
+.gf-2 { color: var(--cyan); display: inline-block; }
+.ic-logo.on .gf-1 { animation: aySlide .45s .45s ease-out both; }
+.ic-logo.on .gf-2 { animation: gfSlide .45s .7s ease-out both; }
+@keyframes gfIn { from { transform: scale(.4) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes gfSlide { from { transform: translateX(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.ic-wipe { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, var(--band) 0 40%, var(--yel) 40% 46%, var(--band2) 46%); transform: translateX(-105%); }
+.intro.wipe .ic-wipe { animation: icWipe .5s cubic-bezier(.7, 0, .3, 1); }
+@keyframes icWipe { 0% { transform: translateX(-105%); } 50% { transform: translateX(0); } 100% { transform: translateX(105%); } }
+.intro.still *, .intro.still .ic { animation: none !important; transition: none !important; }
+.intro.still .ay-draw { stroke-dashoffset: 0; }
+.intro.still .ay-ball, .intro.still .ay-word, .intro.still .ic-disc .dc { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .intro, .intro * { animation: none !important; transition: none !important; } .intro .ay-draw { stroke-dashoffset: 0; } .intro .ay-ball, .intro .ay-word, .intro .ic-disc .dc { opacity: 1; transform: none; } }
+
 html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
 </style>
 </head>
@@ -2098,6 +2163,657 @@ r|Álvaro Ruiz Rente|ST|19~|ENG|53
 r|Caleb Sanders|ST|19~|ENG|52
 r|Alezandro Da Silva|ST|19~|ENG|50`
 };
+
+// ===== DATA: stadium facts for every Premier League and Championship ground =====
+// Wikipedia stadium pages and "List of Premier League stadiums", read 30 Oct 2026.
+// o = year opened, rec = record attendance, pitch = pitch size, st = stand names in the order
+// [main side, opposite side, home end, other end], bowl = continuous bowl roof, c = filled corners.
+// rec null = no verified figure. Facility levels are game estimates, not real ratings.
+const STADIA = {
+  ARS: { o: '2006', rec: '60,383 v Liverpool, 27 Oct 2024', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'North Bank', 'Clock End'], bowl: 1 },
+  MCI: { o: '2002 (City since 2003)', rec: null, pitch: '105 × 68 m', st: ['Colin Bell Stand', 'East Stand', 'North Stand', 'South Stand'], bowl: 1 },
+  LIV: { o: '1884', rec: '61,905 v Wolves, FA Cup, 2 Feb 1952', pitch: '101 × 68 m', st: ['Main Stand', 'Sir Kenny Dalglish Stand', 'The Kop', 'Anfield Road End'], c: 1 },
+  MUN: { o: '1910', rec: '76,962 Wolves v Grimsby, FA Cup semi-final, 25 Mar 1939', pitch: '105 × 68 m', st: ['Sir Alex Ferguson Stand', 'Sir Bobby Charlton Stand', 'Stretford End', 'East Stand'], c: 1 },
+  CHE: { o: '1877', rec: '82,905 v Arsenal, 12 Oct 1935', pitch: '103 × 67.5 m', st: ['West Stand', 'East Stand', 'Matthew Harding Stand', 'Shed End'], c: 1 },
+  AVL: { o: '1897', rec: '76,588 v Derby County, FA Cup, 2 Mar 1946', pitch: '105 × 68 m', st: ['Trinity Road Stand', 'Doug Ellis Stand', 'Holte End', 'North Stand'] },
+  TOT: { o: '2019', rec: '62,027 v Arsenal, 12 May 2022', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'South Stand', 'North Stand'], bowl: 1 },
+  NEW: { o: '1892', rec: '68,386 v Chelsea, 1930', pitch: '105 × 68 m', st: ['Milburn Stand', 'East Stand', 'Gallowgate End', 'Leazes End'], c: 1 },
+  BOU: { o: '1910', rec: '28,799 v Manchester United, FA Cup, 2 Mar 1957', pitch: '105 × 68 m', st: ['Main Stand', 'East Stand', 'North Stand', 'Ted MacDougall Stand'], c: 1 },
+  SUN: { o: '1997', rec: '48,353 v Liverpool, 13 Apr 2002', pitch: '105 × 68 m', st: ['Jimmy Montgomery Stand', 'East Stand', 'North Stand', 'Roker End'], c: 1 },
+  CRY: { o: '1924', rec: '51,482 v Burnley, 1979', pitch: '101 × 68 m', st: ['Main Stand', 'Arthur Wait Stand', 'Holmesdale Stand', 'Whitehorse Lane Stand'] },
+  BHA: { o: '2011', rec: '31,872 v Luton Town, 12 Aug 2023', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'North Stand', 'South Stand'], bowl: 1 },
+  BRE: { o: '2020', rec: null, pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'North Stand', 'South Stand'], c: 1 },
+  FUL: { o: '1896', rec: '49,335 v Millwall, 8 Oct 1938', pitch: '100 × 65 m', st: ['Johnny Haynes Stand', 'Riverside Stand', 'Hammersmith End', 'Putney End'] },
+  EVE: { o: '2025', rec: '52,590 v Sunderland, 17 May 2026', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'South Stand', 'North Stand'], c: 1 },
+  LEE: { o: '1897', rec: '57,892 v Sunderland, FA Cup, 15 Mar 1967', pitch: '105 × 68 m', st: ['John Charles Stand', 'Jack Charlton Stand', 'Don Revie Stand', 'Norman Hunter Stand'], c: 1 },
+  NFO: { o: '1898', rec: '49,946 v Manchester United, 28 Oct 1967', pitch: '105 × 71 m', st: ['Peter Taylor Stand', 'Brian Clough Stand', 'Trent End', 'Bridgford Stand'] },
+  COV: { o: '2005', rec: '31,647 v Sheffield Wednesday, 11 Apr 2026', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'North Stand', 'South Stand'], bowl: 1 },
+  IPS: { o: '1884', rec: '38,010 v Leeds United, FA Cup, 8 Mar 1975', pitch: '102 × 75 m', st: ['West Stand', 'Cobbold Stand', 'Sir Bobby Robson Stand', 'Sir Alf Ramsey Stand'] },
+  HUL: { o: '2002', rec: '25,030 v Liverpool, 9 May 2010', pitch: '104.8 × 67.2 m', st: ['West Stand', 'Chris Chilton Stand', 'North Stand', 'South Stand'], bowl: 1 },
+  WHU: { o: '2012 (West Ham since 2016)', rec: null, pitch: '105 × 68 m', st: ['West Stand', 'Billy Bonds Stand', 'Bobby Moore Stand', 'Sir Trevor Brooking Stand'], bowl: 1 },
+  WOL: { o: '1889', rec: '61,315 v Liverpool, 11 Feb 1939', pitch: '105 × 68 m', st: ['Steve Bull Stand', 'Billy Wright Stand', 'Stan Cullis Stand', 'Sir Jack Hayward Stand'], c: 1 },
+  BUR: { o: '1883', rec: '54,775 v Huddersfield Town, FA Cup, 23 Feb 1924', pitch: '105 × 68 m', st: ['Bob Lord Stand', 'Jimmy McIlroy Stand', 'James Hargreaves Stand', 'Cricket Field Stand'] },
+  SOU: { o: '2001', rec: '32,363 v Coventry City, 28 Apr 2012', pitch: '105 × 68 m', st: ['Itchen Stand', 'Kingsland Stand', 'Northam Stand', 'Chapel Stand'], bowl: 1 },
+  MID: { o: '1995', rec: '34,836 v Norwich City, 28 Dec 2004', pitch: '105 × 69 m', st: ['West Stand', 'East Stand', 'North Stand', 'South Stand'], c: 1 },
+  SHU: { o: '1855', rec: '68,287 v Leeds United, FA Cup, 15 Feb 1936', pitch: '101 × 68 m', st: ['Tony Currie Stand', 'John Street Stand', 'The Kop', 'Bramall Lane Stand'], c: 1 },
+  NOR: { o: '1935', rec: '43,984 v Leicester City, FA Cup, 30 Mar 1963', pitch: '105.2 × 68 m', st: ['Geoffrey Watling City Stand', 'Jarrold Stand', 'The Barclay', 'Regency Security Stand'], c: 1 },
+  POR: { o: '1899', rec: '51,385 v Derby County, FA Cup, 26 Feb 1949', pitch: '100 × 66 m', st: ['South Stand', 'North Stand', 'Fratton End', 'Milton End'] },
+  WBA: { o: '1900', rec: '64,815 v Arsenal, FA Cup, 6 Mar 1937', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'Birmingham Road End', 'Smethwick End'], c: 1 },
+  WAT: { o: '1922', rec: null, pitch: '105 × 68 m', st: ['Graham Taylor Stand', 'Sir Elton John Stand', 'Rookery Stand', 'Vicarage Road Stand'] },
+  MIL: { o: '1993', rec: null, pitch: '106 × 64 m', st: ['Barry Kitchener Stand', 'Dockers Stand', 'North Stand', 'Cold Blow Lane Stand'], c: 1 },
+  BRC: { o: '1887', rec: '43,335 v Preston North End, 16 Feb 1935', pitch: '105 × 69 m', st: ['Lansdown Stand', 'Dolman Stand', 'Atyeo Stand', 'South Stand'], c: 1 },
+  SWA: { o: '2005', rec: '20,973 v West Ham, 17 Oct 2026', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'North Stand', 'South Stand'], bowl: 1 },
+  STK: { o: '1997', rec: '30,027', pitch: '105 × 68 m', st: ['Franklyn Stand', 'Tile Mountain Stand', 'Boothen End', 'Drayton Beaumont Group Stand'], c: 1 },
+  DER: { o: '1997', rec: '33,597 England v Mexico, 25 May 2001', pitch: '105 × 68 m', st: ['West Stand', 'East Stand', 'North Stand', 'South Stand'], c: 1 },
+  QPR: { o: '1904', rec: '35,353 v Leeds United, 27 Apr 1974', pitch: '102 × 66 m', st: ['Achilleus Security Stand', 'Stanley Bowles Stand', 'The Loft', 'Bhatia Stand'], c: 1 },
+  PNE: { o: '1878', rec: '42,684 v Arsenal, 23 Apr 1938', pitch: '101 × 70 m', st: ['Sir Tom Finney Stand', 'Invincibles Pavilion', 'Bill Shankly Kop', 'Alan Kelly Town End'] },
+  BLB: { o: '1882 (Rovers since 1890)', rec: '61,783 v Bolton Wanderers, FA Cup, 2 Mar 1929', pitch: '105 × 69 m', st: ['Jack Walker Stand', 'Riverside Stand', 'Ronnie Clayton Blackburn End', 'Bryan Douglas Darwen End'], c: 1 },
+  BIR: { o: '1906', rec: '66,844 v Everton, FA Cup, 11 Feb 1939', pitch: '100 × 66 m', st: ['Main Stand', 'Gil Merrick Stand', 'Kop Stand', 'Tilton Road Stand'], c: 1 },
+  WRE: { o: '1864 (football)', rec: '34,445 v Manchester United, FA Cup, 26 Jan 1957', pitch: '102 × 68 m', st: ['Wrexham Lager Stand', 'STōK Cold Brew Coffee Stand', 'The Kop', 'Eric Roberts Builders Stand'], note: 'A new 7,750-seat Kop has been under construction since December 2025.' },
+  CHA: { o: '1919', rec: '75,031 v Aston Villa, FA Cup, 12 Feb 1938', pitch: '102 × 67 m', st: ['West Stand', 'Alan Curbishley Stand', 'Jimmy Seed Stand', 'North Stand'], c: 1 },
+  BOL: { o: '1997', rec: '28,353 v Leicester City, 28 Dec 2003', pitch: '100.6 × 65.8 m', st: ['Kia West Stand', 'Nat Lofthouse Stand', 'Carrs Pasties North Stand', 'Franking Sense South Stand'], bowl: 1 },
+  CAR: { o: '2009', rec: '33,280 Wales v Belgium, 12 Jun 2015', pitch: '100 × 68 m', st: ['Grandstand', 'Ninian Stand', 'Canton Stand', 'Grange End'], c: 1 },
+  LIN: { o: '1895', rec: null, pitch: '100.6 × 66.8 m', st: ['Greenlinc Renewables Stand', 'Bridge McFarland Stand', 'Stacey West Stand', 'Rilmac Stand'], note: 'Known as the LNER Stadium under a sponsorship deal.' }
+};
+
+// ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====
+// rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).
+const HIST = {
+LG:`1888|Preston North End|Aston Villa
+1889|Preston North End|Everton
+1890|Everton|Preston North End
+1891|Sunderland|Preston North End
+1892|Sunderland|Preston North End
+1893|Aston Villa|Sunderland
+1894|Sunderland|Everton
+1895|Aston Villa|Derby County
+1896|Aston Villa|Sheffield United
+1897|Sheffield United|Sunderland
+1898|Aston Villa|Liverpool
+1899|Aston Villa|Sheffield United
+1900|Liverpool|Sunderland
+1901|Sunderland|Everton
+1902|The Wednesday|Aston Villa
+1903|The Wednesday|Manchester City
+1904|Newcastle United|Everton
+1905|Liverpool|Preston North End
+1906|Newcastle United|Bristol City
+1907|Manchester United|Aston Villa
+1908|Newcastle United|Everton
+1909|Aston Villa|Liverpool
+1910|Manchester United|Aston Villa
+1911|Blackburn Rovers|Everton
+1912|Sunderland|Aston Villa
+1913|Blackburn Rovers|Aston Villa
+1914|Everton|Oldham Athletic
+1919|West Bromwich Albion|Burnley
+1920|Burnley|Manchester City
+1921|Liverpool|Tottenham Hotspur
+1922|Liverpool|Sunderland
+1923|Huddersfield Town|Cardiff City
+1924|Huddersfield Town|West Bromwich Albion
+1925|Huddersfield Town|Arsenal
+1926|Newcastle United|Huddersfield Town
+1927|Everton|Huddersfield Town
+1928|The Wednesday|Leicester City
+1929|Sheffield Wednesday|Derby County
+1930|Arsenal|Aston Villa
+1931|Everton|Arsenal
+1932|Arsenal|Aston Villa
+1933|Arsenal|Huddersfield Town
+1934|Arsenal|Sunderland
+1935|Sunderland|Derby County
+1936|Manchester City|Charlton Athletic
+1937|Arsenal|Wolverhampton Wanderers
+1938|Everton|Wolverhampton Wanderers
+1946|Liverpool|Manchester United
+1947|Arsenal|Manchester United
+1948|Portsmouth|Manchester United
+1949|Portsmouth|Wolverhampton Wanderers
+1950|Tottenham Hotspur|Manchester United
+1951|Manchester United|Tottenham Hotspur
+1952|Arsenal|Preston North End
+1953|Wolverhampton Wanderers|West Bromwich Albion
+1954|Chelsea|Wolverhampton Wanderers
+1955|Manchester United|Blackpool
+1956|Manchester United|Tottenham Hotspur
+1957|Wolverhampton Wanderers|Preston North End
+1958|Wolverhampton Wanderers|Manchester United
+1959|Burnley|Wolverhampton Wanderers
+1960|Tottenham Hotspur|Sheffield Wednesday
+1961|Ipswich Town|Burnley
+1962|Everton|Tottenham Hotspur
+1963|Liverpool|Manchester United
+1964|Manchester United|Leeds United
+1965|Liverpool|Leeds United
+1966|Manchester United|Nottingham Forest
+1967|Manchester City|Manchester United
+1968|Leeds United|Liverpool
+1969|Everton|Leeds United
+1970|Arsenal|Leeds United
+1971|Derby County|Leeds United
+1972|Liverpool|Arsenal
+1973|Leeds United|Liverpool
+1974|Derby County|Liverpool
+1975|Liverpool|Queens Park Rangers
+1976|Liverpool|Manchester City
+1977|Nottingham Forest|Liverpool
+1978|Liverpool|Nottingham Forest
+1979|Liverpool|Manchester United
+1980|Aston Villa|Ipswich Town
+1981|Liverpool|Ipswich Town
+1982|Liverpool|Watford
+1983|Liverpool|Southampton
+1984|Everton|Liverpool
+1985|Liverpool|Everton
+1986|Everton|Liverpool
+1987|Liverpool|Manchester United
+1988|Arsenal|Liverpool
+1989|Liverpool|Aston Villa
+1990|Arsenal|Liverpool
+1991|Leeds United|Manchester United
+1992|Manchester United|Aston Villa
+1993|Manchester United|Blackburn Rovers
+1994|Blackburn Rovers|Manchester United
+1995|Manchester United|Newcastle United
+1996|Manchester United|Newcastle United
+1997|Arsenal|Manchester United
+1998|Manchester United|Arsenal
+1999|Manchester United|Arsenal
+2000|Manchester United|Arsenal
+2001|Arsenal|Liverpool
+2002|Manchester United|Arsenal
+2003|Arsenal|Chelsea
+2004|Chelsea|Arsenal
+2005|Chelsea|Manchester United
+2006|Manchester United|Chelsea
+2007|Manchester United|Chelsea
+2008|Manchester United|Liverpool
+2009|Chelsea|Manchester United
+2010|Manchester United|Chelsea
+2011|Manchester City|Manchester United
+2012|Manchester United|Manchester City
+2013|Manchester City|Liverpool
+2014|Chelsea|Manchester City
+2015|Leicester City|Arsenal
+2016|Chelsea|Tottenham Hotspur
+2017|Manchester City|Manchester United
+2018|Manchester City|Liverpool
+2019|Liverpool|Manchester City
+2020|Manchester City|Manchester United
+2021|Manchester City|Liverpool
+2022|Manchester City|Arsenal
+2023|Manchester City|Arsenal
+2024|Liverpool|Arsenal
+2025|Arsenal|Manchester City`,
+CH:`2004|Sunderland|Wigan Athletic
+2005|Reading|Sheffield United
+2006|Sunderland|Birmingham City
+2007|West Bromwich Albion|Stoke City
+2008|Wolverhampton Wanderers|Birmingham City
+2009|Newcastle United|West Bromwich Albion
+2010|Queens Park Rangers|Norwich City
+2011|Reading|Southampton
+2012|Cardiff City|Hull City
+2013|Leicester City|Burnley
+2014|Bournemouth|Watford
+2015|Burnley|Middlesbrough
+2016|Newcastle United|Brighton & Hove Albion
+2017|Wolverhampton Wanderers|Cardiff City
+2018|Norwich City|Sheffield United
+2019|Leeds United|West Bromwich Albion
+2020|Norwich City|Watford
+2021|Fulham|Bournemouth
+2022|Burnley|Sheffield United
+2023|Leicester City|Ipswich Town
+2024|Leeds United|Burnley
+2025|Coventry City|Ipswich Town`,
+FA:`1871|Wanderers|Royal Engineers
+1872|Wanderers|Oxford University
+1873|Oxford University|Royal Engineers
+1874|Royal Engineers|Old Etonians
+1875|Wanderers|Old Etonians
+1876|Wanderers|Oxford University
+1877|Wanderers|Royal Engineers
+1878|Old Etonians|Clapham Rovers
+1879|Clapham Rovers|Oxford University
+1880|Old Carthusians|Old Etonians
+1881|Old Etonians|Blackburn Rovers
+1882|Blackburn Olympic|Old Etonians
+1883|Blackburn Rovers|Queen's Park
+1884|Blackburn Rovers|Queen's Park
+1885|Blackburn Rovers|West Bromwich Albion
+1886|Aston Villa|West Bromwich Albion
+1887|West Bromwich Albion|Preston North End
+1888|Preston North End|Wolverhampton Wanderers
+1889|Blackburn Rovers|The Wednesday
+1890|Blackburn Rovers|Notts County
+1891|West Bromwich Albion|Aston Villa
+1892|Wolverhampton Wanderers|Everton
+1893|Notts County|Bolton Wanderers
+1894|Aston Villa|West Bromwich Albion
+1895|The Wednesday|Wolverhampton Wanderers
+1896|Aston Villa|Everton
+1897|Nottingham Forest|Derby County
+1898|Sheffield United|Derby County
+1899|Bury|Southampton
+1900|Tottenham Hotspur|Sheffield United
+1901|Sheffield United|Southampton
+1902|Bury|Derby County
+1903|Manchester City|Bolton Wanderers
+1904|Aston Villa|Newcastle United
+1905|Everton|Newcastle United
+1906|The Wednesday|Everton
+1907|Wolverhampton Wanderers|Newcastle United
+1908|Manchester United|Bristol City
+1909|Newcastle United|Barnsley
+1910|Bradford City|Newcastle United
+1911|Barnsley|West Bromwich Albion
+1912|Aston Villa|Sunderland
+1913|Burnley|Liverpool
+1914|Sheffield United|Chelsea
+1919|Aston Villa|Huddersfield Town
+1920|Tottenham Hotspur|Wolverhampton Wanderers
+1921|Huddersfield Town|Preston North End
+1922|Bolton Wanderers|West Ham United
+1923|Newcastle United|Aston Villa
+1924|Sheffield United|Cardiff City
+1925|Bolton Wanderers|Manchester City
+1926|Cardiff City|Arsenal
+1927|Blackburn Rovers|Huddersfield Town
+1928|Bolton Wanderers|Portsmouth
+1929|Arsenal|Huddersfield Town
+1930|West Bromwich Albion|Birmingham
+1931|Newcastle United|Arsenal
+1932|Everton|Manchester City
+1933|Manchester City|Portsmouth
+1934|Sheffield Wednesday|West Bromwich Albion
+1935|Arsenal|Sheffield United
+1936|Sunderland|Preston North End
+1937|Preston North End|Huddersfield Town
+1938|Portsmouth|Wolverhampton Wanderers
+1945|Derby County|Charlton Athletic
+1946|Charlton Athletic|Burnley
+1947|Manchester United|Blackpool
+1948|Wolverhampton Wanderers|Leicester City
+1949|Arsenal|Liverpool
+1950|Newcastle United|Blackpool
+1951|Newcastle United|Arsenal
+1952|Blackpool|Bolton Wanderers
+1953|West Bromwich Albion|Preston North End
+1954|Newcastle United|Manchester City
+1955|Manchester City|Birmingham City
+1956|Aston Villa|Manchester United
+1957|Bolton Wanderers|Manchester United
+1958|Nottingham Forest|Luton Town
+1959|Wolverhampton Wanderers|Blackburn Rovers
+1960|Tottenham Hotspur|Leicester City
+1961|Tottenham Hotspur|Burnley
+1962|Manchester United|Leicester City
+1963|West Ham United|Preston North End
+1964|Liverpool|Leeds United
+1965|Everton|Sheffield Wednesday
+1966|Tottenham Hotspur|Chelsea
+1967|West Bromwich Albion|Everton
+1968|Manchester City|Leicester City
+1969|Chelsea|Leeds United
+1970|Arsenal|Liverpool
+1971|Leeds United|Arsenal
+1972|Sunderland|Leeds United
+1973|Liverpool|Newcastle United
+1974|West Ham United|Fulham
+1975|Southampton|Manchester United
+1976|Manchester United|Liverpool
+1977|Ipswich Town|Arsenal
+1978|Arsenal|Manchester United
+1979|West Ham United|Arsenal
+1980|Tottenham Hotspur|Manchester City
+1981|Tottenham Hotspur|Queens Park Rangers
+1982|Manchester United|Brighton & Hove Albion
+1983|Everton|Watford
+1984|Manchester United|Everton
+1985|Liverpool|Everton
+1986|Coventry City|Tottenham Hotspur
+1987|Wimbledon|Liverpool
+1988|Liverpool|Everton
+1989|Manchester United|Crystal Palace
+1990|Tottenham Hotspur|Nottingham Forest
+1991|Liverpool|Sunderland
+1992|Arsenal|Sheffield Wednesday
+1993|Manchester United|Chelsea
+1994|Everton|Manchester United
+1995|Manchester United|Liverpool
+1996|Chelsea|Middlesbrough
+1997|Arsenal|Newcastle United
+1998|Manchester United|Newcastle United
+1999|Chelsea|Aston Villa
+2000|Liverpool|Arsenal
+2001|Arsenal|Chelsea
+2002|Arsenal|Southampton
+2003|Manchester United|Millwall
+2004|Arsenal|Manchester United
+2005|Liverpool|West Ham United
+2006|Chelsea|Manchester United
+2007|Portsmouth|Cardiff City
+2008|Chelsea|Everton
+2009|Chelsea|Portsmouth
+2010|Manchester City|Stoke City
+2011|Chelsea|Liverpool
+2012|Wigan Athletic|Manchester City
+2013|Arsenal|Hull City
+2014|Arsenal|Aston Villa
+2015|Manchester United|Crystal Palace
+2016|Arsenal|Chelsea
+2017|Chelsea|Manchester United
+2018|Manchester City|Watford
+2019|Arsenal|Chelsea
+2020|Leicester City|Chelsea
+2021|Liverpool|Chelsea
+2022|Manchester City|Manchester United
+2023|Manchester United|Manchester City
+2024|Crystal Palace|Manchester City
+2025|Manchester City|Chelsea`,
+LC:`1960|Aston Villa|Rotherham United
+1961|Norwich City|Rochdale
+1962|Birmingham City|Aston Villa
+1963|Leicester City|Stoke City
+1964|Chelsea|Leicester City
+1965|West Bromwich Albion|West Ham United
+1966|Queens Park Rangers|West Bromwich Albion
+1967|Leeds United|Arsenal
+1968|Swindon Town|Arsenal
+1969|Manchester City|West Bromwich Albion
+1970|Tottenham Hotspur|Aston Villa
+1971|Stoke City|Chelsea
+1972|Tottenham Hotspur|Norwich City
+1973|Wolverhampton Wanderers|Manchester City
+1974|Aston Villa|Norwich City
+1975|Manchester City|Newcastle United
+1976|Aston Villa|Everton
+1977|Nottingham Forest|Liverpool
+1978|Nottingham Forest|Southampton
+1979|Wolverhampton Wanderers|Nottingham Forest
+1980|Liverpool|West Ham United
+1981|Liverpool|Tottenham Hotspur
+1982|Liverpool|Manchester United
+1983|Liverpool|Everton
+1984|Norwich City|Sunderland
+1985|Oxford United|Queens Park Rangers
+1986|Arsenal|Liverpool
+1987|Luton Town|Arsenal
+1988|Nottingham Forest|Luton Town
+1989|Nottingham Forest|Oldham Athletic
+1990|Sheffield Wednesday|Manchester United
+1991|Manchester United|Nottingham Forest
+1992|Arsenal|Sheffield Wednesday
+1993|Aston Villa|Manchester United
+1994|Liverpool|Bolton Wanderers
+1995|Aston Villa|Leeds United
+1996|Leicester City|Middlesbrough
+1997|Chelsea|Middlesbrough
+1998|Tottenham Hotspur|Leicester City
+1999|Leicester City|Tranmere Rovers
+2000|Liverpool|Birmingham City
+2001|Blackburn Rovers|Tottenham Hotspur
+2002|Liverpool|Manchester United
+2003|Middlesbrough|Bolton Wanderers
+2004|Chelsea|Liverpool
+2005|Manchester United|Wigan Athletic
+2006|Chelsea|Arsenal
+2007|Tottenham Hotspur|Chelsea
+2008|Manchester United|Tottenham Hotspur
+2009|Manchester United|Aston Villa
+2010|Birmingham City|Arsenal
+2011|Liverpool|Cardiff City
+2012|Swansea City|Bradford City
+2013|Manchester City|Sunderland
+2014|Chelsea|Tottenham Hotspur
+2015|Manchester City|Liverpool
+2016|Manchester United|Southampton
+2017|Manchester City|Arsenal
+2018|Manchester City|Chelsea
+2019|Manchester City|Aston Villa
+2020|Manchester City|Tottenham Hotspur
+2021|Liverpool|Chelsea
+2022|Manchester United|Newcastle United
+2023|Liverpool|Chelsea
+2024|Newcastle United|Liverpool
+2025|Manchester City|Arsenal`,
+UCL:`1955|Real Madrid|Reims
+1956|Real Madrid|Fiorentina
+1957|Real Madrid|Milan
+1958|Real Madrid|Reims
+1959|Real Madrid|Eintracht Frankfurt
+1960|Benfica|Barcelona
+1961|Benfica|Real Madrid
+1962|Milan|Benfica
+1963|Inter Milan|Real Madrid
+1964|Inter Milan|Benfica
+1965|Real Madrid|Partizan
+1966|Celtic|Inter Milan
+1967|Manchester United|Benfica
+1968|Milan|Ajax
+1969|Feyenoord|Celtic
+1970|Ajax|Panathinaikos
+1971|Ajax|Inter Milan
+1972|Ajax|Juventus
+1973|Bayern Munich|Atlético Madrid
+1974|Bayern Munich|Leeds United
+1975|Bayern Munich|Saint-Étienne
+1976|Liverpool|Borussia Mönchengladbach
+1977|Liverpool|Club Brugge
+1978|Nottingham Forest|Malmö FF
+1979|Nottingham Forest|Hamburger SV
+1980|Liverpool|Real Madrid
+1981|Aston Villa|Bayern Munich
+1982|Hamburger SV|Juventus
+1983|Liverpool|Roma
+1984|Juventus|Liverpool
+1985|Steaua București|Barcelona
+1986|Porto|Bayern Munich
+1987|PSV Eindhoven|Benfica
+1988|Milan|Steaua București
+1989|Milan|Benfica
+1990|Red Star Belgrade|Marseille
+1991|Barcelona|Sampdoria
+1992|Marseille|Milan
+1993|Milan|Barcelona
+1994|Ajax|Milan
+1995|Juventus|Ajax
+1996|Borussia Dortmund|Juventus
+1997|Real Madrid|Juventus
+1998|Manchester United|Bayern Munich
+1999|Real Madrid|Valencia
+2000|Bayern Munich|Valencia
+2001|Real Madrid|Bayer Leverkusen
+2002|Milan|Juventus
+2003|Porto|Monaco
+2004|Liverpool|Milan
+2005|Barcelona|Arsenal
+2006|Milan|Liverpool
+2007|Manchester United|Chelsea
+2008|Barcelona|Manchester United
+2009|Inter Milan|Bayern Munich
+2010|Barcelona|Manchester United
+2011|Chelsea|Bayern Munich
+2012|Bayern Munich|Borussia Dortmund
+2013|Real Madrid|Atlético Madrid
+2014|Barcelona|Juventus
+2015|Real Madrid|Atlético Madrid
+2016|Real Madrid|Juventus
+2017|Real Madrid|Liverpool
+2018|Liverpool|Tottenham Hotspur
+2019|Bayern Munich|Paris Saint-Germain
+2020|Chelsea|Manchester City
+2021|Real Madrid|Liverpool
+2022|Manchester City|Inter Milan
+2023|Real Madrid|Borussia Dortmund
+2024|Paris Saint-Germain|Inter Milan
+2025|Paris Saint-Germain|Arsenal`,
+UEL:`1971|Tottenham Hotspur|Wolverhampton Wanderers
+1972|Liverpool|Borussia Mönchengladbach
+1973|Feyenoord|Tottenham Hotspur
+1974|Borussia Mönchengladbach|Twente
+1975|Liverpool|Club Brugge
+1976|Juventus|Athletic Bilbao
+1977|PSV Eindhoven|Bastia
+1978|Borussia Mönchengladbach|Red Star Belgrade
+1979|Eintracht Frankfurt|Borussia Mönchengladbach
+1980|Ipswich Town|AZ
+1981|IFK Göteborg|Hamburger SV
+1982|Anderlecht|Benfica
+1983|Tottenham Hotspur|Anderlecht
+1984|Real Madrid|Videoton
+1985|Real Madrid|1. FC Köln
+1986|IFK Göteborg|Dundee United
+1987|Bayer Leverkusen|Espanyol
+1988|Napoli|VfB Stuttgart
+1989|Juventus|Fiorentina
+1990|Inter Milan|Roma
+1991|Ajax|Torino
+1992|Juventus|Borussia Dortmund
+1993|Inter Milan|Austria Salzburg
+1994|Parma|Juventus
+1995|Bayern Munich|Bordeaux
+1996|Schalke 04|Inter Milan
+1997|Inter Milan|Lazio
+1998|Parma|Marseille
+1999|Galatasaray|Arsenal
+2000|Liverpool|Alavés
+2001|Feyenoord|Borussia Dortmund
+2002|Porto|Celtic
+2003|Valencia|Marseille
+2004|CSKA Moscow|Sporting CP
+2005|Sevilla|Middlesbrough
+2006|Sevilla|Espanyol
+2007|Zenit Saint Petersburg|Rangers
+2008|Shakhtar Donetsk|Werder Bremen
+2009|Atlético Madrid|Fulham
+2010|Porto|Braga
+2011|Atlético Madrid|Athletic Bilbao
+2012|Chelsea|Benfica
+2013|Sevilla|Benfica
+2014|Sevilla|Dnipro Dnipropetrovsk
+2015|Sevilla|Liverpool
+2016|Manchester United|Ajax
+2017|Atlético Madrid|Marseille
+2018|Chelsea|Arsenal
+2019|Sevilla|Inter Milan
+2020|Villarreal|Manchester United
+2021|Eintracht Frankfurt|Rangers
+2022|Sevilla|Roma
+2023|Atalanta|Bayer Leverkusen
+2024|Tottenham Hotspur|Manchester United
+2025|Aston Villa|SC Freiburg`,
+UECL:`2021|Roma|Feyenoord
+2022|West Ham United|Fiorentina
+2023|Olympiacos|Fiorentina
+2024|Chelsea|Real Betis
+2025|Crystal Palace|Rayo Vallecano`
+};
+
+// ===== DATA: managers for the world rankings (major honours as manager, up to the end of 2025/26) =====
+// [name, nationality, status, club or job, honours, worked in England]
+// status: a = club job, n = national team, f = without a job, r = retired or not coaching, d = died
+// honours: L top-five-league title, l other top-flight title, C European Cup/Champions League, E UEFA Cup/Europa League,
+// K Conference League, W Cup Winners' Cup, I Intercontinental/Club World Cup, A other continental club cup,
+// D major domestic cup, d league cup, N World Cup, X Euro/Copa América/Asian Cup, S second-tier title.
+// Club jobs for European clubs checked against news reports, Oct 2026. Honours counts are game summaries.
+const MGR_W = { L: 20, l: 8, C: 30, E: 15, K: 8, W: 12, I: 6, A: 8, D: 6, d: 4, N: 35, X: 20, S: 4 };
+const MGR_CODE_N = { L: 'top-five league', l: 'other league', C: 'European Cup', E: 'UEFA Cup/Europa League', K: 'Conference League', W: "Cup Winners' Cup", I: 'world club title', A: 'continental cup', D: 'domestic cup', d: 'league cup', N: 'World Cup', X: 'continental nations cup', S: 'second-tier title' };
+const MGR_DATA = [
+  // legends
+  ['Sir Alex Ferguson', 'Scotland', 'r', 'Retired', 'L13 l3 C2 W2 I2 D9 d5 S1', 1],
+  ['Arsène Wenger', 'France', 'r', 'Retired', 'L4 D9', 1],
+  ['Bob Paisley', 'England', 'd', 'Liverpool legend', 'L6 C3 E1 d3', 1],
+  ['Brian Clough', 'England', 'd', 'Nottingham Forest legend', 'L2 C2 d4 S1', 1],
+  ['Johan Cruyff', 'Netherlands', 'd', 'Barcelona legend', 'L4 C1 W2 D3', 0],
+  ['Rinus Michels', 'Netherlands', 'd', 'Ajax legend', 'L1 l4 C1 D5 X1', 0],
+  ['Jürgen Klopp', 'Germany', 'r', 'Not coaching', 'L3 C1 I1 D2 d2', 1],
+  ['Sir Matt Busby', 'Scotland', 'd', 'Manchester United legend', 'L5 C1 D2', 1],
+  ['Bill Shankly', 'Scotland', 'd', 'Liverpool legend', 'L3 E1 D2 S1', 1],
+  ['Arrigo Sacchi', 'Italy', 'r', 'Retired', 'L1 C2 I2', 0],
+  ['Herbert Chapman', 'England', 'd', 'Arsenal legend', 'L4 D2', 1],
+  ['Sir Bobby Robson', 'England', 'd', 'Ipswich Town legend', 'l4 E1 W1 D3', 1],
+  ['Giovanni Trapattoni', 'Italy', 'r', 'Retired', 'L8 l2 C1 E3 W1 I1 D3', 0],
+  ['Marcello Lippi', 'Italy', 'r', 'Retired', 'L5 l3 C1 I1 A1 N1 D1', 0],
+  ['Vicente del Bosque', 'Spain', 'r', 'Retired', 'L2 C2 I1 N1 X1', 0],
+  ['Kenny Dalglish', 'Scotland', 'r', 'Retired', 'L4 D2 d1', 1],
+  ['Sir Alf Ramsey', 'England', 'd', 'England legend', 'L1 N1 S1', 1],
+  ['Louis van Gaal', 'Netherlands', 'r', 'Retired', 'L3 l4 C1 E1 I1 D4', 1],
+  ['Fabio Capello', 'Italy', 'r', 'Retired', 'L7 C1', 1],
+  // active, European clubs and national teams
+  ['José Mourinho', 'Portugal', 'a', 'Real Madrid', 'L6 l2 C2 E2 K1 D4 d4', 1],
+  ['Pep Guardiola', 'Spain', 'f', 'Without a club', 'L12 C3 I4 D7 d5', 1],
+  ['Carlo Ancelotti', 'Italy', 'n', 'Brazil', 'L6 C5 I4 D4', 1],
+  ['Luis Enrique', 'Spain', 'a', 'Paris SG', 'L5 C3 I1 D5', 0],
+  ['Hansi Flick', 'Germany', 'a', 'Barcelona', 'L4 C1 I1 D2', 0],
+  ['Vincent Kompany', 'Belgium', 'a', 'Bayern Munich', 'L2 S1', 1],
+  ['Cristian Chivu', 'Romania', 'a', 'Inter', 'L1', 0],
+  ['Luciano Spalletti', 'Italy', 'a', 'Juventus', 'L1 l2 D3', 0],
+  ['Massimiliano Allegri', 'Italy', 'a', 'Napoli', 'L6 D5', 0],
+  ['Rúben Amorim', 'Portugal', 'a', 'AC Milan', 'l2 d3', 1],
+  ['Diego Simeone', 'Argentina', 'a', 'Atletico Madrid', 'L2 l2 E2 D1', 0],
+  ['Niko Kovač', 'Croatia', 'a', 'Borussia Dortmund', 'L1 D2', 0],
+  ['Thomas Tuchel', 'Germany', 'n', 'England', 'L3 C1 I1 D2 d1', 1],
+  ['Luis de la Fuente', 'Spain', 'n', 'Spain', 'N1 X1', 0],
+  ['Lionel Scaloni', 'Argentina', 'n', 'Argentina', 'N1 X2', 0],
+  ['Antonio Conte', 'Italy', 'f', 'Without a club', 'L6 D1 S1', 1],
+  ['Arne Slot', 'Netherlands', 'f', 'Without a club', 'L1 l1 D1', 1],
+  // Premier League and Championship managers in the game (club comes from the game itself)
+  ['Mikel Arteta', 'Spain', 'a', '', 'L1 D1', 1],
+  ['Enzo Maresca', 'Italy', 'a', '', 'K1 I1 S1', 1],
+  ['Andoni Iraola', 'Spain', 'a', '', '', 1],
+  ['Michael Carrick', 'England', 'a', '', '', 1],
+  ['Xabi Alonso', 'Spain', 'a', '', 'L1 D1', 1],
+  ['Unai Emery', 'Spain', 'a', '', 'L1 E5 D2 d2', 1],
+  ['Roberto De Zerbi', 'Italy', 'a', '', '', 1],
+  ['Matthias Jaissle', 'Germany', 'a', '', 'l2 D1 A2', 1],
+  ['Marco Rose', 'Germany', 'a', '', 'l2 D1', 1],
+  ['Regis Le Bris', 'France', 'a', '', '', 1],
+  ['Pierre Sage', 'France', 'a', '', '', 1],
+  ['Fabian Hurzeler', 'Germany', 'a', '', 'S1', 1],
+  ['Keith Andrews', 'Republic of Ireland', 'a', '', '', 1],
+  ['Alvaro Arbeloa', 'Spain', 'a', '', '', 1],
+  ['David Moyes', 'Scotland', 'a', '', 'K1', 1],
+  ['Daniel Farke', 'Germany', 'a', '', 'S3', 1],
+  ['Oliver Glasner', 'Austria', 'a', '', 'E1 K1 D1', 1],
+  ['Frank Lampard', 'England', 'a', '', 'S1', 1],
+  ['Sergej Jakirovic', 'Croatia', 'a', '', 'l2 D1', 1],
+  ['Nuno Espírito Santo', 'Portugal', 'a', '', 'l1 S1', 1],
+  ['César Peixoto', 'Portugal', 'a', '', '', 1],
+  ['Tonda Eckert', 'Germany', 'a', '', '', 1],
+  ['Kim Hellberg', 'Sweden', 'a', '', '', 1],
+  ['Chris Wilder', 'England', 'a', '', '', 1],
+  ['Philippe Clement', 'Belgium', 'a', '', 'l3 d1', 1],
+  ['John Mousinho', 'England', 'a', '', '', 1],
+  ['James Morrison', 'Scotland', 'a', '', '', 1],
+  ['Alessio Dionisi', 'Italy', 'a', '', 'S1', 1],
+  ['Alex Neil', 'Scotland', 'a', '', '', 1],
+  ['Michael Skubala', 'England', 'a', '', '', 1],
+  ['Vítor Matos', 'Portugal', 'a', '', '', 1],
+  ['Mark Robins', 'England', 'a', '', '', 1],
+  ['John Eustace', 'England', 'a', '', '', 1],
+  ['Julien Stéphan', 'France', 'a', '', '', 1],
+  ['Graham Alexander', 'Scotland', 'a', '', '', 1],
+  ['Tony Mowbray', 'England', 'a', '', 'S1', 1],
+  ['Chris Davies', 'Wales', 'a', '', '', 1],
+  ['Phil Parkinson', 'England', 'a', '', '', 1],
+  ['Nathan Jones', 'Wales', 'a', '', '', 1],
+  ['Steven Schumacher', 'England', 'a', '', '', 1],
+  ['Brian Barry-Murphy', 'Republic of Ireland', 'a', '', '', 1]
+];
+const REGION_OF = (() => {
+  const R = {};
+  const put = (reg, list) => list.forEach(n => R[n] = reg);
+  put('Europe', ['England', 'Scotland', 'Wales', 'Northern Ireland', 'Republic of Ireland', 'Spain', 'Portugal', 'France', 'Germany', 'Italy', 'Netherlands', 'Belgium', 'Switzerland', 'Austria', 'Denmark', 'Norway', 'Sweden', 'Poland', 'Croatia', 'Serbia', 'Turkey', 'Romania']);
+  put('Asia', ['Malaysia', 'Saudi Arabia', 'UAE', 'Japan', 'South Korea', 'China', 'Indonesia', 'Singapore', 'Thailand', 'Vietnam', 'Philippines', 'India']);
+  put('Africa', ['Nigeria', 'Ghana', 'Senegal', 'Ivory Coast', 'Egypt', 'Morocco']);
+  put('South America', ['Brazil', 'Argentina', 'Uruguay', 'Colombia']);
+  put('North America', ['Mexico', 'USA', 'Canada']);
+  put('Oceania', ['Australia', 'New Zealand']);
+  return R;
+})();
 
 // ===== CORE: utilities, players, tactics =====
 let G = null; // whole game state
@@ -4168,7 +4884,7 @@ function render() {
   if (UI.match) return renderMatch();
   if (!G) return renderStart();
   const scr = UI.scr;
-  const nav = [['inbox', 'Inbox'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['club', 'Club'], ['game', 'Game']];
+  const nav = [['inbox', 'Inbox'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['club', 'Club'], ['game', 'Game']];
   const nf = nextUserFixture();
   const t = userTeam();
   const nextTxt = nf ? `Next: ${COMP_SHORT[nf.comp]} · ${dShort(nf.d)} · ${nf.h === G.user ? 'v ' + tName(nf.a) + ' (H)' : 'v ' + tName(nf.h) + ' (A)'}` : (G.sacked ? 'Unemployed' : 'Season complete');
@@ -4538,7 +5254,7 @@ function scrTransfers() {
 function scrFinance() {
   const t = userTeam(); const f = t.fin;
   const inT = Object.values(f.in).reduce((a, b) => a + b, 0), outT = Object.values(f.out).reduce((a, b) => a + b, 0);
-  const rows = (o, labels, tot, col) => Object.entries(labels).map(([k, l]) => `<div style="margin:6px 0"><div class="row" style="justify-content:space-between"><span>${l}</span><b class="mono">${money(o[k])}</b></div><div class="bar"><i style="width:${tot ? Math.min(100, o[k] / tot * 100) : 0}%;background:${col}"></i></div></div>`).join('');
+  const rows = (o, labels, tot, col) => Object.entries(labels).map(([k, l]) => `<div style="margin:6px 0"><div class="row" style="justify-content:space-between"><span>${l}</span><b class="mono">${money(o[k] || 0)}</b></div><div class="bar"><i style="width:${tot ? Math.min(100, (o[k] || 0) / tot * 100) : 0}%;background:${col}"></i></div></div>`).join('');
   return `<div class="band">Finances<small>${seasonLabel(G.year)} so far</small></div>
   <div class="grid3" style="margin-top:10px">
     <div class="box pad"><label class="lb">Bank balance</label><div class="big ${t.bal < 0 ? 'red' : ''}">${money(t.bal)}</div></div>
@@ -4547,7 +5263,7 @@ function scrFinance() {
   </div>
   <div class="grid2" style="margin-top:12px">
     <div class="box pad"><h2 class="sect" style="margin-top:0">Income · ${money(inT)}</h2>${rows(f.in, { gate: 'Matchday', tv: 'Broadcasting', com: 'Commercial', prize: 'Prize money', sales: 'Player sales' }, inT, 'var(--grn)')}</div>
-    <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, { wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, outT, 'var(--red)')}</div>
+    <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, Object.assign({ wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, f.out.build ? { build: 'Building work' } : {}), outT, 'var(--red)')}</div>
   </div>
   <p class="dim" style="margin-top:10px">Wages are paid every Monday. Home gate receipts depend on stadium size (${t.cap.toLocaleString('en-GB')} at ${esc(t.stadium)}). Selling players adds 90% of the fee to your transfer budget.</p>`;
 }
@@ -5462,7 +6178,7 @@ function buildLayers(V, M) {
   }
   for (const [x, y] of [[0, 0], [1, 0], [0, 1], [1, 1]]) { b.fillStyle = '#ffd23f'; b.fillRect(px(x) - 1, py(y) - 4, 2, 4); }
   // stand names
-  const names = V.venue.stands; const fs = Math.max(7, Math.min(13, L.sd * .3));
+  const names = V.venue.stands.slice(); const fs = Math.max(7, Math.min(13, L.sd * .3));
   b.font = `600 ${fs}px "IBM Plex Sans Condensed", Arial, sans-serif`; b.textAlign = 'center'; b.textBaseline = 'middle';
   const label = (txt, x, y, rot) => { b.save(); b.translate(x, y); if (rot) b.rotate(rot); b.fillStyle = 'rgba(255,255,255,.06)'; const tw = b.measureText(txt.toUpperCase()).width + 10; b.fillRect(-tw / 2, -fs * .7, tw, fs * 1.4); b.fillStyle = 'rgba(255,255,255,.5)'; b.fillText(txt.toUpperCase(), 0, .5); b.restore(); };
   // crowd
@@ -5473,7 +6189,11 @@ function buildLayers(V, M) {
   const awayCols = [uiCol(at.c1 || '#888'), uiCol(at.c1 || '#888'), at.c2 || '#fff', '#d8d8d8'];
   const neutral = V.venue.neutral;
   const awayZone = (x, y) => neutral ? x > W / 2 : (x > W - L.sd && y < L.sd + (H - 2 * L.sd) * (.28 + .12 * (1 - fill)));
+  // stands closed for building work (club.js) stay empty and show a hatch
+  const wk = V.venue.works || [];
+  const inWork = (x, y) => wk.some(i => i === 0 ? y < L.sd : i === 1 ? y > H - L.sd : i === 2 ? (x < L.sd && y > L.sd && y < H - L.sd) : (x > W - L.sd && y > L.sd && y < H - L.sd));
   const dot = (x, y) => {
+    if (inWork(x, y)) return;
     const away = awayZone(x, y);
     if (rnd() > (away ? .95 : fill)) { b.fillStyle = night ? 'rgba(80,90,110,.35)' : 'rgba(110,118,135,.55)'; b.fillRect(x - rr * .7, y - rr * .7, rr * 1.4, rr * 1.4); return; }
     const ctx = away ? a : h; const cols = away ? awayCols : homeCols;
@@ -5481,6 +6201,12 @@ function buildLayers(V, M) {
   };
   for (let y = gap * .7; y < L.sd - gap * .3; y += gap) for (let x = gap * .7; x < W - gap * .3; x += gap) { dot(x, y); dot(x, H - y); }
   for (let x = gap * .7; x < L.sd - gap * .3; x += gap) for (let y = L.sd + gap * .5; y < H - L.sd - gap * .3; y += gap) { dot(x, y); dot(W - x, y); }
+  for (const i of wk) {
+    const [rx, ry, rw, rh] = i === 0 ? [0, 0, W, L.sd] : i === 1 ? [0, H - L.sd, W, L.sd] : i === 2 ? [0, L.sd, L.sd, H - 2 * L.sd] : [W - L.sd, L.sd, L.sd, H - 2 * L.sd];
+    b.save(); b.beginPath(); b.rect(rx, ry, rw, rh); b.clip(); b.fillStyle = '#1b1b1b'; b.fillRect(rx, ry, rw, rh); b.strokeStyle = 'rgba(255,210,63,.55)'; b.lineWidth = 4;
+    for (let k = -H; k < W + H; k += 14) { b.beginPath(); b.moveTo(k, 0); b.lineTo(k + H, H); b.stroke(); } b.restore();
+    names[i] = names[i] + ' · BUILDING WORK';
+  }
   label(names[0], W / 2, L.sd / 2); label(names[1], W / 2, H - L.sd / 2); label(names[2], L.sd / 2, H / 2, -Math.PI / 2); label(names[3], W - L.sd / 2, H / 2, Math.PI / 2);
   if (!neutral && L.sd > 14) { b.save(); b.translate(W - L.sd / 2, L.sd + 6); b.font = `600 ${Math.max(6, fs * .75)}px "IBM Plex Sans Condensed", Arial`; b.fillStyle = 'rgba(255,255,255,.55)'; b.textAlign = 'center'; b.textBaseline = 'top'; b.fillText('AWAY', 0, 0); b.restore(); }
   // floodlight pylons
@@ -6883,7 +7609,8 @@ function monthlyProgress() {
       g *= 0.45 + 0.85 * share;
       if (n >= 1 && rsum[p.id]) { const avg = rsum[p.id] / Math.max(1, Math.ceil(n)); g *= clamp(1 + (avg - 6.6) * 0.35, .6, 1.5); }
       else if (yn && p.ymr) { const avg = p.ymr / Math.max(1, Math.ceil(yn)); g *= clamp(1 + (avg - 6.6) * 0.25, .7, 1.35); }
-      g *= p.c === G.user ? 0.85 + coachU / 50 + (p.sq && typeof staffAb === 'function' ? (staffAb('hoyd') - 10) / 60 : 0) : 1.05;
+      const fac = typeof facLvl === 'function' ? facLvl('tr', p.c) : 10; // training ground (club.js)
+      g *= p.c === G.user ? 0.85 + coachU / 50 + (fac - 10) / 70 + (p.sq && typeof staffAb === 'function' ? (staffAb('hoyd') - 10) / 60 : 0) : 1.05 + (fac - 10) / 120;
       const h = typeof hap === 'function' ? hap(p) : 65; if (h < 35) g *= .8; else if (h > 75) g *= 1.05;
     } else if (g < 0) g *= share > .6 ? .9 : 1;
     p.ym = 0; p.ymr = 0;
@@ -7161,7 +7888,7 @@ youthIntake = function () {
     const fresh = [];
     for (let i = 0; i < n; i++) {
       const pos = R.pick(['GK', 'CB', 'CB', 'LB', 'RB', 'DM', 'CM', 'CM', 'AM', 'LW', 'RW', 'ST', 'ST']);
-      const bonus = (hoyd - 10) * .35 + (user ? (staffAb('scout') - 10) * .1 : 0) + (R.chance(.05) ? 6 : 0);
+      const bonus = (hoyd - 10) * .35 + (user ? (staffAb('scout') - 10) * .1 : 0) + (typeof facLvl === 'function' ? (facLvl('yth', tid) - 10) * .2 : 0) + (R.chance(.05) ? 6 : 0);
       fresh.push(genYouth(tid, 'a', pos, 16, bonus));
     }
     if (user && fresh.length) { const best = fresh.slice().sort((a, b) => b.pa - a.pa)[0]; news('Academy intake', `${fresh.length} youngsters join the academy: ${fresh.map(p => `${p.n} (${POS_LABEL[p.pos]})`).join(', ')}. The youth staff are most excited about ${best.n}.`, G.user); }
@@ -7353,6 +8080,783 @@ clubModal = function (tid) {
 Object.assign(COMP_LINK, { 'Premier League 2': 'PL2', 'PL2 Division 2': 'PL2D2', 'U18 Premier League': 'U18', 'U18 Professional Development League': 'PDL' });
 const _gcY = goComp;
 goComp = function (code) { if (YOUTH_COMPS[code]) { UI.modal = null; UI.mstack = []; UI.mcur = null; UI.scr = 'table'; UI.tab.tb = 'y'; UI.tab.yc = code; render(); window.scrollTo(0, 0); return; } _gcY(code); };
+
+// club.js: stadium details and drawn stadium, facilities, board requests and building works.
+// Loaded after champ.js / youth.js, before history.js.
+
+// ---------- stadium model ----------
+const STAND_SHARE = [0.31, 0.27, 0.22, 0.20]; // main side, opposite side, home end, other end (game estimate)
+const FAC_LBL = ['Basic', 'Basic', 'Basic', 'Basic', 'Adequate', 'Adequate', 'Adequate', 'Average', 'Average', 'Average', 'Good', 'Good', 'Good', 'Very good', 'Very good', 'Excellent', 'Excellent', 'Superb', 'Superb', 'State of the art', 'State of the art'];
+function facStart(t, k) {
+  const r = t.rep || 60;
+  if (k === 'tr') return clamp(Math.round((r - 50) / 2.4), 4, 20);
+  const lv = typeof clubYouthLevel === 'function' ? clubYouthLevel(t.id) : 0;
+  return clamp(Math.round((r - 52) / 2.6 + lv * 1.5), 4, 20);
+}
+function ensureStadium(tid) {
+  const t = T(tid); if (!t || t.lite) return null;
+  if (!t.sdm) {
+    const S = STADIA[tid] || {};
+    const names = S.st || (typeof STANDS !== 'undefined' && STANDS[tid]) || STANDS_DEF;
+    const caps = STAND_SHARE.map(x => Math.round(t.cap * x / 10) * 10);
+    caps[0] += t.cap - caps.reduce((a, b) => a + b, 0);
+    t.sdm = { st: names.map((n, i) => ({ n, cap: caps[i] })), o: S.o || '-', rec: S.rec || null, pitch: S.pitch || '105 × 68 m', bowl: !!S.bowl, c: !!(S.c || S.bowl), note: S.note || '', hi: null };
+  }
+  if (!t.fac) t.fac = { tr: facStart(t, 'tr'), yth: facStart(t, 'yth') };
+  return t.sdm;
+}
+function facLvl(k, tid) { const t = T(tid || G.user); if (!t || t.lite) return 10; ensureStadium(t.id); return t.fac[k] || 10; }
+function standCapNow(s) { return Math.max(0, s.cap - (s.w ? s.w.red : 0)); }
+function syncCap(tid) { const t = T(tid), m = t.sdm; if (!m) return; t.cap = m.st.reduce((a, s) => a + standCapNow(s), 0); }
+function ticketYield(t) { return divOf(t.id) === 'CH' ? 8 + t.rep * 0.33 : 20 + t.rep * 0.38; }
+function ticketLevel(t) { const y = ticketYield(t); return y >= 52 ? 'Premium' : y >= 44 ? 'High' : y >= 34 ? 'Average' : y >= 26 ? 'Affordable' : 'Low'; }
+function homeAttendance(tid) {
+  const fs = Object.values(G.fx).filter(f => f.h === tid && f.r && f.att && LEAGUE_COMPS.includes(f.comp));
+  if (!fs.length) return null;
+  const tot = fs.reduce((a, f) => a + f.att, 0);
+  const hi = fs.reduce((m, f) => f.att > m.att ? f : m, fs[0]);
+  return { avg: Math.round(tot / fs.length), n: fs.length, hi };
+}
+function ensureAllStadia() { for (const id of fullTeams()) ensureStadium(id); }
+
+// ---------- drawn stadium (SVG, perspective view from behind the main stand) ----------
+function stadiumSvg(tid, opt) {
+  const t = T(tid); const m = ensureStadium(tid); if (!m) return '';
+  opt = opt || {};
+  const c1 = uiCol(t.c1 || '#888'), c2 = t.c2 || '#fff';
+  const st = m.st;
+  const work = new Set((G.brd && G.brd.proj || []).filter(p => p.tid === tid && p.k === 'exp').map(p => p.si));
+  // world in metres: x along the pitch, y towards the far stand, z up
+  const PX = 52.5, PY = 34, GAP = 7;
+  const dep = (s) => clamp(9 + s.cap / 1000 * 1.05, 9, 34), hgt = (s) => dep(s) * 0.62 + 4;
+  const cam = [58, -165, 108], tgt = [0, 6, 0];
+  const dv = [tgt[0] - cam[0], tgt[1] - cam[1], tgt[2] - cam[2]]; const dl = Math.hypot(...dv); const d = dv.map(x => x / dl);
+  const rl = Math.hypot(d[1], d[0]); const r = [d[1] / rl, -d[0] / rl, 0];
+  const up = [r[1] * d[2] - r[2] * d[1], r[2] * d[0] - r[0] * d[2], r[0] * d[1] - r[1] * d[0]];
+  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const pr = (p) => { const v = [p[0] - cam[0], p[1] - cam[1], p[2] - cam[2]]; const z = dot(v, d); return [dot(v, r) / z, -dot(v, up) / z]; };
+  const shapes = []; // [kind, points3d, attrs]
+  const add = (pts, attrs, kind) => shapes.push([kind || 'poly', pts, attrs]);
+  const shade = (c, k) => mix(c, '#000000', k);
+  // ground and pitch
+  add([[-140, -110, 0], [140, -110, 0], [140, 120, 0], [-140, 120, 0]], 'fill="#161c2c"');
+  add([[-PX - GAP, -PY - GAP, 0], [PX + GAP, -PY - GAP, 0], [PX + GAP, PY + GAP, 0], [-PX - GAP, PY + GAP, 0]], 'fill="#17602f"');
+  for (let i = 0; i < 12; i++) { const x0 = -PX + i * PX * 2 / 12, x1 = x0 + PX * 2 / 12; add([[x0, -PY, 0], [x1, -PY, 0], [x1, PY, 0], [x0, PY, 0]], `fill="${i % 2 ? '#1d7a3e' : '#1a6d37'}"`); }
+  const LN = 'fill="none" stroke="rgba(255,255,255,.75)" stroke-width=".9"';
+  add([[-PX, -PY, 0], [PX, -PY, 0], [PX, PY, 0], [-PX, PY, 0]], LN);
+  add([[0, -PY, 0], [0, PY, 0]], LN, 'line');
+  add(Array.from({ length: 24 }, (_, k) => [9.15 * Math.cos(k / 24 * 6.283), 9.15 * Math.sin(k / 24 * 6.283), 0]), LN);
+  for (const sg of [-1, 1]) { add([[sg * PX, -20.16, 0], [sg * (PX - 16.5), -20.16, 0], [sg * (PX - 16.5), 20.16, 0], [sg * PX, 20.16, 0]], LN, 'line'); add([[sg * PX, -3.66, 0], [sg * (PX + 2), -3.66, 0], [sg * (PX + 2), 3.66, 0], [sg * PX, 3.66, 0]], 'fill="none" stroke="#fff" stroke-width="1.2"', 'line'); }
+  // stands: st[0] main (near, cut away), st[1] far side, st[2] left end, st[3] right end
+  const XI = PX + GAP, YI = PY + GAP;
+  const F = st[1], Lf = st[2], Rt = st[3], N = st[0];
+  const dF = dep(F), dL = dep(Lf), dR = dep(Rt), dN = dep(N), hF = hgt(F), hL = hgt(Lf), hR = hgt(Rt), hN = hgt(N);
+  const seat = (inA, inB, outB, outA, s, i, col) => {
+    add([inA, inB, outB, outA], `fill="${col || c1}" stroke="rgba(0,0,0,.45)" stroke-width=".6"`);
+    for (let k = 1; k < 7; k++) { const f = k / 7; const a = inA.map((v, j) => v + (outA[j] - v) * f), b = inB.map((v, j) => v + (outB[j] - v) * f); const tier = k === 4 && s.cap > 11000; add([a, b], `stroke="${tier ? c2 : 'rgba(0,0,0,.3)'}" stroke-width="${tier ? 1.5 : .55}" fill="none"`, 'line'); }
+    if (work.has(i)) add([inA, inB, outB, outA], 'fill="url(#hatch)" opacity=".92"');
+  };
+  const roof = (pts) => add(pts, 'fill="rgba(214,224,240,.16)" stroke="rgba(230,238,255,.6)" stroke-width=".8"');
+  // far side
+  seat([-XI, YI, 1], [XI, YI, 1], [XI, YI + dF, hF], [-XI, YI + dF, hF], F, 1);
+  roof([[-XI, YI + dF * .4, hF + 5], [XI, YI + dF * .4, hF + 5], [XI, YI + dF + 1, hF + 6], [-XI, YI + dF + 1, hF + 6]]);
+  // far corners
+  if (m.c) for (const sg of [-1, 1]) {
+    const dE = sg < 0 ? dL : dR, hE = sg < 0 ? hL : hR;
+    add([[sg * XI, YI, 1], [sg * XI, YI + dF, hF], [sg * (XI + dE * .75), YI + dF * .75, Math.min(hF, hE)], [sg * (XI + dE), YI, hE]], `fill="${shade(c1, .22)}" stroke="rgba(0,0,0,.45)" stroke-width=".6"`);
+    if (m.bowl) roof([[sg * XI, YI + dF * .4, hF + 5], [sg * XI, YI + dF + 1, hF + 6], [sg * (XI + dE + 1), YI, hE + 6], [sg * (XI + dE * .4), YI, hE + 5]]);
+  }
+  // ends
+  seat([-XI, -YI, 1], [-XI, YI, 1], [-XI - dL, YI, hL], [-XI - dL, -YI, hL], Lf, 2, shade(c1, .08));
+  seat([XI, YI, 1], [XI, -YI, 1], [XI + dR, -YI, hR], [XI + dR, YI, hR], Rt, 3, shade(c1, .08));
+  roof([[-XI - dL * .4, -YI, hL + 5], [-XI - dL * .4, YI, hL + 5], [-XI - dL - 1, YI, hL + 6], [-XI - dL - 1, -YI, hL + 6]]);
+  roof([[XI + dR * .4, YI, hR + 5], [XI + dR * .4, -YI, hR + 5], [XI + dR + 1, -YI, hR + 6], [XI + dR + 1, YI, hR + 6]]);
+  if (!m.bowl) for (const [x, y, h] of [[-XI - dL - 3, YI + dF + 3, Math.max(hF, hL) + 24], [XI + dR + 3, YI + dF + 3, Math.max(hF, hR) + 24], [-XI - dL - 3, -YI - dN - 3, Math.max(hN, hL) + 24], [XI + dR + 3, -YI - dN - 3, Math.max(hN, hR) + 24]]) { add([[x, y, 0], [x, y, h]], 'stroke="#8f99b3" stroke-width="1.3" fill="none"', 'line'); add([[x - 3, y, h], [x + 3, y, h], [x + 3, y, h + 2.5], [x - 3, y, h + 2.5]], 'fill="#fff6c8"'); }
+  // near corners and main stand, cut away so the pitch stays visible
+  const near = [];
+  if (m.c) for (const sg of [-1, 1]) { const dE = sg < 0 ? dL : dR, hE = sg < 0 ? hL : hR; near.push([[[sg * XI, -YI, 1], [sg * (XI + dE), -YI, hE], [sg * (XI + dE * .75), -YI - dN * .75, Math.min(hN, hE)], [sg * XI, -YI - dN, hN]], `fill="${shade(c1, .3)}" stroke="rgba(0,0,0,.45)" stroke-width=".6"`]); }
+  for (const [pts, a] of near) add(pts, a + ' opacity=".55"');
+  const n0 = shapes.length;
+  seat([XI, -YI, 1], [-XI, -YI, 1], [-XI, -YI - dN, hN], [XI, -YI - dN, hN], N, 0, shade(c1, .15));
+  for (let k = n0; k < shapes.length; k++) shapes[k][2] += ' opacity=".5"';
+  add([[-XI, -YI - dN, 0], [XI, -YI - dN, 0], [XI, -YI - dN, hN], [-XI, -YI - dN, hN]], 'fill="#1e2333" opacity=".72" stroke="rgba(255,255,255,.25)" stroke-width=".6"');
+  // building work: crane next to the stand
+  for (const i of work) {
+    const b = i === 1 ? [18, YI + dF + 8] : i === 2 ? [-XI - dL - 8, 8] : i === 3 ? [XI + dR + 8, -8] : [-18, -YI - dN - 8];
+    add([[b[0], b[1], 0], [b[0], b[1], 62]], 'stroke="#ffd23f" stroke-width="1.8" fill="none"', 'line');
+    add([[b[0] - 10, b[1], 60], [b[0] + 34, b[1], 60]], 'stroke="#ffd23f" stroke-width="1.8" fill="none"', 'line');
+    add([[b[0] + 26, b[1], 60], [b[0] + 26, b[1], 40]], 'stroke="#ffd23f" stroke-width=".8" fill="none"', 'line');
+  }
+  // project and fit
+  const P2 = shapes.map(([k, pts, a]) => [k, pts.map(pr), a]);
+  let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+  for (const [, pts] of P2.slice(1)) for (const [x, y] of pts) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+  const sc = Math.min(360 / (x1 - x0), 222 / (y1 - y0)); const ox = 200 - (x0 + x1) / 2 * sc, oy = 136 - (y0 + y1) / 2 * sc;
+  const S = (p) => [(p[0] * sc + ox).toFixed(1), (p[1] * sc + oy).toFixed(1)];
+  let out = '<rect width="400" height="260" fill="#0c1124"/>';
+  for (const [k, pts, a] of P2) { const q = pts.map(S); out += k === 'line' ? `<polyline points="${q.map(x => x.join(',')).join(' ')}" ${a}/>` : `<polygon points="${q.map(x => x.join(',')).join(' ')}" ${a}/>`; }
+  const lab = (txt, p3, dy) => { const q = S(pr(p3)); const w = txt.length * 2.3; let x = +q[0], an = 'middle'; if (x + w > 394) { x = 394; an = 'end'; } else if (x - w < 6) { x = 6; an = 'start'; } return `<text x="${x.toFixed(1)}" y="${(+q[1] + (dy || 0)).toFixed(1)}" text-anchor="${an}" font-size="9" font-family="IBM Plex Sans Condensed, Arial Narrow, sans-serif" fill="rgba(255,255,255,.88)" stroke="#0c1124" stroke-width="2.6" paint-order="stroke">${esc(txt)}</text>`; };
+  if (!opt.small) out += lab(F.n, [0, YI + dF, hF + 6], -6) + lab(Lf.n, [-XI - dL, 0, hL + 6], -6) + lab(Rt.n, [XI + dR, 0, hR + 6], -6) + lab(N.n, [0, -YI - dN, 0], 12);
+  const defs = `<defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#1a1a1a"/><rect width="3.5" height="7" fill="#ffd23f"/></pattern></defs>`;
+  return `<svg viewBox="0 0 400 260" class="stadsvg" role="img" aria-label="Drawn illustration of ${esc(t.stadium)}">${defs}${out}</svg>`;
+}
+
+// ---------- board state ----------
+function brd() { if (!G.brd) G.brd = { pend: [], cd: {}, n: {}, proj: [], log: [], ny: G.year }; if (G.brd.ny !== G.year) { G.brd.n = {}; G.brd.ny = G.year; } return G.brd; }
+const REQ = {
+  exp: { n: 'Stand expansion', cd: 150 },
+  new: { n: 'New stadium', cd: 240 },
+  tb: { n: 'Bigger transfer budget', cd: 90 },
+  wb: { n: 'Bigger wage budget', cd: 90 },
+  tr: { n: 'Better training facilities', cd: 120 },
+  yth: { n: 'Better youth facilities', cd: 120 }
+};
+function seatCost(div) { return div === 'CH' ? 0.0045 : 0.006; } // £m per new seat (game estimate)
+function expOptions(tid) {
+  const t = T(tid), m = ensureStadium(tid), div = divOf(tid);
+  return m.st.map((s, i) => {
+    const sizes = [1500, 3000, 6000].map(add => ({ add, cost: Math.round(add * seatCost(div) * (i >= 2 ? 0.9 : 1) * 10) / 10, months: Math.round(5 + add / 750), red: Math.round(s.cap * 0.45 / 10) * 10 }));
+    return { i, s, sizes };
+  });
+}
+function newStadiumOptions(tid) {
+  const t = T(tid); const base = Math.round(t.sdm.st.reduce((a, s) => a + s.cap, 0) / 1000) * 1000;
+  return [10000, 20000, 30000].map(x => { const cap = Math.max(20000, base + x); return { cap, cost: Math.round(cap * 0.008), months: 34 }; });
+}
+function facCost(k) { return k === 'tr' ? 12 : 8; }
+function activeProj(tid, k) { return brd().proj.find(p => p.tid === tid && (!k || p.k === k)); }
+function requestBlocked(k) {
+  const B = brd();
+  if (B.pend.some(p => p.k === k)) return 'The board is still considering your last request.';
+  if (B.cd[k] && B.cd[k] > G.date) return `The board will not discuss this again before ${dNice(B.cd[k], false)}.`;
+  if ((k === 'exp' || k === 'new') && B.proj.some(p => p.tid === G.user && (p.k === 'exp' || p.k === 'new'))) return 'A stadium project is already under way.';
+  if ((k === 'tr' || k === 'yth') && B.proj.some(p => p.tid === G.user && p.k === k)) return 'That work is already under way.';
+  if ((k === 'tr' || k === 'yth') && facLvl(k) >= 20) return 'These facilities are already state of the art.';
+  return null;
+}
+function boardRequest(k, opt) {
+  const why = requestBlocked(k); if (why) { toast(why); return; }
+  const B = brd();
+  B.n[k] = (B.n[k] || 0) + 1;
+  const tot = Object.values(B.n).reduce((a, b) => a + b, 0);
+  if (tot > 3) G.board = clamp(G.board - 2, 0, 100); // pestering the board costs a little confidence
+  B.pend.push({ k, opt: opt || {}, due: addDays(G.date, 2 + R.i(0, 4)), at: G.date });
+  autosave(); toast('Request sent. The board will reply in the next few days.'); render();
+}
+function boardScore(k, opt) {
+  const t = userTeam(); const B = brd();
+  const reasons = []; let sc = 0;
+  const conf = G.board; sc += (conf - 50) * 0.55;
+  reasons.push(conf >= 65 ? [1, `Board confidence in you is high (${Math.round(conf)}%).`] : conf >= 45 ? [0, `Board confidence is steady (${Math.round(conf)}%).`] : [-1, `Board confidence is low (${Math.round(conf)}%).`]);
+  const games = typeof teamGames === 'function' ? teamGames() : 0;
+  if (games >= 6) {
+    const pos = userTable().findIndex(r => r.t === G.user) + 1, tgt = boardTarget().pos, d = tgt - pos;
+    sc += clamp(d, -8, 8) * 2.2;
+    reasons.push(d >= 0 ? [1, `The team is ${ordinal(pos)}, on course for the target.`] : [-1, `The team is ${ordinal(pos)}, behind the target of top ${tgt}.`]);
+  } else if (G.hist.length) { const h = G.hist[G.hist.length - 1]; if (h.upos <= 4 || h.promoted) { sc += 6; reasons.push([1, 'Last season went well.']); } }
+  sc += (G.mgrRep - 55) * 0.18;
+  const asks = (B.n[k] || 1) - 1; if (asks) { sc -= asks * 7; reasons.push([-1, `You have already asked about this ${asks === 1 ? 'once' : asks + ' times'} this season.`]); }
+  let cost = 0;
+  if (k === 'exp') cost = opt.cost; else if (k === 'new') cost = opt.cost * 0.4; else if (k === 'tr' || k === 'yth') cost = facCost(k);
+  if (cost) {
+    const f = (t.bal - cost * 0.5) / Math.max(cost, 1);
+    sc += clamp(f * 8, -25, 14);
+    reasons.push(t.bal >= cost ? [1, `The club can afford it (${money(t.bal)} in the bank, cost ${money(cost)}).`] : t.bal >= cost * 0.4 ? [0, `The cost of ${money(cost)} would stretch the club's finances.`] : [-1, `The club cannot afford ${money(cost)} at the moment (${money(t.bal)} in the bank).`]);
+  }
+  if (k === 'exp' || k === 'new') {
+    const a = homeAttendance(G.user); const fill = a ? a.avg / Math.max(1, t.cap) : (t.rep >= 75 ? .95 : .85);
+    sc += (fill - 0.9) * 60;
+    reasons.push(fill >= 0.95 ? [1, `Home games are close to sold out (${Math.round(fill * 100)}% full).`] : [-1, `The ground is only ${Math.round(fill * 100)}% full on average.`]);
+    if (k === 'new') { sc -= 8; if (t.rep < 70) { sc -= 8; reasons.push([-1, 'The club\'s standing does not yet justify a new stadium.']); } }
+  }
+  if (k === 'tb') {
+    const r = t.tb / Math.max(1, t.bal); sc += t.bal > t.tb * 2 ? 6 : -6;
+    reasons.push(t.bal > t.tb * 2 ? [1, 'There is money in the bank beyond the current budget.'] : [-1, 'Most of the club\'s cash is already in the transfer budget.']);
+  }
+  if (k === 'wb') {
+    const use = wageBill(G.user) / Math.max(0.01, t.wb);
+    sc += use > 0.95 ? 6 : -10;
+    reasons.push(use > 0.95 ? [1, 'The wage bill is at the limit of the budget.'] : [-1, `The wage bill uses only ${Math.round(use * 100)}% of the current budget.`]);
+    if (t.bal < 0) { sc -= 12; reasons.push([-1, 'The club is in debt.']); }
+  }
+  return { sc: sc + R.i(-4, 4), reasons };
+}
+function boardDecide(req) {
+  const { k, opt } = req; const t = userTeam(); const B = brd();
+  const { sc, reasons } = boardScore(k, opt);
+  const ok = sc >= 0;
+  const list = reasons.map(([s, x]) => `${s > 0 ? '+' : s < 0 ? '−' : '·'} ${x}`).join('\n');
+  let head = '';
+  if (ok) {
+    if (k === 'exp') {
+      const s = t.sdm.st[opt.si]; s.w = { add: opt.add, red: opt.red };
+      B.proj.push({ k, tid: G.user, si: opt.si, add: opt.add, cost: opt.cost, paid: 0, start: G.date, end: addMonths(G.date, opt.months), months: opt.months });
+      syncCap(G.user);
+      head = `The board has approved a ${opt.add.toLocaleString('en-GB')}-seat expansion of the ${s.n}. Work starts now and should finish around ${monthYear(addMonths(G.date, opt.months))}. The ${s.n} loses about ${opt.red.toLocaleString('en-GB')} seats while the builders are in. Cost: ${money(opt.cost)}, paid monthly.`;
+    } else if (k === 'new') {
+      B.proj.push({ k, tid: G.user, name: opt.name, cap: opt.cap, cost: Math.round(opt.cost * 0.4), full: opt.cost, paid: 0, start: G.date, end: addMonths(G.date, opt.months), months: opt.months });
+      head = `The board has approved a new ${opt.cap.toLocaleString('en-GB')}-seat stadium, ${opt.name}. Building takes about ${Math.round(opt.months / 12 * 10) / 10} years, with the move planned for ${monthYear(addMonths(G.date, opt.months))}. Long-term loans cover most of the ${money(opt.cost)} cost; the club pays ${money(Math.round(opt.cost * 0.4))} in monthly instalments.`;
+    } else if (k === 'tb') {
+      const add = Math.max(2, Math.round(t.tb * 0.2 * 10) / 10); t.tb += add;
+      head = `The board has agreed to add ${money(add)} to your transfer budget, which is now ${money(t.tb)}.`;
+    } else if (k === 'wb') {
+      const add = t.wb * 0.1; t.wb += add;
+      head = `The board has raised the wage budget by 10% to ${wageStr(t.wb)}.`;
+    } else {
+      const months = 6; B.proj.push({ k, tid: G.user, cost: facCost(k), paid: 0, start: G.date, end: addMonths(G.date, months), months });
+      head = `The board has approved ${k === 'tr' ? 'an upgrade of the training ground' : 'new youth academy facilities'} for ${money(facCost(k))}. The work takes about six months.`;
+    }
+    G.board = clamp(G.board + 1, 0, 100);
+  } else {
+    B.cd[k] = addDays(G.date, REQ[k].cd);
+    head = `The board has turned down your request (${REQ[k].n.toLowerCase()}). They will not discuss it again before ${dNice(B.cd[k], false)}.`;
+  }
+  B.log.unshift({ d: G.date, k, ok, txt: REQ[k].n + (k === 'exp' ? ` · ${t.sdm.st[opt.si].n} +${opt.add.toLocaleString('en-GB')}` : k === 'new' ? ` · ${opt.name}` : '') });
+  B.log = B.log.slice(0, 30);
+  msg(`Board ${ok ? 'approves' : 'rejects'}: ${REQ[k].n}`, `${head}\n\nThe board's reasons:\n${list}`);
+}
+function addMonths(d, n) { const x = dParse(d); x.setUTCMonth(x.getUTCMonth() + n); return x.toISOString().slice(0, 10); }
+function monthYear(d) { const x = dParse(d); return MON[x.getUTCMonth()] + ' ' + x.getUTCFullYear(); }
+
+function projectsTick() {
+  const B = brd();
+  // board replies
+  for (const r of B.pend.filter(p => p.due <= G.date)) { B.pend = B.pend.filter(x => x !== r); try { boardDecide(r); } catch (e) { console.error(e); } }
+  // monthly instalments
+  if (G.date.slice(8) === '01') for (const p of B.proj) {
+    const t = T(p.tid); if (!t) continue;
+    const step = Math.min(p.cost - p.paid, p.cost / p.months); if (step <= 0) continue;
+    p.paid += step; t.bal -= step; t.fin.out.build = (t.fin.out.build || 0) + step;
+  }
+  // completions
+  for (const p of B.proj.filter(p => p.end <= G.date)) {
+    B.proj = B.proj.filter(x => x !== p);
+    const t = T(p.tid); if (!t) continue;
+    const rest = p.cost - p.paid; if (rest > 0) { t.bal -= rest; t.fin.out.build = (t.fin.out.build || 0) + rest; }
+    if (p.k === 'exp') {
+      const s = t.sdm.st[p.si]; s.cap += p.add; delete s.w; syncCap(p.tid);
+      if (p.tid === G.user) msg('Stand reopens', `Work on the ${s.n} is finished. It now holds ${s.cap.toLocaleString('en-GB')}, and ${t.stadium} holds ${t.cap.toLocaleString('en-GB')}.`);
+    } else if (p.k === 'new') {
+      const old = t.stadium; const caps = STAND_SHARE.map(x => Math.round(p.cap * x / 10) * 10); caps[0] += p.cap - caps.reduce((a, b) => a + b, 0);
+      t.stadium = p.name; t.sdm = { st: ['Main Stand', 'East Stand', 'North Stand', 'South Stand'].map((n, i) => ({ n, cap: caps[i] })), o: String(dParse(G.date).getUTCFullYear()), rec: null, pitch: '105 × 68 m', bowl: true, c: true, note: `Replaced ${old}.`, hi: null, built: G.date };
+      syncCap(p.tid);
+      if (typeof STANDS !== 'undefined') delete STANDS[p.tid];
+      if (p.tid === G.user) msg('New stadium opens', `${t.name} have moved into ${p.name}, a ${t.cap.toLocaleString('en-GB')}-seat stadium. ${old} hosted its last game.`);
+    } else if (p.k === 'tr' || p.k === 'yth') {
+      t.fac[p.k] = clamp(t.fac[p.k] + 2, 1, 20);
+      if (p.tid === G.user) msg(p.k === 'tr' ? 'Training ground upgraded' : 'Youth facilities upgraded', `The work is finished. ${p.k === 'tr' ? 'Training facilities' : 'Youth facilities'} are now rated ${FAC_LBL[t.fac[p.k]].toLowerCase()} (${t.fac[p.k]}/20).`);
+    }
+  }
+}
+const _dtClub = dailyTick;
+dailyTick = function () { _dtClub.apply(this, arguments); try { if (G) projectsTick(); } catch (e) { console.error(e); } };
+
+// record crowds at home
+const _pmClub = postMatch;
+postMatch = function (f, pre) {
+  _pmClub(f, pre);
+  try { if (f.att && !f.neutral && T(f.h) && T(f.h).sdm) { const m = T(f.h).sdm; if (!m.hi || f.att > m.hi.att) m.hi = { att: f.att, opp: f.a, d: f.d }; } } catch (e) { }
+};
+
+// matchday venue: stand names follow the club's stands, closed sections during works
+const _venueOfC = venueOf;
+venueOf = function (f) {
+  const v = _venueOfC(f); if (v.neutral) return v;
+  const t = T(f.h); if (!t || t.lite || !t.sdm) return v;
+  v.stands = t.sdm.st.map(s => s.n); v.cap = t.cap; v.name = t.stadium;
+  v.works = t.sdm.st.map((s, i) => s.w ? i : -1).filter(i => i >= 0);
+  return v;
+};
+
+// ---------- screens ----------
+function facBar(k, t) { const v = t.fac[k]; return `<div class="row" style="justify-content:space-between"><span>${k === 'tr' ? 'Training ground' : 'Youth academy'}</span><b class="mono">${v}/20</b></div><div class="bar"><i style="width:${v * 5}%"></i></div><div class="dim" style="font-size:12px">${FAC_LBL[v]}</div>`; }
+function stadiumPanel(tid, small) {
+  const t = T(tid); const m = ensureStadium(tid); if (!m) return '';
+  const a = homeAttendance(tid);
+  const total = m.st.reduce((s, x) => s + x.cap, 0);
+  const proj = brd().proj.filter(p => p.tid === tid);
+  const stands = `<div class="tw"><table class="t"><thead><tr><th>Stand</th><th class="n">Capacity</th><th>Status</th></tr></thead><tbody>${m.st.map((s, i) => `<tr><td>${esc(s.n)}${i === 0 ? ' <span class="dim">(main)</span>' : ''}</td><td class="n">${s.w ? `<span class="amb">${standCapNow(s).toLocaleString('en-GB')}</span> <span class="dim">of ${s.cap.toLocaleString('en-GB')}</span>` : s.cap.toLocaleString('en-GB')}</td><td>${s.w ? `<span class="amb">Building +${s.w.add.toLocaleString('en-GB')}</span>` : '<span class="dim">Open</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="stadgrid">
+    <figure class="stadfig">${stadiumSvg(tid, { small })}<figcaption class="dim">Drawn illustration based on the ground's stands, roof and capacity. It is not a photo.</figcaption></figure>
+    <div><dl class="kv">
+      <dt>Stadium</dt><dd><b>${esc(t.stadium)}</b></dd>
+      <dt>Opened</dt><dd>${esc(m.o)}</dd>
+      <dt>Capacity</dt><dd>${t.cap.toLocaleString('en-GB')}${t.cap !== total ? ` <span class="dim">(${total.toLocaleString('en-GB')} when works finish)</span>` : ''}</dd>
+      <dt>Record attendance</dt><dd>${m.rec ? esc(m.rec) : '<span class="dim">No verified figure</span>'}</dd>
+      <dt>Highest this save</dt><dd>${m.hi ? `${m.hi.att.toLocaleString('en-GB')} <span class="dim">v ${esc(tName(m.hi.opp))}, ${dShort(m.hi.d)} ${m.hi.d.slice(0, 4)}</span>` : '<span class="dim">-</span>'}</dd>
+      <dt>Average league crowd</dt><dd>${a ? `${a.avg.toLocaleString('en-GB')} <span class="dim">(${a.n} games, ${Math.min(100, Math.round(a.avg / Math.max(1, t.cap, a.hi.att) * 100))}% full)</span>` : '<span class="dim">No home league games yet</span>'}</dd>
+      <dt>Pitch</dt><dd>${esc(m.pitch)}</dd>
+      <dt>Roof</dt><dd>${m.bowl ? 'Continuous roof around the bowl' : m.c ? 'Covered stands with filled corners' : 'Four separate covered stands'}</dd>
+      <dt>Ticket prices</dt><dd>${ticketLevel(t)} <span class="dim">· about £${Math.round(ticketYield(t))} per fan</span></dd>
+      ${m.note ? `<dt>Note</dt><dd>${esc(m.note)}</dd>` : ''}
+    </dl></div></div>
+    <h2 class="sect">Stands</h2>${stands}
+    <div class="grid2" style="margin-top:10px"><div class="box pad">${facBar('tr', t)}</div><div class="box pad">${facBar('yth', t)}</div></div>
+    ${proj.length ? `<h2 class="sect">Building work</h2><div class="box pad">${proj.map(p => projLine(p)).join('<br>')}</div>` : ''}
+    <p class="dim" style="font-size:12px">Opening year, record attendance, pitch size and stand names come from Wikipedia stadium pages (read Oct 2026). Stand capacities, ticket prices and facility ratings are game estimates.</p>`;
+}
+function projLine(p) {
+  const t = T(p.tid); const pct = clamp(Math.round(dDiff(p.start, G.date) / Math.max(1, dDiff(p.start, p.end)) * 100), 0, 100);
+  const what = p.k === 'exp' ? `${t.sdm.st[p.si].n}: +${p.add.toLocaleString('en-GB')} seats` : p.k === 'new' ? `New stadium: ${esc(p.name)} (${p.cap.toLocaleString('en-GB')})` : p.k === 'tr' ? 'Training ground upgrade' : 'Youth academy upgrade';
+  return `<div style="margin:4px 0"><div class="row" style="justify-content:space-between"><b>${what}</b><span class="mono dim">${pct}% · due ${monthYear(p.end)}</span></div><div class="bar"><i style="width:${pct}%;background:var(--amb)"></i></div><div class="dim" style="font-size:12px">Paid ${money(p.paid)} of ${money(p.cost)}</div></div>`;
+}
+function scrClubStadium() { return stadiumPanel(G.user); }
+function scrClubBoard() {
+  const t = userTeam(); const B = brd(); ensureStadium(G.user);
+  const pend = B.pend.map(p => `<div>⏳ ${esc(REQ[p.k].n)} <span class="dim">· sent ${dShort(p.at)}</span></div>`).join('');
+  const blk = (k) => requestBlocked(k);
+  const btn = (k, label, extra) => { const b = blk(k); return `<button class="btn ${b ? '' : 'pri'}" data-a="breq" data-v="${k}" ${extra || ''} ${b ? `title="${esc(b)}" disabled` : ''}>${label}</button>${b ? `<div class="dim" style="font-size:12px;margin-top:4px">${esc(b)}</div>` : ''}`; };
+  const eo = expOptions(G.user); const si = clamp(+(UI.bsi || 0), 0, 3), sz = clamp(+(UI.bsz || 1), 0, 2); const o = eo[si].sizes[sz];
+  const no = newStadiumOptions(G.user); const ni = clamp(+(UI.bni || 0), 0, 2); const nn = no[ni];
+  const tgt = boardTarget();
+  return `<div class="grid3" style="margin-top:10px">
+    <div class="box pad"><label class="lb">Board confidence</label><div class="big ${G.board < 30 ? 'red' : G.board < 55 ? 'amb' : 'grn'}">${Math.round(G.board)}%</div><div class="dim">Target: ${esc(tgt.txt)}</div></div>
+    <div class="box pad"><label class="lb">Club finances</label><div class="big" style="font-size:28px">${money(t.bal)}</div><div class="dim">Transfer budget ${money(t.tb)} · wages ${wageStr(t.wb)}</div></div>
+    <div class="box pad"><label class="lb">Requests this season</label><div class="big">${Object.values(B.n).reduce((a, b) => a + b, 0)}</div><div class="dim">More than three in a season starts to annoy the board.</div></div>
+  </div>
+  ${pend ? `<div class="box pad" style="margin-top:10px">${pend}</div>` : ''}
+  <h2 class="sect">Stadium</h2>
+  <div class="grid2">
+    <div class="box pad"><h3 class="h3">Expand a stand</h3>
+      <div class="row" style="gap:8px;flex-wrap:wrap"><select class="f" id="bsi" data-a="bsel">${eo.map(x => `<option value="${x.i}" ${x.i === si ? 'selected' : ''}>${esc(x.s.n)} (${x.s.cap.toLocaleString('en-GB')})</option>`).join('')}</select>
+      <select class="f" id="bsz" data-a="bsel">${eo[si].sizes.map((x, i) => `<option value="${i}" ${i === sz ? 'selected' : ''}>+${x.add.toLocaleString('en-GB')} seats</option>`).join('')}</select></div>
+      <p class="dim" style="font-size:13px">Cost ${money(o.cost)} · about ${o.months} months · ${o.red.toLocaleString('en-GB')} seats closed during the work.</p>
+      ${btn('exp', 'Ask the board')}</div>
+    <div class="box pad"><h3 class="h3">Build a new stadium</h3>
+      <div class="row" style="gap:8px;flex-wrap:wrap"><input class="f" id="bname" maxlength="40" value="${esc(UI.bname || 'New ' + t.short + ' Stadium')}" aria-label="Stadium name" style="flex:1;min-width:160px"><select class="f" id="bni" data-a="bsel">${no.map((x, i) => `<option value="${i}" ${i === ni ? 'selected' : ''}>${x.cap.toLocaleString('en-GB')} seats</option>`).join('')}</select></div>
+      <p class="dim" style="font-size:13px">Cost ${money(nn.cost)} (the club pays 40%) · about ${Math.round(nn.months / 12 * 10) / 10} years. A multi-season project.</p>
+      ${btn('new', 'Ask the board')}</div>
+  </div>
+  <h2 class="sect">Budgets and facilities</h2>
+  <div class="grid2">
+    <div class="box pad"><h3 class="h3">Transfer budget</h3><p class="dim" style="font-size:13px">Ask for about 20% more.</p>${btn('tb', 'Ask for more')}</div>
+    <div class="box pad"><h3 class="h3">Wage budget</h3><p class="dim" style="font-size:13px">Ask for a 10% rise.</p>${btn('wb', 'Ask for more')}</div>
+    <div class="box pad"><h3 class="h3">Training facilities</h3>${facBar('tr', t)}<p class="dim" style="font-size:13px">Upgrade +2 for ${money(facCost('tr'))}, six months. Better facilities help your players improve.</p>${btn('tr', 'Request upgrade')}</div>
+    <div class="box pad"><h3 class="h3">Youth facilities</h3>${facBar('yth', t)}<p class="dim" style="font-size:13px">Upgrade +2 for ${money(facCost('yth'))}, six months. Better facilities improve academy intakes.</p>${btn('yth', 'Request upgrade')}</div>
+  </div>
+  ${B.proj.filter(p => p.tid === G.user).length ? `<h2 class="sect">Work in progress</h2><div class="box pad">${B.proj.filter(p => p.tid === G.user).map(projLine).join('')}</div>` : ''}
+  ${B.log.length ? `<h2 class="sect">Past requests</h2><div class="tw"><table class="t"><thead><tr><th>Date</th><th>Request</th><th>Decision</th></tr></thead><tbody>${B.log.map(l => `<tr><td class="mono">${dShort(l.d)} ${l.d.slice(0, 4)}</td><td>${esc(l.txt)}</td><td class="${l.ok ? 'grn' : 'red'}">${l.ok ? 'Approved' : 'Rejected'}</td></tr>`).join('')}</tbody></table></div>` : ''}
+  <p class="dim" style="font-size:12px">The board weighs its confidence in you, results against the target, the club's money, how full the ground is and how often you have asked. A refusal means waiting before asking again.</p>`;
+}
+Object.assign(ACT, {
+  breq: (k) => {
+    if (k === 'exp') { const eo = expOptions(G.user); const si = clamp(+(UI.bsi || 0), 0, 3), sz = clamp(+(UI.bsz || 1), 0, 2); const o = eo[si].sizes[sz]; return boardRequest('exp', { si, add: o.add, cost: o.cost, months: o.months, red: o.red }); }
+    if (k === 'new') { const no = newStadiumOptions(G.user); const n = no[clamp(+(UI.bni || 0), 0, 2)]; const nm = (($('#bname') || {}).value || '').trim() || 'New ' + userTeam().short + ' Stadium'; UI.bname = nm; return boardRequest('new', { name: nm, cap: n.cap, cost: n.cost, months: n.months }); }
+    boardRequest(k);
+  }
+});
+document.addEventListener('change', (ev) => {
+  const el = ev.target; if (!el || !el.dataset || el.dataset.a !== 'bsel') return;
+  const nm = $('#bname'); if (nm) UI.bname = nm.value;
+  if (el.id === 'bsi') UI.bsi = +el.value; if (el.id === 'bsz') UI.bsz = +el.value; if (el.id === 'bni') UI.bni = +el.value; render();
+});
+
+// club screen tabs
+const _scrClubC = scrClub;
+const CLUB_TABS = [['ov', 'Overview'], ['stad', 'Stadium'], ['board', 'Board'], ['hon', 'Honours']];
+scrClub = function () {
+  ensureAllStadia();
+  const tab = UI.tab.club || 'ov';
+  const tabs = `<div class="tabs" style="margin-top:4px">${CLUB_TABS.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="club" data-v="${k}">${l}</button>`).join('')}</div>`;
+  const t = userTeam();
+  const band = `<div class="band">${esc(t.name)}<small>${esc(t.stadium)} · capacity ${t.cap.toLocaleString('en-GB')}</small></div>`;
+  if (tab === 'stad') return band + tabs + `<div style="margin-top:10px">${scrClubStadium()}</div>`;
+  if (tab === 'board') return band + tabs + scrClubBoard();
+  if (tab === 'hon') return band + tabs + (typeof clubHonoursHtml === 'function' ? clubHonoursHtml(G.user) : '');
+  const html = _scrClubC();
+  const i = html.indexOf('</div>'); // end of the band
+  return i > 0 ? html.slice(0, i + 6) + tabs + html.slice(i + 6) : tabs + html;
+};
+
+// other clubs' pop-up: stadium block
+const _clubModalC = clubModal;
+clubModal = function (tid) {
+  _clubModalC(tid);
+  const t = T(tid); if (!t || t.lite || !UI.modal || UI.modal.includes('stadmini')) return;
+  const m = ensureStadium(tid);
+  const blk = `<div class="stadmini"><figure class="stadfig">${stadiumSvg(tid, { small: true })}</figure><dl class="kv"><dt>Stadium</dt><dd>${esc(t.stadium)}</dd><dt>Opened</dt><dd>${esc(m.o)}</dd><dt>Capacity</dt><dd>${t.cap.toLocaleString('en-GB')}</dd><dt>Record</dt><dd>${m.rec ? esc(m.rec) : '-'}</dd><dt>Stands</dt><dd>${m.st.map(s => esc(s.n)).join(', ')}</dd></dl></div>${typeof clubHonoursShort === 'function' ? clubHonoursShort(tid) : ''}`;
+  UI.modal = UI.modal.replace('<div class="mc">', '<div class="mc">' + blk);
+  render();
+};
+
+// facilities feed the game: training ground speeds up progression, youth facilities lift intakes
+
+// migration for older saves
+const _renderClub = render;
+render = function () { if (G && G.teams && !G.v5) { try { ensureAllStadia(); brd(); G.v5 = 1; } catch (e) { console.error(e); } } _renderClub(); };
+
+// history.js: competition history (real winners + every in-game season), club honours, manager world rankings.
+// Loaded after club.js.
+
+const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL']];
+const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Paris Saint-Germain': 'Paris SG', 'Atlético Madrid': 'Atletico Madrid', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
+let _HR = null;
+function histRows() {
+  if (_HR) return _HR;
+  _HR = {};
+  for (const k in HIST) _HR[k] = HIST[k].split('\n').map(l => { const [y, w, r] = l.split('|'); return { y: +y, w: HIST_ALIAS[w] || w, r: HIST_ALIAS[r] || r }; });
+  return _HR;
+}
+function histSeason(y, code) { return code === 'FA' || code === 'LC' ? String(y + 1) : seasonLabel(y); }
+let _NI = null;
+function teamByName(n) {
+  if (!_NI || _NI.g !== G || _NI.n !== Object.keys(G.teams).length) { _NI = { g: G, n: Object.keys(G.teams).length, m: {} }; for (const t of Object.values(G.teams)) { _NI.m[t.name] = t.id; if (t.short) _NI.m[t.short] = _NI.m[t.short] || t.id; } }
+  return _NI.m[n] || null;
+}
+function teamOrName(n) { const id = teamByName(n); return id ? tLink(id, true) : esc(n); }
+
+// ---------- in-game season records ----------
+function chistStore() { if (!G.chist) G.chist = []; return G.chist; }
+function compStats(code) {
+  const goals = {}, rat = {}, apps = {};
+  for (const f of Object.values(G.fx)) {
+    if (f.comp !== code || !f.r) continue;
+    if (f.sc) for (const e of f.sc) if (e[2] === 'G' && e[3] && P(e[3]) && !(e[5] === 'og')) goals[e[3]] = (goals[e[3]] || 0) + 1;
+    if (f.rt) for (const side of f.rt) if (side) for (const [id, r] of side) { rat[id] = (rat[id] || 0) + r; apps[id] = (apps[id] || 0) + 1; }
+  }
+  const tsId = Object.keys(goals).sort((a, b) => goals[b] - goals[a] || (apps[a] || 0) - (apps[b] || 0))[0];
+  const maxA = Math.max(0, ...Object.values(apps));
+  const minA = LEAGUE_COMPS.includes(code) ? Math.max(5, maxA * .5) : Math.max(2, Math.min(4, maxA * .6));
+  const bpId = Object.keys(apps).filter(id => apps[id] >= minA && P(id)).sort((a, b) => rat[b] / apps[b] - rat[a] / apps[a])[0];
+  const pk = (id, v) => id && P(id) ? [P(id).n, P(id).c, v, id] : null;
+  return { ts: pk(tsId, goals[tsId]), bp: bpId ? pk(bpId, +(rat[bpId] / apps[bpId]).toFixed(2)) : null };
+}
+function finalOf(code) { return Object.values(G.fx).find(f => f.comp === code && f.rnd === 'Final' && f.r); }
+function recordSeason() {
+  const rec = { y: G.year, s: seasonLabel(G.year), c: {} };
+  const add = (code, w, r) => { const st = compStats(code); rec.c[code] = { w: w || null, r: r || null, ts: st.ts, bp: st.bp }; };
+  const tb = leagueTable(), ct = champTable();
+  add('PL', tb[0].t, tb[1].t);
+  add('CH', ct[0].t, ct[1].t);
+  for (const c of ['FA', 'LC', 'PO']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
+  for (const c of ['UCL', 'UEL', 'UECL']) { const E = G.euro && G.euro[c]; if (!E) continue; const f = finalOf(c); const w = E.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
+  return rec;
+}
+
+// ---------- manager rankings ----------
+const TRO_W = { 'Premier League': 20, 'Championship': 4, 'Championship play-offs': 2, 'FA Cup': 6, 'Carabao Cup': 4, 'Champions League': 30, 'Europa League': 15, 'Conference League': 8 };
+const AW_W = { 'Manager of the Month': 1, 'Manager of the Season': 5 };
+function mrk() { if (!G.mrk) G.mrk = { pts: {}, tro: {}, prev: {}, mv: {}, seen: {} }; return G.mrk; }
+let _MI = null;
+function mgrIndex() { if (_MI) return _MI; _MI = {}; for (const m of MGR_DATA) _MI[m[0]] = m; return _MI; }
+function mgrBase(m) { let s = 0; for (const tok of (m[4] || '').split(' ')) { if (!tok) continue; s += (MGR_W[tok[0]] || 0) * (+tok.slice(1) || 1); } return s; }
+function mgrOfTeam(tid) {
+  const t = T(tid); if (!t) return null;
+  if (!t.lite) return t.mgr;
+  const m = MGR_DATA.find(x => x[2] === 'a' && x[3] === t.name); return m ? m[0] : null;
+}
+function mgrClub(m) {
+  const id = fullTeams().find(t => T(t).mgr === m[0] && t !== G.user);
+  if (id) return { tid: id, txt: tName(id, true) };
+  if (m[3]) return { tid: teamByName(m[3]), txt: m[3] };
+  return { tid: null, txt: 'Without a club' };
+}
+function mgrActive(m) {
+  if (m[2] === 'r' || m[2] === 'd') return false;
+  return true;
+}
+function userPoints() {
+  const mp = G.mgrP; if (!mp) return 0; let s = 0;
+  for (const st of mp.rec || []) for (const tr of st.tro || []) { const n = tr.replace(/^\d{4}\/\d{2} /, ''); s += TRO_W[n] || 0; }
+  for (const a of mp.aw || []) s += AW_W[a.n] || 0;
+  return s + (mrk().pts['@user'] || 0);
+}
+function rankPool() {
+  const M = mrk(); const out = [];
+  for (const m of MGR_DATA) {
+    if (G.mgrP && m[0] === G.mgrP.name) continue;
+    const extra = M.pts[m[0]] || 0; const cl = mgrClub(m);
+    const ingameActive = !m[3] && !fullTeams().some(t => T(t).mgr === m[0]);
+    out.push({ k: m[0], n: m[0], nat: m[1], st: ingameActive && m[2] === 'a' ? 'f' : m[2], club: ingameActive && m[2] === 'a' ? { tid: null, txt: 'Without a club' } : cl, pts: mgrBase(m) + extra, base: m[4], eng: m[5] || (cl.tid && divOf(cl.tid)), extra });
+  }
+  const mp = G.mgrP || {};
+  out.push({ k: '@user', n: G.mgr, nat: mp.nat || 'England', st: G.sacked ? 'f' : 'a', club: { tid: G.sacked ? null : G.user, txt: G.sacked ? 'Without a club' : tName(G.user, true) }, pts: userPoints(), base: '', eng: 1, me: 1 });
+  return out;
+}
+function rankList(kind) {
+  let pool = rankPool();
+  if (kind === 'cur') pool = pool.filter(x => x.st !== 'r' && x.st !== 'd');
+  else if (kind === 'eng') pool = pool.filter(x => x.eng);
+  else if (kind === 'eur') pool = pool.filter(x => REGION_OF[x.nat] === 'Europe');
+  else if (kind === 'reg') { const reg = userRegion(); pool = pool.filter(x => REGION_OF[x.nat] === reg); }
+  pool.sort((a, b) => b.pts - a.pts || (a.me ? -1 : b.me ? 1 : a.n.localeCompare(b.n)));
+  let r = 0, last = null; pool.forEach((x, i) => { if (x.pts !== last) { r = i + 1; last = x.pts; } x.rk = r; });
+  return pool;
+}
+function userRegion() { const nat = (G.mgrP && G.mgrP.nat) || 'England'; return REGION_OF[nat] || 'Europe'; }
+function seasonFinishPoints() {
+  const M = mrk();
+  const give = (tid, p) => { if (!p) return; const k = tid === G.user ? '@user' : T(tid).mgr; if (k !== '@user' && !mgrIndex()[k]) return; M.pts[k] = (M.pts[k] || 0) + p; };
+  leagueTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
+  champTable().forEach((r, i) => { if (!T(r.t).lite) give(r.t, [3, 2, 1, 1, 1, 1][i] || 0); });
+}
+function updateRanks() {
+  const M = mrk();
+  const before = M.prev.all ? M.prev.all['@user'] : null;
+  for (const kind of ['all', 'cur', 'eng', 'eur', 'reg']) {
+    const L = rankList(kind); const now = {}; L.forEach(x => now[x.k] = x.rk);
+    const prev = M.prev[kind] || {}; M.mv[kind] = {};
+    for (const k in now) if (prev[k]) M.mv[kind][k] = prev[k] - now[k];
+    M.prev[kind] = now;
+  }
+  // inbox news for the user's climb
+  const all = rankList('all'); const me = all.find(x => x.me); if (!me) return;
+  for (const th of [50, 25, 10, 3, 1]) if (me.rk <= th && !(M.seen['t' + th])) { M.seen['t' + th] = 1; msg(th === 1 ? 'World number one' : `Top ${th} in the world`, th === 1 ? `${G.mgr} is now the highest-ranked manager of all time in the GAFFER world rankings, with ${me.pts} points.` : `${G.mgr} has climbed into the top ${th} of the all-time manager rankings (${ordinal(me.rk)}, ${me.pts} points).`); break; }
+  const passed = all.filter(x => !x.me && (x.st === 'r' || x.st === 'd') && x.pts < me.pts && !M.seen['p' + x.k]);
+  if (passed.length && me.pts > 0) { for (const x of passed) M.seen['p' + x.k] = 1; const top = passed.sort((a, b) => b.pts - a.pts).slice(0, 3); msg('Rankings: legends passed', `With ${me.pts} points, ${G.mgr} has moved past ${top.map(x => x.n + ' (' + x.pts + ')').join(', ')}${passed.length > 3 ? ` and ${passed.length - 3} more` : ''} in the all-time rankings.`); }
+  if (before) { const d = before - M.prev.all['@user']; if (d) news('Manager rankings', `${G.mgr} ${d > 0 ? 'rises' : 'drops'} ${Math.abs(d)} place${Math.abs(d) === 1 ? '' : 's'} to ${ordinal(M.prev.all['@user'])} in the all-time manager rankings.`, G.user); }
+}
+
+// honours won by real managers' clubs during the game
+const _honH = honour;
+honour = function (tid, name) {
+  _honH(tid, name);
+  try { if (tid !== G.user) { const k = mgrOfTeam(tid); if (k && mgrIndex()[k] && TRO_W[name]) { const M = mrk(); M.pts[k] = (M.pts[k] || 0) + TRO_W[name]; (M.tro[k] = M.tro[k] || []).push(seasonLabel(G.year) + ' ' + name); } } } catch (e) { console.error(e); }
+};
+
+// season end: record the season, finishing points, then rankings
+const _seH = seasonEnd;
+seasonEnd = function () {
+  let rec = null;
+  try { rec = recordSeason(); seasonFinishPoints(); } catch (e) { console.error(e); }
+  _seH.apply(this, arguments);
+  try {
+    if (rec) {
+      const A = G.awards && G.awards.s || [];
+      for (const lg of ['PL', 'CH']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
+      chistStore().push(rec);
+    }
+    updateRanks();
+  } catch (e) { console.error(e); }
+};
+
+// ---------- club honours ----------
+function clubHonours(tid) {
+  const t = T(tid); if (!t) return [];
+  const R = histRows(); const out = [];
+  const nm = t.name;
+  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL' };
+  for (const [code, label] of HIST_COMPS) {
+    const rows = R[code] || [];
+    const real = rows.filter(r => r.w === nm), ru = rows.filter(r => r.r === nm).length;
+    const game = chistStore().filter(h => h.c[map[code]] && h.c[map[code]].w === tid);
+    const gru = chistStore().filter(h => h.c[map[code]] && h.c[map[code]].r === tid).length;
+    const n = real.length + game.length;
+    if (n || ru || gru) out.push({ code, label, n, real: real.length, game: game.length, ru: ru + gru, last: game.length ? game[game.length - 1].s : real.length ? histSeason(real[real.length - 1].y, code) : null, first: real.length ? histSeason(real[0].y, code) : game.length ? game[0].s : null });
+  }
+  const po = chistStore().filter(h => h.c.PO && h.c.PO.w === tid);
+  if (po.length) out.push({ code: 'PO', label: 'Championship play-offs', n: po.length, real: 0, game: po.length, ru: 0, last: po[po.length - 1].s, first: po[0].s, note: 'from 2026/27' });
+  return out;
+}
+function clubHonoursHtml(tid) {
+  const H = clubHonours(tid);
+  const mine = (G.honours[tid] || []);
+  return `<h2 class="sect">Major honours</h2>${H.filter(h => h.n).length ? `<div class="tw"><table class="t"><thead><tr><th>Competition</th><th class="n">Won</th><th class="n">Runners-up</th><th>First</th><th>Latest</th><th class="n">In this save</th></tr></thead><tbody>${H.map(h => `<tr><td>${esc(h.label)}</td><td class="n"><b class="${h.n ? 'yel' : 'dim'}">${h.n}</b></td><td class="n">${h.ru}</td><td class="mono">${h.first || '-'}</td><td class="mono">${h.last || '-'}</td><td class="n">${h.game || '-'}</td></tr>`).join('')}</tbody></table></div>` : '<div class="box pad dim">No major trophies yet.</div>'}
+  <h2 class="sect">Won in this save</h2><div class="box pad">${mine.length ? mine.map(h => `<div>🏆 ${esc(h)}</div>`).join('') : '<span class="dim">None yet.</span>'}</div>
+  <p class="dim" style="font-size:12px">Real honours count wins up to 2025/26 in the English top flight (First Division and Premier League), the second tier since 2004/05, the FA Cup, the League Cup, the European Cup/Champions League, the UEFA Cup/Europa League and the Conference League (Wikipedia list pages, read Oct 2026). Seasons played in this game are added on top.</p>`;
+}
+function clubHonoursShort(tid) {
+  const H = clubHonours(tid).filter(h => h.n);
+  return H.length ? `<p class="dim" style="margin:6px 0 10px">🏆 ${H.map(h => `${esc(h.label)} ×${h.n}`).join(' · ')}</p>` : '';
+}
+
+// ---------- screens ----------
+function histTable(code, gcode) {
+  const R = histRows()[code] || [];
+  const game = chistStore().slice().reverse().filter(h => h.c[gcode]);
+  const ply = (x) => x ? `${P(x[3]) ? pLink(x[3], x[0]) : esc(x[0])} <span class="dim">${esc(tName(x[1]))}${x[2] != null ? ' · ' + x[2] : ''}</span>` : '<span class="dim">-</span>';
+  const gRows = game.map(h => { const c = h.c[gcode]; const po = gcode === 'CH' && h.c.PO && h.c.PO.w ? ` <span class="dim">· play-offs: ${esc(tName(h.c.PO.w))}</span>` : ''; return `<tr class="${c.w === G.user ? 'me' : ''}"><td class="mono">${h.s}</td><td>${c.w ? tLink(c.w, true) : '-'}${po}</td><td>${c.r ? tLink(c.r, true) : '-'}</td><td>${ply(c.ts)}</td><td>${ply(c.bp)}</td></tr>`; }).join('');
+  const rRows = R.slice().reverse().map(r => `<tr><td class="mono">${histSeason(r.y, code)}</td><td>${teamOrName(r.w)}</td><td class="dim">${teamOrName(r.r)}</td><td class="dim">-</td><td class="dim">-</td></tr>`).join('');
+  // most titles
+  const cnt = {}; for (const r of R) cnt[r.w] = (cnt[r.w] || 0) + 1; for (const h of game) { const w = h.c[gcode].w; if (w) { const n = T(w) ? T(w).name : w; cnt[n] = (cnt[n] || 0) + 1; } }
+  const top = Object.entries(cnt).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  return `<div class="box pad" style="margin:10px 0">${top.map(([n, c]) => `<span class="chipx">${teamOrName(n)} <b class="yel mono">${c}</b></span>`).join(' ')}</div>
+  <div class="tw"><table class="t"><thead><tr><th>Season</th><th>Winner</th><th>Runner-up</th><th>Top scorer</th><th>Best player</th></tr></thead><tbody>
+  ${gRows || ''}${gRows ? '<tr><td colspan="5" class="dim" style="font-size:12px">Seasons above were played in this save. Real history below.</td></tr>' : ''}${rRows}</tbody></table></div>`;
+}
+function rankTable(kind) {
+  const L = rankList(kind); const M = mrk(); const mv = M.mv[kind] || {};
+  const st = { a: '', n: '', f: '', r: 'Retired', d: 'Died' };
+  return `<div class="tw"><table class="t"><thead><tr><th class="n">#</th><th class="n">±</th><th>Manager</th><th>Nation</th><th>Club / job</th><th>Major honours</th><th class="n">Points</th></tr></thead><tbody>${L.map(x => {
+    const d = mv[x.k]; const arrow = d > 0 ? `<span class="grn">▲${d}</span>` : d < 0 ? `<span class="red">▼${-d}</span>` : '<span class="dim">-</span>';
+    const hon = x.me ? (G.mgrP ? G.mgrP.rec.reduce((a, s) => a + s.tro.length, 0) + ' trophies' : '') : honoursText(x.base, M.tro[x.k]);
+    return `<tr class="${x.me ? 'me' : ''}"><td class="n mono">${x.rk}</td><td class="n mono">${arrow}</td><td><b>${esc(x.n)}</b>${x.st === 'r' || x.st === 'd' ? ` <span class="dim">(${st[x.st]})</span>` : ''}</td><td class="dim">${esc(x.nat)}</td><td>${x.club.tid ? tLink(x.club.tid, true) : `<span class="dim">${esc(x.club.txt)}</span>`}</td><td class="dim" style="white-space:normal;font-size:12.5px">${hon}</td><td class="n"><b class="mono">${x.pts}</b></td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+function honoursText(base, extra) {
+  const parts = []; for (const tok of (base || '').split(' ')) { if (!tok) continue; const n = +tok.slice(1) || 1; parts.push(`${n} ${MGR_CODE_N[tok[0]]}${n > 1 && !/s$/.test(MGR_CODE_N[tok[0]]) ? 's' : ''}`); }
+  let s = parts.join(', ');
+  if (extra && extra.length) s += (s ? '; ' : '') + `<span class="yel">in this save: ${extra.length}</span>`;
+  return s || '-';
+}
+function scrHistory() {
+  const tab = UI.tab.hist || 'LG';
+  const reg = userRegion();
+  const rk = UI.tab.rk || 'all';
+  let body = '';
+  const comp = HIST_COMPS.find(x => x[0] === tab);
+  if (comp) body = histTable(comp[0], comp[2]);
+  else if (tab === 'club') {
+    const ids = fullTeams().slice().sort((a, b) => T(a).name.localeCompare(T(b).name)); const cid = ids.includes(UI.tab.hcl) ? UI.tab.hcl : G.user;
+    body = `<div class="row" style="margin:10px 0"><label class="lb" for="hcl" style="margin:0">Club</label><select class="f" id="hcl" data-a="hcl">${ids.map(id => `<option value="${id}" ${id === cid ? 'selected' : ''}>${esc(T(id).name)}</option>`).join('')}</select></div>${clubHonoursHtml(cid)}`;
+  } else if (tab === 'rank') {
+    const kinds = [['all', 'All-time world'], ['cur', 'Current world'], ['eng', 'English football'], ['eur', 'Europe']];
+    if (reg !== 'Europe') kinds.push(['reg', reg]);
+    body = `<div class="tabs" style="margin-top:8px">${kinds.map(([k, l]) => `<button class="${rk === k ? 'on' : ''}" data-a="tab" data-k="rk" data-v="${k}">${l}</button>`).join('')}</div>
+    <p class="dim" style="font-size:12.5px">Points for major honours as a manager: Champions League 30, World Cup 35, top-five league title 20, Euro/Copa América 20, Europa League 15, Cup Winners' Cup 12, other top-flight title 8, Conference League 8, domestic cup 6, world club title 6, league cup 4, second-tier title 4. In this save, league finishes and your Manager of the Month/Season awards add points too. ${rk === 'all' ? 'Legends keep their totals for good.' : rk === 'cur' ? 'Retired managers are left out.' : rk === 'eng' ? 'Managers who have worked in English football.' : 'By nationality.'}</p>
+    ${rankTable(rk)}
+    <p class="dim" style="font-size:12px">Honours were compiled for this game from public records up to the end of 2025/26; club jobs as of October 2026. Movement arrows show the change since the end of last season.</p>`;
+  }
+  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League' };
+  const tabs = HIST_COMPS.map(([k]) => [k, SHORT[k]]).concat([['club', 'Club honours'], ['rank', 'Rankings']]);
+  return `<div class="band">History<small>Winners, honours and manager rankings</small></div>
+  <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="hist" data-v="${k}">${esc(l)}</button>`).join('')}</div>${body}
+  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
+}
+document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'hcl') { UI.tab.hcl = el.value; render(); } });
+const _screenH = screen;
+screen = function (s) { if (s === 'history') return scrHistory(); return _screenH(s); };
+
+// manager profile: ranking box
+const _scrMgrH = scrManager;
+scrManager = function () {
+  const html = _scrMgrH();
+  try {
+    const a = rankList('all').find(x => x.me), c = rankList('cur').find(x => x.me), e = rankList('eng').find(x => x.me);
+    const reg = userRegion(); const r = reg !== 'Europe' ? rankList('reg').find(x => x.me) : rankList('eur').find(x => x.me);
+    const box = `<h2 class="sect">World rankings</h2><div class="grid3"><div class="box pad"><label class="lb">All-time</label><div class="big">${ordinal(a.rk)}</div><div class="dim">${a.pts} points</div></div><div class="box pad"><label class="lb">Current</label><div class="big">${ordinal(c.rk)}</div><div class="dim">English football: ${ordinal(e.rk)}</div></div><div class="box pad"><label class="lb">${esc(reg)}</label><div class="big">${ordinal(r.rk)}</div><div class="dim"><span class="lnk" data-a="gohist" data-v="rank">Full rankings</span></div></div></div>`;
+    const i = html.indexOf('<h2 class="sect">Managerial career</h2>');
+    return i > 0 ? html.slice(0, i) + box + html.slice(i) : html + box;
+  } catch (e) { console.error(e); return html; }
+};
+Object.assign(ACT, { gohist: (v) => { UI.modal = null; UI.scr = 'history'; UI.tab.hist = v || 'LG'; render(); window.scrollTo(0, 0); } });
+
+// intro.js: launch sting (Ayep Interactive logo, disclaimer card, GAFFER logo), Game > Options and Game > About.
+// Loaded just before boot.js. Plays once per page load, never on re-renders.
+
+const DISCLAIMER_P = [
+  'GAFFER 26/27 is a fan-made game created for personal, non-commercial use only. It is not for sale or commercial distribution.',
+  'It is not affiliated with, endorsed by or connected to the Premier League, the EFL, UEFA, The FA, any football club, or Sports Interactive / SEGA (Football Manager).',
+  'Real player, club, manager and stadium names are used for personal reference only; all trademarks belong to their owners. No official logos or badges are used.',
+  'Player ratings, attributes and match results are fictional estimates and simulations.'
+];
+const DISCLAIMER_C = '© 2026 Ayep Interactive';
+function introPref(k, v) {
+  try { if (v === undefined) return localStorage.getItem('gaffer.' + k); localStorage.setItem('gaffer.' + k, v); } catch (e) { return null; }
+}
+function ayepSvg() {
+  // original monogram: a bold "A" drawn from pitch lines; the crossbar is the halfway line, the centre circle sits on it,
+  // the goal mouth sits between the feet and the ball drops into the centre spot.
+  return `<svg class="ay-mark" viewBox="0 0 240 200" aria-hidden="true">
+    <g fill="none" stroke-linecap="square">
+      <rect class="ay-draw d1" x="16" y="14" width="208" height="172" stroke="rgba(69,225,240,.35)" stroke-width="2" pathLength="1"/>
+      <path class="ay-draw d2" d="M58 172 L120 34 L182 172" stroke="#45e1f0" stroke-width="13" pathLength="1"/>
+      <path class="ay-draw d3" d="M80 122 L160 122" stroke="#45e1f0" stroke-width="7" pathLength="1"/>
+      <circle class="ay-draw d4" cx="120" cy="122" r="17" stroke="#edf0ff" stroke-width="3" pathLength="1"/>
+      <path class="ay-draw d5" d="M104 186 L104 172 L136 172 L136 186" stroke="#edf0ff" stroke-width="3" pathLength="1"/>
+    </g>
+    <g class="ay-ball"><circle cx="120" cy="122" r="7.5" fill="#ffd23f" stroke="#090d26" stroke-width="2"/></g>
+  </svg>`;
+}
+function gafferBadgeSvg() {
+  return `<svg class="gf-badge" viewBox="0 0 120 120" aria-hidden="true">
+    <rect width="120" height="120" fill="#12258a"/>
+    <rect y="81.6" width="120" height="38.4" fill="#1f7a3a"/>
+    ${[1, 3, 5].map(i => `<rect x="${i * 20}" y="81.6" width="20" height="38.4" fill="#24873f"/>`).join('')}
+    <rect y="80.5" width="120" height="2.2" fill="#ffd23f"/>
+    <text x="62.6" y="64.6" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="62" fill="#000">G</text>
+    <text x="60" y="62" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="62" fill="#ffd23f">G</text>
+    <circle cx="87.6" cy="100.8" r="6.6" fill="#fff" stroke="#000" stroke-width="1"/>
+  </svg>`;
+}
+function introSting(ac) {
+  try {
+    const t0 = ac.currentTime + 0.05;
+    const out = ac.createGain(); out.gain.value = 0.22; out.connect(ac.destination);
+    // crowd: filtered noise swelling and fading
+    const len = ac.sampleRate * 2.4; const buf = ac.createBuffer(1, len, ac.sampleRate); const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (0.6 + 0.4 * Math.sin(i / 900));
+    const src = ac.createBufferSource(); src.buffer = buf;
+    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 700; bp.Q.value = 0.6;
+    const cg = ac.createGain(); cg.gain.setValueAtTime(0.0001, t0); cg.gain.exponentialRampToValueAtTime(0.9, t0 + 0.55); cg.gain.exponentialRampToValueAtTime(0.0001, t0 + 2.3);
+    src.connect(bp); bp.connect(cg); cg.connect(out); src.start(t0); src.stop(t0 + 2.4);
+    // referee's whistle: two blasts with a pea rattle
+    for (const [s, e] of [[0.1, 0.28], [0.38, 0.9]]) {
+      const o = ac.createOscillator(); o.type = 'sine'; o.frequency.value = 2950;
+      const lfo = ac.createOscillator(); lfo.frequency.value = 34; const lg = ac.createGain(); lg.gain.value = 0.35; lfo.connect(lg);
+      const g = ac.createGain(); g.gain.setValueAtTime(0.0001, t0 + s); g.gain.exponentialRampToValueAtTime(0.5, t0 + s + 0.02); g.gain.setValueAtTime(0.5, t0 + e - 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t0 + e);
+      lg.connect(g.gain); o.connect(g); g.connect(out); o.start(t0 + s); lfo.start(t0 + s); o.stop(t0 + e + 0.02); lfo.stop(t0 + e + 0.02);
+    }
+  } catch (e) { }
+}
+let _introOn = false;
+function runIntro(opts) {
+  opts = opts || {};
+  if (_introOn) return; _introOn = true;
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = opts.only === 'disc' ? ['disc'] : ['ayep', 'disc', 'logo'];
+  const dur = reduce ? { ayep: 1000, disc: 1000, logo: 1000 } : { ayep: 2600, disc: 3200, logo: 2400 };
+  const el = document.createElement('div');
+  el.className = 'intro' + (reduce ? ' still' : ''); el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Game intro'); el.tabIndex = -1;
+  el.innerHTML = `
+    <section class="ic ic-ayep"><div class="ay-wrap">${ayepSvg()}<div class="ay-word"><span class="ay-1">AYEP</span><span class="ay-2">INTERACTIVE</span></div></div></section>
+    <section class="ic ic-disc"><div class="dc"><div class="dc-rule"></div><h2 class="dc-h">Please note</h2><div class="dc-rule"></div>${DISCLAIMER_P.map(p => `<p>${esc(p)}</p>`).join('')}<div class="dc-rule"></div><p class="dc-c">${esc(DISCLAIMER_C)}</p><p class="dc-tap">Tap or press any key to continue</p></div></section>
+    <section class="ic ic-logo"><div class="gf-wrap">${gafferBadgeSvg()}<div class="gf-word"><span class="gf-1">GAFFER</span><span class="gf-2">26/27</span></div></div></section>
+    <div class="ic-wipe"></div>
+    <button class="ic-skip" type="button">Skip intro</button>`;
+  document.body.appendChild(el);
+  try { el.focus({ preventScroll: true }); } catch (e) { }
+  let i = -1, timer = null, ac = null, finished = false;
+  const show = (k) => { el.querySelectorAll('.ic').forEach(s => s.classList.toggle('on', s.classList.contains('ic-' + k))); };
+  const finish = () => {
+    if (finished) return; finished = true; clearTimeout(timer);
+    introPref('disc', '1');
+    el.classList.add('out');
+    document.removeEventListener('keydown', onKey, true);
+    setTimeout(() => { el.remove(); _introOn = false; if (opts.done) opts.done(); }, reduce ? 50 : 450);
+  };
+  const next = () => {
+    clearTimeout(timer); i++;
+    if (i >= cards.length) return finish();
+    const k = cards[i];
+    if (k === 'logo' && !reduce) { el.classList.add('wipe'); setTimeout(() => el.classList.remove('wipe'), 520); }
+    show(k);
+    if (k === 'logo' && ac) introSting(ac);
+    timer = setTimeout(next, dur[k]);
+  };
+  const gesture = () => { if (!ac) { try { const C = window.AudioContext || window.webkitAudioContext; if (C) { ac = new C(); if (ac.state === 'suspended') ac.resume(); } } catch (e) { ac = null; } } };
+  el.addEventListener('pointerdown', (ev) => { gesture(); if (ev.target.closest('.ic-skip')) { ev.preventDefault(); finish(); return; } next(); });
+  const onKey = (ev) => { if (finished) return; gesture(); ev.preventDefault(); ev.stopPropagation(); if (ev.key === 'Escape') finish(); else next(); };
+  document.addEventListener('keydown', onKey, true);
+  next();
+}
+// boot: play once per page load (not on hot reloads or re-renders)
+const _bootI = boot;
+boot = function (data) {
+  _bootI(data);
+  try {
+    if (window.__gafferIntro || (data && data.G)) return;
+    window.__gafferIntro = 1;
+    if (introPref('intro') === 'off') { if (introPref('disc') !== '1') runIntro({ only: 'disc' }); return; }
+    runIntro();
+  } catch (e) { console.error(e); }
+};
+
+// Game screen: options and about
+const _scrGameI = scrGame;
+scrGame = function () {
+  const html = _scrGameI();
+  const on = introPref('intro') !== 'off';
+  const box = `<div class="box pad"><h2 class="sect" style="margin-top:0">Options</h2>
+      <label class="row" style="gap:8px;cursor:pointer"><input type="checkbox" data-a="introtg" ${on ? 'checked' : ''}> Play the intro when the game opens</label>
+      <p class="dim" style="font-size:12.5px">The disclaimer is always shown once on the very first launch. The setting is kept in this browser.</p>
+      <button class="btn" data-a="introplay">Play the intro now</button></div>
+    <div class="box pad"><h2 class="sect" style="margin-top:0">About</h2>${DISCLAIMER_P.map(p => `<p style="margin:0 0 8px">${esc(p)}</p>`).join('')}<p class="dim" style="margin:0">${esc(DISCLAIMER_C)}</p></div>`;
+  const i = html.lastIndexOf('</div><div id="exp">');
+  return i > 0 ? html.slice(0, i) + box + html.slice(i) : html + box;
+};
+Object.assign(ACT, { introplay: () => runIntro() });
+document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'introtg') { introPref('intro', el.checked ? 'on' : 'off'); toast(el.checked ? 'The intro will play when the game opens.' : 'The intro is off.'); } });
 
 // boot (kept last)
 if (window.claude && window.claude.hot) { try { window.claude.hot.snapshot(() => ({ G, scr: UI.match ? 'inbox' : UI.scr })); } catch (e) { } }
