@@ -28,6 +28,7 @@ function newGame(userId, mgrName) {
   G.champTeams = CH_CLUBS.map(c => c.id);
   for (const c of PL_CLUBS) addFullTeam(c, 'PL');
   for (const c of CH_CLUBS) addFullTeam(c, 'CH');
+  if (typeof addSpain === 'function') addSpain();
   for (const id of fullTeams()) { for (const p of squad(id)) { p.wage = wageFor(p, id) * R.i(85, 110) / 100 * (T(id).para ? 1.25 : 1); p.val = calcValue(p); } setBudgets(id, true); }
   // lite teams: League One and below, European clubs
   for (const [n, s] of LOWER) addLite('L_' + slug(n), n, s);
@@ -36,6 +37,7 @@ function newGame(userId, mgrName) {
   G.l1 = G.lowerTeams.slice(0, 24);
   G.ded = {}; for (const c of CH_CLUBS) if (c.ded) G.ded[c.id] = c.ded;
   G.euroIn = JSON.parse(JSON.stringify(EURO_START));
+  if (G.ll && G.ll.length && typeof EURO_ES_START !== 'undefined') for (const k in EURO_ES_START) G.euroIn[k] = G.euroIn[k].concat(EURO_ES_START[k]);
   for (const id of fullTeams()) autoPick(id);
   buildSeason();
   migrate();
@@ -46,7 +48,7 @@ function addFullTeam(c, div) {
   const t = { id: c.id, name: c.name, short: c.short || c.name, c1: c.c1, c2: c.c2, stadium: c.stadium, cap: c.cap, mgr: c.mgr, rep: c.rep, bal: c.bal, lite: false, tac: { form: c.form || PREF_FORM[c.id] || '4-2-3-1', xi: [], bench: [], ment: 3, press: 2, tempo: 2, width: 2, pass: 2 }, fin: newFin() };
   if (c.capt) t.captN = c.capt;
   if (div === 'CH' && c.rep >= 68) t.para = PARACHUTE.slice(); // relegated from the Premier League in May 2026
-  G.teams[c.id] = t; G.sq[c.id] = []; if (div === 'PL') G.pl.push(c.id);
+  G.teams[c.id] = t; G.sq[c.id] = []; if (div === 'PL') G.pl.push(c.id); if (div === 'LL') { G.ll = G.ll || []; G.ll.push(c.id); }
   addSquadRows(c.id, c.sq, div === 'PL' ? ({ COV: 3, HUL: 3, IPS: 2, LEE: 1 }[c.id] || 0) : 0);
   return t;
 }
@@ -111,7 +113,7 @@ function buildSeason() {
     G.champ = { rounds: cr.concat(cr2).map(r => r.map(([h, a]) => ({ h, a, r: null }))), played: 0 }; G.chLeague = null;
   }
   // Carabao Cup
-  const euroPL = [].concat(G.euroIn.UCL, G.euroIn.UEL, G.euroIn.UECL);
+  const euroPL = [].concat(G.euroIn.UCL, G.euroIn.UEL, G.euroIn.UECL).filter(t => G.pl.includes(t));
   G.cups = {};
   G.cups.LC = { id: 'LC', rounds: CAL.LC.map(([n, ds, neu]) => ({ n, d: ds.map(sd), neutral: !!neu, ties: [], done: false })), ri: 0, winner: null };
   const lcR2 = R.shuffle(G.pl.filter(t => !euroPL.includes(t)).concat(R.shuffle(G.champTeams).slice(0, 32 - (20 - euroPL.length))));
@@ -167,8 +169,9 @@ function checkCupProgress(cid) {
     return;
   }
   if (cid === 'PO') { poNextRound(); return; }
+  if (typeof CUP_NEXT !== 'undefined' && CUP_NEXT[cid]) { CUP_NEXT[cid](winners, rd); return; }
   let next = winners;
-  if (cid === 'LC' && cup.ri === 0) { const euroPL = [].concat(G.euroIn.UCL, G.euroIn.UEL, G.euroIn.UECL); next = winners.concat(euroPL); const restC = G.champTeams.filter(t => !rd.ties.some(x => x.t.includes(t))); next = next.concat(R.shuffle(restC).concat(R.shuffle(G.lowerTeams))).slice(0, 32); }
+  if (cid === 'LC' && cup.ri === 0) { const euroPL = [].concat(G.euroIn.UCL, G.euroIn.UEL, G.euroIn.UECL).filter(t => G.pl.includes(t)); next = winners.concat(euroPL); const restC = G.champTeams.filter(t => !rd.ties.some(x => x.t.includes(t))); next = next.concat(R.shuffle(restC).concat(R.shuffle(G.lowerTeams))).slice(0, 32); }
   drawRound(cid, cup.ri + 1, next);
   const u = G.user;
   const ut = cup.rounds[cup.ri].ties.find(t => t.t.includes(u));
@@ -219,7 +222,7 @@ function buildEuro(c) {
       const pool = R.shuffle(teams); const pr = []; const used = new Set(); let ok = true;
       for (const t of pool) {
         if (used.has(t)) continue;
-        const o = pool.find(x => x !== t && !used.has(x) && !played[t].has(x) && !(pls.includes(t) && pls.includes(x)));
+        const o = pool.find(x => x !== t && !used.has(x) && !played[t].has(x) && !(pls.includes(t) && pls.includes(x) && ctryOf(t) === ctryOf(x)));
         if (!o) { ok = false; break; }
         used.add(t); used.add(o); pr.push([t, o]);
       }
@@ -292,7 +295,7 @@ function champTable() {
   for (const r of G.champ.rounds) for (const f of r) if (f.r) { addRes(tb[f.h], f.r[0], f.r[1]); addRes(tb[f.a], f.r[1], f.r[0]); }
   return Object.values(tb).sort(sortTable);
 }
-function tableOf(div) { return div === 'CH' ? champTable() : leagueTable(); }
+function tableOf(div) { return div === 'CH' ? champTable() : div === 'LL' && typeof llTable === 'function' ? llTable() : leagueTable(); }
 function userDiv() { return divOf(G.user) || 'PL'; }
 function userTable() { return tableOf(userDiv()); }
 
@@ -332,13 +335,15 @@ function postMatch(f, pre) {
   for (const id of pre) { const p = P(id); if (p && p.sus > 0) p.sus--; }
   // gate receipts and TV
   if (!f.neutral && !T(f.h).lite) {
-    const t = T(f.h); const ch = divOf(f.h) === 'CH'; const lg = LEAGUE_COMPS.includes(f.comp);
-    const fill = ch ? clamp(0.55 + t.rep / 250 + (lg ? 0 : -0.12), 0.4, 0.97) : clamp(0.8 + t.rep / 600 + (lg ? 0 : -0.08), 0.5, 1);
-    const gate = t.cap * fill * (ch ? 8 + t.rep * 0.33 : 20 + t.rep * 0.38) / 1e6 * (lg ? 1 : 0.8);
+    const t = T(f.h); const ch = divOf(f.h) === 'CH'; const es = divOf(f.h) === 'LL'; const lg = LEAGUE_COMPS.includes(f.comp);
+    const fill = ch ? clamp(0.55 + t.rep / 250 + (lg ? 0 : -0.12), 0.4, 0.97) : es ? clamp(0.62 + t.rep / 330 + (lg ? 0 : -0.1), 0.45, 0.98) : clamp(0.8 + t.rep / 600 + (lg ? 0 : -0.08), 0.5, 1);
+    const gate = t.cap * fill * (ch ? 8 + t.rep * 0.33 : es ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38) / 1e6 * (lg ? 1 : 0.8);
     t.bal += gate; t.fin.in.gate += gate; f.att = Math.round(t.cap * fill);
   }
   if (f.comp === 'PL') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 1.5; t.fin.in.tv += 1.5; }
   if (f.comp === 'CH') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 0.12; t.fin.in.tv += 0.12; }
+  // La Liga TV money (collective deal, weighted towards the bigger clubs; scaled to the game's £ finances)
+  if (f.comp === 'LL') for (const tid of [f.h, f.a]) { const t = T(tid); const tv = 0.55 + Math.max(0, t.rep - 70) * 0.02; t.bal += tv; t.fin.in.tv += tv; }
   if (['UCL', 'UEL', 'UECL'].includes(f.comp) && f.rnd && String(f.rnd).startsWith('Matchday')) {
     const win = f.r[0] > f.r[1] ? f.h : f.r[1] > f.r[0] ? f.a : null;
     const per = f.comp === 'UCL' ? 2.1 : f.comp === 'UEL' ? .45 : .4;
@@ -362,7 +367,7 @@ function welcomeNews() {
   const t = userTeam();
   const exp = boardTarget();
   msg('Welcome to ' + t.name, `The board welcomes ${G.mgr} as the new manager of ${t.name}. Your transfer budget is ${money(t.tb)} and the wage budget is ${wageStr(t.wb)}. The board expects you to ${exp.txt} this season. The summer transfer window closes on ${dNice(sd(CAL.WIN1_CLOSE))}.`);
-  msg('Squad data', 'Squads reflect the 2026/27 Premier League and Championship first-team rosters as of late October 2026, after the summer window. Player ratings and attributes are game estimates. League One, lower-league and European opponents are simulated at team level. Southampton start the Championship season with a 4-point deduction.');
+  msg('Squad data', 'Squads reflect the 2026/27 Premier League, Championship and La Liga first-team rosters as of late October 2026, after the summer window. Player ratings and attributes are game estimates. League One, Segunda División, lower-league and European opponents are simulated at team level. Southampton start the Championship season with a 4-point deduction.');
 }
 function boardTarget(tid) {
   const t = T(tid || G.user);
@@ -374,7 +379,7 @@ function boardTarget(tid) {
     if (rc <= 18) return { pos: 18, txt: 'finish in mid-table' };
     return { pos: 21, txt: 'avoid relegation' };
   }
-  const ranks = G.pl.slice().sort((a, b) => T(b).rep - T(a).rep);
+  const ranks = (divOf(t.id) === 'LL' ? G.ll : G.pl).slice().sort((a, b) => T(b).rep - T(a).rep);
   const rk = ranks.indexOf(t.id) + 1;
   if (rk <= 2) return { pos: 2, txt: 'challenge for the title' };
   if (rk <= 5) return { pos: 5, txt: 'qualify for the Champions League' };
@@ -433,7 +438,7 @@ function finishDay() {
     const target = Math.floor(plRound * 46 / 38);
     while (G.champ.played < target && G.champ.played < 46) { for (const f of G.champ.rounds[G.champ.played]) f.r = quickScore(f.h, f.a); G.champ.played++; }
   }
-  for (const c of ['LC', 'FA', 'PO']) if (G.cups[c]) checkCupProgress(c);
+  for (const c of ['LC', 'FA', 'PO', 'CDR', 'SCE']) if (G.cups[c]) checkCupProgress(c);
   for (const c of ['UCL', 'UEL', 'UECL']) checkEuroProgress(c);
   G.lastResults = ids;
   checkBoard();
@@ -491,6 +496,7 @@ function checkBoard() {
 }
 
 // ---- save/load ----
-function autosave() { try { localStorage.setItem(SAVE_KEY, saveJSON(G)); } catch (e) { } }
-function loadSave() { try { const s = localStorage.getItem(SAVE_KEY); if (!s) return null; return JSON.parse(s); } catch (e) { return null; } }
+// saves are compressed (about a tenth of the JSON size); older uncompressed saves still load
+function autosave() { try { const j = saveJSON(G); let s = j; try { s = lzPack(j); } catch (e) { s = j; } localStorage.setItem(SAVE_KEY, s); } catch (e) { } }
+function loadSave() { try { const s = localStorage.getItem(SAVE_KEY); if (!s) return null; return JSON.parse(s.startsWith(LZ_TAG) ? lzUnpack(s) : s); } catch (e) { return null; } }
 function restore(obj) { G = obj; for (const id in G.players) fillPlayer(G.players[id]); _pid = Math.max(0, ...Object.keys(G.players).map(k => +k.slice(1) || 0)); _attrCache.clear(); }

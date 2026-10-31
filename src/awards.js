@@ -33,7 +33,7 @@ function monthAwards(comp) {
   const potm = rt[0], ypotm = rt.find(x => x.age <= 21);
   const ct = clubTable(fs).filter(x => x.p >= minA); const motm = ct[0];
   if (!potm && !motm) return;
-  const gotm = comp === 'PL' ? (G.gotm || []).find(x => x.m === key) : null;
+  const gotm = comp === 'PL' ? (G.gotm || []).find(x => x.m === key) : comp === 'LL' ? (G.gotmLL || []).find(x => x.m === key) : null;
   const rec = { key, lg: comp, s: seasonLabel(G.year), potm: potm && { pid: potm.pid, n: potm.n, club: potm.club, avg: +potm.avg.toFixed(2), g: potm.g, as: potm.as, a: potm.a }, ypotm: ypotm && { pid: ypotm.pid, n: ypotm.n, club: ypotm.club, avg: +ypotm.avg.toFixed(2), g: ypotm.g, as: ypotm.as }, motm: motm && { tid: motm.tid, mgr: mgrName(motm.tid), rec: `${motm.w}-${motm.d}-${motm.l}`, pts: motm.pts }, gotm: gotm && { n: gotm.n, club: gotm.club, st: gotm.st, opp: gotm.opp } };
   A.m.push(rec);
   const ml = monthLabel(key);
@@ -42,7 +42,7 @@ function monthAwards(comp) {
   if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the ${LN} Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, glob); }
 }
 const _gom0 = goalOfMonth;
-goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); } catch (e) { console.error(e); } };
+goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); monthAwards('LL'); } catch (e) { console.error(e); } };
 
 function teamOfSeason(rt) {
   const pool = rt.filter(x => x.a >= 15).sort((a, b) => b.avg - a.avg);
@@ -62,19 +62,22 @@ function seasonAwards(comp) {
   const boot = rt.slice().sort((a, b) => b.g - a.g || a.a - b.a)[0];
   const play = rt.slice().sort((a, b) => b.as - a.as || a.a - b.a)[0];
   const cs = new Map();
-  for (const f of fs) for (let i = 0; i < 2; i++) if (f.r[1 - i] === 0) { const gk = (f.rt[i] || []).find(([pid, , , , on]) => !on && P(pid) && P(pid).pos === 'GK'); if (gk) cs.set(gk[0], (cs.get(gk[0]) || 0) + 1); }
-  const glove = [...cs.entries()].sort((a, b) => b[1] - a[1])[0];
+  for (const f of fs) for (let i = 0; i < 2; i++) if (f.r[1 - i] === 0) { const gk = ((f.rt && f.rt[i]) || []).find(([pid, , , , on]) => !on && P(pid) && P(pid).pos === 'GK'); if (gk) cs.set(gk[0], (cs.get(gk[0]) || 0) + 1); }
+  let glove = [...cs.entries()].sort((a, b) => b[1] - a[1])[0];
+  // La Liga: Zamora Trophy for the goalkeeper with the lowest goals-per-game ratio (at least 28 games)
+  let zam = null; if (comp === 'LL') { const gp = new Map(); for (const f of fs) for (let i = 0; i < 2; i++) { const gk = ((f.rt && f.rt[i]) || []).find(([pid, , , , on]) => !on && P(pid) && P(pid).pos === 'GK'); if (gk) { const x = gp.get(gk[0]) || { a: 0, ga: 0 }; x.a++; x.ga += f.r[1 - i]; gp.set(gk[0], x); } } const mx = Math.max(0, ...[...gp.values()].map(x => x.a)); zam = [...gp.entries()].filter(([, x]) => x.a >= Math.min(28, mx * .7)).sort((a, b) => a[1].ga / a[1].a - b[1].ga / b[1].a)[0] || null; }
   // manager of the season: biggest finish above expectation, champions get a bonus
   const tb = tableOf(comp); const exp = divTeams(comp).slice().sort((a, b) => bestXIRating(squad(b)) - bestXIRating(squad(a)));
   const mos = tb.map((r, i) => ({ tid: r.t, pos: i + 1, sc: (exp.indexOf(r.t) + 1) - (i + 1) + (i === 0 ? 6 : 0) + (i < 4 ? 1 : 0) })).sort((a, b) => b.sc - a.sc)[0];
   const tos = teamOfSeason(rt);
-  const gos = comp === 'PL' && typeof goalOfSeason === 'function' ? goalOfSeason() : null;
+  const gos = (comp === 'PL' || comp === 'LL') && typeof goalOfSeason === 'function' ? goalOfSeason(comp) : null;
   const pk = (x) => x && { pid: x.pid, n: x.n, club: x.club, avg: +x.avg.toFixed(2), g: x.g, as: x.as, a: x.a };
-  const rec = { s, lg: comp, best: pk(best), young: pk(young), boot: pk(boot), play: pk(play), glove: glove && { pid: glove[0], n: P(glove[0]).n, club: P(glove[0]).c, cs: glove[1] }, mos: mos && { tid: mos.tid, mgr: mgrName(mos.tid), pos: mos.pos }, tos, gos: gos && { n: gos.n, club: gos.club, st: gos.st, opp: gos.opp } };
+  const rec = { s, lg: comp, best: pk(best), young: pk(young), boot: pk(boot), play: pk(play), glove: glove && { pid: glove[0], n: P(glove[0]).n, club: P(glove[0]).c, cs: glove[1] }, zam: zam && { pid: zam[0], n: P(zam[0]).n, club: P(zam[0]).c, gpg: +(zam[1].ga / zam[1].a).toFixed(2), a: zam[1].a }, mos: mos && { tid: mos.tid, mgr: mgrName(mos.tid), pos: mos.pos }, tos, gos: gos && { n: gos.n, club: gos.club, st: gos.st, opp: gos.opp } };
   A.s.push(rec);
   if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the ${LN} Player of the Season.`, best.club, glob); playerAwardBoost(best.pid, 12); }
   if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the ${LN} Young Player of the Season.`, young.club, glob); playerAwardBoost(young.pid, 10); }
-  if (boot) news('Golden Boot', `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
+  if (boot) news(comp === 'LL' ? 'Pichichi Trophy' : 'Golden Boot', comp === 'LL' ? `${boot.n} (${tName(boot.club)}) wins the Pichichi Trophy as La Liga's top scorer with ${boot.g} goals.` : `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
+  if (zam) news('Zamora Trophy', `${P(zam[0]).n} (${tName(P(zam[0]).c)}) wins the Zamora Trophy: ${(zam[1].ga / zam[1].a).toFixed(2)} goals conceded per game in ${zam[1].a} La Liga games.`, P(zam[0]).c, glob);
   if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, glob);
   if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, glob);
   if (mos) { if (mos.tid === G.user) userAward('Manager of the Season', 5, `${G.mgr} is named ${LN} Manager of the Season after leading ${T(G.user).name} to ${ordinal(mos.pos)}.`); else news('Manager of the Season', `${mgrName(mos.tid)} (${tName(mos.tid)}) is ${LN} Manager of the Season.`, mos.tid, glob); }
@@ -83,7 +86,7 @@ function seasonAwards(comp) {
   for (const x of mine) playerAwardBoost(x.pid, 5);
 }
 const _se1 = seasonEnd;
-seasonEnd = function () { try { for (const c of ['PL', 'CH']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
+seasonEnd = function () { try { for (const c of ['PL', 'CH', 'LL']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
 
 // ---------- UI ----------
 function awPlayer(x, extra) { if (!x) return '<span class="dim">-</span>'; const p = P(x.pid); return `<span class="${p ? 'click' : ''}" ${p ? `data-a="player" data-v="${x.pid}"` : ''}><b>${esc(x.n)}</b></span> <span class="dim">${esc(tName(x.club))}</span>${extra ? ` <span class="mono dim">${extra}</span>` : ''}`; }
@@ -112,9 +115,9 @@ function scrAwards() {
     body = SA.length ? SA.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
       <dt>Player of the Season</dt><dd>${awPlayer(r.best, r.best ? r.best.avg.toFixed(2) : '')}</dd>
       <dt>Young Player</dt><dd>${awPlayer(r.young, r.young ? r.young.avg.toFixed(2) : '')}</dd>
-      <dt>Golden Boot</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
+      <dt>${r.lg === 'LL' ? 'Pichichi Trophy' : 'Golden Boot'}</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
       <dt>Playmaker</dt><dd>${awPlayer(r.play, r.play ? r.play.as + ' assists' : '')}</dd>
-      <dt>Golden Glove</dt><dd>${r.glove ? `<b>${esc(r.glove.n)}</b> <span class="dim">${r.glove.cs} clean sheets</span>` : '-'}</dd>
+      ${r.zam ? `<dt>Zamora Trophy</dt><dd><b>${esc(r.zam.n)}</b> <span class="dim">${esc(tName(r.zam.club))} · ${r.zam.gpg} conceded per game</span></dd>` : ''}<dt>${r.lg === 'LL' ? 'Most clean sheets' : 'Golden Glove'}</dt><dd>${r.glove ? `<b>${esc(r.glove.n)}</b> <span class="dim">${r.glove.cs} clean sheets</span>` : '-'}</dd>
       <dt>Manager of the Season</dt><dd>${r.mos ? `<b class="${r.mos.tid === G.user ? 'yel' : ''}">${esc(r.mos.mgr)}</b> <span class="dim">${esc(tName(r.mos.tid))} · ${ordinal(r.mos.pos)}</span>` : '-'}</dd>
       <dt>Goal of the Season</dt><dd>${r.gos ? `<b>${esc(r.gos.n)}</b> <span class="dim">${esc(STYLE_N[r.gos.st] || '')} v ${esc(tName(r.gos.opp))}</span>` : '-'}</dd></dl>
       <div><label class="lb">Team of the Season</label>${tosSvg(r.tos)}</div></div></div>`).join('') : '<p class="dim">Season awards are presented when the season ends in May.</p>';
@@ -127,7 +130,7 @@ function scrAwards() {
     body = `<p class="dim" style="margin-top:0">Who is leading the race this season (league games, at least 5 appearances).</p><h2 class="sect">Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${best.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div><h2 class="sect">Young Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${young.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div>`;
   }
   return `<div class="band">Awards<small>${COMP_NAME[lg]} monthly and season awards</small></div>
-  <div class="tabs" style="margin-top:8px">${['PL', 'CH'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
   <div class="tabs" style="margin-top:4px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'aws') { UI.tab.aws = el.value; render(); } });

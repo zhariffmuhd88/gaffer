@@ -1,0 +1,241 @@
+## RMA|José Mourinho|Real Madrid|Real Madrid|#ffffff|#febe10|Santiago Bernabéu|83186|Federico Valverde|95|210|4-3-3
+Thibaut Courtois|GK|34|BEL|87|1
+Andriy Lunin|GK|27|UKR|79|13
+Dean Huijsen|CB|21|ESP|85|4
+Éder Militão|CB|28|BRA|84|3
+Antonio Rüdiger|CB|33|GER|83|22
+Ibrahima Konaté|CB|27|FRA|85|16
+Raúl Asencio|CB|23|ESP|79|35
+Trent Alexander-Arnold|RB|28|ENG|85|12
+Denzel Dumfries|RB|30|NED|82|2
+Marc Cucurella|LB|28|ESP|84|17
+Álvaro Carreras|LB|23|ESP|82|18
+Ferland Mendy|LB|31|FRA|78|23
+Aurélien Tchouaméni|DM|26|FRA|86|14
+Federico Valverde|CM|28|URU|88|8
+Eduardo Camavinga|CM|23|FRA|84|6
+Jude Bellingham|AM|23|ENG|89|5
+Arda Güler|AM|21|TUR|85|15
+Bernardo Silva|AM|32|POR|85|20
+Thiago Pitarch|CM|19|ESP|68|30
+Kylian Mbappé|ST|27|FRA|92|10
+Vinícius Júnior|LW|26|BRA|89|7
+Rodrygo|RW|25|BRA|84|11
+Brahim Díaz|AM|27|MAR|80|21
+Endrick|ST|20|BRA|78|9
+Yan Diomande|RW|20|CIV|78|25
+Carlos Espí|ST|20|ESP|68|36
+## BAR|Hansi Flick|Barcelona|Barcelona|#a50044|#004d98|Spotify Camp Nou|62652|Raphinha|95|160|4-2-3-1
+Joan García|GK|25|ESP|85|13
+Wojciech Szczęsny|GK|36|POL|78|25
+Dominik Livaković|GK|31|CRO|79|1
+Pau Cubarsí|CB|19|ESP|86|5
+Eric García|CB|25|ESP|81|24
+Andreas Christensen|CB|30|DEN|79|15
+Gerard Martín|LB|24|ESP|78|18
+Jules Koundé|RB|27|FRA|86|23
+João Cancelo|RB|32|POR|81|2
+Alejandro Balde|LB|23|ESP|83|3
+Xavi Espart|RB|19|ESP|68|31
+Frenkie de Jong|CM|29|NED|86|21
+Pedri|CM|23|ESP|90|8
+Rodri|DM|30|ESP|87|16
+Gavi|CM|22|ESP|83|6
+Marc Bernal|DM|19|ESP|78|22
+Fermín López|AM|23|ESP|83|16
+Dani Olmo|AM|28|ESP|85|20
+Brian Fariñas|CM|19|ESP|66|36
+Lamine Yamal|RW|19|ESP|91|10
+Raphinha|LW|29|BRA|88|11
+Anthony Gordon|LW|25|ENG|84|19
+Karim Adeyemi|RW|24|GER|82|14
+Gabriel Jesus|ST|29|BRA|80|9
+Roony Bardghji|RW|20|SWE|75|28
+Jesse Bisiwu|ST|19|BEL|66|39
+Hamza Abdelkarim|ST|19|EGY|67|40
+## ATM|Diego Simeone|Atlético Madrid|Atlético|#cb3524|#262f61|Riyadh Air Metropolitano|70692|Koke|89|110|4-4-2
+Jan Oblak|GK|33|SVN|85|13
+Juan Musso|GK|32|ARG|77|1
+Salvi Esquivel|GK|21|ESP|66|31
+Cristian Romero|CB|28|ARG|86|4
+Robin Le Normand|CB|30|ESP|81|24
+Dávid Hancko|CB|28|SVK|82|17
+Dani Martínez|CB|21|ESP|70|29
+Marc Pubill|RB|23|ESP|79|18
+Marcos Llorente|RB|31|ESP|82|14
+Alejandro Grimaldo|LB|31|ESP|84|22
+Koke|CM|34|ESP|79|6
+Pablo Barrios|CM|23|ESP|83|8
+Johnny Cardoso|DM|25|USA|80|5
+Morten Hjulmand|DM|27|DEN|83|23
+Obed Vargas|CM|21|MEX|74|16
+Rodrigo Mendoza|CM|21|ESP|75|26
+Álex Baena|AM|25|ESP|84|10
+Giuliano Simeone|RW|23|ARG|80|20
+Ademola Lookman|LW|29|NGA|84|11
+Lee Kang-in|AM|25|KOR|81|7
+Julián Álvarez|ST|26|ARG|88|19
+Alexander Sørloth|ST|30|NOR|82|9
+Jonathan David|ST|26|CAN|84|21
+Arnau Ortiz|RW|20|ESP|66|36
+## VIL|Iñigo Pérez|Villarreal|Villarreal|#ffe667|#005187|Estadio de la Cerámica|23008|Gerard Moreno|82|60|4-4-2
+Péter Gulácsi|GK|36|HUN|78|25
+Luíz Júnior|GK|25|BRA|77|1
+Logan Costa|CB|25|CPV|79|2
+Juan Foyth|CB|28|ARG|80|8
+Renato Veiga|CB|23|POR|81|12
+Santiago Mouriño|CB|24|URU|78|15
+Pau Navarro|CB|21|ESP|73|26
+Alex Freeman|RB|22|USA|77|3
+Carlos Romero|LB|24|ESP|76|24
+Sergi Cardona|LB|27|ESP|77|23
+Pape Gueye|DM|27|SEN|80|18
+Santi Comesaña|CM|30|ESP|80|14
+Carlos Maciá|CM|20|ESP|70|16
+Alassane Diatta|CM|21|SEN|71|28
+Nathan Saliba|CM|22|CAN|74|6
+Alberto Moleiro|AM|23|ESP|82|20
+Tajon Buchanan|RW|27|CAN|79|17
+Nicolas Pépé|RW|31|CIV|79|19
+Ilias Akhomach|RW|22|MAR|77|11
+Gerard Moreno|ST|34|ESP|80|7
+Georges Mikautadze|ST|25|GEO|81|9
+Ayoze Pérez|ST|33|ESP|79|22
+Tani Oluwaseyi|ST|26|CAN|76|21
+Joselillo Gaitán|LW|20|ESP|66|35
+## BET|Manuel Pellegrini|Real Betis|Betis|#00954c|#ffffff|Estadio La Cartuja|70000|Isco|80|55|4-2-3-1
+Álvaro Vallés|GK|29|ESP|79|1
+Diego Conde|GK|28|ESP|74|13
+Diego Llorente|CB|33|ESP|78|3
+Natan|CB|25|BRA|79|4
+Marc Bartra|CB|35|ESP|74|5
+Valentín Gómez|CB|23|ARG|78|16
+Héctor Bellerín|RB|31|ESP|77|2
+Aitor Ruibal|RB|30|ESP|77|24
+Ángel Ortiz|RB|22|ESP|74|12
+Fran García|LB|27|ESP|78|23
+Júnior Firpo|LB|30|DOM|76|15
+Marc Roca|DM|29|ESP|79|21
+Nelson Deossa|CM|26|COL|78|18
+Facundo Bernal|CM|22|URU|73|6
+Pablo Fornals|CM|30|ESP|80|8
+Dani Ceballos|CM|30|ESP|80|25
+Isco|AM|34|ESP|81|22
+Giovani Lo Celso|AM|30|ARG|80|20
+Álvaro Fidalgo|CM|29|MEX|78|19
+Iker Losada|AM|25|ESP|74|17
+Antony|RW|26|BRA|82|7
+Abdessamad Ezzalzouli|LW|24|MAR|80|10
+Rodrigo Riquelme|LW|26|ESP|77|11
+Juan Hernández|RW|26|COL|76|27
+Troy Parrott|ST|24|IRL|78|9
+José Antonio Morante|ST|20|ESP|66|36
+Dylan Vanney|LW|19|USA|65|38
+## ATH|Edin Terzić|Athletic Club|Athletic|#ee2523|#ffffff|San Mamés|53289|Iñaki Williams|81|70|4-2-3-1
+Unai Simón|GK|29|ESP|84|1
+Álex Padilla|GK|23|MEX|73|27
+Daniel Vivian|CB|27|ESP|80|3
+Aitor Paredes|CB|26|ESP|79|4
+Yeray Álvarez|CB|31|ESP|77|5
+Aymeric Laporte|CB|32|ESP|80|14
+Unai Eguiluz|CB|23|ESP|72|26
+Jesús Areso|RB|27|ESP|77|12
+Hugo Rincón|RB|22|ESP|74|15
+Yuri Berchiche|LB|36|ESP|74|17
+Johaneko Louis-Jean|LB|22|FRA|70|33
+Mikel Jauregizar|DM|22|ESP|79|18
+Iñigo Ruiz de Galarreta|CM|33|ESP|77|16
+Beñat Prados|CM|25|ESP|77|24
+Alejandro Rego|CM|23|ESP|74|30
+Beñat Gerenabarrena|CM|21|ESP|69|35
+Oihan Sancet|AM|26|ESP|83|8
+Peio Canales|AM|21|ESP|72|28
+Álvaro Djaló|LW|27|GNB|75|11
+Nico Williams|LW|24|ESP|86|10
+Iñaki Williams|RW|32|GHA|80|9
+Alex Berenguer|RW|31|ESP|78|7
+Robert Navarro|RW|24|ESP|76|23
+Gorka Guruzeta|ST|30|ESP|78|19
+Maroan Sannadi|ST|25|MAR|74|21
+Nico Serrano|LW|23|ESP|71|22
+## RSO|Pellegrino Matarazzo|Real Sociedad|Real Sociedad|#0067b1|#ffffff|Reale Arena|39313|Mikel Oyarzabal|80|60|4-3-3
+Alex Remiro|GK|31|ESP|83|1
+Unai Marrero|GK|25|ESP|73|13
+Igor Zubeldia|CB|29|ESP|79|5
+Jon Martín|CB|20|ESP|76|16
+Jon Pacheco|CB|25|ESP|77|20
+Luken Beitia|CB|21|ESP|68|31
+Mamadou Sarr|CB|21|SEN|77|19
+Jon Aramburu|RB|24|VEN|78|2
+Álvaro Odriozola|RB|30|ESP|74|12
+Héctor Fort|RB|20|ESP|74|22
+Aihen Muñoz|LB|29|ESP|76|3
+Sergio Gómez|LB|26|ESP|79|17
+Jon Gorrotxategi|DM|23|ESP|75|4
+Beñat Turrientes|CM|24|ESP|77|8
+Yangel Herrera|CM|28|VEN|79|21
+Carlos Soler|CM|29|ESP|80|18
+Luka Sučić|AM|24|CRO|80|24
+Takefusa Kubo|RW|25|JPN|83|14
+Ander Barrenetxea|LW|24|ESP|79|7
+Gonçalo Guedes|LW|29|POR|79|11
+Arsen Zakharyan|AM|23|RUS|79|23
+Pablo Marín|AM|23|ESP|74|15
+Mikel Oyarzabal|ST|29|ESP|84|10
+Orri Óskarsson|ST|22|ISL|77|9
+Job Ochieng|ST|19|KEN|66|36
+Álex Marchal|LW|20|ESP|65|37
+Arkaitz Mariezkurrena|ST|20|ESP|64|38
+## SEV|Luis García|Sevilla|Sevilla|#ffffff|#d81022|Ramón Sánchez-Pizjuán|43883|Gabriel Suazo|78|35|4-2-3-1
+Odysseas Vlachodimos|GK|32|GRE|78|1
+Fran González|GK|21|ESP|68|31
+Kike Salas|CB|24|ESP|76|4
+Andrés López|CB|26|ESP|74|5
+Arouna Sangante|CB|24|SEN|74|14
+Fábio Cardoso|CB|32|POR|74|3
+Marcão|CB|30|BRA|75|23
+Julio Díaz|CB|20|ESP|66|33
+Juan Iglesias|RB|28|ESP|75|2
+José Ángel Carmona|RB|24|ESP|76|12
+Gabriel Suazo|LB|29|CHI|77|17
+Lucien Agoumé|DM|24|FRA|77|6
+Giorgi Kochorashvili|CM|27|GEO|74|18
+Youssouf Fofana|CM|27|FRA|78|24
+Manu Bueno|CM|22|ESP|71|22
+Peque Fernández|AM|24|ESP|74|10
+Jon Guridi|CM|31|ESP|74|8
+Nico Guillén|CM|20|ESP|65|34
+Rubén Vargas|LW|28|SUI|78|11
+Chidera Ejuke|LW|28|NGA|77|21
+Alfon González|LW|27|ESP|75|7
+Félix Correia|RW|25|POR|75|20
+Isaac Romero|ST|26|ESP|77|16
+Lucas Stassin|ST|21|BEL|77|19
+Robbie Ure|ST|22|SCO|68|9
+Miguel Sierra|ST|19|ESP|64|38
+## CEL|Claudio Giráldez|Celta Vigo|Celta|#8ac3ee|#ffffff|Estadio Abanca Balaídos|24870|Iago Aspas|76|30|4-3-3
+Ionuț Radu|GK|29|ROU|77|13
+Altay Bayındır|GK|28|TUR|75|1
+Iván Villar|GK|29|ESP|71|25
+Carl Starfelt|CB|31|SWE|76|2
+Marcos Alonso|CB|35|ESP|75|3
+Yoel Lago|CB|23|ESP|74|18
+Javi Rodríguez|CB|23|ESP|76|20
+Sebastián Cáceres|CB|26|URU|75|5
+Abdoulaye Faye|CB|20|SEN|68|32
+Álvaro Núñez|RB|26|ESP|74|24
+Javi Rueda|RB|22|ESP|74|17
+Javi Galán|LB|31|ESP|75|22
+Sergio Carreira|RB|26|ESP|73|21
+Ilaix Moriba|CM|23|GUI|77|6
+Aleix Febas|CM|30|ESP|74|14
+Miguel Román|CM|24|ESP|74|8
+Jones El-Abdellaoui|AM|20|MAR|68|30
+Iago Aspas|ST|39|ESP|75|10
+Borja Iglesias|ST|33|ESP|77|7
+Ferran Jutglà|ST|27|ESP|76|9
+Pablo Durán|ST|25|ESP|75|11
+Hugo Álvarez|LW|23|ESP|76|23
+Williot Swedberg|RW|22|SWE|75|19
+Hugo González|LW|20|ESP|67|16
+Couhaib Driouech|RW|24|MAR|74|26

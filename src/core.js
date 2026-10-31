@@ -149,11 +149,13 @@ function calcValue(p) {
 function calcWageDemand(p, rep) { const r = rep || 75; return Math.max(3, Math.round(7 * Math.exp(0.08 * (p.ca - 40)) * (0.55 + 0.5 * r / 93) * (p.age >= 32 ? .8 : 1))); }
 
 // ---- divisions ----
-function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; return null; }
-function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite)); }
+function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; if (G.ll && G.ll.includes(tid)) return 'LL'; return null; }
+function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite), G.ll || []); }
+// country of a club (England unless it plays in a Spanish competition)
+function ctryOf(tid) { return G && ((G.ll && G.ll.includes(tid)) || (G.seg && G.seg.includes(tid)) || (G.pf && G.pf.includes(tid))) ? 'ESP' : 'ENG'; }
 function youthIds(tid) { return G && G.res ? ((G.res[tid] || []).concat((G.acad && G.acad[tid]) || [])) : []; }
-function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : G.pl; }
-function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * (divOf(tid) === 'CH' ? 0.45 : 1))); }
+function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : div === 'LL' ? (G.ll || []) : G.pl; }
+function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * ({ CH: 0.45, LL: 0.8 }[divOf(tid)] || 1))); }
 
 // ---- compact save format: skip default player fields, round decimals; restore fills them back ----
 const P_DEF = { listed: false, injT: '', inj: 0, sus: 0, yel: 0, ym: 0, ymr: 0, mi: 0, low: 0, prom: null };
@@ -192,3 +194,51 @@ function squad(tid) { return (G.sq[tid] || []).map(P).filter(Boolean); }
 function isUser(tid) { return tid === G.user; }
 function available(p) { return p.inj <= 0 && p.sus <= 0; }
 function userTeam() { return T(G.user); }
+// ---- save compression: LZW over UTF-8 bytes, variable code width, packed 15 bits per UTF-16 char ----
+const LZ_TAG = '\u0001GZ1';
+function lzPack(str) {
+  const bytes = new TextEncoder().encode(str);
+  const out = []; let acc = 0, nb = 0;
+  const put = (code, w) => { while (w > 0) { const t = Math.min(w, 15 - nb); w -= t; acc = (acc << t) | (code >>> w); code &= (1 << w) - 1; nb += t; if (nb === 15) { out.push(acc + 32); acc = 0; nb = 0; } } };
+  const MAX = 1 << 20, HS = 1 << 22, HM = HS - 1;
+  if (!lzPack.hk) { lzPack.hk = new Int32Array(HS); lzPack.hv = new Int32Array(HS); }
+  const hk = lzPack.hk, hv = lzPack.hv; hk.fill(-1);
+  let next = 257, w = 9, cur = -1;
+  for (let i = 0; i < bytes.length; i++) {
+    const b = bytes[i];
+    if (cur < 0) { cur = b; continue; }
+    const key = cur * 256 + b; let h = (key ^ (key >>> 13) ^ (key << 7)) & HM;
+    while (hk[h] !== -1 && hk[h] !== key) h = (h + 1) & HM;
+    if (hk[h] === key) { cur = hv[h]; continue; }
+    put(cur, w);
+    if (next < MAX) { hk[h] = key; hv[h] = next++; if (next > (1 << w) && w < 20) w++; }
+    else { put(256, w); hk.fill(-1); next = 257; w = 9; }
+    cur = b;
+  }
+  if (cur >= 0) put(cur, w);
+  if (nb > 0) put(0, 15 - nb);
+  let s = LZ_TAG + bytes.length + ';';
+  for (let i = 0; i < out.length; i += 8192) s += String.fromCharCode.apply(null, out.slice(i, i + 8192));
+  return s;
+}
+function lzUnpack(s) {
+  const semi = s.indexOf(';'); const total = +s.slice(LZ_TAG.length, semi);
+  const bytes = new Uint8Array(total); let bp = 0;
+  let pos = semi + 1, acc = 0, nb = 0;
+  const get = (w) => { let v = 0; while (w > 0) { if (nb === 0) { acc = s.charCodeAt(pos++) - 32; nb = 15; } const t = Math.min(w, nb); nb -= t; w -= t; v = (v << t) | (acc >>> nb); acc &= (1 << nb) - 1; } return v; };
+  const MAX = 1 << 20;
+  let pre = new Int32Array(MAX), last = new Uint8Array(MAX), first = new Uint8Array(MAX), len = new Int32Array(MAX);
+  for (let i = 0; i < 256; i++) { pre[i] = -1; last[i] = i; first[i] = i; len[i] = 1; }
+  let next = 257, w = 9, prev = -1;
+  const emit = (c) => { const L = len[c]; let k = bp + L - 1; let x = c; while (x >= 0 && k >= bp) { bytes[k--] = last[x]; x = pre[x]; } bp += L; };
+  while (bp < total) {
+    const c = get(w);
+    if (c === 256) { next = 257; w = 9; prev = -1; continue; }
+    if (prev < 0) { emit(c); prev = c; continue; }
+    let fc;
+    if (c < next) fc = first[c]; else fc = first[prev];
+    if (next < MAX) { pre[next] = prev; last[next] = fc; first[next] = first[prev]; len[next] = len[prev] + 1; next++; if (next + 1 > (1 << w) && w < 20) w++; }
+    emit(c); prev = c;
+  }
+  return new TextDecoder().decode(bytes);
+}

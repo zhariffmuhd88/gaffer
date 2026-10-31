@@ -1,5 +1,6 @@
 // ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====
 // rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).
+// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026).
 const HIST = {
 LG:`1888|Preston North End|Aston Villa
 1889|Preston North End|Everton
@@ -491,5 +492,266 @@ UECL:`2021|Roma|Feyenoord
 2022|West Ham United|Fiorentina
 2023|Olympiacos|Fiorentina
 2024|Chelsea|Real Betis
-2025|Crystal Palace|Rayo Vallecano`
+2025|Crystal Palace|Rayo Vallecano`,
+LL:`1928|Barcelona|Madrid FC
+1929|Athletic Bilbao|Barcelona
+1930|Athletic Bilbao|Racing Santander
+1931|Madrid FC|Athletic Bilbao
+1932|Madrid FC|Athletic Bilbao
+1933|Athletic Bilbao|Madrid FC
+1934|Real Betis|Madrid FC
+1935|Athletic Bilbao|Madrid FC
+1939|Atlético Aviación|Sevilla
+1940|Atlético Aviación|Athletic Bilbao
+1941|Valencia|Real Madrid
+1942|Athletic Bilbao|Sevilla
+1943|Valencia|Atlético Aviación
+1944|Barcelona|Real Madrid
+1945|Sevilla|Barcelona
+1946|Valencia|Athletic Bilbao
+1947|Barcelona|Valencia
+1948|Barcelona|Valencia
+1949|Atlético Madrid|Deportivo La Coruña
+1950|Atlético Madrid|Sevilla
+1951|Barcelona|Athletic Bilbao
+1952|Barcelona|Valencia
+1953|Real Madrid|Barcelona
+1954|Real Madrid|Barcelona
+1955|Athletic Bilbao|Barcelona
+1956|Real Madrid|Sevilla
+1957|Real Madrid|Atlético Madrid
+1958|Barcelona|Real Madrid
+1959|Barcelona|Real Madrid
+1960|Real Madrid|Atlético Madrid
+1961|Real Madrid|Barcelona
+1962|Real Madrid|Atlético Madrid
+1963|Real Madrid|Barcelona
+1964|Real Madrid|Atlético Madrid
+1965|Atlético Madrid|Real Madrid
+1966|Real Madrid|Barcelona
+1967|Real Madrid|Barcelona
+1968|Real Madrid|Las Palmas
+1969|Atlético Madrid|Athletic Bilbao
+1970|Valencia|Barcelona
+1971|Real Madrid|Valencia
+1972|Atlético Madrid|Barcelona
+1973|Barcelona|Atlético Madrid
+1974|Real Madrid|Zaragoza
+1975|Real Madrid|Barcelona
+1976|Atlético Madrid|Barcelona
+1977|Real Madrid|Barcelona
+1978|Real Madrid|Sporting Gijón
+1979|Real Madrid|Real Sociedad
+1980|Real Sociedad|Real Madrid
+1981|Real Sociedad|Barcelona
+1982|Athletic Bilbao|Real Madrid
+1983|Athletic Bilbao|Real Madrid
+1984|Barcelona|Atlético Madrid
+1985|Real Madrid|Barcelona
+1986|Real Madrid|Barcelona
+1987|Real Madrid|Real Sociedad
+1988|Real Madrid|Barcelona
+1989|Real Madrid|Valencia
+1990|Barcelona|Atlético Madrid
+1991|Barcelona|Real Madrid
+1992|Barcelona|Real Madrid
+1993|Barcelona|Deportivo La Coruña
+1994|Real Madrid|Deportivo La Coruña
+1995|Atlético Madrid|Valencia
+1996|Real Madrid|Barcelona
+1997|Barcelona|Athletic Bilbao
+1998|Barcelona|Real Madrid
+1999|Deportivo La Coruña|Barcelona
+2000|Real Madrid|Deportivo La Coruña
+2001|Valencia|Deportivo La Coruña
+2002|Real Madrid|Real Sociedad
+2003|Valencia|Barcelona
+2004|Barcelona|Real Madrid
+2005|Barcelona|Real Madrid
+2006|Real Madrid|Barcelona
+2007|Real Madrid|Villarreal
+2008|Barcelona|Real Madrid
+2009|Barcelona|Real Madrid
+2010|Barcelona|Real Madrid
+2011|Real Madrid|Barcelona
+2012|Barcelona|Real Madrid
+2013|Atlético Madrid|Barcelona
+2014|Barcelona|Real Madrid
+2015|Barcelona|Real Madrid
+2016|Real Madrid|Barcelona
+2017|Barcelona|Atlético Madrid
+2018|Barcelona|Atlético Madrid
+2019|Real Madrid|Barcelona
+2020|Atlético Madrid|Real Madrid
+2021|Real Madrid|Barcelona
+2022|Barcelona|Real Madrid
+2023|Real Madrid|Barcelona
+2024|Barcelona|Real Madrid
+2025|Barcelona|Real Madrid`,
+CDR:`1902|Athletic Bilbao|Madrid FC
+1903|Athletic Bilbao|Español de Madrid
+1904|Madrid FC|Athletic Bilbao
+1905|Madrid FC|Athletic Bilbao
+1906|Madrid FC|Bizcaya
+1907|Madrid FC|Real Vigo Sporting
+1908|Club Ciclista|Español de Madrid
+1909|Athletic Bilbao|Vasconia SC
+1909|Barcelona|Español de Madrid
+1910|Athletic Bilbao|Español
+1911|Barcelona|Gimnástica
+1912|Barcelona|Real Sociedad
+1912|Racing de Irún|Athletic Bilbao
+1913|Athletic Bilbao|Espanya
+1914|Athletic Bilbao|Español
+1915|Athletic Bilbao|Madrid FC
+1916|Madrid FC|Arenas
+1917|Real Unión|Madrid FC
+1918|Arenas|Barcelona
+1919|Barcelona|Athletic Bilbao
+1920|Athletic Bilbao|Atlético Madrid
+1921|Barcelona|Real Unión
+1922|Athletic Bilbao|Europa
+1923|Real Unión|Real Madrid
+1924|Barcelona|Arenas
+1925|Barcelona|Atlético Madrid
+1926|Real Unión|Arenas
+1927|Barcelona|Real Sociedad
+1928|Español|Real Madrid
+1929|Athletic Bilbao|Real Madrid
+1930|Athletic Bilbao|Real Betis
+1931|Athletic Bilbao|Barcelona
+1932|Athletic Bilbao|Real Madrid
+1933|Madrid FC|Valencia
+1934|Sevilla|Sabadell
+1935|Madrid FC|Barcelona
+1938|Sevilla|Racing de Ferrol
+1939|Español|Real Madrid
+1940|Valencia|Español
+1941|Barcelona|Athletic Bilbao
+1942|Athletic Bilbao|Real Madrid
+1943|Athletic Bilbao|Valencia
+1944|Athletic Bilbao|Valencia
+1945|Real Madrid|Valencia
+1946|Real Madrid|Español
+1947|Sevilla|Celta Vigo
+1948|Valencia|Athletic Bilbao
+1949|Athletic Bilbao|Valladolid
+1950|Barcelona|Real Sociedad
+1951|Barcelona|Valencia
+1952|Barcelona|Athletic Bilbao
+1953|Valencia|Barcelona
+1954|Athletic Bilbao|Sevilla
+1955|Athletic Bilbao|Atlético Madrid
+1956|Barcelona|Español
+1957|Athletic Bilbao|Real Madrid
+1958|Barcelona|Granada
+1959|Atlético Madrid|Real Madrid
+1960|Atlético Madrid|Real Madrid
+1961|Real Madrid|Sevilla
+1962|Barcelona|Zaragoza
+1963|Zaragoza|Atlético Madrid
+1964|Atlético Madrid|Zaragoza
+1965|Zaragoza|Athletic Bilbao
+1966|Valencia|Athletic Bilbao
+1967|Barcelona|Real Madrid
+1968|Athletic Bilbao|Elche
+1969|Real Madrid|Valencia
+1970|Barcelona|Valencia
+1971|Atlético Madrid|Valencia
+1972|Athletic Bilbao|Castellón
+1973|Real Madrid|Barcelona
+1974|Real Madrid|Atlético Madrid
+1975|Atlético Madrid|Zaragoza
+1976|Real Betis|Athletic Bilbao
+1977|Barcelona|Las Palmas
+1978|Valencia|Real Madrid
+1979|Real Madrid|Castilla
+1980|Barcelona|Sporting Gijón
+1981|Real Madrid|Sporting Gijón
+1982|Barcelona|Real Madrid
+1983|Athletic Bilbao|Barcelona
+1984|Atlético Madrid|Athletic Bilbao
+1985|Zaragoza|Barcelona
+1986|Real Sociedad|Atlético Madrid
+1987|Barcelona|Real Sociedad
+1988|Real Madrid|Valladolid
+1989|Barcelona|Real Madrid
+1990|Atlético Madrid|Mallorca
+1991|Atlético Madrid|Real Madrid
+1992|Real Madrid|Zaragoza
+1993|Zaragoza|Celta Vigo
+1994|Deportivo La Coruña|Valencia
+1995|Atlético Madrid|Barcelona
+1996|Barcelona|Real Betis
+1997|Barcelona|Mallorca
+1998|Valencia|Atlético Madrid
+1999|Espanyol|Atlético Madrid
+2000|Zaragoza|Celta Vigo
+2001|Deportivo La Coruña|Real Madrid
+2002|Mallorca|Recreativo
+2003|Zaragoza|Real Madrid
+2004|Real Betis|Osasuna
+2005|Espanyol|Zaragoza
+2006|Sevilla|Getafe
+2007|Valencia|Getafe
+2008|Barcelona|Athletic Bilbao
+2009|Sevilla|Atlético Madrid
+2010|Real Madrid|Barcelona
+2011|Barcelona|Athletic Bilbao
+2012|Atlético Madrid|Real Madrid
+2013|Real Madrid|Barcelona
+2014|Barcelona|Athletic Bilbao
+2015|Barcelona|Sevilla
+2016|Barcelona|Alavés
+2017|Barcelona|Sevilla
+2018|Valencia|Barcelona
+2019|Real Sociedad|Athletic Bilbao
+2020|Barcelona|Athletic Bilbao
+2021|Real Betis|Valencia
+2022|Real Madrid|Osasuna
+2023|Athletic Bilbao|Mallorca
+2024|Barcelona|Real Madrid
+2025|Real Sociedad|Atlético Madrid`,
+SCE:`1982|Real Sociedad|Real Madrid
+1983|Barcelona|Athletic Bilbao
+1984|Athletic Bilbao|-
+1985|Atlético Madrid|Barcelona
+1988|Real Madrid|Barcelona
+1989|Real Madrid|-
+1990|Real Madrid|Barcelona
+1991|Barcelona|Atlético Madrid
+1992|Barcelona|Atlético Madrid
+1993|Real Madrid|Barcelona
+1994|Barcelona|Zaragoza
+1995|Deportivo La Coruña|Real Madrid
+1996|Barcelona|Atlético Madrid
+1997|Real Madrid|Barcelona
+1998|Mallorca|Barcelona
+1999|Valencia|Barcelona
+2000|Deportivo La Coruña|Espanyol
+2001|Real Madrid|Zaragoza
+2002|Deportivo La Coruña|Valencia
+2003|Real Madrid|Mallorca
+2004|Zaragoza|Valencia
+2005|Barcelona|Real Betis
+2006|Barcelona|Espanyol
+2007|Sevilla|Real Madrid
+2008|Real Madrid|Valencia
+2009|Barcelona|Athletic Bilbao
+2010|Barcelona|Sevilla
+2011|Barcelona|Real Madrid
+2012|Real Madrid|Barcelona
+2013|Barcelona|Atlético Madrid
+2014|Atlético Madrid|Real Madrid
+2015|Athletic Bilbao|Barcelona
+2016|Barcelona|Sevilla
+2017|Real Madrid|Barcelona
+2018|Barcelona|Sevilla
+2019|Real Madrid|Atlético Madrid
+2020|Athletic Bilbao|Barcelona
+2021|Real Madrid|Athletic Bilbao
+2022|Barcelona|Real Madrid
+2023|Real Madrid|Barcelona
+2024|Barcelona|Real Madrid
+2025|Barcelona|Real Madrid`
 };

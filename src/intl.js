@@ -3,7 +3,13 @@
 // playable nations can be added later: everything England-specific goes through PLAY_NAT.
 // Loaded after history.js, before intro.js.
 
-const PLAY_NAT = 'ENG'; // nations the user can manage (only England for now)
+let PLAY_NAT = 'ENG'; // the nation the user manages or is linked to (England or Spain); set from G.intl.nat
+const PLAYABLE_NATS = ['ENG', 'ESP'];
+const NAT_FED = { ENG: ['The FA', 'FA'], ESP: ['The RFEF', 'RFEF'] };
+const NAT_HOME = { ENG: ['Wembley Stadium', 90000], ESP: ['Riyadh Air Metropolitano', 70692] };
+function NATN(c) { const r = natRow(c || PLAY_NAT); return r ? r.name : (c || PLAY_NAT); }
+function FED(c) { return (NAT_FED[c || PLAY_NAT] || NAT_FED.ENG)[0]; }
+function FEDS(c) { return (NAT_FED[c || PLAY_NAT] || NAT_FED.ENG)[1]; }
 const INTL_NAMES = { UNL: 'Nations League', EQ: 'Euro qualifiers', EURO: 'European Championship', WCQ: 'World Cup qualifiers', WC: 'World Cup', FR: 'Friendly' };
 Object.assign(COMP_NAME, INTL_NAMES);
 Object.assign(COMP_SHORT, { UNL: 'UNL', EQ: 'EQ', EURO: 'EURO', WCQ: 'WCQ', WC: 'WC', FR: 'FRI' });
@@ -11,7 +17,13 @@ const INTL_C = Object.keys(INTL_NAMES);
 function isIntlF(f) { return !!f && INTL_C.includes(f.comp); }
 function isNatT(tid) { return !!(G && tid && G.teams[tid] && G.teams[tid].nat); }
 function NID(c) { return 'N_' + c; }
-const ENGID = NID(PLAY_NAT);
+let ENGID = NID(PLAY_NAT);
+// switch the playable nation (one national team at a time)
+function setPlayNat(c) {
+  if (!PLAYABLE_NATS.includes(c)) c = 'ENG';
+  if (G && G.intl && G.intl.nat && G.intl.nat !== c && !G.intl.job) { G.intl.aiSq = []; G.intl.squad = []; G.intl.vacant = false; G.intl.offer = false; G.intl.prev = []; }
+  PLAY_NAT = c; ENGID = NID(c); if (G && G.intl) G.intl.nat = c;
+}
 
 // ---------- nations ----------
 let _NR = null;
@@ -67,15 +79,32 @@ function setupEnglandPool() {
   for (const l of ENG_ABROAD.split('\n')) {
     const [n, pos, age, club, ca] = l.split('|');
     if (Object.values(G.players).some(p => p.n === n)) continue;
-    const p = mkPlayer({ n, c: 'ABROAD', ab: club, pos, age: +age, nat: PLAY_NAT, ca: +ca, seed: hash(n) % 999, pa: +ca + (age < 24 ? 3 : 0) });
+    const p = mkPlayer({ n, c: 'ABROAD', ab: club, pos, age: +age, nat: 'ENG', ca: +ca, seed: hash(n) % 999, pa: +ca + (age < 24 ? 3 : 0) });
     p.wage = 0; G.players[p.id] = p;
   }
   const byName = {}; for (const p of Object.values(G.players)) if (p) (byName[p.n] = byName[p.n] || []).push(p);
   for (const l of ENG_CAPS.split('\n')) {
     const [n, c, g] = l.split('|'); const ps = byName[n]; if (!ps) continue;
-    const p = ps.find(x => x.nat === PLAY_NAT) || ps[0];
-    p.nat = PLAY_NAT; p.ic = parseInt(c.replace('~', ''), 10); p.ig = parseInt(g.replace('~', ''), 10); if (c.includes('~')) p.icE = 1;
+    const p = ps.find(x => x.nat === 'ENG') || ps[0];
+    p.nat = 'ENG'; p.ic = parseInt(c.replace('~', ''), 10); p.ig = parseInt(g.replace('~', ''), 10); if (c.includes('~')) p.icE = 1;
   }
+}
+
+// Spain: players based outside the game's leagues, then caps and goals (Wikipedia, as of 26 Sep 2026)
+function setupSpainPool() {
+  if (typeof ESP_ABROAD === 'undefined') return;
+  for (const [n, pos, age, club, ca] of ESP_ABROAD) {
+    if (Object.values(G.players).some(p => p.n === n)) continue;
+    const p = mkPlayer({ n, c: 'ABROAD', ab: club, pos, age, nat: 'ESP', ca, seed: hash(n) % 999, pa: ca + (age < 24 ? 3 : 0) });
+    p.wage = 0; G.players[p.id] = p;
+  }
+  const byName = {}; for (const p of Object.values(G.players)) if (p) (byName[p.n] = byName[p.n] || []).push(p);
+  for (const [n, c, g] of ESP_CAPS) {
+    const ps = byName[n]; if (!ps) continue;
+    const p = ps.find(x => x.nat === 'ESP') || ps[0];
+    p.nat = 'ESP'; p.ic = parseInt(c.replace('~', ''), 10); p.ig = parseInt(g.replace('~', ''), 10); if (c.includes('~')) p.icE = 1;
+  }
+  if (G.intl) G.intl.esp = 1;
 }
 
 // ---------- state ----------
@@ -95,7 +124,8 @@ function intlInit() {
   if (G.intl) return;
   G.intl = { v: 1, mode: 'club', job: null, club: null, sw: 0, elo: {}, ed: {}, order: [], hist: [], squad: [], aiSq: [], prev: [], ann: {}, fa: 60, tasks: [], called: {}, seen: {}, fr: [] };
   for (const n of natRows()) addNation(n);
-  setupEnglandPool();
+  setupEnglandPool(); setupSpainPool();
+  G.intl.nat = PLAY_NAT;
   T(ENGID).str = engStr();
   buildUNL27();
   scheduleCycle(0);
@@ -269,7 +299,7 @@ function buildEQ(key, y, euroKey) {
   }
   G.intl.ed[key] = E; G.intl.order.push(key);
   const eg = Object.keys(E.groups).find(g => E.groups[g].includes(ENGID));
-  news('Euro qualifying draw', `The ${E.name} draw has been made. ${eg ? `England are in Group ${eg.slice(1)} with ${E.groups[eg].filter(t => t !== ENGID).map(t => tName(t)).join(', ')}.` : ''}`, null, true);
+  news('Euro qualifying draw', `The ${E.name} draw has been made. ${eg ? `${NATN()} are in Group ${eg.slice(1)} with ${E.groups[eg].filter(t => t !== ENGID).map(t => tName(t)).join(', ')}.` : ''}`, null, true);
 }
 function eqProgress(E) {
   if (E.stage === 'league') {
@@ -328,7 +358,7 @@ function buildWCQ(key, y, wcKey) {
   if (L2.length >= 8) add('L2', R.shuffle(L2.slice(0, 16)).concat([]).slice(0, L2.length - (L2.length % 2)));
   G.intl.ed[key] = E; G.intl.order.push(key);
   const eg = Object.keys(E.groups).find(g => E.groups[g].includes(ENGID));
-  news('World Cup qualifying', `${E.name} begins. ${eg ? `England are in ${eg.startsWith('L2') ? 'League 2' : 'League 1, Group ' + eg.slice(-1)}.` : ''} Top three in each League 1 group qualify; twenty teams play off for five more places.`, null, true);
+  news('World Cup qualifying', `${E.name} begins. ${eg ? `${NATN()} are in ${eg.startsWith('L2') ? 'League 2' : 'League 1, Group ' + eg.slice(-1)}.` : ''} Top three in each League 1 group qualify; twenty teams play off for five more places.`, null, true);
 }
 function wcqProgress(E) {
   if (E.stage === 'league') {
@@ -404,7 +434,7 @@ function drawFinals(key) {
   }
   G.intl.ed[key] = E; G.intl.order.push(key);
   const eg = Object.keys(E.groups).find(g => E.groups[g].includes(ENGID));
-  news(S.name + ' draw', `The ${S.name} draw has been made.${eg ? ` England are in Group ${eg} with ${E.groups[eg].filter(t => t !== ENGID).map(t => tName(t)).join(', ')}.` : ' England have not qualified.'}`, null, true);
+  news(S.name + ' draw', `The ${S.name} draw has been made.${eg ? ` ${NATN()} are in Group ${eg} with ${E.groups[eg].filter(t => t !== ENGID).map(t => tName(t)).join(', ')}.` : ` ${NATN()} have not qualified.`}`, null, true);
 }
 function finProgress(E) {
   const S = finSpec(E.key);
@@ -420,7 +450,7 @@ function finProgress(E) {
     const order = bracketOrder(pairs.length).map(i => pairs[i]);
     E.stage = 'ko'; koRound(E, S, 0, order);
     const out = Object.keys(E.groups).flatMap(g => E.groups[g]).filter(t => !seeds.includes(t));
-    if (out.includes(ENGID)) news(S.name, 'England are out of the tournament after the group stage.', ENGID, true);
+    if (out.includes(ENGID)) news(S.name, `${NATN()} are out of the tournament after the group stage.`, ENGID, true);
     return;
   }
   const last = E.ko[E.ko.length - 1]; if (!last || !last.fx.every(id => G.fx[id].r)) return;
@@ -428,7 +458,7 @@ function finProgress(E) {
   const w = main.map(id => fxWin(G.fx[id]));
   if (last.n === 'Final') { const f = G.fx[main[0]]; E.fin = [fxWin(f), fxLose(f)]; const t3 = last.fx.find(id => G.fx[id].rnd === 'Third place'); if (t3) E.fin.push(fxWin(G.fx[t3])); E.stage = 'done'; finishEdition(E, E.fin[0], E.fin[1]); return; }
   const lose = main.map(id => fxLose(G.fx[id]));
-  if (lose.includes(ENGID)) news(S.name, `England are knocked out in the ${last.n.toLowerCase()}.`, ENGID, true);
+  if (lose.includes(ENGID)) news(S.name, `${NATN()} are knocked out in the ${last.n.toLowerCase()}.`, ENGID, true);
   const ri = S.ko.findIndex(k => k[0] === last.n) + 1;
   const pairs = []; for (let i = 0; i < w.length; i += 2) pairs.push([w[i], w[i + 1]]);
   koRound(E, S, ri, pairs, last.n === 'Semi-final' ? lose : null);
@@ -575,7 +605,7 @@ function announceSquad(B) {
   const opp = B.fx.map(f => tName(f.h === ENGID ? f.a : f.h)).join(', ');
   if (userIsEng()) {
     G.intl.sqDue = addDays(B.s, -3); G.intl.sqDone = false;
-    msg('England squad due', `Name your England squad (23 to 26 players) by ${dNice(G.intl.sqDue, false)}. Fixtures: ${B.fx.map(f => `${dShort(f.d)} ${f.h === ENGID ? 'v' : 'at'} ${tName(f.h === ENGID ? f.a : f.h)}`).join(', ')} (${comp}). Open International > Squad.`, { k: 'nav', v: 'intl' });
+    msg(`${NATN()} squad due`, `Name your ${NATN()} squad (23 to 26 players) by ${dNice(G.intl.sqDue, false)}. Fixtures: ${B.fx.map(f => `${dShort(f.d)} ${f.h === ENGID ? 'v' : 'at'} ${tName(f.h === ENGID ? f.a : f.h)}`).join(', ')} (${comp}). Open International > Squad.`, { k: 'nav', v: 'intl' });
     return;
   }
   const prev = G.intl.aiSq || [];
@@ -589,9 +619,9 @@ function callupNews(sq, prev, by, opp) {
   for (const id of sq) { const p = P(id); if (p && typeof setHap === 'function') setHap(p, prev.includes(id) ? 1 : 4); }
   for (const p of dropped) if (typeof setHap === 'function') setHap(p, -6);
   const mine = sq.map(P).filter(p => p && p.c === clubUser());
-  news('England squad', `${by} names a ${sq.length}-man England squad for games against ${opp}.${newIn.length ? ` First call-ups: ${newIn.map(p => p.n).join(', ')}.` : ''}${dropped.length ? ` Left out: ${dropped.slice(0, 4).map(p => p.n).join(', ')}.` : ''}`, ENGID, true);
-  if (mine.length) news('International duty', `Called up by England: ${mine.map(p => p.n).join(', ')}.`, clubUser());
-  for (const p of dropped) if (p.c === clubUser()) news('Squad morale', `${p.n} is disappointed to be left out of the England squad.`, clubUser());
+  news(`${NATN()} squad`, `${by} names a ${sq.length}-man ${NATN()} squad for games against ${opp}.${newIn.length ? ` First call-ups: ${newIn.map(p => p.n).join(', ')}.` : ''}${dropped.length ? ` Left out: ${dropped.slice(0, 4).map(p => p.n).join(', ')}.` : ''}`, ENGID, true);
+  if (mine.length) news('International duty', `Called up by ${NATN()}: ${mine.map(p => p.n).join(', ')}.`, clubUser());
+  for (const p of dropped) if (p.c === clubUser()) news('Squad morale', `${p.n} is disappointed to be left out of the ${NATN()} squad.`, clubUser());
 }
 function clubUser() { return G.intl && G.intl.sw ? G.intl.club : (isNatT(G.user) ? null : G.user); }
 function confirmSquad(ids) {
@@ -621,7 +651,7 @@ function windowTick() {
       for (const id in G.intl.called) {
         const p = P(id); if (!p) continue;
         p.cond = Math.max(55, p.cond - R.i(4, 16));
-        if (p.inj <= 0 && R.chance(.03)) { p.inj = R.i(5, 28); p.injT = R.pick(['hamstring strain', 'ankle sprain', 'calf strain', 'groin strain']); if (p.c === cu) news('International duty', `${p.n} returns from international duty with a ${p.injT} and will miss about ${Math.ceil(p.inj / 7)} week${p.inj > 7 ? 's' : ''}.`, cu); else if (G.intl.called[id] === PLAY_NAT && userIsEng() && T(p.c) && !T(p.c).lite) news('Club v country', `${T(p.c).mgr} is unhappy that ${p.n} came back from England duty injured.`, ENGID); }
+        if (p.inj <= 0 && R.chance(.03)) { p.inj = R.i(5, 28); p.injT = R.pick(['hamstring strain', 'ankle sprain', 'calf strain', 'groin strain']); if (p.c === cu) news('International duty', `${p.n} returns from international duty with a ${p.injT} and will miss about ${Math.ceil(p.inj / 7)} week${p.inj > 7 ? 's' : ''}.`, cu); else if (G.intl.called[id] === PLAY_NAT && userIsEng() && T(p.c) && !T(p.c).lite) news('Club v country', `${T(p.c).mgr} is unhappy that ${p.n} came back from ${NATN()} duty injured.`, ENGID); }
       }
       G.intl.called = {};
     }
@@ -634,12 +664,12 @@ function swapCheck() {
   const B = nextEngBlock();
   const lastPlayed = engFixtures().filter(f => f.r).pop();
   if (!G.intl.sw && B && G.date >= addDays(B.s, -2)) {
-    if (!G.intl.sqDone || !G.intl.squad.length) { G.intl.squad = pickSquad(natPool(PLAY_NAT), 26).map(p => p.id); G.intl.sqDone = true; msg('England squad', 'No squad was named in time, so your assistant picked the strongest 26 available.'); }
+    if (!G.intl.sqDone || !G.intl.squad.length) { G.intl.squad = pickSquad(natPool(PLAY_NAT), 26).map(p => p.id); G.intl.sqDone = true; msg(`${NATN()} squad`, 'No squad was named in time, so your assistant picked the strongest 26 available.'); }
     G.intl.club = G.user; G.user = ENGID; G.intl.sw = 1; ensureEngUser();
-    msg('England duty', `You are now with the England squad. Club matters are on hold until the games are over.`);
+    msg(`${NATN()} duty`, `You are now with the ${NATN()} squad. Club matters are on hold until the games are over.`);
   } else if (G.intl.sw && (!B || dDiff(G.date, B.s) > 10) && (!lastPlayed || dDiff(lastPlayed.d, G.date) >= 1)) {
     G.user = G.intl.club; G.intl.sw = 0;
-    msg('Back at the club', `England duty is over. You are back at ${tName(G.user, false)}.`);
+    msg('Back at the club', `${NATN()} duty is over. You are back at ${tName(G.user, false)}.`);
   }
 }
 function intlDaily() {
@@ -677,26 +707,29 @@ function faReview(E) {
   const st = engStage(E) || ''; const tg = faTarget(E);
   const ok = tg.k === 'sf' ? ['Winners', 'Runners-up', 'Semi-final', 'Third place'].includes(st) : tg.k === 'qf' ? ['Winners', 'Runners-up', 'Semi-final', 'Quarter-final', 'Third place'].includes(st) : tg.k === 'top2' ? true : st !== 'Did not qualify';
   G.intl.hist.push({ key: E.key + ':ENG', comp: E.comp, name: E.name, eng: st, d: G.date });
-  if (!userIsEng()) { if (!ok && (E.comp === 'EURO' || E.comp === 'WC') && R.chance(.6)) { const old = T(ENGID).mgr; T(ENGID).mgr = 'Vacant'; G.intl.vacant = true; news('England', `${old} leaves the England job after the ${E.name}. The FA is looking for a new manager.`, ENGID, true); } return; }
+  if (!userIsEng()) { if (!ok && (E.comp === 'EURO' || E.comp === 'WC') && R.chance(.6)) { const old = T(ENGID).mgr; T(ENGID).mgr = 'Vacant'; G.intl.vacant = true; news(NATN(), `${old} leaves the ${NATN()} job after the ${E.name}. ${FED()} is looking for a new manager.`, ENGID, true); } return; }
   G.intl.fa = clamp(G.intl.fa + (ok ? 15 : -22) + (st === 'Winners' ? 20 : 0), 0, 100);
   G.mgrRep = clamp(G.mgrRep + (ok ? 3 : -3) + (st === 'Winners' ? 8 : 0), 20, 99);
-  msg('FA review: ' + E.name, `England: ${st}. The FA wanted you to ${tg.txt}. ${ok ? 'They are pleased with the campaign.' : 'They are disappointed.'} FA confidence is now ${Math.round(G.intl.fa)}%.`);
-  if (G.intl.fa < 20) leaveEngland('The FA has dismissed you as England manager.');
+  msg(FEDS() + ' review: ' + E.name, `${NATN()}: ${st}. ${FED()} wanted you to ${tg.txt}. ${ok ? 'They are pleased with the campaign.' : 'They are disappointed.'} ${FEDS()} confidence is now ${Math.round(G.intl.fa)}%.`);
+  if (G.intl.fa < 20) leaveEngland(`${FED()} has dismissed you as ${NATN()} manager.`);
 }
 function faApproach() {
   if (userIsEng() || G.intl.seen['ap' + G.year] || G.date.slice(5) !== '07-15') return;
-  if ((G.intl.vacant && G.mgrRep >= 55) || G.mgrRep >= 82) { G.intl.seen['ap' + G.year] = 1; msg('The FA calls', `The FA would like to talk to ${G.mgr} about the England job. You can take it alongside your club job. Open International to accept.`, { k: 'nav', v: 'intl' }); G.intl.offer = true; }
+  if ((G.intl.vacant && G.mgrRep >= 55) || G.mgrRep >= 82) { G.intl.seen['ap' + G.year] = 1; msg(`${FED()} calls`, `${FED()} would like to talk to ${G.mgr} about the ${NATN()} job. You can take it alongside your club job. Open International to accept.`, { k: 'nav', v: 'intl' }); G.intl.offer = true; }
 }
 function takeEngland(mode) {
-  if (userIsEng()) return 'You already manage England.';
-  if (!(G.intl.offer || G.intl.vacant || G.mgrRep >= 68)) return `The FA thanks you for your interest but wants a manager with a bigger reputation (yours: ${Math.round(G.mgrRep)}).`;
+  let code = null; if (mode && mode.includes(':')) [mode, code] = mode.split(':');
+  if (G.intl.job) return `You already manage ${NATN()}.`;
+  const prevNat = PLAY_NAT;
+  if (code && code !== PLAY_NAT) setPlayNat(code);
+  if (!(G.intl.offer || G.intl.vacant || G.mgrRep >= 68)) { const m = `${FED()} thanks you for your interest but wants a manager with a bigger reputation (yours: ${Math.round(G.mgrRep)}).`; if (PLAY_NAT !== prevNat) setPlayNat(prevNat); return m; }
   const old = T(ENGID).mgr;
   G.intl.job = PLAY_NAT; G.intl.offer = false; G.intl.vacant = false; G.intl.fa = 60;
   G.intl.mode = mode || (G.sacked || isNatT(G.user) ? 'nat' : 'dual');
   if (G.intl.mode === 'nat') { if (G.sacked) G.sacked = false; if (G.mgrP) { G.mgrP.rec = G.mgrP.rec.filter(st => st.to || st.p > 0); for (const st of G.mgrP.rec) if (!st.to) st.to = G.date; } G.user = ENGID; }
   ensureEngUser();
-  msg('England manager', `${G.mgr} is the new England manager${G.intl.mode === 'dual' ? ` and will combine the role with the ${tName(G.intl.club || G.user, false)} job` : ''}.${old && old !== 'Vacant' ? ` ${old} steps aside.` : ''} The FA expects a strong showing in every competition.`);
-  news('England', `${G.mgr} appointed England manager.`, ENGID, true);
+  msg(`${NATN()} manager`, `${G.mgr} is the new ${NATN()} manager${G.intl.mode === 'dual' ? ` and will combine the role with the ${tName(G.intl.club || G.user, false)} job` : ''}.${old && old !== 'Vacant' ? ` ${old} steps aside.` : ''} ${FED()} expects a strong showing in every competition.`);
+  news(NATN(), `${G.mgr} appointed ${NATN()} manager.`, ENGID, true);
   G.mgrRep = clamp(G.mgrRep + 3, 20, 99);
   return null;
 }
@@ -705,7 +738,7 @@ function leaveEngland(why) {
   if (G.intl.sw) { G.user = G.intl.club; G.intl.sw = 0; }
   const nat = G.intl.mode === 'nat';
   G.intl.job = null; G.intl.mode = 'club'; T(ENGID).mgr = genName(); ensureEngUser();
-  msg('England', why || 'You have left the England job.');
+  msg(NATN(), why || `You have left the ${NATN()} job.`);
   if (nat) { G.sacked = true; }
 }
 
@@ -774,7 +807,7 @@ mgrOfTeam = function (tid) {
   const m = MGR_DATA.find(x => x[2] === 'a' && x[3] === t.name); return m ? m[0] : null;
 };
 const _rpI = rankPool;
-rankPool = function () { const out = _rpI(); if (userIsEng()) for (const x of out) if (!x.me && x.club && x.club.txt === 'England') { x.club = { tid: null, txt: 'Without a job' }; x.st = 'f'; } const me = out.find(x => x.me); if (me && userIsEng()) me.club = { tid: G.intl.mode === 'nat' ? ENGID : (G.intl.sw ? G.intl.club : G.user), txt: G.intl.mode === 'nat' ? 'England' : tName(G.intl.sw ? G.intl.club : G.user) + ' & England' }; return out; };
+rankPool = function () { const out = _rpI(); if (userIsEng()) for (const x of out) if (!x.me && x.club && x.club.txt === NATN()) { x.club = { tid: null, txt: 'Without a job' }; x.st = 'f'; } const me = out.find(x => x.me); if (me && userIsEng()) me.club = { tid: G.intl.mode === 'nat' ? ENGID : (G.intl.sw ? G.intl.club : G.user), txt: G.intl.mode === 'nat' ? NATN() : tName(G.intl.sw ? G.intl.club : G.user) + ' & ' + NATN() }; return out; };
 
 // ---------- migration and new careers ----------
 const _renderI = render;

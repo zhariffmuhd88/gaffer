@@ -23,11 +23,16 @@ function edHtml(E) {
   const mark = E.comp === 'EQ' ? (i => i === 0) : E.comp === 'WCQ' ? (i => i < 3) : E.type === 'fin' ? (i => i < 2) : null;
   if (gs.length) {
     h += `<h2 class="sect">Groups</h2><div class="grid2">${show.map(g => grpTableHtml(E.groups[g], E.fx[g], E.comp === 'UNL' ? `League ${g[0]} · Group ${g}` : E.comp === 'WCQ' ? (g === 'L2' ? 'League 2' : 'League 1 · Group ' + g.slice(-1)) : 'Group ' + g.replace('G', ''), mark)).join('')}</div>`;
-    if (gs.length > show.length || UI.tab.igall) h += `<button class="btn" data-a="igall">${UI.tab.igall ? 'Show England\'s group only' : `Show all ${gs.length} groups`}</button>`;
-    if (eg) h += `<h2 class="sect">England's matches</h2>${fxTable(E.fx[eg].map(id => G.fx[id]).filter(f => f.h === ENGID || f.a === ENGID))}`;
+    if (gs.length > show.length || UI.tab.igall) h += `<button class="btn" data-a="igall">${UI.tab.igall ? `Show ${NATN()}'s group only` : `Show all ${gs.length} groups`}</button>`;
+    if (eg) h += `<h2 class="sect">${NATN()}'s matches</h2>${fxTable(E.fx[eg].map(id => G.fx[id]).filter(f => f.h === ENGID || f.a === ENGID))}`;
   }
   return h;
 }
+// national team jobs the user can apply for (England and Spain; one national team at a time)
+function natJobBoxes() {
+  return `<div class="grid2" style="margin-top:10px">${PLAYABLE_NATS.map(c => { const t = T(NID(c)); if (!t) return ''; const cur = c === PLAY_NAT; const vac = cur && G.intl.vacant, off = cur && G.intl.offer; return `<div class="box pad"><h3 class="h3">The ${esc(NATN(c))} job</h3><p>${vac ? `The ${esc(NATN(c))} job is vacant.` : off ? `${FED(c)} has asked to speak to you.` : `${esc(NATN(c))} are managed by ${esc(t.mgr)}. You can still apply; ${FED(c).replace('The', 'the')} looks at your reputation (${Math.round(G.mgrRep)}).`}</p><div class="row" style="gap:8px">${!isNatT(G.user) && !G.sacked ? `<button class="btn pri" data-a="intltake" data-v="dual:${c}">Apply: club and ${esc(NATN(c))}</button>` : ''}<button class="btn" data-a="intltake" data-v="nat:${c}">Apply: ${esc(NATN(c))} only</button></div></div>`; }).join('')}</div>`;
+}
+function recRaw(k) { if (PLAY_NAT === 'ENG') return k === 'caps' ? ENG_REC_CAPS : ENG_REC_GOALS; const r = NAT_REC[PLAY_NAT]; return r ? r[k].map(([n, v]) => n + '|' + v).join(';') : ''; }
 function engRecords() {
   const cur = natPool(PLAY_NAT).concat(Object.values(G.players).filter(p => p && p.nat === PLAY_NAT && p.c === 'RETIRED'));
   const merge = (raw, key) => {
@@ -36,17 +41,17 @@ function engRecords() {
     return Object.values(m).sort((a, b) => b.v - a.v).slice(0, 15);
   };
   const tbl = (rows, lbl) => `<div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th class="n">${lbl}</th></tr></thead><tbody>${rows.map((r, i) => `<tr class="${r.act ? 'me' : ''}"><td class="n">${i + 1}</td><td>${r.pid ? pLink(r.pid, r.n) : esc(r.n)}${r.act ? ' <span class="dim">(active)</span>' : ''}</td><td class="n"><b class="mono">${r.v}</b></td></tr>`).join('')}</tbody></table></div>`;
-  return `<div class="grid2"><div><h2 class="sect">Most caps</h2>${tbl(merge(ENG_REC_CAPS, 'ic'), 'Caps')}</div><div><h2 class="sect">Top scorers</h2>${tbl(merge(ENG_REC_GOALS, 'ig'), 'Goals')}</div></div>
-  <p class="dim" style="font-size:12px">All-time records from the FA and Wikipedia; current players add every cap and goal they win in this save.</p>`;
+  return `<div class="grid2"><div><h2 class="sect">Most caps</h2>${tbl(merge(recRaw('caps'), 'ic'), 'Caps')}</div><div><h2 class="sect">Top scorers</h2>${tbl(merge(recRaw('goals'), 'ig'), 'Goals')}</div></div>
+  <p class="dim" style="font-size:12px">All-time records from ${PLAY_NAT === 'ENG' ? 'the FA' : 'RFEF'} and Wikipedia; current players add every cap and goal they win in this save.</p>`;
 }
 function intlHistHtml() {
   const block = (code, label) => {
     const rows = INTL_HIST[code].split(';').map(x => x.split('|')).reverse();
     const game = G.intl.hist.filter(h => h.comp === code && h.w).slice().reverse();
-    return `<h2 class="sect">${label}</h2><div class="tw"><table class="t"><thead><tr><th>Year</th><th>Winner</th><th>Runner-up</th></tr></thead><tbody>${game.map(h => `<tr class="${h.w === ENGID ? 'me' : ''}"><td class="mono">${esc(h.name)}</td><td>${natLink(h.w)}</td><td>${natLink(h.r)}</td></tr>`).join('')}${game.length ? '<tr><td colspan="3" class="dim" style="font-size:12px">Above: played in this save. Below: real history.</td></tr>' : ''}${rows.map(([y, w, r]) => `<tr class="${w === 'England' ? 'me' : ''}"><td class="mono">${y}</td><td>${esc(w)}</td><td class="dim">${esc(r)}</td></tr>`).join('')}</tbody></table></div>`;
+    return `<h2 class="sect">${label}</h2><div class="tw"><table class="t"><thead><tr><th>Year</th><th>Winner</th><th>Runner-up</th></tr></thead><tbody>${game.map(h => `<tr class="${h.w === ENGID ? 'me' : ''}"><td class="mono">${esc(h.name)}</td><td>${natLink(h.w)}</td><td>${natLink(h.r)}</td></tr>`).join('')}${game.length ? '<tr><td colspan="3" class="dim" style="font-size:12px">Above: played in this save. Below: real history.</td></tr>' : ''}${rows.map(([y, w, r]) => `<tr class="${w === NATN() ? 'me' : ''}"><td class="mono">${y}</td><td>${esc(w)}</td><td class="dim">${esc(r)}</td></tr>`).join('')}</tbody></table></div>`;
   };
   const eh = G.intl.hist.filter(h => h.eng);
-  return `${eh.length ? `<h2 class="sect">England in this save</h2><div class="tw"><table class="t"><tbody>${eh.slice().reverse().map(h => `<tr><td>${esc(h.name)}</td><td><b>${esc(h.eng)}</b></td></tr>`).join('')}</tbody></table></div>` : ''}<div class="grid2"><div>${block('WC', 'World Cup')}</div><div>${block('EURO', 'European Championship')}${block('UNL', 'Nations League')}</div></div><p class="dim" style="font-size:12px">Real winners from Wikipedia list pages and SI.com (read 31 Oct 2026).</p>`;
+  return `${eh.length ? `<h2 class="sect">${NATN()} in this save</h2><div class="tw"><table class="t"><tbody>${eh.slice().reverse().map(h => `<tr><td>${esc(h.name)}</td><td><b>${esc(h.eng)}</b></td></tr>`).join('')}</tbody></table></div>` : ''}<div class="grid2"><div>${block('WC', 'World Cup')}</div><div>${block('EURO', 'European Championship')}${block('UNL', 'Nations League')}</div></div><p class="dim" style="font-size:12px">Real winners from Wikipedia list pages and SI.com (read 31 Oct 2026).</p>`;
 }
 function rankHtml() {
   const L = natRankList(); const conf = UI.tab.irc || 'ALL';
@@ -90,22 +95,22 @@ function scrIntl() {
     const live = edList().filter(E => E.stage !== 'done' && (Object.values(E.groups || {}).some(g => g.includes(ENGID)) || (E.qual || []).includes(ENGID)));
     const B = nextEngBlock();
     body = `<div class="grid3" style="margin-top:10px">
-      <div class="box pad"><label class="lb">England manager</label><div style="font-size:18px;font-weight:700">${esc(eng ? G.mgr : t.mgr)}</div><div class="dim">${eng ? (G.intl.mode === 'dual' ? `Dual role with ${tName(G.intl.sw ? G.intl.club : G.user, false)}` : 'Full-time national team job') : 'You are not the England manager'}</div></div>
-      <div class="box pad"><label class="lb">${eng ? 'FA confidence' : 'World ranking'}</label>${eng ? `<div class="big ${G.intl.fa < 30 ? 'red' : G.intl.fa < 55 ? 'amb' : 'grn'}">${Math.round(G.intl.fa)}%</div><div class="bar"><i style="width:${G.intl.fa}%"></i></div>` : `<div class="big">${ordinal(natRank(PLAY_NAT))}</div><div class="dim">${G.intl.elo[PLAY_NAT]} points</div>`}</div>
+      <div class="box pad"><label class="lb">${NATN()} manager</label><div style="font-size:18px;font-weight:700">${esc(eng ? G.mgr : t.mgr)}</div><div class="dim">${eng ? (G.intl.mode === 'dual' ? `Dual role with ${tName(G.intl.sw ? G.intl.club : G.user, false)}` : 'Full-time national team job') : `You are not the ${NATN()} manager`}</div></div>
+      <div class="box pad"><label class="lb">${eng ? FEDS() + ' confidence' : 'World ranking'}</label>${eng ? `<div class="big ${G.intl.fa < 30 ? 'red' : G.intl.fa < 55 ? 'amb' : 'grn'}">${Math.round(G.intl.fa)}%</div><div class="bar"><i style="width:${G.intl.fa}%"></i></div>` : `<div class="big">${ordinal(natRank(PLAY_NAT))}</div><div class="dim">${G.intl.elo[PLAY_NAT]} points</div>`}</div>
       <div class="box pad"><label class="lb">Next games</label>${B ? B.fx.map(f => `<div>${dShort(f.d)} · ${f.h === ENGID ? 'v' : 'at'} ${natLink(f.h === ENGID ? f.a : f.h)} <span class="dim mono">${COMP_SHORT[f.comp]}</span></div>`).join('') : '<span class="dim">None scheduled</span>'}</div>
     </div>
-    ${eng ? '' : `<div class="box pad" style="margin-top:10px"><h3 class="h3">The England job</h3><p>${G.intl.vacant ? 'The England job is vacant.' : G.intl.offer ? 'The FA has asked to speak to you.' : `England are managed by ${esc(t.mgr)}. You can still apply; the FA looks at your reputation (${Math.round(G.mgrRep)}).`}</p><div class="row" style="gap:8px">${!isNatT(G.user) && !G.sacked ? '<button class="btn pri" data-a="intltake" data-v="dual">Apply: club and England</button>' : ''}<button class="btn" data-a="intltake" data-v="nat">Apply: England only</button></div></div>`}
-    ${eng ? `<div class="box pad" style="margin-top:10px"><h3 class="h3">FA expectations</h3>${live.length ? live.map(E => `<div>${esc(E.name)}: <b>${esc(faTarget(E).txt)}</b> <span class="dim">· now: ${esc(engStage(E) || '-')}</span></div>`).join('') : '<span class="dim">No competition under way.</span>'}<div class="row" style="margin-top:10px"><button class="btn warn" data-a="intlquit">Resign as England manager</button></div></div>` : ''}
+    ${eng ? '' : natJobBoxes()}
+    ${eng ? `<div class="box pad" style="margin-top:10px"><h3 class="h3">${FEDS()} expectations</h3>${live.length ? live.map(E => `<div>${esc(E.name)}: <b>${esc(faTarget(E).txt)}</b> <span class="dim">· now: ${esc(engStage(E) || '-')}</span></div>`).join('') : '<span class="dim">No competition under way.</span>'}<div class="row" style="margin-top:10px"><button class="btn warn" data-a="intlquit">Resign as ${NATN()} manager</button></div></div>` : ''}
     <h2 class="sect">Competitions</h2><div class="tw"><table class="t"><tbody>${edList().slice().reverse().map(E => `<tr class="click" data-a="ied" data-v="${E.key}"><td>${esc(E.name)}</td><td class="dim">${E.stage === 'done' ? (E.fin ? 'Won by ' + tName(E.fin[0], false) : 'Finished') : 'In progress'}</td><td>${esc(engStage(E) || '')}</td></tr>`).join('')}</tbody></table></div>
     ${G.intl.tasks.length ? `<p class="dim" style="font-size:12.5px">Coming up: ${G.intl.tasks.slice().sort((a, b) => a.d < b.d ? -1 : 1).slice(0, 3).map(tk => `${dNice(tk.d, false)} ${tk.k === 'eq' ? 'Euro qualifying draw' : tk.k === 'unl3' ? 'Nations League draw' : tk.k === 'wcq' ? 'World Cup qualifying draw' : tk.k === 'drawFinals' ? 'finals draw' : 'new cycle'}`).join(' · ')}</p>` : ''}`;
-  } else if (tab === 'sq') body = eng ? squadSelHtml() : `<h2 class="sect">Latest England squad</h2>${(G.intl.aiSq || []).length ? `<div class="tw"><table class="t"><thead><tr><th>Name</th><th>Pos</th><th>Club</th><th class="n">Caps</th><th class="n">Goals</th></tr></thead><tbody>${G.intl.aiSq.map(P).filter(Boolean).map(p => `<tr class="${p.c === G.user ? 'me' : ''}"><td>${pLink(p.id)}</td><td class="mono">${p.pos}</td><td>${p.c === 'ABROAD' ? esc(p.ab) : tName(p.c)}</td><td class="n">${p.ic || 0}</td><td class="n">${p.ig || 0}</td></tr>`).join('')}</tbody></table></div>` : '<p class="dim">The next squad is named about nine days before the next international window.</p>'}`;
-  else if (tab === 'fx') body = `<h2 class="sect">England fixtures and results</h2>${fxTable(engFixtures().slice(-40))}`;
+  } else if (tab === 'sq') body = eng ? squadSelHtml() : `<h2 class="sect">Latest ${NATN()} squad</h2>${(G.intl.aiSq || []).length ? `<div class="tw"><table class="t"><thead><tr><th>Name</th><th>Pos</th><th>Club</th><th class="n">Caps</th><th class="n">Goals</th></tr></thead><tbody>${G.intl.aiSq.map(P).filter(Boolean).map(p => `<tr class="${p.c === G.user ? 'me' : ''}"><td>${pLink(p.id)}</td><td class="mono">${p.pos}</td><td>${p.c === 'ABROAD' ? esc(p.ab) : tName(p.c)}</td><td class="n">${p.ic || 0}</td><td class="n">${p.ig || 0}</td></tr>`).join('')}</tbody></table></div>` : '<p class="dim">The next squad is named about nine days before the next international window.</p>'}`;
+  else if (tab === 'fx') body = `<h2 class="sect">${NATN()} fixtures and results</h2>${fxTable(engFixtures().slice(-40))}`;
   else if (tab === 'comp') { const L = edList(); const k = UI.tab.ied && G.intl.ed[UI.tab.ied] ? UI.tab.ied : (L.slice().reverse().find(E => E.stage !== 'done') || L[L.length - 1] || {}).key; body = `<div class="row" style="margin:10px 0"><select class="f" id="iedsel" data-a="iedsel" aria-label="Competition">${L.map(E => `<option value="${E.key}" ${E.key === k ? 'selected' : ''}>${esc(E.name)}</option>`).join('')}</select></div>${k ? edHtml(G.intl.ed[k]) : ''}`; }
   else if (tab === 'rank') body = rankHtml();
   else if (tab === 'rec') body = engRecords();
   else if (tab === 'hist') body = intlHistHtml();
   else if (tab === 'fr') body = friendlyHtml();
-  return `<div class="band">International<small>England · ${ordinal(natRank(PLAY_NAT))} in the world · data checked ${INTL_ASOF}</small></div>
+  return `<div class="band">International<small>${NATN()} · ${ordinal(natRank(PLAY_NAT))} in the world · data checked ${INTL_ASOF}</small></div>
   <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="int" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 function pressModal() {
@@ -113,17 +118,17 @@ function pressModal() {
   const q = dropped ? `Why is ${dropped.n} not in the squad?` : 'What are your hopes for these games?';
   const opts = dropped ? [['earn', 'He has to earn his place back.'], ['door', 'The door is open. I have spoken to him.'], ['squad', 'It is a squad decision. Nothing personal.']] : [['win', 'We expect to win every game.'], ['calm', 'One game at a time.'], ['young', 'It is a chance to look at young players.']];
   UI.press = dropped ? dropped.id : null;
-  UI.modal = `<div class="band"><span>Press conference · England</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc"><p><b>${esc(q)}</b></p><div style="display:grid;gap:6px">${opts.map(([k, l]) => `<button class="btn" data-a="ipress" data-v="${k}">${esc(l)}</button>`).join('')}</div></div>`;
+  UI.modal = `<div class="band"><span>Press conference · ${NATN()}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc"><p><b>${esc(q)}</b></p><div style="display:grid;gap:6px">${opts.map(([k, l]) => `<button class="btn" data-a="ipress" data-v="${k}">${esc(l)}</button>`).join('')}</div></div>`;
   render();
 }
 Object.assign(ACT, {
-  intltake: (v) => { const e = takeEngland(v); if (e) toast(e); else { toast('You are the new England manager.'); UI.tab.int = 'sq'; } autosave(); render(); },
-  intlquit: () => { leaveEngland('You have resigned as England manager.'); autosave(); render(); },
+  intltake: (v) => { const e = takeEngland(v); if (e) toast(e); else { toast(`You are the new ${NATN()} manager.`); UI.tab.int = 'sq'; } autosave(); render(); },
+  intlquit: () => { leaveEngland(`You have resigned as ${NATN()} manager.`); autosave(); render(); },
   ied: (v) => { UI.tab.int = 'comp'; UI.tab.ied = v; render(); },
   igall: () => { UI.tab.igall = !UI.tab.igall; render(); },
   isauto: () => { UI.isel = pickSquad(natPool(PLAY_NAT), 26).map(p => p.id); render(); },
   isclear: () => { UI.isel = []; render(); },
-  isok: () => { const e = confirmSquad(UI.isel || G.intl.squad || []); if (e) return toast(e); UI.isel = null; autosave(); toast('England squad confirmed.'); pressModal(); },
+  isok: () => { const e = confirmSquad(UI.isel || G.intl.squad || []); if (e) return toast(e); UI.isel = null; autosave(); toast(`${NATN()} squad confirmed.`); pressModal(); },
   ipress: (k) => {
     const p = P(UI.press);
     if (k === 'earn') { G.intl.fa = clamp(G.intl.fa + 1, 0, 100); if (p) setHap(p, -5); }
@@ -136,8 +141,8 @@ Object.assign(ACT, {
     const d = ($('#frd') || {}).value, c = ($('#fro') || {}).value, v = ($('#frv') || {}).value;
     if (!d || !c) return toast('No free date.');
     const home = v !== 'a';
-    ifx({ comp: 'FR', ed: 'FR', d, h: home ? ENGID : NID(c), a: home ? NID(c) : ENGID, rnd: 'International friendly', ven: home ? 'Wembley Stadium' : null, vcap: home ? 90000 : null });
-    news('Friendly arranged', `England will play ${T(NID(c)).name} ${home ? 'at Wembley' : 'away'} on ${dNice(d, false)}.`, ENGID);
+    ifx({ comp: 'FR', ed: 'FR', d, h: home ? ENGID : NID(c), a: home ? NID(c) : ENGID, rnd: 'International friendly', ven: home ? NAT_HOME[PLAY_NAT][0] : null, vcap: home ? NAT_HOME[PLAY_NAT][1] : null });
+    news('Friendly arranged', `${NATN()} will play ${T(NID(c)).name} ${home ? 'at ' + NAT_HOME[PLAY_NAT][0] : 'away'} on ${dNice(d, false)}.`, ENGID);
     autosave(); toast('Friendly arranged.'); render();
   }
 });
@@ -198,7 +203,7 @@ renderStart = function () {
   const go = document.querySelector('[data-a="start"]'); if (!go) return;
   const m = UI.cmode || 'club';
   const row = go.closest('.row') || go.parentElement;
-  row.insertAdjacentHTML('beforebegin', `<div class="row" style="gap:8px;margin:0 0 10px;flex-wrap:wrap"><span class="lb" style="margin:0">Career</span><div class="seg">${[['club', 'Club only'], ['nat', 'England only'], ['dual', 'Club + England']].map(([k, l]) => `<button class="${m === k ? 'on' : ''}" data-a="cmode" data-v="${k}">${l}</button>`).join('')}</div><span class="dim" style="font-size:12.5px">${m === 'nat' ? 'Manage England full-time; no club needed.' : m === 'dual' ? 'Run your club and England at the same time.' : 'Manage a club; you can apply for the England job later.'}</span></div>`);
+  row.insertAdjacentHTML('beforebegin', `<div class="row" style="gap:8px;margin:0 0 10px;flex-wrap:wrap"><span class="lb" style="margin:0">Career</span><div class="seg">${[['club', 'Club only'], ['nat', 'National team only'], ['dual', 'Club + national team']].map(([k, l]) => `<button class="${m === k ? 'on' : ''}" data-a="cmode" data-v="${k}">${l}</button>`).join('')}</div>${m !== 'club' ? `<div class="seg">${PLAYABLE_NATS.map(c => `<button class="${(UI.cnat || 'ENG') === c ? 'on' : ''}" data-a="cnat" data-v="${c}">${esc(natRow(c).name)}</button>`).join('')}</div>` : ''}<span class="dim" style="font-size:12.5px">${m === 'nat' ? `Manage ${esc(natRow(UI.cnat || 'ENG').name)} full-time; no club needed.` : m === 'dual' ? `Run your club and ${esc(natRow(UI.cnat || 'ENG').name)} at the same time.` : 'Manage a club; you can apply for the England or Spain job later.'}</span></div>`);
   if (m === 'nat') go.disabled = false;
 };
 const _startI = ACT.start;
@@ -208,10 +213,11 @@ ACT.start = () => {
   const keep = UI.newClub, keepMgr = T ? null : null;
   _startI();
   if (!G) return;
-  if (m === 'nat') { const club = G.user; const orig = (PL_CLUBS.concat(CH_CLUBS)).find(c => c.id === club); G.intl.offer = true; takeEngland('nat'); if (orig) T(club).mgr = orig.mgr; if (G.mgrP) G.mgrP.rec = []; G.mgrRep = Math.max(G.mgrRep, 60); }
+  if (m !== 'club') setPlayNat(UI.cnat || 'ENG');
+  if (m === 'nat') { const club = G.user; const orig = (PL_CLUBS.concat(CH_CLUBS, LL_CLUBS)).find(c => c.id === club); G.intl.offer = true; takeEngland('nat'); if (orig) T(club).mgr = orig.mgr; if (G.mgrP) G.mgrP.rec = []; G.mgrRep = Math.max(G.mgrRep, 60); }
   else if (m === 'dual') { G.intl.offer = true; takeEngland('dual'); }
   UI.scr = m === 'club' ? 'mgr' : 'intl'; autosave(); render();
 };
-Object.assign(ACT, { cmode: (v) => { const n = $('#mgrname'); if (n) UI.mgrName = n.value; UI.cmode = v; render(); } });
+Object.assign(ACT, { cnat: (v) => { const n = $('#mgrname'); if (n) UI.mgrName = n.value; UI.cnat = v; render(); }, cmode: (v) => { const n = $('#mgrname'); if (n) UI.mgrName = n.value; UI.cmode = v; render(); } });
 const _maI = msgActions;
 msgActions = function (m) { if (m && m.act && m.act.k === 'nav') return `<div class="row" style="margin-top:14px"><button class="btn pri" data-a="nav" data-v="${esc(m.act.v)}">Open International</button></div>`; return _maI(m); };

@@ -47,7 +47,7 @@ function finishOthers(LM) {
   }
 }
 function liveTable(LM, dScore) {
-  const tb = tableOf(LM.M.comp === 'CH' ? 'CH' : 'PL').map(r => ({ ...r }));
+  const tb = tableOf(LEAGUE_COMPS.includes(LM.M.comp) ? LM.M.comp : 'PL').map(r => ({ ...r }));
   const idx = {}; tb.forEach(r => idx[r.t] = r);
   const add = (f, sc) => { if (f.comp !== LM.M.comp || !idx[f.h] || !idx[f.a] || f.r) return; addRes(idx[f.h], sc[0], sc[1]); addRes(idx[f.a], sc[1], sc[0]); };
   add(G.fx[LM.M.fid], dScore);
@@ -93,7 +93,7 @@ function startLive(fid, instant) {
   const M = createMatch(fid, true);
   const LM = UI.match = { M, pre, speed: UI.speedPref != null ? UI.speedPref : 1, run: !instant, panel: null, sel: null, talked: false, mom: [], atmBase: atmBase(f), autoRp: UI.autoRp !== false, rtab: 'stats', ptab: 'xg', replays: [], heat: new Map() };
   LM.atm = LM.atmBase;
-  LM.prePos = {}; tableOf(LM.M.comp === 'CH' ? 'CH' : 'PL').forEach((r, i) => LM.prePos[r.t] = i + 1);
+  LM.prePos = {}; tableOf(LEAGUE_COMPS.includes(LM.M.comp) ? LM.M.comp : 'PL').forEach((r, i) => LM.prePos[r.t] = i + 1);
   setupOthers(LM);
   UI.modal = null;
   if (instant) {

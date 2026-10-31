@@ -1,7 +1,7 @@
 // youth.js: reserve (U21) and academy (U18) squads, youth leagues, promotions and the summer academy intake.
 // Loaded after champ.js, before boot.js. Real players come from YOUTH (data_youth.js); generated ones carry gen: true.
 
-const YOUTH_COMPS = { PL2: 'Premier League 2', PL2D2: 'PL2 Division 2', U18: 'U18 Premier League', PDL: 'U18 Professional Development League' };
+const YOUTH_COMPS = { PL2: 'Premier League 2', PL2D2: 'PL2 Division 2', U18: 'U18 Premier League', PDL: 'U18 Professional Development League', LLB: 'Filiales (B teams)', DHJ: 'División de Honor Juvenil' };
 const YLEVEL = { f: 'First team', r: 'Reserves', a: 'Academy' };
 STAFF_ROLES.hoyd = 'Head of Youth Development';
 STAFF_FX.hoyd = 'Runs the academy: stronger intakes each summer and faster progress for reserve and academy players.';
@@ -67,9 +67,9 @@ function ensureYouth(tid) {
 }
 
 // ---------- youth leagues ----------
-function yLeagueTeams(c) { return c === 'PL2' || c === 'U18' ? G.pl.slice() : divTeams('CH'); }
-function yLevelOf(c) { return c === 'PL2' || c === 'PL2D2' ? 'r' : 'a'; }
-function yCompOf(tid, lvl) { const pl = G.pl.includes(tid); return lvl === 'r' ? (pl ? 'PL2' : 'PL2D2') : (pl ? 'U18' : 'PDL'); }
+function yLeagueTeams(c) { return c === 'PL2' || c === 'U18' ? G.pl.slice() : c === 'LLB' || c === 'DHJ' ? (G.ll || []).slice() : divTeams('CH'); }
+function yLevelOf(c) { return c === 'PL2' || c === 'PL2D2' || c === 'LLB' ? 'r' : 'a'; }
+function yCompOf(tid, lvl) { if (G.ll && G.ll.includes(tid)) return lvl === 'r' ? 'LLB' : 'DHJ'; const pl = G.pl.includes(tid); return lvl === 'r' ? (pl ? 'PL2' : 'PL2D2') : (pl ? 'U18' : 'PDL'); }
 function buildYouthLeagues() {
   G.res = G.res || {}; G.acad = G.acad || {};
   for (const tid of fullTeams()) ensureYouth(tid);
@@ -343,7 +343,7 @@ scrTable = function () {
   const sc = yScorers(c, 15);
   return `<div class="band">League tables<small>${seasonLabel(G.year)}</small></div><div class="tabs" style="margin-top:8px"><button data-a="tab" data-k="tb" data-v="pl">Premier League</button><button data-a="tab" data-k="tb" data-v="ch">Championship</button>${yBtn}</div>
   <div class="tabs" style="margin-top:4px">${Object.entries(YOUTH_COMPS).map(([k, l]) => `<button class="${c === k ? 'on' : ''}" data-a="ycomp" data-v="${k}">${l}</button>`).join('')}</div>
-  <p class="dim" style="margin:6px 0">${yLevelOf(c) === 'r' ? 'Reserve (under-21) football' : 'Academy (under-18) football'}, simulated each week for ${c === 'PL2' || c === 'U18' ? 'Premier League' : 'Championship'} clubs. One round-robin season, August to April.</p>
+  <p class="dim" style="margin:6px 0">${yLevelOf(c) === 'r' ? 'Reserve (under-21) football' : 'Academy (under-18) football'}, simulated each week for ${c === 'PL2' || c === 'U18' ? 'Premier League' : c === 'LLB' || c === 'DHJ' ? 'La Liga' : 'Championship'} clubs.${c === 'LLB' ? ' Spanish B teams really play in the third and fourth tiers against senior sides; here they meet in one league.' : c === 'DHJ' ? ' The real División de Honor has seven regional groups; here the La Liga clubs\' Juvenil A sides form one group.' : ''} One round-robin season, August to April.</p>
   ${tableHtml(yTable(c), null, { form: true })}
   <h2 class="sect">Top scorers</h2><div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th>Pos</th><th class="n">Age</th><th class="n">Goals</th></tr></thead><tbody>${sc.map(([p, g], i) => `<tr class="click ${p.c === G.user ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td>${tLink(p.c)}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${g}</b></td></tr>`).join('') || '<tr><td colspan="6" class="dim">No goals yet.</td></tr>'}</tbody></table></div>`;
 };

@@ -1,0 +1,42 @@
+1982-83|Real Sociedad|Real Madrid
+1983-84|Barcelona|Athletic Bilbao
+1984-85|Athletic Bilbao|-
+1985-86|Atlético Madrid|Barcelona
+1988-89|Real Madrid|Barcelona
+1989-90|Real Madrid|-
+1990-91|Real Madrid|Barcelona
+1991-92|Barcelona|Atlético Madrid
+1992-93|Barcelona|Atlético Madrid
+1993-94|Real Madrid|Barcelona
+1994-95|Barcelona|Zaragoza
+1995-96|Deportivo La Coruña|Real Madrid
+1996-97|Barcelona|Atlético Madrid
+1997-98|Real Madrid|Barcelona
+1998-99|Mallorca|Barcelona
+1999-00|Valencia|Barcelona
+2000-01|Deportivo La Coruña|Espanyol
+2001-02|Real Madrid|Zaragoza
+2002-03|Deportivo La Coruña|Valencia
+2003-04|Real Madrid|Mallorca
+2004-05|Zaragoza|Valencia
+2005-06|Barcelona|Real Betis
+2006-07|Barcelona|Espanyol
+2007-08|Sevilla|Real Madrid
+2008-09|Real Madrid|Valencia
+2009-10|Barcelona|Athletic Bilbao
+2010-11|Barcelona|Sevilla
+2011-12|Barcelona|Real Madrid
+2012-13|Real Madrid|Barcelona
+2013-14|Barcelona|Atlético Madrid
+2014-15|Atlético Madrid|Real Madrid
+2015-16|Athletic Bilbao|Barcelona
+2016-17|Barcelona|Sevilla
+2017-18|Real Madrid|Barcelona
+2018-19|Barcelona|Sevilla
+2019-20|Real Madrid|Atlético Madrid
+2020-21|Athletic Bilbao|Barcelona
+2021-22|Real Madrid|Athletic Bilbao
+2022-23|Barcelona|Real Madrid
+2023-24|Real Madrid|Barcelona
+2024-25|Barcelona|Real Madrid
+2025-26|Barcelona|Real Madrid

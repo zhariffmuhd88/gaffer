@@ -1,0 +1,298 @@
+## GET|José Bordalás|Getafe|Getafe|#005999|#ffffff|Coliseum|16500|Djené|72|20|4-4-2
+David Soria|GK|33|ESP|77|13
+Jiří Letáček|GK|27|CZE|72|1
+Djené|CB|34|TOG|75|2
+Abdelkabir Abqar|CB|27|MAR|75|3
+Saba Sazonov|CB|24|GEO|73|4
+Sebastián Boselli|CB|23|URU|73|15
+Nemanja Gudelj|CB|35|SRB|74|8
+Davinchi|CB|19|ESP|67|30
+Zaid Romero|CB|27|ARG|72|5
+Daniel Carvajal|RB|34|ESP|78|14
+Kiko Femenía|RB|35|ESP|71|17
+Jean Ives Valou|RB|21|CIV|66|26
+Johan Mojica|LB|34|COL|73|22
+Mario Martín|DM|22|ESP|74|6
+Ramón Terrats|CM|26|ESP|74|11
+Francho Serrano|CM|25|ESP|73|16
+Orel Mangala|CM|28|BEL|76|18
+Andrés García|CM|23|ESP|70|21
+Alberto Risco|CM|20|ESP|65|33
+Juanmi|LW|33|ESP|73|7
+Borja Mayoral|ST|29|ESP|77|19
+Martín Satriano|ST|25|URU|75|10
+Christantus Uche|ST|23|NGA|74|9
+Enes Ünal|ST|29|TUR|75|23
+Iván Azón|ST|23|ESP|74|20
+## RAY|Beñat San José|Rayo Vallecano|Rayo|#ffffff|#e2001a|Estadio de Vallecas|14708|Óscar Valentín|72|18|4-2-3-1
+Augusto Batalla|GK|30|ARG|77|13
+Emil Audero|GK|29|IDN|75|25
+Dani Cárdenas|GK|29|ESP|71|1
+Florian Lejeune|CB|35|FRA|75|24
+Marash Kumbulla|CB|26|ALB|74|5
+Luiz Felipe|CB|29|ITA|75|3
+Pelayo Fernández|CB|23|ESP|68|32
+Mujaid Sadick|CB|26|ESP|72|15
+Andrei Rațiu|RB|28|ROU|77|2
+Iván Balliu|RB|34|ALB|73|20
+Jozhua Vertrouwd|LB|22|NED|72|33
+Adrià Pedrosa|LB|28|ESP|74|17
+Pathé Ciss|DM|32|SEN|76|6
+Óscar Valentín|DM|32|ESP|74|23
+Unai López|CM|31|ESP|76|8
+Pedro Díaz|CM|28|ESP|75|4
+Gnangoro Bouare|CM|20|ESP|65|30
+Isi Palazón|RW|31|ESP|78|7
+Jorge de Frutos|RW|29|ESP|77|19
+Álvaro García|LW|34|ESP|75|18
+Giorgi Tsitaishvili|LW|26|GEO|73|11
+Fran Pérez|RW|24|ESP|73|21
+Rayane Belaid|LW|19|ESP|64|36
+Sergio Camello|ST|25|ESP|76|10
+Alemão|ST|28|BRA|74|9
+Randy Nteka|ST|29|ANG|72|22
+Raúl de Tomás|ST|31|ESP|73|14
+## VAL|Javier Aguirre|Valencia|Valencia|#ffffff|#ee3524|Mestalla|49430|José Gayà|77|30|4-4-2
+Stole Dimitrievski|GK|33|MKD|76|1
+Cristian Rivero|GK|28|ESP|70|13
+Kayne van Oevelen|GK|20|NED|65|31
+Mouctar Diakhaby|CB|29|GUI|77|4
+César Tárrega|CB|24|ESP|77|5
+José Copete|CB|27|ESP|74|3
+Justin de Haas|CB|26|NED|72|12
+Iker Córdoba|CB|19|ESP|64|32
+Dimitri Foulquier|RB|33|GLP|72|20
+Pablo Maffeo|RB|29|ARG|75|24
+Arnau Martínez|RB|23|ESP|72|21
+José Gayà|LB|31|ESP|77|14
+Jesús Vázquez|LB|23|ESP|74|15
+Guido Rodríguez|DM|32|ARG|77|2
+Pepelu|DM|28|ESP|77|18
+Javi Guerra|CM|23|ESP|79|8
+Aliou Dieng|CM|29|MLI|73|6
+Filip Ugrinić|CM|27|SUI|76|23
+Harvey Elliott|AM|23|ENG|79|10
+Ryunosuke Sato|AM|20|JPN|68|27
+Aaron Mayol|CM|19|ESP|64|35
+David Otorbi|AM|19|ESP|64|36
+Luis Rioja|LW|32|ESP|75|11
+Arnaut Danjuma|LW|29|NED|76|7
+Sergi Canós|RW|29|ESP|74|17
+Diego López|RW|24|ESP|76|16
+Hugo Duro|ST|26|ESP|77|9
+Umar Sadiq|ST|29|NGA|73|19
+Dani Raba|ST|31|ESP|73|22
+## OSA|Jagoba Arrasate|Osasuna|Osasuna|#da0b1f|#0a346f|El Sadar|23576|Kike Barja|72|18|4-2-3-1
+Sergio Herrera|GK|33|ESP|77|1
+Aitor Fernández|GK|35|ESP|73|13
+Alejandro Catena|CB|31|ESP|77|24
+Jorge Herrando|CB|25|ESP|73|5
+Flavien Boyomo|CB|24|CMR|74|22
+Unai Santos|CB|20|ESP|64|31
+Asier Osambela|CB|21|ESP|65|32
+Valentin Rosier|RB|30|FRA|74|19
+Iñigo Arguibide|RB|21|ESP|64|33
+Abel Bretones|LB|26|ESP|75|23
+Diego Rico|LB|33|ESP|72|15
+Rockson Yeboah|CB|22|GHA|64|34
+Lucas Torró|DM|32|ESP|76|6
+Jon Moncayola|CM|28|ESP|76|7
+Iker Muñoz|CM|24|ESP|74|8
+Aimar Oroz|AM|25|ESP|77|10
+Moi Gómez|AM|32|ESP|75|16
+Rubén García|LW|33|ESP|75|14
+Enrique Barja|LW|29|ESP|73|11
+Romain Del Castillo|RW|30|FRA|76|17
+Raúl Moro|RW|23|ESP|73|21
+Jonathan Dubasin|RW|25|BEL|72|20
+Ante Budimir|ST|35|CRO|77|17
+Raúl García|ST|25|ESP|75|9
+## EPY|Manolo González|Espanyol|Espanyol|#007fc8|#ffffff|RCDE Stadium|37776|Javi Puado|71|18|4-2-3-1
+Marko Dmitrović|GK|34|SRB|77|13
+Ángel Fortuno|GK|25|ESP|69|1
+Leandro Cabrera|CB|35|URU|75|6
+Clemens Riedel|CB|23|GER|73|5
+Vanja Drkušić|CB|27|SVN|72|16
+Roger Hinojo|CB|20|ESP|65|31
+Andoni Gorosabel|RB|30|ESP|74|2
+Omar El Hilali|RB|23|MAR|74|23
+Quilindschy Hartman|LB|25|NED|74|3
+Urko González|DM|25|ESP|75|4
+Edu Expósito|CM|30|ESP|76|8
+Pol Lozano|CM|26|ESP|75|10
+Rafel Bauzà|CM|20|ESP|65|30
+Gabriel Moscardo|DM|21|BRA|72|21
+Javi Hernández|CM|21|ESP|66|28
+Jofre Carreras|RW|25|ESP|74|17
+Tyrhys Dolan|LW|24|ENG|74|24
+Javi Puado|ST|28|ESP|77|7
+Roberto Fernández|ST|24|ESP|75|9
+Kike García|ST|36|ESP|72|19
+Pere Milla|LW|34|ESP|72|11
+Bryan Zaragoza|LW|25|ESP|76|15
+Marcos Fernández|RW|22|ESP|66|34
+Álex Calatrava|RW|22|ESP|68|22
+## ALA|Quique Sánchez Flores|Alavés|Alavés|#0761af|#ffffff|Mendizorrotza|19840|Antonio Sivera|70|15|4-4-2
+Antonio Sivera|GK|30|ESP|77|1
+Adrián Rodríguez|GK|25|ESP|66|13
+Nicolás Valentini|CB|25|ARG|73|2
+Facundo Garcés|CB|27|MAS|74|5
+Youssef Enríquez|CB|21|MAR|68|4
+Ville Koski|CB|25|FIN|72|16
+Hugo Novoa|RB|23|ESP|71|22
+Nahuel Tenaglia|RB|30|ARG|75|14
+Jonny Otto|RB|32|ESP|74|17
+Carlos Protesoni|LB|28|URU|72|3
+Antonio Blanco|DM|26|ESP|76|8
+Ander Guevara|DM|29|ESP|74|6
+Denis Suárez|AM|32|ESP|74|23
+Carles Aleñá|CM|28|ESP|75|10
+Pablo Ibáñez|CM|27|ESP|74|19
+Ángel Pérez|RW|24|ESP|70|7
+Abderrahman Rebbach|LW|28|ALG|73|21
+Mikel Rodríguez|LW|23|ESP|69|25
+Selu Diallo|CM|20|ESP|64|30
+Lucas Boyé|ST|30|ARG|76|15
+Toni Martínez|ST|29|ESP|75|11
+Mariano Díaz|ST|33|DOM|72|9
+Aitor Mañas|ST|22|ESP|68|20
+Miguel Rodríguez|RW|21|ESP|65|31
+Lander Pinillos|ST|19|ESP|62|34
+## LEV|Luís Castro|Levante|Levante|#004a8f|#b5121b|Ciutat de València|26354|Pablo Martínez|68|15|4-4-2
+Mathew Ryan|GK|34|AUS|76|1
+Pablo Campos|GK|24|ESP|68|13
+Aïssa Mandi|CB|35|ALG|73|23
+Adrián de la Fuente|CB|27|ESP|72|4
+Jorge Cabello|CB|23|ESP|69|5
+Ifeanyi Ndukwe|CB|21|AUT|67|28
+Jeremy Toljan|RB|32|GER|72|2
+Manuel Sánchez|LB|26|ESP|72|3
+Marc Santos|RB|23|ESP|67|22
+Axel Tape|RB|19|FRA|66|30
+Nacho Pérez|LB|20|ESP|63|33
+Oriol Rey|DM|28|ESP|73|6
+Jon Olasagasti|CM|26|ESP|73|8
+Hugo Sotelo|CM|23|ESP|71|16
+Enzo Bardeli|CM|22|FRA|71|14
+Dani Requena|AM|24|ESP|71|10
+Roger Brugué|RW|29|ESP|73|7
+Víctor García|LW|29|ESP|71|11
+Jorge de Asís|LW|21|ARG|68|20
+Thiago Fernández|RW|22|ARG|67|21
+Iván Romero|ST|25|ESP|74|9
+Petar Ratkov|ST|23|SRB|72|19
+Etta Eyong|ST|23|CMR|75|18
+Yanis Musuayi|ST|20|BEL|64|29
+Paco Cortés|ST|21|ESP|63|35
+## ELC|Martín Anselmi|Elche|Elche|#ffffff|#05642c|Martínez Valero|31388|Pedro Bigas|68|14|3-4-3
+Matías Dituro|GK|39|ARG|73|13
+Alejandro Iturbe|GK|22|ESP|70|1
+Pedro Bigas|CB|36|ESP|71|6
+Bambo Diaby|CB|29|ESP|72|5
+Víctor Chust|CB|26|ESP|73|4
+Kevin Lomónaco|CB|24|ARG|72|24
+Roy Revivo|LB|23|ISR|69|17
+Buba Sangaré|RB|24|ESP|68|2
+Matia Barzić|CB|19|ESP|62|31
+Federico Redondo|DM|23|ARG|74|16
+Marc Aguado|DM|26|ESP|74|8
+Martim Neto|CM|23|POR|73|14
+Gonzalo Villar|CM|28|ESP|74|10
+Thomas Lemar|AM|30|FRA|75|21
+Facundo Buonanotte|AM|21|ARG|75|20
+Yago Santiago|LW|23|ESP|70|11
+Germán Valera|RW|24|ESP|73|7
+Grady Diangana|RW|28|COD|73|22
+Tete Morente|LW|30|ESP|72|23
+Ali Houary|CM|22|MAR|66|28
+Adam Boayar|RW|21|MAR|66|29
+Javi Morcillo|CM|19|ESP|62|34
+Rubén Sánchez|RB|25|ESP|66|3
+Lucas Cepeda|RW|23|CHI|72|19
+Ezequiel Ponce|ST|29|ARG|73|9
+Fer Niño|ST|26|ESP|72|18
+Josan|RW|36|ESP|68|15
+Abiel Osorio|ST|23|ARG|68|26
+## RAC|José Alberto López|Racing Santander|Racing|#00a34f|#ffffff|El Sardinero|22308|Íñigo Sainz-Maza|66|10|4-2-3-1
+Julen Agirrezabala|GK|26|ESP|75|13
+Simon Eriksson|GK|25|SWE|67|1
+Álvaro Mantilla|RB|25|ESP|72|2
+Manu Hernando|CB|27|ESP|70|4
+Pablo Ramón|CB|25|ESP|70|5
+Facundo González|CB|23|URU|71|6
+Pedro Felipe|CB|23|BRA|67|15
+Jorge Salinas|LB|26|ESP|70|17
+Jeanuël Belocian|LB|21|FRA|71|24
+Aarón Martín|CM|27|ESP|70|8
+Íñigo Sainz-Maza|CM|29|ESP|71|14
+André Almeida|CM|26|POR|74|16
+Maguette Gueye|DM|26|SEN|70|22
+Matteo Prati|DM|22|ITA|71|18
+Sergio Canales|AM|35|ESP|75|20
+Iván Martín|AM|27|ESP|73|23
+Íñigo Vicente|LW|28|ESP|75|10
+Andrés Martín|RW|27|ESP|74|11
+Giorgi Guliashvili|LW|24|GEO|69|7
+Juan Carlos Arana|ST|26|ESP|71|9
+Asier Villalibre|ST|29|ESP|70|19
+Pablo García|ST|21|ESP|66|26
+Iker Luque|ST|22|ESP|65|27
+Yassir Zabiri|ST|21|MAR|70|21
+## DEP|Antonio Hidalgo|Deportivo de La Coruña|Deportivo|#0055a5|#ffffff|Abanca-Riazor|32660|Diego Villares|68|14|4-2-3-1
+Germán Parreño|GK|33|ESP|70|1
+Leo Román|GK|26|ESP|72|13
+Álvaro Fernández|GK|28|ESP|69|25
+Adrià Altimira|RB|25|ESP|72|2
+Ximo Navarro|RB|36|ESP|68|22
+Arnau Comas|CB|26|ESP|71|4
+Lucas Noubi|CB|21|BEL|69|5
+Dani Barcia|CB|23|ESP|70|6
+José Giménez|CB|23|URU|70|20
+Miguel Loureiro|CB|29|ESP|70|15
+Bright Ede|CB|21|POL|66|30
+Giacomo Quagliata|LB|26|ITA|71|12
+Angeliño|LB|29|ESP|74|3
+Marc Casadó|DM|23|ESP|76|14
+Diego Villares|CM|30|ESP|72|8
+Riki Rodríguez|CM|28|ESP|71|18
+Lorenzo Amatucci|DM|22|ITA|70|16
+Mario Soriano|AM|24|ESP|74|21
+Luismi Cruz|RW|25|ESP|72|7
+Yayo|CM|20|ESP|62|33
+Noé|CM|19|ESP|62|34
+Yeremay Hernández|LW|24|ESP|77|10
+David Mella|RW|21|ESP|73|11
+Adama Traoré|RW|30|ESP|74|17
+Kevin Sánchez|LW|22|ESP|66|28
+Pierre-Emerick Aubameyang|ST|37|GAB|73|9
+Zakaria Eddahchouri|ST|26|NED|71|19
+Jonathan Asp|ST|20|DEN|65|29
+Bil Nsongo|ST|20|CMR|64|32
+## MAL|Juan Francisco Funes|Málaga|Málaga|#5bc2e7|#ffffff|La Rosaleda|30044|Ramón Enríquez|66|10|4-2-3-1
+Alfonso Herrero|GK|32|ESP|71|1
+Carlos López|GK|26|ESP|66|13
+Carlos Puga|RB|25|ESP|69|2
+Einar Galilea|CB|31|ESP|70|4
+Álex Pastor|CB|26|ESP|69|5
+José Salinas|LB|25|ESP|69|12
+Diego Murillo|CB|23|ESP|66|15
+Fernando Calero|CB|31|ESP|71|6
+Juan Berrocal|CB|27|ESP|70|25
+Rafita|RB|22|ESP|66|31
+Adam Aznou|LB|20|MAR|69|3
+Jens-Lys Cajuste|CM|27|SWE|73|8
+Ramón Enríquez|CM|29|ESP|69|16
+Carlos Dotor|CM|25|ESP|72|18
+Rafa Rodríguez|CM|24|ESP|69|14
+Pablo Martínez|CM|28|ESP|68|20
+Dani Lorenzo|CM|22|ESP|70|22
+Izan Merino|DM|20|ESP|67|23
+Aarón Ochoa|AM|20|IRL|64|34
+Haitam Abaida|LW|22|MAR|68|21
+David Larrubia|AM|24|ESP|72|10
+Joaquín Muñoz|LW|26|ESP|71|11
+Julen Lobete|RW|26|ESP|70|7
+Chupe|ST|23|ESP|70|9
+Eneko Jauregi|ST|27|ESP|69|17
+Juan Cruz|ST|25|ESP|67|19
+Adrián Niño|ST|22|ESP|67|27

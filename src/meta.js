@@ -28,6 +28,7 @@ function venueOf(f) {
 function attendanceOf(f) {
   const v = venueOf(f); if (v.neutral) return Math.round(v.cap * .97);
   const t = T(f.h) || {}; const rep = t.rep || t.str || 60;
+  if (divOf(f.h) === 'LL') return Math.round(v.cap * clamp(0.62 + rep / 330 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.1), 0.45, 0.98));
   if (divOf(f.h) === 'CH') return Math.round(v.cap * clamp(0.55 + rep / 250 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.12), 0.4, 0.97));
   return Math.round(v.cap * clamp(0.8 + rep / 600 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.08), 0.5, 1));
 }
@@ -57,10 +58,11 @@ function fxMeta(f) {
 function refDesc(s) { return s >= 14 ? 'strict' : s <= 7 ? 'lenient' : 'average'; }
 
 // ---- goal awards ----
-function goalCandidates(prefix) {
+function goalCandidates(prefix, comp) {
+  comp = comp || 'PL';
   const out = [];
   for (const f of Object.values(G.fx)) {
-    if (!f.r || f.comp !== 'PL' || !f.d.startsWith(prefix) || !f.sc) continue;
+    if (!f.r || f.comp !== comp || !f.d.startsWith(prefix) || !f.sc) continue;
     for (const s of f.sc) {
       if (s[2] !== 'G' || !s[5]) continue; const p = P(s[3]); if (!p) continue;
       out.push({ q: (STYLE_Q[s[5]] || 1) + (s[6] ? 2 : 0) + (hash(f.id + '|' + s[0]) % 100) / 100, pid: p.id, n: p.n, club: s[1] === 0 ? f.h : f.a, opp: s[1] === 0 ? f.a : f.h, st: s[5], sk: s[6] || null, d: f.d, min: s[0] });
@@ -76,7 +78,7 @@ function goalOfMonth() {
   news('Goal of the Month', `${w.n} (${tName(w.club)}) wins Goal of the Month for ${MON[+key.slice(5) - 1]} with his ${STYLE_N[w.st]}${w.sk ? ' after a ' + SKILLS[w.sk] : ''} against ${tName(w.opp)}.`, w.club, true);
   const p = P(w.pid); if (p && p.c === G.user) { p.mor = clamp(p.mor + 8, 5, 100); if (typeof setHap === 'function') setHap(p, 4); }
 }
-function goalOfSeason() { const list = (G.gotm || []).filter(x => x.s === seasonLabel(G.year)); return list.length ? list.slice().sort((a, b) => b.q - a.q)[0] : null; }
+function goalOfSeason(comp) { const list = ((comp === 'LL' ? G.gotmLL : G.gotm) || []).filter(x => x.s === seasonLabel(G.year)); return list.length ? list.slice().sort((a, b) => b.q - a.q)[0] : null; }
 const _seasonEnd0 = seasonEnd;
 seasonEnd = function () {
   const gos = goalOfSeason();

@@ -25,7 +25,7 @@ function ensureStadium(tid) {
 function facLvl(k, tid) { const t = T(tid || G.user); if (!t || t.lite) return 10; ensureStadium(t.id); return t.fac[k] || 10; }
 function standCapNow(s) { return Math.max(0, s.cap - (s.w ? s.w.red : 0)); }
 function syncCap(tid) { const t = T(tid), m = t.sdm; if (!m) return; t.cap = m.st.reduce((a, s) => a + standCapNow(s), 0); }
-function ticketYield(t) { return divOf(t.id) === 'CH' ? 8 + t.rep * 0.33 : 20 + t.rep * 0.38; }
+function ticketYield(t) { return divOf(t.id) === 'CH' ? 8 + t.rep * 0.33 : divOf(t.id) === 'LL' ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38; }
 function ticketLevel(t) { const y = ticketYield(t); return y >= 52 ? 'Premium' : y >= 44 ? 'High' : y >= 34 ? 'Average' : y >= 26 ? 'Affordable' : 'Low'; }
 function homeAttendance(tid) {
   const fs = Object.values(G.fx).filter(f => f.h === tid && f.r && f.att && LEAGUE_COMPS.includes(f.comp));
@@ -310,7 +310,7 @@ function stadiumPanel(tid, small) {
     <h2 class="sect">Stands</h2>${stands}
     <div class="grid2" style="margin-top:10px"><div class="box pad">${facBar('tr', t)}</div><div class="box pad">${facBar('yth', t)}</div></div>
     ${proj.length ? `<h2 class="sect">Building work</h2><div class="box pad">${proj.map(p => projLine(p)).join('<br>')}</div>` : ''}
-    <p class="dim" style="font-size:12px">Opening year, record attendance, pitch size and stand names come from Wikipedia stadium pages (read Oct 2026). Stand capacities, ticket prices and facility ratings are game estimates.</p>`;
+    <p class="dim" style="font-size:12px">${divOf(tid) === 'LL' ? 'Opening year and stand names are compiled for the game and not individually checked; pitch size is the LaLiga standard; record attendances are not included.' : 'Opening year, record attendance, pitch size and stand names come from Wikipedia stadium pages (read Oct 2026).'} Stand capacities, ticket prices and facility ratings are game estimates.</p>`;
 }
 function projLine(p) {
   const t = T(p.tid); const pct = clamp(Math.round(dDiff(p.start, G.date) / Math.max(1, dDiff(p.start, p.end)) * 100), 0, 100);
