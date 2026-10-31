@@ -207,12 +207,12 @@ function boardDecide(req) {
   if (ok) {
     if (k === 'exp') {
       const s = t.sdm.st[opt.si]; s.w = { add: opt.add, red: opt.red };
-      B.proj.push({ k, tid: G.user, si: opt.si, add: opt.add, cost: opt.cost, paid: 0, start: G.date, end: addMonths(G.date, opt.months), months: opt.months });
+      B.proj.push({ k, tid: G.user, si: opt.si, add: opt.add, cost: opt.cost, paid: 0, start: G.date, end: addMonthsD(G.date, opt.months), months: opt.months });
       syncCap(G.user);
-      head = `The board has approved a ${opt.add.toLocaleString('en-GB')}-seat expansion of the ${s.n}. Work starts now and should finish around ${monthYear(addMonths(G.date, opt.months))}. The ${s.n} loses about ${opt.red.toLocaleString('en-GB')} seats while the builders are in. Cost: ${money(opt.cost)}, paid monthly.`;
+      head = `The board has approved a ${opt.add.toLocaleString('en-GB')}-seat expansion of the ${s.n}. Work starts now and should finish around ${monthYear(addMonthsD(G.date, opt.months))}. The ${s.n} loses about ${opt.red.toLocaleString('en-GB')} seats while the builders are in. Cost: ${money(opt.cost)}, paid monthly.`;
     } else if (k === 'new') {
-      B.proj.push({ k, tid: G.user, name: opt.name, cap: opt.cap, cost: Math.round(opt.cost * 0.4), full: opt.cost, paid: 0, start: G.date, end: addMonths(G.date, opt.months), months: opt.months });
-      head = `The board has approved a new ${opt.cap.toLocaleString('en-GB')}-seat stadium, ${opt.name}. Building takes about ${Math.round(opt.months / 12 * 10) / 10} years, with the move planned for ${monthYear(addMonths(G.date, opt.months))}. Long-term loans cover most of the ${money(opt.cost)} cost; the club pays ${money(Math.round(opt.cost * 0.4))} in monthly instalments.`;
+      B.proj.push({ k, tid: G.user, name: opt.name, cap: opt.cap, cost: Math.round(opt.cost * 0.4), full: opt.cost, paid: 0, start: G.date, end: addMonthsD(G.date, opt.months), months: opt.months });
+      head = `The board has approved a new ${opt.cap.toLocaleString('en-GB')}-seat stadium, ${opt.name}. Building takes about ${Math.round(opt.months / 12 * 10) / 10} years, with the move planned for ${monthYear(addMonthsD(G.date, opt.months))}. Long-term loans cover most of the ${money(opt.cost)} cost; the club pays ${money(Math.round(opt.cost * 0.4))} in monthly instalments.`;
     } else if (k === 'tb') {
       const add = Math.max(2, Math.round(t.tb * 0.2 * 10) / 10); t.tb += add;
       head = `The board has agreed to add ${money(add)} to your transfer budget, which is now ${money(t.tb)}.`;
@@ -220,7 +220,7 @@ function boardDecide(req) {
       const add = t.wb * 0.1; t.wb += add;
       head = `The board has raised the wage budget by 10% to ${wageStr(t.wb)}.`;
     } else {
-      const months = 6; B.proj.push({ k, tid: G.user, cost: facCost(k), paid: 0, start: G.date, end: addMonths(G.date, months), months });
+      const months = 6; B.proj.push({ k, tid: G.user, cost: facCost(k), paid: 0, start: G.date, end: addMonthsD(G.date, months), months });
       head = `The board has approved ${k === 'tr' ? 'an upgrade of the training ground' : 'new youth academy facilities'} for ${money(facCost(k))}. The work takes about six months.`;
     }
     G.board = clamp(G.board + 1, 0, 100);
@@ -232,7 +232,7 @@ function boardDecide(req) {
   B.log = B.log.slice(0, 30);
   msg(`Board ${ok ? 'approves' : 'rejects'}: ${REQ[k].n}`, `${head}\n\nThe board's reasons:\n${list}`);
 }
-function addMonths(d, n) { const x = dParse(d); x.setUTCMonth(x.getUTCMonth() + n); return x.toISOString().slice(0, 10); }
+function addMonthsD(d, n) { const x = dParse(d); x.setUTCMonth(x.getUTCMonth() + n); return x.toISOString().slice(0, 10); }
 function monthYear(d) { const x = dParse(d); return MON[x.getUTCMonth()] + ' ' + x.getUTCFullYear(); }
 
 function projectsTick() {

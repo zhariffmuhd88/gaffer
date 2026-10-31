@@ -194,18 +194,20 @@ function seasonEnd() {
   G.hist.push({ s: seasonLabel(y), div: udiv, champ, chChamp, upos, team: G.user, cups: cupsWon, top: top ? [top.n, tName(top.c), top.st.lg || 0] : null, best: best ? [best.n, tName(best.c)] : null, young: young ? [young.n, tName(young.c)] : null, rel: rel.map(t => tName(t)), prom: prom.map(t => tName(t)), chRel: chRel.map(t => tName(t)), l1prom: l1.prom.map(t => tName(t)), promoted, relegated });
   // board review
   let verdict;
+  const natU = !!(T(G.user) && T(G.user).nat); // England-only careers have no club board
   const gap = upos - target.pos;
-  G.board = clamp(G.board - gap * 4 + cupsWon.length * 10 + (upos === 1 ? 20 : 0) + (promoted ? 25 : 0) - (relegated ? 30 : 0), 0, 100);
-  G.mgrRep = clamp(G.mgrRep + (target.pos - upos) * (udiv === 'CH' ? 0.8 : 1.5) + cupsWon.length * 6 + (upos === 1 ? (udiv === 'CH' ? 5 : 10) : 0) + (promoted ? 6 : 0) - (relegated ? 5 : 0), 20, 99);
+  if (!natU) G.board = clamp(G.board - gap * 4 + cupsWon.length * 10 + (upos === 1 ? 20 : 0) + (promoted ? 25 : 0) - (relegated ? 30 : 0), 0, 100);
+  if (!natU) G.mgrRep = clamp(G.mgrRep + (target.pos - upos) * (udiv === 'CH' ? 0.8 : 1.5) + cupsWon.length * 6 + (upos === 1 ? (udiv === 'CH' ? 5 : 10) : 0) + (promoted ? 6 : 0) - (relegated ? 5 : 0), 20, 99);
   const uname = userTeam().name;
-  if (relegated && udiv === 'CH') { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
+  if (natU) verdict = 'You are managing England full-time.';
+  else if (relegated && udiv === 'CH') { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
   else if (relegated && G.board < 40) { G.sacked = true; verdict = `${uname} have been relegated and the board has dismissed you.`; }
   else if (relegated) verdict = `${uname} have been relegated to the Championship. The board wants an immediate promotion push next season.`;
   else if (G.board < 20) { G.sacked = true; verdict = `The board is unhappy with a ${ordinal(upos)}-place finish against a target of ${target.txt}. You have been dismissed.`; }
   else if (promoted) verdict = `Promotion! ${uname} will play in the Premier League next season${ct[0].t === G.user ? ' as Championship winners' : poW === G.user ? ' after winning the play-off final' : ''}.`;
   else verdict = gap <= 0 ? `The board is delighted: ${ordinal(upos)} place met the target to ${target.txt}.` : `The board expected you to ${target.txt}. ${ordinal(upos)} place falls short, but they will give you another season.`;
   G.lastSeason = { s: seasonLabel(y), div: udiv, champ, chChamp, upos, top, best, young, rel, prom, chRel, l1prom: l1.prom, verdict, cupsWon, tb: tb.map(r => [r.t, r.pts]), ct: ct.map(r => [r.t, r.pts]) };
-  msg('Season review ' + seasonLabel(y), `${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. ${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
+  msg('Season review ' + seasonLabel(y), `${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. ${natU ? '' : `You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. `}${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
   news('Promotion and relegation', `Promoted to the Premier League: ${prom.map(t => tName(t)).join(', ')}. Relegated to the Championship: ${rel.map(t => tName(t)).join(', ')}. Relegated to League One: ${chRel.map(t => tName(t)).join(', ')}. Promoted from League One: ${l1.prom.map(t => tName(t)).join(', ')}.`, null, true);
   // European places next season
   const faW = G.cups.FA.winner, lcW = G.cups.LC.winner;
@@ -244,7 +246,7 @@ function seasonEnd() {
   buildSeason();
   for (const tid of fullTeams()) { autoPick(tid); T(tid).fin = newFin(); }
   G.seasonEnded = true;
-  if (!G.sacked) msg('New season ' + seasonLabel(G.year), `Pre-season has begun${divOf(G.user) === 'CH' ? ' in the Championship' : ''}. The transfer window is open until ${dNice(sd(CAL.WIN1_CLOSE))}. Transfer budget: ${money(userTeam().tb)}. Wage budget: ${wageStr(userTeam().wb)}. Target: ${boardTarget().txt}.`);
+  if (!G.sacked && !natU) msg('New season ' + seasonLabel(G.year), `Pre-season has begun${divOf(G.user) === 'CH' ? ' in the Championship' : ''}. The transfer window is open until ${dNice(sd(CAL.WIN1_CLOSE))}. Transfer budget: ${money(userTeam().tb)}. Wage budget: ${wageStr(userTeam().wb)}. Target: ${boardTarget().txt}.`);
   autosave();
 }
 // relegated AI clubs lose most of their best players (relegation clauses, sales to Premier League clubs or abroad)
