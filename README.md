@@ -4,6 +4,8 @@ A retro, CM 01/02-inspired football management game with real Premier League and
 
 Spain is the second country: all 20 La Liga clubs with real squads (as of 31 Oct 2026), the Segunda División (team level, top two plus play-off winner promoted), the Copa del Rey (lower-division sides host single-game ties, two-legged semi-finals) and the four-team Supercopa (Istanbul, February 2027). La Liga ties are split by head-to-head record first. Spanish clubs play in their real 2026/27 European places, win La Liga awards (Player/Manager/Goal of the Month, Pichichi, Zamora, Team of the Season) and can trade players with English clubs. You can start in England or Spain and move between them.
 
+On the Tactics screen you can pick the best XI, rotate the squad (up to four tired or overused starters rested), field a youth XI (players aged 21 or under, including reserves and academy, who may now start) and save up to eight named tactics with their lineup.
+
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 
 ## Layout
@@ -17,6 +19,7 @@ Spain is the second country: all 20 La Liga clubs with real squads (as of 31 Oct
 - `tools/build_hist.py`: builds `src/data_hist.js` (real winners and runners-up to 2025/26) from `tools/hist_raw/` (Wikipedia list pages, read 30 Oct 2026)
 - `src/data_stadia.js`: stadium facts (opening year, record crowd, pitch size, stand names) from Wikipedia stadium pages; `src/data_mgr.js`: managers and major honours for the world rankings
 - `tools/build_ll.py`: builds `src/data_ll.js` (La Liga squads, Segunda and Primera Federación sides, Spanish stadium facts, Spain caps) from `tools/ll_raw/` (FotMob team pages, 31 Oct 2026; coaches, captains and grounds from Wikipedia "2026-27 La Liga"); ages, positions and ratings are game estimates, Spanish reserve and academy players are generated (GEN)
+- `src/selection.js`: Best XI / Rotate / Youth XI and saved tactics on the Tactics screen
 - `src/laliga.js`: Spanish competitions, Copa del Rey and Supercopa draws, season end, migration that adds Spain to older saves
 - `src/data_intl.js`: nations (FIFA ranking, Oct 2026), Nations League 2026/27 draw and results, England caps, international winners; checked 31 Oct 2026
 - `docs/screenshots/`: reference screenshots

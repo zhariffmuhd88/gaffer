@@ -327,7 +327,7 @@ screen = function (s) {
   if (s === 'tactics' && G && UI.tSel && UI.tSel.type === 'bench') {
     const ys = resSquad(G.user).concat(acadSquad(G.user)).filter(available).sort((a, b) => b.ca - a.ca);
     const tac = userTeam().tac;
-    const extra = `<h2 class="sect">Reserves &amp; academy <span class="dim" style="font-size:14px">(bench only)</span></h2><div class="tw" style="max-height:320px;overflow-y:auto"><table class="t"><tbody>${ys.map(p => `<tr class="click" data-a="tpick" data-v="${p.id}"><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${p.ca}</b></td><td class="dim">${YLEVEL[p.sq]}</td><td>${tac.bench.includes(p.id) ? '<span class="cyan mono">Bench</span>' : ''}</td></tr>`).join('')}</tbody></table></div>`;
+    const extra = `<h2 class="sect">Reserves &amp; academy <span class="dim" style="font-size:14px">(can start or sit on the bench)</span></h2><div class="tw" style="max-height:320px;overflow-y:auto"><table class="t"><tbody>${ys.map(p => `<tr class="click" data-a="tpick" data-v="${p.id}"><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${p.ca}</b></td><td class="dim">${YLEVEL[p.sq]}</td><td>${tac.bench.includes(p.id) ? '<span class="cyan mono">Bench</span>' : ''}</td></tr>`).join('')}</tbody></table></div>`;
     const i = html.lastIndexOf('</tbody></table></div>');
     if (i > 0) return html.slice(0, i + 22) + extra + html.slice(i + 22);
   }
