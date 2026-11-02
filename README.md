@@ -6,6 +6,8 @@ Spain is the second country: all 20 La Liga clubs with real squads (as of 31 Oct
 
 On the Tactics screen you can pick the best XI, rotate the squad (up to four tired or overused starters rested), field a youth XI (players aged 21 or under, including reserves and academy, who may now start) and save up to eight named tactics with their lineup. Tap a shirt to move that player up, down, left or right (his position changes when he crosses into another zone, giving a custom shape such as 4-3-3*) or to swap him with a team-mate or a bench player.
 
+Storyline (game scenario, not a real ruling; can be switched off in Game > Options until it lands): after their appeal, Manchester City are deducted 60 points on 29 Jan 2027 and in each of the next four seasons, and fined £500m.
+
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 
 ## Layout
@@ -20,6 +22,7 @@ On the Tactics screen you can pick the best XI, rotate the squad (up to four tir
 - `src/data_stadia.js`: stadium facts (opening year, record crowd, pitch size, stand names) from Wikipedia stadium pages; `src/data_mgr.js`: managers and major honours for the world rankings
 - `tools/build_ll.py`: builds `src/data_ll.js` (La Liga squads, Segunda and Primera Federación sides, Spanish stadium facts, Spain caps) from `tools/ll_raw/` (FotMob team pages, 31 Oct 2026; coaches, captains and grounds from Wikipedia "2026-27 La Liga"); ages, positions and ratings are game estimates, Spanish reserve and academy players are generated (GEN)
 - `src/selection.js`: Best XI / Rotate / Youth XI and saved tactics on the Tactics screen
+- `src/scenario.js`: optional storylines (Manchester City sanction)
 - `src/laliga.js`: Spanish competitions, Copa del Rey and Supercopa draws, season end, migration that adds Spain to older saves
 - `src/data_intl.js`: nations (FIFA ranking, Oct 2026), Nations League 2026/27 draw and results, England caps, international winners; checked 31 Oct 2026
 - `docs/screenshots/`: reference screenshots

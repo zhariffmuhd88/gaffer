@@ -106,7 +106,7 @@ function statBars(st) {
 // ---------- league table ----------
 function tableHtml(rows, zones, opts = {}) {
   return `<div class="tw"><table class="t"><thead><tr><th class="n">Pos</th><th>Team</th><th class="n">P</th><th class="n">W</th><th class="n">D</th><th class="n">L</th><th class="n">GF</th><th class="n">GA</th><th class="n">GD</th><th class="n">Pts</th>${opts.form ? '<th>Form</th>' : ''}</tr></thead><tbody>
-  ${rows.map((r, i) => `<tr class="${r.t === G.user ? 'me' : ''}"><td class="n ${zones ? zones(i) : ''}">${i + 1}</td><td>${tLink(r.t)}</td><td class="n">${r.p}</td><td class="n">${r.w}</td><td class="n">${r.d}</td><td class="n">${r.l}</td><td class="n">${r.gf}</td><td class="n">${r.ga}</td><td class="n">${r.gf - r.ga > 0 ? '+' : ''}${r.gf - r.ga}</td><td class="n"><b>${r.pts}</b></td>${opts.form ? `<td class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</td>` : ''}</tr>`).join('')}
+  ${rows.map((r, i) => `<tr class="${r.t === G.user ? 'me' : ''}"><td class="n ${zones ? zones(i) : ''}">${i + 1}</td><td>${tLink(r.t)}${r.ded ? ` <span class="red mono" title="${r.ded} points deducted">−${r.ded}</span>` : ''}</td><td class="n">${r.p}</td><td class="n">${r.w}</td><td class="n">${r.d}</td><td class="n">${r.l}</td><td class="n">${r.gf}</td><td class="n">${r.ga}</td><td class="n">${r.gf - r.ga > 0 ? '+' : ''}${r.gf - r.ga}</td><td class="n"><b>${r.pts}</b></td>${opts.form ? `<td class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</td>` : ''}</tr>`).join('')}
   </tbody></table></div>`;
 }
 function scrTable() {
@@ -213,7 +213,7 @@ function scrFinance() {
   </div>
   <div class="grid2" style="margin-top:12px">
     <div class="box pad"><h2 class="sect" style="margin-top:0">Income · ${money(inT)}</h2>${rows(f.in, { gate: 'Matchday', tv: 'Broadcasting', com: 'Commercial', prize: 'Prize money', sales: 'Player sales' }, inT, 'var(--grn)')}</div>
-    <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, Object.assign({ wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, f.out.build ? { build: 'Building work' } : {}), outT, 'var(--red)')}</div>
+    <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, Object.assign({ wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, f.out.build ? { build: 'Building work' } : {}, f.out.fine ? { fine: 'Fines' } : {}), outT, 'var(--red)')}</div>
   </div>
   <p class="dim" style="margin-top:10px">Wages are paid every Monday. Home gate receipts depend on stadium size (${t.cap.toLocaleString('en-GB')} at ${esc(t.stadium)}). Selling players adds 90% of the fee to your transfer budget.</p>`;
 }
