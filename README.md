@@ -4,7 +4,7 @@ A retro, CM 01/02-inspired football management game with real Premier League and
 
 Spain is the second country: all 20 La Liga clubs with real squads (as of 31 Oct 2026), the Segunda División (team level, top two plus play-off winner promoted), the Copa del Rey (lower-division sides host single-game ties, two-legged semi-finals) and the four-team Supercopa (Istanbul, February 2027). La Liga ties are split by head-to-head record first. Spanish clubs play in their real 2026/27 European places, win La Liga awards (Player/Manager/Goal of the Month, Pichichi, Zamora, Team of the Season) and can trade players with English clubs. You can start in England or Spain and move between them.
 
-On the Tactics screen you can pick the best XI, rotate the squad (up to four tired or overused starters rested), field a youth XI (players aged 21 or under, including reserves and academy, who may now start) and save up to eight named tactics with their lineup.
+On the Tactics screen you can pick the best XI, rotate the squad (up to four tired or overused starters rested), field a youth XI (players aged 21 or under, including reserves and academy, who may now start) and save up to eight named tactics with their lineup. Tap a shirt to move that player up, down, left or right (his position changes when he crosses into another zone, giving a custom shape such as 4-3-3*) or to swap him with a team-mate or a bench player.
 
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 

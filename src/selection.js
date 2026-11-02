@@ -158,3 +158,105 @@ Object.assign(ACT, {
   seldel: () => { const i = selIdx(); if (i < 0) return; const s = tacSets().splice(i, 1)[0]; UI.selI = null; autosave(); toast(`Deleted "${s.n}".`); render(); }
 });
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.id === 'selset') UI.selI = +el.value; });
+
+// ---------- moving players on the pitch and swapping positions ----------
+// A moved slot turns the formation into a custom one ("4-3-3*") stored with the team (tac.cf) and registered in FORMS.
+// The slot's role follows where the player now stands (e.g. a DM pushed up becomes M C, a full-back pushed up a wing-back).
+const MOVE_STEP = { x: 11, y: 8 };
+function roleAt(x, y) {
+  const side = x < 28 ? 'L' : x > 72 ? 'R' : 'C';
+  if (y < 30) return side === 'C' ? 'DC' : 'D' + side;
+  if (y < 45) return side === 'C' ? 'DM' : 'WB' + side;
+  if (y < 60) return side === 'C' ? 'MC' : 'M' + side;
+  if (y < 76) return side === 'C' ? 'AMC' : 'AM' + side;
+  return 'FC';
+}
+function baseForm(f) { return String(f || '').replace(/\*$/, ''); }
+function regCustom(tac) { if (tac && tac.cf && tac.cf.length === 11) { tac.form = baseForm(tac.base || tac.form) + '*'; FORMS[tac.form] = tac.cf; } }
+function moveSlot(i, dir) {
+  const t = userTeam(); const tac = t.tac;
+  if (dir === 'reset') {
+    if (!tac.cf) return null;
+    const base = FORMS[baseForm(tac.base || tac.form)]; tac.cf[i] = base[i].slice();
+    if (tac.cf.every((s, k) => s[0] === base[k][0] && s[1] === base[k][1] && s[2] === base[k][2])) { tac.form = baseForm(tac.base || tac.form); delete tac.cf; delete tac.base; }
+    else regCustom(tac);
+    if (tac.pr) tac.pr[i] = null;
+    return null;
+  }
+  const cur = FORMS[tac.form][i]; if (cur[0] === 'GK') return 'The goalkeeper stays in goal.';
+  let [, x, y] = cur;
+  if (dir === 'up') y += MOVE_STEP.y; else if (dir === 'down') y -= MOVE_STEP.y; else if (dir === 'left') x -= MOVE_STEP.x; else if (dir === 'right') x += MOVE_STEP.x;
+  x = clamp(Math.round(x), 8, 92); y = clamp(Math.round(y), 14, 88);
+  if (x === cur[1] && y === cur[2]) return 'He cannot move further that way.';
+  const slots = FORMS[tac.form];
+  if (slots.some((s, k) => k !== i && Math.abs(s[1] - x) < 6 && Math.abs(s[2] - y) < 5)) return 'A team-mate is already standing there. Use Swap with… instead.';
+  if (!tac.cf) { tac.base = baseForm(tac.form); tac.cf = FORMS[tac.base].map(s => s.slice()); }
+  const role = roleAt(x, y); const was = tac.cf[i][0];
+  tac.cf[i] = [role, x, y]; regCustom(tac);
+  if (role !== was && tac.pr) tac.pr[i] = null; // the old player role may not fit the new position
+  return role !== was ? `${ROLE_LABEL[was]} → ${ROLE_LABEL[role]}` : null;
+}
+function swapSlots(a, b) {
+  const tac = userTeam().tac; const xi = tac.xi;
+  [xi[a], xi[b]] = [xi[b], xi[a]];
+  autoTakers(G.user);
+}
+// keep custom formations working after loading a save
+const _rsSel = restore;
+restore = function (obj) { _rsSel(obj); try { for (const t of Object.values(G.teams)) if (t && t.tac && t.tac.cf) regCustom(t.tac); for (const t of Object.values(G.teams)) if (t && t.tac && t.tac.form && !FORMS[t.tac.form]) t.tac.form = FORMS[baseForm(t.tac.form)] ? baseForm(t.tac.form) : '4-2-3-1'; } catch (e) { console.error(e); } };
+// saved tactics carry the custom shape
+const _saveTS = saveTacSet;
+saveTacSet = function (name) { const e = _saveTS(name); if (e) return e; const tac = userTeam().tac; const s = tacSets()[tacSets().findIndex(x => x.n.toLowerCase() === (String(name || '').trim().slice(0, 30) || '').toLowerCase())] || tacSets()[tacSets().length - 1]; if (s && tac.cf) { s.cf = tac.cf.map(x => x.slice()); s.base = baseForm(tac.base || tac.form); } return null; };
+const _loadTS = loadTacSet;
+loadTacSet = function (i, withLineup) {
+  const s = tacSets()[i]; const tac = userTeam().tac;
+  if (s && s.cf) { tac.cf = s.cf.map(x => x.slice()); tac.base = s.base; regCustom(tac); s.form = tac.form; } else if (s) { delete tac.cf; delete tac.base; }
+  return _loadTS(i, withLineup);
+};
+// tapping a second shirt swaps the two players; a bench player tapped after a pitch slot (or the other way) swaps in
+const _tslotS = ACT.tslot, _tbenchS = ACT.tbench;
+ACT.tslot = (v) => {
+  const i = +v; const sel = UI.tSel; const tac = userTeam().tac;
+  if (sel && sel.type === 'xi' && sel.i !== i && UI.tSwap) {
+    UI.tSwap = false;
+    const a = P(tac.xi[sel.i]), b = P(tac.xi[i]);
+    if (a && b && ((FORMS[tac.form][sel.i][0] === 'GK') !== (FORMS[tac.form][i][0] === 'GK'))) { toast('The goalkeeper can only swap with another goalkeeper.'); return; }
+    swapSlots(sel.i, i); UI.tSel = null; autosave(); toast(a && b ? `${surname(a.n)} and ${surname(b.n)} swap positions.` : 'Moved.'); return render();
+  }
+  if (sel && sel.type === 'bench' && UI.tSwap) {
+    UI.tSwap = false;
+    const bp = P(tac.bench[sel.i]); const cur = tac.xi[i];
+    if (bp && (FORMS[tac.form][i][0] === 'GK') === (bp.pos === 'GK')) { tac.xi[i] = bp.id; if (cur) tac.bench[sel.i] = cur; else tac.bench.splice(sel.i, 1); UI.tSel = null; autoTakers(G.user); autosave(); toast(`${surname(bp.n)} comes into the side.`); return render(); }
+  }
+  UI.tSwap = false; return _tslotS(v);
+};
+ACT.tbench = (v) => {
+  const i = +v; const sel = UI.tSel; const tac = userTeam().tac;
+  if (sel && sel.type === 'xi' && UI.tSwap && P(tac.bench[i])) { UI.tSel = { type: 'bench', i }; return ACT.tslot(sel.i); }
+  UI.tSwap = false; return _tbenchS(v);
+};
+Object.assign(ACT, {
+  tswap: () => { if (!UI.tSel || UI.tSel.type !== 'xi') return; UI.tSwap = !UI.tSwap; render(); },
+  tmove: (v) => { const sel = UI.tSel; if (!sel || sel.type !== 'xi') return; const m = moveSlot(sel.i, v); if (m && !m.includes('→')) return toast(m); validateLineup(G.user); autosave(); if (m) toast('New position: ' + m); render(); },
+  tformreset: () => { const tac = userTeam().tac; if (!tac.cf) return; tac.form = baseForm(tac.base || tac.form); delete tac.cf; delete tac.base; tac.pr = []; validateLineup(G.user); autosave(); toast('Back to the standard ' + tac.form + '.'); render(); }
+});
+function movePanel() {
+  const sel = UI.tSel; const tac = userTeam().tac;
+  const custom = tac.cf ? `<div class="row" style="justify-content:space-between;gap:8px;margin-top:6px"><span class="dim" style="font-size:12.5px">Custom shape based on ${esc(baseForm(tac.base || tac.form))}.</span><button class="btn" data-a="tformreset">Reset whole shape</button></div>` : '';
+  if (!sel || sel.type !== 'xi') return `<div class="box pad" style="margin-bottom:10px"><b>Positions</b><div class="dim" style="font-size:12.5px">Tap a shirt on the pitch to move that player up, down, left or right, set his role, or swap him with a team-mate.</div>${custom}</div>`;
+  const s = FORMS[tac.form][sel.i]; const p = P(tac.xi[sel.i]);
+  if (s[0] === 'GK') return `<div class="box pad" style="margin-bottom:10px"><b>Positions</b><div class="dim" style="font-size:12.5px">The goalkeeper stays in goal. To change him, pick a goalkeeper from the squad list below.</div>${custom}</div>`;
+  const b = (d, l, t) => `<button class="btn" data-a="tmove" data-v="${d}" aria-label="${t}" title="${t}" style="min-width:44px">${l}</button>`;
+  return `<div class="box pad" style="margin-bottom:10px"><div class="row" style="gap:12px;align-items:center;flex-wrap:wrap">
+    <div style="display:grid;grid-template-columns:repeat(3,44px);gap:4px;justify-items:center"><span></span>${b('up', '▲', 'Move up the pitch')}<span></span>${b('left', '◀', 'Move left')}${b('reset', '•', 'Back to the standard spot')}${b('right', '▶', 'Move right')}<span></span>${b('down', '▼', 'Move back')}<span></span></div>
+    <div style="flex:1;min-width:160px"><b>${p ? esc(p.n) : 'Empty slot'}</b><div class="dim" style="font-size:12.5px">Position now: <b class="yel">${ROLE_LABEL[s[0]]}</b>. Moving him changes the position when he crosses into another zone (defence, defensive midfield, midfield, attacking midfield, attack; left, centre, right). </div><button class="btn ${UI.tSwap ? 'on' : ''}" data-a="tswap" style="margin-top:6px">${UI.tSwap ? 'Now tap a team-mate or a bench player…' : '⇄ Swap with…'}</button></div></div>${custom}</div>`;
+}
+const _scrTacM = scrTactics;
+scrTactics = function () {
+  const tac = userTeam().tac; if (tac.cf && !FORMS[tac.form]) regCustom(tac);
+  const h = _scrTacM();
+  const k = h.indexOf('<div style="min-width:0">');
+  return k < 0 ? h : h.slice(0, k + 25) + movePanel() + h.slice(k + 25);
+};
+// picking a standard formation from the list drops the custom shape
+document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'form' && G && !String(el.value).endsWith('*')) { const tac = userTeam().tac; if (tac.cf) { delete tac.cf; delete tac.base; tac.pr = []; autosave(); render(); } } });
