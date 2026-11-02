@@ -332,3 +332,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .intro.still .ay-draw { stroke-dashoffset: 0; }
 .intro.still .ay-ball, .intro.still .ay-word, .intro.still .ic-disc .dc { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .intro, .intro * { animation: none !important; transition: none !important; } .intro .ay-draw { stroke-dashoffset: 0; } .intro .ay-ball, .intro .ay-word, .intro .ic-disc .dc { opacity: 1; transform: none; } }
+/* media feed */
+.post { background: var(--panel); border: 1px solid var(--line); padding: 8px 10px; overflow-wrap: anywhere; }
+.post.mine { background: var(--panel2); }
+.post .tag { background: var(--line); color: var(--fg, #fff); }

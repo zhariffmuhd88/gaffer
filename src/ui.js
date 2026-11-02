@@ -32,7 +32,7 @@ function render() {
   if (UI.match) return renderMatch();
   if (!G) return renderStart();
   const scr = UI.scr;
-  const nav = [['inbox', 'Inbox'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['club', 'Club'], ['game', 'Game']];
+  const nav = [['inbox', 'Inbox'], ['media', 'Media'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['club', 'Club'], ['game', 'Game']];
   const nf = nextUserFixture();
   const t = userTeam();
   const nextTxt = nf ? `Next: ${COMP_SHORT[nf.comp]} · ${dShort(nf.d)} · ${nf.h === G.user ? 'v ' + tName(nf.a) + ' (H)' : 'v ' + tName(nf.h) + ' (A)'}` : (G.sacked ? 'Unemployed' : 'Season complete');
@@ -46,7 +46,7 @@ function render() {
     <button class="go" id="go" data-a="continue">${contLabel} ▸</button>
   </header>
   <div class="frame">
-    <nav class="nav" aria-label="Sections">${nav.map(([k, l]) => `<button class="${scr === k ? 'on' : ''}" data-a="nav" data-v="${k}">${l}${k === 'inbox' && unreadCount() ? `<span class="cnt">${unreadCount()}</span>` : ''}</button>`).join('')}</nav>
+    <nav class="nav" aria-label="Sections">${nav.map(([k, l]) => `<button class="${scr === k ? 'on' : ''}" data-a="nav" data-v="${k}">${l}${k === 'inbox' && unreadCount() ? `<span class="cnt">${unreadCount()}</span>` : ''}${k === 'media' && typeof mediaUnread === 'function' && mediaUnread() ? `<span class="cnt">${mediaUnread()}</span>` : ''}</button>`).join('')}</nav>
     <main class="main" id="main">${screen(scr)}</main>
   </div>
   ${UI.modal ? `<div class="ov" data-a="closeov"><div class="modal" role="dialog" aria-modal="true">${UI.modal}</div></div>` : ''}`;
