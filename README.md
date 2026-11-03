@@ -25,6 +25,7 @@ Storyline (game scenario, not a real ruling; can be switched off in Game > Optio
 - `tools/build_ll.py`: builds `src/data_ll.js` (La Liga squads, Segunda and Primera Federación sides, Spanish stadium facts, Spain caps) from `tools/ll_raw/` (FotMob team pages, 31 Oct 2026; coaches, captains and grounds from Wikipedia "2026-27 La Liga"); ages, positions and ratings are game estimates, Spanish reserve and academy players are generated (GEN)
 - `src/selection.js`: Best XI / Rotate / Youth XI and saved tactics on the Tactics screen
 - `src/social.js`: Media screen (fans, fictional reporters, rumours, trending)
+- `src/clublife.js`: player requests with answers, documentary, revived Cup Winners' Cup (game scenario) and Club World Cup (game format), trophy room, trophy parade, statue, manager's son, save export/import as a file
 - `src/banter.js`: pundits, creators, blame and banter threads, VAR Watch
 - `src/scenario.js`: optional storylines (Manchester City sanction)
 - `src/laliga.js`: Spanish competitions, Copa del Rey and Supercopa draws, season end, migration that adds Spain to older saves

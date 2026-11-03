@@ -151,7 +151,7 @@ function clubHonours(tid) {
   const t = T(tid); if (!t) return [];
   const R = histRows(); const out = [];
   const nm = t.name;
-  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC' };
+  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC', CWX: 'CWX' };
   for (const [code, label] of HIST_COMPS) {
     const rows = R[code] || [];
     const real = rows.filter(r => r.w === nm), ru = rows.filter(r => r.r === nm).length;
@@ -223,7 +223,7 @@ function scrHistory() {
     ${rankTable(rk)}
     <p class="dim" style="font-size:12px">Honours were compiled for this game from public records up to the end of 2025/26; club jobs as of October 2026. Movement arrows show the change since the end of last season.</p>`;
   }
-  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup" };
+  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup", CWX: 'Club World Cup' };
   const tabs = HIST_COMPS.map(([k]) => [k, SHORT[k]]).concat([['club', 'Club honours'], ['rank', 'Rankings']]);
   return `<div class="band">History<small>Winners, honours and manager rankings</small></div>
   <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="hist" data-v="${k}">${esc(l)}</button>`).join('')}</div>${body}
