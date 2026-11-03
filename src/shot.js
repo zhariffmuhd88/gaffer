@@ -63,7 +63,7 @@ function shot(M, si, e, ae, type) {
   const defs = O.ps.filter(x => x.on && ['DC', 'DL', 'DR', 'WBL', 'WBR', 'DM'].includes(x.role));
   const def = defs.length ? R.pick(defs) : null;
   if (ae === e) ae = null;
-  if (type === 'pen') say(M, M.min, 'big', `PENALTY to ${S.name}!${R.chance(.3) ? ' It is given after a VAR review.' : ''} ${sname} steps up...`, si);
+  if (type === 'pen') { const pv = R.chance(.3); say(M, M.min, 'big', `PENALTY to ${S.name}!${pv ? ' It is given after a VAR review.' : ''} ${sname} steps up...`, si); M.ev.push({ min: M.min, t: 'pk', side: si, p: e.p.id, v: pv ? 1 : 0 }); }
   const res = R.chance(pg) ? 'goal' : R.chance(type === 'pen' ? .6 : .31) ? 'save' : 'miss';
   const sty = shotStyle(e, ae, type, res);
   if (M.shots) M.shots.push({ min: M.min, side: si, xg: +xg.toFixed(3), goal: res === 'goal' });
@@ -74,7 +74,7 @@ function shot(M, si, e, ae, type) {
     const why = R.pick(['offside', 'offside', 'a handball', 'a foul in the build-up']);
     vis('var');
     say(M, M.min, 'var', `${sname} puts it in the net... but VAR is checking. NO GOAL! It is ruled out for ${why}.`, si);
-    M.ev.push({ min: M.min, t: 'var', side: si, p: e.p.id });
+    M.ev.push({ min: M.min, t: 'var', side: si, p: e.p.id, why });
     return;
   }
   if (res === 'goal') {

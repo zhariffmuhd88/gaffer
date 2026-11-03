@@ -6,7 +6,7 @@ Spain is the second country: all 20 La Liga clubs with real squads (as of 31 Oct
 
 On the Tactics screen you can pick the best XI, rotate the squad (up to four tired or overused starters rested), field a youth XI (players aged 21 or under, including reserves and academy, who may now start) and save up to eight named tactics with their lineup. Tap a shirt to move that player up, down, left or right (his position changes when he crosses into another zone, giving a custom shape such as 4-3-3*) or to swap him with a team-mate or a bench player.
 
-A Media screen adds the emotional side: fans react to results, derbies, signings, sales and trophies; a fan mood meter and trending hashtags; transfer rumours from fictional reporters with reliability tiers (Tier 1 usually right, Tier 3 mostly gossip) that can turn into real bids and transfers; insider "done deal" posts; club news; board-pressure stories.
+A Media screen adds the emotional side: fans react to results, derbies, signings, sales and trophies; a fan mood meter and trending hashtags; transfer rumours from fictional reporters with reliability tiers (Tier 1 usually right, Tier 3 mostly gossip) that can turn into real bids and transfers; insider "done deal" posts; club news; board-pressure stories. Fictional TV pundits argue over each big game, fan-channel creators melt down or celebrate, fans blame referees, VAR and the opposition's tactics in reply threads with rival fans, and every Monday a VAR Watch has fictional former referees judge the week's biggest calls (correct, wrong or debatable). Match incidents (disallowed goals, penalties, red cards) are recorded on each fixture.
 
 Storyline (game scenario, not a real ruling; can be switched off in Game > Options until it lands): after their appeal, Manchester City are deducted 60 points on 29 Jan 2027 and in each of the next four seasons, and fined £500m.
 
@@ -25,6 +25,7 @@ Storyline (game scenario, not a real ruling; can be switched off in Game > Optio
 - `tools/build_ll.py`: builds `src/data_ll.js` (La Liga squads, Segunda and Primera Federación sides, Spanish stadium facts, Spain caps) from `tools/ll_raw/` (FotMob team pages, 31 Oct 2026; coaches, captains and grounds from Wikipedia "2026-27 La Liga"); ages, positions and ratings are game estimates, Spanish reserve and academy players are generated (GEN)
 - `src/selection.js`: Best XI / Rotate / Youth XI and saved tactics on the Tactics screen
 - `src/social.js`: Media screen (fans, fictional reporters, rumours, trending)
+- `src/banter.js`: pundits, creators, blame and banter threads, VAR Watch
 - `src/scenario.js`: optional storylines (Manchester City sanction)
 - `src/laliga.js`: Spanish competitions, Copa del Rey and Supercopa draws, season end, migration that adds Spain to older saves
 - `src/data_intl.js`: nations (FIFA ranking, Oct 2026), Nations League 2026/27 draw and results, England caps, international winners; checked 31 Oct 2026

@@ -269,7 +269,7 @@ function foul(M, fs, vic) {
   else if (R.chance(0.135 * pressF * (e.yc ? .35 : 1))) card = e.yc ? 'r2' : 'y';
   if (card) {
     if (card === 'y') { e.yc = 1; e.rt -= .3; fs.st.yc++; say(M, M.min, 'yc', `${cap1(pn(e.p))} is booked for a ${R.pick(['late challenge', 'cynical foul', 'reckless tackle', 'tug on the shirt', 'trip'])}.`, sideIdx); M.ev.push({ min: M.min, t: 'yc', side: sideIdx, p: e.p.id }); }
-    else { e.rc = card === 'r' ? 2 : 1; if (card === 'r2') { e.yc = 1; fs.st.yc++; } e.on = false; e.rt -= 1.2; fs.st.rc++; say(M, M.min, 'rc', card === 'r' ? `RED CARD! ${cap1(pn(e.p))} is sent off for a dangerous challenge!` : `${cap1(pn(e.p))} picks up a second yellow and is sent off!`, sideIdx); M.ev.push({ min: M.min, t: 'rc', side: sideIdx, p: e.p.id }); units(fs); if (M.live && isUser(fs.tid)) M.alert = cap1(pn(e.p)) + ' sent off'; }
+    else { e.rc = card === 'r' ? 2 : 1; if (card === 'r2') { e.yc = 1; fs.st.yc++; } e.on = false; e.rt -= 1.2; fs.st.rc++; say(M, M.min, 'rc', card === 'r' ? `RED CARD! ${cap1(pn(e.p))} is sent off for a dangerous challenge!` : `${cap1(pn(e.p))} picks up a second yellow and is sent off!`, sideIdx); M.ev.push({ min: M.min, t: 'rc', side: sideIdx, p: e.p.id , k: card}); units(fs); if (M.live && isUser(fs.tid)) M.alert = cap1(pn(e.p)) + ' sent off'; }
   } else if (M.live && R.chance(0.12)) say(M, M.min, 'foul', `Free kick to ${vic.name} after a foul by ${pn(e.p)}.`, sideIdx);
   if (M.live) M.vis.push({ min: M.min, t: 'foul', side: sideIdx, e, card });
   // dangerous free kick
@@ -363,6 +363,7 @@ function finalizeMatch(M) {
   const f = G.fx[M.fid];
   const [A, B] = M.sides;
   f.r = M.score.slice(); f.et = M.et; f.pen = M.pens;
+  { const inc = M.ev.filter(e => e.t === 'var' || e.t === 'pk' || e.t === 'rc').map(e => e.t === 'var' ? ['D', e.min, e.side, e.p, e.why || 'offside'] : e.t === 'pk' ? ['P', e.min, e.side, e.p, e.v || 0] : ['R', e.min, e.side, e.p, e.k || 'r']); if (inc.length) f.inc = inc; else delete f.inc; }
   f.sc = M.ev.filter(e => e.t === 'goal' || e.t === 'rc').map(e => [e.min, e.side, e.t === 'rc' ? 'R' : 'G', e.p, e.a || null, e.st || null, e.sk || null]);
   f.st = M.sides.map(S => ({ sh: S.st.sh, ot: S.st.ot, co: S.st.co, fo: S.st.fo, po: Math.round(100 * S.st.po / Math.max(1, A.st.po + B.st.po)), yc: S.st.yc, rc: S.st.rc, xg: Math.round(S.st.xg * 100) / 100 }));
   // result rating adjustments

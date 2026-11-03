@@ -336,3 +336,5 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .post { background: var(--panel); border: 1px solid var(--line); padding: 8px 10px; overflow-wrap: anywhere; }
 .post.mine { background: var(--panel2); }
 .post .tag { background: var(--line); color: var(--fg, #fff); }
+.replies { margin: 6px 0 0 10px; display: grid; gap: 4px; }
+.reply { border-left: 2px solid var(--line); padding: 3px 8px; font-size: 13.5px; background: rgba(255,255,255,.03); }

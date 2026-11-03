@@ -173,7 +173,7 @@ function tryRumourMove(r) {
     if (G.offers.some(o => o.pid === p.id && o.st === 'incoming')) return;
     const fee = Math.round(calcValue(p) * R.i(95, 125) / 10) / 10;
     const o = { id: 'o' + (++G.newsId), pid: p.id, from: G.user, fee, st: 'incoming', d: G.date };
-    if (r.to && T(r.to) && !T(r.to).lite) o.to = r.to; else { o.abroad = true; o.buyer = r.toN; }
+    if (r.to && T(r.to) && !T(r.to).lite) { if (T(r.to).tb < fee * .7 && T(r.to).bal < fee * 1.5) { r.st = 'dead'; return; } o.to = r.to; } else { o.abroad = true; o.buyer = r.toN; }
     G.offers.push(o);
     msg('Offer for ' + p.n, `${r.toN} have made a ${money(fee)} offer for ${p.n}, as ${jr(r.j).n} (${jr(r.j).o}) reported.`, { k: 'incoming', o: o.id });
     journPost(jr(r.j), `${r.toN} have now submitted an official bid for ${p.n}: ${money(fee)}. Ball in ${tName(G.user)}'s court.`, { u: 1, big: true });
@@ -232,16 +232,16 @@ function boardPressure() {
 
 // ---------- screen ----------
 function postHtml(p) {
-  const badgeK = p.k === 'jour' ? `<span class="tag" title="Reliability">${TIER_N[p.tier]}</span> <span class="dim">${esc(p.o)}</span>` : p.k === 'club' ? '<span class="tag">Club</span>' : '';
+  const badgeK = p.k === 'jour' ? `<span class="tag" title="Reliability">${TIER_N[p.tier]}</span> <span class="dim">${esc(p.o)}</span>` : p.k === 'club' ? '<span class="tag">Club</span>' : p.k === 'pun' ? `<span class="tag">Pundit</span> <span class="dim">${esc(p.o || '')}</span>` : p.k === 'cre' ? `<span class="tag">Creator</span> <span class="dim">${esc(p.o || '')}</span>` : p.k === 'var' ? `<span class="tag">VAR Watch</span> <span class="dim">${esc(p.o || '')}</span>` : '';
   const r = p.rum ? rumList().find(x => x.id === p.rum) : null;
   const st = r ? (r.st === 'done' && r.hit ? '<span class="grn mono" title="This rumour came true">✓ came true</span>' : r.st === 'dead' ? '<span class="dim mono">✗ did not happen</span>' : '<span class="amb mono">open</span>') : '';
   const tc = p.tid && T(p.tid) ? T(p.tid).c1 : '#556';
-  return `<div class="post ${p.u ? 'mine' : ''}" style="border-left:3px solid ${tc}"><div class="row" style="gap:6px;align-items:baseline;flex-wrap:wrap"><b>${esc(p.a)}</b><span class="dim mono" style="font-size:12px">${esc(p.h)}</span>${badgeK}<span class="spacer"></span><span class="dim mono" style="font-size:11.5px">${dShort(p.d)}</span></div><div style="margin:4px 0 4px">${esc(p.t)}</div><div class="dim mono" style="font-size:11.5px">♥ ${fmtN(p.lk)} · ↻ ${fmtN(p.rt)} ${st}</div></div>`;
+  return `<div class="post ${p.u ? 'mine' : ''}" style="border-left:3px solid ${tc}"><div class="row" style="gap:6px;align-items:baseline;flex-wrap:wrap"><b>${esc(p.a)}</b><span class="dim mono" style="font-size:12px">${esc(p.h)}</span>${badgeK}<span class="spacer"></span><span class="dim mono" style="font-size:11.5px">${dShort(p.d)}</span></div><div style="margin:4px 0 4px">${esc(p.t)}</div><div class="dim mono" style="font-size:11.5px">♥ ${fmtN(p.lk)} · ↻ ${fmtN(p.rt)} ${st}${p.rep && p.rep.length ? ` · 💬 ${p.rep.length}` : ''}</div>${p.rep && p.rep.length ? `<div class="replies">${p.rep.map(r => `<div class="reply" ${r.tid && T(r.tid) ? `style="border-left-color:${T(r.tid).c1}"` : ''}><b>${esc(r.a)}</b> <span class="dim mono" style="font-size:12px">${esc(r.h)}</span><div>${esc(r.t)}</div></div>`).join('')}</div>` : ''}</div>`;
 }
 function scrMedia() {
   const F = feed(); for (const p of F) if (p.u) p.seen = 1;
   const tab = UI.tab.med || 'all';
-  const list = F.filter(p => tab === 'all' ? true : tab === 'mine' ? p.u : tab === 'fans' ? p.k === 'fan' : tab === 'jour' ? p.k === 'jour' : tab === 'rum' ? !!p.rum : true).slice(0, 120);
+  const list = F.filter(p => tab === 'all' ? true : tab === 'mine' ? p.u : tab === 'fans' ? p.k === 'fan' || p.k === 'cre' : tab === 'jour' ? p.k === 'jour' : tab === 'rum' ? !!p.rum : tab === 'pun' ? p.k === 'pun' : tab === 'var' ? p.k === 'var' : true).slice(0, 120);
   const mood = Math.round(G.fans ?? 60);
   const face = mood >= 80 ? '🤩' : mood >= 65 ? '😀' : mood >= 50 ? '🙂' : mood >= 35 ? '😐' : mood >= 20 ? '😠' : '🤬';
   const tr = Object.entries(G.trend || {}).sort((a, b) => b[1] - a[1]).slice(0, 6);
@@ -253,9 +253,9 @@ function scrMedia() {
     <div class="box pad"><label class="lb">Trending</label>${tr.length ? tr.map(([t]) => `<div class="mono">#${esc(t)}</div>`).join('') : '<span class="dim">Nothing yet.</span>'}</div>
     <div class="box pad"><label class="lb">Reporters' record (this save)</label><div class="tw"><table class="t"><tbody>${relRow}</tbody></table></div></div>
   </div>
-  <div class="tabs" style="margin-top:10px">${[['all', 'All'], ['mine', 'About us'], ['fans', 'Fans'], ['jour', 'Reporters'], ['rum', 'Rumours']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="med" data-v="${k}">${l}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:10px">${[['all', 'All'], ['mine', 'About us'], ['fans', 'Fans & creators'], ['pun', 'Pundits'], ['var', 'VAR Watch'], ['jour', 'Reporters'], ['rum', 'Rumours']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="med" data-v="${k}">${l}</button>`).join('')}</div>
   <div class="feed" style="display:grid;gap:8px;margin-top:8px">${list.map(postHtml).join('') || '<p class="dim">Nothing yet. Play a match or wait for the transfer window.</p>'}</div>
-  <p class="dim" style="font-size:12px;margin-top:10px">Reporters, outlets and fan accounts are fictional. Tier 1 reporters are usually right; Tier 3 stories are mostly gossip. A rumour marked ✓ turned into a real bid or transfer in this save.</p>`;
+  <p class="dim" style="font-size:12px;margin-top:10px">Reporters, pundits, former referees, creators, outlets and fan accounts are all fictional. Tier 1 reporters are usually right; Tier 3 stories are mostly gossip. A rumour marked ✓ turned into a real bid or transfer in this save.</p>`;
 }
 const _scrSoc = screen;
 screen = function (s) { if (s === 'media') { try { return scrMedia(); } catch (e) { console.error(e); return '<p class="dim">Media unavailable.</p>'; } } return _scrSoc(s); };
