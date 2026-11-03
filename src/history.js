@@ -1,7 +1,7 @@
 // history.js: competition history (real winners + every in-game season), club honours, manager world rankings.
 // Loaded after club.js.
 
-const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE']];
+const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE'], ['CWC', "Cup Winners' Cup", 'CWC']];
 const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Paris Saint-Germain': 'Paris SG', 'Athletic Bilbao': 'Athletic Club', 'Atlético Bilbao': 'Athletic Club', 'Madrid FC': 'Real Madrid', 'Madrid': 'Real Madrid', 'Atlético Aviación': 'Atlético Madrid', 'Deportivo La Coruña': 'Deportivo de La Coruña', 'Español': 'Espanyol', 'RCD Español': 'Espanyol', 'Racing Santander': 'Racing Santander', 'Celta': 'Celta Vigo', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
 let _HR = null;
 function histRows() {
@@ -151,7 +151,7 @@ function clubHonours(tid) {
   const t = T(tid); if (!t) return [];
   const R = histRows(); const out = [];
   const nm = t.name;
-  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE' };
+  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC' };
   for (const [code, label] of HIST_COMPS) {
     const rows = R[code] || [];
     const real = rows.filter(r => r.w === nm), ru = rows.filter(r => r.r === nm).length;
@@ -223,11 +223,11 @@ function scrHistory() {
     ${rankTable(rk)}
     <p class="dim" style="font-size:12px">Honours were compiled for this game from public records up to the end of 2025/26; club jobs as of October 2026. Movement arrows show the change since the end of last season.</p>`;
   }
-  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa' };
+  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup" };
   const tabs = HIST_COMPS.map(([k]) => [k, SHORT[k]]).concat([['club', 'Club honours'], ['rank', 'Rankings']]);
   return `<div class="band">History<small>Winners, honours and manager rankings</small></div>
   <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="hist" data-v="${k}">${esc(l)}</button>`).join('')}</div>${body}
-  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
+  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : comp[0] === 'CWC' ? 'Played from 1960/61 until UEFA ended it after 1998/99.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'hcl') { UI.tab.hcl = el.value; render(); } });
 const _screenH = screen;

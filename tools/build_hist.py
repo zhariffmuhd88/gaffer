@@ -7,7 +7,7 @@ Usage: python3 tools/build_hist.py
 import pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 out = []
-for code in ['LG', 'CH', 'FA', 'LC', 'UCL', 'UEL', 'UECL', 'LL', 'CDR', 'SCE']:
+for code in ['LG', 'CH', 'FA', 'LC', 'UCL', 'UEL', 'UECL', 'LL', 'CDR', 'SCE', 'CWC']:
     rows = []
     for line in (ROOT / 'tools/hist_raw' / f'{code}.txt').read_text().splitlines():
         if not line.strip(): continue
@@ -18,7 +18,7 @@ for code in ['LG', 'CH', 'FA', 'LC', 'UCL', 'UEL', 'UECL', 'LL', 'CDR', 'SCE']:
     out.append(f'{code}:`' + '\n'.join(rows) + '`')
 src = ('// ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====\n'
        '// rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).\n'
-       '// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026).\n'
+       '// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026).\n'
        'const HIST = {\n' + ',\n'.join(out) + '\n};\n')
 (ROOT / 'src/data_hist.js').write_text(src)
 print('ok', len(src))

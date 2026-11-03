@@ -1,6 +1,6 @@
 // ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====
 // rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).
-// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026).
+// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026).
 const HIST = {
 LG:`1888|Preston North End|Aston Villa
 1889|Preston North End|Everton
@@ -753,5 +753,44 @@ SCE:`1982|Real Sociedad|Real Madrid
 2022|Barcelona|Real Madrid
 2023|Real Madrid|Barcelona
 2024|Barcelona|Real Madrid
-2025|Barcelona|Real Madrid`
+2025|Barcelona|Real Madrid`,
+CWC:`1960|Fiorentina|Rangers
+1961|Atlético Madrid|Fiorentina
+1962|Tottenham Hotspur|Atlético Madrid
+1963|Sporting CP|MTK Budapest
+1964|West Ham United|1860 Munich
+1965|Borussia Dortmund|Liverpool
+1966|Bayern Munich|Rangers
+1967|Milan|Hamburger SV
+1968|Slovan Bratislava|Barcelona
+1969|Manchester City|Górnik Zabrze
+1970|Chelsea|Real Madrid
+1971|Rangers|Dynamo Moscow
+1972|Milan|Leeds United
+1973|1. FC Magdeburg|Milan
+1974|Dynamo Kyiv|Ferencváros
+1975|Anderlecht|West Ham United
+1976|Hamburger SV|Anderlecht
+1977|Anderlecht|Austria Vienna
+1978|Barcelona|Fortuna Düsseldorf
+1979|Valencia|Arsenal
+1980|Dinamo Tbilisi|Carl Zeiss Jena
+1981|Barcelona|Standard Liège
+1982|Aberdeen|Real Madrid
+1983|Juventus|Porto
+1984|Everton|Rapid Vienna
+1985|Dynamo Kyiv|Atlético Madrid
+1986|Ajax|1. FC Lokomotive Leipzig
+1987|KV Mechelen|Ajax
+1988|Barcelona|Sampdoria
+1989|Sampdoria|Anderlecht
+1990|Manchester United|Barcelona
+1991|Werder Bremen|Monaco
+1992|Parma|Antwerp
+1993|Arsenal|Parma
+1994|Zaragoza|Arsenal
+1995|Paris Saint-Germain|Rapid Vienna
+1996|Barcelona|Paris Saint-Germain
+1997|Chelsea|VfB Stuttgart
+1998|Lazio|Mallorca`
 };

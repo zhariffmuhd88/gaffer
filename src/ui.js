@@ -124,15 +124,16 @@ function resTable(fs, showComp = true) {
 }
 
 // ---------- squad ----------
-const SQ_COLS = [['no', '#', 'n'], ['n', 'Name'], ['pos', 'Pos'], ['age', 'Age', 'n'], ['nat', 'Nat'], ['ca', 'Ovr', 'n'], ['cond', 'Cond', 'n'], ['mor', 'Mor', 'n'], ['fa', 'Form', 'n'], ['a', 'Apps', 'n'], ['g', 'Gls', 'n'], ['as', 'Ast', 'n'], ['ar', 'Avg', 'n'], ['val', 'Value', 'n'], ['wage', 'Wage', 'n'], ['con', 'Until', 'n'], ['st', '']];
-function sqVal(p, k) { switch (k) { case 'pos': return POS_ORDER[p.pos]; case 'a': return p.st.a; case 'g': return p.st.g; case 'as': return p.st.as; case 'ar': return p.st.a ? p.st.r / p.st.a : 0; case 'fa': return p.form.length ? p.form.reduce((a, b) => a + b, 0) / p.form.length : 0; case 'val': return calcValue(p); case 'st': return p.inj + p.sus * 10; default: return p[k]; } }
+const SQ_COLS = [['no', '#', 'n'], ['n', 'Name'], ['pos', 'Pos'], ['age', 'Age', 'n'], ['nat', 'Nat'], ['ca', 'Ovr', 'n'], ['cond', 'Cond', 'n'], ['mor', 'Mor', 'n'], ['hap', 'Happy', 'n'], ['fa', 'Form', 'n'], ['a', 'Apps', 'n'], ['g', 'Gls', 'n'], ['as', 'Ast', 'n'], ['ar', 'Avg', 'n'], ['val', 'Value', 'n'], ['wage', 'Wage', 'n'], ['con', 'Until', 'n'], ['st', '']];
+function sqVal(p, k) { switch (k) { case 'pos': return POS_ORDER[p.pos]; case 'hap': return typeof hap === 'function' ? hap(p) : 65; case 'a': return p.st.a; case 'g': return p.st.g; case 'as': return p.st.as; case 'ar': return p.st.a ? p.st.r / p.st.a : 0; case 'fa': return p.form.length ? p.form.reduce((a, b) => a + b, 0) / p.form.length : 0; case 'val': return calcValue(p); case 'st': return p.inj + p.sus * 10; default: return p[k]; } }
 function sortPlayers(list) { const { k, d } = UI.sort; return list.slice().sort((a, b) => { const va = sqVal(a, k), vb = sqVal(b, k); return (va > vb ? 1 : va < vb ? -1 : 0) * d || b.ca - a.ca; }); }
+function hapCell(p) { const h = Math.round(typeof hap === 'function' ? hap(p) : 65); const f = h >= 80 ? '😄' : h >= 65 ? '🙂' : h >= 50 ? '😐' : h >= 35 ? '😕' : h >= 20 ? '😠' : '🚪'; return `<td class="n ${h < 35 ? 'red' : h < 50 ? 'amb' : ''}" title="${typeof hapLabel === 'function' ? hapLabel(h) : ''} (${h})">${f} ${h}</td>`; }
 function playerTable(list, opts = {}) {
   return `<div class="tw"><table class="t"><thead><tr>${SQ_COLS.filter(c => !(opts.hide || []).includes(c[0])).map(c => `<th class="s ${c[2] || ''}" data-a="sort" data-v="${c[0]}">${c[1]}${UI.sort.k === c[0] ? (UI.sort.d > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${opts.club ? '<th>Club</th>' : ''}</tr></thead><tbody>
   ${sortPlayers(list).map(p => { const xi = T(G.user).tac.xi.includes(p.id); return `<tr class="click" data-a="player" data-v="${p.id}">
     ${(opts.hide || []).includes('no') ? '' : `<td class="n">${p.no || ''}</td>`}
     <td>${xi && p.c === G.user ? '<span class="yel">● </span>' : ''}<b>${esc(p.n)}</b></td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="mono dim">${esc(p.nat)}</td>
-    <td class="n"><b>${p.ca}</b></td><td class="n ${condCls(p.cond)}">${Math.round(p.cond)}%</td><td class="n">${Math.round(p.mor)}</td><td class="n ${rClass(+formAvg(p))}">${formAvg(p)}</td>
+    <td class="n"><b>${p.ca}</b></td><td class="n ${condCls(p.cond)}">${Math.round(p.cond)}%</td>${(opts.hide || []).includes('mor') ? '' : `<td class="n">${Math.round(p.mor)}</td>`}${(opts.hide || []).includes('hap') ? '' : hapCell(p)}${(opts.hide || []).includes('fa') ? '' : `<td class="n ${rClass(+formAvg(p))}">${formAvg(p)}</td>`}
     <td class="n">${p.st.a}</td><td class="n">${p.st.g}</td><td class="n">${p.st.as}</td><td class="n ${rClass(+avgR(p))}">${avgR(p)}</td>
     <td class="n">${money(calcValue(p))}</td><td class="n">${wageStr(p.wage)}</td><td class="n">${p.con}</td><td>${statusTags(p)}</td>${opts.club ? `<td>${tLink(p.c)}</td>` : ''}</tr>`; }).join('')}
   </tbody></table></div>`;

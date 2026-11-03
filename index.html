@@ -2224,7 +2224,7 @@ const STADIA = {
 
 // ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====
 // rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).
-// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026).
+// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026).
 const HIST = {
 LG:`1888|Preston North End|Aston Villa
 1889|Preston North End|Everton
@@ -2977,7 +2977,46 @@ SCE:`1982|Real Sociedad|Real Madrid
 2022|Barcelona|Real Madrid
 2023|Real Madrid|Barcelona
 2024|Barcelona|Real Madrid
-2025|Barcelona|Real Madrid`
+2025|Barcelona|Real Madrid`,
+CWC:`1960|Fiorentina|Rangers
+1961|Atlético Madrid|Fiorentina
+1962|Tottenham Hotspur|Atlético Madrid
+1963|Sporting CP|MTK Budapest
+1964|West Ham United|1860 Munich
+1965|Borussia Dortmund|Liverpool
+1966|Bayern Munich|Rangers
+1967|Milan|Hamburger SV
+1968|Slovan Bratislava|Barcelona
+1969|Manchester City|Górnik Zabrze
+1970|Chelsea|Real Madrid
+1971|Rangers|Dynamo Moscow
+1972|Milan|Leeds United
+1973|1. FC Magdeburg|Milan
+1974|Dynamo Kyiv|Ferencváros
+1975|Anderlecht|West Ham United
+1976|Hamburger SV|Anderlecht
+1977|Anderlecht|Austria Vienna
+1978|Barcelona|Fortuna Düsseldorf
+1979|Valencia|Arsenal
+1980|Dinamo Tbilisi|Carl Zeiss Jena
+1981|Barcelona|Standard Liège
+1982|Aberdeen|Real Madrid
+1983|Juventus|Porto
+1984|Everton|Rapid Vienna
+1985|Dynamo Kyiv|Atlético Madrid
+1986|Ajax|1. FC Lokomotive Leipzig
+1987|KV Mechelen|Ajax
+1988|Barcelona|Sampdoria
+1989|Sampdoria|Anderlecht
+1990|Manchester United|Barcelona
+1991|Werder Bremen|Monaco
+1992|Parma|Antwerp
+1993|Arsenal|Parma
+1994|Zaragoza|Arsenal
+1995|Paris Saint-Germain|Rapid Vienna
+1996|Barcelona|Paris Saint-Germain
+1997|Chelsea|VfB Stuttgart
+1998|Lazio|Mallorca`
 };
 
 // ===== DATA: managers for the world rankings (major honours as manager, up to the end of 2025/26) =====
@@ -6164,15 +6203,16 @@ function resTable(fs, showComp = true) {
 }
 
 // ---------- squad ----------
-const SQ_COLS = [['no', '#', 'n'], ['n', 'Name'], ['pos', 'Pos'], ['age', 'Age', 'n'], ['nat', 'Nat'], ['ca', 'Ovr', 'n'], ['cond', 'Cond', 'n'], ['mor', 'Mor', 'n'], ['fa', 'Form', 'n'], ['a', 'Apps', 'n'], ['g', 'Gls', 'n'], ['as', 'Ast', 'n'], ['ar', 'Avg', 'n'], ['val', 'Value', 'n'], ['wage', 'Wage', 'n'], ['con', 'Until', 'n'], ['st', '']];
-function sqVal(p, k) { switch (k) { case 'pos': return POS_ORDER[p.pos]; case 'a': return p.st.a; case 'g': return p.st.g; case 'as': return p.st.as; case 'ar': return p.st.a ? p.st.r / p.st.a : 0; case 'fa': return p.form.length ? p.form.reduce((a, b) => a + b, 0) / p.form.length : 0; case 'val': return calcValue(p); case 'st': return p.inj + p.sus * 10; default: return p[k]; } }
+const SQ_COLS = [['no', '#', 'n'], ['n', 'Name'], ['pos', 'Pos'], ['age', 'Age', 'n'], ['nat', 'Nat'], ['ca', 'Ovr', 'n'], ['cond', 'Cond', 'n'], ['mor', 'Mor', 'n'], ['hap', 'Happy', 'n'], ['fa', 'Form', 'n'], ['a', 'Apps', 'n'], ['g', 'Gls', 'n'], ['as', 'Ast', 'n'], ['ar', 'Avg', 'n'], ['val', 'Value', 'n'], ['wage', 'Wage', 'n'], ['con', 'Until', 'n'], ['st', '']];
+function sqVal(p, k) { switch (k) { case 'pos': return POS_ORDER[p.pos]; case 'hap': return typeof hap === 'function' ? hap(p) : 65; case 'a': return p.st.a; case 'g': return p.st.g; case 'as': return p.st.as; case 'ar': return p.st.a ? p.st.r / p.st.a : 0; case 'fa': return p.form.length ? p.form.reduce((a, b) => a + b, 0) / p.form.length : 0; case 'val': return calcValue(p); case 'st': return p.inj + p.sus * 10; default: return p[k]; } }
 function sortPlayers(list) { const { k, d } = UI.sort; return list.slice().sort((a, b) => { const va = sqVal(a, k), vb = sqVal(b, k); return (va > vb ? 1 : va < vb ? -1 : 0) * d || b.ca - a.ca; }); }
+function hapCell(p) { const h = Math.round(typeof hap === 'function' ? hap(p) : 65); const f = h >= 80 ? '😄' : h >= 65 ? '🙂' : h >= 50 ? '😐' : h >= 35 ? '😕' : h >= 20 ? '😠' : '🚪'; return `<td class="n ${h < 35 ? 'red' : h < 50 ? 'amb' : ''}" title="${typeof hapLabel === 'function' ? hapLabel(h) : ''} (${h})">${f} ${h}</td>`; }
 function playerTable(list, opts = {}) {
   return `<div class="tw"><table class="t"><thead><tr>${SQ_COLS.filter(c => !(opts.hide || []).includes(c[0])).map(c => `<th class="s ${c[2] || ''}" data-a="sort" data-v="${c[0]}">${c[1]}${UI.sort.k === c[0] ? (UI.sort.d > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${opts.club ? '<th>Club</th>' : ''}</tr></thead><tbody>
   ${sortPlayers(list).map(p => { const xi = T(G.user).tac.xi.includes(p.id); return `<tr class="click" data-a="player" data-v="${p.id}">
     ${(opts.hide || []).includes('no') ? '' : `<td class="n">${p.no || ''}</td>`}
     <td>${xi && p.c === G.user ? '<span class="yel">● </span>' : ''}<b>${esc(p.n)}</b></td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="mono dim">${esc(p.nat)}</td>
-    <td class="n"><b>${p.ca}</b></td><td class="n ${condCls(p.cond)}">${Math.round(p.cond)}%</td><td class="n">${Math.round(p.mor)}</td><td class="n ${rClass(+formAvg(p))}">${formAvg(p)}</td>
+    <td class="n"><b>${p.ca}</b></td><td class="n ${condCls(p.cond)}">${Math.round(p.cond)}%</td>${(opts.hide || []).includes('mor') ? '' : `<td class="n">${Math.round(p.mor)}</td>`}${(opts.hide || []).includes('hap') ? '' : hapCell(p)}${(opts.hide || []).includes('fa') ? '' : `<td class="n ${rClass(+formAvg(p))}">${formAvg(p)}</td>`}
     <td class="n">${p.st.a}</td><td class="n">${p.st.g}</td><td class="n">${p.st.as}</td><td class="n ${rClass(+avgR(p))}">${avgR(p)}</td>
     <td class="n">${money(calcValue(p))}</td><td class="n">${wageStr(p.wage)}</td><td class="n">${p.con}</td><td>${statusTags(p)}</td>${opts.club ? `<td>${tLink(p.c)}</td>` : ''}</tr>`; }).join('')}
   </tbody></table></div>`;
@@ -6406,6 +6446,9 @@ function scrTransfers() {
     if (f.club) list = list.filter(p => p.c === f.club);
     if (f.max) list = list.filter(p => calcValue(p) <= +f.max);
     if (f.age) list = list.filter(p => p.age <= +f.age);
+    if (f.con) list = list.filter(p => p.con <= G.year + +f.con);
+    if (f.hap) list = list.filter(p => (typeof hap === 'function' ? hap(p) : 65) < +f.hap);
+    if (f.st === 'listed') list = list.filter(p => p.listed); else if (f.st === 'req') list = list.filter(p => p.req || (typeof hap === 'function' && hap(p) < 20));
     list.sort((a, b) => b.ca - a.ca);
     const shown = list.slice(0, 120);
     body = `<div class="row" style="margin-bottom:8px">
@@ -6414,6 +6457,9 @@ function scrTransfers() {
       <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${['PL', 'CH', 'LL'].map(d => `<optgroup label="${COMP_NAME[d]}">${divTeams(d).filter(t => t !== G.user).slice().sort((a, b) => tName(a) < tName(b) ? -1 : 1).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</optgroup>`).join('')}</select></div>
       <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH', 'LL'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}</select></div>
       <div><label class="lb" for="fm">Max value £m</label><input class="f" id="fm" type="number" min="0" style="width:90px" data-a="filt" data-k="max" value="${esc(f.max)}"></div>
+      <div><label class="lb" for="fcon">Contract ends</label><select class="f" id="fcon" data-a="filt" data-k="con"><option value="">Any</option>${[['1', `Summer ${G.year + 1} (expiring)`], ['2', `By ${G.year + 2}`], ['3', `By ${G.year + 3}`]].map(([v, l]) => `<option value="${v}" ${f.con === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
+      <div><label class="lb" for="fhap">Happiness</label><select class="f" id="fhap" data-a="filt" data-k="hap"><option value="">Any</option>${[['50', 'Unsettled (below 50)'], ['35', 'Unhappy (below 35)'], ['20', 'Wants out (below 20)']].map(([v, l]) => `<option value="${v}" ${f.hap === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
+      <div><label class="lb" for="fst">Status</label><select class="f" id="fst" data-a="filt" data-k="st"><option value="">Any</option><option value="listed" ${f.st === 'listed' ? 'selected' : ''}>Transfer listed</option><option value="req" ${f.st === 'req' ? 'selected' : ''}>Wants to leave</option></select></div>
       <div><label class="lb" for="fa">Max age</label><input class="f" id="fa" type="number" min="15" style="width:70px" data-a="filt" data-k="age" value="${esc(f.age || '')}"></div>
     </div><p class="dim" style="margin:0 0 6px">${list.length} players match${list.length > 120 ? ', showing the top 120 by rating' : ''}.</p>${playerTable(shown, { club: true, hide: ['no', 'mor', 'fa'] })}`;
   } else if (tab === 'short') {
@@ -9681,7 +9727,7 @@ render = function () { if (G && G.teams && !G.v5) { try { ensureAllStadia(); brd
 // history.js: competition history (real winners + every in-game season), club honours, manager world rankings.
 // Loaded after club.js.
 
-const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE']];
+const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE'], ['CWC', "Cup Winners' Cup", 'CWC']];
 const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Paris Saint-Germain': 'Paris SG', 'Athletic Bilbao': 'Athletic Club', 'Atlético Bilbao': 'Athletic Club', 'Madrid FC': 'Real Madrid', 'Madrid': 'Real Madrid', 'Atlético Aviación': 'Atlético Madrid', 'Deportivo La Coruña': 'Deportivo de La Coruña', 'Español': 'Espanyol', 'RCD Español': 'Espanyol', 'Racing Santander': 'Racing Santander', 'Celta': 'Celta Vigo', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
 let _HR = null;
 function histRows() {
@@ -9831,7 +9877,7 @@ function clubHonours(tid) {
   const t = T(tid); if (!t) return [];
   const R = histRows(); const out = [];
   const nm = t.name;
-  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE' };
+  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC' };
   for (const [code, label] of HIST_COMPS) {
     const rows = R[code] || [];
     const real = rows.filter(r => r.w === nm), ru = rows.filter(r => r.r === nm).length;
@@ -9903,11 +9949,11 @@ function scrHistory() {
     ${rankTable(rk)}
     <p class="dim" style="font-size:12px">Honours were compiled for this game from public records up to the end of 2025/26; club jobs as of October 2026. Movement arrows show the change since the end of last season.</p>`;
   }
-  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa' };
+  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup" };
   const tabs = HIST_COMPS.map(([k]) => [k, SHORT[k]]).concat([['club', 'Club honours'], ['rank', 'Rankings']]);
   return `<div class="band">History<small>Winners, honours and manager rankings</small></div>
   <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="hist" data-v="${k}">${esc(l)}</button>`).join('')}</div>${body}
-  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
+  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : comp[0] === 'CWC' ? 'Played from 1960/61 until UEFA ended it after 1998/99.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'hcl') { UI.tab.hcl = el.value; render(); } });
 const _screenH = screen;

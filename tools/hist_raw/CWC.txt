@@ -1,0 +1,39 @@
+1960-61|Fiorentina|Rangers
+1961-62|Atlético Madrid|Fiorentina
+1962-63|Tottenham Hotspur|Atlético Madrid
+1963-64|Sporting CP|MTK Budapest
+1964-65|West Ham United|1860 Munich
+1965-66|Borussia Dortmund|Liverpool
+1966-67|Bayern Munich|Rangers
+1967-68|Milan|Hamburger SV
+1968-69|Slovan Bratislava|Barcelona
+1969-70|Manchester City|Górnik Zabrze
+1970-71|Chelsea|Real Madrid
+1971-72|Rangers|Dynamo Moscow
+1972-73|Milan|Leeds United
+1973-74|1. FC Magdeburg|Milan
+1974-75|Dynamo Kyiv|Ferencváros
+1975-76|Anderlecht|West Ham United
+1976-77|Hamburger SV|Anderlecht
+1977-78|Anderlecht|Austria Vienna
+1978-79|Barcelona|Fortuna Düsseldorf
+1979-80|Valencia|Arsenal
+1980-81|Dinamo Tbilisi|Carl Zeiss Jena
+1981-82|Barcelona|Standard Liège
+1982-83|Aberdeen|Real Madrid
+1983-84|Juventus|Porto
+1984-85|Everton|Rapid Vienna
+1985-86|Dynamo Kyiv|Atlético Madrid
+1986-87|Ajax|1. FC Lokomotive Leipzig
+1987-88|KV Mechelen|Ajax
+1988-89|Barcelona|Sampdoria
+1989-90|Sampdoria|Anderlecht
+1990-91|Manchester United|Barcelona
+1991-92|Werder Bremen|Monaco
+1992-93|Parma|Antwerp
+1993-94|Arsenal|Parma
+1994-95|Zaragoza|Arsenal
+1995-96|Paris Saint-Germain|Rapid Vienna
+1996-97|Barcelona|Paris Saint-Germain
+1997-98|Chelsea|VfB Stuttgart
+1998-99|Lazio|Mallorca
