@@ -56,6 +56,7 @@ renderStart = function () {
     <div class="title">GAFFER<span>26/27</span></div>
     <div class="strap">Football management · Premier League, Championship, La Liga &amp; Serie A 2026/27 · real squads</div>
     ${saved ? `<div class="box pad row" style="margin-bottom:18px"><div><b class="yel">Saved career found</b><div class="dim">${esc(saved.mgr)} · ${esc(saved.teams[saved.user].name)} · ${dNice(saved.date)}</div></div><span class="spacer"></span><button class="btn pri" data-a="load">Continue career</button></div>` : ''}
+    <div class="row dim" style="gap:8px;margin:-6px 0 16px;flex-wrap:wrap;align-items:center;font-size:13px">${saved ? 'Or load' : 'Have a save file? Load'} a career exported from another device:<label class="btn" style="cursor:pointer">Import save from file<input type="file" id="loadfile" accept=".txt,.gaffer,.json,text/plain,application/json,application/octet-stream" style="display:none"></label></div>
     <div class="band">New career<small>Pick a division and a club. Clubs are ranked by team rating; difficulty follows the rating within each division.</small></div>
     <div class="box pad">
       <div class="row" style="margin-bottom:12px"><div style="min-width:220px;flex:1;max-width:340px"><label class="lb" for="mgrname">Manager name</label><input class="f" id="mgrname" style="width:100%" maxlength="28" value="${esc(UI.mgrName || 'Zhariff')}"></div>
