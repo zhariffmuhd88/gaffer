@@ -14050,6 +14050,78 @@ function ensurePostSeasonCups() {
 const _rsPS = restore;
 restore = function (obj) { _rsPS(obj); try { ensurePostSeasonCups(); } catch (e) { console.error(e); } };
 
+// ===================== 6. Cup Winners' Cup entry rules and the Fair Play Award =====================
+// Entry: this season's domestic cup winners (FA Cup, League Cup, Copa del Rey, Coppa Italia). If last season had no
+// edition in this save (careers started before the tournament existed), last season's cup winners are invited too.
+// If doubles leave fewer than 8 teams: the cup runners-up, then each country's Fair Play Award winner, then other
+// European clubs. More than 8 teams: a preliminary round, the strongest sides get byes. Draw after the last league day.
+CAL.CWC = { draw: '2027-05-31', rounds: [['Quarter-final', ['2027-06-02'], 1], ['Semi-final', ['2027-06-04'], 1], ['Final', ['2027-06-07'], 1]] };
+const CWC_BIG = [['Preliminary round', ['2027-06-01'], 1], ['Quarter-final', ['2027-06-03'], 1], ['Semi-final', ['2027-06-05'], 1], ['Final', ['2027-06-07'], 1]];
+const FP_LG = { PL: 'Premier League', CH: 'Championship', LL: 'La Liga', SA: 'Serie A' };
+const FP_CTRY = { PL: 'England', LL: 'Spain', SA: 'Italy' };
+function fairPlay() {
+  const s = seasonLabel(G.year); G.fp = G.fp || {}; if (G.fp.s === s) return G.fp;
+  const out = { s };
+  for (const div in FP_LG) {
+    const teams = divTeams(div); if (!teams.length) continue;
+    const pts = {}; for (const t of teams) pts[t] = { c: 0, r: 0, g: 0 };
+    for (const f of Object.values(G.fx)) { if (f.comp !== div || !f.r || !f.st) continue; [f.h, f.a].forEach((t, i) => { const x = pts[t]; if (!x) return; x.c += (f.st[i].yc || 0) + 3 * (f.st[i].rc || 0); x.r += f.st[i].rc || 0; x.g++; }); }
+    const best = teams.filter(t => pts[t].g).sort((a, b) => pts[a].c - pts[b].c || pts[a].r - pts[b].r || (hash(a + s) % 7) - (hash(b + s) % 7))[0];
+    if (!best) continue;
+    out[div] = best;
+    news('Fair Play Award', `${tName(best, false)} win the ${FP_LG[div]} Fair Play Award ${s}: ${pts[best].c} disciplinary points (yellow 1, red 3) from ${pts[best].g} league games, the fewest in the division.${div !== 'CH' ? ` It can earn a place in the Cup Winners' Cup.` : ''}`, best, best === G.user);
+    try { if (T(best) && !T(best).lite) clubPost(best, `🤝 Proud to win the ${FP_LG[div]} Fair Play Award this season. Respect on and off the pitch.`, { tid: best, u: best === G.user ? 1 : 0 }); } catch (e) { }
+    if (best === G.user) msg('Fair Play Award', `${T(best).name} have won the ${FP_LG[div]} Fair Play Award for the fewest cards in the league.`);
+  }
+  G.fp = out; G.fpHist = (G.fpHist || []).concat(out).slice(-20);
+  return out;
+}
+function cupFinalists(c) { const cup = G.cups[c]; if (!cup || !cup.winner) return null; const f = typeof finalOf === 'function' ? finalOf(c) : null; return { w: cup.winner, r: f ? (f.h === cup.winner ? f.a : f.h) : null }; }
+drawCWC = function () {
+  const cup = G.cups.CWC; if (!cup) return;
+  const dd = sd(CAL.CWC.draw);
+  if (G.date < dd) { if (!G.tasks.some(t => t.t === 'drawCWC' && t.d === dd)) G.tasks.push({ d: dd, t: 'drawCWC' }); return; } // older saves: wait for the end of the leagues
+  if (cup.rounds.some(r => r.ties.length)) return;
+  const ok = (t) => t && T(t) && !T(t).nat;
+  const ent = [], why = {}; const add = (t, w) => { if (ok(t) && !ent.includes(t)) { ent.push(t); why[t] = w; } };
+  const CUPS = [['FA', 'FA Cup'], ['LC', 'League Cup'], ['CDR', 'Copa del Rey'], ['CIT', 'Coppa Italia']];
+  for (const [c, n] of CUPS) { const x = cupFinalists(c); if (x) add(x.w, `${n} winners`); }
+  // last season's winners when that edition was not played in this save
+  const prev = (G.chist || []).find(r => r.y === G.year - 1);
+  if (prev && !(prev.c && prev.c.CWC)) for (const [c, n] of CUPS) { const w = prev.c && prev.c[c === 'FA' ? 'FA' : c] && prev.c[c].w; if (w) add(w, `${n} winners ${prev.s} (invited)`); }
+  if (ent.length < 8) for (const [c, n] of CUPS) { const x = cupFinalists(c); if (x && x.r && ent.length < 8) add(x.r, `${n} runners-up`); }
+  if (ent.length < 8) { const fp = fairPlay(); for (const d of ['PL', 'LL', 'SA']) if (fp[d] && ent.length < 8) add(fp[d], `Fair Play Award, ${FP_CTRY[d]}`); } else fairPlay();
+  const lite = R.shuffle([].concat(EURO.UCL, EURO.UEL).filter(x => x[1] >= 74).map(x => 'E_' + slug(x[0])).filter(id => G.teams[id] && !ent.includes(id)));
+  while (ent.length < 8 && lite.length) add(lite.shift(), 'invited');
+  const list = ent.slice(0, 16); const big = list.length > 8;
+  cup.rounds = cupRounds(big ? CWC_BIG : CAL.CWC.rounds); cup.ri = 0; cup.winner = null;
+  let pairs;
+  if (big) { const bySt = list.slice().sort((a, b) => teamStrength(b) - teamStrength(a)); const byes = bySt.slice(0, 16 - list.length); const pl = R.shuffle(bySt.slice(16 - list.length)); pairs = []; for (let i = 0; i + 1 < pl.length; i += 2) pairs.push([pl[i], pl[i + 1]]); cup.byes = byes; }
+  else { const l = R.shuffle(list); pairs = []; for (let i = 0; i + 1 < l.length; i += 2) pairs.push([l[i], l[i + 1]]); cup.byes = []; }
+  cup.ent = list.map(t => [t, why[t]]);
+  drawFixed('CWC', 0, pairs);
+  for (const t of cup.rounds[0].ties) for (const id of t.fx) { G.fx[id].ven = 'Neutral host city'; G.fx[id].vcap = 45000; }
+  news("Cup Winners' Cup", `Game scenario: the revived Cup Winners' Cup is played after the season by ${list.length} clubs: ${list.map(t => `${tName(t)} (${why[t]})`).join('; ')}. ${big ? `Preliminary round: ${pairs.map(([a, b]) => tName(a) + ' v ' + tName(b)).join(', ')}; byes for ${cup.byes.map(t => tName(t)).join(', ')}.` : `Quarter-finals: ${pairs.map(([a, b]) => tName(a) + ' v ' + tName(b)).join(', ')}.`}`, list.includes(G.user) ? G.user : null, true);
+  if (list.includes(G.user)) msg("Cup Winners' Cup", `${T(G.user).name} are in the Cup Winners' Cup as ${why[G.user]}. ${big && !cup.byes.includes(G.user) ? 'You start in the preliminary round.' : 'You start in the quarter-finals.'} Check Cups & Europe.`);
+};
+CUP_NEXT.CWC = (winners) => {
+  const cup = G.cups.CWC; const ri = cup.ri + 1; let next = winners.slice();
+  if (ri === 1 && cup.byes && cup.byes.length) next = next.concat(cup.byes);
+  const l = R.shuffle(next); const pairs = []; for (let i = 0; i + 1 < l.length; i += 2) pairs.push([l[i], l[i + 1]]);
+  drawFixed('CWC', ri, pairs);
+  for (const t of cup.rounds[ri].ties) for (const id of t.fx) { G.fx[id].ven = 'Neutral host city'; G.fx[id].vcap = 45000; }
+  const ut = cup.rounds[ri].ties.find(t => t.t.includes(G.user)); if (ut) news("Cup Winners' Cup draw", `${cup.rounds[ri].n}: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(cup.rounds[ri].d[0], false)}).`, G.user);
+};
+// the award is also given in seasons without a Cup Winners' Cup draw
+const _seFP = seasonEnd;
+seasonEnd = function () { try { fairPlay(); } catch (e) { console.error(e); } return _seFP.apply(this, arguments); };
+const _cpCW = scrComps;
+scrComps = function () {
+  const h = _cpCW(); const c = G.cups && G.cups.CWC;
+  if (UI.tab.cp !== 'CWC' || !c || !c.ent) return h;
+  return h + `<h2 class="sect">Entrants</h2><div class="tw"><table class="t"><tbody>${c.ent.map(([t, w]) => `<tr><td>${tLink(t, true)}</td><td class="dim">${esc(w || '')}${(c.byes || []).includes(t) ? ' · bye to the quarter-finals' : ''}</td></tr>`).join('')}</tbody></table></div>`;
+};
+
 // intro.js: launch sting (Ayep Interactive logo, disclaimer card, GAFFER logo), Game > Options and Game > About.
 // Loaded just before boot.js. Plays once per page load, never on re-renders.
 
