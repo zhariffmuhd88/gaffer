@@ -9,7 +9,7 @@ function judge(v, ab, salt) { return v + ((hash(salt + '|' + (G.year || 0)) % 10
 function posGrpN(g) { return { G: 'goalkeeper', D: 'defender', M: 'midfielder', A: 'forward' }[g] || 'player'; }
 
 // ---------- assistant manager: weekly report ----------
-function assistantReport() {
+function weeklyAsstReport() {
   if (!G || G.sacked || !T(G.user) || isNatT(G.user)) return null;
   ensureStaff();
   const ab = staffAb('asst'); const as = G.staff.asst; const t = userTeam();
@@ -230,7 +230,7 @@ function scrReports() {
   const tabs = `<div class="tabs" style="margin-top:8px"><button class="${tab === 'as' ? 'on' : ''}" data-a="tab" data-k="rep" data-v="as">Assistant manager</button><button class="${tab === 'sc' ? 'on' : ''}" data-a="tab" data-k="rep" data-v="sc">Scouts</button></div>`;
   let body = '';
   if (tab === 'as') {
-    const r = G.asstRep || assistantReport();
+    const r = G.asstRep || weeklyAsstReport();
     body = `<div class="box pad" style="margin-top:8px"><b>${esc(r.by)}</b> <span class="dim">Assistant Manager · ${r.ab}/20 · report of ${dNice(r.d, false)}</span><p style="margin:6px 0 0">“${esc(r.sum)}”</p><div class="row" style="margin-top:8px"><button class="btn" data-a="asrep">Ask for an update now</button></div></div>
     <h2 class="sect">Deserves to start</h2>${repRows(r.start, 'Nobody is knocking on the door. The current eleven is the right one.')}
     <h2 class="sect">Should be dropped or rested</h2>${repRows(r.drop, 'Everyone in the team has earned his place.')}
@@ -254,7 +254,7 @@ function scrReports() {
 const _scrRep = screen;
 screen = function (s) { if (s === 'reports') { try { return scrReports(); } catch (e) { console.error(e); return '<p class="dim">Reports unavailable.</p>'; } } return _scrRep(s); };
 Object.assign(ACT, {
-  asrep: () => { assistantReport(); autosave(); render(); },
+  asrep: () => { weeklyAsstReport(); autosave(); render(); },
   screp: () => { if (G.scForce === G.date.slice(0, 7)) { toast('Your scouts already sent extra reports this month.'); return; } G.scForce = G.date.slice(0, 7); scoutMonth(true); autosave(); render(); }
 });
 document.addEventListener('change', (ev) => {
@@ -273,7 +273,7 @@ weekly = function () {
   try {
     if (G.sacked || !T(G.user) || isNatT(G.user)) return;
     hapWeek();
-    if (teamGames() >= 1) { const r = assistantReport(); if (r) msg('Assistant manager report', `${r.by}: “${r.sum}”`, { k: 'nav', v: 'reports', lab: 'Open the full report', tab: 'as' }); }
+    if (teamGames() >= 1) { const r = weeklyAsstReport(); if (r) msg('Assistant manager report', `${r.by}: “${r.sum}”`, { k: 'nav', v: 'reports', lab: 'Open the full report', tab: 'as' }); }
     scoutMonth(false);
   } catch (e) { console.error(e); }
 };
