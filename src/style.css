@@ -364,3 +364,13 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .rc-h span { color: #ffd23f; display: block; }
 .rc-p { color: #c9cff0; margin: 14px auto 0; max-width: 40ch; font-size: 15px; }
 .ic-race { background: radial-gradient(circle at 50% 30%, #1a2370, #05070f 70%); }
+/* player comparison */
+.cmpcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.cmpcard { background: var(--panel, rgba(255,255,255,.04)); border: 1px solid var(--line); border-radius: 4px; padding: 10px; min-width: 0; }
+.cmpcard .click { overflow-wrap: anywhere; }
+.cmpovr { font: 900 34px/1 'Arial Black', Arial, sans-serif; }
+.cmpwrap { display: flex; justify-content: center; margin: 8px 0 0; }
+.cmpradar { width: 100%; max-width: 440px; height: auto; }
+.cmpt td:first-child { white-space: nowrap; }
+.cmpt .cmpbest { font-weight: 800; }
+.cmphit { text-align: left; font-size: 13px; }
