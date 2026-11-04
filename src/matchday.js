@@ -262,7 +262,7 @@ function buildPlan(LM, SC, evs, poss) {
       if (ev.type === 'pen') {
         push({ k: 'whistle', txt: 'Penalty!', w: .9 });
         shotFrom = wpt(s, .895, .5);
-        push({ k: 'place', at: shotFrom, e, w: .9 });
+        push({ k: 'place', at: shotFrom, e, w: 1.3, pen: s });
       } else if (ev.type === 'fk') {
         shotFrom = wpt(s, .74 + R.f() * .05, .3 + R.f() * .4);
         push({ k: 'place', at: shotFrom, e, w: .9 });
@@ -423,6 +423,28 @@ function endReplay(LM) { const V = LM.vis; V.rp = null; V.live.rate = 1; }
 function stepPos(SC, st) {
   const e = st.e || st.to; return e ? SC.pos.get(e) : null;
 }
+// penalty: everyone except the taker and the defending keeper stands outside the box and the D,
+// split between the two sides; the defending keeper goes to the middle of his line, the other keeper stays deep
+function penLineUp(V, M, SC, st) {
+  const s = st.pen; const all = [];
+  for (const side of [0, 1]) for (const e of onPitch(M, side)) {
+    if (e === st.e) continue;
+    if (e.role === 'GK') { const to = side === s ? wpt(s, .09, .5) : { x: goalX(s) + (s === 0 ? -.004 : .004), y: .5 }; SC.pos.set(e, { ...to }); SC.ov.set(e, to); continue; }
+    all.push(e);
+  }
+  // alternate attackers and defenders along the edge of the area, a few on the D
+  all.sort((a, b) => (sideOf(V, M, a) - sideOf(V, M, b)) || 0);
+  const att = all.filter(e => sideOf(V, M, e) === s), def = all.filter(e => sideOf(V, M, e) !== s);
+  const mix = []; for (let i = 0; i < Math.max(att.length, def.length); i++) { if (def[i]) mix.push(def[i]); if (att[i]) mix.push(att[i]); }
+  const n = mix.length;
+  mix.forEach((e, i) => {
+    const y = .2 + .6 * (n > 1 ? i / (n - 1) : .5);
+    const inD = Math.abs(y - .5) < .09; // the arc: stay 9.15 m from the spot
+    const x = inD ? .79 - Math.random() * .015 : .825 - Math.random() * .02;
+    const to = wpt(s, x, y + (Math.random() - .5) * .02);
+    SC.pos.set(e, { x: to.x, y: to.y }); SC.ov.set(e, to);
+  });
+}
 function enterStep(LM, SC, st) {
   const V = LM.vis, M = SC.M;
   st.entered = true;
@@ -439,7 +461,7 @@ function enterStep(LM, SC, st) {
       SC.ov.set(st.e, st.to); lab(SKILLS[st.sk].toUpperCase(), false, '#45e1f0', st.e); break;
     }
     case 'cross': SC.holder = null; if (st.e && st.to) SC.ov.set(st.e, st.to); SC.trails.push({ x1: SC.ball.x, y1: SC.ball.y, x2: st.to.x, y2: st.to.y, t0: SC.t, air: true }); break;
-    case 'place': SC.holder = st.e; SC.ball = { x: st.at.x, y: st.at.y, h: 0 }; SC.from = { ...SC.ball }; if (st.e) { const s = sideOf(V, M, st.e); SC.ov.set(st.e, { x: st.at.x - (s === 0 ? .012 : -.012), y: st.at.y }); SC.pos.set(st.e, { x: st.at.x - (s === 0 ? .03 : -.03), y: st.at.y }); } if (st.txt) lab(st.txt, false, '#fff'); break;
+    case 'place': if (st.pen != null) penLineUp(V, M, SC, st); SC.holder = st.e; SC.ball = { x: st.at.x, y: st.at.y, h: 0 }; SC.from = { ...SC.ball }; if (st.e) { const s = sideOf(V, M, st.e); SC.ov.set(st.e, { x: st.at.x - (s === 0 ? .012 : -.012), y: st.at.y }); SC.pos.set(st.e, { x: st.at.x - (s === 0 ? .03 : -.03), y: st.at.y }); } if (st.txt) lab(st.txt, false, '#fff'); break;
     case 'shot': {
       SC.holder = null;
       const nm = { chip: 'CHIP!', volley: 'VOLLEY!', bicycle: 'BICYCLE KICK!', diving: 'DIVING HEADER!', screamer: 'WHAT A STRIKE!', panenka: 'PANENKA!', fkcurl: 'FREE KICK', curler: 'CURLER' }[st.st];

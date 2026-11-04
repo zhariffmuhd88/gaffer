@@ -167,6 +167,7 @@ const FOUL_W = { GK: .1, DC: 1.6, DL: 1.1, DR: 1.1, WBL: 1, WBR: 1, DM: 1.8, MC:
 
 function stepMinute(M) {
   if (M.done) return;
+  if (M.so && !M.so.over) { soAuto(M); return; }
   M.min++;
   const min = M.min;
   const [A, B] = M.sides;
@@ -226,27 +227,51 @@ function endET(M) {
   const ta = M.score[0] + M.agg[0], tb = M.score[1] + M.agg[1];
   if (ta === tb) shootout(M); else finish(M);
 }
+// penalty shoot-out. In a watched match (M.soLive) it is played kick by kick from the match screen (mdui shootout panel);
+// everywhere else, and when a watched match is skipped, it is resolved here with the same rules.
+function soTakers(S) { return active(S).filter(e => !e.inj).sort((a, b) => (attrs(b.p).Fin + attrs(b.p).Det * .5) - (attrs(a.p).Fin + attrs(a.p).Det * .5)); }
 function shootout(M) {
-  const takers = M.sides.map(S => active(S).filter(e => !e.inj).sort((a, b) => attrs(b.p).Fin - attrs(a.p).Fin));
-  const gks = M.sides.map(S => active(S).find(e => e.role === 'GK') || active(S)[0]);
-  const sc = [0, 0]; const kicks = [[], []];
   say(M, 120, 'ht', 'Extra time ends level. Penalties will decide it.');
-  let round = 0;
-  while (true) {
-    for (let s = 0; s < 2; s++) {
-      const tk = takers[s][round % takers[s].length];
-      const gk = gks[1 - s];
-      const p = clamp(0.76 + (attrs(tk.p).Fin - 13) * 0.012 - ((attrs(gk.p).Ref || 10) - 12) * 0.01, .55, .92);
-      const ok = R.chance(p); if (ok) sc[s]++; kicks[s].push(ok);
-      say(M, 120, ok ? 'pen' : 'miss', `${cap1(pn(tk.p))} ${ok ? 'scores' : R.pick(['misses!', 'sees it saved!', 'hits the post!'])} (${M.sides[s].name} ${sc[s]})`, s);
-    }
-    round++;
-    if (round < 5) { const left = 5 - round; if (sc[0] > sc[1] + left || sc[1] > sc[0] + left) break; }
-    else if (sc[0] !== sc[1]) break;
-    if (round > 30) { sc[0]++; break; }
-  }
-  M.pens = sc; finish(M);
+  const first = R.chance(.5) ? 0 : 1;
+  M.so = { sc: [0, 0], kicks: [[], []], used: [[], []], first, turn: first, n: 0, last: null };
+  say(M, 120, 'ht', `${M.sides[first].name} won the toss and will kick first.`);
+  if (!M.soLive) soAuto(M);
 }
+function soSide(M) { return M.so.turn; }
+function soTaker(M, s, pid) {
+  const so = M.so; const L = soTakers(M.sides[s]); if (!L.length) return null;
+  if (so.used[s].length >= L.length) so.used[s] = []; // everyone has taken one: start again
+  if (pid) { const e = L.find(x => x.p.id === pid && !so.used[s].includes(x.p.id)); if (e) return e; }
+  return L.find(x => !so.used[s].includes(x.p.id)) || L[0];
+}
+// aim and dive: 'L', 'C' or 'R' as seen from behind the taker
+function soKick(M, pid, aim, dive) {
+  const so = M.so; if (!so || so.over) return null;
+  const s = so.turn; const tk = soTaker(M, s, pid); const S = M.sides[s], O = M.sides[1 - s];
+  const gk = active(O).find(e => e.role === 'GK') || active(O)[0];
+  const a = attrs(tk.p), g = attrs(gk.p);
+  aim = aim || R.wpick([['L', 4], ['C', 1.5], ['R', 4]], x => x[1])[0];
+  dive = dive || R.wpick([['L', 4.5], ['C', 1], ['R', 4.5]], x => x[1])[0];
+  const pressure = so.n >= 8 ? .04 : 0; // sudden death
+  let how;
+  if (aim === dive) { const save = clamp((aim === 'C' ? .74 : .47) + ((g.Ref || 10) - 12) * .02 - (a.Fin - 13) * .02 + pressure, .25, .9); how = R.chance(save) ? 'save' : 'goal'; }
+  else { const miss = clamp((aim === 'C' ? .015 : .07) - (a.Fin - 13) * .008 - (a.Det - 13) * .004 + pressure, .01, .2); how = R.chance(miss) ? R.pick(['wide', 'over', 'post']) : 'goal'; }
+  const ok = how === 'goal'; if (ok) so.sc[s]++;
+  so.kicks[s].push(ok); so.used[s].push(tk.p.id); so.n++;
+  so.last = { s, pid: tk.p.id, n: tk.p.n, aim, dive, how, gk: gk.p.n };
+  const line = ok ? R.pick(['scores', 'sends the keeper the wrong way', 'buries it', 'tucks it away']) : how === 'save' ? `is denied! ${surname(gk.p.n)} saves` : how === 'post' ? 'hits the post!' : how === 'over' ? 'blazes it over!' : 'drags it wide!';
+  say(M, 120, ok ? 'pen' : 'miss', `${cap1(pn(tk.p))} ${line} (${M.sides[0].name} ${so.sc[0]}-${so.sc[1]} ${M.sides[1].name})`, s);
+  // finished?
+  const k0 = so.kicks[0].length, k1 = so.kicks[1].length;
+  let over = false;
+  if (k0 <= 5 && k1 <= 5 && (k0 < 5 || k1 < 5)) { const l0 = 5 - k0, l1 = 5 - k1; if (so.sc[0] > so.sc[1] + l1 || so.sc[1] > so.sc[0] + l0) over = true; }
+  else if (k0 === k1 && so.sc[0] !== so.sc[1]) over = true;
+  if (!over && k0 >= 30 && k0 === k1) { so.sc[0]++; over = true; }
+  so.turn = 1 - s;
+  if (over) { so.over = true; M.pens = so.sc.slice(); finish(M); }
+  return so.last;
+}
+function soAuto(M) { let g = 0; while (M.so && !M.so.over && g++ < 80) soKick(M); }
 function finish(M) {
   if (M.done) return;
   M.done = true;

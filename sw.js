@@ -1,5 +1,5 @@
 // GAFFER service worker. Version changes on every build so phones pick up updates.
-const CACHE = 'gaffer-b001ac23f7';
+const CACHE = 'gaffer-3dc8a3465e';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

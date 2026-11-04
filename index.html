@@ -359,6 +359,30 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .reply { border-left: 2px solid var(--line); padding: 3px 8px; font-size: 13.5px; background: rgba(255,255,255,.03); }
 .hapl { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; font-size: 13.5px; }
 .hapl li { line-height: 1.35; }
+/* penalty shoot-out */
+.so .sod { font-size: 15px; margin: 0 1px; color: var(--dim, #8a90b5); }
+.so .sod.ok { color: var(--grn); } .so .sod.no { color: var(--red); }
+.soscene { position: relative; height: 210px; max-width: 460px; margin: 10px auto 4px; overflow: hidden; border-radius: 4px; background: linear-gradient(#0d1430 0 66%, #1f7a3a 66% 100%); }
+.soscene::after { content: ''; position: absolute; left: 0; right: 0; top: 66%; height: 2px; background: rgba(255,255,255,.8); }
+.sogoal { position: absolute; left: 10%; right: 10%; top: 12%; height: 54%; border: 5px solid #f4f6ff; border-bottom: 0; }
+.sonet { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px); background-size: 10px 10px; }
+.sokp { position: absolute; left: 50%; bottom: 34%; width: 13%; height: 36%; transform: translateX(-50%); transform-origin: 50% 100%; }
+.sokp-h { position: absolute; left: 32%; top: 0; width: 36%; height: 24%; border-radius: 50%; background: #e2b48c; }
+.sokp-b { position: absolute; left: 10%; top: 22%; width: 80%; height: 78%; border-radius: 6px 6px 2px 2px; background: #ffd23f; box-shadow: inset 0 -10px 0 rgba(0,0,0,.25); }
+.soball { position: absolute; left: 50%; top: 92%; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff 0 45%, #cfd3e6 46%); box-shadow: 0 0 0 1.5px #111; transform: translate(-50%,-50%) scale(1.4); z-index: 2; }
+.soverdict { position: absolute; left: 0; right: 0; top: 70%; text-align: center; font: 700 26px/1 var(--mono, monospace); letter-spacing: .12em; opacity: 0; transition: opacity .25s; text-shadow: 0 2px 0 #000; }
+.soverdict.ok { color: var(--yel, #ffd23f); } .soverdict.no { color: #ff6b6b; }
+/* WUPH.com */
+.wuph { font-weight: 800; letter-spacing: .02em; } .wuph i { font-style: normal; opacity: .75; font-weight: 600; }
+.vchk { margin-left: 3px; font-size: 13px; }
+/* intro: anti-racism poster */
+.ic-race .rc { max-width: 520px; text-align: center; opacity: 0; transform: translateY(6px); }
+.ic-race.on .rc { animation: aySlide .6s .1s ease-out forwards; }
+.rc-card { display: inline-block; width: 74px; height: 102px; background: #e8262d; border-radius: 6px; transform: rotate(-8deg); box-shadow: 0 6px 0 rgba(0,0,0,.4); margin-bottom: 16px; }
+.rc-h { font: 900 clamp(30px, 8vw, 54px)/1.02 'Arial Black', Arial, sans-serif; text-transform: uppercase; margin: 0; color: #fff; }
+.rc-h span { color: #ffd23f; display: block; }
+.rc-p { color: #c9cff0; margin: 14px auto 0; max-width: 40ch; font-size: 15px; }
+.ic-race { background: radial-gradient(circle at 50% 30%, #1a2370, #05070f 70%); }
 
 html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
 </style>
@@ -5194,6 +5218,7 @@ const FOUL_W = { GK: .1, DC: 1.6, DL: 1.1, DR: 1.1, WBL: 1, WBR: 1, DM: 1.8, MC:
 
 function stepMinute(M) {
   if (M.done) return;
+  if (M.so && !M.so.over) { soAuto(M); return; }
   M.min++;
   const min = M.min;
   const [A, B] = M.sides;
@@ -5253,27 +5278,51 @@ function endET(M) {
   const ta = M.score[0] + M.agg[0], tb = M.score[1] + M.agg[1];
   if (ta === tb) shootout(M); else finish(M);
 }
+// penalty shoot-out. In a watched match (M.soLive) it is played kick by kick from the match screen (mdui shootout panel);
+// everywhere else, and when a watched match is skipped, it is resolved here with the same rules.
+function soTakers(S) { return active(S).filter(e => !e.inj).sort((a, b) => (attrs(b.p).Fin + attrs(b.p).Det * .5) - (attrs(a.p).Fin + attrs(a.p).Det * .5)); }
 function shootout(M) {
-  const takers = M.sides.map(S => active(S).filter(e => !e.inj).sort((a, b) => attrs(b.p).Fin - attrs(a.p).Fin));
-  const gks = M.sides.map(S => active(S).find(e => e.role === 'GK') || active(S)[0]);
-  const sc = [0, 0]; const kicks = [[], []];
   say(M, 120, 'ht', 'Extra time ends level. Penalties will decide it.');
-  let round = 0;
-  while (true) {
-    for (let s = 0; s < 2; s++) {
-      const tk = takers[s][round % takers[s].length];
-      const gk = gks[1 - s];
-      const p = clamp(0.76 + (attrs(tk.p).Fin - 13) * 0.012 - ((attrs(gk.p).Ref || 10) - 12) * 0.01, .55, .92);
-      const ok = R.chance(p); if (ok) sc[s]++; kicks[s].push(ok);
-      say(M, 120, ok ? 'pen' : 'miss', `${cap1(pn(tk.p))} ${ok ? 'scores' : R.pick(['misses!', 'sees it saved!', 'hits the post!'])} (${M.sides[s].name} ${sc[s]})`, s);
-    }
-    round++;
-    if (round < 5) { const left = 5 - round; if (sc[0] > sc[1] + left || sc[1] > sc[0] + left) break; }
-    else if (sc[0] !== sc[1]) break;
-    if (round > 30) { sc[0]++; break; }
-  }
-  M.pens = sc; finish(M);
+  const first = R.chance(.5) ? 0 : 1;
+  M.so = { sc: [0, 0], kicks: [[], []], used: [[], []], first, turn: first, n: 0, last: null };
+  say(M, 120, 'ht', `${M.sides[first].name} won the toss and will kick first.`);
+  if (!M.soLive) soAuto(M);
 }
+function soSide(M) { return M.so.turn; }
+function soTaker(M, s, pid) {
+  const so = M.so; const L = soTakers(M.sides[s]); if (!L.length) return null;
+  if (so.used[s].length >= L.length) so.used[s] = []; // everyone has taken one: start again
+  if (pid) { const e = L.find(x => x.p.id === pid && !so.used[s].includes(x.p.id)); if (e) return e; }
+  return L.find(x => !so.used[s].includes(x.p.id)) || L[0];
+}
+// aim and dive: 'L', 'C' or 'R' as seen from behind the taker
+function soKick(M, pid, aim, dive) {
+  const so = M.so; if (!so || so.over) return null;
+  const s = so.turn; const tk = soTaker(M, s, pid); const S = M.sides[s], O = M.sides[1 - s];
+  const gk = active(O).find(e => e.role === 'GK') || active(O)[0];
+  const a = attrs(tk.p), g = attrs(gk.p);
+  aim = aim || R.wpick([['L', 4], ['C', 1.5], ['R', 4]], x => x[1])[0];
+  dive = dive || R.wpick([['L', 4.5], ['C', 1], ['R', 4.5]], x => x[1])[0];
+  const pressure = so.n >= 8 ? .04 : 0; // sudden death
+  let how;
+  if (aim === dive) { const save = clamp((aim === 'C' ? .74 : .47) + ((g.Ref || 10) - 12) * .02 - (a.Fin - 13) * .02 + pressure, .25, .9); how = R.chance(save) ? 'save' : 'goal'; }
+  else { const miss = clamp((aim === 'C' ? .015 : .07) - (a.Fin - 13) * .008 - (a.Det - 13) * .004 + pressure, .01, .2); how = R.chance(miss) ? R.pick(['wide', 'over', 'post']) : 'goal'; }
+  const ok = how === 'goal'; if (ok) so.sc[s]++;
+  so.kicks[s].push(ok); so.used[s].push(tk.p.id); so.n++;
+  so.last = { s, pid: tk.p.id, n: tk.p.n, aim, dive, how, gk: gk.p.n };
+  const line = ok ? R.pick(['scores', 'sends the keeper the wrong way', 'buries it', 'tucks it away']) : how === 'save' ? `is denied! ${surname(gk.p.n)} saves` : how === 'post' ? 'hits the post!' : how === 'over' ? 'blazes it over!' : 'drags it wide!';
+  say(M, 120, ok ? 'pen' : 'miss', `${cap1(pn(tk.p))} ${line} (${M.sides[0].name} ${so.sc[0]}-${so.sc[1]} ${M.sides[1].name})`, s);
+  // finished?
+  const k0 = so.kicks[0].length, k1 = so.kicks[1].length;
+  let over = false;
+  if (k0 <= 5 && k1 <= 5 && (k0 < 5 || k1 < 5)) { const l0 = 5 - k0, l1 = 5 - k1; if (so.sc[0] > so.sc[1] + l1 || so.sc[1] > so.sc[0] + l0) over = true; }
+  else if (k0 === k1 && so.sc[0] !== so.sc[1]) over = true;
+  if (!over && k0 >= 30 && k0 === k1) { so.sc[0]++; over = true; }
+  so.turn = 1 - s;
+  if (over) { so.over = true; M.pens = so.sc.slice(); finish(M); }
+  return so.last;
+}
+function soAuto(M) { let g = 0; while (M.so && !M.so.over && g++ < 80) soKick(M); }
 function finish(M) {
   if (M.done) return;
   M.done = true;
@@ -6921,7 +6970,7 @@ function render() {
   if (UI.match) return renderMatch();
   if (!G) return renderStart();
   const scr = UI.scr;
-  const nav = [['inbox', 'Inbox'], ['media', 'Media'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['reports', 'Reports'], ['club', 'Club'], ['game', 'Game']];
+  const nav = [['inbox', 'Inbox'], ['media', 'WUPH.com'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['staff', 'Staff'], ['reports', 'Reports'], ['club', 'Club'], ['game', 'Game']];
   const nf = nextUserFixture();
   const t = userTeam();
   const nextTxt = nf ? `Next: ${COMP_SHORT[nf.comp]} · ${dShort(nf.d)} · ${nf.h === G.user ? 'v ' + tName(nf.a) + ' (H)' : 'v ' + tName(nf.h) + ' (A)'}` : (G.sacked ? 'Unemployed' : 'Season complete');
@@ -8342,7 +8391,7 @@ function buildPlan(LM, SC, evs, poss) {
       if (ev.type === 'pen') {
         push({ k: 'whistle', txt: 'Penalty!', w: .9 });
         shotFrom = wpt(s, .895, .5);
-        push({ k: 'place', at: shotFrom, e, w: .9 });
+        push({ k: 'place', at: shotFrom, e, w: 1.3, pen: s });
       } else if (ev.type === 'fk') {
         shotFrom = wpt(s, .74 + R.f() * .05, .3 + R.f() * .4);
         push({ k: 'place', at: shotFrom, e, w: .9 });
@@ -8503,6 +8552,28 @@ function endReplay(LM) { const V = LM.vis; V.rp = null; V.live.rate = 1; }
 function stepPos(SC, st) {
   const e = st.e || st.to; return e ? SC.pos.get(e) : null;
 }
+// penalty: everyone except the taker and the defending keeper stands outside the box and the D,
+// split between the two sides; the defending keeper goes to the middle of his line, the other keeper stays deep
+function penLineUp(V, M, SC, st) {
+  const s = st.pen; const all = [];
+  for (const side of [0, 1]) for (const e of onPitch(M, side)) {
+    if (e === st.e) continue;
+    if (e.role === 'GK') { const to = side === s ? wpt(s, .09, .5) : { x: goalX(s) + (s === 0 ? -.004 : .004), y: .5 }; SC.pos.set(e, { ...to }); SC.ov.set(e, to); continue; }
+    all.push(e);
+  }
+  // alternate attackers and defenders along the edge of the area, a few on the D
+  all.sort((a, b) => (sideOf(V, M, a) - sideOf(V, M, b)) || 0);
+  const att = all.filter(e => sideOf(V, M, e) === s), def = all.filter(e => sideOf(V, M, e) !== s);
+  const mix = []; for (let i = 0; i < Math.max(att.length, def.length); i++) { if (def[i]) mix.push(def[i]); if (att[i]) mix.push(att[i]); }
+  const n = mix.length;
+  mix.forEach((e, i) => {
+    const y = .2 + .6 * (n > 1 ? i / (n - 1) : .5);
+    const inD = Math.abs(y - .5) < .09; // the arc: stay 9.15 m from the spot
+    const x = inD ? .79 - Math.random() * .015 : .825 - Math.random() * .02;
+    const to = wpt(s, x, y + (Math.random() - .5) * .02);
+    SC.pos.set(e, { x: to.x, y: to.y }); SC.ov.set(e, to);
+  });
+}
 function enterStep(LM, SC, st) {
   const V = LM.vis, M = SC.M;
   st.entered = true;
@@ -8519,7 +8590,7 @@ function enterStep(LM, SC, st) {
       SC.ov.set(st.e, st.to); lab(SKILLS[st.sk].toUpperCase(), false, '#45e1f0', st.e); break;
     }
     case 'cross': SC.holder = null; if (st.e && st.to) SC.ov.set(st.e, st.to); SC.trails.push({ x1: SC.ball.x, y1: SC.ball.y, x2: st.to.x, y2: st.to.y, t0: SC.t, air: true }); break;
-    case 'place': SC.holder = st.e; SC.ball = { x: st.at.x, y: st.at.y, h: 0 }; SC.from = { ...SC.ball }; if (st.e) { const s = sideOf(V, M, st.e); SC.ov.set(st.e, { x: st.at.x - (s === 0 ? .012 : -.012), y: st.at.y }); SC.pos.set(st.e, { x: st.at.x - (s === 0 ? .03 : -.03), y: st.at.y }); } if (st.txt) lab(st.txt, false, '#fff'); break;
+    case 'place': if (st.pen != null) penLineUp(V, M, SC, st); SC.holder = st.e; SC.ball = { x: st.at.x, y: st.at.y, h: 0 }; SC.from = { ...SC.ball }; if (st.e) { const s = sideOf(V, M, st.e); SC.ov.set(st.e, { x: st.at.x - (s === 0 ? .012 : -.012), y: st.at.y }); SC.pos.set(st.e, { x: st.at.x - (s === 0 ? .03 : -.03), y: st.at.y }); } if (st.txt) lab(st.txt, false, '#fff'); break;
     case 'shot': {
       SC.holder = null;
       const nm = { chip: 'CHIP!', volley: 'VOLLEY!', bicycle: 'BICYCLE KICK!', diving: 'DIVING HEADER!', screamer: 'WHAT A STRIKE!', panenka: 'PANENKA!', fkcurl: 'FREE KICK', curler: 'CURLER' }[st.st];
@@ -13791,6 +13862,141 @@ weekly = function () {
   } catch (e) { console.error(e); }
 };
 
+// extras.js: the playable penalty shoot-out on the match screen, the WUPH.com social network (verified ✅
+// accounts) and the tribute to Jesús de Miguel (real event, Nov 2026). Loaded after reports.js.
+
+// ===================== 1. playable penalty shoot-out =====================
+const _slSO = startLive;
+startLive = function (fid, instant) { _slSO(fid, instant); try { if (!instant && UI.match) UI.match.M.soLive = true; } catch (e) { console.error(e); } };
+const _tickSO = tick;
+tick = function () { const LM = UI.match; if (LM && LM.M.so && !LM.M.so.over && !LM.M.done) { LM.run = false; renderMatch(); return; } return _tickSO(); };
+const SO_DIR = { L: 'left', C: 'middle', R: 'right' };
+function soDots(M, s) {
+  const k = M.so.kicks[s]; const n = Math.max(5, k.length + (M.so.turn === s && !M.so.over ? 1 : 0));
+  let h = ''; for (let i = 0; i < n; i++) h += i < k.length ? (k[i] ? '<span class="sod ok">●</span>' : '<span class="sod no">✕</span>') : '<span class="sod">○</span>';
+  return h;
+}
+function soScene(M) {
+  const L = M.so.last;
+  return `<div class="soscene" id="soscene"><div class="sogoal"><div class="sonet"></div></div><div class="sokp" id="sokp"><span class="sokp-h"></span><span class="sokp-b"></span></div><div class="soball" id="soball"></div>${L ? `<div class="soverdict ${L.how === 'goal' ? 'ok' : 'no'}" id="soverd">${L.how === 'goal' ? 'GOAL' : L.how === 'save' ? 'SAVED' : L.how === 'post' ? 'POST' : L.how === 'over' ? 'OVER' : 'WIDE'}</div>` : ''}</div>`;
+}
+function soPanel(LM) {
+  const M = LM.M, so = M.so; const ui = uSide(M); const s = so.turn;
+  const head = M.sides.map((S, i) => `<div class="row" style="gap:8px;align-items:center;justify-content:space-between"><b>${esc(S.name)}</b><span>${soDots(M, i)}</span><b class="mono" style="font-size:20px">${so.sc[i]}</b></div>`).join('');
+  let ctl = '';
+  if (!so.over) {
+    if (s === ui) {
+      const L = soTakers(M.sides[s]).filter(e => !so.used[s].includes(e.p.id)); const all = L.length ? L : soTakers(M.sides[s]);
+      const sel = LM.soPick && all.some(e => e.p.id === LM.soPick) ? LM.soPick : all[0] && all[0].p.id;
+      ctl = `<div class="row" style="gap:8px;flex-wrap:wrap;align-items:center"><label class="lb" for="sopick" style="margin:0">Taker</label><select class="f" id="sopick" data-a="sopick">${all.map(e => `<option value="${e.p.id}" ${e.p.id === sel ? 'selected' : ''}>${esc(e.p.n)} · Fin ${attrs(e.p).Fin} · Det ${attrs(e.p).Det}</option>`).join('')}</select></div>
+      <div class="row" style="gap:8px;margin-top:8px;flex-wrap:wrap"><span class="dim">Where does he aim?</span><button class="btn pri" data-a="sokick" data-v="L">◀ Left</button><button class="btn pri" data-a="sokick" data-v="C">Down the middle</button><button class="btn pri" data-a="sokick" data-v="R">Right ▶</button></div>`;
+    } else {
+      const tk = soTaker(M, s); const gk = active(M.sides[ui]).find(e => e.role === 'GK');
+      ctl = `<div class="dim">${esc(tk ? tk.p.n : 'Their taker')} steps up for ${esc(M.sides[s].name)}. Which way does ${esc(gk ? surname(gk.p.n) : 'your keeper')} go?</div>
+      <div class="row" style="gap:8px;margin-top:8px;flex-wrap:wrap"><button class="btn pri" data-a="sodive" data-v="L">◀ Dive left</button><button class="btn pri" data-a="sodive" data-v="C">Stay in the middle</button><button class="btn pri" data-a="sodive" data-v="R">Dive right ▶</button></div>`;
+    }
+    ctl += `<div class="row" style="margin-top:8px"><button class="btn" data-a="soauto">Let the players decide the rest</button><span class="dim" style="font-size:12.5px">Left and right as seen from behind the taker.</span></div>`;
+  }
+  const L = so.last;
+  const lastTxt = L ? `<div style="margin:6px 0 2px"><b>${esc(L.n)}</b> (${esc(M.sides[L.s].name)}) went ${SO_DIR[L.aim]}, ${esc(L.gk)} ${L.dive === 'C' ? 'stayed in the middle' : 'dived ' + SO_DIR[L.dive]}: <b class="${L.how === 'goal' ? 'grn' : 'red'}">${L.how === 'goal' ? 'scored' : L.how === 'save' ? 'saved' : L.how === 'post' ? 'hit the post' : L.how === 'over' ? 'over the bar' : 'wide'}</b>.</div>` : `<div class="dim" style="margin:6px 0 2px">${esc(M.sides[s].name)} kick first.</div>`;
+  return `<div class="box pad so" style="margin-top:10px"><h2 class="sect" style="margin-top:0">Penalty shoot-out${so.n >= 10 && !so.over ? ' · sudden death' : ''}</h2>${head}${soScene(M)}${lastTxt}${ctl}</div>`;
+}
+function soAnimate(LM) {
+  const M = LM.M, L = M.so && M.so.last; if (!L) return;
+  const still = LM.soAnim === M.so.n; LM.soAnim = M.so.n;
+  const b = document.getElementById('soball'), k = document.getElementById('sokp'), v = document.getElementById('soverd'); if (!b || !k) return;
+  const tx = { L: 24, C: 50, R: 76 }[L.aim];
+  let bx = tx, by = L.aim === 'C' ? 34 : 40;
+  if (L.how === 'save') { bx = L.dive === 'C' ? 50 : L.dive === 'L' ? 31 : 69; by = 48; }
+  if (L.how === 'wide') { bx = L.aim === 'R' ? 97 : 3; by = 46; }
+  if (L.how === 'over') { by = 2; }
+  if (L.how === 'post') { bx = L.aim === 'R' ? 89.5 : L.aim === 'L' ? 10.5 : 50; by = L.aim === 'C' ? 12 : 42; }
+  const kx = { L: -95, C: 0, R: 95 }[L.dive], kr = { L: -72, C: 0, R: 72 }[L.dive];
+  if (still) { b.style.left = bx + '%'; b.style.top = by + '%'; b.style.transform = 'translate(-50%,-50%) scale(.75)'; k.style.transform = `translateX(calc(-50% + ${kx}%)) ${L.dive === 'C' ? 'translateY(-12%)' : `rotate(${kr}deg)`}`; return; }
+  b.style.left = '50%'; b.style.top = '92%'; b.style.transform = 'translate(-50%,-50%) scale(1.4)'; k.style.transform = 'translateX(-50%)';
+  if (v) v.style.opacity = 0;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    b.style.transition = 'left .55s cubic-bezier(.2,.7,.3,1), top .55s cubic-bezier(.2,.7,.3,1), transform .55s'; k.style.transition = 'transform .45s .08s cubic-bezier(.3,.6,.3,1)';
+    b.style.left = bx + '%'; b.style.top = by + '%'; b.style.transform = 'translate(-50%,-50%) scale(.75)';
+    k.style.transform = `translateX(calc(-50% + ${kx}%)) ${L.dive === 'C' ? 'translateY(-12%)' : `rotate(${kr}deg)`}`;
+    if (v) setTimeout(() => { v.style.opacity = 1; }, 600);
+  }));
+  try { if (L.how === 'goal' && L.s === uSide(M)) SND.roar(); else if (L.how !== 'goal') SND.ooh(); } catch (e) { }
+}
+const _rmSO = renderMatch;
+renderMatch = function () {
+  _rmSO();
+  try {
+    const LM = UI.match; if (!LM || !LM.M.so) return;
+    const ctrl = document.querySelector('.ctrl'); if (!ctrl) return;
+    if (!LM.M.so.over) { const run = ctrl.querySelector('[data-a="mrun"]'); if (run) run.remove(); }
+    ctrl.insertAdjacentHTML('afterend', soPanel(LM));
+    soAnimate(LM);
+  } catch (e) { console.error(e); }
+};
+function soAfter(LM) {
+  const M = LM.M;
+  if (M.done) { LM.run = false; try { stepOthers(LM, 200); SND.whistle(3, true); } catch (e) { } }
+  renderMatch();
+}
+Object.assign(ACT, {
+  sokick: (v) => { const LM = UI.match; if (!LM || !LM.M.so || LM.M.so.over) return; soKick(LM.M, LM.soPick, v, null); LM.soPick = null; soAfter(LM); },
+  sodive: (v) => { const LM = UI.match; if (!LM || !LM.M.so || LM.M.so.over) return; soKick(LM.M, null, null, v); soAfter(LM); },
+  soauto: () => { const LM = UI.match; if (!LM || !LM.M.so) return; soAuto(LM.M); soAfter(LM); }
+});
+document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.id === 'sopick' && UI.match) UI.match.soPick = el.value; });
+
+// ===================== 2. WUPH.com =====================
+const WUPH_VERIFIED = ['jour', 'club', 'pun', 'cre', 'var', 'off'];
+const _phW = postHtml;
+postHtml = function (p) {
+  const h = _phW(p); if (!WUPH_VERIFIED.includes(p.k)) return h;
+  const nm = `<b>${esc(p.a)}</b>`; const i = h.indexOf(nm);
+  return i < 0 ? h : h.slice(0, i + nm.length) + '<span class="vchk" title="Verified account">✅</span>' + h.slice(i + nm.length);
+};
+const _smW = scrMedia;
+scrMedia = function () {
+  return _smW().replace('<div class="band">Media<small>Fans, reporters and rumours</small></div>', '<div class="band"><span class="wuph">WUPH<i>.com</i></span><small>Fans, reporters and rumours · ✅ verified account</small></div>')
+    .replace('Reporters, pundits, former referees, creators, outlets and fan accounts are all fictional.', 'WUPH.com is a fictional social network. Reporters, pundits, former referees, creators, outlets and fan accounts are all fictional; ✅ marks official and verified accounts.');
+};
+function offPost(name, handle, text, extra) { return post(Object.assign({ k: 'off', a: name, h: handle, t: text }, extra || {})); }
+
+// ===================== 3. tribute: Jesús de Miguel (real event) =====================
+// Facts as reported (Sky Sports, 3 Nov 2026; Spanish press, 3 Nov 2026): the CD Tenerife striker, 30, collided with
+// FC Andorra's goalkeeper during a Segunda División match on 2 Nov 2026, suffered a cardiac arrest and died on 3 Nov.
+// Online racist abuse followed, including against a player mistaken for the goalkeeper. Posts below come from clubs
+// and fictional fans in the game; no statements are attributed to real people or governing bodies.
+const DM_DATE = '2026-11-03';
+function tributeDM() {
+  G.sto = G.sto || {}; if (G.sto.dm || G.date < DM_DATE || G.date > '2027-07-01') return;
+  G.sto.dm = G.date; G.sto.dmMatch = 1;
+  news('In memoriam: Jesús de Miguel', 'CD Tenerife striker Jesús de Miguel has died at the age of 30. He suffered a cardiac arrest after a collision with FC Andorra\'s goalkeeper in a Segunda División match on 2 November 2026 and died the following day. Clubs hold a minute\'s applause and players wear black armbands this week. Football\'s thoughts are with his family, his team-mates and the Tenerife supporters.', null, true);
+  news('No to racism', 'After the match, racist abuse was sent online, some of it to a player who had nothing to do with the game and was mistaken for the goalkeeper. Clubs and players have condemned it. The collision was an accident: footballers do not set out to hurt each other. Racism has no place in football. Report abuse; never share it.', null, true);
+  const ten = T('S_Tenerife') ? 'S_Tenerife' : null, and = T('S_Andorra') ? 'S_Andorra' : null;
+  try {
+    if (ten) clubPost(ten, 'Descansa en paz, Jesús. Siempre serás parte de esta familia. 💙🤍 #DEPJesúsdeMiguel', { big: true });
+    if (and) clubPost(and, 'Our deepest condolences to the family of Jesús de Miguel, to CD Tenerife and to everyone who loved him. 🖤', { big: true });
+    for (const t of [G.user].concat(R.shuffle((G.ll || []).concat(G.sa || [], G.pl)).slice(0, 3))) if (T(t) && !T(t).nat) clubPost(t, `Everyone at ${T(t).name} sends love to the family, friends and team-mates of Jesús de Miguel. There will be a minute's applause before our next match. 🖤`);
+    if (ten) { fanPost(ten, 'Hasta siempre, Jesús. Gracias por todo. 💙🤍'); fanPost(ten, 'Heliodoro will sing your name forever. DEP 💙'); }
+    fanPost(G.user, "Rest in peace Jesús de Miguel. Football is just a game. 🖤");
+    fanPost(G.user, "It was an accident. Nobody goes out to hurt a fellow pro. The racist abuse afterwards is disgusting. #NoToRacism");
+    offPost('WUPH Safety', '@WUPHSafety', 'We have removed racist posts about this week\'s match and suspended the accounts. Racism has no place on WUPH.com or in football. Report it, don\'t share it.', { big: true });
+    journPost(jr('jm'), 'Jesús de Miguel, 30, has died after Monday\'s collision in Tenerife v Andorra. A minute\'s applause will be held at grounds across Spain this weekend.', { big: true, tid: ten || undefined });
+    trend('DEPJesúsdeMiguel', 30); trend('NoToRacism', 24);
+  } catch (e) { console.error(e); }
+}
+const _dtDM = dailyTick;
+dailyTick = function () { const r = _dtDM.apply(this, arguments); try { if (G && G.teams && !G.sacked) tributeDM(); } catch (e) { console.error(e); } return r; };
+const _rsDM = restore;
+restore = function (obj) { _rsDM(obj); try { tributeDM(); } catch (e) { console.error(e); } };
+// a minute's applause before the user's next match
+const _cmDM = createMatch;
+createMatch = function (fid, live) {
+  const M = _cmDM.apply(this, arguments);
+  try { if (G.sto && G.sto.dmMatch && M.live && (M.sides[0].tid === G.user || M.sides[1].tid === G.user)) { M.com.push({ min: 0, k: 'ko', text: 'Before kick-off, players and supporters hold a minute\'s applause in memory of Tenerife striker Jesús de Miguel. Both teams wear black armbands.' }); G.sto.dmMatch = 0; } } catch (e) { console.error(e); }
+  return M;
+};
+
 // intro.js: launch sting (Ayep Interactive logo, disclaimer card, GAFFER logo), Game > Options and Game > About.
 // Loaded just before boot.js. Plays once per page load, never on re-renders.
 
@@ -13854,13 +14060,14 @@ function runIntro(opts) {
   opts = opts || {};
   if (_introOn) return; _introOn = true;
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const cards = opts.only === 'disc' ? ['disc'] : ['ayep', 'disc', 'logo'];
-  const dur = reduce ? { ayep: 1000, disc: 1000, logo: 1000 } : { ayep: 2600, disc: 3200, logo: 2400 };
+  const cards = opts.only === 'disc' ? ['disc'] : ['ayep', 'disc', 'race', 'logo'];
+  const dur = reduce ? { ayep: 1000, disc: 1000, race: 1500, logo: 1000 } : { ayep: 2600, disc: 3200, race: 3000, logo: 2400 };
   const el = document.createElement('div');
   el.className = 'intro' + (reduce ? ' still' : ''); el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Game intro'); el.tabIndex = -1;
   el.innerHTML = `
     <section class="ic ic-ayep"><div class="ay-wrap">${ayepSvg()}<div class="ay-word"><span class="ay-1">AYEP</span><span class="ay-2">INTERACTIVE</span></div></div></section>
     <section class="ic ic-disc"><div class="dc"><div class="dc-rule"></div><h2 class="dc-h">Please note</h2><div class="dc-rule"></div>${DISCLAIMER_P.map(p => `<p>${esc(p)}</p>`).join('')}<div class="dc-rule"></div><p class="dc-c">${esc(DISCLAIMER_C)}</p><p class="dc-tap">Tap or press any key to continue</p></div></section>
+    <section class="ic ic-race"><div class="rc"><div class="rc-card" aria-hidden="true"></div><h2 class="rc-h">Kick racism<span>out of football</span></h2><p class="rc-p">Football is for everyone. If you see racist abuse, in the ground or online, report it. Never share it.</p></div></section>
     <section class="ic ic-logo"><div class="gf-wrap">${gafferBadgeSvg()}<div class="gf-word"><span class="gf-1">GAFFER</span><span class="gf-2">26/27</span></div></div></section>
     <div class="ic-wipe"></div>
     <button class="ic-skip" type="button">Skip intro</button>`;

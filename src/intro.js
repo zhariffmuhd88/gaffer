@@ -61,13 +61,14 @@ function runIntro(opts) {
   opts = opts || {};
   if (_introOn) return; _introOn = true;
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const cards = opts.only === 'disc' ? ['disc'] : ['ayep', 'disc', 'logo'];
-  const dur = reduce ? { ayep: 1000, disc: 1000, logo: 1000 } : { ayep: 2600, disc: 3200, logo: 2400 };
+  const cards = opts.only === 'disc' ? ['disc'] : ['ayep', 'disc', 'race', 'logo'];
+  const dur = reduce ? { ayep: 1000, disc: 1000, race: 1500, logo: 1000 } : { ayep: 2600, disc: 3200, race: 3000, logo: 2400 };
   const el = document.createElement('div');
   el.className = 'intro' + (reduce ? ' still' : ''); el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Game intro'); el.tabIndex = -1;
   el.innerHTML = `
     <section class="ic ic-ayep"><div class="ay-wrap">${ayepSvg()}<div class="ay-word"><span class="ay-1">AYEP</span><span class="ay-2">INTERACTIVE</span></div></div></section>
     <section class="ic ic-disc"><div class="dc"><div class="dc-rule"></div><h2 class="dc-h">Please note</h2><div class="dc-rule"></div>${DISCLAIMER_P.map(p => `<p>${esc(p)}</p>`).join('')}<div class="dc-rule"></div><p class="dc-c">${esc(DISCLAIMER_C)}</p><p class="dc-tap">Tap or press any key to continue</p></div></section>
+    <section class="ic ic-race"><div class="rc"><div class="rc-card" aria-hidden="true"></div><h2 class="rc-h">Kick racism<span>out of football</span></h2><p class="rc-p">Football is for everyone. If you see racist abuse, in the ground or online, report it. Never share it.</p></div></section>
     <section class="ic ic-logo"><div class="gf-wrap">${gafferBadgeSvg()}<div class="gf-word"><span class="gf-1">GAFFER</span><span class="gf-2">26/27</span></div></div></section>
     <div class="ic-wipe"></div>
     <button class="ic-skip" type="button">Skip intro</button>`;
