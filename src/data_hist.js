@@ -1,6 +1,6 @@
 // ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====
 // rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).
-// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026).
+// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026); SA = Italian champions, CIT = Coppa Italia, SCI = Supercoppa Italiana (Wikipedia, read 4 Nov 2026; 2004/05 not assigned).
 const HIST = {
 LG:`1888|Preston North End|Aston Villa
 1889|Preston North End|Everton
@@ -792,5 +792,215 @@ CWC:`1960|Fiorentina|Rangers
 1995|Paris Saint-Germain|Rapid Vienna
 1996|Barcelona|Paris Saint-Germain
 1997|Chelsea|VfB Stuttgart
-1998|Lazio|Mallorca`
+1998|Lazio|Mallorca`,
+SA:`1929|Ambrosiana-Inter|Genoa
+1930|Juventus|Roma
+1931|Juventus|Bologna
+1932|Juventus|Ambrosiana-Inter
+1933|Juventus|Ambrosiana-Inter
+1934|Juventus|Ambrosiana-Inter
+1935|Bologna|Roma
+1936|Bologna|Lazio
+1937|Ambrosiana-Inter|Juventus
+1938|Bologna|Torino
+1939|Ambrosiana-Inter|Bologna
+1940|Bologna|Ambrosiana-Inter
+1941|Roma|Torino
+1942|Torino|Livorno
+1945|Torino|Juventus
+1946|Torino|Juventus
+1947|Torino|Milan
+1948|Torino|Internazionale
+1949|Juventus|Milan
+1950|Milan|Internazionale
+1951|Juventus|Milan
+1952|Internazionale|Juventus
+1953|Internazionale|Juventus
+1954|Milan|Udinese
+1955|Fiorentina|Milan
+1956|Milan|Fiorentina
+1957|Juventus|Fiorentina
+1958|Milan|Fiorentina
+1959|Juventus|Fiorentina
+1960|Juventus|Milan
+1961|Milan|Internazionale
+1962|Internazionale|Juventus
+1963|Bologna|Internazionale
+1964|Internazionale|Milan
+1965|Internazionale|Bologna
+1966|Juventus|Internazionale
+1967|Milan|Napoli
+1968|Fiorentina|Cagliari
+1969|Cagliari|Internazionale
+1970|Internazionale|Milan
+1971|Juventus|Milan
+1972|Juventus|Milan
+1973|Lazio|Juventus
+1974|Juventus|Napoli
+1975|Torino|Juventus
+1976|Juventus|Torino
+1977|Juventus|Vicenza
+1978|Milan|Perugia
+1979|Internazionale|Juventus
+1980|Juventus|Roma
+1981|Juventus|Fiorentina
+1982|Roma|Juventus
+1983|Juventus|Roma
+1984|Hellas Verona|Torino
+1985|Juventus|Roma
+1986|Napoli|Juventus
+1987|Milan|Napoli
+1988|Internazionale|Napoli
+1989|Napoli|Milan
+1990|Sampdoria|Milan
+1991|Milan|Juventus
+1992|Milan|Internazionale
+1993|Milan|Juventus
+1994|Juventus|Parma
+1995|Milan|Juventus
+1996|Juventus|Parma
+1997|Juventus|Internazionale
+1998|Milan|Lazio
+1999|Lazio|Juventus
+2000|Roma|Juventus
+2001|Juventus|Roma
+2002|Juventus|Internazionale
+2003|Milan|Roma
+2005|Internazionale|Roma
+2006|Internazionale|Roma
+2007|Internazionale|Roma
+2008|Internazionale|Juventus
+2009|Internazionale|Roma
+2010|Milan|Internazionale
+2011|Juventus|Milan
+2012|Juventus|Napoli
+2013|Juventus|Roma
+2014|Juventus|Roma
+2015|Juventus|Napoli
+2016|Juventus|Roma
+2017|Juventus|Napoli
+2018|Juventus|Napoli
+2019|Juventus|Internazionale
+2020|Internazionale|Milan
+2021|Milan|Internazionale
+2022|Napoli|Lazio
+2023|Internazionale|Milan
+2024|Napoli|Internazionale
+2025|Internazionale|Napoli`,
+CIT:`1921|Vado|Udinese
+1935|Torino|Alessandria
+1936|Genova|Roma
+1937|Juventus|Torino
+1938|Ambrosiana|Novara
+1939|Fiorentina|Genova
+1940|Venezia|Roma
+1941|Juventus|AC Milan
+1942|Torino|Venezia
+1957|Lazio|Fiorentina
+1958|Juventus|Inter
+1959|Juventus|Fiorentina
+1960|Fiorentina|Lazio
+1961|Napoli|SPAL
+1962|Atalanta|Torino
+1963|Roma|Torino
+1964|Juventus|Inter
+1965|Fiorentina|Catanzaro
+1966|AC Milan|Padova
+1967|Torino|AC Milan
+1968|Roma|Cagliari
+1969|Bologna|Torino
+1970|Torino|AC Milan
+1971|AC Milan|Napoli
+1972|AC Milan|Juventus
+1973|Bologna|Palermo
+1974|Fiorentina|AC Milan
+1975|Napoli|Hellas Verona
+1976|AC Milan|Inter
+1977|Inter|Napoli
+1978|Juventus|Palermo
+1979|Roma|Torino
+1980|Roma|Torino
+1981|Inter|Torino
+1982|Juventus|Hellas Verona
+1983|Roma|Hellas Verona
+1984|Sampdoria|AC Milan
+1985|Roma|Sampdoria
+1986|Napoli|Atalanta
+1987|Sampdoria|Torino
+1988|Sampdoria|Napoli
+1989|Juventus|AC Milan
+1990|Roma|Sampdoria
+1991|Parma|Juventus
+1992|Torino|Roma
+1993|Sampdoria|Ancona
+1994|Juventus|Parma
+1995|Fiorentina|Atalanta
+1996|Vicenza|Napoli
+1997|Lazio|AC Milan
+1998|Parma|Fiorentina
+1999|Lazio|Inter
+2000|Fiorentina|Parma
+2001|Parma|Juventus
+2002|AC Milan|Roma
+2003|Lazio|Juventus
+2004|Inter|Roma
+2005|Inter|Roma
+2006|Roma|Inter
+2007|Roma|Inter
+2008|Lazio|Sampdoria
+2009|Inter|Roma
+2010|Inter|Palermo
+2011|Napoli|Juventus
+2012|Lazio|Roma
+2013|Napoli|Fiorentina
+2014|Juventus|Lazio
+2015|Juventus|AC Milan
+2016|Juventus|Lazio
+2017|Juventus|AC Milan
+2018|Lazio|Atalanta
+2019|Napoli|Juventus
+2020|Juventus|Atalanta
+2021|Inter|Juventus
+2022|Inter|Fiorentina
+2023|Juventus|Atalanta
+2024|Bologna|AC Milan
+2025|Inter|Lazio`,
+SCI:`1988|AC Milan|Sampdoria
+1989|Inter|Sampdoria
+1990|Napoli|Juventus
+1991|Sampdoria|Roma
+1992|AC Milan|Parma
+1993|AC Milan|Torino
+1994|AC Milan|Sampdoria
+1995|Juventus|Parma
+1996|Fiorentina|AC Milan
+1997|Juventus|Vicenza
+1998|Lazio|Juventus
+1999|Parma|AC Milan
+2000|Lazio|Inter
+2001|Roma|Fiorentina
+2002|Juventus|Parma
+2003|Juventus|AC Milan
+2004|AC Milan|Lazio
+2005|Inter|Juventus
+2006|Inter|Roma
+2007|Roma|Inter
+2008|Inter|Roma
+2009|Lazio|Inter
+2010|Inter|Roma
+2011|AC Milan|Inter
+2012|Juventus|Napoli
+2013|Juventus|Lazio
+2014|Napoli|Juventus
+2015|Juventus|Lazio
+2016|AC Milan|Juventus
+2017|Lazio|Juventus
+2018|Juventus|AC Milan
+2019|Lazio|Juventus
+2020|Juventus|Napoli
+2021|Inter|Juventus
+2022|Inter|AC Milan
+2023|Inter|Napoli
+2024|AC Milan|Inter
+2025|Napoli|Bologna`
 };

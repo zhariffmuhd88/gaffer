@@ -20,9 +20,9 @@ const DIFF_CH = [
   { k: 'Very hard', c: 'var(--amb)', d: 'Short on quality. Expect a fight to stay clear of the bottom three.' },
   { k: 'Extreme', c: 'var(--red)', d: 'One of the weakest squads in the division. Survival would be a big achievement.' }
 ];
-function divClubs(div) { return div === 'CH' ? CH_CLUBS : div === 'LL' ? LL_CLUBS : PL_CLUBS; }
-function clubDivOf(id) { return CH_CLUBS.some(c => c.id === id) ? 'CH' : LL_CLUBS.some(c => c.id === id) ? 'LL' : 'PL'; }
-const DIFF_BANDS = { PL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], LL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], CH: ['top 3', '4th–8th', '9th–15th', '16th–20th', 'bottom 4'] };
+function divClubs(div) { return div === 'CH' ? CH_CLUBS : div === 'LL' ? LL_CLUBS : div === 'SA' ? SA_CLUBS : PL_CLUBS; }
+function clubDivOf(id) { return CH_CLUBS.some(c => c.id === id) ? 'CH' : LL_CLUBS.some(c => c.id === id) ? 'LL' : SA_CLUBS.some(c => c.id === id) ? 'SA' : 'PL'; }
+const DIFF_BANDS = { PL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], LL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], SA: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], CH: ['top 3', '4th–8th', '9th–15th', '16th–20th', 'bottom 4'] };
 function diffFromRank(rank, div) { return div === 'CH' ? DIFF_CH[rank <= 3 ? 0 : rank <= 8 ? 1 : rank <= 15 ? 2 : rank <= 20 ? 3 : 4] : DIFF[rank <= 3 ? 0 : rank <= 7 ? 1 : rank <= 13 ? 2 : rank <= 17 ? 3 : 4]; }
 // before a game exists: read ratings from the squad data
 function startRatings(div) {
@@ -51,21 +51,21 @@ renderStart = function () {
   const clubs = divClubs(div).slice().sort((a, b) => RT[b.id].r - RT[a.id].r);
   const selDiv = sel ? clubDivOf(sel) : null;
   const sd = sel ? startRatings(selDiv)[sel] : null;
-  const selC = sel ? PL_CLUBS.concat(CH_CLUBS, LL_CLUBS).find(c => c.id === sel) : null;
+  const selC = sel ? PL_CLUBS.concat(CH_CLUBS, LL_CLUBS, SA_CLUBS).find(c => c.id === sel) : null;
   app().innerHTML = `<div class="start">
     <div class="title">GAFFER<span>26/27</span></div>
-    <div class="strap">Football management · Premier League, Championship &amp; La Liga 2026/27 · real squads</div>
+    <div class="strap">Football management · Premier League, Championship, La Liga &amp; Serie A 2026/27 · real squads</div>
     ${saved ? `<div class="box pad row" style="margin-bottom:18px"><div><b class="yel">Saved career found</b><div class="dim">${esc(saved.mgr)} · ${esc(saved.teams[saved.user].name)} · ${dNice(saved.date)}</div></div><span class="spacer"></span><button class="btn pri" data-a="load">Continue career</button></div>` : ''}
     <div class="band">New career<small>Pick a division and a club. Clubs are ranked by team rating; difficulty follows the rating within each division.</small></div>
     <div class="box pad">
       <div class="row" style="margin-bottom:12px"><div style="min-width:220px;flex:1;max-width:340px"><label class="lb" for="mgrname">Manager name</label><input class="f" id="mgrname" style="width:100%" maxlength="28" value="${esc(UI.mgrName || 'Zhariff')}"></div>
       ${sd ? `<div style="flex:2;min-width:220px"><label class="lb">Selected</label><b>${esc(selC.name)}</b> <span class="dim">${COMP_NAME[selDiv]}</span> · rating <b class="mono">${sd.r.toFixed(1)}</b> (${ordinal(sd.rank)} of ${sd.n}) · ${diffChip(sd.diff)}<div class="dim" style="font-size:12.5px">${esc(sd.diff.d)}</div></div>` : '<div class="spacer"></div>'}
       <button class="go" data-a="start" ${sel ? '' : 'disabled'}>START ▸</button></div>
-      <div class="tabs" style="margin:0 0 10px"><span class="lb" style="margin:0 4px 0 0;align-self:center">England</span>${['PL', 'CH'].map(k => `<button class="${div === k ? 'on' : ''}" data-a="startdiv" data-v="${k}">${k === 'PL' ? 'Premier League · 20 clubs' : 'Championship · 24 clubs'}</button>`).join('')}<span class="lb" style="margin:0 4px 0 10px;align-self:center">Spain</span><button class="${div === 'LL' ? 'on' : ''}" data-a="startdiv" data-v="LL">La Liga · 20 clubs</button></div>
+      <div class="tabs" style="margin:0 0 10px"><span class="lb" style="margin:0 4px 0 0;align-self:center">England</span>${['PL', 'CH'].map(k => `<button class="${div === k ? 'on' : ''}" data-a="startdiv" data-v="${k}">${k === 'PL' ? 'Premier League · 20 clubs' : 'Championship · 24 clubs'}</button>`).join('')}<span class="lb" style="margin:0 4px 0 10px;align-self:center">Spain</span><button class="${div === 'LL' ? 'on' : ''}" data-a="startdiv" data-v="LL">La Liga · 20 clubs</button><span class="lb" style="margin:0 4px 0 10px;align-self:center">Italy</span><button class="${div === 'SA' ? 'on' : ''}" data-a="startdiv" data-v="SA">Serie A · 20 clubs</button></div>
       <div class="row dim" style="gap:12px;font-size:12.5px;margin-bottom:10px">${(div === 'CH' ? DIFF_CH : DIFF).map((d, i) => `<span>${diffChip(d)} ${DIFF_BANDS[div][i]}</span>`).join('')}</div>
       <div class="clubs">${clubs.map(c => { const r = RT[c.id]; return `<button class="clubpick ${sel === c.id ? 'on' : ''}" data-a="pickclub" data-v="${c.id}"><span class="strip" style="background:linear-gradient(${c.c1} 0 60%,${c.c2} 60% 100%)"></span><span class="in"><span class="row" style="justify-content:space-between;gap:6px;flex-wrap:nowrap"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.name)}</b><span class="mono yel" style="font-size:15px;flex:none">${r.r.toFixed(1)}</span></span><span>${diffChip(r.diff)} <span class="dim" style="font-size:12px">#${r.rank}</span></span><small>${esc(c.mgr)} · ${esc(c.stadium)}</small><small>Budget ${money(Math.max(3, Math.round(c.bal * 0.45 + (c.rep - 60))))}${c.ded ? ` · <span class="red">−${c.ded} pts</span>` : ''}</small></span></button>`; }).join('')}</div>
     </div>
-    <p class="dim" style="max-width:70ch;margin-top:16px">Team rating is the average overall of each club's best eleven (one goalkeeper and ten outfield players). Squads follow the 2026/27 Premier League, Championship and La Liga first-team rosters as of late October 2026 (Championship and La Liga squads from FotMob team pages). Player ratings are game estimates. Progress is saved in this browser; use Game › Export to keep a backup.</p>
+    <p class="dim" style="max-width:70ch;margin-top:16px">Team rating is the average overall of each club's best eleven (one goalkeeper and ten outfield players). Squads follow the 2026/27 Premier League, Championship, La Liga and Serie A first-team rosters as of late October / early November 2026 (Championship, La Liga and Serie A squads from FotMob team pages). Player ratings are game estimates. Progress is saved in this browser; use Game › Export to keep a backup.</p>
   </div>`;
 };
 // club screen: rating, difficulty and league ranking

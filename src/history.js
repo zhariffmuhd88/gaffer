@@ -1,8 +1,8 @@
 // history.js: competition history (real winners + every in-game season), club honours, manager world rankings.
 // Loaded after club.js.
 
-const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE'], ['CWC', "Cup Winners' Cup", 'CWC']];
-const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Paris Saint-Germain': 'Paris SG', 'Athletic Bilbao': 'Athletic Club', 'Atlético Bilbao': 'Athletic Club', 'Madrid FC': 'Real Madrid', 'Madrid': 'Real Madrid', 'Atlético Aviación': 'Atlético Madrid', 'Deportivo La Coruña': 'Deportivo de La Coruña', 'Español': 'Espanyol', 'RCD Español': 'Espanyol', 'Racing Santander': 'Racing Santander', 'Celta': 'Celta Vigo', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
+const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE'], ['CWC', "Cup Winners' Cup", 'CWC'], ['SA', 'Italian champions', 'SA'], ['CIT', 'Coppa Italia', 'CIT'], ['SCI', 'Supercoppa Italiana', 'SCI']];
+const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Internazionale': 'Inter', 'Ambrosiana-Inter': 'Inter', 'Ambrosiana': 'Inter', 'Genova': 'Genoa', 'Paris Saint-Germain': 'Paris SG', 'Athletic Bilbao': 'Athletic Club', 'Atlético Bilbao': 'Athletic Club', 'Madrid FC': 'Real Madrid', 'Madrid': 'Real Madrid', 'Atlético Aviación': 'Atlético Madrid', 'Deportivo La Coruña': 'Deportivo de La Coruña', 'Español': 'Espanyol', 'RCD Español': 'Espanyol', 'Racing Santander': 'Racing Santander', 'Celta': 'Celta Vigo', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
 let _HR = null;
 function histRows() {
   if (_HR) return _HR;
@@ -42,7 +42,8 @@ function recordSeason() {
   add('PL', tb[0].t, tb[1].t);
   add('CH', ct[0].t, ct[1].t);
   if (G.ll && G.ll.length && typeof llTable === 'function') { const lt = llTable(); add('LL', lt[0].t, lt[1].t); }
-  for (const c of ['FA', 'LC', 'PO', 'CDR', 'SCE']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
+  if (G.sa && G.sa.length && typeof saTable === 'function') { const st = saTable(); add('SA', st[0].t, st[1].t); }
+  for (const c of ['FA', 'LC', 'PO', 'CDR', 'SCE', 'CIT', 'SCI']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
   for (const c of ['UCL', 'UEL', 'UECL']) { const E = G.euro && G.euro[c]; if (!E) continue; const f = finalOf(c); const w = E.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
   return rec;
 }
@@ -81,10 +82,10 @@ function rankPool() {
     if (G.mgrP && m[0] === G.mgrP.name) continue;
     const extra = M.pts[m[0]] || 0; const cl = mgrClub(m);
     const ingameActive = !m[3] && !fullTeams().some(t => T(t).mgr === m[0]);
-    out.push({ k: m[0], n: m[0], nat: m[1], st: ingameActive && m[2] === 'a' ? 'f' : m[2], club: ingameActive && m[2] === 'a' ? { tid: null, txt: 'Without a club' } : cl, pts: mgrBase(m) + extra, base: m[4], eng: m[5] || (cl.tid && ['PL', 'CH'].includes(divOf(cl.tid))), esp: m[6] || (cl.tid && divOf(cl.tid) === 'LL'), extra });
+    out.push({ k: m[0], n: m[0], nat: m[1], st: ingameActive && m[2] === 'a' ? 'f' : m[2], club: ingameActive && m[2] === 'a' ? { tid: null, txt: 'Without a club' } : cl, pts: mgrBase(m) + extra, base: m[4], eng: m[5] || (cl.tid && ['PL', 'CH'].includes(divOf(cl.tid))), esp: m[6] || (cl.tid && divOf(cl.tid) === 'LL'), ita: m[7] || (cl.tid && divOf(cl.tid) === 'SA') || (m[1] === 'Italy' && /\bL\d/.test(m[4] || '')), extra });
   }
   const mp = G.mgrP || {};
-  out.push({ k: '@user', n: G.mgr, nat: mp.nat || 'England', st: G.sacked ? 'f' : 'a', club: { tid: G.sacked ? null : G.user, txt: G.sacked ? 'Without a club' : tName(G.user, true) }, pts: userPoints(), base: '', eng: 1, esp: 1, me: 1 });
+  out.push({ k: '@user', n: G.mgr, nat: mp.nat || 'England', st: G.sacked ? 'f' : 'a', club: { tid: G.sacked ? null : G.user, txt: G.sacked ? 'Without a club' : tName(G.user, true) }, pts: userPoints(), base: '', eng: 1, esp: 1, ita: 1, me: 1 });
   return out;
 }
 function rankList(kind) {
@@ -92,6 +93,7 @@ function rankList(kind) {
   if (kind === 'cur') pool = pool.filter(x => x.st !== 'r' && x.st !== 'd');
   else if (kind === 'eng') pool = pool.filter(x => x.eng);
   else if (kind === 'esp') pool = pool.filter(x => x.esp);
+  else if (kind === 'ita') pool = pool.filter(x => x.ita);
   else if (kind === 'eur') pool = pool.filter(x => REGION_OF[x.nat] === 'Europe');
   else if (kind === 'reg') { const reg = userRegion(); pool = pool.filter(x => REGION_OF[x.nat] === reg); }
   pool.sort((a, b) => b.pts - a.pts || (a.me ? -1 : b.me ? 1 : a.n.localeCompare(b.n)));
@@ -104,12 +106,13 @@ function seasonFinishPoints() {
   const give = (tid, p) => { if (!p) return; const k = tid === G.user ? '@user' : T(tid).mgr; if (k !== '@user' && !mgrIndex()[k]) return; M.pts[k] = (M.pts[k] || 0) + p; };
   leagueTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
   if (G.ll && G.ll.length && typeof llTable === 'function') llTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
+  if (G.sa && G.sa.length && typeof saTable === 'function') saTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
   champTable().forEach((r, i) => { if (!T(r.t).lite) give(r.t, [3, 2, 1, 1, 1, 1][i] || 0); });
 }
 function updateRanks() {
   const M = mrk();
   const before = M.prev.all ? M.prev.all['@user'] : null;
-  for (const kind of ['all', 'cur', 'eng', 'esp', 'eur', 'reg']) {
+  for (const kind of ['all', 'cur', 'eng', 'esp', 'ita', 'eur', 'reg']) {
     const L = rankList(kind); const now = {}; L.forEach(x => now[x.k] = x.rk);
     const prev = M.prev[kind] || {}; M.mv[kind] = {};
     for (const k in now) if (prev[k]) M.mv[kind][k] = prev[k] - now[k];
@@ -139,7 +142,7 @@ seasonEnd = function () {
   try {
     if (rec) {
       const A = G.awards && G.awards.s || [];
-      for (const lg of ['PL', 'CH', 'LL']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
+      for (const lg of ['PL', 'CH', 'LL', 'SA']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
       chistStore().push(rec);
     }
     updateRanks();
@@ -151,7 +154,7 @@ function clubHonours(tid) {
   const t = T(tid); if (!t) return [];
   const R = histRows(); const out = [];
   const nm = t.name;
-  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC', CWX: 'CWX' };
+  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC', CWX: 'CWX', SA: 'SA', CIT: 'CIT', SCI: 'SCI' };
   for (const [code, label] of HIST_COMPS) {
     const rows = R[code] || [];
     const real = rows.filter(r => r.w === nm), ru = rows.filter(r => r.r === nm).length;
@@ -216,18 +219,18 @@ function scrHistory() {
     const ids = fullTeams().slice().sort((a, b) => T(a).name.localeCompare(T(b).name)); const cid = ids.includes(UI.tab.hcl) ? UI.tab.hcl : G.user;
     body = `<div class="row" style="margin:10px 0"><label class="lb" for="hcl" style="margin:0">Club</label><select class="f" id="hcl" data-a="hcl">${ids.map(id => `<option value="${id}" ${id === cid ? 'selected' : ''}>${esc(T(id).name)}</option>`).join('')}</select></div>${clubHonoursHtml(cid)}`;
   } else if (tab === 'rank') {
-    const kinds = [['all', 'All-time world'], ['cur', 'Current world'], ['eng', 'English football'], ['esp', 'Spanish football'], ['eur', 'Europe']];
+    const kinds = [['all', 'All-time world'], ['cur', 'Current world'], ['eng', 'English football'], ['esp', 'Spanish football'], ['ita', 'Italian football'], ['eur', 'Europe']];
     if (reg !== 'Europe') kinds.push(['reg', reg]);
     body = `<div class="tabs" style="margin-top:8px">${kinds.map(([k, l]) => `<button class="${rk === k ? 'on' : ''}" data-a="tab" data-k="rk" data-v="${k}">${l}</button>`).join('')}</div>
     <p class="dim" style="font-size:12.5px">Points for major honours as a manager: Champions League 30, World Cup 35, top-five league title 20, Euro/Copa América 20, Europa League 15, Cup Winners' Cup 12, other top-flight title 8, Conference League 8, domestic cup 6, world club title 6, league cup 4, second-tier title 4. In this save, league finishes and your Manager of the Month/Season awards add points too. ${rk === 'all' ? 'Legends keep their totals for good.' : rk === 'cur' ? 'Retired managers are left out.' : rk === 'eng' ? 'Managers who have worked in English football.' : 'By nationality.'}</p>
     ${rankTable(rk)}
     <p class="dim" style="font-size:12px">Honours were compiled for this game from public records up to the end of 2025/26; club jobs as of October 2026. Movement arrows show the change since the end of last season.</p>`;
   }
-  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup", CWX: 'Club World Cup' };
+  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup", CWX: 'Club World Cup', SA: 'Serie A', CIT: 'Coppa Italia', SCI: 'Supercoppa' };
   const tabs = HIST_COMPS.map(([k]) => [k, SHORT[k]]).concat([['club', 'Club honours'], ['rank', 'Rankings']]);
   return `<div class="band">History<small>Winners, honours and manager rankings</small></div>
   <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="hist" data-v="${k}">${esc(l)}</button>`).join('')}</div>${body}
-  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : comp[0] === 'CWC' ? 'Played from 1960/61 until UEFA ended it after 1998/99.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
+  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : comp[0] === 'CWC' ? 'Played from 1960/61 until UEFA ended it after 1998/99.' : comp[0] === 'SA' ? 'Italian champions since the single-table Serie A of 1929/30; 2004/05 was not assigned (Juventus title revoked).' : comp[0] === 'CIT' ? 'Seasons with no competition are skipped.' : comp[0] === 'SCI' ? 'Listed by season; recent editions were played in the January of that season.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'hcl') { UI.tab.hcl = el.value; render(); } });
 const _screenH = screen;

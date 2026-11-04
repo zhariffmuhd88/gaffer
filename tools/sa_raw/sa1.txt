@@ -1,0 +1,275 @@
+## INT|Cristian Chivu|Inter|Inter|#0068a8|#000000|Stadio Giuseppe Meazza|75710|Lautaro Martínez|92|150|3-5-2
+Josep Martínez|GK|28|ESP|80|1
+Raffaele Di Gennaro|GK|33|ITA|62|12
+Ivan Provedel|GK|32|ITA|79|49
+John Stones|CB|32|ENG|82|6
+Manuel Akanji|CB|31|SUI|83|25
+Benjamin Pavard|CB|30|FRA|80|28
+Carlos Augusto|LB|27|BRA|79|30
+Yann Aurel Bisseck|CB|25|GER|81|31
+Alessandro Bastoni|CB|27|ITA|87|95
+Djed Spence|RB|26|ENG|78|99
+Aleksandar Stanković|DM|21|SRB|78|5
+Piotr Zieliński|CM|32|POL|80|7
+Petar Sučić|CM|23|CRO|80|8
+Luis Henrique|RB|24|BRA|79|11
+Andy Diouf|CM|23|FRA|77|17
+Hakan Çalhanoğlu|DM|32|TUR|84|20
+Curtis Jones|CM|25|ENG|81|21
+Henrikh Mkhitaryan|CM|37|ARM|76|22
+Nicolò Barella|CM|29|ITA|87|23
+Federico Dimarco|LB|28|ITA|85|32
+Marcus Thuram|ST|29|FRA|85|9
+Lautaro Martínez|ST|29|ARG|88|10
+Ange-Yoan Bonny|ST|23|CIV|79|14
+Mattia Mosconi|ST|19|ITA|65|48
+Francesco Pio Esposito|ST|21|ITA|81|94
+## ACM|Rúben Amorim|AC Milan|Milan|#fb090b|#000000|San Siro|75710|Mike Maignan|90|120|3-4-2-1
+Pietro Terracciano|GK|36|ITA|70|1
+Mike Maignan|GK|31|FRA|86|16
+Lorenzo Torriani|GK|21|ITA|66|96
+Koni De Winter|CB|24|BEL|78|5
+Fikayo Tomori|CB|28|ENG|80|23
+Strahinja Pavlović|CB|25|SRB|81|31
+Mario Gila|CB|26|ESP|80|34
+Filippo Terracciano|RB|23|ITA|72|42
+Matteo Gabbia|CB|27|ITA|78|46
+Sankhoun Diawara|CB|20|FRA|68|13
+Yunus Musah|CM|23|USA|77|80
+Warren Bondo|DM|23|FRA|75|38
+Adrien Rabiot|CM|31|FRA|83|12
+Luka Modrić|CM|41|CRO|80|14
+Ardon Jashari|DM|24|SUI|80|30
+Alexis Saelemaekers|RB|27|BEL|80|56
+Pervis Estupiñán|LB|28|ECU|79|2
+Davide Bartesaghi|LB|20|ITA|75|33
+Ruben Loftus-Cheek|CM|30|ENG|77|8
+Samuel Chukwueze|RW|27|NGA|77|21
+Christian Comotto|CM|18|ITA|64|28
+Omari Hutchinson|RW|23|ENG|79|20
+Diego Moreira|LW|22|BEL|76|22
+Gonçalo Ramos|ST|25|POR|81|9
+Christian Pulisic|RW|28|USA|84|11
+Francesco Camarda|ST|18|ITA|72|73
+Cheveyo Mul-Balentien|ST|19|SUR|64|25
+## JUV|Luciano Spalletti|Juventus|Juventus|#000000|#ffffff|Allianz Stadium|41507|Manuel Locatelli|91|130|4-2-3-1
+Kamil Grabara|GK|27|POL|79|1
+Carlo Pinsoglio|GK|36|ITA|62|23
+Guglielmo Vicario|GK|30|ITA|82|25
+Neto|GK|37|BRA|68|33
+Gleison Bremer|CB|29|BRA|84|3
+Federico Gatti|CB|28|ITA|79|4
+Lloyd Kelly|CB|28|ENG|78|6
+Pierre Kalulu|CB|26|FRA|81|15
+Daniele Rugani|CB|32|ITA|72|24
+Jhon Lucumí|CB|28|COL|81|26
+Zeki Çelik|RB|29|TUR|77|2
+Manuel Locatelli|DM|28|ITA|82|5
+Teun Koopmeiners|CM|28|NED|81|8
+Edon Zhegrova|RW|27|KOS|81|11
+Douglas Luiz|CM|28|BRA|78|12
+Khéphren Thuram-Ulien|CM|25|FRA|82|19
+Andrea Cambiaso|LB|26|ITA|82|20
+Weston McKennie|CM|28|USA|80|22
+Pape Sarr|CM|24|SEN|80|29
+Nicolás González|RW|28|ARG|79|31
+Juan Cabal|LB|25|COL|76|32
+Augusto Owusu|CM|21|ITA|65|41
+Francisco Conceição|RW|23|POR|82|7
+Randal Kolo Muani|ST|27|FRA|81|9
+Kenan Yıldız|LW|21|TUR|86|10
+Jérémie Boga|LW|29|CIV|78|13
+Arkadiusz Milik|ST|32|POL|74|14
+Kerim Alajbegović|RW|19|BIH|74|17
+Jeff Ekhator|ST|19|ITA|68|18
+Nick Woltemade|ST|24|GER|82|27
+## NAP|Massimiliano Allegri|Napoli|Napoli|#12a0d7|#ffffff|Stadio Diego Armando Maradona|54732|Giovanni Di Lorenzo|90|110|4-3-3
+Alex Meret|GK|29|ITA|79|1
+Vanja Milinković-Savić|GK|29|SRB|81|32
+Nikita Contini|GK|30|ITA|62|14
+Claudio Pugliese|GK|18|ITA|58|12
+Alessandro Buongiorno|CB|27|ITA|82|4
+Benoît Badiashile|CB|25|FRA|77|5
+Amir Rrahmani|CB|32|KOS|80|13
+Rafa Marín|CB|24|ESP|76|16
+Mathías Olivera|LB|29|URU|79|17
+Giovanni Di Lorenzo|RB|33|ITA|82|22
+Sam Beukema|CB|27|NED|81|31
+Luca Marianucci|CB|22|ITA|70|35
+Costantino Favasuli|RB|22|ITA|68|2
+Billy Gilmour|DM|25|SCO|80|6
+David Neres|RW|29|BRA|81|7
+Scott McTominay|CM|29|SCO|86|8
+Kevin De Bruyne|AM|35|BEL|84|11
+Matteo Politano|RW|33|ITA|80|21
+Antonio Vergara|AM|23|ITA|76|26
+Alisson Santos|LW|24|BRA|74|27
+Leonardo Spinazzola|LB|33|ITA|76|37
+Stanislav Lobotka|DM|31|SVK|83|68
+Frank Anguissa|CM|30|CMR|82|99
+Rasmus Højlund|ST|23|DEN|82|19
+Lorenzo Lucca|ST|26|ITA|77|20
+Giovane|ST|22|BRA|74|23
+Noa Lang|LW|27|NED|80|70
+## ROM|Gian Piero Gasperini|Roma|Roma|#8e1f2f|#f0bc42|Stadio Olimpico|70634|Bryan Cristante|87|90|3-4-2-1
+Devis Vásquez|GK|28|COL|72|32
+Pierluigi Gollini|GK|31|ITA|70|95
+Mile Svilar|GK|27|SRB|85|99
+Konstantinos Koulierakis|CB|22|GRE|76|3
+Evan N'Dicka|CB|27|CIV|81|5
+Nahuel Molina|RB|28|ARG|78|20
+Mario Hermoso|CB|31|ESP|77|22
+Gianluca Mancini|CB|30|ITA|81|23
+Leonardo Balerdi|CB|27|ARG|78|26
+Daniele Ghilardi|CB|23|ITA|78|87
+Devyne Rensch|RB|23|NED|76|2
+Wesley|RB|23|BRA|80|43
+Bryan Cristante|DM|31|ITA|79|4
+Marten de Roon|DM|35|NED|76|15
+Manu Koné|CM|25|FRA|83|17
+Niccolò Pisilli|CM|22|ITA|75|61
+Rodrigo Mora|AM|19|POR|76|86
+Lorenzo Pellegrini|AM|30|ITA|79|7
+Matias Soulé|RW|23|ARG|82|18
+Paulo Dybala|AM|32|ARG|80|21
+Emanuele Lulli|CM|19|ITA|60|77
+Alessandro Di Nunzio|CM|19|ITA|60|63
+Santiago Castro|ST|22|ARG|78|9
+Donyell Malen|ST|27|NED|81|14
+Antonio Arena|ST|17|ITA|60|68
+## LAZ|Gennaro Gattuso|Lazio|Lazio|#87d8f7|#ffffff|Stadio Olimpico|70634|Mattia Zaccagni|82|60|4-3-3
+Christos Mandas|GK|25|GRE|79|35
+Edoardo Motta|GK|21|ITA|68|40
+Alessio Furlanetto|GK|24|ITA|60|55
+Manuel Lazzari|RB|32|ITA|73|29
+Adam Marušić|RB|34|MNE|74|77
+Diogo Leite|CB|27|POR|76|2
+Danilho Doekhi|CB|28|NED|77|5
+Oliver Provstgaard|CB|23|DEN|74|25
+Josip Šutalo|CB|26|CRO|77|37
+Luca Pellegrini|LB|27|ITA|73|3
+Nuno Tavares|LB|26|POR|78|17
+Alfonso Pedraza|LB|30|ESP|76|23
+Romano Floriani|RB|23|ITA|66|15
+Ricardo Bordon|CB|20|BRA|64|33
+Nicolò Rovella|DM|24|ITA|81|6
+Fisayo Dele-Bashiru|CM|25|NGA|76|7
+Davide Frattesi|CM|27|ITA|81|16
+Reda Belahyane|DM|22|MAR|72|21
+Kenneth Taylor|CM|24|NED|77|24
+Danilo Cataldi|DM|32|ITA|73|32
+Adrian Przyborek|AM|19|POL|66|28
+Bruno Galassi|CM|19|ESP|62|8
+Gustav Isaksen|RW|25|DEN|79|11
+Matteo Cancellieri|RW|24|ITA|75|22
+Mattia Zaccagni|LW|31|ITA|80|10
+Albert Guðmundsson|AM|29|ISL|79|80
+Andrea Pinamonti|ST|27|ITA|76|9
+Tijjani Noslin|ST|27|NED|75|14
+## ATA|Maurizio Sarri|Atalanta|Atalanta|#1e71b8|#000000|New Balance Arena|23439|Éderson|86|90|4-3-3
+Marco Carnesecchi|GK|26|ITA|83|29
+Marco Sportiello|GK|34|ITA|70|57
+Thomas Pompei|GK|20|ITA|58|22
+Odilon Kossounou|CB|25|CIV|78|3
+Isak Hien|CB|27|SWE|80|4
+Sead Kolašinac|CB|33|BIH|76|23
+Thomas Kristensen|CB|24|DEN|75|31
+Giorgio Scalvini|CB|22|ITA|81|42
+Relja Obrić|CB|20|SVN|66|40
+Raoul Bellanova|RB|26|ITA|78|16
+Davide Zappacosta|RB|34|ITA|75|77
+Lorenzo Bernasconi|LB|22|ITA|72|47
+Mario Pašalić|CM|31|CRO|78|8
+Éderson|CM|27|BRA|84|13
+Franck Kessié|DM|29|CIV|79|19
+Gianluca Gaetano|AM|26|ITA|75|70
+Kamaldeen Sulemana|LW|24|GHA|76|7
+Lazar Samardžić|AM|24|SRB|78|10
+Charles De Ketelaere|AM|25|BEL|83|17
+Giacomo Raspadori|ST|26|ITA|80|18
+Nicola Zalewski|LB|24|POL|76|59
+Eljif Elmas|CM|27|MKD|77|99
+Jonathan Rowe|LW|23|ENG|78|11
+Gianluca Scamacca|ST|27|ITA|80|9
+Nikola Krstović|ST|26|MNE|79|90
+## COM|Cesc Fàbregas|Como|Como|#0055a4|#ffffff|Stadio Giuseppe Sinigaglia|13602|Lucas Da Cunha|84|110|4-2-3-1
+Jean Butez|GK|31|FRA|80|1
+Mauro Vigorito|GK|36|ITA|62|22
+Robert Sánchez|GK|28|ESP|80|97
+Yan Couto|RB|24|BRA|78|27
+Ivan Smolčić|RB|26|CRO|77|28
+Marc-Oliver Kempf|CB|31|GER|77|2
+Jacobo Ramón|CB|21|ESP|79|4
+Alberto Dossena|CB|28|ITA|74|13
+Edoardo Goldaniga|CB|32|ITA|71|18
+Willy Kambwala|CB|22|COD|72|53
+Trevoh Chalobah|CB|27|ENG|80|99
+Álex Valle|LB|22|ESP|78|3
+Kaiki|LB|23|BRA|70|16
+Máximo Perrone|DM|23|ARG|81|5
+Lucas Da Cunha|CM|25|FRA|80|7
+Luis Milla|CM|32|ESP|77|6
+Samuele Ricci|DM|25|ITA|80|21
+Maxence Caqueret|CM|26|FRA|79|8
+Nico Paz|AM|22|ARG|86|10
+Mattia Liberali|AM|19|ITA|66|30
+Assane Diao|RW|21|SEN|79|11
+Jayden Addai|LW|21|NED|73|42
+Jesús Rodríguez|LW|20|ESP|78|17
+Martin Baturina|AM|23|CRO|80|20
+Anastasios Douvikas|ST|27|GRE|77|9
+Moise Kean|ST|26|ITA|83|90
+## BGN|Raffaele Palladino|Bologna|Bologna|#1a2f48|#a21c26|Stadio Renato Dall'Ara|38279|Lorenzo De Silvestri|82|60|4-2-3-1
+Łukasz Skorupski|GK|35|POL|78|1
+Massimo Pessina|GK|18|ITA|70|25
+Francesco Raffaelli|GK|21|ITA|58|34
+Emil Holm|RB|26|SWE|78|2
+Arthur Theate|LB|26|BEL|78|3
+Eivind Helland|CB|21|NOR|73|5
+Torbjørn Heggem|CB|27|NOR|77|14
+Nicolò Casale|CB|28|ITA|76|16
+Nadir Zortea|RB|27|ITA|76|20
+Lorenzo De Silvestri|RB|38|ITA|68|29
+Juan Miranda|LB|26|ESP|77|33
+Martin Vitík|CB|23|CZE|75|41
+Rahim Alhassane|LB|24|NIG|66|23
+Tommaso Pobega|CM|27|ITA|77|4
+Nikola Moro|DM|28|CRO|77|6
+Mikel Amondarain|CM|21|ARG|66|8
+Oussama El Azzouzi|DM|25|MAR|73|17
+Lewis Ferguson|CM|27|SCO|81|19
+Jens Odgaard|AM|27|DEN|77|21
+Matteo Darmian|RB|36|ITA|71|36
+Riccardo Orsolini|RW|29|ITA|81|7
+Artem Dovbyk|ST|29|UKR|78|9
+Federico Bernardeschi|RW|32|ITA|77|10
+Samuel Mbangula|LW|22|BEL|74|11
+Jay Enem|ST|23|NED|68|22
+Nicolò Cambiaghi|LW|25|ITA|78|28
+Roberto Piccoli|ST|25|ITA|77|91
+## FIO|Paolo Vanoli|Fiorentina|Fiorentina|#5a2b81|#ffffff|Stadio Artemio Franchi|43118|David de Gea|81|60|3-5-2
+David de Gea|GK|35|ESP|82|43
+Oliver Christensen|GK|27|DEN|70|53
+Luca Lezzerini|GK|31|ITA|60|19
+Dodô|RB|27|BRA|80|2
+Radu Drăgușin|CB|24|ROU|77|3
+Marin Pongračić|CB|29|CRO|77|5
+Luca Ranieri|CB|27|ITA|78|6
+João Mário|RB|26|POR|74|17
+Álex Jiménez|RB|21|ESP|73|20
+Valde|LB|19|ESP|64|21
+Viery|CB|21|BRA|65|33
+Marco Brescianini|CM|26|ITA|74|4
+Arthur Atta|CM|23|FRA|76|14
+Alieu Njie|AM|21|SWE|68|25
+Cher Ndour|CM|22|ITA|74|27
+Nicolò Fagioli|CM|25|ITA|79|44
+Fabiano Parisi|LB|25|ITA|75|65
+Christ Inao Oulaï|CM|20|CIV|68|42
+Riccardo Sottil|LW|27|ITA|73|7
+Beto|ST|28|GNB|75|23
+Pote|RW|28|POR|75|28
+Wilfried Gnonto|LW|22|ITA|75|29
+Franco Mastantuono|AM|19|ARG|80|30
+Mateo Pellegrino|ST|24|ARG|72|32
+Sulayman Jallow|LW|19|GAM|62|71

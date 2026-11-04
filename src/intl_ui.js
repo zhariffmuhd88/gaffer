@@ -203,7 +203,7 @@ renderStart = function () {
   const go = document.querySelector('[data-a="start"]'); if (!go) return;
   const m = UI.cmode || 'club';
   const row = go.closest('.row') || go.parentElement;
-  row.insertAdjacentHTML('beforebegin', `<div class="row" style="gap:8px;margin:0 0 10px;flex-wrap:wrap"><span class="lb" style="margin:0">Career</span><div class="seg">${[['club', 'Club only'], ['nat', 'National team only'], ['dual', 'Club + national team']].map(([k, l]) => `<button class="${m === k ? 'on' : ''}" data-a="cmode" data-v="${k}">${l}</button>`).join('')}</div>${m !== 'club' ? `<div class="seg">${PLAYABLE_NATS.map(c => `<button class="${(UI.cnat || 'ENG') === c ? 'on' : ''}" data-a="cnat" data-v="${c}">${esc(natRow(c).name)}</button>`).join('')}</div>` : ''}<span class="dim" style="font-size:12.5px">${m === 'nat' ? `Manage ${esc(natRow(UI.cnat || 'ENG').name)} full-time; no club needed.` : m === 'dual' ? `Run your club and ${esc(natRow(UI.cnat || 'ENG').name)} at the same time.` : 'Manage a club; you can apply for the England or Spain job later.'}</span></div>`);
+  row.insertAdjacentHTML('beforebegin', `<div class="row" style="gap:8px;margin:0 0 10px;flex-wrap:wrap"><span class="lb" style="margin:0">Career</span><div class="seg">${[['club', 'Club only'], ['nat', 'National team only'], ['dual', 'Club + national team']].map(([k, l]) => `<button class="${m === k ? 'on' : ''}" data-a="cmode" data-v="${k}">${l}</button>`).join('')}</div>${m !== 'club' ? `<div class="seg">${PLAYABLE_NATS.map(c => `<button class="${(UI.cnat || 'ENG') === c ? 'on' : ''}" data-a="cnat" data-v="${c}">${esc(natRow(c).name)}</button>`).join('')}</div>` : ''}<span class="dim" style="font-size:12.5px">${m === 'nat' ? `Manage ${esc(natRow(UI.cnat || 'ENG').name)} full-time; no club needed.` : m === 'dual' ? `Run your club and ${esc(natRow(UI.cnat || 'ENG').name)} at the same time.` : 'Manage a club; you can apply for the England, Spain or Italy job later.'}</span></div>`);
   if (m === 'nat') go.disabled = false;
 };
 const _startI = ACT.start;
@@ -214,7 +214,7 @@ ACT.start = () => {
   _startI();
   if (!G) return;
   if (m !== 'club') setPlayNat(UI.cnat || 'ENG');
-  if (m === 'nat') { const club = G.user; const orig = (PL_CLUBS.concat(CH_CLUBS, LL_CLUBS)).find(c => c.id === club); G.intl.offer = true; takeEngland('nat'); if (orig) T(club).mgr = orig.mgr; if (G.mgrP) G.mgrP.rec = []; G.mgrRep = Math.max(G.mgrRep, 60); }
+  if (m === 'nat') { const club = G.user; const orig = (PL_CLUBS.concat(CH_CLUBS, LL_CLUBS, typeof SA_CLUBS !== 'undefined' ? SA_CLUBS : [])).find(c => c.id === club); G.intl.offer = true; takeEngland('nat'); if (orig) T(club).mgr = orig.mgr; if (G.mgrP) G.mgrP.rec = []; G.mgrRep = Math.max(G.mgrRep, 60); }
   else if (m === 'dual') { G.intl.offer = true; takeEngland('dual'); }
   UI.scr = m === 'club' ? 'mgr' : 'intl'; autosave(); render();
 };

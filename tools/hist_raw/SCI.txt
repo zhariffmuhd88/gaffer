@@ -1,0 +1,38 @@
+1988-89|AC Milan|Sampdoria
+1989-90|Inter|Sampdoria
+1990-91|Napoli|Juventus
+1991-92|Sampdoria|Roma
+1992-93|AC Milan|Parma
+1993-94|AC Milan|Torino
+1994-95|AC Milan|Sampdoria
+1995-96|Juventus|Parma
+1996-97|Fiorentina|AC Milan
+1997-98|Juventus|Vicenza
+1998-99|Lazio|Juventus
+1999-00|Parma|AC Milan
+2000-01|Lazio|Inter
+2001-02|Roma|Fiorentina
+2002-03|Juventus|Parma
+2003-04|Juventus|AC Milan
+2004-05|AC Milan|Lazio
+2005-06|Inter|Juventus
+2006-07|Inter|Roma
+2007-08|Roma|Inter
+2008-09|Inter|Roma
+2009-10|Lazio|Inter
+2010-11|Inter|Roma
+2011-12|AC Milan|Inter
+2012-13|Juventus|Napoli
+2013-14|Juventus|Lazio
+2014-15|Napoli|Juventus
+2015-16|Juventus|Lazio
+2016-17|AC Milan|Juventus
+2017-18|Lazio|Juventus
+2018-19|Juventus|AC Milan
+2019-20|Lazio|Juventus
+2020-21|Juventus|Napoli
+2021-22|Inter|Juventus
+2022-23|Inter|AC Milan
+2023-24|Inter|Napoli
+2024-25|AC Milan|Inter
+2025-26|Napoli|Bologna

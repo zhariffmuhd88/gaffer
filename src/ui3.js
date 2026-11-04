@@ -4,7 +4,7 @@ function scrPrematch() {
   if (!f) { UI.scr = 'inbox'; return scrInbox(); }
   const issues = validateLineup(G.user);
   const home = f.h === G.user, opp = home ? f.a : f.h, ot = T(opp);
-  const tbs = { PL: leagueTable(), CH: champTable(), LL: G.ll && G.ll.length ? llTable() : [] }; const tbOf = (t) => tbs[divOf(t)] || [];
+  const tbs = { PL: leagueTable(), CH: champTable(), LL: G.ll && G.ll.length ? llTable() : [], SA: G.sa && G.sa.length && typeof saTable === 'function' ? saTable() : [] }; const tbOf = (t) => tbs[divOf(t)] || [];
   const pos = (t) => { const i = tbOf(t).findIndex(r => r.t === t); return i >= 0 ? ordinal(i + 1) + (divOf(t) !== divOf(G.user) && divOf(t) ? ' (' + COMP_NAME[divOf(t)] + ')' : '') : '-'; };
   const formOf = (t) => { const r = tbOf(t).find(x => x.t === t); return r ? `<span class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</span>` : ''; };
   const tac = userTeam().tac;

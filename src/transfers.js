@@ -178,7 +178,9 @@ function seasonEnd() {
   const young = plOnly.filter(p => p.st.a >= 12 && p.age <= 21).sort((a, b) => b.st.r / b.st.a - a.st.r / a.st.a)[0];
   const lt = G.ll && G.ll.length && typeof llTable === 'function' ? llTable() : null;
   const llRel = lt ? lt.slice(17).map(r => r.t) : [];
-  const utab = udiv === 'CH' ? ct : udiv === 'LL' && lt ? lt : tb;
+  const st = G.sa && G.sa.length && typeof saTable === 'function' ? saTable() : null;
+  const saRel = st ? st.slice(17).map(r => r.t) : [];
+  const utab = udiv === 'CH' ? ct : udiv === 'LL' && lt ? lt : udiv === 'SA' && st ? st : tb;
   const upos = utab.findIndex(r => r.t === G.user) + 1;
   const rel = tb.slice(17).map(r => r.t);
   // promotion from the Championship: top two plus the play-off winner
@@ -189,10 +191,10 @@ function seasonEnd() {
   const l1 = simLeagueOne();
   const target = boardTarget();
   const cupsWon = [];
-  for (const c of ['LC', 'FA', 'CDR', 'SCE']) if (G.cups[c] && G.cups[c].winner === G.user) cupsWon.push(COMP_NAME[c]);
+  for (const c of ['LC', 'FA', 'CDR', 'SCE', 'CIT', 'SCI']) if (G.cups[c] && G.cups[c].winner === G.user) cupsWon.push(COMP_NAME[c]);
   for (const c of ['UCL', 'UEL', 'UECL']) if (G.euro[c].winner === G.user) cupsWon.push(EURO_NAMES[c]);
   const promoted = udiv === 'CH' && prom.includes(G.user);
-  const relegated = (udiv === 'PL' && rel.includes(G.user)) || (udiv === 'CH' && chRel.includes(G.user)) || (udiv === 'LL' && llRel.includes(G.user));
+  const relegated = (udiv === 'PL' && rel.includes(G.user)) || (udiv === 'CH' && chRel.includes(G.user)) || (udiv === 'LL' && llRel.includes(G.user)) || (udiv === 'SA' && saRel.includes(G.user));
   G.hist.push({ s: seasonLabel(y), div: udiv, champ, chChamp, upos, team: G.user, cups: cupsWon, top: top ? [top.n, tName(top.c), top.st.lg || 0] : null, best: best ? [best.n, tName(best.c)] : null, young: young ? [young.n, tName(young.c)] : null, rel: rel.map(t => tName(t)), prom: prom.map(t => tName(t)), chRel: chRel.map(t => tName(t)), l1prom: l1.prom.map(t => tName(t)), promoted, relegated });
   // board review
   let verdict;
@@ -204,13 +206,14 @@ function seasonEnd() {
   if (natU) verdict = `You are managing ${T(G.user).name} full-time.`;
   else if (relegated && udiv === 'CH') { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
   else if (relegated && udiv === 'LL') { G.sacked = true; verdict = `${uname} have been relegated to the Segunda División and the board has dismissed you.`; }
+  else if (relegated && udiv === 'SA') { G.sacked = true; verdict = `${uname} have been relegated to Serie B and the board has dismissed you.`; }
   else if (relegated && G.board < 40) { G.sacked = true; verdict = `${uname} have been relegated and the board has dismissed you.`; }
   else if (relegated) verdict = `${uname} have been relegated to the Championship. The board wants an immediate promotion push next season.`;
   else if (G.board < 20) { G.sacked = true; verdict = `The board is unhappy with a ${ordinal(upos)}-place finish against a target of ${target.txt}. You have been dismissed.`; }
   else if (promoted) verdict = `Promotion! ${uname} will play in the Premier League next season${ct[0].t === G.user ? ' as Championship winners' : poW === G.user ? ' after winning the play-off final' : ''}.`;
   else verdict = gap <= 0 ? `The board is delighted: ${ordinal(upos)} place met the target to ${target.txt}.` : `The board expected you to ${target.txt}. ${ordinal(upos)} place falls short, but they will give you another season.`;
   G.lastSeason = { s: seasonLabel(y), div: udiv, champ, chChamp, upos, top, best, young, rel, prom, chRel, l1prom: l1.prom, verdict, cupsWon, tb: tb.map(r => [r.t, r.pts]), ct: ct.map(r => [r.t, r.pts]) };
-  msg('Season review ' + seasonLabel(y), `${udiv === 'LL' && lt ? `${tName(lt[0].t, false)} are La Liga champions. ` : ''}${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. ${natU ? '' : `You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. `}${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
+  msg('Season review ' + seasonLabel(y), `${udiv === 'LL' && lt ? `${tName(lt[0].t, false)} are La Liga champions. ` : ''}${udiv === 'SA' && st ? `${tName(st[0].t, false)} are Serie A champions. ` : ''}${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. ${natU ? '' : `You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. `}${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
   news('Promotion and relegation', `Promoted to the Premier League: ${prom.map(t => tName(t)).join(', ')}. Relegated to the Championship: ${rel.map(t => tName(t)).join(', ')}. Relegated to League One: ${chRel.map(t => tName(t)).join(', ')}. Promoted from League One: ${l1.prom.map(t => tName(t)).join(', ')}.`, null, true);
   // European places next season
   const faW = G.cups.FA.winner, lcW = G.cups.LC.winner;
@@ -230,6 +233,7 @@ function seasonEnd() {
   G.l1 = G.l1.filter(t => !l1.prom.includes(t)).concat(chRel);
   G.euroIn = { UCL: ucl, UEL: uel.filter(Boolean), UECL: uecl.filter(Boolean) };
   if (typeof spainSeasonEnd === 'function') { try { spainSeasonEnd(lt); } catch (e) { console.error(e); } }
+  if (typeof italySeasonEnd === 'function') { try { italySeasonEnd(st); } catch (e) { console.error(e); } }
   G.ded = {};
   // players: aging, development, contracts, retirement
   returnLoans();

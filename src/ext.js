@@ -215,7 +215,8 @@ function loanOut(pid, dest) {
   if (!G.window) return { ok: false, msg: 'Loans can only be arranged while a window is open.' };
   if (p.loan) return { ok: false, msg: 'He is a loan player himself.' };
   let to;
-  if (dest === 'pl' || dest === 'll') { const top = dest === 'll' ? G.ll : G.pl; const c = top.filter(t => t !== G.user && T(t).rep - 14 <= p.ca && T(t).rep < u.rep + 5); if (!c.length) return { ok: false, msg: `No ${dest === 'll' ? 'La Liga' : 'Premier League'} club wants him on loan.` }; to = R.pick(c); }
+  if (dest === 'pl' || dest === 'll' || dest === 'sa') { const top = dest === 'll' ? G.ll : dest === 'sa' ? G.sa : G.pl; const c = top.filter(t => t !== G.user && T(t).rep - 14 <= p.ca && T(t).rep < u.rep + 5); if (!c.length) return { ok: false, msg: `No ${dest === 'll' ? 'La Liga' : dest === 'sa' ? 'Serie A' : 'Premier League'} club wants him on loan.` }; to = R.pick(c); }
+  else if (dest === 'sb') { const c = (G.sb || []).slice(); to = R.pick(c.sort((a, b) => T(b).str - T(a).str).slice(0, p.ca >= 70 ? 8 : 20)); }
   else if (dest === 'sd') { const c = (G.seg || []).filter(t => !T(t).bteam); to = R.pick(c.sort((a, b) => T(b).str - T(a).str).slice(0, p.ca >= 70 ? 8 : 22)); }
   else { const c = divTeams('CH').filter(t => t !== G.user && T(t).rep - 16 <= p.ca); to = c.length ? R.pick(c) : R.pick(G.l1 && G.l1.length ? G.l1 : G.lowerTeams); }
   G.sq[G.user] = G.sq[G.user].filter(x => x !== p.id); const tac = u.tac; tac.xi = tac.xi.map(x => x === p.id ? null : x); tac.bench = tac.bench.filter(x => x !== p.id);

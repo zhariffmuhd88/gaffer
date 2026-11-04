@@ -104,7 +104,7 @@ function punditVerdict(r, sUser) {
 
 // ---------- the biggest game of each round (not the user's): one pundit row ----------
 function roundTalking(ids) {
-  const fs = ids.map(id => G.fx[id]).filter(f => f && f.r && ['PL', 'LL', 'UCL'].includes(f.comp) && f.h !== G.user && f.a !== G.user && !T(f.h).lite && !T(f.a).lite);
+  const fs = ids.map(id => G.fx[id]).filter(f => f && f.r && ['PL', 'LL', 'SA', 'UCL'].includes(f.comp) && f.h !== G.user && f.a !== G.user && !T(f.h).lite && !T(f.a).lite);
   if (!fs.length) return;
   const f = fs.sort((a, b) => (T(b.h).rep + T(b.a).rep + (isRival(b.h, b.a) ? 15 : 0) + ((b.inc || []).length * 5)) - (T(a.h).rep + T(a.a).rep + (isRival(a.h, a.a) ? 15 : 0) + ((a.inc || []).length * 5)))[0];
   if (T(f.h).rep + T(f.a).rep < 160 && !(f.inc || []).length) return;
@@ -129,7 +129,7 @@ const VAR_WHY = {
 };
 function varWatch() {
   const from = addDays(G.date, -7);
-  const fs = Object.values(G.fx).filter(f => f.r && f.inc && f.d >= from && f.d < G.date && ['PL', 'LL', 'CH', 'UCL', 'UEL', 'FA', 'CDR'].includes(f.comp));
+  const fs = Object.values(G.fx).filter(f => f.r && f.inc && f.d >= from && f.d < G.date && ['PL', 'LL', 'SA', 'CH', 'UCL', 'UEL', 'FA', 'CDR', 'CIT'].includes(f.comp));
   const cand = [];
   for (const f of fs) for (const x of f.inc) {
     const mine = f.h === G.user || f.a === G.user; const rep = (T(f.h).rep || 60) + (T(f.a).rep || 60);

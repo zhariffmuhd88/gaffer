@@ -27,7 +27,7 @@ function answerRequest(id, k) {
   const tk = (key) => { const x = talkTo(p.id, key); return x ? x.reply : ''; };
   if (k === 'promise' || k === 'fight' || k === 'stay' || k === 'encourage' || k === 'letgo') out = tk(k);
   else if (k === 'loan') {
-    if (G.window) { const res = loanOut(p.id, ctryOf(G.user) === 'ESP' ? 'sd' : 'ch'); out = res.msg; if (res.ok) setHap(p, 10); }
+    if (G.window) { const res = loanOut(p.id, ({ ESP: 'sd', ITA: 'sb' }[ctryOf(G.user)] || 'ch')); out = res.msg; if (res.ok) setHap(p, 10); }
     else { p.loanNext = 1; setHap(p, 6); out = "Thanks boss. I'll go in the next window."; }
   } else if (k === 'talks') { setHap(p, 6); UI.modal = null; setTimeout(() => { try { playerModal(p.id); } catch (e) { } }, 0); out = "Good. Let's get it sorted."; }
   else if (k === 'summer') { setHap(p, p.ca >= 76 ? -6 : -2); out = "I'll wait, but I won't wait forever."; }
@@ -44,7 +44,7 @@ function requestTick() {
     msg('Request ignored', `${p.n} feels ignored after you didn't answer his request. Some team-mates side with him.`);
   }
   // loans agreed out of window
-  if (G.window) for (const p of squad(G.user)) if (p.loanNext) { delete p.loanNext; const res = loanOut(p.id, ctryOf(G.user) === 'ESP' ? 'sd' : 'ch'); if (res.ok) msg('Loan', `As agreed, ${res.msg}`); }
+  if (G.window) for (const p of squad(G.user)) if (p.loanNext) { delete p.loanNext; const res = loanOut(p.id, ({ ESP: 'sd', ITA: 'sb' }[ctryOf(G.user)] || 'ch')); if (res.ok) msg('Loan', `As agreed, ${res.msg}`); }
   if (teamGames() < 4 || R.chance(.5)) return;
   const sq = squad(G.user).filter(p => !reqOpen(p.id) && !p.loan && p.inj <= 0 && !(p.reqAt && dDiff(p.reqAt, G.date) < 50));
   const cand = [];
@@ -115,7 +115,7 @@ buildSeason = function () {
   try { G.cups.CWC = { id: 'CWC', rounds: cupRounds(CAL.CWC.rounds), ri: 0, winner: null }; G.cups.CWX = { id: 'CWX', rounds: cupRounds(CAL.CWX.rounds), ri: 0, winner: null }; G.tasks.push({ d: sd(CAL.CWC.draw), t: 'drawCWC' }, { d: sd(CAL.CWX.draw), t: 'drawCWX' }); } catch (e) { console.error(e); }
 };
 function drawCWC() {
-  const ent = []; for (const c of ['FA', 'CDR']) { const w = G.cups[c] && G.cups[c].winner; if (w && !ent.includes(w)) ent.push(w); }
+  const ent = []; for (const c of ['FA', 'CDR', 'CIT']) { const w = G.cups[c] && G.cups[c].winner; if (w && !ent.includes(w)) ent.push(w); }
   if (G.cups.LC && G.cups.LC.winner && !ent.includes(G.cups.LC.winner) && ent.length < 2) ent.push(G.cups.LC.winner);
   const lite = R.shuffle([].concat(EURO.UCL, EURO.UEL).filter(x => x[1] >= 74).map(x => 'E_' + slug(x[0])).filter(id => G.teams[id] && !ent.includes(id)));
   while (ent.length < 8 && lite.length) ent.push(lite.shift());

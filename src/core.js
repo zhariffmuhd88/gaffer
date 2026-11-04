@@ -149,13 +149,13 @@ function calcValue(p) {
 function calcWageDemand(p, rep) { const r = rep || 75; return Math.max(3, Math.round(7 * Math.exp(0.08 * (p.ca - 40)) * (0.55 + 0.5 * r / 93) * (p.age >= 32 ? .8 : 1))); }
 
 // ---- divisions ----
-function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; if (G.ll && G.ll.includes(tid)) return 'LL'; return null; }
-function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite), G.ll || []); }
+function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; if (G.ll && G.ll.includes(tid)) return 'LL'; if (G.sa && G.sa.includes(tid)) return 'SA'; return null; }
+function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite), G.ll || [], G.sa || []); }
 // country of a club (England unless it plays in a Spanish competition)
-function ctryOf(tid) { return G && ((G.ll && G.ll.includes(tid)) || (G.seg && G.seg.includes(tid)) || (G.pf && G.pf.includes(tid))) ? 'ESP' : 'ENG'; }
+function ctryOf(tid) { if (G && ((G.sa && G.sa.includes(tid)) || (G.sb && G.sb.includes(tid)) || (G.sc && G.sc.includes(tid)))) return 'ITA'; return G && ((G.ll && G.ll.includes(tid)) || (G.seg && G.seg.includes(tid)) || (G.pf && G.pf.includes(tid))) ? 'ESP' : 'ENG'; }
 function youthIds(tid) { return G && G.res ? ((G.res[tid] || []).concat((G.acad && G.acad[tid]) || [])) : []; }
-function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : div === 'LL' ? (G.ll || []) : G.pl; }
-function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * ({ CH: 0.45, LL: 0.8 }[divOf(tid)] || 1))); }
+function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : div === 'LL' ? (G.ll || []) : div === 'SA' ? (G.sa || []) : G.pl; }
+function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * ({ CH: 0.45, LL: 0.8, SA: 0.75 }[divOf(tid)] || 1))); }
 
 // ---- compact save format: skip default player fields, round decimals; restore fills them back ----
 const P_DEF = { listed: false, injT: '', inj: 0, sus: 0, yel: 0, ym: 0, ymr: 0, mi: 0, low: 0, prom: null };

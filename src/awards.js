@@ -42,7 +42,7 @@ function monthAwards(comp) {
   if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the ${LN} Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, glob); }
 }
 const _gom0 = goalOfMonth;
-goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); monthAwards('LL'); } catch (e) { console.error(e); } };
+goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); monthAwards('LL'); monthAwards('SA'); } catch (e) { console.error(e); } };
 
 function teamOfSeason(rt) {
   const pool = rt.filter(x => x.a >= 15).sort((a, b) => b.avg - a.avg);
@@ -76,7 +76,7 @@ function seasonAwards(comp) {
   A.s.push(rec);
   if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the ${LN} Player of the Season.`, best.club, glob); playerAwardBoost(best.pid, 12); }
   if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the ${LN} Young Player of the Season.`, young.club, glob); playerAwardBoost(young.pid, 10); }
-  if (boot) news(comp === 'LL' ? 'Pichichi Trophy' : 'Golden Boot', comp === 'LL' ? `${boot.n} (${tName(boot.club)}) wins the Pichichi Trophy as La Liga's top scorer with ${boot.g} goals.` : `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
+  if (boot) news(comp === 'LL' ? 'Pichichi Trophy' : comp === 'SA' ? 'Capocannoniere' : 'Golden Boot', comp === 'LL' ? `${boot.n} (${tName(boot.club)}) wins the Pichichi Trophy as La Liga's top scorer with ${boot.g} goals.` : comp === 'SA' ? `${boot.n} (${tName(boot.club)}) is the Serie A capocannoniere with ${boot.g} goals.` : `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
   if (zam) news('Zamora Trophy', `${P(zam[0]).n} (${tName(P(zam[0]).c)}) wins the Zamora Trophy: ${(zam[1].ga / zam[1].a).toFixed(2)} goals conceded per game in ${zam[1].a} La Liga games.`, P(zam[0]).c, glob);
   if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, glob);
   if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, glob);
@@ -86,7 +86,7 @@ function seasonAwards(comp) {
   for (const x of mine) playerAwardBoost(x.pid, 5);
 }
 const _se1 = seasonEnd;
-seasonEnd = function () { try { for (const c of ['PL', 'CH', 'LL']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
+seasonEnd = function () { try { for (const c of ['PL', 'CH', 'LL', 'SA']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
 
 // ---------- UI ----------
 function awPlayer(x, extra) { if (!x) return '<span class="dim">-</span>'; const p = P(x.pid); return `<span class="${p ? 'click' : ''}" ${p ? `data-a="player" data-v="${x.pid}"` : ''}><b>${esc(x.n)}</b></span> <span class="dim">${esc(tName(x.club))}</span>${extra ? ` <span class="mono dim">${extra}</span>` : ''}`; }
@@ -115,7 +115,7 @@ function scrAwards() {
     body = SA.length ? SA.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
       <dt>Player of the Season</dt><dd>${awPlayer(r.best, r.best ? r.best.avg.toFixed(2) : '')}</dd>
       <dt>Young Player</dt><dd>${awPlayer(r.young, r.young ? r.young.avg.toFixed(2) : '')}</dd>
-      <dt>${r.lg === 'LL' ? 'Pichichi Trophy' : 'Golden Boot'}</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
+      <dt>${r.lg === 'LL' ? 'Pichichi Trophy' : r.lg === 'SA' ? 'Capocannoniere' : 'Golden Boot'}</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
       <dt>Playmaker</dt><dd>${awPlayer(r.play, r.play ? r.play.as + ' assists' : '')}</dd>
       ${r.zam ? `<dt>Zamora Trophy</dt><dd><b>${esc(r.zam.n)}</b> <span class="dim">${esc(tName(r.zam.club))} · ${r.zam.gpg} conceded per game</span></dd>` : ''}<dt>${r.lg === 'LL' ? 'Most clean sheets' : 'Golden Glove'}</dt><dd>${r.glove ? `<b>${esc(r.glove.n)}</b> <span class="dim">${r.glove.cs} clean sheets</span>` : '-'}</dd>
       <dt>Manager of the Season</dt><dd>${r.mos ? `<b class="${r.mos.tid === G.user ? 'yel' : ''}">${esc(r.mos.mgr)}</b> <span class="dim">${esc(tName(r.mos.tid))} · ${ordinal(r.mos.pos)}</span>` : '-'}</dd>
@@ -130,7 +130,7 @@ function scrAwards() {
     body = `<p class="dim" style="margin-top:0">Who is leading the race this season (league games, at least 5 appearances).</p><h2 class="sect">Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${best.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div><h2 class="sect">Young Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${young.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div>`;
   }
   return `<div class="band">Awards<small>${COMP_NAME[lg]} monthly and season awards</small></div>
-  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL', 'SA'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
   <div class="tabs" style="margin-top:4px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'aws') { UI.tab.aws = el.value; render(); } });

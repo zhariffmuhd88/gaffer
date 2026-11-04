@@ -2224,7 +2224,7 @@ const STADIA = {
 
 // ===== DATA: real winners and runners-up before 2026/27 (Wikipedia list pages, read 30 Oct 2026) =====
 // rows: season start year|winner|runner-up. LG = English champions (First Division to 1991/92, Premier League after).
-// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026).
+// LL = Spanish champions, CDR = Copa del Rey (final year), SCE = Supercopa de España from 1982 (Wikipedia, read 31 Oct 2026); CWC = European Cup Winners Cup 1960/61-1998/99 (Wikipedia, read 3 Nov 2026); SA = Italian champions, CIT = Coppa Italia, SCI = Supercoppa Italiana (Wikipedia, read 4 Nov 2026; 2004/05 not assigned).
 const HIST = {
 LG:`1888|Preston North End|Aston Villa
 1889|Preston North End|Everton
@@ -3016,7 +3016,217 @@ CWC:`1960|Fiorentina|Rangers
 1995|Paris Saint-Germain|Rapid Vienna
 1996|Barcelona|Paris Saint-Germain
 1997|Chelsea|VfB Stuttgart
-1998|Lazio|Mallorca`
+1998|Lazio|Mallorca`,
+SA:`1929|Ambrosiana-Inter|Genoa
+1930|Juventus|Roma
+1931|Juventus|Bologna
+1932|Juventus|Ambrosiana-Inter
+1933|Juventus|Ambrosiana-Inter
+1934|Juventus|Ambrosiana-Inter
+1935|Bologna|Roma
+1936|Bologna|Lazio
+1937|Ambrosiana-Inter|Juventus
+1938|Bologna|Torino
+1939|Ambrosiana-Inter|Bologna
+1940|Bologna|Ambrosiana-Inter
+1941|Roma|Torino
+1942|Torino|Livorno
+1945|Torino|Juventus
+1946|Torino|Juventus
+1947|Torino|Milan
+1948|Torino|Internazionale
+1949|Juventus|Milan
+1950|Milan|Internazionale
+1951|Juventus|Milan
+1952|Internazionale|Juventus
+1953|Internazionale|Juventus
+1954|Milan|Udinese
+1955|Fiorentina|Milan
+1956|Milan|Fiorentina
+1957|Juventus|Fiorentina
+1958|Milan|Fiorentina
+1959|Juventus|Fiorentina
+1960|Juventus|Milan
+1961|Milan|Internazionale
+1962|Internazionale|Juventus
+1963|Bologna|Internazionale
+1964|Internazionale|Milan
+1965|Internazionale|Bologna
+1966|Juventus|Internazionale
+1967|Milan|Napoli
+1968|Fiorentina|Cagliari
+1969|Cagliari|Internazionale
+1970|Internazionale|Milan
+1971|Juventus|Milan
+1972|Juventus|Milan
+1973|Lazio|Juventus
+1974|Juventus|Napoli
+1975|Torino|Juventus
+1976|Juventus|Torino
+1977|Juventus|Vicenza
+1978|Milan|Perugia
+1979|Internazionale|Juventus
+1980|Juventus|Roma
+1981|Juventus|Fiorentina
+1982|Roma|Juventus
+1983|Juventus|Roma
+1984|Hellas Verona|Torino
+1985|Juventus|Roma
+1986|Napoli|Juventus
+1987|Milan|Napoli
+1988|Internazionale|Napoli
+1989|Napoli|Milan
+1990|Sampdoria|Milan
+1991|Milan|Juventus
+1992|Milan|Internazionale
+1993|Milan|Juventus
+1994|Juventus|Parma
+1995|Milan|Juventus
+1996|Juventus|Parma
+1997|Juventus|Internazionale
+1998|Milan|Lazio
+1999|Lazio|Juventus
+2000|Roma|Juventus
+2001|Juventus|Roma
+2002|Juventus|Internazionale
+2003|Milan|Roma
+2005|Internazionale|Roma
+2006|Internazionale|Roma
+2007|Internazionale|Roma
+2008|Internazionale|Juventus
+2009|Internazionale|Roma
+2010|Milan|Internazionale
+2011|Juventus|Milan
+2012|Juventus|Napoli
+2013|Juventus|Roma
+2014|Juventus|Roma
+2015|Juventus|Napoli
+2016|Juventus|Roma
+2017|Juventus|Napoli
+2018|Juventus|Napoli
+2019|Juventus|Internazionale
+2020|Internazionale|Milan
+2021|Milan|Internazionale
+2022|Napoli|Lazio
+2023|Internazionale|Milan
+2024|Napoli|Internazionale
+2025|Internazionale|Napoli`,
+CIT:`1921|Vado|Udinese
+1935|Torino|Alessandria
+1936|Genova|Roma
+1937|Juventus|Torino
+1938|Ambrosiana|Novara
+1939|Fiorentina|Genova
+1940|Venezia|Roma
+1941|Juventus|AC Milan
+1942|Torino|Venezia
+1957|Lazio|Fiorentina
+1958|Juventus|Inter
+1959|Juventus|Fiorentina
+1960|Fiorentina|Lazio
+1961|Napoli|SPAL
+1962|Atalanta|Torino
+1963|Roma|Torino
+1964|Juventus|Inter
+1965|Fiorentina|Catanzaro
+1966|AC Milan|Padova
+1967|Torino|AC Milan
+1968|Roma|Cagliari
+1969|Bologna|Torino
+1970|Torino|AC Milan
+1971|AC Milan|Napoli
+1972|AC Milan|Juventus
+1973|Bologna|Palermo
+1974|Fiorentina|AC Milan
+1975|Napoli|Hellas Verona
+1976|AC Milan|Inter
+1977|Inter|Napoli
+1978|Juventus|Palermo
+1979|Roma|Torino
+1980|Roma|Torino
+1981|Inter|Torino
+1982|Juventus|Hellas Verona
+1983|Roma|Hellas Verona
+1984|Sampdoria|AC Milan
+1985|Roma|Sampdoria
+1986|Napoli|Atalanta
+1987|Sampdoria|Torino
+1988|Sampdoria|Napoli
+1989|Juventus|AC Milan
+1990|Roma|Sampdoria
+1991|Parma|Juventus
+1992|Torino|Roma
+1993|Sampdoria|Ancona
+1994|Juventus|Parma
+1995|Fiorentina|Atalanta
+1996|Vicenza|Napoli
+1997|Lazio|AC Milan
+1998|Parma|Fiorentina
+1999|Lazio|Inter
+2000|Fiorentina|Parma
+2001|Parma|Juventus
+2002|AC Milan|Roma
+2003|Lazio|Juventus
+2004|Inter|Roma
+2005|Inter|Roma
+2006|Roma|Inter
+2007|Roma|Inter
+2008|Lazio|Sampdoria
+2009|Inter|Roma
+2010|Inter|Palermo
+2011|Napoli|Juventus
+2012|Lazio|Roma
+2013|Napoli|Fiorentina
+2014|Juventus|Lazio
+2015|Juventus|AC Milan
+2016|Juventus|Lazio
+2017|Juventus|AC Milan
+2018|Lazio|Atalanta
+2019|Napoli|Juventus
+2020|Juventus|Atalanta
+2021|Inter|Juventus
+2022|Inter|Fiorentina
+2023|Juventus|Atalanta
+2024|Bologna|AC Milan
+2025|Inter|Lazio`,
+SCI:`1988|AC Milan|Sampdoria
+1989|Inter|Sampdoria
+1990|Napoli|Juventus
+1991|Sampdoria|Roma
+1992|AC Milan|Parma
+1993|AC Milan|Torino
+1994|AC Milan|Sampdoria
+1995|Juventus|Parma
+1996|Fiorentina|AC Milan
+1997|Juventus|Vicenza
+1998|Lazio|Juventus
+1999|Parma|AC Milan
+2000|Lazio|Inter
+2001|Roma|Fiorentina
+2002|Juventus|Parma
+2003|Juventus|AC Milan
+2004|AC Milan|Lazio
+2005|Inter|Juventus
+2006|Inter|Roma
+2007|Roma|Inter
+2008|Inter|Roma
+2009|Lazio|Inter
+2010|Inter|Roma
+2011|AC Milan|Inter
+2012|Juventus|Napoli
+2013|Juventus|Lazio
+2014|Napoli|Juventus
+2015|Juventus|Lazio
+2016|AC Milan|Juventus
+2017|Lazio|Juventus
+2018|Juventus|AC Milan
+2019|Lazio|Juventus
+2020|Juventus|Napoli
+2021|Inter|Juventus
+2022|Inter|AC Milan
+2023|Inter|Napoli
+2024|AC Milan|Inter
+2025|Napoli|Bologna`
 };
 
 // ===== DATA: managers for the world rankings (major honours as manager, up to the end of 2025/26) =====
@@ -3060,6 +3270,16 @@ const MGR_DATA = [
   ['Luciano Spalletti', 'Italy', 'a', 'Juventus', 'L1 l2 D3', 0],
   ['Massimiliano Allegri', 'Italy', 'a', 'Napoli', 'L6 D5', 0],
   ['Rúben Amorim', 'Portugal', 'a', 'AC Milan', 'l2 d3', 1],
+  ['Gian Piero Gasperini', 'Italy', 'a', 'Roma', 'E1', 0],
+  ['Maurizio Sarri', 'Italy', 'a', 'Atalanta', 'L1 E1', 1],
+  ['Cesc Fàbregas', 'Spain', 'a', 'Como', '', 0],
+  ['Gennaro Gattuso', 'Italy', 'a', 'Lazio', 'D1', 0],
+  ['Daniele De Rossi', 'Italy', 'a', 'Genoa', '', 0],
+  ['Raffaele Palladino', 'Italy', 'a', 'Bologna', '', 0],
+  ['Paolo Vanoli', 'Italy', 'a', 'Fiorentina', '', 0],
+  ['Ivan Jurić', 'Croatia', 'a', 'Monza', '', 1],
+  ['Eusebio Di Francesco', 'Italy', 'a', 'Lecce', '', 0],
+  ['Roberto Mancini', 'Italy', 'n', 'Italy', 'L4 X1 D6', 1],
   ['Diego Simeone', 'Argentina', 'a', 'Atlético Madrid', 'L2 l2 E2 D1', 0],
   ['Niko Kovač', 'Croatia', 'a', 'Borussia Dortmund', 'L1 D2', 0],
   ['Thomas Tuchel', 'Germany', 'n', 'England', 'L3 C1 I1 D2 d1', 1],
@@ -3976,6 +4196,588 @@ const NAT_REC = {"ESP": {"caps": [["Sergio Ramos", 180], ["Iker Casillas", 167],
 const FIRST_ES = ["Pablo", "Álvaro", "Hugo", "Mario", "Daniel", "Adrián", "Iker", "Unai", "Jon", "Marc", "Pol", "Sergio", "Javier", "Carlos", "Diego", "Rubén", "Alejandro", "Raúl", "Iván", "Aitor", "Asier", "Gorka", "Oier", "Nico", "Marcos", "Ander", "Óscar", "Víctor", "Bruno", "Gonzalo", "Izan", "Eneko", "Jorge", "Manu", "Rafa", "Joan", "Arnau", "Xabi", "Mikel", "Andrés"];
 const LAST_ES = ["García", "Martínez", "López", "Sánchez", "Pérez", "Gómez", "Fernández", "Díaz", "Moreno", "Muñoz", "Álvarez", "Romero", "Navarro", "Torres", "Domínguez", "Vázquez", "Ramos", "Gil", "Serrano", "Blanco", "Molina", "Ortega", "Delgado", "Castro", "Rubio", "Marín", "Sanz", "Iglesias", "Medina", "Garrido", "Cortés", "Castillo", "Santos", "Lozano", "Guerrero", "Cano", "Prieto", "Méndez", "Calvo", "Gallego", "Vidal", "León", "Herrera", "Márquez", "Peña", "Flores", "Cabrera", "Campos", "Vega", "Fuentes", "Carrasco", "Caballero", "Reyes", "Nieto", "Aguilar", "Pascual", "Santana", "Herrero", "Lorenzo", "Montero", "Hidalgo", "Ibáñez", "Ferrer", "Benítez", "Mora", "Vicente", "Arias", "Vargas", "Carmona", "Crespo", "Román", "Pastor", "Soto", "Sáez", "Velasco", "Moya", "Soler", "Parra", "Esteban", "Bravo", "Gallardo", "Etxeberria", "Aguirre", "Goikoetxea", "Arrieta", "Larrañaga", "Iturriaga", "Urrutia"];
 
+// ===== DATA: Italy. Serie A 2026/27 squads (FotMob team pages, 4 Nov 2026; ages, positions and ratings are game estimates).
+// Coaches, captains and stadiums: Wikipedia "2026-27 Serie A" (read 4 Nov 2026). Serie B and Serie C are team level.
+// Budgets (bal) are in £m, scaled to the game's English finances.
+const SA_CLUBS = [
+{"id": "INT", "name": "Inter", "short": "Inter", "c1": "#0068a8", "c2": "#000000", "stadium": "Stadio Giuseppe Meazza", "cap": 75710, "mgr": "Cristian Chivu", "capt": "Lautaro Martínez", "rep": 92, "bal": 150, "form": "3-5-2",sq:`
+1|Josep Martínez|GK|28|ESP|80
+12|Raffaele Di Gennaro|GK|33|ITA|62
+49|Ivan Provedel|GK|32|ITA|79
+6|John Stones|CB|32|ENG|82
+25|Manuel Akanji|CB|31|SUI|83
+28|Benjamin Pavard|CB|30|FRA|80
+30|Carlos Augusto|LB|27|BRA|79
+31|Yann Aurel Bisseck|CB|25|GER|81
+95|Alessandro Bastoni|CB|27|ITA|87
+99|Djed Spence|RB|26|ENG|78
+5|Aleksandar Stanković|DM|21|SRB|78
+7|Piotr Zieliński|CM|32|POL|80
+8|Petar Sučić|CM|23|CRO|80
+11|Luis Henrique|RB|24|BRA|79
+17|Andy Diouf|CM|23|FRA|77
+20|Hakan Çalhanoğlu|DM|32|TUR|84
+21|Curtis Jones|CM|25|ENG|81
+22|Henrikh Mkhitaryan|CM|37|ARM|76
+23|Nicolò Barella|CM|29|ITA|87
+32|Federico Dimarco|LB|28|ITA|85
+9|Marcus Thuram|ST|29|FRA|85
+10|Lautaro Martínez|ST|29|ARG|88
+14|Ange-Yoan Bonny|ST|23|CIV|79
+48|Mattia Mosconi|ST|19|ITA|65
+94|Francesco Pio Esposito|ST|21|ITA|81
+`},
+{"id": "ACM", "name": "AC Milan", "short": "Milan", "c1": "#fb090b", "c2": "#000000", "stadium": "San Siro", "cap": 75710, "mgr": "Rúben Amorim", "capt": "Mike Maignan", "rep": 90, "bal": 120, "form": "3-4-2-1",sq:`
+1|Pietro Terracciano|GK|36|ITA|70
+16|Mike Maignan|GK|31|FRA|86
+96|Lorenzo Torriani|GK|21|ITA|66
+5|Koni De Winter|CB|24|BEL|78
+23|Fikayo Tomori|CB|28|ENG|80
+31|Strahinja Pavlović|CB|25|SRB|81
+34|Mario Gila|CB|26|ESP|80
+42|Filippo Terracciano|RB|23|ITA|72
+46|Matteo Gabbia|CB|27|ITA|78
+13|Sankhoun Diawara|CB|20|FRA|68
+80|Yunus Musah|CM|23|USA|77
+38|Warren Bondo|DM|23|FRA|75
+12|Adrien Rabiot|CM|31|FRA|83
+14|Luka Modrić|CM|41|CRO|80
+30|Ardon Jashari|DM|24|SUI|80
+56|Alexis Saelemaekers|RB|27|BEL|80
+2|Pervis Estupiñán|LB|28|ECU|79
+33|Davide Bartesaghi|LB|20|ITA|75
+8|Ruben Loftus-Cheek|CM|30|ENG|77
+21|Samuel Chukwueze|RW|27|NGA|77
+28|Christian Comotto|CM|18|ITA|64
+20|Omari Hutchinson|RW|23|ENG|79
+22|Diego Moreira|LW|22|BEL|76
+9|Gonçalo Ramos|ST|25|POR|81
+11|Christian Pulisic|RW|28|USA|84
+73|Francesco Camarda|ST|18|ITA|72
+25|Cheveyo Mul-Balentien|ST|19|SUR|64
+`},
+{"id": "JUV", "name": "Juventus", "short": "Juventus", "c1": "#000000", "c2": "#ffffff", "stadium": "Allianz Stadium", "cap": 41507, "mgr": "Luciano Spalletti", "capt": "Manuel Locatelli", "rep": 91, "bal": 130, "form": "4-2-3-1",sq:`
+1|Kamil Grabara|GK|27|POL|79
+23|Carlo Pinsoglio|GK|36|ITA|62
+25|Guglielmo Vicario|GK|30|ITA|82
+33|Neto|GK|37|BRA|68
+3|Gleison Bremer|CB|29|BRA|84
+4|Federico Gatti|CB|28|ITA|79
+6|Lloyd Kelly|CB|28|ENG|78
+15|Pierre Kalulu|CB|26|FRA|81
+24|Daniele Rugani|CB|32|ITA|72
+26|Jhon Lucumí|CB|28|COL|81
+2|Zeki Çelik|RB|29|TUR|77
+5|Manuel Locatelli|DM|28|ITA|82
+8|Teun Koopmeiners|CM|28|NED|81
+11|Edon Zhegrova|RW|27|KOS|81
+12|Douglas Luiz|CM|28|BRA|78
+19|Khéphren Thuram-Ulien|CM|25|FRA|82
+20|Andrea Cambiaso|LB|26|ITA|82
+22|Weston McKennie|CM|28|USA|80
+29|Pape Sarr|CM|24|SEN|80
+31|Nicolás González|RW|28|ARG|79
+32|Juan Cabal|LB|25|COL|76
+41|Augusto Owusu|CM|21|ITA|65
+7|Francisco Conceição|RW|23|POR|82
+9|Randal Kolo Muani|ST|27|FRA|81
+10|Kenan Yıldız|LW|21|TUR|86
+13|Jérémie Boga|LW|29|CIV|78
+14|Arkadiusz Milik|ST|32|POL|74
+17|Kerim Alajbegović|RW|19|BIH|74
+18|Jeff Ekhator|ST|19|ITA|68
+27|Nick Woltemade|ST|24|GER|82
+`},
+{"id": "NAP", "name": "Napoli", "short": "Napoli", "c1": "#12a0d7", "c2": "#ffffff", "stadium": "Stadio Diego Armando Maradona", "cap": 54732, "mgr": "Massimiliano Allegri", "capt": "Giovanni Di Lorenzo", "rep": 90, "bal": 110, "form": "4-3-3",sq:`
+1|Alex Meret|GK|29|ITA|79
+32|Vanja Milinković-Savić|GK|29|SRB|81
+14|Nikita Contini|GK|30|ITA|62
+12|Claudio Pugliese|GK|18|ITA|58
+4|Alessandro Buongiorno|CB|27|ITA|82
+5|Benoît Badiashile|CB|25|FRA|77
+13|Amir Rrahmani|CB|32|KOS|80
+16|Rafa Marín|CB|24|ESP|76
+17|Mathías Olivera|LB|29|URU|79
+22|Giovanni Di Lorenzo|RB|33|ITA|82
+31|Sam Beukema|CB|27|NED|81
+35|Luca Marianucci|CB|22|ITA|70
+2|Costantino Favasuli|RB|22|ITA|68
+6|Billy Gilmour|DM|25|SCO|80
+7|David Neres|RW|29|BRA|81
+8|Scott McTominay|CM|29|SCO|86
+11|Kevin De Bruyne|AM|35|BEL|84
+21|Matteo Politano|RW|33|ITA|80
+26|Antonio Vergara|AM|23|ITA|76
+27|Alisson Santos|LW|24|BRA|74
+37|Leonardo Spinazzola|LB|33|ITA|76
+68|Stanislav Lobotka|DM|31|SVK|83
+99|Frank Anguissa|CM|30|CMR|82
+19|Rasmus Højlund|ST|23|DEN|82
+20|Lorenzo Lucca|ST|26|ITA|77
+23|Giovane|ST|22|BRA|74
+70|Noa Lang|LW|27|NED|80
+`},
+{"id": "ROM", "name": "Roma", "short": "Roma", "c1": "#8e1f2f", "c2": "#f0bc42", "stadium": "Stadio Olimpico", "cap": 70634, "mgr": "Gian Piero Gasperini", "capt": "Bryan Cristante", "rep": 87, "bal": 90, "form": "3-4-2-1",sq:`
+32|Devis Vásquez|GK|28|COL|72
+95|Pierluigi Gollini|GK|31|ITA|70
+99|Mile Svilar|GK|27|SRB|85
+3|Konstantinos Koulierakis|CB|22|GRE|76
+5|Evan N'Dicka|CB|27|CIV|81
+20|Nahuel Molina|RB|28|ARG|78
+22|Mario Hermoso|CB|31|ESP|77
+23|Gianluca Mancini|CB|30|ITA|81
+26|Leonardo Balerdi|CB|27|ARG|78
+87|Daniele Ghilardi|CB|23|ITA|78
+2|Devyne Rensch|RB|23|NED|76
+43|Wesley|RB|23|BRA|80
+4|Bryan Cristante|DM|31|ITA|79
+15|Marten de Roon|DM|35|NED|76
+17|Manu Koné|CM|25|FRA|83
+61|Niccolò Pisilli|CM|22|ITA|75
+86|Rodrigo Mora|AM|19|POR|76
+7|Lorenzo Pellegrini|AM|30|ITA|79
+18|Matias Soulé|RW|23|ARG|82
+21|Paulo Dybala|AM|32|ARG|80
+77|Emanuele Lulli|CM|19|ITA|60
+63|Alessandro Di Nunzio|CM|19|ITA|60
+9|Santiago Castro|ST|22|ARG|78
+14|Donyell Malen|ST|27|NED|81
+68|Antonio Arena|ST|17|ITA|60
+`},
+{"id": "LAZ", "name": "Lazio", "short": "Lazio", "c1": "#87d8f7", "c2": "#ffffff", "stadium": "Stadio Olimpico", "cap": 70634, "mgr": "Gennaro Gattuso", "capt": "Mattia Zaccagni", "rep": 82, "bal": 60, "form": "4-3-3",sq:`
+35|Christos Mandas|GK|25|GRE|79
+40|Edoardo Motta|GK|21|ITA|68
+55|Alessio Furlanetto|GK|24|ITA|60
+29|Manuel Lazzari|RB|32|ITA|73
+77|Adam Marušić|RB|34|MNE|74
+2|Diogo Leite|CB|27|POR|76
+5|Danilho Doekhi|CB|28|NED|77
+25|Oliver Provstgaard|CB|23|DEN|74
+37|Josip Šutalo|CB|26|CRO|77
+3|Luca Pellegrini|LB|27|ITA|73
+17|Nuno Tavares|LB|26|POR|78
+23|Alfonso Pedraza|LB|30|ESP|76
+15|Romano Floriani|RB|23|ITA|66
+33|Ricardo Bordon|CB|20|BRA|64
+6|Nicolò Rovella|DM|24|ITA|81
+7|Fisayo Dele-Bashiru|CM|25|NGA|76
+16|Davide Frattesi|CM|27|ITA|81
+21|Reda Belahyane|DM|22|MAR|72
+24|Kenneth Taylor|CM|24|NED|77
+32|Danilo Cataldi|DM|32|ITA|73
+28|Adrian Przyborek|AM|19|POL|66
+8|Bruno Galassi|CM|19|ESP|62
+11|Gustav Isaksen|RW|25|DEN|79
+22|Matteo Cancellieri|RW|24|ITA|75
+10|Mattia Zaccagni|LW|31|ITA|80
+80|Albert Guðmundsson|AM|29|ISL|79
+9|Andrea Pinamonti|ST|27|ITA|76
+14|Tijjani Noslin|ST|27|NED|75
+`},
+{"id": "ATA", "name": "Atalanta", "short": "Atalanta", "c1": "#1e71b8", "c2": "#000000", "stadium": "New Balance Arena", "cap": 23439, "mgr": "Maurizio Sarri", "capt": "Éderson", "rep": 86, "bal": 90, "form": "4-3-3",sq:`
+29|Marco Carnesecchi|GK|26|ITA|83
+57|Marco Sportiello|GK|34|ITA|70
+22|Thomas Pompei|GK|20|ITA|58
+3|Odilon Kossounou|CB|25|CIV|78
+4|Isak Hien|CB|27|SWE|80
+23|Sead Kolašinac|CB|33|BIH|76
+31|Thomas Kristensen|CB|24|DEN|75
+42|Giorgio Scalvini|CB|22|ITA|81
+40|Relja Obrić|CB|20|SVN|66
+16|Raoul Bellanova|RB|26|ITA|78
+77|Davide Zappacosta|RB|34|ITA|75
+47|Lorenzo Bernasconi|LB|22|ITA|72
+8|Mario Pašalić|CM|31|CRO|78
+13|Éderson|CM|27|BRA|84
+19|Franck Kessié|DM|29|CIV|79
+70|Gianluca Gaetano|AM|26|ITA|75
+7|Kamaldeen Sulemana|LW|24|GHA|76
+10|Lazar Samardžić|AM|24|SRB|78
+17|Charles De Ketelaere|AM|25|BEL|83
+18|Giacomo Raspadori|ST|26|ITA|80
+59|Nicola Zalewski|LB|24|POL|76
+99|Eljif Elmas|CM|27|MKD|77
+11|Jonathan Rowe|LW|23|ENG|78
+9|Gianluca Scamacca|ST|27|ITA|80
+90|Nikola Krstović|ST|26|MNE|79
+`},
+{"id": "COM", "name": "Como", "short": "Como", "c1": "#0055a4", "c2": "#ffffff", "stadium": "Stadio Giuseppe Sinigaglia", "cap": 13602, "mgr": "Cesc Fàbregas", "capt": "Lucas Da Cunha", "rep": 84, "bal": 110, "form": "4-2-3-1",sq:`
+1|Jean Butez|GK|31|FRA|80
+22|Mauro Vigorito|GK|36|ITA|62
+97|Robert Sánchez|GK|28|ESP|80
+27|Yan Couto|RB|24|BRA|78
+28|Ivan Smolčić|RB|26|CRO|77
+2|Marc-Oliver Kempf|CB|31|GER|77
+4|Jacobo Ramón|CB|21|ESP|79
+13|Alberto Dossena|CB|28|ITA|74
+18|Edoardo Goldaniga|CB|32|ITA|71
+53|Willy Kambwala|CB|22|COD|72
+99|Trevoh Chalobah|CB|27|ENG|80
+3|Álex Valle|LB|22|ESP|78
+16|Kaiki|LB|23|BRA|70
+5|Máximo Perrone|DM|23|ARG|81
+7|Lucas Da Cunha|CM|25|FRA|80
+6|Luis Milla|CM|32|ESP|77
+21|Samuele Ricci|DM|25|ITA|80
+8|Maxence Caqueret|CM|26|FRA|79
+10|Nico Paz|AM|22|ARG|86
+30|Mattia Liberali|AM|19|ITA|66
+11|Assane Diao|RW|21|SEN|79
+42|Jayden Addai|LW|21|NED|73
+17|Jesús Rodríguez|LW|20|ESP|78
+20|Martin Baturina|AM|23|CRO|80
+9|Anastasios Douvikas|ST|27|GRE|77
+90|Moise Kean|ST|26|ITA|83
+`},
+{"id": "BGN", "name": "Bologna", "short": "Bologna", "c1": "#1a2f48", "c2": "#a21c26", "stadium": "Stadio Renato Dall'Ara", "cap": 38279, "mgr": "Raffaele Palladino", "capt": "Lorenzo De Silvestri", "rep": 82, "bal": 60, "form": "4-2-3-1",sq:`
+1|Łukasz Skorupski|GK|35|POL|78
+25|Massimo Pessina|GK|18|ITA|70
+34|Francesco Raffaelli|GK|21|ITA|58
+2|Emil Holm|RB|26|SWE|78
+3|Arthur Theate|LB|26|BEL|78
+5|Eivind Helland|CB|21|NOR|73
+14|Torbjørn Heggem|CB|27|NOR|77
+16|Nicolò Casale|CB|28|ITA|76
+20|Nadir Zortea|RB|27|ITA|76
+29|Lorenzo De Silvestri|RB|38|ITA|68
+33|Juan Miranda|LB|26|ESP|77
+41|Martin Vitík|CB|23|CZE|75
+23|Rahim Alhassane|LB|24|NIG|66
+4|Tommaso Pobega|CM|27|ITA|77
+6|Nikola Moro|DM|28|CRO|77
+8|Mikel Amondarain|CM|21|ARG|66
+17|Oussama El Azzouzi|DM|25|MAR|73
+19|Lewis Ferguson|CM|27|SCO|81
+21|Jens Odgaard|AM|27|DEN|77
+36|Matteo Darmian|RB|36|ITA|71
+7|Riccardo Orsolini|RW|29|ITA|81
+9|Artem Dovbyk|ST|29|UKR|78
+10|Federico Bernardeschi|RW|32|ITA|77
+11|Samuel Mbangula|LW|22|BEL|74
+22|Jay Enem|ST|23|NED|68
+28|Nicolò Cambiaghi|LW|25|ITA|78
+91|Roberto Piccoli|ST|25|ITA|77
+`},
+{"id": "FIO", "name": "Fiorentina", "short": "Fiorentina", "c1": "#5a2b81", "c2": "#ffffff", "stadium": "Stadio Artemio Franchi", "cap": 43118, "mgr": "Paolo Vanoli", "capt": "David de Gea", "rep": 81, "bal": 60, "form": "3-5-2",sq:`
+43|David de Gea|GK|35|ESP|82
+53|Oliver Christensen|GK|27|DEN|70
+19|Luca Lezzerini|GK|31|ITA|60
+2|Dodô|RB|27|BRA|80
+3|Radu Drăgușin|CB|24|ROU|77
+5|Marin Pongračić|CB|29|CRO|77
+6|Luca Ranieri|CB|27|ITA|78
+17|João Mário|RB|26|POR|74
+20|Álex Jiménez|RB|21|ESP|73
+21|Valde|LB|19|ESP|64
+33|Viery|CB|21|BRA|65
+4|Marco Brescianini|CM|26|ITA|74
+14|Arthur Atta|CM|23|FRA|76
+25|Alieu Njie|AM|21|SWE|68
+27|Cher Ndour|CM|22|ITA|74
+44|Nicolò Fagioli|CM|25|ITA|79
+65|Fabiano Parisi|LB|25|ITA|75
+42|Christ Inao Oulaï|CM|20|CIV|68
+7|Riccardo Sottil|LW|27|ITA|73
+23|Beto|ST|28|GNB|75
+28|Pote|RW|28|POR|75
+29|Wilfried Gnonto|LW|22|ITA|75
+30|Franco Mastantuono|AM|19|ARG|80
+32|Mateo Pellegrino|ST|24|ARG|72
+71|Sulayman Jallow|LW|19|GAM|62
+`},
+{"id": "TOR", "name": "Torino", "short": "Torino", "c1": "#881f19", "c2": "#ffffff", "stadium": "Stadio Olimpico Grande Torino", "cap": 28177, "mgr": "Ignazio Abate", "capt": "Duván Zapata", "rep": 78, "bal": 40, "form": "3-5-2",sq:`
+20|Lucas Perri|GK|28|BRA|76
+81|Franco Israel|GK|26|URU|74
+26|Diego Mascardi|GK|20|ITA|58
+2|Nathan Patterson|RB|25|SCO|74
+3|Cristiano Biraghi|LB|34|ITA|71
+5|Eray Cömert|CB|28|SUI|73
+13|Ricardo Rodríguez|CB|34|SUI|74
+15|Pietro Comuzzo|CB|21|ITA|76
+23|Saúl Coco|CB|27|EQG|76
+29|Niccolò Fortini|LB|20|ITA|68
+44|Ardian Ismajli|CB|30|ALB|75
+6|Emirhan İlkhan|DM|22|TUR|70
+7|Zakaria Aboukhlal|RW|26|MAR|74
+8|Rolando Mandragora|CM|29|ITA|77
+10|Nikola Vlašić|AM|29|CRO|78
+21|Daniel Bragança|CM|27|POR|74
+22|Cesare Casadei|CM|23|ITA|76
+28|Kian Fitz-Jim|CM|23|NED|70
+45|Rafik Belghali|RB|24|ALG|72
+66|Gvidas Gineitis|CM|22|LTU|73
+9|Pietro Pellegri|ST|25|ITA|68
+11|Gaetano Oristanio|RW|24|ITA|71
+17|Sandro Kulenović|ST|26|CRO|71
+18|Giovanni Simeone|ST|31|ARG|75
+19|Ché Adams|ST|30|SCO|75
+91|Duván Zapata|ST|35|COL|73
+`},
+{"id": "UDI", "name": "Udinese", "short": "Udinese", "c1": "#000000", "c2": "#ffffff", "stadium": "Bluenergy Stadium", "cap": 25132, "mgr": "Kosta Runjaić", "capt": "Jesper Karlström", "rep": 76, "bal": 35, "form": "3-5-2",sq:`
+40|Maduka Okoye|GK|27|NGA|78
+41|Bartosz Mrozek|GK|26|POL|70
+93|Daniele Padelli|GK|41|ITA|60
+5|David Alaba|CB|34|AUT|76
+13|Nicolò Bertola|CB|23|ITA|71
+14|James Abankwah|CB|22|IRL|68
+16|Matteo Palma|CB|18|ITA|64
+27|Christian Kabasele|CB|35|BEL|71
+28|Oumar Solet|CB|26|FRA|80
+77|Enzo Ebosse|LB|27|CMR|70
+4|Sandi Lovrić|CM|28|SVN|75
+6|Oier Zarraga|CM|27|ESP|74
+8|Jesper Karlström|DM|31|SWE|74
+11|Hassane Kamara|LB|32|CIV|73
+20|Juan Arizala|LB|21|COL|68
+23|Mërgim Vojvoda|RB|31|KOS|71
+24|Jakub Piotrowski|CM|29|POL|75
+30|Giorgi Chakvetadze|AM|27|GEO|72
+32|Jurgen Ekkelenkamp|CM|26|NED|75
+38|Lennon Miller|CM|20|SCO|72
+59|Alessandro Zanoli|RB|26|ITA|72
+7|Idrissa Gueye|ST|20|SEN|66
+9|Keinan Davis|ST|28|JAM|75
+10|Nicolò Zaniolo|AM|27|ITA|76
+15|Vakoun Issouf Bayo|ST|29|CIV|70
+91|Lazar Jovanović|RW|19|SRB|66
+`},
+{"id": "GEN", "name": "Genoa", "short": "Genoa", "c1": "#a51c30", "c2": "#1a2a48", "stadium": "Stadio Luigi Ferraris", "cap": 33205, "mgr": "Daniele De Rossi", "capt": "Johan Vásquez", "rep": 76, "bal": 35, "form": "3-5-2",sq:`
+1|Justin Bijlow|GK|28|NED|76
+39|Daniele Sommariva|GK|29|ITA|60
+99|Franz Stolz|GK|25|AUT|68
+2|Mario Mitaj|LB|23|ALB|70
+5|Leo Østigård|CB|26|NOR|76
+16|Cody Drameh|RB|24|ENG|70
+22|Johan Vásquez|CB|28|MEX|78
+27|Alessandro Marcandalli|CB|24|ITA|72
+34|Sebastian Otoa|CB|22|DEN|70
+3|Kingsley Ehizibue|RB|31|NED|70
+4|Amorim|CM|21|BRA|64
+20|Stefano Sabelli|RB|33|ITA|70
+77|Mikael Egill Ellertsson|LB|24|ISL|73
+8|Tommaso Baldanzi|AM|23|ITA|74
+10|Junior Messias|RW|35|BRA|71
+25|Hamed Traorè|CM|26|CIV|72
+32|Morten Frendrup|DM|25|DEN|78
+92|Stephan El Shaarawy|LW|34|ITA|72
+97|Djibril Sow|CM|29|SUI|74
+11|Franz-Ethan Meichtry|RW|21|SUI|64
+9|Vítinha|ST|26|POR|74
+17|Elias Havel|ST|23|AUT|64
+18|Milutin Osmajić|ST|27|MNE|72
+29|Lorenzo Colombo|ST|24|ITA|73
+76|Lorenzo Venturino|RW|20|ITA|67
+`},
+{"id": "SAS", "name": "Sassuolo", "short": "Sassuolo", "c1": "#00a752", "c2": "#000000", "stadium": "Mapei Stadium", "cap": 21515, "mgr": "Alberto Aquilani", "capt": "Domenico Berardi", "rep": 75, "bal": 30, "form": "4-3-3",sq:`
+12|Andrea Satalino|GK|27|ITA|62
+49|Arijanet Murić|GK|27|KOS|77
+80|Gianluca Turati|GK|25|ITA|66
+3|Josh Doig|LB|24|SCO|74
+5|Fali Candé|LB|28|GNB|71
+6|Sebastian Walukiewicz|CB|26|POL|74
+15|Filip Ćaleta-Car|CB|30|CRO|74
+21|Jay Idzes|CB|26|IDN|76
+26|Cas Odenthal|CB|26|NED|71
+27|Yeferson Paz|CB|24|COL|68
+20|Bryan Van Der Brempt|RB|24|BEL|67
+16|Tom Leysen|RB|23|BEL|65
+46|Filippo Cinquegrano|RB|22|ITA|62
+70|Edoardo Pieragnolo|LB|23|ITA|67
+8|Luca Ghion|CM|26|ITA|68
+11|Daniel Boloca|CM|27|ROU|72
+18|Nemanja Matić|DM|38|SRB|73
+33|Luca Obrador|AM|22|ESP|64
+35|Luca Lipani|CM|21|ITA|70
+42|Kristian Thorstvedt|CM|27|NOR|76
+90|Ismaël Koné|CM|24|CAN|75
+7|Cristian Volpato|AM|22|AUS|72
+9|Kieron Bowie|ST|24|SCO|67
+10|Domenico Berardi|RW|32|ITA|79
+19|Andreas Skjellerup|ST|24|DEN|67
+25|Benjamín Domínguez|LW|23|ARG|72
+45|Armand Laurienté|LW|27|FRA|78
+77|Samuele Pierini|RW|28|ITA|68
+94|Sebastiano Esposito|ST|24|ITA|73
+`},
+{"id": "PAR", "name": "Parma", "short": "Parma", "c1": "#ffd200", "c2": "#0035a0", "stadium": "Stadio Ennio Tardini", "cap": 22352, "mgr": "Alberto Gilardino", "capt": "Enrico Delprato", "rep": 74, "bal": 35, "form": "3-5-2",sq:`
+40|Edoardo Corvi|GK|25|ITA|72
+22|Simone Ghidotti|GK|26|ITA|62
+30|Giovanni Daffara|GK|21|ITA|58
+3|Abdoulaye Ndiaye|CB|24|SEN|73
+5|Lautaro Valenti|CB|27|ARG|72
+15|Enrico Delprato|CB|26|ITA|74
+34|Diego Carlos|CB|33|BRA|73
+37|Mariano Troilo|CB|23|ARG|73
+4|Vincent Sierro|DM|31|SUI|72
+10|Adrián Bernabé|CM|25|ESP|78
+14|Emanuele Valeri|LB|27|ITA|73
+16|Mandela Keita|DM|24|BEL|76
+27|Sascha Britschgi|RB|20|SUI|70
+29|Franco Carboni|LB|23|ARG|70
+32|Christian Ordóñez|CM|22|ARG|72
+41|Hans Nicolussi Caviglia|DM|26|ITA|74
+80|Giovanni Fabbian|AM|23|ITA|73
+7|Ousmane Diallo|LW|19|ESP|66
+8|Benjamín Cremaschi|CM|21|USA|70
+9|David Romero|ST|23|ARG|66
+11|Pontus Almqvist|RW|27|SWE|72
+19|El Bilal Touré|ST|25|MLI|73
+20|Matija Frigan|ST|23|CRO|72
+23|Nesta Elphege|ST|25|FRA|66
+`},
+{"id": "CAG", "name": "Cagliari", "short": "Cagliari", "c1": "#a01b29", "c2": "#00285e", "stadium": "Unipol Domus", "cap": 16416, "mgr": "Fabio Pisacane", "capt": "Alessandro Deiola", "rep": 73, "bal": 25, "form": "3-5-2",sq:`
+1|Elia Caprile|GK|25|ITA|78
+12|Alen Sherri|GK|28|ALB|66
+23|Boris Radunović|GK|30|SRB|68
+2|Zé Pedro|CB|29|POR|71
+15|Juan Rodríguez|CB|21|URU|72
+22|Raphael Kofler|CB|21|ITA|62
+26|Yerry Mina|CB|32|COL|74
+33|Adam Obert|LB|24|SVK|71
+3|Riyad Idrissi|LB|21|ITA|68
+4|Alessandro Romano|CM|20|ITA|72
+6|Harry Winks|CM|30|ENG|73
+8|Michel Adopo|CM|26|FRA|74
+17|Mattia Felici|LW|25|ITA|71
+21|Roberto Gagliardini|CM|32|ITA|71
+24|Giuseppe Aurelio|LB|26|ITA|68
+27|Alessandro Deiola|CM|31|ITA|71
+28|Yukinari Sugawara|RB|26|JPN|73
+79|Yanis Massolin|CM|24|FRA|67
+20|Riccardo Ciervo|RW|24|ITA|65
+9|Kevin Carlos|ST|25|ESP|70
+10|Jacopo Fazzini|AM|23|ITA|71
+18|M'Bala Nzola|ST|30|ANG|71
+39|Alieu Fadera|LW|25|GAM|71
+70|Daniel Maldini|AM|25|ITA|74
+19|Yael Trepy|ST|20|FRA|62
+`},
+{"id": "LEC", "name": "Lecce", "short": "Lecce", "c1": "#f5d300", "c2": "#d6001c", "stadium": "Stadio Via del Mare", "cap": 30354, "mgr": "Eusebio Di Francesco", "capt": "Wladimiro Falcone", "rep": 71, "bal": 20, "form": "4-3-3",sq:`
+30|Wladimiro Falcone|GK|31|ITA|77
+1|Marco Bleve|GK|31|ITA|60
+32|Alexandru Borbei|GK|23|ROU|60
+2|Ali Dembélé|RB|22|FRA|64
+3|Corrie Ndaba|CB|26|IRL|67
+4|Kialonda Gaspar|CB|29|ANG|72
+5|Jamil Siebert|CB|24|GER|70
+17|Danilo Veiga|RB|24|POR|72
+18|Gaby Jean|CB|26|FRA|67
+25|Antonino Gallo|LB|26|ITA|73
+44|Tiago Gabriel|CB|21|POR|72
+8|Sadik Fofana|CM|23|TOG|65
+10|Medon Berisha|CM|23|ALB|68
+14|Youssef Maleh|CM|28|MAR|70
+16|Omri Gandelman|CM|26|ISR|70
+20|Ivan Ilić|CM|25|SRB|72
+29|Lassana Coulibaly|DM|30|MLI|72
+77|Mohamed Kaba|DM|25|FRA|70
+28|Olaf Gorter|CM|21|NED|62
+7|Amar Fatah|ST|22|SWE|64
+9|Nikola Štulić|ST|25|SRB|71
+11|Konan N'Dri|RW|26|NIG|70
+50|Santiago Pierotti|RW|25|ARG|71
+69|Willem Geubbels|ST|25|FRA|67
+99|Joël Monteiro|LW|27|SUI|68
+34|Hjalte Laerke|ST|19|DEN|58
+`},
+{"id": "MNZ", "name": "Monza", "short": "Monza", "c1": "#e30613", "c2": "#ffffff", "stadium": "U-Power Stadium", "cap": 17102, "mgr": "Ivan Jurić", "capt": "Matteo Pessina", "rep": 70, "bal": 30, "form": "3-4-2-1",sq:`
+1|Semuel Pizzignacco|GK|24|ITA|70
+20|Demba Thiam|GK|28|SEN|66
+12|Andrea Vailati|GK|19|ITA|56
+18|Ricardo Mangas|LB|28|POR|70
+2|Arvid Brorsson|CB|27|SWE|70
+3|Lorenzo Lucchesi|CB|23|ITA|68
+6|Valentin Antov|CB|25|BUL|70
+15|Filippo Delli Carri|CB|27|ITA|68
+44|Andrea Carboni|CB|25|ITA|71
+33|Saverio Domanico|CB|21|ITA|60
+24|Eddy Kouadio|CM|20|ITA|70
+11|Omari Forson|RW|22|ENG|68
+14|Pedro Obiang|DM|34|EQG|68
+17|Keita Baldé|LW|31|SEN|69
+19|Samuele Birindelli|RB|26|ITA|70
+21|Leonardo Colombo|CM|21|ITA|64
+23|Nicolas Galazzi|LW|25|ITA|66
+26|Patrick Ciurria|RW|31|ITA|69
+28|Andrea Colpani|AM|27|ITA|72
+32|Matteo Pessina|CM|29|ITA|73
+35|Jay Robinson|LW|19|ENG|60
+36|Gustavo Varela|ST|21|POR|62
+10|Patrick Cutrone|ST|28|ITA|70
+37|Andrea Petagna|ST|31|ITA|68
+47|Dany Mota|ST|28|POR|70
+39|Kevin Martins|ST|21|ITA|60
+`},
+{"id": "FRO", "name": "Frosinone", "short": "Frosinone", "c1": "#ffd700", "c2": "#0047ab", "stadium": "Stadio Benito Stirpe", "cap": 16227, "mgr": "Massimiliano Alvini", "capt": "Ilario Monterisi", "rep": 66, "bal": 15, "form": "4-3-3",sq:`
+22|Lorenzo Palmisani|GK|22|ITA|66
+91|Sebastiano Desplanches|GK|23|ITA|64
+12|Matteo Pisseri|GK|34|ITA|58
+20|Anthony Oyono|RB|25|GAB|66
+90|Enzo Tchato|CB|23|CMR|62
+2|Giorgio Cittadini|CB|24|ITA|66
+3|Gabriele Calvani|CB|22|ITA|62
+5|Wisdom Amey|CB|21|ITA|64
+25|Kevin Akpoguma|CB|31|NGA|68
+30|Ilario Monterisi|CB|24|ITA|67
+71|Aleksa Terzić|LB|27|SRB|67
+79|Gabriele Bracaglia|CB|23|ITA|61
+74|Omar Fayed|CB|23|EGY|62
+73|Patrizio Masini|CM|25|ITA|66
+14|Giacomo Calò|CM|29|ITA|66
+27|Florian Grillitsch|DM|31|AUT|69
+34|Anouar El Azzouzi|CM|25|NED|64
+70|Luis Hasa|CM|22|ALB|65
+92|Benjamin Lhassine Kone|CM|26|CIV|65
+96|Francesco Gelli|CM|30|ITA|65
+24|Alessio Zerbin|RW|27|ITA|67
+10|Romano Schmid|AM|26|AUT|72
+7|Farès Ghedjemis|RW|24|ALG|67
+17|Giorgi Kvernadze|LW|23|GEO|66
+9|Antonio Raimondo|ST|22|ITA|65
+11|Daniel Bîrligea|ST|26|ROU|68
+89|Tomás Bobček|ST|25|SVK|64
+29|Alejandro Cichero|LW|20|VEN|60
+`},
+{"id": "VEN", "name": "Venezia", "short": "Venezia", "c1": "#ff6a00", "c2": "#00553a", "stadium": "Stadio Pier Luigi Penzo", "cap": 12048, "mgr": "Davide Nicola", "capt": "Gianluca Busio", "rep": 68, "bal": 20, "form": "3-5-2",sq:`
+1|Filip Stanković|GK|24|SRB|72
+96|Lorenzo Montipò|GK|30|ITA|68
+23|Matteo Grandi|GK|34|ITA|56
+14|Thierry Correia|RB|27|POR|68
+2|Matías Moreno|CB|23|ARG|66
+3|Joël Schingtienne|CB|24|BEL|67
+4|Bartol Franjić|CB|26|CRO|67
+15|Juan Jesus|CB|35|BRA|67
+17|Armel Bella-Kotchap|CB|24|GER|70
+25|Redouane Halhal|CB|23|MAR|64
+33|Marin Šverko|CB|28|CRO|67
+70|Pasquale Mazzocchi|RB|31|ITA|68
+6|Gianluca Busio|CM|24|USA|72
+19|Simon Sohm|CM|25|SUI|71
+21|Thórir Helgason|CM|26|ISL|65
+26|Toma Bašić|CM|29|CRO|67
+30|Matteo Dagasso|DM|22|ITA|66
+32|Alfred Duncan|CM|33|GHA|66
+71|Kike Pérez|CM|29|ESP|68
+18|Antoine Hainaut|LB|24|FRA|64
+5|Ridgeciano Haps|LB|33|SUR|65
+20|Richie Sagrado|RB|22|BEL|62
+8|Lamine Fanne|AM|22|ESP|62
+7|Albion Rrahmani|ST|26|KOS|67
+9|Andrea Adorante|ST|26|ITA|68
+10|John Yeboah|RW|26|ECU|70
+29|Lion Lauberbach|ST|28|GER|65
+45|Akor Adams|ST|26|NGA|70
+`},
+];
+const SB_CLUBS = [["Hellas Verona", 70, "Stadio Marcantonio Bentegodi", 39211], ["Pisa", 69, "Arena Garibaldi", 12508], ["Cremonese", 69, "Stadio Giovanni Zini", 20641], ["Palermo", 69, "Stadio Renzo Barbera", 36365], ["Empoli", 68, "Stadio Carlo Castellani", 16284], ["Sampdoria", 67, "Stadio Luigi Ferraris", 33205], ["Modena", 66, "Stadio Alberto Braglia", 21151], ["Cesena", 66, "Orogel Stadium-Dino Manuzzi", 20194], ["Catanzaro", 66, "Stadio Nicola Ceravolo", 14650], ["Padova", 65, "Stadio Euganeo", 32420], ["Südtirol", 65, "Stadio Druso", 5539], ["Juve Stabia", 65, "Stadio Romeo Menti", 7642], ["Mantova", 64, "Stadio Danilo Martelli", 14884], ["Carrarese", 64, "Stadio dei Marmi", 4194], ["Avellino", 64, "Stadio Partenio-Adriano Lombardi", 26000], ["Virtus Entella", 63, "Stadio Comunale", 5535], ["Vicenza", 63, "Stadio Romeo Menti", 12000], ["Benevento", 63, "Stadio Ciro Vigorito", 16867], ["Arezzo", 62, "Stadio Città di Arezzo", 13128], ["Ascoli", 62, "Stadio Cino e Lillo Del Duca", 12461]];
+const SC_CLUBS = [["Bari", 58], ["Spezia", 58], ["Salernitana", 57], ["Reggiana", 57], ["Cittadella", 56], ["Ternana", 56], ["Pescara", 56], ["Perugia", 55], ["Catania", 56], ["Triestina", 54], ["Lecco", 54], ["Novara", 54], ["Foggia", 53], ["Crotone", 54], ["Trapani", 53], ["Feralpisalò", 53]];
+const SA_STADIA = {"INT": {"o": "1926", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Arancio", "Tribuna Blu", "Curva Nord", "Curva Sud"], "bowl": 1}, "ACM": {"o": "1926", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Arancio", "Tribuna Blu", "Curva Sud", "Curva Nord"], "bowl": 1}, "JUV": {"o": "2011", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Ovest", "Tribuna Est", "Curva Sud", "Curva Nord"], "bowl": 1}, "NAP": {"o": "1959", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Posillipo", "Distinti", "Curva B", "Curva A"], "bowl": 1}, "ROM": {"o": "1953", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Monte Mario", "Tribuna Tevere", "Curva Sud", "Curva Nord"], "bowl": 1}, "LAZ": {"o": "1953", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Monte Mario", "Tribuna Tevere", "Curva Nord", "Curva Sud"], "bowl": 1}, "ATA": {"o": "1928", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Giulio Cesare", "Tribuna Rinascimento", "Curva Nord", "Curva Sud"], "c": 1}, "COM": {"o": "1927", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna", "Distinti", "Curva Azzurra", "Settore Ospiti"], "c": 1}, "BGN": {"o": "1927", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna", "Distinti", "Curva Andrea Costa", "Curva San Luca"], "bowl": 1}, "FIO": {"o": "1931", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna", "Maratona", "Curva Fiesole", "Curva Ferrovia"], "bowl": 1}, "TOR": {"o": "1933", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Grande Torino", "Distinti", "Curva Maratona", "Curva Primavera"], "bowl": 1}, "UDI": {"o": "1976", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Centrale", "Distinti", "Curva Nord", "Curva Sud"], "c": 1}, "GEN": {"o": "1911", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna", "Distinti", "Gradinata Nord", "Gradinata Sud"], "c": 1}, "SAS": {"o": "1995", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Centrale", "Distinti", "Curva Sud", "Curva Nord"], "c": 1}, "PAR": {"o": "1923", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Petitot", "Tribuna Est", "Curva Nord", "Curva Sud"], "c": 1}, "CAG": {"o": "2017", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna", "Distinti", "Curva Nord", "Curva Sud"], "c": 1}, "LEC": {"o": "1966", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Centrale", "Tribuna Est", "Curva Nord", "Curva Sud"], "bowl": 1}, "MNZ": {"o": "1988", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Centrale", "Distinti", "Curva Sud", "Curva Nord"], "c": 1}, "FRO": {"o": "2017", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna Centrale", "Distinti", "Curva Nord", "Curva Sud"], "c": 1}, "VEN": {"o": "1913", "rec": null, "pitch": "105 × 68 m", "st": ["Tribuna", "Distinti", "Curva Sud", "Curva Nord"]}};
+const ITA_ABROAD = [["Diego Coppola", "CB", 22, "Paris FC", 75], ["Samuele Inácio", "AM", 18, "Borussia Dortmund", 70], ["Issa Doumbia", "CM", 23, "Sporting CP", 74], ["Mohamed Alì Zoma", "ST", 19, "Nürnberg", 67]];
+const ITA_CAPS = [["Gianluigi Donnarumma", "87", "0"], ["Nicolò Barella", "73", "10"], ["Giovanni Di Lorenzo", "56", "5"], ["Alessandro Bastoni", "46", "5"], ["Federico Dimarco", "38", "3"], ["Bryan Cristante", "48", "2"], ["Davide Frattesi", "38", "9"], ["Moise Kean", "28", "13"], ["Gianluca Mancini", "22", "2"], ["Riccardo Calafiori", "17", "1"], ["Federico Chiesa", "51", "7"], ["Lorenzo Pellegrini", "36", "6"], ["Manuel Locatelli", "36", "3"], ["Raoul Bellanova", "6", "0"], ["Alessandro Buongiorno", "12", "0"], ["Nicolò Fagioli", "9", "0"], ["Sandro Tonali", "~30", "~2"], ["Guglielmo Vicario", "~5", "0"], ["Marco Carnesecchi", "~3", "0"], ["Massimo Pessina", "~1", "0"], ["Giorgio Scalvini", "~5", "0"], ["Matteo Ruggeri", "~3", "0"], ["Michael Kayode", "~2", "0"], ["Honest Ahanor", "~1", "0"], ["Daniele Ghilardi", "~3", "0"], ["Diego Coppola", "~2", "0"], ["Eddy Kouadio", "~1", "0"], ["Rolando Mandragora", "~5", "0"], ["Samuele Ricci", "~10", "0"], ["Alessandro Romano", "~1", "0"], ["Samuele Inácio", "~1", "0"], ["Issa Doumbia", "~1", "0"], ["Antonio Vergara", "~2", "0"], ["Nicolò Cambiaghi", "~4", "~1"], ["Francesco Pio Esposito", "~10", "~4"], ["Gianluca Scamacca", "~22", "~3"], ["Mohamed Alì Zoma", "~1", "0"], ["Daniel Maldini", "~5", "~1"], ["Sebastiano Esposito", "~2", "0"], ["Andrea Cambiaso", "~18", "~1"], ["Destiny Udogie", "~14", "0"], ["Giacomo Raspadori", "~44", "~9"], ["Mattia Zaccagni", "~14", "~2"], ["Matteo Politano", "~25", "~3"], ["Nicolò Rovella", "~6", "0"]];
+NAT_REC.ITA = {"caps": [["Gianluigi Buffon", 176], ["Fabio Cannavaro", 136], ["Paolo Maldini", 126], ["Leonardo Bonucci", 121], ["Giorgio Chiellini", 117]], "goals": [["Luigi Riva", 35], ["Giuseppe Meazza", 33], ["Silvio Piola", 30], ["Alessandro Del Piero", 27], ["Roberto Baggio", 27]]};
+const FIRST_IT = ["Luca", "Marco", "Matteo", "Andrea", "Alessandro", "Lorenzo", "Francesco", "Davide", "Simone", "Federico", "Riccardo", "Giacomo", "Tommaso", "Leonardo", "Gabriele", "Pietro", "Nicolò", "Filippo", "Edoardo", "Mattia", "Christian", "Daniele", "Stefano", "Antonio", "Giuseppe", "Salvatore", "Vincenzo", "Michele", "Emanuele", "Samuele", "Cristian", "Alessio", "Diego", "Giovanni", "Paolo", "Elia", "Manuel", "Jacopo", "Raffaele", "Kevin"];
+const LAST_IT = ["Rossi", "Russo", "Ferrari", "Esposito", "Bianchi", "Romano", "Colombo", "Ricci", "Marino", "Greco", "Bruno", "Gallo", "Conti", "De", "Luca", "Mancini", "Costa", "Giordano", "Rizzo", "Lombardi", "Moretti", "Barbieri", "Fontana", "Santoro", "Mariani", "Rinaldi", "Caruso", "Ferrara", "Galli", "Martini", "Leone", "Longo", "Gentile", "Martinelli", "Vitale", "Lombardo", "Serra", "Coppola", "De", "Santis", "D'Angelo", "Marchetti", "Parisi", "Villa", "Conte", "Ferraro", "Ferri", "Fabbri", "Bianco", "Marini", "Grasso", "Valentini", "Messina", "Sala", "De", "Angelis", "Gatti", "Pellegrini", "Palumbo", "Sanna", "Farina", "Rizzi", "Monti", "Cattaneo", "Morelli", "Amato", "Silvestri", "Mazza", "Testa", "Grassi", "Pellegrino", "Carbone", "Giuliani", "Benedetti", "Barone", "Rossetti", "Caputo", "Montanari", "Guerra", "Palmieri", "Bernardi", "Martino", "Fiore", "De", "Rosa", "Ferretti", "Bellini", "Basile", "Riva", "Donati", "Piras", "Vitali", "Battaglia", "Sartori", "Neri", "Costantini", "Milani", "Pagano", "Ruggiero", "Sorrentino"];
+
 // ===== CORE: utilities, players, tactics =====
 let G = null; // whole game state
 const SAVE_KEY = 'gaffer2627.save.v1';
@@ -4127,13 +4929,13 @@ function calcValue(p) {
 function calcWageDemand(p, rep) { const r = rep || 75; return Math.max(3, Math.round(7 * Math.exp(0.08 * (p.ca - 40)) * (0.55 + 0.5 * r / 93) * (p.age >= 32 ? .8 : 1))); }
 
 // ---- divisions ----
-function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; if (G.ll && G.ll.includes(tid)) return 'LL'; return null; }
-function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite), G.ll || []); }
+function divOf(tid) { if (!G || !tid) return null; if (G.pl.includes(tid)) return 'PL'; if (G.champTeams && G.champTeams.includes(tid) && G.teams[tid] && !G.teams[tid].lite) return 'CH'; if (G.ll && G.ll.includes(tid)) return 'LL'; if (G.sa && G.sa.includes(tid)) return 'SA'; return null; }
+function fullTeams() { return G.pl.concat((G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite), G.ll || [], G.sa || []); }
 // country of a club (England unless it plays in a Spanish competition)
-function ctryOf(tid) { return G && ((G.ll && G.ll.includes(tid)) || (G.seg && G.seg.includes(tid)) || (G.pf && G.pf.includes(tid))) ? 'ESP' : 'ENG'; }
+function ctryOf(tid) { if (G && ((G.sa && G.sa.includes(tid)) || (G.sb && G.sb.includes(tid)) || (G.sc && G.sc.includes(tid)))) return 'ITA'; return G && ((G.ll && G.ll.includes(tid)) || (G.seg && G.seg.includes(tid)) || (G.pf && G.pf.includes(tid))) ? 'ESP' : 'ENG'; }
 function youthIds(tid) { return G && G.res ? ((G.res[tid] || []).concat((G.acad && G.acad[tid]) || [])) : []; }
-function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : div === 'LL' ? (G.ll || []) : G.pl; }
-function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * ({ CH: 0.45, LL: 0.8 }[divOf(tid)] || 1))); }
+function divTeams(div) { return div === 'CH' ? (G.champTeams || []).filter(t => G.teams[t] && !G.teams[t].lite) : div === 'LL' ? (G.ll || []) : div === 'SA' ? (G.sa || []) : G.pl; }
+function wageFor(p, tid) { const t = G.teams[tid]; return Math.max(2, Math.round(calcWageDemand(p, t ? t.rep : 70) * ({ CH: 0.45, LL: 0.8, SA: 0.75 }[divOf(tid)] || 1))); }
 
 // ---- compact save format: skip default player fields, round decimals; restore fills them back ----
 const P_DEF = { listed: false, injT: '', inj: 0, sus: 0, yel: 0, ym: 0, ymr: 0, mi: 0, low: 0, prom: null };
@@ -4686,7 +5488,7 @@ function shot(M, si, e, ae, type) {
   let pg = clamp(xg * Math.pow(72 / gk, 1.0), .01, .9);
   if (type === 'pen') pg = clamp(.76 + (a.Fin - 13) * .01 - (gk - 70) * .004, .6, .9);
   if (M.wx === 'rain' && type !== 'pen') pg = Math.min(.9, pg * 1.05);
-  const nf = M.comp === 'CH' && G.normCH ? G.normCH : M.comp === 'LL' && G.normLL ? G.normLL : G.normF;
+  const nf = M.comp === 'CH' && G.normCH ? G.normCH : M.comp === 'LL' && G.normLL ? G.normLL : M.comp === 'SA' && G.normSA ? G.normSA : G.normF;
   if (nf && type !== 'pen') pg *= nf;
   S.st.sh++; S.st.xg += xg;
   const sname = cap1(pn(e.p));
@@ -4807,6 +5609,7 @@ function newGame(userId, mgrName) {
   G.ded = {}; for (const c of CH_CLUBS) if (c.ded) G.ded[c.id] = c.ded;
   G.euroIn = JSON.parse(JSON.stringify(EURO_START));
   if (G.ll && G.ll.length && typeof EURO_ES_START !== 'undefined') for (const k in EURO_ES_START) G.euroIn[k] = G.euroIn[k].concat(EURO_ES_START[k]);
+  if (G.sa && G.sa.length && typeof EURO_IT_START !== 'undefined') for (const k in EURO_IT_START) G.euroIn[k] = G.euroIn[k].concat(EURO_IT_START[k]);
   for (const id of fullTeams()) autoPick(id);
   buildSeason();
   migrate();
@@ -4817,7 +5620,7 @@ function addFullTeam(c, div) {
   const t = { id: c.id, name: c.name, short: c.short || c.name, c1: c.c1, c2: c.c2, stadium: c.stadium, cap: c.cap, mgr: c.mgr, rep: c.rep, bal: c.bal, lite: false, tac: { form: c.form || PREF_FORM[c.id] || '4-2-3-1', xi: [], bench: [], ment: 3, press: 2, tempo: 2, width: 2, pass: 2 }, fin: newFin() };
   if (c.capt) t.captN = c.capt;
   if (div === 'CH' && c.rep >= 68) t.para = PARACHUTE.slice(); // relegated from the Premier League in May 2026
-  G.teams[c.id] = t; G.sq[c.id] = []; if (div === 'PL') G.pl.push(c.id); if (div === 'LL') { G.ll = G.ll || []; G.ll.push(c.id); }
+  G.teams[c.id] = t; G.sq[c.id] = []; if (div === 'PL') G.pl.push(c.id); if (div === 'LL') { G.ll = G.ll || []; G.ll.push(c.id); } if (div === 'SA') { G.sa = G.sa || []; G.sa.push(c.id); }
   addSquadRows(c.id, c.sq, div === 'PL' ? ({ COV: 3, HUL: 3, IPS: 2, LEE: 1 }[c.id] || 0) : 0);
   return t;
 }
@@ -5064,7 +5867,7 @@ function champTable() {
   for (const r of G.champ.rounds) for (const f of r) if (f.r) { addRes(tb[f.h], f.r[0], f.r[1]); addRes(tb[f.a], f.r[1], f.r[0]); }
   return Object.values(tb).sort(sortTable);
 }
-function tableOf(div) { return div === 'CH' ? champTable() : div === 'LL' && typeof llTable === 'function' ? llTable() : leagueTable(); }
+function tableOf(div) { return div === 'CH' ? champTable() : div === 'LL' && typeof llTable === 'function' ? llTable() : div === 'SA' && typeof saTable === 'function' ? saTable() : leagueTable(); }
 function userDiv() { return divOf(G.user) || 'PL'; }
 function userTable() { return tableOf(userDiv()); }
 
@@ -5104,7 +5907,7 @@ function postMatch(f, pre) {
   for (const id of pre) { const p = P(id); if (p && p.sus > 0) p.sus--; }
   // gate receipts and TV
   if (!f.neutral && !T(f.h).lite) {
-    const t = T(f.h); const ch = divOf(f.h) === 'CH'; const es = divOf(f.h) === 'LL'; const lg = LEAGUE_COMPS.includes(f.comp);
+    const t = T(f.h); const ch = divOf(f.h) === 'CH'; const es = divOf(f.h) === 'LL' || divOf(f.h) === 'SA'; const lg = LEAGUE_COMPS.includes(f.comp);
     const fill = ch ? clamp(0.55 + t.rep / 250 + (lg ? 0 : -0.12), 0.4, 0.97) : es ? clamp(0.62 + t.rep / 330 + (lg ? 0 : -0.1), 0.45, 0.98) : clamp(0.8 + t.rep / 600 + (lg ? 0 : -0.08), 0.5, 1);
     const gate = t.cap * fill * (ch ? 8 + t.rep * 0.33 : es ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38) / 1e6 * (lg ? 1 : 0.8);
     t.bal += gate; t.fin.in.gate += gate; f.att = Math.round(t.cap * fill);
@@ -5112,7 +5915,7 @@ function postMatch(f, pre) {
   if (f.comp === 'PL') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 1.5; t.fin.in.tv += 1.5; }
   if (f.comp === 'CH') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 0.12; t.fin.in.tv += 0.12; }
   // La Liga TV money (collective deal, weighted towards the bigger clubs; scaled to the game's £ finances)
-  if (f.comp === 'LL') for (const tid of [f.h, f.a]) { const t = T(tid); const tv = 0.55 + Math.max(0, t.rep - 70) * 0.02; t.bal += tv; t.fin.in.tv += tv; }
+  if (f.comp === 'LL' || f.comp === 'SA') for (const tid of [f.h, f.a]) { const t = T(tid); const tv = 0.55 + Math.max(0, t.rep - 70) * 0.02; t.bal += tv; t.fin.in.tv += tv; }
   if (['UCL', 'UEL', 'UECL'].includes(f.comp) && f.rnd && String(f.rnd).startsWith('Matchday')) {
     const win = f.r[0] > f.r[1] ? f.h : f.r[1] > f.r[0] ? f.a : null;
     const per = f.comp === 'UCL' ? 2.1 : f.comp === 'UEL' ? .45 : .4;
@@ -5136,7 +5939,7 @@ function welcomeNews() {
   const t = userTeam();
   const exp = boardTarget();
   msg('Welcome to ' + t.name, `The board welcomes ${G.mgr} as the new manager of ${t.name}. Your transfer budget is ${money(t.tb)} and the wage budget is ${wageStr(t.wb)}. The board expects you to ${exp.txt} this season. The summer transfer window closes on ${dNice(sd(CAL.WIN1_CLOSE))}.`);
-  msg('Squad data', 'Squads reflect the 2026/27 Premier League, Championship and La Liga first-team rosters as of late October 2026, after the summer window. Player ratings and attributes are game estimates. League One, Segunda División, lower-league and European opponents are simulated at team level. Southampton start the Championship season with a 4-point deduction.');
+  msg('Squad data', 'Squads reflect the 2026/27 Premier League, Championship, La Liga and Serie A first-team rosters as of late October and early November 2026, after the summer window. Player ratings and attributes are game estimates. League One, Segunda División, lower-league and European opponents are simulated at team level. Southampton start the Championship season with a 4-point deduction.');
 }
 function boardTarget(tid) {
   const t = T(tid || G.user);
@@ -5148,7 +5951,7 @@ function boardTarget(tid) {
     if (rc <= 18) return { pos: 18, txt: 'finish in mid-table' };
     return { pos: 21, txt: 'avoid relegation' };
   }
-  const ranks = (divOf(t.id) === 'LL' ? G.ll : G.pl).slice().sort((a, b) => T(b).rep - T(a).rep);
+  const ranks = (divOf(t.id) === 'LL' ? G.ll : divOf(t.id) === 'SA' ? G.sa : G.pl).slice().sort((a, b) => T(b).rep - T(a).rep);
   const rk = ranks.indexOf(t.id) + 1;
   if (rk <= 2) return { pos: 2, txt: 'challenge for the title' };
   if (rk <= 5) return { pos: 5, txt: 'qualify for the Champions League' };
@@ -5207,7 +6010,7 @@ function finishDay() {
     const target = Math.floor(plRound * 46 / 38);
     while (G.champ.played < target && G.champ.played < 46) { for (const f of G.champ.rounds[G.champ.played]) f.r = quickScore(f.h, f.a); G.champ.played++; }
   }
-  for (const c of ['LC', 'FA', 'PO', 'CDR', 'SCE']) if (G.cups[c]) checkCupProgress(c);
+  for (const c of ['LC', 'FA', 'PO', 'CDR', 'SCE', 'CIT', 'SCI']) if (G.cups[c]) checkCupProgress(c);
   for (const c of ['UCL', 'UEL', 'UECL']) checkEuroProgress(c);
   G.lastResults = ids;
   checkBoard();
@@ -5450,7 +6253,9 @@ function seasonEnd() {
   const young = plOnly.filter(p => p.st.a >= 12 && p.age <= 21).sort((a, b) => b.st.r / b.st.a - a.st.r / a.st.a)[0];
   const lt = G.ll && G.ll.length && typeof llTable === 'function' ? llTable() : null;
   const llRel = lt ? lt.slice(17).map(r => r.t) : [];
-  const utab = udiv === 'CH' ? ct : udiv === 'LL' && lt ? lt : tb;
+  const st = G.sa && G.sa.length && typeof saTable === 'function' ? saTable() : null;
+  const saRel = st ? st.slice(17).map(r => r.t) : [];
+  const utab = udiv === 'CH' ? ct : udiv === 'LL' && lt ? lt : udiv === 'SA' && st ? st : tb;
   const upos = utab.findIndex(r => r.t === G.user) + 1;
   const rel = tb.slice(17).map(r => r.t);
   // promotion from the Championship: top two plus the play-off winner
@@ -5461,10 +6266,10 @@ function seasonEnd() {
   const l1 = simLeagueOne();
   const target = boardTarget();
   const cupsWon = [];
-  for (const c of ['LC', 'FA', 'CDR', 'SCE']) if (G.cups[c] && G.cups[c].winner === G.user) cupsWon.push(COMP_NAME[c]);
+  for (const c of ['LC', 'FA', 'CDR', 'SCE', 'CIT', 'SCI']) if (G.cups[c] && G.cups[c].winner === G.user) cupsWon.push(COMP_NAME[c]);
   for (const c of ['UCL', 'UEL', 'UECL']) if (G.euro[c].winner === G.user) cupsWon.push(EURO_NAMES[c]);
   const promoted = udiv === 'CH' && prom.includes(G.user);
-  const relegated = (udiv === 'PL' && rel.includes(G.user)) || (udiv === 'CH' && chRel.includes(G.user)) || (udiv === 'LL' && llRel.includes(G.user));
+  const relegated = (udiv === 'PL' && rel.includes(G.user)) || (udiv === 'CH' && chRel.includes(G.user)) || (udiv === 'LL' && llRel.includes(G.user)) || (udiv === 'SA' && saRel.includes(G.user));
   G.hist.push({ s: seasonLabel(y), div: udiv, champ, chChamp, upos, team: G.user, cups: cupsWon, top: top ? [top.n, tName(top.c), top.st.lg || 0] : null, best: best ? [best.n, tName(best.c)] : null, young: young ? [young.n, tName(young.c)] : null, rel: rel.map(t => tName(t)), prom: prom.map(t => tName(t)), chRel: chRel.map(t => tName(t)), l1prom: l1.prom.map(t => tName(t)), promoted, relegated });
   // board review
   let verdict;
@@ -5476,13 +6281,14 @@ function seasonEnd() {
   if (natU) verdict = `You are managing ${T(G.user).name} full-time.`;
   else if (relegated && udiv === 'CH') { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
   else if (relegated && udiv === 'LL') { G.sacked = true; verdict = `${uname} have been relegated to the Segunda División and the board has dismissed you.`; }
+  else if (relegated && udiv === 'SA') { G.sacked = true; verdict = `${uname} have been relegated to Serie B and the board has dismissed you.`; }
   else if (relegated && G.board < 40) { G.sacked = true; verdict = `${uname} have been relegated and the board has dismissed you.`; }
   else if (relegated) verdict = `${uname} have been relegated to the Championship. The board wants an immediate promotion push next season.`;
   else if (G.board < 20) { G.sacked = true; verdict = `The board is unhappy with a ${ordinal(upos)}-place finish against a target of ${target.txt}. You have been dismissed.`; }
   else if (promoted) verdict = `Promotion! ${uname} will play in the Premier League next season${ct[0].t === G.user ? ' as Championship winners' : poW === G.user ? ' after winning the play-off final' : ''}.`;
   else verdict = gap <= 0 ? `The board is delighted: ${ordinal(upos)} place met the target to ${target.txt}.` : `The board expected you to ${target.txt}. ${ordinal(upos)} place falls short, but they will give you another season.`;
   G.lastSeason = { s: seasonLabel(y), div: udiv, champ, chChamp, upos, top, best, young, rel, prom, chRel, l1prom: l1.prom, verdict, cupsWon, tb: tb.map(r => [r.t, r.pts]), ct: ct.map(r => [r.t, r.pts]) };
-  msg('Season review ' + seasonLabel(y), `${udiv === 'LL' && lt ? `${tName(lt[0].t, false)} are La Liga champions. ` : ''}${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. ${natU ? '' : `You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. `}${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
+  msg('Season review ' + seasonLabel(y), `${udiv === 'LL' && lt ? `${tName(lt[0].t, false)} are La Liga champions. ` : ''}${udiv === 'SA' && st ? `${tName(st[0].t, false)} are Serie A champions. ` : ''}${tName(champ, false)} are Premier League champions and ${tName(chChamp, false)} win the Championship. ${natU ? '' : `You finished ${ordinal(upos)} in the ${COMP_NAME[udiv]}. `}${verdict}${top ? ` Premier League Golden Boot: ${top.n} (${tName(top.c)}) with ${top.st.lg || 0} league goals.` : ''}`);
   news('Promotion and relegation', `Promoted to the Premier League: ${prom.map(t => tName(t)).join(', ')}. Relegated to the Championship: ${rel.map(t => tName(t)).join(', ')}. Relegated to League One: ${chRel.map(t => tName(t)).join(', ')}. Promoted from League One: ${l1.prom.map(t => tName(t)).join(', ')}.`, null, true);
   // European places next season
   const faW = G.cups.FA.winner, lcW = G.cups.LC.winner;
@@ -5502,6 +6308,7 @@ function seasonEnd() {
   G.l1 = G.l1.filter(t => !l1.prom.includes(t)).concat(chRel);
   G.euroIn = { UCL: ucl, UEL: uel.filter(Boolean), UECL: uecl.filter(Boolean) };
   if (typeof spainSeasonEnd === 'function') { try { spainSeasonEnd(lt); } catch (e) { console.error(e); } }
+  if (typeof italySeasonEnd === 'function') { try { italySeasonEnd(st); } catch (e) { console.error(e); } }
   G.ded = {};
   // players: aging, development, contracts, retirement
   returnLoans();
@@ -5883,7 +6690,8 @@ function loanOut(pid, dest) {
   if (!G.window) return { ok: false, msg: 'Loans can only be arranged while a window is open.' };
   if (p.loan) return { ok: false, msg: 'He is a loan player himself.' };
   let to;
-  if (dest === 'pl' || dest === 'll') { const top = dest === 'll' ? G.ll : G.pl; const c = top.filter(t => t !== G.user && T(t).rep - 14 <= p.ca && T(t).rep < u.rep + 5); if (!c.length) return { ok: false, msg: `No ${dest === 'll' ? 'La Liga' : 'Premier League'} club wants him on loan.` }; to = R.pick(c); }
+  if (dest === 'pl' || dest === 'll' || dest === 'sa') { const top = dest === 'll' ? G.ll : dest === 'sa' ? G.sa : G.pl; const c = top.filter(t => t !== G.user && T(t).rep - 14 <= p.ca && T(t).rep < u.rep + 5); if (!c.length) return { ok: false, msg: `No ${dest === 'll' ? 'La Liga' : dest === 'sa' ? 'Serie A' : 'Premier League'} club wants him on loan.` }; to = R.pick(c); }
+  else if (dest === 'sb') { const c = (G.sb || []).slice(); to = R.pick(c.sort((a, b) => T(b).str - T(a).str).slice(0, p.ca >= 70 ? 8 : 20)); }
   else if (dest === 'sd') { const c = (G.seg || []).filter(t => !T(t).bteam); to = R.pick(c.sort((a, b) => T(b).str - T(a).str).slice(0, p.ca >= 70 ? 8 : 22)); }
   else { const c = divTeams('CH').filter(t => t !== G.user && T(t).rep - 16 <= p.ca); to = c.length ? R.pick(c) : R.pick(G.l1 && G.l1.length ? G.l1 : G.lowerTeams); }
   G.sq[G.user] = G.sq[G.user].filter(x => x !== p.id); const tac = u.tac; tac.xi = tac.xi.map(x => x === p.id ? null : x); tac.bench = tac.bench.filter(x => x !== p.id);
@@ -6015,7 +6823,7 @@ function venueOf(f) {
 function attendanceOf(f) {
   const v = venueOf(f); if (v.neutral) return Math.round(v.cap * .97);
   const t = T(f.h) || {}; const rep = t.rep || t.str || 60;
-  if (divOf(f.h) === 'LL') return Math.round(v.cap * clamp(0.62 + rep / 330 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.1), 0.45, 0.98));
+  if (divOf(f.h) === 'LL' || divOf(f.h) === 'SA') return Math.round(v.cap * clamp(0.62 + rep / 330 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.1), 0.45, 0.98));
   if (divOf(f.h) === 'CH') return Math.round(v.cap * clamp(0.55 + rep / 250 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.12), 0.4, 0.97));
   return Math.round(v.cap * clamp(0.8 + rep / 600 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.08), 0.5, 1));
 }
@@ -6425,7 +7233,7 @@ function scrStats() {
   const [lab, fn] = defs[tab];
   const list = pls.filter(p => fn(p) > 0).sort((a, b) => fn(b) - fn(a)).slice(0, 30);
   return `<div class="band">Statistics<small>${COMP_NAME[lg]} ${seasonLabel(G.year)}</small></div>
-  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="stl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL', 'SA'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="stl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
   <div class="tabs" style="margin-top:4px">${Object.entries(defs).map(([k, [l]]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="st" data-v="${k}">${l.split(' (')[0]}</button>`).join('')}</div>
   <div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th>Pos</th><th class="n">Apps</th><th class="n">${esc(lab.split(' (')[0])}</th></tr></thead><tbody>
   ${list.map((p, i) => `<tr class="click ${p.c === G.user ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}</td><td>${tLink(p.c)}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.st.la || 0}</td><td class="n"><b>${tab === 'r' ? fn(p).toFixed(2) : fn(p)}</b></td></tr>`).join('') || '<tr><td colspan="6" class="dim">No matches played yet.</td></tr>'}
@@ -6454,8 +7262,8 @@ function scrTransfers() {
     body = `<div class="row" style="margin-bottom:8px">
       <div><label class="lb" for="fq">Name</label><input class="f" id="fq" data-a="filt" data-k="q" value="${esc(f.q)}" placeholder="e.g. Saka"></div>
       <div><label class="lb" for="fg">Position</label><select class="f" id="fg" data-a="filt" data-k="grp"><option value="">Any</option>${[['GK', 'Goalkeeper'], ['CB', 'Centre-back'], ['LB,RB', 'Full-back'], ['DM,CM', 'Central midfield'], ['AM', 'Attacking midfield'], ['LW,RW', 'Winger'], ['ST', 'Striker']].map(([v, l]) => `<option value="${v}" ${f.grp === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
-      <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${['PL', 'CH', 'LL'].map(d => `<optgroup label="${COMP_NAME[d]}">${divTeams(d).filter(t => t !== G.user).slice().sort((a, b) => tName(a) < tName(b) ? -1 : 1).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</optgroup>`).join('')}</select></div>
-      <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH', 'LL'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}</select></div>
+      <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${['PL', 'CH', 'LL', 'SA'].map(d => `<optgroup label="${COMP_NAME[d]}">${divTeams(d).filter(t => t !== G.user).slice().sort((a, b) => tName(a) < tName(b) ? -1 : 1).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</optgroup>`).join('')}</select></div>
+      <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH', 'LL', 'SA'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}</select></div>
       <div><label class="lb" for="fm">Max value £m</label><input class="f" id="fm" type="number" min="0" style="width:90px" data-a="filt" data-k="max" value="${esc(f.max)}"></div>
       <div><label class="lb" for="fcon">Contract ends</label><select class="f" id="fcon" data-a="filt" data-k="con"><option value="">Any</option>${[['1', `Summer ${G.year + 1} (expiring)`], ['2', `By ${G.year + 2}`], ['3', `By ${G.year + 3}`]].map(([v, l]) => `<option value="${v}" ${f.con === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
       <div><label class="lb" for="fhap">Happiness</label><select class="f" id="fhap" data-a="filt" data-k="hap"><option value="">Any</option>${[['50', 'Unsettled (below 50)'], ['35', 'Unhappy (below 35)'], ['20', 'Wants out (below 20)']].map(([v, l]) => `<option value="${v}" ${f.hap === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
@@ -6540,7 +7348,7 @@ function scrPrematch() {
   if (!f) { UI.scr = 'inbox'; return scrInbox(); }
   const issues = validateLineup(G.user);
   const home = f.h === G.user, opp = home ? f.a : f.h, ot = T(opp);
-  const tbs = { PL: leagueTable(), CH: champTable(), LL: G.ll && G.ll.length ? llTable() : [] }; const tbOf = (t) => tbs[divOf(t)] || [];
+  const tbs = { PL: leagueTable(), CH: champTable(), LL: G.ll && G.ll.length ? llTable() : [], SA: G.sa && G.sa.length && typeof saTable === 'function' ? saTable() : [] }; const tbOf = (t) => tbs[divOf(t)] || [];
   const pos = (t) => { const i = tbOf(t).findIndex(r => r.t === t); return i >= 0 ? ordinal(i + 1) + (divOf(t) !== divOf(G.user) && divOf(t) ? ' (' + COMP_NAME[divOf(t)] + ')' : '') : '-'; };
   const formOf = (t) => { const r = tbOf(t).find(x => x.t === t); return r ? `<span class="form">${r.form.slice(-5).map(x => `<span class="${x}">${x}</span>`).join('')}</span>` : ''; };
   const tac = userTeam().tac;
@@ -7151,7 +7959,7 @@ function playerExtra(p) {
   const own = p.c === G.user;
   let h = `<h2 class="sect">Potential &amp; character</h2><div class="row" style="gap:18px"><span>Scout's view of potential: <span class="stars" style="font-size:14px">${potStars(p)}</span></span><span>Leadership: <b class="${aClass(lead(p))}">${lead(p)}</b></span>${own && p.id === userTeam().capt ? '<span class="tag new">CAPTAIN</span>' : ''}${own && p.id === userTeam().vice ? '<span class="tag lst">VICE-CAPTAIN</span>' : ''}${p.loan && !p.loan.out ? `<span class="tag out">ON LOAN FROM ${esc(tName(p.loan.from).toUpperCase())}</span>` : ''}</div>`;
   if (own && !p.loan) h += `<div class="row" style="margin-top:8px"><label class="lb" for="ptf" style="margin:0">Training focus</label><select class="f" id="ptf" data-a="tfocus" data-v="${p.id}">${Object.entries(TRAIN_IND).filter(([k]) => k !== 'gk' || p.pos === 'GK').filter(([k]) => p.age <= 29 || k === '' || k === 'lea').map(([k, l]) => `<option value="${k}" ${(p.tf || '') === k ? 'selected' : ''}>${l}</option>`).join('')}</select>
-    <button class="btn" data-a="loanout" data-k="ch" data-v="${p.id}">Loan to a Championship club</button><button class="btn" data-a="loanout" data-k="pl" data-v="${p.id}">Loan to a Premier League club</button>${G.ll && G.ll.length ? `<button class="btn" data-a="loanout" data-k="ll" data-v="${p.id}">Loan to a La Liga club</button><button class="btn" data-a="loanout" data-k="sd" data-v="${p.id}">Loan to a Segunda club</button>` : ''}</div>`;
+    <button class="btn" data-a="loanout" data-k="ch" data-v="${p.id}">Loan to a Championship club</button><button class="btn" data-a="loanout" data-k="pl" data-v="${p.id}">Loan to a Premier League club</button>${G.ll && G.ll.length ? `<button class="btn" data-a="loanout" data-k="ll" data-v="${p.id}">Loan to a La Liga club</button><button class="btn" data-a="loanout" data-k="sd" data-v="${p.id}">Loan to a Segunda club</button>` : ''}${G.sa && G.sa.length ? `<button class="btn" data-a="loanout" data-k="sa" data-v="${p.id}">Loan to a Serie A club</button><button class="btn" data-a="loanout" data-k="sb" data-v="${p.id}">Loan to a Serie B club</button>` : ''}</div>`;
   if (!own && divOf(p.c) && !p.loan) { const imp = importance(p); if (imp !== 'key' && !(imp === 'first' && p.age > 21)) h += `<div class="row" style="margin-top:8px"><span class="dim">Loan:</span>${[50, 75, 100].map(s => `<button class="btn" data-a="loanin" data-k="${s}" data-v="${p.id}">Request loan, pay ${s}% wages</button>`).join('')}</div>`; }
   return h;
 }
@@ -7202,9 +8010,9 @@ const DIFF_CH = [
   { k: 'Very hard', c: 'var(--amb)', d: 'Short on quality. Expect a fight to stay clear of the bottom three.' },
   { k: 'Extreme', c: 'var(--red)', d: 'One of the weakest squads in the division. Survival would be a big achievement.' }
 ];
-function divClubs(div) { return div === 'CH' ? CH_CLUBS : div === 'LL' ? LL_CLUBS : PL_CLUBS; }
-function clubDivOf(id) { return CH_CLUBS.some(c => c.id === id) ? 'CH' : LL_CLUBS.some(c => c.id === id) ? 'LL' : 'PL'; }
-const DIFF_BANDS = { PL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], LL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], CH: ['top 3', '4th–8th', '9th–15th', '16th–20th', 'bottom 4'] };
+function divClubs(div) { return div === 'CH' ? CH_CLUBS : div === 'LL' ? LL_CLUBS : div === 'SA' ? SA_CLUBS : PL_CLUBS; }
+function clubDivOf(id) { return CH_CLUBS.some(c => c.id === id) ? 'CH' : LL_CLUBS.some(c => c.id === id) ? 'LL' : SA_CLUBS.some(c => c.id === id) ? 'SA' : 'PL'; }
+const DIFF_BANDS = { PL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], LL: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], SA: ['top 3', '4th–7th', '8th–13th', '14th–17th', 'bottom 3'], CH: ['top 3', '4th–8th', '9th–15th', '16th–20th', 'bottom 4'] };
 function diffFromRank(rank, div) { return div === 'CH' ? DIFF_CH[rank <= 3 ? 0 : rank <= 8 ? 1 : rank <= 15 ? 2 : rank <= 20 ? 3 : 4] : DIFF[rank <= 3 ? 0 : rank <= 7 ? 1 : rank <= 13 ? 2 : rank <= 17 ? 3 : 4]; }
 // before a game exists: read ratings from the squad data
 function startRatings(div) {
@@ -7233,21 +8041,21 @@ renderStart = function () {
   const clubs = divClubs(div).slice().sort((a, b) => RT[b.id].r - RT[a.id].r);
   const selDiv = sel ? clubDivOf(sel) : null;
   const sd = sel ? startRatings(selDiv)[sel] : null;
-  const selC = sel ? PL_CLUBS.concat(CH_CLUBS, LL_CLUBS).find(c => c.id === sel) : null;
+  const selC = sel ? PL_CLUBS.concat(CH_CLUBS, LL_CLUBS, SA_CLUBS).find(c => c.id === sel) : null;
   app().innerHTML = `<div class="start">
     <div class="title">GAFFER<span>26/27</span></div>
-    <div class="strap">Football management · Premier League, Championship &amp; La Liga 2026/27 · real squads</div>
+    <div class="strap">Football management · Premier League, Championship, La Liga &amp; Serie A 2026/27 · real squads</div>
     ${saved ? `<div class="box pad row" style="margin-bottom:18px"><div><b class="yel">Saved career found</b><div class="dim">${esc(saved.mgr)} · ${esc(saved.teams[saved.user].name)} · ${dNice(saved.date)}</div></div><span class="spacer"></span><button class="btn pri" data-a="load">Continue career</button></div>` : ''}
     <div class="band">New career<small>Pick a division and a club. Clubs are ranked by team rating; difficulty follows the rating within each division.</small></div>
     <div class="box pad">
       <div class="row" style="margin-bottom:12px"><div style="min-width:220px;flex:1;max-width:340px"><label class="lb" for="mgrname">Manager name</label><input class="f" id="mgrname" style="width:100%" maxlength="28" value="${esc(UI.mgrName || 'Zhariff')}"></div>
       ${sd ? `<div style="flex:2;min-width:220px"><label class="lb">Selected</label><b>${esc(selC.name)}</b> <span class="dim">${COMP_NAME[selDiv]}</span> · rating <b class="mono">${sd.r.toFixed(1)}</b> (${ordinal(sd.rank)} of ${sd.n}) · ${diffChip(sd.diff)}<div class="dim" style="font-size:12.5px">${esc(sd.diff.d)}</div></div>` : '<div class="spacer"></div>'}
       <button class="go" data-a="start" ${sel ? '' : 'disabled'}>START ▸</button></div>
-      <div class="tabs" style="margin:0 0 10px"><span class="lb" style="margin:0 4px 0 0;align-self:center">England</span>${['PL', 'CH'].map(k => `<button class="${div === k ? 'on' : ''}" data-a="startdiv" data-v="${k}">${k === 'PL' ? 'Premier League · 20 clubs' : 'Championship · 24 clubs'}</button>`).join('')}<span class="lb" style="margin:0 4px 0 10px;align-self:center">Spain</span><button class="${div === 'LL' ? 'on' : ''}" data-a="startdiv" data-v="LL">La Liga · 20 clubs</button></div>
+      <div class="tabs" style="margin:0 0 10px"><span class="lb" style="margin:0 4px 0 0;align-self:center">England</span>${['PL', 'CH'].map(k => `<button class="${div === k ? 'on' : ''}" data-a="startdiv" data-v="${k}">${k === 'PL' ? 'Premier League · 20 clubs' : 'Championship · 24 clubs'}</button>`).join('')}<span class="lb" style="margin:0 4px 0 10px;align-self:center">Spain</span><button class="${div === 'LL' ? 'on' : ''}" data-a="startdiv" data-v="LL">La Liga · 20 clubs</button><span class="lb" style="margin:0 4px 0 10px;align-self:center">Italy</span><button class="${div === 'SA' ? 'on' : ''}" data-a="startdiv" data-v="SA">Serie A · 20 clubs</button></div>
       <div class="row dim" style="gap:12px;font-size:12.5px;margin-bottom:10px">${(div === 'CH' ? DIFF_CH : DIFF).map((d, i) => `<span>${diffChip(d)} ${DIFF_BANDS[div][i]}</span>`).join('')}</div>
       <div class="clubs">${clubs.map(c => { const r = RT[c.id]; return `<button class="clubpick ${sel === c.id ? 'on' : ''}" data-a="pickclub" data-v="${c.id}"><span class="strip" style="background:linear-gradient(${c.c1} 0 60%,${c.c2} 60% 100%)"></span><span class="in"><span class="row" style="justify-content:space-between;gap:6px;flex-wrap:nowrap"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.name)}</b><span class="mono yel" style="font-size:15px;flex:none">${r.r.toFixed(1)}</span></span><span>${diffChip(r.diff)} <span class="dim" style="font-size:12px">#${r.rank}</span></span><small>${esc(c.mgr)} · ${esc(c.stadium)}</small><small>Budget ${money(Math.max(3, Math.round(c.bal * 0.45 + (c.rep - 60))))}${c.ded ? ` · <span class="red">−${c.ded} pts</span>` : ''}</small></span></button>`; }).join('')}</div>
     </div>
-    <p class="dim" style="max-width:70ch;margin-top:16px">Team rating is the average overall of each club's best eleven (one goalkeeper and ten outfield players). Squads follow the 2026/27 Premier League, Championship and La Liga first-team rosters as of late October 2026 (Championship and La Liga squads from FotMob team pages). Player ratings are game estimates. Progress is saved in this browser; use Game › Export to keep a backup.</p>
+    <p class="dim" style="max-width:70ch;margin-top:16px">Team rating is the average overall of each club's best eleven (one goalkeeper and ten outfield players). Squads follow the 2026/27 Premier League, Championship, La Liga and Serie A first-team rosters as of late October / early November 2026 (Championship, La Liga and Serie A squads from FotMob team pages). Player ratings are game estimates. Progress is saved in this browser; use Game › Export to keep a backup.</p>
   </div>`;
 };
 // club screen: rating, difficulty and league ranking
@@ -8330,7 +9138,7 @@ function monthAwards(comp) {
   if (motm) { if (motm.tid === G.user) userAward('Manager of the Month', 1.5, `${G.mgr} is the ${LN} Manager of the Month for ${ml} after a ${motm.w}-${motm.d}-${motm.l} record with ${T(G.user).name}.`); else news('Manager of the Month', `${mgrName(motm.tid)} (${tName(motm.tid)}) is Manager of the Month for ${ml} (${motm.w}-${motm.d}-${motm.l}).`, motm.tid, glob); }
 }
 const _gom0 = goalOfMonth;
-goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); monthAwards('LL'); } catch (e) { console.error(e); } };
+goalOfMonth = function () { _gom0(); try { monthAwards('PL'); monthAwards('CH'); monthAwards('LL'); monthAwards('SA'); } catch (e) { console.error(e); } };
 
 function teamOfSeason(rt) {
   const pool = rt.filter(x => x.a >= 15).sort((a, b) => b.avg - a.avg);
@@ -8364,7 +9172,7 @@ function seasonAwards(comp) {
   A.s.push(rec);
   if (best) { news('Player of the Season', `${best.n} (${tName(best.club)}) is the ${LN} Player of the Season.`, best.club, glob); playerAwardBoost(best.pid, 12); }
   if (young) { news('Young Player of the Season', `${young.n} (${tName(young.club)}) is the ${LN} Young Player of the Season.`, young.club, glob); playerAwardBoost(young.pid, 10); }
-  if (boot) news(comp === 'LL' ? 'Pichichi Trophy' : 'Golden Boot', comp === 'LL' ? `${boot.n} (${tName(boot.club)}) wins the Pichichi Trophy as La Liga's top scorer with ${boot.g} goals.` : `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
+  if (boot) news(comp === 'LL' ? 'Pichichi Trophy' : comp === 'SA' ? 'Capocannoniere' : 'Golden Boot', comp === 'LL' ? `${boot.n} (${tName(boot.club)}) wins the Pichichi Trophy as La Liga's top scorer with ${boot.g} goals.` : comp === 'SA' ? `${boot.n} (${tName(boot.club)}) is the Serie A capocannoniere with ${boot.g} goals.` : `${boot.n} (${tName(boot.club)}) wins the ${LN} Golden Boot with ${boot.g} league goals.`, boot.club, glob);
   if (zam) news('Zamora Trophy', `${P(zam[0]).n} (${tName(P(zam[0]).c)}) wins the Zamora Trophy: ${(zam[1].ga / zam[1].a).toFixed(2)} goals conceded per game in ${zam[1].a} La Liga games.`, P(zam[0]).c, glob);
   if (play) news('Playmaker', `${play.n} (${tName(play.club)}) wins the Playmaker award with ${play.as} league assists.`, play.club, glob);
   if (glove) news('Golden Glove', `${P(glove[0]).n} wins the Golden Glove with ${glove[1]} clean sheets.`, P(glove[0]).c, glob);
@@ -8374,7 +9182,7 @@ function seasonAwards(comp) {
   for (const x of mine) playerAwardBoost(x.pid, 5);
 }
 const _se1 = seasonEnd;
-seasonEnd = function () { try { for (const c of ['PL', 'CH', 'LL']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
+seasonEnd = function () { try { for (const c of ['PL', 'CH', 'LL', 'SA']) { monthAwards(c); seasonAwards(c); } } catch (e) { console.error(e); } _se1(); };
 
 // ---------- UI ----------
 function awPlayer(x, extra) { if (!x) return '<span class="dim">-</span>'; const p = P(x.pid); return `<span class="${p ? 'click' : ''}" ${p ? `data-a="player" data-v="${x.pid}"` : ''}><b>${esc(x.n)}</b></span> <span class="dim">${esc(tName(x.club))}</span>${extra ? ` <span class="mono dim">${extra}</span>` : ''}`; }
@@ -8403,7 +9211,7 @@ function scrAwards() {
     body = SA.length ? SA.slice().reverse().map(r => `<div class="box pad" style="margin-bottom:12px"><h2 class="sect" style="margin-top:0">${r.s}</h2><div class="awgrid"><dl class="kv">
       <dt>Player of the Season</dt><dd>${awPlayer(r.best, r.best ? r.best.avg.toFixed(2) : '')}</dd>
       <dt>Young Player</dt><dd>${awPlayer(r.young, r.young ? r.young.avg.toFixed(2) : '')}</dd>
-      <dt>${r.lg === 'LL' ? 'Pichichi Trophy' : 'Golden Boot'}</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
+      <dt>${r.lg === 'LL' ? 'Pichichi Trophy' : r.lg === 'SA' ? 'Capocannoniere' : 'Golden Boot'}</dt><dd>${awPlayer(r.boot, r.boot ? r.boot.g + ' goals' : '')}</dd>
       <dt>Playmaker</dt><dd>${awPlayer(r.play, r.play ? r.play.as + ' assists' : '')}</dd>
       ${r.zam ? `<dt>Zamora Trophy</dt><dd><b>${esc(r.zam.n)}</b> <span class="dim">${esc(tName(r.zam.club))} · ${r.zam.gpg} conceded per game</span></dd>` : ''}<dt>${r.lg === 'LL' ? 'Most clean sheets' : 'Golden Glove'}</dt><dd>${r.glove ? `<b>${esc(r.glove.n)}</b> <span class="dim">${r.glove.cs} clean sheets</span>` : '-'}</dd>
       <dt>Manager of the Season</dt><dd>${r.mos ? `<b class="${r.mos.tid === G.user ? 'yel' : ''}">${esc(r.mos.mgr)}</b> <span class="dim">${esc(tName(r.mos.tid))} · ${ordinal(r.mos.pos)}</span>` : '-'}</dd>
@@ -8418,7 +9226,7 @@ function scrAwards() {
     body = `<p class="dim" style="margin-top:0">Who is leading the race this season (league games, at least 5 appearances).</p><h2 class="sect">Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${best.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div><h2 class="sect">Young Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${young.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div>`;
   }
   return `<div class="band">Awards<small>${COMP_NAME[lg]} monthly and season awards</small></div>
-  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL', 'SA'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
   <div class="tabs" style="margin-top:4px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'aws') { UI.tab.aws = el.value; render(); } });
@@ -8960,7 +9768,7 @@ RIVALS.push(['WHU', 'MIL'], ['SOU', 'POR'], ['BIR', 'WBA'], ['WOL', 'WBA'], ['BI
 // youth.js: reserve (U21) and academy (U18) squads, youth leagues, promotions and the summer academy intake.
 // Loaded after champ.js, before boot.js. Real players come from YOUTH (data_youth.js); generated ones carry gen: true.
 
-const YOUTH_COMPS = { PL2: 'Premier League 2', PL2D2: 'PL2 Division 2', U18: 'U18 Premier League', PDL: 'U18 Professional Development League', LLB: 'Filiales (B teams)', DHJ: 'División de Honor Juvenil' };
+const YOUTH_COMPS = { PL2: 'Premier League 2', PL2D2: 'PL2 Division 2', U18: 'U18 Premier League', PDL: 'U18 Professional Development League', LLB: 'Filiales (B teams)', DHJ: 'División de Honor Juvenil', PRI: 'Campionato Primavera 1', U18I: 'Campionato Under-18' };
 const YLEVEL = { f: 'First team', r: 'Reserves', a: 'Academy' };
 STAFF_ROLES.hoyd = 'Head of Youth Development';
 STAFF_FX.hoyd = 'Runs the academy: stronger intakes each summer and faster progress for reserve and academy players.';
@@ -9026,9 +9834,9 @@ function ensureYouth(tid) {
 }
 
 // ---------- youth leagues ----------
-function yLeagueTeams(c) { return c === 'PL2' || c === 'U18' ? G.pl.slice() : c === 'LLB' || c === 'DHJ' ? (G.ll || []).slice() : divTeams('CH'); }
-function yLevelOf(c) { return c === 'PL2' || c === 'PL2D2' || c === 'LLB' ? 'r' : 'a'; }
-function yCompOf(tid, lvl) { if (G.ll && G.ll.includes(tid)) return lvl === 'r' ? 'LLB' : 'DHJ'; const pl = G.pl.includes(tid); return lvl === 'r' ? (pl ? 'PL2' : 'PL2D2') : (pl ? 'U18' : 'PDL'); }
+function yLeagueTeams(c) { return c === 'PL2' || c === 'U18' ? G.pl.slice() : c === 'LLB' || c === 'DHJ' ? (G.ll || []).slice() : c === 'PRI' || c === 'U18I' ? (G.sa || []).slice() : divTeams('CH'); }
+function yLevelOf(c) { return c === 'PL2' || c === 'PL2D2' || c === 'LLB' || c === 'PRI' ? 'r' : 'a'; }
+function yCompOf(tid, lvl) { if (G.ll && G.ll.includes(tid)) return lvl === 'r' ? 'LLB' : 'DHJ'; if (G.sa && G.sa.includes(tid)) return lvl === 'r' ? 'PRI' : 'U18I'; const pl = G.pl.includes(tid); return lvl === 'r' ? (pl ? 'PL2' : 'PL2D2') : (pl ? 'U18' : 'PDL'); }
 function buildYouthLeagues() {
   G.res = G.res || {}; G.acad = G.acad || {};
   for (const tid of fullTeams()) ensureYouth(tid);
@@ -9302,7 +10110,7 @@ scrTable = function () {
   const sc = yScorers(c, 15);
   return `<div class="band">League tables<small>${seasonLabel(G.year)}</small></div><div class="tabs" style="margin-top:8px"><button data-a="tab" data-k="tb" data-v="pl">Premier League</button><button data-a="tab" data-k="tb" data-v="ch">Championship</button>${yBtn}</div>
   <div class="tabs" style="margin-top:4px">${Object.entries(YOUTH_COMPS).map(([k, l]) => `<button class="${c === k ? 'on' : ''}" data-a="ycomp" data-v="${k}">${l}</button>`).join('')}</div>
-  <p class="dim" style="margin:6px 0">${yLevelOf(c) === 'r' ? 'Reserve (under-21) football' : 'Academy (under-18) football'}, simulated each week for ${c === 'PL2' || c === 'U18' ? 'Premier League' : c === 'LLB' || c === 'DHJ' ? 'La Liga' : 'Championship'} clubs.${c === 'LLB' ? ' Spanish B teams really play in the third and fourth tiers against senior sides; here they meet in one league.' : c === 'DHJ' ? ' The real División de Honor has seven regional groups; here the La Liga clubs\' Juvenil A sides form one group.' : ''} One round-robin season, August to April.</p>
+  <p class="dim" style="margin:6px 0">${yLevelOf(c) === 'r' ? 'Reserve (under-21) football' : 'Academy (under-18) football'}, simulated each week for ${c === 'PL2' || c === 'U18' ? 'Premier League' : c === 'LLB' || c === 'DHJ' ? 'La Liga' : c === 'PRI' || c === 'U18I' ? 'Serie A' : 'Championship'} clubs.${c === 'LLB' ? ' Spanish B teams really play in the third and fourth tiers against senior sides; here they meet in one league.' : c === 'DHJ' ? ' The real División de Honor has seven regional groups; here the La Liga clubs\' Juvenil A sides form one group.' : ''} One round-robin season, August to April.</p>
   ${tableHtml(yTable(c), null, { form: true })}
   <h2 class="sect">Top scorers</h2><div class="tw"><table class="t"><thead><tr><th class="n">#</th><th>Player</th><th>Club</th><th>Pos</th><th class="n">Age</th><th class="n">Goals</th></tr></thead><tbody>${sc.map(([p, g], i) => `<tr class="click ${p.c === G.user ? 'me' : ''}" data-a="player" data-v="${p.id}"><td class="n">${i + 1}</td><td>${esc(p.n)}${p.gen ? ' <span class="tag gen">GEN</span>' : ''}</td><td>${tLink(p.c)}</td><td class="mono">${POS_LABEL[p.pos]}</td><td class="n">${p.age}</td><td class="n"><b>${g}</b></td></tr>`).join('') || '<tr><td colspan="6" class="dim">No goals yet.</td></tr>'}</tbody></table></div>`;
 };
@@ -9347,7 +10155,7 @@ function ensureStadium(tid) {
 function facLvl(k, tid) { const t = T(tid || G.user); if (!t || t.lite) return 10; ensureStadium(t.id); return t.fac[k] || 10; }
 function standCapNow(s) { return Math.max(0, s.cap - (s.w ? s.w.red : 0)); }
 function syncCap(tid) { const t = T(tid), m = t.sdm; if (!m) return; t.cap = m.st.reduce((a, s) => a + standCapNow(s), 0); }
-function ticketYield(t) { return divOf(t.id) === 'CH' ? 8 + t.rep * 0.33 : divOf(t.id) === 'LL' ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38; }
+function ticketYield(t) { return divOf(t.id) === 'CH' ? 8 + t.rep * 0.33 : (divOf(t.id) === 'LL' || divOf(t.id) === 'SA') ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38; }
 function ticketLevel(t) { const y = ticketYield(t); return y >= 52 ? 'Premium' : y >= 44 ? 'High' : y >= 34 ? 'Average' : y >= 26 ? 'Affordable' : 'Low'; }
 function homeAttendance(tid) {
   const fs = Object.values(G.fx).filter(f => f.h === tid && f.r && f.att && LEAGUE_COMPS.includes(f.comp));
@@ -9632,7 +10440,7 @@ function stadiumPanel(tid, small) {
     <h2 class="sect">Stands</h2>${stands}
     <div class="grid2" style="margin-top:10px"><div class="box pad">${facBar('tr', t)}</div><div class="box pad">${facBar('yth', t)}</div></div>
     ${proj.length ? `<h2 class="sect">Building work</h2><div class="box pad">${proj.map(p => projLine(p)).join('<br>')}</div>` : ''}
-    <p class="dim" style="font-size:12px">${divOf(tid) === 'LL' ? 'Opening year and stand names are compiled for the game and not individually checked; pitch size is the LaLiga standard; record attendances are not included.' : 'Opening year, record attendance, pitch size and stand names come from Wikipedia stadium pages (read Oct 2026).'} Stand capacities, ticket prices and facility ratings are game estimates.</p>`;
+    <p class="dim" style="font-size:12px">${divOf(tid) === 'LL' || divOf(tid) === 'SA' ? 'Opening year and stand names are compiled for the game and not individually checked; pitch size is the LaLiga standard; record attendances are not included.' : 'Opening year, record attendance, pitch size and stand names come from Wikipedia stadium pages (read Oct 2026).'} Stand capacities, ticket prices and facility ratings are game estimates.</p>`;
 }
 function projLine(p) {
   const t = T(p.tid); const pct = clamp(Math.round(dDiff(p.start, G.date) / Math.max(1, dDiff(p.start, p.end)) * 100), 0, 100);
@@ -9727,8 +10535,8 @@ render = function () { if (G && G.teams && !G.v5) { try { ensureAllStadia(); brd
 // history.js: competition history (real winners + every in-game season), club honours, manager world rankings.
 // Loaded after club.js.
 
-const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE'], ['CWC', "Cup Winners' Cup", 'CWC']];
-const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Paris Saint-Germain': 'Paris SG', 'Athletic Bilbao': 'Athletic Club', 'Atlético Bilbao': 'Athletic Club', 'Madrid FC': 'Real Madrid', 'Madrid': 'Real Madrid', 'Atlético Aviación': 'Atlético Madrid', 'Deportivo La Coruña': 'Deportivo de La Coruña', 'Español': 'Espanyol', 'RCD Español': 'Espanyol', 'Racing Santander': 'Racing Santander', 'Celta': 'Celta Vigo', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
+const HIST_COMPS = [['LG', 'English champions', 'PL'], ['CH', 'Championship', 'CH'], ['FA', 'FA Cup', 'FA'], ['LC', 'League Cup', 'LC'], ['UCL', 'European Cup / Champions League', 'UCL'], ['UEL', 'UEFA Cup / Europa League', 'UEL'], ['UECL', 'Conference League', 'UECL'], ['LL', 'Spanish champions', 'LL'], ['CDR', 'Copa del Rey', 'CDR'], ['SCE', 'Supercopa de España', 'SCE'], ['CWC', "Cup Winners' Cup", 'CWC'], ['SA', 'Italian champions', 'SA'], ['CIT', 'Coppa Italia', 'CIT'], ['SCI', 'Supercoppa Italiana', 'SCI']];
+const HIST_ALIAS = { 'The Wednesday': 'Sheffield Wednesday', 'Birmingham': 'Birmingham City', 'Inter Milan': 'Inter', 'Internazionale': 'Inter', 'Ambrosiana-Inter': 'Inter', 'Ambrosiana': 'Inter', 'Genova': 'Genoa', 'Paris Saint-Germain': 'Paris SG', 'Athletic Bilbao': 'Athletic Club', 'Atlético Bilbao': 'Athletic Club', 'Madrid FC': 'Real Madrid', 'Madrid': 'Real Madrid', 'Atlético Aviación': 'Atlético Madrid', 'Deportivo La Coruña': 'Deportivo de La Coruña', 'Español': 'Espanyol', 'RCD Español': 'Espanyol', 'Racing Santander': 'Racing Santander', 'Celta': 'Celta Vigo', 'Milan': 'AC Milan', 'PSV Eindhoven': 'PSV', 'Porto': 'FC Porto', 'SC Freiburg': 'Freiburg', 'Red Star Belgrade': 'Red Star Belgrade' };
 let _HR = null;
 function histRows() {
   if (_HR) return _HR;
@@ -9768,7 +10576,8 @@ function recordSeason() {
   add('PL', tb[0].t, tb[1].t);
   add('CH', ct[0].t, ct[1].t);
   if (G.ll && G.ll.length && typeof llTable === 'function') { const lt = llTable(); add('LL', lt[0].t, lt[1].t); }
-  for (const c of ['FA', 'LC', 'PO', 'CDR', 'SCE']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
+  if (G.sa && G.sa.length && typeof saTable === 'function') { const st = saTable(); add('SA', st[0].t, st[1].t); }
+  for (const c of ['FA', 'LC', 'PO', 'CDR', 'SCE', 'CIT', 'SCI']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
   for (const c of ['UCL', 'UEL', 'UECL']) { const E = G.euro && G.euro[c]; if (!E) continue; const f = finalOf(c); const w = E.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
   return rec;
 }
@@ -9807,10 +10616,10 @@ function rankPool() {
     if (G.mgrP && m[0] === G.mgrP.name) continue;
     const extra = M.pts[m[0]] || 0; const cl = mgrClub(m);
     const ingameActive = !m[3] && !fullTeams().some(t => T(t).mgr === m[0]);
-    out.push({ k: m[0], n: m[0], nat: m[1], st: ingameActive && m[2] === 'a' ? 'f' : m[2], club: ingameActive && m[2] === 'a' ? { tid: null, txt: 'Without a club' } : cl, pts: mgrBase(m) + extra, base: m[4], eng: m[5] || (cl.tid && ['PL', 'CH'].includes(divOf(cl.tid))), esp: m[6] || (cl.tid && divOf(cl.tid) === 'LL'), extra });
+    out.push({ k: m[0], n: m[0], nat: m[1], st: ingameActive && m[2] === 'a' ? 'f' : m[2], club: ingameActive && m[2] === 'a' ? { tid: null, txt: 'Without a club' } : cl, pts: mgrBase(m) + extra, base: m[4], eng: m[5] || (cl.tid && ['PL', 'CH'].includes(divOf(cl.tid))), esp: m[6] || (cl.tid && divOf(cl.tid) === 'LL'), ita: m[7] || (cl.tid && divOf(cl.tid) === 'SA') || (m[1] === 'Italy' && /\bL\d/.test(m[4] || '')), extra });
   }
   const mp = G.mgrP || {};
-  out.push({ k: '@user', n: G.mgr, nat: mp.nat || 'England', st: G.sacked ? 'f' : 'a', club: { tid: G.sacked ? null : G.user, txt: G.sacked ? 'Without a club' : tName(G.user, true) }, pts: userPoints(), base: '', eng: 1, esp: 1, me: 1 });
+  out.push({ k: '@user', n: G.mgr, nat: mp.nat || 'England', st: G.sacked ? 'f' : 'a', club: { tid: G.sacked ? null : G.user, txt: G.sacked ? 'Without a club' : tName(G.user, true) }, pts: userPoints(), base: '', eng: 1, esp: 1, ita: 1, me: 1 });
   return out;
 }
 function rankList(kind) {
@@ -9818,6 +10627,7 @@ function rankList(kind) {
   if (kind === 'cur') pool = pool.filter(x => x.st !== 'r' && x.st !== 'd');
   else if (kind === 'eng') pool = pool.filter(x => x.eng);
   else if (kind === 'esp') pool = pool.filter(x => x.esp);
+  else if (kind === 'ita') pool = pool.filter(x => x.ita);
   else if (kind === 'eur') pool = pool.filter(x => REGION_OF[x.nat] === 'Europe');
   else if (kind === 'reg') { const reg = userRegion(); pool = pool.filter(x => REGION_OF[x.nat] === reg); }
   pool.sort((a, b) => b.pts - a.pts || (a.me ? -1 : b.me ? 1 : a.n.localeCompare(b.n)));
@@ -9830,12 +10640,13 @@ function seasonFinishPoints() {
   const give = (tid, p) => { if (!p) return; const k = tid === G.user ? '@user' : T(tid).mgr; if (k !== '@user' && !mgrIndex()[k]) return; M.pts[k] = (M.pts[k] || 0) + p; };
   leagueTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
   if (G.ll && G.ll.length && typeof llTable === 'function') llTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
+  if (G.sa && G.sa.length && typeof saTable === 'function') saTable().forEach((r, i) => give(r.t, [6, 4, 3, 2, 2, 1, 1, 1, 1, 1][i] || 0));
   champTable().forEach((r, i) => { if (!T(r.t).lite) give(r.t, [3, 2, 1, 1, 1, 1][i] || 0); });
 }
 function updateRanks() {
   const M = mrk();
   const before = M.prev.all ? M.prev.all['@user'] : null;
-  for (const kind of ['all', 'cur', 'eng', 'esp', 'eur', 'reg']) {
+  for (const kind of ['all', 'cur', 'eng', 'esp', 'ita', 'eur', 'reg']) {
     const L = rankList(kind); const now = {}; L.forEach(x => now[x.k] = x.rk);
     const prev = M.prev[kind] || {}; M.mv[kind] = {};
     for (const k in now) if (prev[k]) M.mv[kind][k] = prev[k] - now[k];
@@ -9865,7 +10676,7 @@ seasonEnd = function () {
   try {
     if (rec) {
       const A = G.awards && G.awards.s || [];
-      for (const lg of ['PL', 'CH', 'LL']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
+      for (const lg of ['PL', 'CH', 'LL', 'SA']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
       chistStore().push(rec);
     }
     updateRanks();
@@ -9877,7 +10688,7 @@ function clubHonours(tid) {
   const t = T(tid); if (!t) return [];
   const R = histRows(); const out = [];
   const nm = t.name;
-  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC', CWX: 'CWX' };
+  const map = { LG: 'PL', CH: 'CH', FA: 'FA', LC: 'LC', UCL: 'UCL', UEL: 'UEL', UECL: 'UECL', LL: 'LL', CDR: 'CDR', SCE: 'SCE', CWC: 'CWC', CWX: 'CWX', SA: 'SA', CIT: 'CIT', SCI: 'SCI' };
   for (const [code, label] of HIST_COMPS) {
     const rows = R[code] || [];
     const real = rows.filter(r => r.w === nm), ru = rows.filter(r => r.r === nm).length;
@@ -9942,18 +10753,18 @@ function scrHistory() {
     const ids = fullTeams().slice().sort((a, b) => T(a).name.localeCompare(T(b).name)); const cid = ids.includes(UI.tab.hcl) ? UI.tab.hcl : G.user;
     body = `<div class="row" style="margin:10px 0"><label class="lb" for="hcl" style="margin:0">Club</label><select class="f" id="hcl" data-a="hcl">${ids.map(id => `<option value="${id}" ${id === cid ? 'selected' : ''}>${esc(T(id).name)}</option>`).join('')}</select></div>${clubHonoursHtml(cid)}`;
   } else if (tab === 'rank') {
-    const kinds = [['all', 'All-time world'], ['cur', 'Current world'], ['eng', 'English football'], ['esp', 'Spanish football'], ['eur', 'Europe']];
+    const kinds = [['all', 'All-time world'], ['cur', 'Current world'], ['eng', 'English football'], ['esp', 'Spanish football'], ['ita', 'Italian football'], ['eur', 'Europe']];
     if (reg !== 'Europe') kinds.push(['reg', reg]);
     body = `<div class="tabs" style="margin-top:8px">${kinds.map(([k, l]) => `<button class="${rk === k ? 'on' : ''}" data-a="tab" data-k="rk" data-v="${k}">${l}</button>`).join('')}</div>
     <p class="dim" style="font-size:12.5px">Points for major honours as a manager: Champions League 30, World Cup 35, top-five league title 20, Euro/Copa América 20, Europa League 15, Cup Winners' Cup 12, other top-flight title 8, Conference League 8, domestic cup 6, world club title 6, league cup 4, second-tier title 4. In this save, league finishes and your Manager of the Month/Season awards add points too. ${rk === 'all' ? 'Legends keep their totals for good.' : rk === 'cur' ? 'Retired managers are left out.' : rk === 'eng' ? 'Managers who have worked in English football.' : 'By nationality.'}</p>
     ${rankTable(rk)}
     <p class="dim" style="font-size:12px">Honours were compiled for this game from public records up to the end of 2025/26; club jobs as of October 2026. Movement arrows show the change since the end of last season.</p>`;
   }
-  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup", CWX: 'Club World Cup' };
+  const SHORT = { LG: 'League', CH: 'Championship', FA: 'FA Cup', LC: 'League Cup', UCL: 'Champions League', UEL: 'Europa League', UECL: 'Conference League', LL: 'La Liga', CDR: 'Copa del Rey', SCE: 'Supercopa', CWC: "Cup Winners' Cup", CWX: 'Club World Cup', SA: 'Serie A', CIT: 'Coppa Italia', SCI: 'Supercoppa' };
   const tabs = HIST_COMPS.map(([k]) => [k, SHORT[k]]).concat([['club', 'Club honours'], ['rank', 'Rankings']]);
   return `<div class="band">History<small>Winners, honours and manager rankings</small></div>
   <div class="tabs" style="margin-top:4px">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="hist" data-v="${k}">${esc(l)}</button>`).join('')}</div>${body}
-  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : comp[0] === 'CWC' ? 'Played from 1960/61 until UEFA ended it after 1998/99.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
+  ${comp ? `<p class="dim" style="font-size:12px">Real winners and runners-up to 2025/26 from Wikipedia list pages (read Oct 2026). ${comp[0] === 'LG' ? 'Football League First Division up to 1991/92, Premier League from 1992/93.' : comp[0] === 'CH' ? 'Second tier as the Championship, from 2004/05.' : comp[0] === 'LL' ? 'Spanish top flight (La Liga) since 1928/29.' : comp[0] === 'CDR' ? 'Listed by the year of the final.' : comp[0] === 'SCE' ? 'Official Supercopa from 1982; four-team format since 2019/20.' : comp[0] === 'CWC' ? 'Played from 1960/61 until UEFA ended it after 1998/99.' : comp[0] === 'SA' ? 'Italian champions since the single-table Serie A of 1929/30; 2004/05 was not assigned (Juventus title revoked).' : comp[0] === 'CIT' ? 'Seasons with no competition are skipped.' : comp[0] === 'SCI' ? 'Listed by season; recent editions were played in the January of that season.' : ''} Top scorer and best player are recorded for seasons played in this game.</p>` : ''}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.a === 'hcl') { UI.tab.hcl = el.value; render(); } });
 const _screenH = screen;
@@ -9978,10 +10789,10 @@ Object.assign(ACT, { gohist: (v) => { UI.modal = null; UI.scr = 'history'; UI.ta
 // playable nations can be added later: everything England-specific goes through PLAY_NAT.
 // Loaded after history.js, before intro.js.
 
-let PLAY_NAT = 'ENG'; // the nation the user manages or is linked to (England or Spain); set from G.intl.nat
-const PLAYABLE_NATS = ['ENG', 'ESP'];
-const NAT_FED = { ENG: ['The FA', 'FA'], ESP: ['The RFEF', 'RFEF'] };
-const NAT_HOME = { ENG: ['Wembley Stadium', 90000], ESP: ['Riyadh Air Metropolitano', 70692] };
+let PLAY_NAT = 'ENG'; // the nation the user manages or is linked to (England, Spain or Italy); set from G.intl.nat
+const PLAYABLE_NATS = ['ENG', 'ESP', 'ITA'];
+const NAT_FED = { ENG: ['The FA', 'FA'], ESP: ['The RFEF', 'RFEF'], ITA: ['The FIGC', 'FIGC'] };
+const NAT_HOME = { ENG: ['Wembley Stadium', 90000], ESP: ['Riyadh Air Metropolitano', 70692], ITA: ['Stadio Olimpico', 70634] };
 function NATN(c) { const r = natRow(c || PLAY_NAT); return r ? r.name : (c || PLAY_NAT); }
 function FED(c) { return (NAT_FED[c || PLAY_NAT] || NAT_FED.ENG)[0]; }
 function FEDS(c) { return (NAT_FED[c || PLAY_NAT] || NAT_FED.ENG)[1]; }
@@ -10081,6 +10892,22 @@ function setupSpainPool() {
   }
   if (G.intl) G.intl.esp = 1;
 }
+// Italy: players based outside the game's leagues, then caps and goals (Wikipedia, as of 5 Oct 2026)
+function setupItalyPool() {
+  if (typeof ITA_ABROAD === 'undefined') return;
+  for (const [n, pos, age, club, ca] of ITA_ABROAD) {
+    if (Object.values(G.players).some(p => p.n === n)) continue;
+    const p = mkPlayer({ n, c: 'ABROAD', ab: club, pos, age, nat: 'ITA', ca, seed: hash(n) % 999, pa: ca + (age < 24 ? 3 : 0) });
+    p.wage = 0; G.players[p.id] = p;
+  }
+  const byName = {}; for (const p of Object.values(G.players)) if (p) (byName[p.n] = byName[p.n] || []).push(p);
+  for (const [n, c, g] of ITA_CAPS) {
+    const ps = byName[n]; if (!ps) continue;
+    const p = ps.find(x => x.nat === 'ITA') || ps[0];
+    p.nat = 'ITA'; p.ic = parseInt(c.replace('~', ''), 10); p.ig = parseInt(g.replace('~', ''), 10); if (c.includes('~')) p.icE = 1;
+  }
+  if (G.intl) G.intl.ita = 1;
+}
 
 // ---------- state ----------
 function userIsEng() { return !!(G && G.intl && G.intl.job === PLAY_NAT); }
@@ -10099,7 +10926,7 @@ function intlInit() {
   if (G.intl) return;
   G.intl = { v: 1, mode: 'club', job: null, club: null, sw: 0, elo: {}, ed: {}, order: [], hist: [], squad: [], aiSq: [], prev: [], ann: {}, fa: 60, tasks: [], called: {}, seen: {}, fr: [] };
   for (const n of natRows()) addNation(n);
-  setupEnglandPool(); setupSpainPool();
+  setupEnglandPool(); setupSpainPool(); setupItalyPool();
   G.intl.nat = PLAY_NAT;
   T(ENGID).str = engStr();
   buildUNL27();
@@ -10995,7 +11822,7 @@ renderStart = function () {
   const go = document.querySelector('[data-a="start"]'); if (!go) return;
   const m = UI.cmode || 'club';
   const row = go.closest('.row') || go.parentElement;
-  row.insertAdjacentHTML('beforebegin', `<div class="row" style="gap:8px;margin:0 0 10px;flex-wrap:wrap"><span class="lb" style="margin:0">Career</span><div class="seg">${[['club', 'Club only'], ['nat', 'National team only'], ['dual', 'Club + national team']].map(([k, l]) => `<button class="${m === k ? 'on' : ''}" data-a="cmode" data-v="${k}">${l}</button>`).join('')}</div>${m !== 'club' ? `<div class="seg">${PLAYABLE_NATS.map(c => `<button class="${(UI.cnat || 'ENG') === c ? 'on' : ''}" data-a="cnat" data-v="${c}">${esc(natRow(c).name)}</button>`).join('')}</div>` : ''}<span class="dim" style="font-size:12.5px">${m === 'nat' ? `Manage ${esc(natRow(UI.cnat || 'ENG').name)} full-time; no club needed.` : m === 'dual' ? `Run your club and ${esc(natRow(UI.cnat || 'ENG').name)} at the same time.` : 'Manage a club; you can apply for the England or Spain job later.'}</span></div>`);
+  row.insertAdjacentHTML('beforebegin', `<div class="row" style="gap:8px;margin:0 0 10px;flex-wrap:wrap"><span class="lb" style="margin:0">Career</span><div class="seg">${[['club', 'Club only'], ['nat', 'National team only'], ['dual', 'Club + national team']].map(([k, l]) => `<button class="${m === k ? 'on' : ''}" data-a="cmode" data-v="${k}">${l}</button>`).join('')}</div>${m !== 'club' ? `<div class="seg">${PLAYABLE_NATS.map(c => `<button class="${(UI.cnat || 'ENG') === c ? 'on' : ''}" data-a="cnat" data-v="${c}">${esc(natRow(c).name)}</button>`).join('')}</div>` : ''}<span class="dim" style="font-size:12.5px">${m === 'nat' ? `Manage ${esc(natRow(UI.cnat || 'ENG').name)} full-time; no club needed.` : m === 'dual' ? `Run your club and ${esc(natRow(UI.cnat || 'ENG').name)} at the same time.` : 'Manage a club; you can apply for the England, Spain or Italy job later.'}</span></div>`);
   if (m === 'nat') go.disabled = false;
 };
 const _startI = ACT.start;
@@ -11006,7 +11833,7 @@ ACT.start = () => {
   _startI();
   if (!G) return;
   if (m !== 'club') setPlayNat(UI.cnat || 'ENG');
-  if (m === 'nat') { const club = G.user; const orig = (PL_CLUBS.concat(CH_CLUBS, LL_CLUBS)).find(c => c.id === club); G.intl.offer = true; takeEngland('nat'); if (orig) T(club).mgr = orig.mgr; if (G.mgrP) G.mgrP.rec = []; G.mgrRep = Math.max(G.mgrRep, 60); }
+  if (m === 'nat') { const club = G.user; const orig = (PL_CLUBS.concat(CH_CLUBS, LL_CLUBS, typeof SA_CLUBS !== 'undefined' ? SA_CLUBS : [])).find(c => c.id === club); G.intl.offer = true; takeEngland('nat'); if (orig) T(club).mgr = orig.mgr; if (G.mgrP) G.mgrP.rec = []; G.mgrRep = Math.max(G.mgrRep, 60); }
   else if (m === 'dual') { G.intl.offer = true; takeEngland('dual'); }
   UI.scr = m === 'club' ? 'mgr' : 'intl'; autosave(); render();
 };
@@ -11338,6 +12165,293 @@ newGame = function (u, n) {
 // a new club job in another country links the career to that country's national team (unless managing one)
 const _tjLes = takeJob;
 takeJob = function (tid) { _tjLes(tid); try { if (G.intl && !G.intl.job) setPlayNat(ctryOf(tid)); } catch (e) { console.error(e); } };
+
+// italy.js: Italy as a third country. Serie A with real squads, Serie B (team level), Coppa Italia,
+// Supercoppa Italiana, Italian clubs in Europe, awards, migration of older saves. Loaded after laliga.js
+// and reuses its helpers (h2hSort, CUP_NEXT, the start-of-career hooks).
+
+Object.assign(STADIA, SA_STADIA);
+Object.assign(COMP_NAME, { SA: 'Serie A', SB: 'Serie B', CIT: 'Coppa Italia', SCI: 'Supercoppa Italiana', PRI: 'Campionato Primavera 1', U18I: 'Campionato Under-18' });
+Object.assign(COMP_SHORT, { SA: 'SA', SB: 'SB', CIT: 'CIt', SCI: 'SCI' });
+if (!LEAGUE_COMPS.includes('SA')) LEAGUE_COMPS.push('SA');
+Object.assign(COMP_LINK, { 'Serie A': 'SA', 'Serie B': 'SB', 'Coppa Italia': 'CIT', 'Supercoppa Italiana': 'SCI', 'Campionato Primavera 1': 'PRI', 'Campionato Under-18': 'U18I' });
+RIVALS.push(['INT', 'ACM'], ['ROM', 'LAZ'], ['JUV', 'TOR'], ['INT', 'JUV'], ['JUV', 'ACM'], ['NAP', 'ROM'], ['NAP', 'JUV'], ['FIO', 'JUV'], ['ATA', 'BGN'], ['INT', 'NAP'], ['GEN', 'ACM'], ['FIO', 'BGN'], ['ACM', 'MNZ'], ['COM', 'INT'], ['UDI', 'VEN'], ['PAR', 'BGN'], ['LEC', 'NAP']);
+
+// 2026/27 calendar (base year). Serie A runs 22 Aug 2026 - 30 May 2027 with breaks for the international windows.
+CAL.sa = ['2026-08-22', '2026-08-29', '2026-09-05', '2026-09-12', '2026-09-19', '2026-10-10', '2026-10-17', '2026-10-24', '2026-10-28', '2026-10-31', '2026-11-07', '2026-11-21', '2026-11-28', '2026-12-05', '2026-12-12', '2026-12-19', '2027-01-03', '2027-01-06', '2027-01-10', '2027-01-17', '2027-01-24', '2027-01-31', '2027-02-07', '2027-02-14', '2027-02-21', '2027-02-28', '2027-03-07', '2027-03-14', '2027-03-21', '2027-04-03', '2027-04-10', '2027-04-17', '2027-04-24', '2027-05-01', '2027-05-08', '2027-05-16', '2027-05-23', '2027-05-30'];
+// Coppa Italia: single games up to the quarter-finals (the higher-ranked club hosts), two-legged semis, final at the Olimpico
+CAL.CIT = [['First round', ['2026-08-15']], ['Second round', ['2026-09-16']], ['Round of 16', ['2026-12-02']], ['Quarter-final', ['2027-02-03']], ['Semi-final', ['2027-03-03', '2027-04-21']], ['Final', ['2027-05-13'], 1]];
+// Supercoppa: one match, league champions v cup winners (2026: Inter v Lazio at San Siro, 22 Dec)
+CAL.SCI = '2026-12-22';
+const EURO_IT_START = { UCL: ['INT', 'NAP', 'ROM', 'COM'], UEL: ['ACM', 'JUV'], UECL: ['ATA'] };
+const CIT_SEEDS_START = ['INT', 'NAP', 'ROM', 'COM', 'ACM', 'JUV', 'ATA', 'BGN']; // 2025/26 top eight
+const SCI_START = ['INT', 'LAZ'];
+// European lite sides that are now real Italian clubs (older saves and the EURO pool)
+const IT_LITE_MAP = { E_Inter: 'INT', E_ACMilan: 'ACM', E_Juventus: 'JUV', E_Napoli: 'NAP', E_Roma: 'ROM', E_Lazio: 'LAZ', E_Atalanta: 'ATA', E_Bologna: 'BGN', E_Como: 'COM', E_Fiorentina: 'FIO' };
+const IT_LITE_NAMES = ['Inter', 'AC Milan', 'Juventus', 'Napoli', 'Roma', 'Lazio', 'Atalanta', 'Bologna', 'Como', 'Fiorentina'];
+for (const k in EURO) EURO[k] = EURO[k].filter(([n]) => !IT_LITE_NAMES.includes(n));
+
+function itLevel(tid) { return G.sa && G.sa.includes(tid) ? 3 : G.sb && G.sb.includes(tid) ? 2 : 1; }
+
+// ---------- setting up Italy ----------
+function addItaly() {
+  if (typeof SA_CLUBS === 'undefined') return;
+  G.sa = [];
+  for (const c of SA_CLUBS) addFullTeam(c, 'SA');
+  G.sb = []; G.sc = [];
+  for (const [n, s, stad, cap] of SB_CLUBS) { const id = 'B_' + slug(n); addLite(id, n, s, stad, cap); G.teams[id].c1 = '#1d5c96'; G.sb.push(id); }
+  for (const [n, s] of SC_CLUBS) { const id = 'C_' + slug(n); addLite(id, n, s); G.teams[id].c1 = '#5b6f3a'; G.sc.push(id); }
+  G.sciTeams = SCI_START.slice(); G.citSeeds = CIT_SEEDS_START.slice();
+}
+const _asIT = addSpain;
+addSpain = function () { _asIT(); try { addItaly(); } catch (e) { console.error(e); } };
+function genNameIT() { return R.pick(FIRST_IT) + ' ' + R.pick(LAST_IT); }
+// generated players at Italian clubs get Italian names (most of them Italian nationals)
+function italianise(fromPid) {
+  for (const p of Object.values(G.players)) {
+    if (!p || !p.gen || p.itN || (+p.id.slice(1)) <= fromPid) continue;
+    if (ctryOf(p.c) !== 'ITA') continue;
+    p.n = genNameIT(); if (R.chance(.8)) p.nat = 'ITA'; p.itN = 1;
+  }
+}
+
+// ---------- tables ----------
+function saTable() {
+  const rows = G.saLeague ? divTable(G.sa, G.saLeague.rounds, G.dedIT) : G.sa.map(t => ({ t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, form: [] }));
+  return G.saLeague && rows.some(r => r.p >= 2) ? h2hSort(rows, G.saLeague.rounds) : rows;
+}
+function sbTable() {
+  const tb = {}; for (const t of G.sb || []) tb[t] = { t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, form: [] };
+  if (G.sbL) for (const r of G.sbL.rounds) for (const f of r) if (f.r && tb[f.h] && tb[f.a]) { addRes(tb[f.h], f.r[0], f.r[1]); addRes(tb[f.a], f.r[1], f.r[0]); tb[f.h].form.push(f.r[0] > f.r[1] ? 'W' : f.r[0] < f.r[1] ? 'L' : 'D'); tb[f.a].form.push(f.r[1] > f.r[0] ? 'W' : f.r[1] < f.r[0] ? 'L' : 'D'); }
+  return Object.values(tb).sort(sortTable);
+}
+
+// ---------- season build ----------
+function buildItaly() {
+  if (!G.sa || !G.sa.length) return;
+  const gl = leagueNorm(G.sa); if (G.normSA0 == null) G.normSA0 = gl;
+  G.normSA = 0.87 * clamp(Math.exp(-(gl - G.normSA0) * .035), .8, 1.2);
+  const r = roundRobin(R.shuffle(G.sa)); const h1 = R.shuffle(r), h2 = R.shuffle(r.map(x => x.map(([a, b]) => [b, a])));
+  G.saLeague = { rounds: h1.concat(h2).map((pairs, ri) => pairs.map(([h, a]) => addFx({ comp: 'SA', d: sd(CAL.sa[ri]), h, a, rnd: ri + 1 }).id)) };
+  const sr = roundRobin(R.shuffle(G.sb)); const s2 = sr.map(x => x.map(([a, b]) => [b, a]));
+  G.sbL = { rounds: R.shuffle(sr).concat(R.shuffle(s2)).map(x => x.map(([h, a]) => ({ h, a, r: null }))), played: 0 };
+  G.cups.CIT = { id: 'CIT', rounds: CAL.CIT.map(([n, ds, neu]) => ({ n, d: ds.map(sd), neutral: !!neu, ties: [], done: false })), ri: 0, winner: null };
+  G.cups.SCI = { id: 'SCI', rounds: [{ n: 'Final', d: [sd(CAL.SCI)], neutral: false, ties: [], done: false }], ri: 0, winner: null };
+  G.dedIT = {};
+  drawCIT(); drawSCI();
+}
+const _bsIT = buildSeason;
+buildSeason = function () { _bsIT(); try { buildItaly(); } catch (e) { console.error(e); } };
+
+// ---------- cups ----------
+// Coppa Italia first round: Serie A clubs outside last season's top eight and all of Serie B; the top eight join in the round of 16
+function drawCIT() {
+  const seeds = (G.citSeeds || CIT_SEEDS_START).filter(t => G.sa.includes(t)).slice(0, 8);
+  const sa = R.shuffle(G.sa.filter(t => !seeds.includes(t))), sb = R.shuffle(G.sb.slice());
+  const pairs = [];
+  while (sa.length && sb.length) pairs.push([sa.shift(), sb.shift()]);
+  const rest = sa.concat(sb); for (let i = 0; i + 1 < rest.length; i += 2) pairs.push([rest[i], rest[i + 1]]);
+  G.citSeeds = seeds;
+  drawFixed('CIT', 0, pairs);
+}
+function drawSCI() {
+  const s = G.sciTeams; if (!s || s.length < 2 || s.some(t => !T(t))) return;
+  const cup = G.cups.SCI; const rd = cup.rounds[0]; rd.ties = [];
+  const f = addFx({ comp: 'SCI', d: rd.d[0], h: s[0], a: s[1], rnd: 'Final', need: true });
+  rd.ties.push({ t: [s[0], s[1]], fx: [f.id], w: null }); cup.ri = 0;
+}
+// higher level hosts; equal level: the stronger side (a seed in the round of 16) hosts
+function citPair(a, b) { const la = itLevel(a), lb = itLevel(b); return la !== lb ? (la > lb ? [a, b] : [b, a]) : R.chance(.5) ? [a, b] : [b, a]; }
+Object.assign(CUP_NEXT, {
+  CIT: (winners) => {
+    const cup = G.cups.CIT; const ri = cup.ri + 1;
+    for (const t of cup.rounds[ri - 1].ties) if (T(t.w) && !T(t.w).lite) prize(t.w, 0.2 * ri);
+    const nr = cup.rounds[ri]; let pairs = [];
+    if (ri === 2) { const seeds = (G.citSeeds || []).filter(t => T(t)); const w = R.shuffle(winners); seeds.forEach((s, i) => { if (w[i]) pairs.push([s, w[i]]); }); for (let i = seeds.length; i + 1 < w.length; i += 2) pairs.push(citPair(w[i], w[i + 1])); }
+    else { const l = R.shuffle(winners); for (let i = 0; i + 1 < l.length; i += 2) pairs.push(nr.d.length === 2 || nr.neutral ? [l[i], l[i + 1]] : citPair(l[i], l[i + 1])); }
+    drawFixed('CIT', ri, pairs);
+    if (nr.neutral) for (const t of nr.ties) for (const id of t.fx) { G.fx[id].ven = 'Stadio Olimpico, Rome'; G.fx[id].vcap = 70634; G.fx[id].neutral = true; }
+    const ut = nr.ties.find(t => t.t.includes(G.user));
+    if (ut) news('Coppa Italia draw', `${nr.n}: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(nr.d[0], false)}).`, G.user);
+  }
+});
+const _venueIT = venueOf;
+venueOf = function (f) { if (f && f.ven && f.comp === 'CIT') return { name: f.ven, cap: f.vcap || 70634, neutral: true, stands: STANDS_DEF }; return _venueIT(f); };
+
+// Serie B (38 rounds) keeps pace with Serie A rounds
+const _fdIT = finishDay;
+finishDay = function () {
+  const r = _fdIT.apply(this, arguments);
+  try {
+    if (G.sbL && r && r.ids) {
+      const lf = r.ids.map(id => G.fx[id]).filter(f => f && f.comp === 'SA');
+      if (lf.length) {
+        const rnd = Math.max(...lf.map(f => f.rnd)); const target = Math.min(G.sbL.rounds.length, Math.floor(rnd * G.sbL.rounds.length / 38));
+        while (G.sbL.played < target) { for (const f of G.sbL.rounds[G.sbL.played]) f.r = quickScore(f.h, f.a); G.sbL.played++; }
+      }
+    }
+  } catch (e) { console.error(e); }
+  return r;
+};
+
+// ---------- season end (called from seasonEnd before the new season is built) ----------
+function italySeasonEnd(st) {
+  if (!G.sa || !G.sa.length) return;
+  st = st || saTable();
+  const y = G.year;
+  if (G.sbL) while (G.sbL.played < G.sbL.rounds.length) { for (const f of G.sbL.rounds[G.sbL.played]) f.r = quickScore(f.h, f.a); G.sbL.played++; }
+  const bt = sbTable();
+  // Serie B: top two up, 3rd to 8th play off (simplified to a four-team bracket of 3rd-6th); bottom three down plus the play-out loser
+  const poW = quickPO(quickPO(bt[2].t, bt[5].t), quickPO(bt[3].t, bt[4].t), true);
+  const up = [bt[0].t, bt[1].t, poW];
+  const down = st.slice(17).map(r => r.t);
+  const champ = st[0].t; honour(champ, 'Serie A');
+  st.forEach((r, i) => prize(r.t, (20 - i) * 1.7 + 5));
+  const outL = quickPO(bt[15].t, bt[16].t) === bt[15].t ? bt[16].t : bt[15].t;
+  const sbDown = bt.slice(-3).map(r => r.t).concat(outL);
+  const scUp = (G.sc || []).slice().sort((a, b) => (T(b).str + R.i(-4, 4)) - (T(a).str + R.i(-4, 4))).slice(0, 4);
+  // Europe: top four Champions League, 5th and the Coppa Italia winners Europa League, next place Conference League
+  const citW = G.cups.CIT && G.cups.CIT.winner;
+  const order = st.map(r => r.t).filter(t => !down.includes(t));
+  const ucl = order.slice(0, 4);
+  const uel = [order[4]]; if (citW && G.sa.includes(citW) && !ucl.includes(citW) && !uel.includes(citW) && !down.includes(citW)) uel.push(citW); else uel.push(order[5]);
+  const uecl = [order.find(t => !ucl.includes(t) && !uel.includes(t))];
+  for (const k of ['UCL', 'UEL', 'UECL']) G.euroIn[k] = (G.euroIn[k] || []).concat({ UCL: ucl, UEL: uel, UECL: uecl }[k].filter(t => t && !(G.euroIn[k] || []).includes(t)));
+  // next Supercoppa: champions v cup winners (cup runners-up if the champions did the double)
+  const citF = typeof finalOf === 'function' ? finalOf('CIT') : null; const citR = citF && citW ? (citF.h === citW ? citF.a : citF.h) : null;
+  let opp = citW && citW !== champ ? citW : citR && citR !== champ ? citR : st[1].t;
+  if (!T(opp) || T(opp).lite) opp = st[1].t;
+  G.sciTeams = [champ, opp];
+  G.citSeeds = order.slice(0, 8);
+  for (const t of down) { const tt = T(t); tt.rep = Math.min(tt.rep, 72); if (t !== G.user) relegationExodus(t, G.sa.filter(x => !down.includes(x))); relegate(t); }
+  for (const t of up) { promote(t, 'SA'); }
+  G.sa = G.sa.filter(t => !down.includes(t)).concat(up);
+  G.sb = G.sb.filter(t => !up.includes(t) && !sbDown.includes(t)).concat(down, scUp);
+  G.sc = (G.sc || []).filter(t => !scUp.includes(t)).concat(sbDown);
+  for (const t of G.sa) { if (up.includes(t)) continue; const tt = T(t); const i = st.findIndex(r => r.t === t); tt.rep = clamp(Math.round(tt.rep * .85 + (100 - (i + 1) * 2) * .15), 58, 96); }
+  G.lastSeasonIT = { s: seasonLabel(y), champ, lt: st.map(r => [r.t, r.pts]), down, up, poW, sb: bt.slice(0, 8).map(r => [r.t, r.pts]), cit: citW || null };
+  news('Serie A', `${tName(champ, false)} are Serie A champions ${seasonLabel(y)}. Relegated to Serie B: ${down.map(t => tName(t)).join(', ')}. Promoted: ${up.map(t => tName(t)).join(', ')} (${tName(poW)} through the play-offs).`, null, true);
+}
+const _seIT = seasonEnd;
+seasonEnd = function () { const from = _pid; const r = _seIT.apply(this, arguments); try { italianise(from); } catch (e) { console.error(e); } return r; };
+
+const _promIT = promote;
+promote = function (tid, div) {
+  if (div !== 'SA') return _promIT(tid, div);
+  const from = _pid; _promIT(tid, 'PL');
+  const t = T(tid); t.rep = clamp(t.str + 4, 62, 74); t.bal = 28;
+  italianise(from);
+};
+
+// ---------- awards: Serie A goal of the month ----------
+const _gomIT = goalOfMonth;
+goalOfMonth = function () {
+  _gomIT();
+  try {
+    if (!G.sa || !G.sa.length) return;
+    const d = dParse(G.date); d.setUTCMonth(d.getUTCMonth() - 1); const key = dStr(d).slice(0, 7);
+    G.gotmSA = G.gotmSA || []; if (G.gotmSA.some(x => x.m === key)) return;
+    const c = goalCandidates(key, 'SA'); if (!c.length) return;
+    const w = c[0]; w.m = key; w.s = seasonLabel(G.year); G.gotmSA.push(w);
+    news('Serie A Goal of the Month', `${w.n} (${tName(w.club)}) wins Serie A Goal of the Month for ${MON[+key.slice(5) - 1]} with his ${STYLE_N[w.st]} against ${tName(w.opp)}.`, w.club, divOf(G.user) === 'SA');
+  } catch (e) { console.error(e); }
+};
+const _gocIT = goComp;
+goComp = function (code) {
+  if (code === 'SA' || code === 'SB') { UI.modal = null; UI.mstack = []; UI.mcur = null; UI.scr = 'table'; UI.tab.tb = code === 'SA' ? 'sa' : 'sb'; render(); window.scrollTo(0, 0); return; }
+  if (code === 'CIT' || code === 'SCI') { UI.modal = null; UI.mstack = []; UI.mcur = null; UI.scr = 'comps'; UI.tab.cp = code; render(); window.scrollTo(0, 0); return; }
+  _gocIT(code);
+};
+
+// ---------- screens ----------
+const _stIT = scrTable;
+scrTable = function () {
+  if (!G.sa || !G.sa.length) return _stIT();
+  if (!UI.tab.tb && userDiv() === 'SA') UI.tab.tb = 'sa';
+  const tab = UI.tab.tb;
+  const btns = (on) => `<button class="${on === 'sa' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="sa">Serie A</button><button class="${on === 'sb' ? 'on' : ''}" data-a="tab" data-k="tb" data-v="sb">Serie B</button>`;
+  const SG = 'data-v="sd">Segunda</button>';
+  if (tab !== 'sa' && tab !== 'sb') return _stIT().replace(SG, SG + btns(null));
+  UI.tab.tb = 'll'; const h0 = _stIT(); UI.tab.tb = tab;
+  const i0 = h0.indexOf('<div class="tabs"'); const i1 = h0.indexOf('</div>', i0);
+  const tabs = h0.slice(i0, i1).replace(/ class="on"/g, ' class=""').replace(SG, SG + btns(tab)) + '</div>';
+  let body;
+  if (tab === 'sa') {
+    body = tableHtml(saTable(), i => i < 4 ? 'zone-ucl' : i < 5 ? 'zone-uel' : i < 6 ? 'zone-uecl' : i >= 17 ? 'zone-rel' : '', { form: true }) + `<p class="dim" style="margin-top:6px"><span class="cyan">▌</span> Champions League · <span class="amb">▌</span> Europa League (the Coppa Italia winners take a Europa League place) · <span class="grn">▌</span> Conference League · <span class="red">▌</span> Relegation to Serie B. Equal points are separated by head-to-head record first.</p>`;
+  } else {
+    const bt = sbTable();
+    body = `<p class="dim" style="margin:6px 0">Serie B is simulated at team level (results only). Top two go up and a play-off decides the third place; the bottom three and the play-out loser drop to Serie C.</p>` + tableHtml(bt, i => i < 2 ? 'zone-ucl' : i < 8 ? 'zone-uel' : i >= bt.length - 5 ? 'zone-rel' : '', { form: true }) + (G.lastSeasonIT ? `<p class="dim">Last season: Serie A champions ${tLink(G.lastSeasonIT.champ, true)}; promoted ${G.lastSeasonIT.up.map(t => tLink(t, true)).join(', ')}.</p>` : '');
+  }
+  return `<div class="band">League tables<small>${seasonLabel(G.year)}</small></div>${tabs}${body}`;
+};
+const _cpIT = scrComps;
+scrComps = function () {
+  if (!G.cups.CIT) return _cpIT();
+  if (!UI.tab.cp && divOf(G.user) === 'SA') UI.tab.cp = 'CIT';
+  const tab = UI.tab.cp;
+  const add = `<button class="${tab === 'CIT' ? 'on' : ''}" data-a="tab" data-k="cp" data-v="CIT">Coppa Italia</button><button class="${tab === 'SCI' ? 'on' : ''}" data-a="tab" data-k="cp" data-v="SCI">Supercoppa</button>`;
+  if (tab !== 'CIT' && tab !== 'SCI') { const h = _cpIT(); const i0 = h.indexOf('<div class="tabs"'); const i = h.indexOf('</div>', i0); return i > 0 ? h.slice(0, i) + add + h.slice(i) : h; }
+  UI.tab.cp = 'LC'; const h = _cpIT(); UI.tab.cp = tab;
+  const cup = G.cups[tab];
+  let body = cup.winner ? `<div class="box pad yel" style="margin-bottom:8px">Winners: ${tLink(cup.winner, true)}</div>` : '';
+  body += cup.rounds.slice().reverse().filter(r => r.ties.length).map(r => `<h2 class="sect">${r.n} <span class="dim mono" style="font-size:16px">${r.d.map(d => dShort(d)).join(' & ')}</span></h2><div class="tw">${tiesTable(r)}</div>`).join('') || `<p class="dim">${tab === 'CIT' ? `Serie A clubs outside last season's top eight and all of Serie B start in the first round; the top eight (${(G.citSeeds || []).map(t => tLink(t, true)).join(', ')}) join in the round of 16. Single games until the two-legged semi-finals; the final is at the Stadio Olimpico.` : `${(G.sciTeams || []).map(t => tLink(t, true)).join(' v ')} on ${dNice(sd(CAL.SCI), false)}.`}</p>`;
+  const i0 = h.indexOf('<div class="tabs"'); const i1 = h.indexOf('</div>', i0);
+  const tabs = h.slice(i0, i1).replace(/ class="on"/g, ' class=""') + add + '</div>';
+  return `<div class="band">Cups &amp; Europe<small>${COMP_NAME[tab]} ${seasonLabel(G.year)}</small></div>${tabs}${body}`;
+};
+
+// ---------- older saves: add Italy ----------
+function migrateItaly() {
+  if (!G || !G.teams || G.sa || typeof SA_CLUBS === 'undefined') return;
+  const from = _pid;
+  const byName = {}; for (const p of Object.values(G.players)) if (p && (p.c === 'ABROAD' || p.c === 'FA')) byName[p.n] = p;
+  G.sa = [];
+  for (const c of SA_CLUBS) {
+    const keep = c.sq.trim().split('\n').filter(l => byName[l.split('|')[1]]);
+    addFullTeam(c, 'SA');
+    for (const l of keep) {
+      const [no, n] = l.split('|'); const old = byName[n]; const fresh = squad(c.id).find(p => p.n === n);
+      if (!old || !fresh) continue;
+      G.sq[c.id] = G.sq[c.id].map(id => id === fresh.id ? old.id : id); delete G.players[fresh.id];
+      old.c = c.id; old.no = +no; delete old.ab; delete old.gone; old.con = fresh.con; G.fa = (G.fa || []).filter(x => x !== old.id);
+    }
+  }
+  for (const id of G.sa) { for (const p of squad(id)) { p.wage = wageFor(p, id) * R.i(85, 110) / 100; p.val = calcValue(p); } setBudgets(id, true); autoPick(id); ensureCaptains(id); const t = T(id); for (const k in TAC_DEF) if (t.tac[k] == null) t.tac[k] = TAC_DEF[k]; if (!t.tac.pr) t.tac.pr = []; }
+  G.sb = []; G.sc = [];
+  for (const [n, s, stad, cap] of SB_CLUBS) { const id = 'B_' + slug(n); if (!G.teams[id]) addLite(id, n, s, stad, cap); G.teams[id].c1 = '#1d5c96'; G.sb.push(id); }
+  for (const [n, s] of SC_CLUBS) { const id = 'C_' + slug(n); if (!G.teams[id]) addLite(id, n, s); G.teams[id].c1 = '#5b6f3a'; G.sc.push(id); }
+  // European lite sides that are now real Italian clubs: swap the ids in this season's European competitions
+  const sw = (x) => IT_LITE_MAP[x] || x;
+  for (const f of Object.values(G.fx)) { f.h = sw(f.h); f.a = sw(f.a); }
+  for (const c in G.euro || {}) { const E = G.euro[c]; E.teams = E.teams.map(sw); if (E.final) E.final = E.final.map(sw); if (E.winner) E.winner = sw(E.winner); for (const r of E.ko || []) for (const t of r.ties) { t.t = t.t.map(sw); if (t.w) t.w = sw(t.w); } }
+  for (const k in G.euroIn || {}) G.euroIn[k] = G.euroIn[k].map(sw);
+  for (const k in IT_LITE_MAP) delete G.teams[k];
+  // this season: Serie A fixtures from August; rounds before today are filled in with team-level results
+  G.cups = G.cups || {};
+  G.sciTeams = SCI_START.slice(); G.citSeeds = CIT_SEEDS_START.slice();
+  const savedTasks = G.tasks.slice(); buildItaly(); G.tasks = savedTasks;
+  for (const fid of [].concat(...G.saLeague.rounds)) { const f = G.fx[fid]; if (f.d < G.date) quickFixture(f); }
+  const done = [].concat(...G.saLeague.rounds).map(id => G.fx[id]).filter(f => f.r); const rnd = done.length ? Math.max(...done.map(f => f.rnd)) : 0;
+  const target = Math.floor(rnd * G.sbL.rounds.length / 38); while (G.sbL.played < target) { for (const f of G.sbL.rounds[G.sbL.played]) f.r = quickScore(f.h, f.a); G.sbL.played++; }
+  // cup rounds already due: play them at team level, round by round
+  for (let k = 0; k < 6; k++) { const cup = G.cups.CIT; const rd = cup.rounds[cup.ri]; if (!rd || !rd.ties.length || rd.done) break; let all = true; for (const t of rd.ties) for (const id of t.fx) { const f = G.fx[id]; if (!f.r) { if (f.d < G.date) quickFixture(f); else all = false; } } if (!all) break; checkCupProgress('CIT'); }
+  for (const t of G.cups.SCI.rounds[0].ties) for (const id of t.fx) if (G.fx[id].d < G.date && !G.fx[id].r) { quickFixture(G.fx[id]); checkCupProgress('SCI'); }
+  if (typeof ensureYouth === 'function') for (const id of G.sa) try { ensureYouth(id); } catch (e) { console.error(e); }
+  if (G.yl) { G.yl.PRI = { teams: R.shuffle(G.sa), rounds: roundRobin(G.sa.slice()), ri: 0, res: [], sc: {} }; G.yl.U18I = { teams: R.shuffle(G.sa), rounds: roundRobin(G.sa.slice()), ri: 0, res: [], sc: {} }; }
+  if (G.intl && !G.intl.ita && typeof setupItalyPool === 'function') setupItalyPool();
+  italianise(from);
+  msg('Serie A', `Italy has been added: all 20 Serie A clubs with real first-team squads (as of 4 November 2026), Serie B, the Coppa Italia and the Supercoppa Italiana. This season's Serie A table up to today was filled in with simulated results; Italian clubs in Europe now have full squads. You can scout and sign players from Italian clubs, apply for Italian jobs and manage Italy.`);
+}
+const _rsIT = restore;
+restore = function (obj) { _rsIT(obj); try { migrateItaly(); if (G.intl) setPlayNat(G.intl.nat || 'ENG'); } catch (e) { console.error(e); } };
+const _renderIT = render;
+render = function () { if (G && G.teams && G.ll && !G.sa) { try { migrateItaly(); } catch (e) { console.error(e); } } _renderIT(); };
+const _ngIT = newGame;
+newGame = function (u, n) {
+  const r = _ngIT(u, n);
+  try { italianise(0); if (G.intl && !G.intl.job) setPlayNat(ctryOf(G.user)); } catch (e) { console.error(e); }
+  return r;
+};
 
 // selection.js: squad selection helpers on the Tactics screen.
 // Saved tactics (shape, roles, instructions, set-piece takers and lineup), best XI, squad rotation and a youth (U21) XI.
@@ -12041,7 +13155,7 @@ function punditVerdict(r, sUser) {
 
 // ---------- the biggest game of each round (not the user's): one pundit row ----------
 function roundTalking(ids) {
-  const fs = ids.map(id => G.fx[id]).filter(f => f && f.r && ['PL', 'LL', 'UCL'].includes(f.comp) && f.h !== G.user && f.a !== G.user && !T(f.h).lite && !T(f.a).lite);
+  const fs = ids.map(id => G.fx[id]).filter(f => f && f.r && ['PL', 'LL', 'SA', 'UCL'].includes(f.comp) && f.h !== G.user && f.a !== G.user && !T(f.h).lite && !T(f.a).lite);
   if (!fs.length) return;
   const f = fs.sort((a, b) => (T(b.h).rep + T(b.a).rep + (isRival(b.h, b.a) ? 15 : 0) + ((b.inc || []).length * 5)) - (T(a.h).rep + T(a.a).rep + (isRival(a.h, a.a) ? 15 : 0) + ((a.inc || []).length * 5)))[0];
   if (T(f.h).rep + T(f.a).rep < 160 && !(f.inc || []).length) return;
@@ -12066,7 +13180,7 @@ const VAR_WHY = {
 };
 function varWatch() {
   const from = addDays(G.date, -7);
-  const fs = Object.values(G.fx).filter(f => f.r && f.inc && f.d >= from && f.d < G.date && ['PL', 'LL', 'CH', 'UCL', 'UEL', 'FA', 'CDR'].includes(f.comp));
+  const fs = Object.values(G.fx).filter(f => f.r && f.inc && f.d >= from && f.d < G.date && ['PL', 'LL', 'SA', 'CH', 'UCL', 'UEL', 'FA', 'CDR', 'CIT'].includes(f.comp));
   const cand = [];
   for (const f of fs) for (const x of f.inc) {
     const mine = f.h === G.user || f.a === G.user; const rep = (T(f.h).rep || 60) + (T(f.a).rep || 60);
@@ -12146,7 +13260,7 @@ function answerRequest(id, k) {
   const tk = (key) => { const x = talkTo(p.id, key); return x ? x.reply : ''; };
   if (k === 'promise' || k === 'fight' || k === 'stay' || k === 'encourage' || k === 'letgo') out = tk(k);
   else if (k === 'loan') {
-    if (G.window) { const res = loanOut(p.id, ctryOf(G.user) === 'ESP' ? 'sd' : 'ch'); out = res.msg; if (res.ok) setHap(p, 10); }
+    if (G.window) { const res = loanOut(p.id, ({ ESP: 'sd', ITA: 'sb' }[ctryOf(G.user)] || 'ch')); out = res.msg; if (res.ok) setHap(p, 10); }
     else { p.loanNext = 1; setHap(p, 6); out = "Thanks boss. I'll go in the next window."; }
   } else if (k === 'talks') { setHap(p, 6); UI.modal = null; setTimeout(() => { try { playerModal(p.id); } catch (e) { } }, 0); out = "Good. Let's get it sorted."; }
   else if (k === 'summer') { setHap(p, p.ca >= 76 ? -6 : -2); out = "I'll wait, but I won't wait forever."; }
@@ -12163,7 +13277,7 @@ function requestTick() {
     msg('Request ignored', `${p.n} feels ignored after you didn't answer his request. Some team-mates side with him.`);
   }
   // loans agreed out of window
-  if (G.window) for (const p of squad(G.user)) if (p.loanNext) { delete p.loanNext; const res = loanOut(p.id, ctryOf(G.user) === 'ESP' ? 'sd' : 'ch'); if (res.ok) msg('Loan', `As agreed, ${res.msg}`); }
+  if (G.window) for (const p of squad(G.user)) if (p.loanNext) { delete p.loanNext; const res = loanOut(p.id, ({ ESP: 'sd', ITA: 'sb' }[ctryOf(G.user)] || 'ch')); if (res.ok) msg('Loan', `As agreed, ${res.msg}`); }
   if (teamGames() < 4 || R.chance(.5)) return;
   const sq = squad(G.user).filter(p => !reqOpen(p.id) && !p.loan && p.inj <= 0 && !(p.reqAt && dDiff(p.reqAt, G.date) < 50));
   const cand = [];
@@ -12234,7 +13348,7 @@ buildSeason = function () {
   try { G.cups.CWC = { id: 'CWC', rounds: cupRounds(CAL.CWC.rounds), ri: 0, winner: null }; G.cups.CWX = { id: 'CWX', rounds: cupRounds(CAL.CWX.rounds), ri: 0, winner: null }; G.tasks.push({ d: sd(CAL.CWC.draw), t: 'drawCWC' }, { d: sd(CAL.CWX.draw), t: 'drawCWX' }); } catch (e) { console.error(e); }
 };
 function drawCWC() {
-  const ent = []; for (const c of ['FA', 'CDR']) { const w = G.cups[c] && G.cups[c].winner; if (w && !ent.includes(w)) ent.push(w); }
+  const ent = []; for (const c of ['FA', 'CDR', 'CIT']) { const w = G.cups[c] && G.cups[c].winner; if (w && !ent.includes(w)) ent.push(w); }
   if (G.cups.LC && G.cups.LC.winner && !ent.includes(G.cups.LC.winner) && ent.length < 2) ent.push(G.cups.LC.winner);
   const lite = R.shuffle([].concat(EURO.UCL, EURO.UEL).filter(x => x[1] >= 74).map(x => 'E_' + slug(x[0])).filter(id => G.teams[id] && !ent.includes(id)));
   while (ent.length < 8 && lite.length) ent.push(lite.shift());
