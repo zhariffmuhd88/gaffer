@@ -192,7 +192,7 @@ render = function () {
     if (!G || UI.match || !G.intl) return;
     const nav = document.querySelector('nav.nav'); if (!nav) return;
     if (!nav.querySelector('[data-v="intl"]')) { const after = nav.querySelector('[data-v="comps"]'); const b = document.createElement('button'); b.dataset.a = 'nav'; b.dataset.v = 'intl'; b.textContent = 'International'; if (UI.scr === 'intl') b.className = 'on'; if (after) after.after(b); else nav.appendChild(b); }
-    if (isNatT(G.user)) for (const k of ['transfers', 'finance', 'staff', 'club', 'dyn', 'train']) { const b = nav.querySelector(`[data-v="${k}"]`); if (b) b.hidden = true; }
+    if (isNatT(G.user)) for (const k of ['transfers', 'finance', 'staff', 'reports', 'club', 'dyn', 'train']) { const b = nav.querySelector(`[data-v="${k}"]`); if (b) b.hidden = true; }
   } catch (e) { console.error(e); }
 };
 

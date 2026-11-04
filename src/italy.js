@@ -284,3 +284,6 @@ newGame = function (u, n) {
   try { italianise(0); if (G.intl && !G.intl.job) setPlayNat(ctryOf(G.user)); } catch (e) { console.error(e); }
   return r;
 };
+// fix generated Italian names cut in half by an early build ("Marco De")
+const _rsIT2 = restore;
+restore = function (obj) { _rsIT2(obj); try { for (const p of Object.values(G.players)) if (p && p.itN && / De$/.test(p.n)) p.n = p.n + R.pick([' Luca', ' Santis', ' Angelis', ' Rosa']); } catch (e) { console.error(e); } };
