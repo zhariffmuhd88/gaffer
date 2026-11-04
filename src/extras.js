@@ -183,3 +183,20 @@ function announceTitle(div, lead, second, left) {
 }
 const _fdCl = finishDay;
 finishDay = function () { const r = _fdCl.apply(this, arguments); try { clinchCheck(); } catch (e) { console.error(e); } return r; };
+
+// ===================== 5. older saves: add this season's Cup Winners' Cup and Club World Cup =====================
+// Careers started before these were added had no G.cups.CWC/CWX for the season in progress, so the post-season
+// tournament never happened that year. Add them on load if their draw or first round is still to come.
+function ensurePostSeasonCups() {
+  if (!G || !G.cups || typeof cupRounds !== 'function') return;
+  for (const [c, fn] of [['CWC', drawCWC], ['CWX', drawCWX]]) {
+    if (G.cups[c]) continue;
+    const spec = CAL[c]; const first = sd(spec.rounds[0][1][0]); if (G.date >= first) continue;
+    G.cups[c] = { id: c, rounds: cupRounds(spec.rounds), ri: 0, winner: null };
+    const dd = sd(spec.draw);
+    if (G.date < dd) G.tasks.push({ d: dd, t: c === 'CWC' ? 'drawCWC' : 'drawCWX' });
+    else try { fn(); } catch (e) { console.error(e); }
+  }
+}
+const _rsPS = restore;
+restore = function (obj) { _rsPS(obj); try { ensurePostSeasonCups(); } catch (e) { console.error(e); } };
