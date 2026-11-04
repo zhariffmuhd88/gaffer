@@ -13982,6 +13982,57 @@ createMatch = function (fid, live) {
   return M;
 };
 
+// ===================== 4. title mathematically secured =====================
+// After each matchday: if the leader's points can no longer be caught by anyone (even winning all their games),
+// the title is announced in the inbox, news, WUPH.com and the trends, and the club's players celebrate.
+const CLINCH_LG = { PL: 'Premier League', CH: 'Championship', LL: 'La Liga', SA: 'Serie A' };
+function leagueGames(div) { const n = div === 'CH' ? 24 : divTeams(div).length || 20; return 2 * (n - 1); }
+function clinchCheck() {
+  if (!G || !G.teams) return;
+  G.clinch = G.clinch || {}; const s = seasonLabel(G.year);
+  for (const div in CLINCH_LG) {
+    if (G.clinch[div] === s) continue;
+    let tb; try { tb = tableOf(div); } catch (e) { continue; }
+    if (!tb || tb.length < 2 || !tb[0].p) continue;
+    const tot = leagueGames(div); const lead = tb[0];
+    const left = tot - lead.p; if (left < 0) continue;
+    const catchable = tb.slice(1).some(r => r.pts + 3 * Math.max(0, tot - r.p) >= lead.pts);
+    if (catchable) continue;
+    G.clinch[div] = s; announceTitle(div, lead, tb[1], left);
+  }
+}
+function announceTitle(div, lead, second, left) {
+  const t = lead.t, T0 = T(t); const name = T0 ? T0.name : tName(t); const LN = CLINCH_LG[div];
+  const gap = lead.pts - second.pts; const when = left > 0 ? `with ${left} game${left > 1 ? 's' : ''} to spare` : 'on the final day';
+  const mgr = t === G.user ? G.mgr : mgrName(t);
+  const body = `${name} are ${LN} champions ${seasonLabel(G.year)}! The title is mathematically secured ${when}: ${lead.pts} points, ${gap} clear of ${tName(second.t)}. ${t === G.user ? `A triumph for ${G.mgr}.` : `${mgr}'s side cannot be caught.`}`;
+  news(`${LN}: ${name} are champions`, body, t, true);
+  try {
+    if (t === G.user) {
+      msg('🏆 CHAMPIONS!', `${body} The players, the board and the supporters are celebrating. The trophy will be presented after the last home game of the season.`, { k: 'nav', v: 'table', lab: 'See the table', tab: '' });
+      for (const p of squad(G.user)) { p.mor = clamp(p.mor + 15, 5, 100); if (typeof setHap === 'function') setHap(p, 8); }
+      G.board = clamp((G.board || 60) + 15, 0, 100); G.fans = clamp((G.fans ?? 60) + 15, 0, 100);
+      if (typeof userAward === 'function') try { userAward(`${LN} title`, 6, `${G.mgr} wins the ${LN} with ${name}.`); } catch (e) { }
+    } else if (second.t === G.user) msg('Title race over', `${name} have clinched the ${LN}. ${G.mgr}'s side finish the race ${gap} points behind with ${left} game${left === 1 ? '' : 's'} left.`);
+    // WUPH.com
+    const big = { big: true, tid: t, u: t === G.user ? 1 : 0 };
+    if (T0 && !T0.lite) clubPost(t, `🏆 ${LN.toUpperCase()} CHAMPIONS ${seasonLabel(G.year)}! 🏆 It's official. Thank you to every player, every member of staff and every supporter. ${mgr}, what a season.`, big);
+    for (const x of [
+      `CHAMPIONS!!! 🏆🏆🏆 I've waited all season to say it. WE ARE THE CHAMPIONS!`,
+      `${left > 0 ? left + ' games to spare' : 'Last day drama'} and it's DONE. ${surname(mgr)} ${R.pick(['genius', 'legend', 'you beauty'])} 😭❤️`,
+      `Party in town tonight 🍾 ${name} champions of ${div === 'CH' ? 'the Championship' : div === 'PL' ? 'England' : div === 'LL' ? 'Spain' : 'Italy'}!`
+    ]) fanPost(t, x, { big: true });
+    if (second.t && T(second.t) && !T(second.t).lite) fanPost(second.t, R.pick([`Gutted. Fair play to ${tName(t)}, they were better over the season.`, `Can't believe we let that slip. Big summer needed.`, `Congrats to ${tName(t)} I suppose. We go again next year.`]));
+    const es = ctryOf(t) === 'ESP';
+    journPost(jr(es ? 'jm' : 'mh'), `${name} have been confirmed as ${LN} champions ${when}. ${lead.pts} points from ${lead.p} games.`, { big: true, tid: t });
+    if (typeof PUNDITS !== 'undefined' && typeof punditPost === 'function') { const pd = R.pick(PUNDITS.filter(p => !!p.es === es) .concat(PUNDITS.filter(p => !p.es)).slice(0, 4)); punditPost(pd, `Deserved champions. ${name} have been the most consistent side in the ${LN}${gap >= 10 ? ' by a distance' : ''}. Credit to ${mgr}.`, { tid: t }); }
+    offPost(LN, '@' + LN.replace(/\s/g, ''), `🏆 ${name} are ${seasonLabel(G.year)} ${LN} champions! Congratulations! 🎉`, { big: true, tid: t, u: t === G.user ? 1 : 0 });
+    trend(slug(T0 ? (T0.short || T0.name) : name) + 'Champions', 40); trend('Champions', 10);
+  } catch (e) { console.error(e); }
+}
+const _fdCl = finishDay;
+finishDay = function () { const r = _fdCl.apply(this, arguments); try { clinchCheck(); } catch (e) { console.error(e); } return r; };
+
 // intro.js: launch sting (Ayep Interactive logo, disclaimer card, GAFFER logo), Game > Options and Game > About.
 // Loaded just before boot.js. Plays once per page load, never on re-renders.
 
