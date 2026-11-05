@@ -161,8 +161,8 @@ function scrTransfers() {
   let body = '';
   if (tab === 'search') {
     const f = UI.filt;
-    let list = Object.values(G.players).filter(p => divOf(p.c) && p.c !== G.user);
-    if (f.lg) list = list.filter(p => divOf(p.c) === f.lg);
+    let list = f.lg === 'AB' ? Object.values(G.players).filter(p => p && p.c === 'ABROAD' && p.age >= 17 && !p.scouted) : Object.values(G.players).filter(p => divOf(p.c) && p.c !== G.user);
+    if (f.lg && f.lg !== 'AB') list = list.filter(p => divOf(p.c) === f.lg);
     if (f.q) { const q = f.q.toLowerCase(); list = list.filter(p => p.n.toLowerCase().includes(q)); }
     if (f.grp) list = list.filter(p => f.grp.includes(p.pos));
     if (f.club) list = list.filter(p => p.c === f.club);
@@ -177,7 +177,7 @@ function scrTransfers() {
       <div><label class="lb" for="fq">Name</label><input class="f" id="fq" data-a="filt" data-k="q" value="${esc(f.q)}" placeholder="e.g. Saka"></div>
       <div><label class="lb" for="fg">Position</label><select class="f" id="fg" data-a="filt" data-k="grp"><option value="">Any</option>${[['GK', 'Goalkeeper'], ['CB', 'Centre-back'], ['LB,RB', 'Full-back'], ['DM,CM', 'Central midfield'], ['AM', 'Attacking midfield'], ['LW,RW', 'Winger'], ['ST', 'Striker']].map(([v, l]) => `<option value="${v}" ${f.grp === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
       <div><label class="lb" for="fc">Club</label><select class="f" id="fc" data-a="filt" data-k="club"><option value="">Any</option>${['PL', 'CH', 'LL', 'SA'].map(d => `<optgroup label="${COMP_NAME[d]}">${divTeams(d).filter(t => t !== G.user).slice().sort((a, b) => tName(a) < tName(b) ? -1 : 1).map(t => `<option value="${t}" ${f.club === t ? 'selected' : ''}>${esc(tName(t))}</option>`).join('')}</optgroup>`).join('')}</select></div>
-      <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH', 'LL', 'SA'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}</select></div>
+      <div><label class="lb" for="fl">League</label><select class="f" id="fl" data-a="filt" data-k="lg"><option value="">Any</option>${['PL', 'CH', 'LL', 'SA'].map(d => `<option value="${d}" ${f.lg === d ? 'selected' : ''}>${COMP_NAME[d]}</option>`).join('')}<option value="AB" ${f.lg === 'AB' ? 'selected' : ''}>Abroad (outside the game's leagues)</option></select></div>
       <div><label class="lb" for="fm">Max value £m</label><input class="f" id="fm" type="number" min="0" style="width:90px" data-a="filt" data-k="max" value="${esc(f.max)}"></div>
       <div><label class="lb" for="fcon">Contract ends</label><select class="f" id="fcon" data-a="filt" data-k="con"><option value="">Any</option>${[['1', `Summer ${G.year + 1} (expiring)`], ['2', `By ${G.year + 2}`], ['3', `By ${G.year + 3}`]].map(([v, l]) => `<option value="${v}" ${f.con === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
       <div><label class="lb" for="fhap">Happiness</label><select class="f" id="fhap" data-a="filt" data-k="hap"><option value="">Any</option>${[['50', 'Unsettled (below 50)'], ['35', 'Unhappy (below 35)'], ['20', 'Wants out (below 20)']].map(([v, l]) => `<option value="${v}" ${f.hap === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>

@@ -265,8 +265,10 @@ function relegationExodus(tid, plClubs) {
     const ch = p.ca >= 78 ? .85 : p.ca >= 75 ? .6 : p.ca >= 72 ? .3 : 0;
     if (!ch || !R.chance(ch) || sold >= 9) continue;
     const fee = Math.max(1, Math.round(calcValue(p) * R.i(60, 90)) / 100);
-    const buyers = plClubs.filter(b => T(b).rep >= p.ca - 10 && b !== G.user);
-    if (buyers.length && R.chance(.65)) { const b = R.pick(buyers); completeTransfer(p, b, fee, wageFor(p, b), R.i(3, 5)); T(b).tb = Math.max(0, T(b).tb - fee); }
+    // buyers: top-flight clubs in every country the game has (not just the relegated club's league)
+    const pool = [...new Set(plClubs.concat(G.pl, G.ll || [], G.sa || []))].filter(b => b !== tid && T(b) && !T(b).lite);
+    const buyers = pool.filter(b => T(b).rep >= p.ca - 10 && b !== G.user && squad(b).length < 32);
+    if (buyers.length && R.chance(.8)) { const b = R.pick(buyers); completeTransfer(p, b, fee, wageFor(p, b), R.i(3, 5)); T(b).tb = Math.max(0, T(b).tb - fee); }
     else sellAbroad(p, fee, R.pick([].concat(EURO.UCL, EURO.UEL, EURO.UECL).filter(x => x[1] >= p.ca - 8).map(x => x[0]).concat(['Al-Hilal', 'Al-Ahli', 'Fenerbahce'])));
     sold++;
   }

@@ -272,3 +272,33 @@ scrComps = function () {
   if (UI.tab.cp !== 'CWC' || !c || !c.ent) return h;
   return h + `<h2 class="sect">Entrants</h2><div class="tw"><table class="t"><tbody>${c.ent.map(([t, w]) => `<tr><td>${tLink(t, true)}</td><td class="dim">${esc(w || '')}${(c.byes || []).includes(t) ? ' · bye to the quarter-finals' : ''}</td></tr>`).join('')}</tbody></table></div>`;
 };
+
+// ===================== 7. players abroad can be bought back =====================
+// Players sold to clubs outside the game's leagues (p.c 'ABROAD') appear in Transfers › Search under "Abroad" and
+// can be signed from their profile while a window is open.
+function abroadFee(p) { return Math.max(1, Math.round(calcValue(p) * (p.ca >= 80 ? 1.15 : .95) * 10) / 10); }
+function signAbroad(pid) {
+  const p = P(pid); if (!p || p.c !== 'ABROAD') return { ok: false, msg: 'He is no longer available.' };
+  const u = userTeam(); const fee = abroadFee(p);
+  if (!G.window) return { ok: false, msg: 'You can only sign players while a window is open.' };
+  if (p.ca >= 75 && u.rep < p.ca - 12) return { ok: false, msg: `${p.n} is not interested in joining ${u.name}.` };
+  if (fee > u.tb) return { ok: false, msg: `${p.gone || p.ab || 'His club'} want ${money(fee)}, more than your budget (${money(u.tb)}).` };
+  const w = Math.max(wageFor(p, G.user), Math.round((p.wage || 0) * .9));
+  if (wageBill(G.user) + w > u.wb + .5) return { ok: false, msg: `He wants ${wageStr(w)}. Not enough room in the wage budget.` };
+  const where = p.gone || p.ab || 'abroad';
+  completeTransfer(p, G.user, fee, w, p.age >= 30 ? 2 : 4); p.gone = null; delete p.ab;
+  G.prospects = (G.prospects || []).filter(x => x !== pid);
+  news('Transfer', `${p.n} returns from ${where} to join ${u.name} for ${money(fee)}.`, G.user, true);
+  return { ok: true, msg: `${p.n} signs from ${where} for ${money(fee)}.` };
+}
+const _pmAb = playerModal;
+playerModal = function (pid) {
+  _pmAb(pid);
+  try {
+    const p = P(pid); if (!p || p.c !== 'ABROAD' || !UI.modal || T(G.user).nat) return;
+    const k = '<div class="row" style="margin-top:14px">'; const i = UI.modal.lastIndexOf(k); if (i < 0) return;
+    UI.modal = UI.modal.slice(0, i + k.length) + `<button class="btn pri" data-a="signab" data-v="${pid}">Sign from ${esc(p.gone || p.ab || 'abroad')} · ${money(abroadFee(p))}</button>` + UI.modal.slice(i + k.length);
+    render();
+  } catch (e) { console.error(e); }
+};
+ACT.signab = (v) => { const r = signAbroad(v); toast(r.msg); if (r.ok) { UI.modal = null; autosave(); } render(); };
