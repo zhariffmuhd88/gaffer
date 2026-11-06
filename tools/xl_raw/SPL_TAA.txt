@@ -1,0 +1,26 @@
+Vuk Rašović
+Mailson|GK|Brazil|1|30
+Abdullah Al Jadani|GK|Saudi Arabia|30|35
+Abdulrahman Al Senaid|GK|Saudi Arabia|25|20
+Bassam Al Hurayji|RB|Saudi Arabia|6|26
+Abdulrahman Hindi|RB|Saudi Arabia|70|23
+Zineddine Belaïd|CB|Algeria|5|27
+Muteb Al Mufarrij|CB|Saudi Arabia|32|30
+Ibrahim Mahnashi|CB|Saudi Arabia|40|26
+Nasser Al Haleel|CB|Saudi Arabia|44|26
+Jair Collahuazo|CB|Ecuador|55|20
+Awn Al Saluli|LB|Saudi Arabia|93|28
+Oscar Dorley|DM|Liberia|19|28
+Mustapha Samb|CM|Senegal|4|21
+Faris Al Ghamdi|CM|Saudi Arabia|16|23
+Aschraf El Mahdioui|DM|Morocco|18|30
+Bassem Al Arini|AM|Saudi Arabia|20|22
+Rakan Al Tulayhi|AM|Saudi Arabia|23|23
+Marin Petkov|RW|Bulgaria|88|23
+Mohammed Al Kuwaykibi|RW|Saudi Arabia|7|31
+Parfait Guiagon|LW|Ivory Coast|8|25
+Saif Rajab|LW|Saudi Arabia|14|21
+Abderrazak Hamdallah|ST|Morocco|9|35
+Nedim Bajrami|ST|Albania|10|27
+Mohammed Al Aqel|ST|Saudi Arabia|17|26
+Younes El Bahraoui|ST|Morocco|47|21

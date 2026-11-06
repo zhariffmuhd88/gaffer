@@ -1,0 +1,25 @@
+Adi Hütter
+Noah Atubolu|GK|Germany|1|24
+Jens Grahl|GK|Germany|33|38
+Kauã|GK|Brazil|40|23
+Elias Baum|RB|Germany|2|21
+Lilian Brassier|CB|France|3|26
+Robin Koch|CB|Germany|4|30
+Otávio|CB|Brazil|5|20
+Nnamdi Collins|CB|Germany|34|22
+Jeremiaha Maluze|CB|Germany|37|21
+Keita Kosugi|LB|Japan|26|20
+Farès Chaïbi|DM|Algeria|8|23
+Raphael Onyedika|DM|Nigeria|25|25
+Oscar Højlund|CM|Denmark|6|21
+Timothy Chandler|LW|United States|22|36
+Noël Aséko|AM|Germany|15|20
+Mario Götze|AM|Germany|27|34
+Can Uzun|AM|Türkiye|42|20
+Ritsu Doan|RW|Japan|20|28
+Ayoube Amaimouni-Echghouyab|RW|Morocco|29|21
+Love Arrhov|LW|Sweden|31|18
+Ansgar Knauff|ST|Germany|7|24
+Jonathan Burkardt|ST|Germany|9|26
+Younes Ebnoutalib|ST|Germany|11|23
+Malik Pimpong|ST|Denmark|35|18

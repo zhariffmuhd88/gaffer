@@ -1,0 +1,26 @@
+Damir Burić
+Donovan Léon|GK|French Guiana|16|34
+Abdulrahman Al Bouq|GK|Saudi Arabia|21|27
+Mustafa Malayekah|GK|Saudi Arabia|26|40
+Mohammed Al Dossary|RB|Saudi Arabia|23|27
+Nawaf Al Ghulaimish|RB|Saudi Arabia|66|21
+Juriën Gaari|CB|Curaçao|3|32
+Abdullah Al Fahad|CB|Saudi Arabia|19|32
+Abdou Diallo|CB|Senegal|22|30
+Abdulbasit Hindi|CB|Saudi Arabia|37|29
+Khaled Al Shamrani|LB|Saudi Arabia|12|27
+Majed Dawran|RB|Saudi Arabia|29|23
+Safwan Al Johani|LB|Saudi Arabia|80|23
+Basil Al Sayyali|DM|Saudi Arabia|4|25
+Faisal Al Subiani|DM|Saudi Arabia|6|23
+Feras Al Ghamdi|DM|Saudi Arabia|7|26
+Nasser Al Daajani|DM|Saudi Arabia|8|29
+Loreintz Rosier|CM|France|32|28
+Mateo Borrell|CM|Argentina|55|20
+Abdulkarim Darisi|RW|Saudi Arabia|17|23
+Georges-Kévin N'Koudou|LW|Cameroon|14|31
+Nabil Fekir|AM|France|10|33
+Alimami Gory|RW|Mali|11|30
+Bader Al Mutairi|RW|Saudi Arabia|28|22
+Keshim Al Qahtani|ST|Saudi Arabia|20|26
+Michy Batshuayi|ST|Belgium|44|33

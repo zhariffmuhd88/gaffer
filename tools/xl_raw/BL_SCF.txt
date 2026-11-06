@@ -1,0 +1,28 @@
+Julian Schuster
+Mio Backhaus|GK|Germany|1|22
+Florian Müller|GK|Germany|21|28
+Jannik Huth|GK|Germany|24|32
+Lukas Kübler|RB|Germany|17|34
+Philipp Treu|RB|Germany|29|25
+Philipp Lienhart|CB|Austria|3|30
+Anthony Jung|CB|Germany|5|35
+Matthias Ginter|CB|Germany|28|32
+Max Rosenfelder|CB|Germany|37|23
+Bruno Ogbus|CB|Switzerland|43|20
+Berkay Yılmaz|LB|Türkiye|27|21
+Christian Günter|LB|Germany|30|33
+Jordy Makengo|LB|DR Congo|33|25
+Patrick Osterhage|DM|Germany|6|26
+Maximilian Eggestein|DM|Germany|8|29
+Yannik Engelhardt|DM|Germany|16|25
+Rihito Yamamoto|DM|Japan|20|24
+Rouven Tarnutzer|CM|Germany|39|19
+Yuito Suzuki|AM|Japan|14|25
+Jan-Niklas Beste|RW|Germany|19|27
+Cyriaque Irié|RW|Burkina Faso|22|21
+Florent Muslija|LW|Kosovo|23|28
+Derry Scherhant|LW|Germany|7|23
+Vincenzo Grifo|LW|Italy|32|33
+Lucas Höler|ST|Germany|9|32
+Igor Matanović|ST|Croatia|31|23
+Keisuke Goto|ST|Japan|42|21

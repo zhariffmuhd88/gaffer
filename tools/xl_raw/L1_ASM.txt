@@ -1,0 +1,25 @@
+Filipe Luís
+Lukáš Hrádecký|GK|Finland|1|36
+Philipp Köhn|GK|Switzerland|16|28
+Jules Stawiecki|GK|France|40|19
+Vanderson|RB|Brazil|2|25
+Ilane Touré|RB|France|49|20
+Eric Dier|CB|England|15|32
+Mohammed Salisu|CB|Ghana|22|27
+Sadibou Sané|CB|Senegal|72|22
+Jordan Teze|CB|Netherlands|4|27
+Christian Mawissa|LB|France|13|21
+Flávio Nazinho|LB|Portugal|20|23
+Denis Zakaria|DM|Switzerland|6|29
+Lamine Camara|DM|Senegal|8|22
+Mamadou Coulibaly|DM|France|28|22
+Pape Cabral|CM|France|19|19
+Aleksandr Golovin|AM|Russia|10|30
+Takumi Minamino|AM|Japan|18|31
+Ansu Fati|AM|Spain|31|24
+Mathys Detourbet|LW|France|7|19
+Matthis Abline|LW|France|11|23
+Stanis Idumbo|LW|DR Congo|17|21
+Folarin Balogun|ST|United States|9|25
+Mika Biereth|ST|Denmark|14|23
+Paris Brunner|ST|Germany|29|20

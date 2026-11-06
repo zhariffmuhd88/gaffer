@@ -1,0 +1,27 @@
+Manuel Baum
+Finn Dahmen|GK|Germany|1|28
+Nediljko Labrović|GK|Croatia|22|27
+Tom Wisbereit|GK|Germany|48|18
+Young-Woo Seol|RB|South Korea|7|27
+Calvin Brackelmann|CB|Germany|2|27
+Chrislain Matsima|CB|France|5|24
+Jeffrey Gouweleeuw|CB|Netherlands|6|35
+Yannik Keitel|CB|Germany|14|26
+Juma Bah|CB|Sierra Leone|35|20
+Noahkai Banks|CB|United States|40|19
+Sima Suso|CB|Germany|8|21
+Robin Fellhauer|RB|Germany|19|28
+Marius Wolf|RB|Germany|27|31
+Hennes Behrens|LB|Germany|16|21
+Han-Noah Massengo|DM|France|4|25
+Tim Breithaupt|DM|Germany|18|24
+Faik Sakar|CM|Germany|23|18
+Mert Kömür|AM|Türkiye|10|21
+Alexis Claude-Maurice|AM|France|20|28
+Arijon Ibrahimović|AM|Germany|21|20
+Anton Kade|AM|Germany|30|22
+Fabian Rieder|AM|Switzerland|32|24
+Rodrigo Ribeiro|ST|Portugal|9|21
+Michael Gregoritsch|ST|Austria|11|32
+Steve Mounié|ST|Benin|15|32
+Uchenna Ogundu|ST|Nigeria|39|20

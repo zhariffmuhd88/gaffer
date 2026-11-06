@@ -1,0 +1,24 @@
+Des Buckingham
+Mohammed Al Shammari|GK|Saudi Arabia|30|34
+Hamed Al Shanqiti|GK|Saudi Arabia|1|21
+Muhannad Al Yahya|GK|Saudi Arabia|48|22
+Ramzi Solan|RB|Saudi Arabia|15|28
+Odai Slimani|RB|Saudi Arabia|24|21
+Edgaras Utkus|CB|Lithuania|5|26
+Mansour Camara|CB|Guinea|25|19
+Shaquille Pinas|CB|Suriname|38|28
+Abdulrahman Al Obaid|CB|Saudi Arabia|47|22
+Sultan Al Shehri|LB|Saudi Arabia|7|31
+Seydouba Cissé|DM|Guinea|8|25
+John Buckley|CM|England|6|27
+Abdulrahman Al Dosari|CM|Saudi Arabia|39|29
+Yaseen Al Zubaidi|RW|Saudi Arabia|26|23
+Muhammad Sawaan|LW|Saudi Arabia|70|26
+Iker Kortajarena|AM|Spain|10|26
+Adam Berry|AM|England|17|20
+Mohammed Al Rashdi|AM|Saudi Arabia|67|24
+Antoine Essomba|RW|Cameroon|77|22
+Coba da Costa|LW|Guinea-Bissau|11|24
+Ramiro Enrique|ST|Argentina|18|25
+Julien Domingues|ST|France|22|30
+Guga|ST|Brazil|99|20

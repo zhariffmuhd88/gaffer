@@ -1,0 +1,23 @@
+Didier Digard
+Arnaud Bodart|GK|Belgium|16|28
+Lionel Mpasi-Nzau|GK|DR Congo|77|32
+Gauthier Gallon|GK|France|93|33
+Elias Jelert|RB|Denmark|12|23
+Ahmed Touba|CB|Algeria|5|28
+Ayumu Seko|CB|Japan|15|26
+Vincent Sasso|CB|France|23|35
+Timothée Pembélé|CB|France|32|24
+Enzo Koffi|LB|France|27|20
+Lamine N'Diaye|LB|Senegal|97|21
+Simon Ebonog|DM|France|26|22
+Daren Mosengo|DM|France|78|20
+Junior Mwanga|CM|France|6|23
+Amir Richardson|CM|Morocco|7|24
+Rassoul Ndiaye|AM|Senegal|14|24
+Kaito Mizuta|AM|Japan|17|26
+Sota Nakamura|AM|Japan|30|24
+Josh Maja|ST|Nigeria|9|27
+Felix Mambimbi|ST|Switzerland|10|25
+Joan Tincrès|ST|France|19|20
+Mbwana Samatta|ST|Tanzania|25|33
+Rayan Fofana|ST|Ivory Coast|38|20

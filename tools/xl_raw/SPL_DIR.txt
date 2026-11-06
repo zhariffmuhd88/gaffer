@@ -1,0 +1,12 @@
+Bruno Lage
+Waleed Abdullah|GK|Saudi Arabia|1|39
+Berat Djimsiti|CB|Albania|25|33
+Chancel Mbemba|CB|DR Congo|19|32
+Qasem Lajami|CB|Saudi Arabia|4|30
+Abdulaziz Al Faraj|RB|Saudi Arabia|2|26
+Hussain Al Sibyani|LB|Saudi Arabia|13|27
+Idrissa Gana Gueye|DM|Senegal|27|37
+Enzo Millot|AM|France|10|24
+Óscar Rodríguez|AM|Spain|8|28
+Adil Boulbina|LW|Algeria|7|23
+Darwin Núñez|ST|Uruguay|9|27

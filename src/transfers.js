@@ -180,7 +180,7 @@ function seasonEnd() {
   const llRel = lt ? lt.slice(17).map(r => r.t) : [];
   const st = G.sa && G.sa.length && typeof saTable === 'function' ? saTable() : null;
   const saRel = st ? st.slice(17).map(r => r.t) : [];
-  const utab = udiv === 'CH' ? ct : udiv === 'LL' && lt ? lt : udiv === 'SA' && st ? st : tb;
+  const utab = udiv === 'CH' ? ct : udiv === 'LL' && lt ? lt : udiv === 'SA' && st ? st : G.xl && G.xl[udiv] ? xlTable(udiv) : tb;
   const upos = utab.findIndex(r => r.t === G.user) + 1;
   const rel = tb.slice(17).map(r => r.t);
   // promotion from the Championship: top two plus the play-off winner
@@ -266,7 +266,7 @@ function relegationExodus(tid, plClubs) {
     if (!ch || !R.chance(ch) || sold >= 9) continue;
     const fee = Math.max(1, Math.round(calcValue(p) * R.i(60, 90)) / 100);
     // buyers: top-flight clubs in every country the game has (not just the relegated club's league)
-    const pool = [...new Set(plClubs.concat(G.pl, G.ll || [], G.sa || []))].filter(b => b !== tid && T(b) && !T(b).lite);
+    const pool = [...new Set(plClubs.concat(G.pl, G.ll || [], G.sa || [], ...Object.values(G.xl || {})))].filter(b => b !== tid && T(b) && !T(b).lite);
     const buyers = pool.filter(b => T(b).rep >= p.ca - 10 && b !== G.user && squad(b).length < 32);
     if (buyers.length && R.chance(.8)) { const b = R.pick(buyers); completeTransfer(p, b, fee, wageFor(p, b), R.i(3, 5)); T(b).tb = Math.max(0, T(b).tb - fee); }
     else sellAbroad(p, fee, R.pick([].concat(EURO.UCL, EURO.UEL, EURO.UECL).filter(x => x[1] >= p.ca - 8).map(x => x[0]).concat(['Al-Hilal', 'Al-Ahli', 'Fenerbahce'])));

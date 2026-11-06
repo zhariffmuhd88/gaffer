@@ -1,0 +1,25 @@
+Alexander Blessin
+Moritz Nicolas|GK|Germany|1|29
+Tobias Sippel|GK|Germany|21|38
+Jan Olschowsky|GK|Germany|23|24
+Yukhym Konoplya|RB|Ukraine|22|27
+Fabio Chiarodia|CB|Italy|2|21
+Kevin Diks|CB|Indonesia|4|30
+Jan Leszczyński|CB|Poland|5|19
+Ko Itakura|CB|Japan|6|29
+Daiki Hashioka|CB|Japan|14|27
+Philipp Sander|CB|Germany|16|28
+Lukas Ullrich|LB|Germany|26|22
+Joseph Scally|RB|United States|29|23
+Jens Castrop|LB|South Korea|17|23
+Kevin Stöger|DM|Austria|7|33
+Enzo Leopold|CM|Germany|8|26
+Florian Neuhaus|CM|Germany|10|29
+Robin Hack|AM|Germany|25|28
+Wael Mohya|AM|Germany|36|17
+Hugo Bolin|AM|Sweden|38|23
+Nicolas-Gerrit Kühn|RW|Germany|19|26
+Isac Lidberg|ST|Sweden|3|28
+Franck Honorat|RW|France|9|30
+Tim Kleindienst|ST|Germany|11|31
+Shuto Machino|ST|Japan|18|27

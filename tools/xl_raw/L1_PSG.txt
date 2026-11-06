@@ -1,0 +1,25 @@
+Luis Enrique
+Lucas Chevalier|GK|France|30|24
+Matvey Safonov|GK|Russia|39|27
+Alessandro Longoni|GK|Italy|16|18
+Achraf Hakimi|RB|Morocco|2|28
+Marquinhos|CB|Brazil|5|32
+Ilya Zabarnyi|CB|Ukraine|6|24
+Willian Pacho|CB|Ecuador|51|25
+Lucas Digne|LB|France|12|33
+Lucas Hernández|LB|France|21|30
+Nuno Mendes|LB|Portugal|25|24
+Lucas Beraldo|CB|Brazil|4|22
+Fabián Ruiz|CM|Spain|8|30
+Vitinha|CM|Portugal|17|26
+Senny Mayulu|CM|France|24|20
+Dro Fernández|CM|Spain|27|18
+Warren Zaïre-Emery|CM|France|33|20
+João Neves|CM|Portugal|87|22
+Maghnes Akliouche|RW|France|11|24
+Désiré Doué|RW|France|14|21
+Khvicha Kvaratskhelia|LW|Georgia|7|25
+Mika Godts|LW|Belgium|22|21
+Ferran Torres|ST|Spain|9|26
+Ousmane Dembélé|ST|France|10|29
+Quentin Ndjantou|ST|France|47|19

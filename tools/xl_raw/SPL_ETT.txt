@@ -1,0 +1,25 @@
+Arthur Papas
+Marek Rodák|GK|Slovakia|1|29
+Ahmad Al Harbi|GK|Saudi Arabia|23|32
+Radhi Al Otaibi|RB|Saudi Arabia|61|26
+Abdullah Madu|CB|Saudi Arabia|3|33
+Jack Hendry|CB|Scotland|4|31
+Pedro Henrique|CB|Brazil|5|31
+Abdullah Khateeb|CB|Saudi Arabia|70|31
+Marzouq Tambakti|CB|Saudi Arabia|78|23
+Meshal Al Alaeli|LB|Saudi Arabia|13|22
+Madallah Al Olayan|LB|Saudi Arabia|33|32
+Meshal Sibyani|LB|Saudi Arabia|87|25
+Abdoulaye Kanté|DM|Ivory Coast|42|21
+Álvaro Medrán|CM|Spain|10|32
+Ondrej Duda|CM|Slovakia|11|31
+Riyadh Sharahili|CM|Saudi Arabia|26|33
+Abdulelah Hawsawi|CM|Saudi Arabia|77|25
+Yasir Shammari|AM|Saudi Arabia|58|22
+Jordan Larsson|RW|Sweden|17|29
+Jalal Al Salem|RW|Saudi Arabia|24|21
+Khalid Al Ghannam|LW|Saudi Arabia|7|25
+Bersant Celina|LW|Kosovo|43|30
+Moussa Dembélé|ST|France|9|30
+Matija Gluščević|ST|Serbia|71|22
+Abdulhakim Maghfori|ST|Saudi Arabia|20|20

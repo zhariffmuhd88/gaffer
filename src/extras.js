@@ -136,7 +136,7 @@ createMatch = function (fid, live) {
 // ===================== 4. title mathematically secured =====================
 // After each matchday: if the leader's points can no longer be caught by anyone (even winning all their games),
 // the title is announced in the inbox, news, WUPH.com and the trends, and the club's players celebrate.
-const CLINCH_LG = { PL: 'Premier League', CH: 'Championship', LL: 'La Liga', SA: 'Serie A' };
+const CLINCH_LG = { PL: 'Premier League', CH: 'Championship', LL: 'La Liga', SA: 'Serie A', BL: 'Bundesliga', L1: 'Ligue 1', SPL: 'Saudi Pro League' };
 function leagueGames(div) { const n = div === 'CH' ? 24 : divTeams(div).length || 20; return 2 * (n - 1); }
 function clinchCheck() {
   if (!G || !G.teams) return;
@@ -208,8 +208,8 @@ restore = function (obj) { _rsPS(obj); try { ensurePostSeasonCups(); } catch (e)
 // European clubs. More than 8 teams: a preliminary round, the strongest sides get byes. Draw after the last league day.
 CAL.CWC = { draw: '2027-05-31', rounds: [['Quarter-final', ['2027-06-02'], 1], ['Semi-final', ['2027-06-04'], 1], ['Final', ['2027-06-07'], 1]] };
 const CWC_BIG = [['Preliminary round', ['2027-06-01'], 1], ['Quarter-final', ['2027-06-03'], 1], ['Semi-final', ['2027-06-05'], 1], ['Final', ['2027-06-07'], 1]];
-const FP_LG = { PL: 'Premier League', CH: 'Championship', LL: 'La Liga', SA: 'Serie A' };
-const FP_CTRY = { PL: 'England', LL: 'Spain', SA: 'Italy' };
+const FP_LG = { PL: 'Premier League', CH: 'Championship', LL: 'La Liga', SA: 'Serie A', BL: 'Bundesliga', L1: 'Ligue 1', SPL: 'Saudi Pro League' };
+const FP_CTRY = { PL: 'England', LL: 'Spain', SA: 'Italy', BL: 'Germany', L1: 'France' };
 function fairPlay() {
   const s = seasonLabel(G.year); G.fp = G.fp || {}; if (G.fp.s === s) return G.fp;
   const out = { s };

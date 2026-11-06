@@ -1,0 +1,28 @@
+Mauro Lustrinelli
+Frederik Rønnow|GK|Denmark|1|34
+Carl Klaus|GK|Germany|25|32
+Matheo Raab|GK|Germany|31|27
+Josip Juranović|RB|Croatia|18|31
+Felix Uduokhai|CB|Germany|2|29
+Andrik Markgraf|CB|Germany|3|20
+Zeno Van Den Bosch|CB|Belgium|4|23
+Marvin Friedrich|CB|Germany|5|30
+Leopold Querfeld|CB|Austria|14|22
+Stanley N'Soki|CB|France|34|27
+Tom Rothe|LB|Germany|15|22
+Janik Haberer|RB|Germany|19|32
+Christopher Trimmel|RB|Austria|28|39
+Derrick Köhn|LB|Ghana|17|27
+Aljoscha Kemlein|DM|Germany|6|22
+Rani Khedira|DM|Tunisia|8|32
+András Schäfer|DM|Hungary|13|27
+Michel Aebischer|CM|Switzerland|20|29
+Robert Skov|LW|Denmark|24|30
+Woo-Yeong Jeong|AM|South Korea|11|27
+Kastriot Imeri|LW|Switzerland|30|26
+Livan Burcu|LW|Germany|9|22
+Oliver Burke|ST|Scotland|7|29
+Tim Skarke|ST|Germany|21|30
+Andrej Ilić|ST|Serbia|23|26
+Marin Ljubičić|ST|Croatia|27|24
+Emmanuel Latte Lath|ST|Ivory Coast|29|27

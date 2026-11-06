@@ -1,0 +1,23 @@
+Alexandre Dujeux
+Yvon Mvogo|GK|Switzerland|38|32
+Benjamin Leroy|GK|France|1|37
+Bingourou Kamara|GK|Senegal|21|30
+Montassar Talbi|CB|Tunisia|3|28
+Nathaniel Adjei|CB|Ghana|32|24
+Nosa Edward Obaretin|CB|Italy|55|23
+Souleymane Touré|CB|France|95|23
+Srdjan Kuzmić|LB|Slovenia|30|22
+Théo Le Bris|RB|France|11|24
+Dembo Sylla|RB|Guinea|20|23
+Panos Katseris|RB|Greece|77|25
+Arsène Kouassi|LB|Burkina Faso|43|22
+Alec Georgen|DM|France|2|28
+Noah Cadiou|DM|France|8|28
+Arthur Avom|DM|Cameroon|62|21
+Bandiougou Fadiga|AM|France|7|25
+Jean-Victor Makengo|AM|France|17|28
+Isak Steiner Jensen|LW|Denmark|10|22
+Souleymane Faye|LW|Senegal|19|23
+Mohamed Bamba|ST|Ivory Coast|9|24
+Aiyegun Tosin|ST|Benin|15|28
+Ibrahima Baldé|ST|France|18|23

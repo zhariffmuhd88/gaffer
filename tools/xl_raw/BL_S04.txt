@@ -1,0 +1,27 @@
+Miron Muslić
+Loris Karius|GK|Germany|1|33
+Kevin Müller|GK|Germany|22|35
+Faaris Yusufu|GK|Germany||21
+Timo Becker|RB|Germany|5|29
+Tomás Kalas|CB|Czech Republic||33
+Hasan Kuruçay|CB|Türkiye|4|29
+Nikola Katić|CB|Bosnia-Herzegovina|25|30
+Mertcan Ayhan|CB|Türkiye|43|20
+Robin Gosens|LB|Germany|8|32
+Anton Donkor|LB|Germany|30|28
+Maximilian Wöber|LB|Austria|39|28
+Adrian Gantenbein|RB|Switzerland|17|25
+Finn Porath|RB|Germany|27|29
+Ron Schallenberg|DM|Germany|6|28
+Satoshi Tanaka|DM|Japan|13|24
+Soufian El-Faouzi|DM|Morocco|23|24
+Adil Aouchiche|DM|Algeria|24|24
+Janik Bachmann|CM|Germany|14|30
+Kenan Karaman|AM|Türkiye|19|32
+Dejan Ljubičić|RW|Austria|21|29
+Junior Dina Ebimbe|LW|Cameroon|29|25
+Hee-Chan Hwang|ST|South Korea|7|30
+Moussa Sylla|ST|Mali|9|26
+Edin Džeko|ST|Bosnia-Herzegovina|10|40
+Bryan Lasme|ST|France|11|27
+Emil Højlund|ST|Denmark|15|21

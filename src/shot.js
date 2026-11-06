@@ -54,7 +54,7 @@ function shot(M, si, e, ae, type) {
   let pg = clamp(xg * Math.pow(72 / gk, 1.0), .01, .9);
   if (type === 'pen') pg = clamp(.76 + (a.Fin - 13) * .01 - (gk - 70) * .004, .6, .9);
   if (M.wx === 'rain' && type !== 'pen') pg = Math.min(.9, pg * 1.05);
-  const nf = M.comp === 'CH' && G.normCH ? G.normCH : M.comp === 'LL' && G.normLL ? G.normLL : M.comp === 'SA' && G.normSA ? G.normSA : G.normF;
+  const nf = M.comp === 'CH' && G.normCH ? G.normCH : M.comp === 'LL' && G.normLL ? G.normLL : M.comp === 'SA' && G.normSA ? G.normSA : G.normX && G.normX[M.comp] ? G.normX[M.comp] : G.normF;
   if (nf && type !== 'pen') pg *= nf;
   S.st.sh++; S.st.xg += xg;
   const sname = cap1(pn(e.p));

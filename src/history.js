@@ -142,7 +142,7 @@ seasonEnd = function () {
   try {
     if (rec) {
       const A = G.awards && G.awards.s || [];
-      for (const lg of ['PL', 'CH', 'LL', 'SA']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
+      for (const lg of ['PL', 'CH', 'LL', 'SA', 'BL', 'L1', 'SPL']) { const a = A.filter(x => x.lg === lg && x.s === rec.s).pop(); if (a && a.best && rec.c[lg]) rec.c[lg].bp = [a.best.n, a.best.club, a.best.avg, a.best.pid]; if (a && a.boot && rec.c[lg]) rec.c[lg].ts = [a.boot.n, a.boot.club, a.boot.g, a.boot.pid]; }
       chistStore().push(rec);
     }
     updateRanks();

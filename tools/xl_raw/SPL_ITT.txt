@@ -1,0 +1,26 @@
+Jens Wissing
+Predrag Rajković|GK|Serbia|1|30
+Mohammed Al Absi|GK|Saudi Arabia|50|24
+Osama Al Mermesh|GK|Saudi Arabia|88|23
+Muhannad Al Shanqeeti|RB|Saudi Arabia|13|27
+Ahmed Al Julaydan|RB|Saudi Arabia|32|22
+Danilo Pereira|CB|Portugal|2|35
+Jan-Carlo Šimić|CB|Serbia|4|21
+Saad Al Mosa|CB|Saudi Arabia|6|23
+Hassan Kadesh|CB|Saudi Arabia|15|34
+Ahmed Sharahili|CB|Saudi Arabia|20|32
+Faris Abdi|LB|Saudi Arabia|25|27
+Muath Fagihy|LB|Saudi Arabia|42|24
+Richard Ríos|DM|Colombia|5|26
+Mahamadou Doumbia|DM|Mali|17|22
+Dion Lopy|DM|Senegal|30|24
+Hamed Al Ghamdi|DM|Saudi Arabia|80|27
+Mukhtar Ali|CM|Saudi Arabia|8|28
+Houssem Aouar|AM|Algeria|10|28
+Marwan Al Sahafi|RW|Saudi Arabia|22|22
+Roger Fernandes|LW|Portugal|7|20
+Steven Bergwijn|LW|Netherlands|34|29
+Georginio Wijnaldum|AM|Netherlands|23|35
+George Ilenikhena|ST|Nigeria|9|20
+Saleh Al Shehri|ST|Saudi Arabia|11|32
+Youssef En-Nesyri|ST|Morocco|21|29

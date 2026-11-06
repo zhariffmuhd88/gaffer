@@ -1,0 +1,24 @@
+Franck Haise
+Brice Samba|GK|France|30|32
+Nicolas Lemaître|GK|France|16|29
+Kilian Belazzoug|GK|Algeria|60|20
+Bryan Reynolds|RB|United States|14|25
+Przemysław Frankowski|RB|Poland|95|31
+Charlie Cresswell|CB|England|4|24
+Gonçalo Oliveira|CB|Portugal|5|20
+Anthony Rouault|CB|France|24|25
+Abdelhamid Aït Boudlal|CB|Morocco|48|20
+Mahamadou Nagida|LB|Cameroon|18|21
+Quentin Merlin|LB|France|26|24
+Adrien Thomasson|DM|France|28|32
+Djaoui Cissé|CM|France|6|22
+Sebastian Szymański|CM|Poland|17|27
+Valentin Rongier|CM|France|21|31
+Mahdi Camara|CM|France|45|28
+Musa Al-Taamari|RW|Jordan|11|29
+Ludovic Blas|RW|France|10|28
+Arnaud Nordin|LW|France|70|28
+Estéban Lepaul|ST|France|9|26
+Eliezer Mayenda|ST|Spain|12|21
+Boulaye Dia|ST|Senegal|22|29
+Issa Soumaré|ST|Senegal|90|26

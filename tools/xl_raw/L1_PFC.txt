@@ -1,0 +1,24 @@
+Liam Rosenior
+Kevin Trapp|GK|Germany|1|36
+Obed Nkambadio|GK|France|16|23
+Hamari Traoré|RB|Mali|14|34
+Adama Camara|RB|Mali|17|30
+Yoan Koré|RB|France|25|21
+Mamadou Mbow|CB|Senegal|5|26
+Otávio|CB|Brazil|6|24
+Samir Chergui|CB|Algeria|31|27
+Diego Coppola|CB|Italy|42|22
+Nhoa Sangui|LB|France|19|20
+Thibault De Smet|LB|Belgium|28|28
+Patrick Zabi|DM|Ivory Coast|8|20
+Maxime Lopez|DM|France|20|28
+Pierre Lees-Melou|DM|France|33|33
+Vincent Marchetti|CM|France|4|29
+Pablo Pagis|AM|France|7|23
+Ilan Kebbal|RW|Algeria|10|28
+Jonathan Ikoné|RW|France|93|28
+Luca Koleosho|LW|Italy|15|22
+Moses Simon|LW|Nigeria|27|31
+Lassine Sinayoko|ST|Mali|9|26
+Jean-Philippe Krasso|ST|Ivory Coast|11|29
+Omar Sissoko|ST|France|18|20

@@ -1,0 +1,25 @@
+Olivier Pantaloni
+Yéhvann Diouf|GK|Senegal|23|26
+Teddy Boulhendi|GK|Algeria|77|25
+Alidu Seidu|RB|Ghana|36|26
+Mohamed Abdelmonem|CB|Egypt|5|27
+Antoine Mendy|CB|Senegal|33|22
+Youssouf Ndayishimiye|CB|Burundi|55|28
+Moïse Bombito|CB|Canada|64|26
+Hamza Koutoune|CB|Morocco|84|20
+Ali Abdi|LB|Tunisia|2|32
+Jonathan Clauss|RB|France|92|34
+Niels Nkounkou|LB|France|27|26
+Hicham Boudaoui|DM|Algeria|6|27
+Laurent Abergel|DM|France|19|33
+Axel Witsel|DM|Belgium|28|37
+Morgan Sanson|CM|France|8|32
+Salis Abdul Samed|CM|Ghana|99|26
+Gauthier Hein|AM|France|7|30
+Sofiane Diop|AM|Morocco|10|26
+Issiaga Camara|LW|Guinea|22|21
+Isak Jansson|LW|Sweden|21|24
+Mohamed Amoura|ST|Algeria|9|26
+Elye Wahi|ST|Ivory Coast|11|23
+Nathan N'Goumou|ST|Cameroon|29|26
+Zoumana Diallo|ST|France|44|21

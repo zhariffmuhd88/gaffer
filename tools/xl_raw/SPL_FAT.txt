@@ -1,0 +1,26 @@
+Jamal Sellami
+Adrian Šemper|GK|Croatia|1|28
+Habib Al Watyan|GK|Saudi Arabia|31|30
+Waleed Al Anzi|GK|Saudi Arabia|94|30
+Abdulrahman Al Khaibari|RB|Saudi Arabia|22|26
+Kennedy Boateng|CB|Togo|3|29
+Ziyad Al Jari|CB|Saudi Arabia|4|24
+Faisal Darisi|CB|Saudi Arabia|5|29
+Marwane Saadane|CB|Morocco|17|34
+Robin Kelder|CB|Netherlands|19|21
+Abdulelah Al Khaibari|LB|Saudi Arabia|16|29
+Mihai Lixandru|DM|Romania|8|25
+Zaydou Youssouf|DM|Comoros|28|27
+Ali Al Hassan|CM|Saudi Arabia|6|29
+Hossam Essadak|CM|Morocco|20|21
+Jordan Harrison|CM|Australia|70|24
+Ali Alamine Ali|RW|France|27|21
+Othman Al Othman|RW|Saudi Arabia|88|23
+Sattam Al Tumbukti|LW|Saudi Arabia|87|25
+Ali Al Masoud|RW|Saudi Arabia|29|22
+Lukáš Haraslín|LW|Slovakia|10|30
+Sorriso|LW|Brazil|23|21
+Fahad Al Zubaidi|ST|Saudi Arabia|7|24
+Wilfried Kanga|ST|Ivory Coast|9|28
+Mourad Batna|ST|Morocco|11|36
+Jefferson Ramos|ST|Cape Verde|21|21

@@ -1,0 +1,25 @@
+Maurício Dulac
+Milan Borjan|GK|Canada|82|39
+Emad Fidaa|GK|Saudi Arabia|97|29
+Jan Petek|GK|Slovenia|28|20
+Sultan Al Essa|RB|Saudi Arabia|2|21
+Osama Al Bawardi|RB|Saudi Arabia|13|27
+Abdullah Tarmin|RB|Saudi Arabia|17|29
+Hussam Majrashi|CB|Saudi Arabia|5|22
+Rodrigo Abascal|CB|Uruguay|26|32
+Mohammed Al Khaibari|CB|Saudi Arabia|67|24
+Yasser Al Musa|LB|Saudi Arabia|3|23
+Hussain Qassem|LB|Saudi Arabia|23|29
+Victor Lekhal|DM|Algeria|22|32
+Kader Keïta|CM|Ivory Coast|6|25
+Faisal Al Subhi|CM|Saudi Arabia|16|27
+Tozé|CM|Portugal|20|33
+Bernard Mensah|CM|Ghana|43|32
+Hassan Al Ali|RW|Saudi Arabia|11|24
+Yahia Al Shehri|LW|Saudi Arabia|88|36
+Hussain Al Shurafaa|AM|Saudi Arabia|19|24
+Teddy Okou|RW|France|10|28
+Trézéguet|LW|Egypt|7|32
+Essam Bahri|LW|Saudi Arabia|14|21
+Luca Ramírez|ST|Argentina|32|20
+Leandro Antunes|ST|Portugal|77|29

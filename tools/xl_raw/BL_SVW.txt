@@ -1,0 +1,27 @@
+Daniel Thioune
+Karl Hein|GK|Estonia|1|24
+Markus Kolke|GK|Germany|25|36
+Alexander Schlager|GK|Austria|30|30
+Oskar Wójcik|CB|Poland|3|23
+Niklas Stark|CB|Germany|4|31
+Amos Pieper|CB|Germany|5|28
+Julián Malatini|CB|Argentina|22|25
+Marco Friedl|CB|Austria|32|28
+Olivier Deman|LB|Belgium|2|26
+Felix Agu|LB|Nigeria|27|26
+Mitchell Weiser|RB|Germany|8|32
+Jens Stage|DM|Denmark|6|29
+Senne Lynen|DM|Belgium|14|27
+Dariusz Stalmach|CM|Poland|23|20
+Patrice Covic|CM|Croatia|24|19
+Skelly Alvero|CM|France|28|24
+Ludovit Reis|AM|Netherlands|15|26
+Eren Dinkçi|AM|Türkiye|18|24
+Chuki|AM|Spain|20|22
+Samuel Mbangula|LW|Belgium|7|22
+Keke Topp|ST|Germany|9|22
+Niclas Füllkrug|ST|Germany|10|33
+Justin Njinmah|ST|Germany|11|25
+Marco Grüll|ST|Austria|17|28
+Dawid Kownacki|ST|Poland|21|29
+Cedric Itten|ST|Switzerland|26|29

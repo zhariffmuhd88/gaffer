@@ -1,0 +1,25 @@
+Fábio Carille
+Orlando Mosquera|GK|Panama|52|31
+Abdulraouf Al Duqayl|GK|Saudi Arabia|1|31
+Sattam Al Shammari|GK|Saudi Arabia|13|22
+Mohammed Al Baqawi|RB|Saudi Arabia|22|31
+Makhir Al Rashidi|CB|Saudi Arabia|2|27
+Paulo Oliveira|CB|Portugal|15|34
+Ziyad Al Sahafi|CB|Saudi Arabia|21|32
+Omar Colley|CB|Gambia|25|33
+Turki Al Jaadi|LB|Saudi Arabia|12|23
+Ahmed Bamasud|LB|Saudi Arabia|24|30
+Mohammed Al Dowaish|RB|Saudi Arabia|47|22
+Hugo Moura|DM|Brazil|5|28
+Alfa Semedo|DM|Guinea-Bissau|30|29
+Nawaf Al Harthi|CM|Saudi Arabia|7|27
+Al Baraa Adawi|CM|Saudi Arabia|29|22
+Yago|CM|Brazil|40|20
+Abdullah Al Qahtani|LW|Saudi Arabia|20|27
+Mansor Al Beshe|AM|Saudi Arabia|14|26
+Rayan Enad|RW|Saudi Arabia|77|25
+Sultan Al Jabri|RW|Saudi Arabia|27|26
+Fashion Sakala|LW|Zambia|10|29
+Malek Al Abdulmenem|ST|Saudi Arabia|9|28
+Lázaro|ST|Brazil|17|24
+Jason|ST|Spain|23|32

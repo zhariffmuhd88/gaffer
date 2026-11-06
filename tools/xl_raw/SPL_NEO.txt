@@ -1,0 +1,25 @@
+Christophe Galtier
+Marcin Bułka|GK|Poland|1|27
+Luís Maximiano|GK|Portugal|81|27
+Abdulrahman Dagriri|GK|Saudi Arabia|33|36
+Mohammed Al Burayk|RB|Saudi Arabia|2|34
+Khalifah Al Dawsari|RB|Saudi Arabia|4|27
+Abdulmalik Al Oyayari|RB|Saudi Arabia|15|22
+Malang Sarr|CB|Senegal|5|27
+Nathan Zézé|CB|France|44|21
+Mohammed Al Dossary|CB|Saudi Arabia|55|25
+Islam Hawsawi|LB|Saudi Arabia|27|24
+Mohannad Abu Taha|LB|Jordan|19|23
+Abbas Al Hassan|CM|Saudi Arabia|6|22
+Faisal Al Ghamdi|CM|Saudi Arabia|8|25
+Alaa Al Hejji|CM|Saudi Arabia|18|30
+Valentín Vada|CM|Argentina|23|30
+Amadou Koné|CM|Ivory Coast|72|21
+Abdulaziz Noor|RW|Saudi Arabia|24|27
+Muhannad Al Saad|RW|Saudi Arabia|77|23
+Giorgos Masouras|LW|Greece|7|32
+Saïd Benrahma|LW|Algeria|10|31
+Khalil Al Absi|LW|Saudi Arabia|14|25
+Abdulaziz Al Othman|ST|Saudi Arabia|9|22
+Haroune Camara|ST|Saudi Arabia|70|28
+Alexandre Lacazette|ST|France|91|35

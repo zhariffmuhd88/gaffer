@@ -1,0 +1,26 @@
+Yannick Cahuzac
+Robin Risser|GK|France|40|21
+Régis Gurtner|GK|France|1|39
+Mathieu Gorgelin|GK|France|16|36
+Maik Nawrocki|CB|Poland|3|25
+Nidal Čelik|CB|Bosnia-Herzegovina|4|20
+Samson Baidoo|CB|Austria|6|22
+Jean-Clair Todibo|CB|France|20|26
+Jonathan Gradit|CB|France|24|33
+Ismaëlo Ganiou|CB|France|25|21
+Jhoanner Chávez|LB|Ecuador|13|24
+Ruben Aguilar|RB|France|2|33
+Saud Abdulhamid|RB|Saudi Arabia|23|27
+Matthieu Udol|LB|France|14|30
+Andrija Bulatović|DM|Montenegro|5|19
+Yacine Titraoui|DM|Algeria|8|23
+Amadou Haidara|DM|Mali|21|28
+Florian Sotoca|AM|France|7|36
+Florian Thauvin|AM|France|10|33
+Michaël Cuisance|AM|France|27|27
+Thorgan Hazard|AM|Belgium|9|33
+Abdallah Sima|AM|Senegal|19|25
+Michał Skóras|LW|Poland|22|26
+Junior Kadile|LW|DR Congo|28|23
+Odsonne Édouard|ST|France|11|28
+Franjo Ivanović|ST|Croatia|29|23

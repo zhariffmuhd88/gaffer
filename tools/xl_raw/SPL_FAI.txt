@@ -1,0 +1,25 @@
+Giovanni Solinas
+Fernando Pacheco|GK|Spain|1|34
+Mohammed Al Hasawi|GK|Saudi Arabia|26|37
+Abdulelah Nassief|GK|Saudi Arabia|21|20
+Yaseen Barnawi|RB|Saudi Arabia|2|33
+Khalid Al Harbi|RB|Saudi Arabia|3|24
+Abdoulaye Seck|CB|Senegal|4|34
+Andrei Girotto|CB|Brazil|5|34
+Mohammed Jahfali|CB|Saudi Arabia|70|36
+Abdullah Bin Subayt|CB|Saudi Arabia|87|22
+Mohammed Al Shanqiti|LB|Saudi Arabia|50|27
+Eid Al Muwallad|DM|Saudi Arabia|6|24
+Mohammed Al Aqeel|DM|Saudi Arabia|18|29
+Jaime Seoane|DM|Spain|20|29
+Jaber Issa|CM|Saudi Arabia|16|29
+Flávio|CM|Brazil|8|30
+Abdulrahman Al Sharif|CM|Saudi Arabia|77|29
+Ibrahima Ndiaye|RW|Senegal|10|28
+Christian Bassogog|RW|Cameroon|13|31
+André-Jordy Ella|LW|Gabon|11|21
+Abdullah Al Mogren|AM|Saudi Arabia|14|29
+Théo Bongonda|RW|DR Congo|30|30
+Yousef Al Shammari|ST|Saudi Arabia|7|28
+Alexandre Mendy|ST|Guinea-Bissau|19|32
+Ahmed Abdu|ST|Saudi Arabia|71|30

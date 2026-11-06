@@ -1,0 +1,22 @@
+Jens Berthel Askou
+Guillaume Restes|GK|France|16|21
+Theo Collin|GK|France|1|20
+Niko Sigur|RB|Canada|14|23
+Ismaïl Diallo|RB|France|94|23
+Rafik Messali|RB|Algeria|22|23
+Rasmus Nicolaisen|CB|Denmark|2|29
+Mark McKenzie|CB|United States|3|27
+Seny Koumbassa|CB|France|5|19
+David Odogu|CB|Germany|19|20
+Christ Tapé|LB|Ivory Coast|12|20
+Abu Francis|DM|Ghana|17|25
+Mathis Amougou|DM|France|18|20
+Cristian Cásseres|DM|Venezuela|23|26
+Niklas Schmidt|DM|Germany|31|28
+Thomas Jørgensen|CM|Denmark|8|21
+Santiago Hidalgo|AM|Argentina|9|21
+Aron Dønnum|AM|Norway|15|28
+Julián Vignolo|RW|Argentina|7|19
+Sion Oppong|LW|Sweden|11|19
+Jacen Russell-Rowe|ST|Canada|13|24
+Casper Tengstedt|ST|Denmark|20|26

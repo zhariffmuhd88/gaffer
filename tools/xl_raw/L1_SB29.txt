@@ -1,0 +1,23 @@
+Julien Lachuer
+Egil Selvik|GK|Norway|1|29
+Noe Poillion|GK|France|16|19
+Mathieu Patouillet|GK|France|30|22
+Luck Zogbé|RB|Ivory Coast|20|21
+Kenny Lala|RB|France|70|35
+Gautier Lloris|CB|France|4|31
+Brendan Chardonnet|CB|France|5|31
+Raphaël Le Guen|CB|France|71|20
+Lucas Tousart|CB|France|29|29
+Bradley Locko|LB|France|2|24
+Justin Bourgault|LB|France|18|21
+Mamady Diambou|DM|Mali|6|23
+Hugo Magnetti|DM|France|8|28
+Joris Chotard|DM|France|13|25
+Joseph Boende|CM|Belgium|7|21
+Noah Edjouma|AM|France|11|21
+Kamory Doumbia|AM|Mali|23|23
+Mama Baldé|RW|Guinea-Bissau|17|30
+Pathé Mboup|LW|Senegal|9|23
+Giovani Versini|ST|France|10|22
+Ludovic Ajorque|ST|France|19|32
+Djylian N'Guessan|ST|France|39|18

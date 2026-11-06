@@ -1,0 +1,27 @@
+Jorge Maciel
+Dominik Greif|GK|Slovakia|1|29
+Rémy Descamps|GK|France|40|30
+Justin Bengui|GK|France|25|21
+Zachary Athekame|RB|Switzerland|13|21
+Steeve Kango|RB|France|37|19
+Moussa Niakhaté|CB|Senegal|19|30
+Felix Bacher|CB|Austria|20|26
+Ruben Kluivert|CB|Netherlands|21|25
+Clinton Mata|CB|Angola|22|33
+Noham Kamara|CB|France|85|19
+Nicolás Tagliafico|LB|Argentina|3|34
+Abner|LB|Brazil|16|26
+Paul Akouokou|DM|Ivory Coast|5|28
+Tyler Morton|DM|England|23|24
+Mads Bidstrup|CM|Denmark|2|25
+Tanner Tessmann|CM|United States|6|25
+Corentin Tolisso|CM|France|8|32
+Noah Nartey|CM|Denmark|99|21
+Mohamed Ouédraogo|LW|Burkina Faso|76|23
+Khalis Merah|AM|France|18|19
+Pavel Šulc|AM|Czech Republic|10|25
+Ernest Nuamah|RW|Ghana|7|23
+Julien Duranville|RW|Belgium|24|20
+Keito Nakamura|LW|Japan|11|26
+Loïs Openda|ST|Belgium|17|26
+Rémi Himbert|ST|France|45|18

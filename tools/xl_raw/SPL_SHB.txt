@@ -1,0 +1,26 @@
+Thomas Letsch
+Mory Diaw|GK|Senegal|1|33
+Mohammed Al Mahasnah|GK|Saudi Arabia|33|29
+Abdulaziz Al Awardi|GK|Saudi Arabia|23|24
+Mohammed Al Thani|RB|Saudi Arabia|17|29
+Abdullah Al Hawsawi|RB|Saudi Arabia|27|30
+Ali Al Bulayhi|CB|Saudi Arabia|14|36
+Mohammed Al Shwirekh|CB|Saudi Arabia|2|28
+Mamadou Barry|CB|Senegal|3|21
+Tin Jedvaj|CB|Croatia|4|30
+Ali Makki|CB|Saudi Arabia|5|27
+Lazar Stojanović|LB|Serbia|15|21
+Dhari Al Anazi|LB|Saudi Arabia|21|26
+Awad Al Nashri|DM|Saudi Arabia|6|24
+Josh Brownhill|DM|England|8|30
+Thomas Partey|CM|Ghana|18|33
+Yacine Adli|CM|France|29|26
+Ali Al Asmari|CM|Saudi Arabia|40|29
+Hammam Al Hammami|RW|Saudi Arabia|22|22
+Abdulrahman Al Obud|RW|Saudi Arabia|24|31
+Abdullah Matuq|RW|Saudi Arabia|55|23
+Yannick Carrasco|LW|Belgium|10|33
+Daniel Podence|LW|Portugal|11|31
+Roger Martínez|ST|Colombia|9|32
+Ricardo Mathias|ST|Brazil|49|20
+Morad Khodari|ST|Saudi Arabia|97|23

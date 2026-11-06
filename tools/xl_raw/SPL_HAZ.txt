@@ -1,0 +1,25 @@
+Jalel Kadri
+Jindřich Staněk|GK|Czech Republic|36|30
+Bruno Varela|GK|Cape Verde|14|32
+Majed Al Ghamdi|GK|Saudi Arabia|33|28
+Saud Al Rashed|RB|Saudi Arabia|2|28
+Abdulaziz Al Harbi|RB|Saudi Arabia|82|23
+Sultan Tanker|CB|Saudi Arabia|4|28
+Mohammed Issa|CB|Saudi Arabia|5|24
+Mory Konaté|CB|Guinea|8|32
+Abdullah Al Shanqiti|CB|Saudi Arabia|13|27
+Mohamed Amine Ben Hmida|LB|Tunisia|3|30
+Farhan Al Azmi|LB|Saudi Arabia|12|31
+Ahmed Al Nakhli|LB|Saudi Arabia|27|24
+Bonheur Mugisha|DM|Rwanda|17|26
+Khalid Al Subaie|CM|Saudi Arabia|6|27
+Aboubacar Bah|CM|Guinea|24|21
+Sofiane Bendebka|AM|Algeria|28|34
+Amir Sayoud|RW|Algeria|10|36
+Abdulaziz Al Dhuwayhi|RW|Saudi Arabia|22|26
+Ayman Al Hujaili|RW|Saudi Arabia|98|28
+Elton Acolatse|LW|Netherlands|7|31
+Amadou Bamba Dieng|ST|Senegal|21|21
+Mohammed Al Hamdani|LW|Saudi Arabia|77|25
+Afimico Pululu|ST|DR Congo|9|27
+Waleed Al Shanqiti|ST|Saudi Arabia|11|32

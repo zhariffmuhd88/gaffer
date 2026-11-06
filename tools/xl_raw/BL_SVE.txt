@@ -1,0 +1,25 @@
+Vincent Wagner
+Nicolas Kristof|GK|Austria|20|26
+Frank Lehmann|GK|Germany|1|37
+Tim Boss|GK|Germany|28|33
+Jan Gyamerah|RB|Ghana|30|31
+Florian Le Joncour|CB|France|3|31
+Lukas Pinckert|CB|Germany|19|26
+Luca Sirch|CB|Germany|26|27
+Maximilian Rohr|CB|Germany|31|31
+Nicholas Mickelson|LB|Thailand|2|27
+Lasse Günther|LB|Germany|21|23
+Amara Condé|DM|Germany|6|29
+Łukasz Poręba|DM|Poland|8|26
+Frederik Schmahl|DM|Germany|17|23
+Felix Keidel|DM|Germany|43|23
+Raif Adam|CM|Germany|15|21
+Maurice Krattenmacher|RW|Germany|7|21
+Noah Darvich|RW|Germany|10|20
+Lukas Petkov|RW|Bulgaria|25|25
+Tom Zimmerschied|LW|Germany|29|28
+Cole Campbell|LW|United States|39|20
+Noel Futkeu|ST|Germany|9|23
+Luca Pfeiffer|ST|Germany|16|30
+Luca Schnellbacher|ST|Germany|24|32
+David Mokwa|ST|France|42|22

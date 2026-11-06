@@ -1,0 +1,27 @@
+Merlin Polzin
+Daniel Heuer Fernandes|GK|Portugal|1|33
+Sander Tangvik|GK|Norway|12|23
+Fernando Dickes|GK|Germany|41|19
+Zakaria El Ouahdi|RB|Morocco|7|24
+Mario Vušković|CB|Croatia|44|25
+Warmed Omari|CB|Comoros|17|26
+Jordan Torunarigha|CB|Nigeria|23|29
+Nicolás Capaldo|CB|Argentina|24|28
+Sebastiaan Bornauw|CB|Belgium|33|27
+Joel Agyekum|CB|Germany|39|21
+David Møller Wolfe|LB|Norway|3|24
+Bilal Nadir|DM|Morocco|4|22
+Kofi Amoako|DM|Germany|22|21
+Albert Sambi Lokonga|CM|Belgium|6|27
+Nicolai Remberg|CM|Germany|21|26
+Bakery Jatta|RW|Gambia|18|28
+Miro Muheim|LB|Switzerland|28|28
+Martin Adeline|AM|France|5|22
+Immanuël Pherai|AM|Suriname|10|25
+Albert Grønbæk|AM|Denmark|11|25
+Fábio Vieira|RW|Portugal|20|26
+Alexander Røssing|LW|Norway|38|19
+Terem Moffi|ST|Nigeria|9|27
+Yussuf Poulsen|ST|Denmark|15|32
+Otto Stange|ST|Germany|19|19
+Patson Daka|ST|Zambia|27|28

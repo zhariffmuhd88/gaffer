@@ -28,7 +28,7 @@ function venueOf(f) {
 function attendanceOf(f) {
   const v = venueOf(f); if (v.neutral) return Math.round(v.cap * .97);
   const t = T(f.h) || {}; const rep = t.rep || t.str || 60;
-  if (divOf(f.h) === 'LL' || divOf(f.h) === 'SA') return Math.round(v.cap * clamp(0.62 + rep / 330 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.1), 0.45, 0.98));
+  if (['LL', 'SA', 'BL', 'L1', 'SPL'].includes(divOf(f.h))) return Math.round(v.cap * clamp(0.62 + rep / 330 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.1), 0.45, 0.98));
   if (divOf(f.h) === 'CH') return Math.round(v.cap * clamp(0.55 + rep / 250 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.12), 0.4, 0.97));
   return Math.round(v.cap * clamp(0.8 + rep / 600 + (LEAGUE_COMPS.includes(f.comp) ? 0 : -0.08), 0.5, 1));
 }

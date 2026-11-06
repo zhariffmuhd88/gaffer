@@ -1,0 +1,25 @@
+José Gomes
+Anthony Moris|GK|Luxembourg|49|36
+Marwan Al Haidari|GK|Saudi Arabia|96|30
+Mohammed Ibrahim|GK|Saudi Arabia|1|21
+Hamad Al Jayzani|RB|Saudi Arabia|2|33
+Fawaz Al Soqoor|RB|Saudi Arabia|27|30
+Mohammed Al Khabrani|CB|Saudi Arabia|3|33
+Kiki Kouyaté|CB|Mali|4|29
+Ahmed Asiri|CB|Saudi Arabia|13|34
+Ali Al Shaafi|CB|Saudi Arabia|14|24
+Abdullah Al Hafith|CB|Saudi Arabia|17|33
+Pedro Rebocho|LB|Portugal|5|31
+Raed Al Shanqiti|LB|Saudi Arabia|26|20
+Omar Mascarell|DM|Equatorial Guinea|8|33
+Angelo Fulgini|CM|France|10|30
+Majed Kanabah|CM|Saudi Arabia|12|33
+Mansour Hamzi|CM|Saudi Arabia|15|34
+Bader Munshi|CM|Saudi Arabia|16|27
+Miguel Crespo|CM|Portugal|19|30
+Saleh Al Amri|RW|Saudi Arabia|11|33
+Hussain Al Eissa|LW|Saudi Arabia|28|25
+Nawaf Al Saadi|RW|Saudi Arabia|18|26
+Joshua King|ST|Norway|7|34
+Mateo Benegas|ST|Argentina|9|20
+Musa Barrow|ST|Gambia|99|27

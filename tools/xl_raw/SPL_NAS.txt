@@ -1,0 +1,24 @@
+Ange Postecoglou
+Bento|GK|Brazil|24|27
+Nawaf Al Aqidi|GK|Saudi Arabia|1|26
+Mubarak Al Buainain|GK|Saudi Arabia|61|21
+Sultan Al Ghannam|RB|Saudi Arabia|2|32
+Nawaf Boushal|RB|Saudi Arabia|12|27
+Mohamed Simakan|CB|France|3|26
+Nader Al Sharari|CB|Saudi Arabia|4|30
+Abdulelah Al Amri|CB|Saudi Arabia|5|29
+Iñigo Martínez|CB|Spain|26|35
+Saad Al Nasser|LB|Saudi Arabia|6|25
+Aiman Yahya|LB|Saudi Arabia|23|25
+Salem Al Najdi|LB|Saudi Arabia|83|23
+Samú Costa|DM|Portugal|11|25
+Abdullah Al Khaibari|CM|Saudi Arabia|17|30
+Ângelo|CM|Brazil|20|21
+Kingsley Coman|RW|France|21|30
+Sadio Mané|LW|Senegal|10|34
+Mohammed Marran|AM|Saudi Arabia|16|25
+Sami Al Najei|RW|Saudi Arabia|14|29
+Abdulrahman Ghareeb|LW|Saudi Arabia|29|29
+Cristiano Ronaldo|ST|Portugal|7|41
+Abdullah Al Hamdan|ST|Saudi Arabia|9|27
+João Félix|ST|Portugal|79|26

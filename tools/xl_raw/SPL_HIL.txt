@@ -1,0 +1,27 @@
+Simone Inzaghi
+Yassine Bounou|GK|Morocco|37|35
+Mohammed Al Owais|GK|Saudi Arabia|33|35
+Mohammed Al Yami|GK|Saudi Arabia|17|29
+Mohammed Mahzari|RB|Saudi Arabia|2|24
+Hamad Al Yami|RB|Saudi Arabia|88|27
+Kalidou Koulibaly|CB|Senegal|3|35
+Yusuf Akçiçek|CB|Türkiye|4|20
+Ali Lajami|CB|Saudi Arabia|78|30
+Hassan Al Tambakti|CB|Saudi Arabia|87|27
+Théo Hernández|LB|France|19|29
+Moteb Al Harbi|LB|Saudi Arabia|24|26
+Rúben Neves|DM|Portugal|8|29
+Nasser Al Dawsari|CM|Saudi Arabia|6|27
+Murad Al Hawsawi|CM|Saudi Arabia|18|25
+Sergej Milinković-Savić|CM|Serbia|22|31
+Mohamed Kanno|CM|Saudi Arabia|28|32
+Saïmon Bouabré|AM|France|70|20
+Abdullah Al Anazi|AM|Saudi Arabia|93|23
+Suhayb Al Zaid|RW|Saudi Arabia|96|22
+Sultan Mandash|RW|Saudi Arabia|27|32
+Gabriel Martinelli|LW|Brazil|7|25
+Salem Al Dawsari|LW|Saudi Arabia|29|35
+Crysencio Summerville|LW|Netherlands|38|25
+Nawaf Al Habashi|LW|Saudi Arabia|77|28
+Ollie Watkins|ST|England|11|30
+Mohamed Meïté|ST|Ivory Coast|75|19

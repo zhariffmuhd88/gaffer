@@ -1,0 +1,28 @@
+René Wagner
+Marvin Schwäbe|GK|Germany|1|31
+Ron-Robert Zieler|GK|Germany|20|37
+Martin James|GK|France|21|18
+Alessio Castro-Montes|RB|Belgium|17|29
+Joël Schmied|CB|Switzerland|2|28
+Timo Hübers|CB|Germany|4|30
+Jahmai Simpson-Pusey|CB|England|22|21
+Luka Lochoshvili|CB|Georgia|24|28
+Sebastian Sebulonsen|RB|Norway|28|26
+Rav van den Berg|CB|Netherlands|33|22
+Gideon Mensah|LB|Ghana|14|28
+Borna Sosa|LB|Croatia|3|28
+Ellyes Skhiri|DM|Tunisia|6|31
+Paul Okon-Engstler|DM|Australia|23|21
+Tom Krauß|CM|Germany|5|25
+Ísak Jóhannesson|CM|Iceland|8|23
+Jan Thielmann|RW|Germany|29|24
+Linton Maina|RW|Germany|37|27
+Gian-Luca Waldschmidt|RW|Germany|7|30
+Saïd El Mala|LW|Germany|10|20
+Reigan Heskey|LW|England|11|18
+Mikey Moore|LW|England|47|19
+Ragnar Ache|ST|Germany|9|28
+Imad Rondić|ST|Bosnia-Herzegovina|15|27
+Malek El Mala|ST|Germany|19|21
+Thijs Dallinga|ST|Netherlands|27|26
+Marius Bülter|ST|Germany|30|33

@@ -1,0 +1,27 @@
+Marino Pušić
+Édouard Mendy|GK|Senegal|16|34
+Abdulrahman Al Sanbi|GK|Saudi Arabia|1|25
+Abdullah Abdo|GK|Saudi Arabia|62|24
+Ali Majrashi|RB|Saudi Arabia|27|27
+Mohammed Abdulrahman|RB|Saudi Arabia|29|23
+Roger Ibañez|CB|Brazil|3|27
+Mohammed Sulaiman|CB|Saudi Arabia|5|22
+Abubacarr Kinteh|CB|Gambia|24|19
+Merih Demiral|CB|Türkiye|28|28
+Rayan Hamed|CB|Saudi Arabia|46|24
+Zakaria Hawsawi|LB|Saudi Arabia|2|25
+Saad Yaslam|LB|Saudi Arabia|31|26
+Ibrahima Diaby|DM|France|4|19
+Valentin Atangana|DM|France|6|21
+Ziyad Al Johani|DM|Saudi Arabia|30|24
+Faisal Fallatah|CM|Saudi Arabia|25|20
+Trincão|AM|Portugal|7|26
+Eduard Spertsyan|AM|Armenia|8|26
+Artem Bondarenko|AM|Ukraine|19|26
+Matheus Gonçalves|AM|Brazil|20|21
+Meshal Al Mutairi|LW|Saudi Arabia|11|27
+Galeno|LW|Brazil|13|28
+Saleh Abu Al Shamat|LW|Saudi Arabia|47|24
+Feras Al Brikan|ST|Saudi Arabia|9|26
+Ivan Toney|ST|England|17|30
+Abdullah Radif|ST|Saudi Arabia|21|23

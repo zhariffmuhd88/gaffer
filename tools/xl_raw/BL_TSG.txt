@@ -1,0 +1,22 @@
+Christian Ilzer
+Oliver Baumann|GK|Germany|1|36
+Luca Philipp|GK|Germany|37|25
+Vladimír Coufal|RB|Czech Republic|34|34
+Robin Hranáč|CB|Czech Republic|2|26
+Ozan Kabak|CB|Türkiye|5|26
+Albian Hajdari|CB|Kosovo|21|23
+Bernardo|LB|Brazil|13|31
+Valentin Gendrey|LB|France|15|26
+Mats Rots|LB|Netherlands|39|20
+Leon Avdullahu|DM|Kosovo|7|22
+Nathan De Cat|DM|Belgium|17|18
+Cajetan Lenz|DM|Germany|32|20
+Wouter Burger|CM|Netherlands|18|25
+Bambasé Conté|AM|Germany|20|23
+Andrej Kramarić|AM|Croatia|27|35
+Patrick Wimmer|RW|Austria|8|25
+Adam Daghim|RW|Denmark|14|21
+Max Moerstedt|ST|Germany|9|20
+Adam Hložek|ST|Czech Republic|10|24
+Fisnik Asllani|ST|Kosovo|11|24
+Tim Lemperle|ST|Germany|19|24

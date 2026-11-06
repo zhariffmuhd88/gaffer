@@ -1,0 +1,27 @@
+Urs Fischer
+Alexander Schwolow|GK|Germany|1|34
+Robin Zentner|GK|Germany|27|32
+Maximilian Kinzig|GK|Germany|40|22
+Fabio Gruber|CB|Peru|3|24
+Stefan Posch|CB|Austria|4|29
+Lennard Maloney|CB|United States|15|27
+Stefan Bell|CB|Germany|16|35
+Danny da Costa|RB|Germany|21|33
+Dominik Kohr|CB|Germany|31|32
+Kacper Potulski|CB|Poland|48|19
+Eric Martel|DM|Germany|5|24
+Kaishu Sano|CM|Japan|6|25
+Jae-Sung Lee|CM|South Korea|7|34
+Paul Nebel|CM|Germany|8|24
+Nadiem Amiri|CM|Germany|10|30
+Sota Kawasaki|CM|Japan|24|25
+Anthony Caci|RB|France|19|29
+Silvan Widmer|RB|Switzerland|30|33
+Rael Nakuzola|LW|Germany|47|19
+Phillipp Mwene|LB|Austria|2|32
+Otto Ruoppi|AM|Finland|20|20
+Phillip Tietz|ST|Germany|9|29
+Ransford Königsdörffer|ST|Ghana|11|25
+Benedict Hollerbach|ST|Germany|17|25
+Sheraldo Becker|ST|Suriname|23|31
+Silas Katompa Mvumpa|ST|DR Congo|26|28

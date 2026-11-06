@@ -1,0 +1,25 @@
+Hugo Oliveira
+Filip Jörgensen|GK|Denmark|1|24
+Miłosz Piekutowski|GK|Poland|12|20
+Genesis Antwi|RB|Sweden|16|19
+Jeyland Mitchell|CB|Costa Rica|4|22
+Ismaël Doukouré|CB|France|6|23
+Lucas Høgsberg|CB|Denmark|24|20
+Karim Coulibaly|CB|Germany|31|19
+Mateo Del Blanco|LB|Argentina|15|23
+Oso|LB|Spain|36|23
+Maxi Oyedele|DM|Poland|8|21
+Pape Demba Diop|DM|Senegal|21|23
+Diogo Sousa|DM|Portugal|23|20
+Samir El Mourabet|DM|Morocco|29|21
+Dário Essugo|CM|Portugal|14|21
+Giovanni Reyna|AM|United States|10|23
+Sebastian Nanasi|AM|Sweden|11|24
+Samuel Amo-Ameyaw|RW|England|7|20
+Gessime Yassine|RW|Morocco|80|20
+Fabio Baldé|LW|Portugal|19|21
+Martial Godo|LW|Ivory Coast|20|23
+Joaquín Panichelli|ST|Argentina|9|24
+Omari Kellyman|ST|England|26|21
+Conrad Harder|ST|Denmark|40|21
+Jacobo Ortega|ST|Spain|30|20

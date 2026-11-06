@@ -1,0 +1,26 @@
+Brendan Rodgers
+Koen Casteels|GK|Belgium|1|34
+Ahmed Al Kassar|GK|Saudi Arabia|28|35
+Meshari Sunyur|GK|Saudi Arabia|50|24
+Jehad Thakri|CB|Saudi Arabia|4|25
+Nacho|CB|Spain|6|36
+Yasser Al Shahrani|LB|Saudi Arabia|12|34
+Gastón Álvarez|CB|Uruguay|17|26
+Waleed Al Ahmad|CB|Saudi Arabia|23|27
+Ali Diabaté|CB|Ivory Coast|26|19
+Mohammed Al Qahtani|LB|Saudi Arabia|15|24
+Mohammed Qassim|DM|Saudi Arabia|24|31
+Julian Weigl|CM|Germany|5|31
+Nahitan Nández|CM|Uruguay|8|30
+Musab Al Juwayr|CM|Saudi Arabia|10|23
+Ali Hazazi|CM|Saudi Arabia|11|32
+Tijjani Reijnders|CM|Netherlands|14|28
+Abdulmalik Al Jaber|CM|Saudi Arabia|18|22
+Mohammed Abu Al Shamat|RW|Saudi Arabia|2|24
+Turki Al Ammar|LW|Saudi Arabia|7|27
+Christopher Bonsu Baah|LW|Ghana|22|21
+Abdullah Al Salem|ST|Saudi Arabia|9|33
+Haitham Asiri|ST|Saudi Arabia|19|25
+Mahamadou Sangaré|ST|France|30|19
+Mateo Retegui|ST|Italy|32|27
+Julián Quiñones|ST|Mexico|33|29

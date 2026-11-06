@@ -1,0 +1,29 @@
+Carles Martínez
+Mark Flekken|GK|Netherlands|1|33
+Janis Blaswich|GK|Germany|28|35
+Niklas Lomb|GK|Germany|36|33
+Guéla Doué|RB|Ivory Coast|20|24
+Facundo Medina|CB|Argentina|2|27
+Jarell Quansah|CB|England|4|23
+Loic Badé|CB|France|5|26
+Robert Andrich|CB|Germany|8|32
+Edmond Tapsoba|CB|Burkina Faso|12|27
+Tim Oermann|CB|Germany|15|23
+Miguel Gutiérrez|LB|Spain|3|25
+Lucas Vázquez|RB|Spain|17|35
+Montrell Culbreath|RW|Germany|42|19
+Equi Fernández|DM|Argentina|6|24
+Kennet Eichhorn|DM|Germany|18|17
+Aleix García|DM|Spain|24|29
+Gabriel Minutillo|CM|Germany|45|16
+Jonas Hofmann|AM|Germany|7|34
+Malik Tillman|AM|United States|10|24
+Martin Terrier|AM|France|11|29
+Nathan Tella|AM|Nigeria|23|27
+Ibrahim Maza|AM|Algeria|30|20
+Moussa Diaby|RW|France|19|27
+Afonso Moreira|LW|Portugal|9|21
+Eliesse Ben Seghir|LW|Morocco|29|21
+Patrik Schick|ST|Czech Republic|14|30
+Victor Okoh Boniface|ST|Nigeria|22|25
+Christian Kofane|ST|Cameroon|35|20

@@ -1,0 +1,26 @@
+Patrick Videira
+Ewan Hatfout|GK|France|1|26
+Nicolas Kocik|GK|France|98|28
+Augustin Delbecque|GK|France|55|24
+Harold Voyer|CB|France|5|29
+Noa Boissé|CB|France|15|20
+Raúl Torrente|CB|Spain|16|25
+Samuel Yohou|CB|France|17|35
+Théo Eyoum|CB|France|21|24
+Djibril Sidibé|RB|France|19|34
+João Almeida|LB|Brazil|12|20
+Yasser Larouci|LB|Algeria|76|25
+Lucas Calodat|LW|France|22|24
+Alexandre Lauray|DM|France|8|29
+Daouda Traoré|DM|France|23|20
+Lucas Bretelle|DM|France|29|24
+Edwin Quarshie|CM|Central African Republic|6|31
+Adil Bourabaa|CM|Algeria|11|21
+Martin Rossignol|CM|France|27|23
+Billal Brahimi|CM|Algeria|7|26
+Jean Vercruysse|AM|France|10|26
+Lucas Buadés|AM|France|18|28
+Antoine Rabillard|ST|France|9|31
+Habibou Mouhamadou Diallo|ST|Senegal|13|31
+Louis Mafouta|ST|Central African Republic|14|32
+Dame Gueye|ST|Senegal|25|31

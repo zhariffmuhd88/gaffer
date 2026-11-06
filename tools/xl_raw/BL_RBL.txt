@@ -1,0 +1,30 @@
+Martín Demichelis
+Ørjan Håskjold Nyland|GK|Norway|1|36
+Leopold Zingerle|GK|Germany|25|32
+Maarten Vandevoordt|GK|Belgium|26|24
+Lukas Klostermann|RB|Germany|16|30
+Ridle Baku|RB|Germany|17|28
+Benjamin Henrichs|RB|Germany|39|29
+Viggo Gebel|RB|Germany|47|18
+Abdoul Koné|CB|France|2|21
+Maxime Estève|CB|France|3|24
+Willi Orbán|CB|Hungary|4|34
+Castello Lukeba|CB|France|23|23
+David Raum|LB|Germany|22|28
+Max Finkgräfe|LB|Germany|35|22
+Neil El Aynaoui|DM|Morocco|21|25
+Ezechiel Banzuzi|CM|DR Congo|6|21
+Assan Ouédraogo|CM|Germany|8|20
+Nicolas Seiwald|CM|Austria|13|25
+Christoph Baumgartner|CM|Austria|14|27
+Rocco Reitz|CM|Germany|20|24
+Benno Kaltefleiter|CM|Germany|37|18
+Andrija Maksimović|RW|Serbia|30|19
+Brajan Gruda|RW|Germany|10|22
+Johan Bakayoko|RW|Belgium|11|23
+Antonio Nusa|LW|Norway|7|21
+Marc Guiu|ST|Spain|9|20
+Tidiam Gomis|ST|France|27|20
+Christopher Nkunku|ST|France|28|28
+Rômulo|ST|Brazil|40|24
+Samba Konaté|ST|France|45|17

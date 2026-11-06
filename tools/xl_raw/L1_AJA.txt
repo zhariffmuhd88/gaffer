@@ -1,0 +1,24 @@
+Will Still
+Paul Nardi|GK|France|1|32
+Mamadou Diop|GK|Mauritania|23|26
+Louis Mezerette|GK|France|37|20
+Lamine Sy|RB|Senegal|27|24
+Marvin Senaya|RB|Ghana|29|25
+Axel Tuanzebe|CB|DR Congo|4|28
+Telli Siwe|CB|France|13|21
+Christ Makosso|CB|Congo|15|22
+Sinaly Diomandé|CB|Ivory Coast|20|25
+Bryan Okoh|CB|Switzerland|24|23
+Clément Akpa|CB|Ivory Coast|92|24
+Sékou Fofana|LB|Ivory Coast|93|23
+Fredrik Oppegård|LB|Norway|22|24
+Kévin Danois|CM|France|5|22
+Naouirou Ahamada|CM|France|8|24
+Pierre Ekwah|CM|France|17|24
+Assane Dioussé|CM|Senegal|18|29
+Danny Namaso|AM|Cameroon|10|26
+Romain Faivre|RW|France|21|28
+Rémy Lascary|LW|France|3|23
+Aristide Zossou|LW|Ivory Coast|77|21
+Cameron Archer|ST|England|9|24
+Ryan Rodin|ST|France|31|20

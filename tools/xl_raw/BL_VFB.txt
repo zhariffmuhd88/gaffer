@@ -1,0 +1,26 @@
+Sebastian Hoeneß
+Fabian Bredlow|GK|Germany|1|31
+Marius Funk|GK|Germany|33|30
+Dennis Seimen|GK|Germany|41|20
+Stefan Drljača|GK|Germany|46|27
+Josha Vagnoman|RB|Germany|4|25
+Lorenz Assignon|RB|France|22|26
+Ameen Al Dakhil|CB|Belgium|2|24
+Ramon Hendriks|CB|Netherlands|3|25
+Luca Jaquez|CB|Switzerland|14|23
+Dan-Axel Zagadou|CB|France|23|27
+Jeff Chabot|CB|Germany|24|28
+Finn Jeltsch|CB|Germany|29|20
+Maximilian Mittelstädt|LB|Germany|7|29
+Angelo Stiller|DM|Germany|6|25
+Atakan Karazor|DM|Türkiye|16|30
+Grischa Prömel|DM|Germany|21|31
+Bilal El Khannouss|AM|Morocco|11|22
+Nikolas Nartey|AM|Denmark|28|26
+Tiago Tomás|RW|Portugal|8|24
+Chris Führich|LW|Germany|10|28
+Jamie Leweling|LW|Germany|18|25
+Leo Sauer|LW|Slovakia|44|20
+Ermedin Demirović|ST|Bosnia-Herzegovina|9|28
+Dženan Pejčinović|ST|Germany|17|21
+Deniz Undav|ST|Germany|26|30
