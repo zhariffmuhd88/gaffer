@@ -202,13 +202,14 @@ function renderMatch() {
   let panel = '';
   if (LM.panel === 'talk' && !M.done) {
     const diff = M.score[ui] + M.agg[ui] - M.score[1 - ui] - M.agg[1 - ui];
-    panel = `<div class="box pad" style="margin-top:10px"><h2 class="sect" style="margin-top:0">${M.min >= 90 ? 'Before extra time' : 'Half-time'} team talk</h2><p class="dim">You are ${diff > 0 ? 'ahead' : diff < 0 ? 'behind' : 'level'}. What do you tell the players?</p>${LM.talked ? `<p class="grn">${esc(LM.talked)}</p>` : `<div class="row">${[['praise', 'Praise them'], ['encourage', 'Encourage'], ['demand', 'Demand more'], ['calm', 'Keep calm, stay focused']].map(([k, l]) => `<button class="btn" data-a="talk" data-v="${k}">${l}</button>`).join('')}</div>`}</div>`;
+    panel = `<div class="box pad" style="margin-top:10px"><h2 class="sect" style="margin-top:0">${M.min >= 105 ? 'Extra-time half-time' : M.min >= 90 ? 'Before extra time' : 'Half-time'} team talk</h2><p class="dim">You are ${diff > 0 ? 'ahead' : diff < 0 ? 'behind' : 'level'}. What do you tell the players?</p>${LM.talked ? `<p class="grn">${esc(LM.talked)}</p>` : `<div class="row">${[['praise', 'Praise them'], ['encourage', 'Encourage'], ['demand', 'Demand more'], ['calm', 'Keep calm, stay focused']].map(([k, l]) => `<button class="btn" data-a="talk" data-v="${k}">${l}</button>`).join('')}</div>`}</div>`;
   }
   if (LM.panel === 'subs' && !M.done) {
     const on = S.ps.filter(e => e.on);
     panel = `<div class="box pad" style="margin-top:10px">${LM.alertTxt ? `<div class="alert" style="margin-bottom:8px">${esc(LM.alertTxt)}</div>` : ''}<h2 class="sect" style="margin-top:0">Substitutions · ${S.subs} left</h2>
       <div class="grid2"><div><label class="lb">Take off</label>${on.map(e => `<button class="btn ${LM.sel === S.ps.indexOf(e) ? 'on' : ''}" style="display:block;width:100%;text-align:left;margin-bottom:3px" data-a="subOut" data-v="${S.ps.indexOf(e)}"><span class="mono">${ROLE_LABEL[e.role]}</span> ${esc(surname(e.p.n))} <span class="dim">${e.rt.toFixed(1)} · ${Math.round(e.p.cond)}%</span>${e.inj ? ' <span class="red">injured</span>' : ''}${e.yc ? ' <span class="yel">booked</span>' : ''}</button>`).join('')}</div>
       <div><label class="lb">Bring on</label>${S.bench.map((p, i) => `<button class="btn" style="display:block;width:100%;text-align:left;margin-bottom:3px" data-a="subIn" data-v="${i}" ${LM.sel == null || S.subs <= 0 ? 'disabled' : ''}><span class="mono">${POS_LABEL[p.pos]}</span> ${esc(p.n)} <span class="dim">${p.ca}${LM.sel != null ? ' · fit ' + Math.round(effSkill(p, S.ps[LM.sel].role)) : ''}</span></button>`).join('') || '<span class="dim">Bench is empty.</span>'}</div></div>
+      ${posPanel(LM, S)}
       <h2 class="sect">Team instructions</h2><div style="display:grid;gap:8px">${tacControls(S.tac, 'mtac')}</div></div>`;
   }
   const two = V && LM.view === '2d';
@@ -307,3 +308,34 @@ Object.assign(ACT, {
   mptab: (v) => { UI.match.ptab = v; renderMatch(); }
 });
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'heatsel' && UI.match) { UI.match.heatSel = el.value; renderMatch(); } });
+
+// ---------- in-match positions: swap two players or move one to a new position ----------
+let _RXY = null;
+function roleXY(role) {
+  if (!_RXY) { _RXY = {}; for (const f in FORMS) for (const [r, x, y] of FORMS[f]) if (!_RXY[r]) _RXY[r] = [x, y]; }
+  return _RXY[role] || [50, 50];
+}
+function posPanel(LM, S) {
+  const on = S.ps.filter(e => e.on); const sel = LM.swp != null ? S.ps[LM.swp] : null;
+  const roles = Object.keys(ROLE_LABEL).filter(r => r !== 'GK' && roleXY(r));
+  return `<h2 class="sect">Positions</h2><p class="dim" style="margin:0 0 6px;font-size:12.5px">Tap a player, then tap a team-mate to swap their positions, or pick a new position for him. Changes are free and do not use a substitution.</p>
+  <div class="row" style="flex-wrap:wrap;gap:4px">${on.map(e => { const i = S.ps.indexOf(e); return `<button class="btn ${LM.swp === i ? 'on' : ''}" data-a="mswp" data-v="${i}"><span class="mono">${ROLE_LABEL[e.role]}</span> ${esc(surname(e.p.n))}${e.p.pseudo ? '' : ` <span class="dim">${Math.round(effSkill(e.p, e.role))}</span>`}</button>`; }).join('')}</div>
+  ${sel && sel.role !== 'GK' ? `<div class="row" style="gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap"><label class="lb" for="mrole" style="margin:0">Move ${esc(surname(sel.p.n))} to</label><select class="f" id="mrole" data-a="mrole">${roles.map(r => `<option value="${r}" ${r === sel.role ? 'selected' : ''}>${ROLE_LABEL[r]}${sel.p.pseudo ? '' : ' · fit ' + Math.round(effSkill(sel.p, r))}</option>`).join('')}</select></div>` : ''}`;
+}
+Object.assign(ACT, {
+  mswp: (v) => {
+    const LM = UI.match, M = LM.M, ui = uSide(M), S = M.sides[ui]; const i = +v;
+    if (LM.swp == null || LM.swp === i) { LM.swp = LM.swp === i ? null : i; return renderMatch(); }
+    const a = S.ps[LM.swp], b = S.ps[i];
+    if ((a.role === 'GK') !== (b.role === 'GK')) { toast('The goalkeeper can only swap with another goalkeeper.'); return; }
+    swapRoles(M, ui, a, b); say(M, M.min, 'tac', `${S.name}: ${cap1(pn(a.p))} and ${pn(b.p)} swap positions.`, ui);
+    toast(`${surname(a.p.n)} (${ROLE_LABEL[a.role]}) and ${surname(b.p.n)} (${ROLE_LABEL[b.role]}) swap positions.`); LM.swp = null; renderMatch();
+  }
+});
+document.addEventListener('change', (ev) => {
+  const el = ev.target; if (!el || !el.dataset || el.dataset.a !== 'mrole' || !UI.match) return;
+  const LM = UI.match, M = LM.M, ui = uSide(M), S = M.sides[ui]; const e = S.ps[LM.swp]; if (!e) return;
+  const r = el.value; const [x, y] = roleXY(r); e.role = r; e.x = x; e.y = y; units(S);
+  say(M, M.min, 'tac', `${S.name}: ${cap1(pn(e.p))} moves to ${ROLE_LABEL[r]}.`, ui);
+  toast(`${surname(e.p.n)} now plays ${ROLE_LABEL[r]}.`); LM.swp = null; renderMatch();
+});

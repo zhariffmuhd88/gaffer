@@ -9,7 +9,13 @@ function shotStyle(e, ae, type, res) {
   else if (type === 'fk') st = 'fkcurl';
   else if (type === 'long') st = (a.Lon || 8) >= 14 && R.chance(.55) ? (R.chance(.5) ? 'screamer' : 'curler') : 'driven';
   else if (type === 'header' || type === 'corner') st = fla >= 15 && ae && R.chance(.008) ? 'bicycle' : type === 'corner' && R.chance(.15) ? 'volley' : R.chance(.15) ? 'diving' : 'header';
-  else if (type === 'through') st = R.chance(clamp(.18 + (fla - 12) * .04, .05, .5)) ? 'chip' : R.chance(.15) ? 'round' : 'placed';
+  else if (type === 'through') {
+    // a chip needs the keeper off his line (he rushes out in about a quarter of one-on-ones); only a player with
+    // exceptional flair (18+) tries it now and then against a keeper who stayed home
+    const out = R.chance(.25);
+    const pc = out ? clamp(.15 + (fla - 12) * .05, .05, .55) : fla >= 18 ? .03 + (fla - 18) * .02 : 0;
+    st = R.chance(pc) ? 'chip' : R.chance(out ? .3 : .08) ? 'round' : 'placed';
+  }
   else {
     if (ae && R.chance(.14)) st = 'volley';
     else if (dri + fla >= 30 && R.chance(.12)) st = 'solo';
@@ -29,7 +35,7 @@ function goalLine(st, type, ae) {
     placed: type === 'through' ? `latches onto ${as} through ball and slots it past the keeper` : 'places it calmly into the bottom corner',
     driven: 'drills a low shot into the corner',
     curler: 'curls a beauty into the far top corner',
-    chip: `runs onto ${as} pass and dinks a delicate chip over the keeper!`,
+    chip: `runs onto ${as} pass, sees the keeper off his line and dinks a delicate chip over him!`,
     round: 'rounds the keeper and rolls it into the empty net',
     volley: `meets ${as} cross with a thumping volley!`,
     bicycle: `scores with an outrageous bicycle kick from ${as} cross!`,

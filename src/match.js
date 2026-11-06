@@ -213,7 +213,7 @@ function stepMinute(M) {
   // periods
   if (min === 45 && M.half === 1) { M.half = 2; say(M, 45, 'ht', `Half-time: ${A.name} ${M.score[0]}-${M.score[1]} ${B.name}.`); M.ht = true; }
   if (min === 90) endNormal(M);
-  if (min === 105 && M.et) say(M, 105, 'ht', `Half-time in extra time: ${A.name} ${M.score[0]}-${M.score[1]} ${B.name}.`);
+  if (min === 105 && M.et) { say(M, 105, 'ht', `Half-time in extra time: ${A.name} ${M.score[0]}-${M.score[1]} ${B.name}.`); M.ht = true; }
   if (min === 120 && M.et) endET(M);
 }
 function endNormal(M) {

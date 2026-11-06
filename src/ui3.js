@@ -68,13 +68,14 @@ function renderMatch() {
   let panel = '';
   if (LM.panel === 'talk' && !M.done) {
     const diff = M.score[ui] + M.agg[ui] - M.score[1 - ui] - M.agg[1 - ui];
-    panel = `<div class="box pad" style="margin-top:10px"><h2 class="sect" style="margin-top:0">${M.min >= 90 ? 'Before extra time' : 'Half-time'} team talk</h2><p class="dim">You are ${diff > 0 ? 'ahead' : diff < 0 ? 'behind' : 'level'}. What do you tell the players?</p>${LM.talked ? `<p class="grn">${esc(LM.talked)}</p>` : `<div class="row">${[['praise', 'Praise them'], ['encourage', 'Encourage'], ['demand', 'Demand more'], ['calm', 'Keep calm, stay focused']].map(([k, l]) => `<button class="btn" data-a="talk" data-v="${k}">${l}</button>`).join('')}</div>`}</div>`;
+    panel = `<div class="box pad" style="margin-top:10px"><h2 class="sect" style="margin-top:0">${M.min >= 105 ? 'Extra-time half-time' : M.min >= 90 ? 'Before extra time' : 'Half-time'} team talk</h2><p class="dim">You are ${diff > 0 ? 'ahead' : diff < 0 ? 'behind' : 'level'}. What do you tell the players?</p>${LM.talked ? `<p class="grn">${esc(LM.talked)}</p>` : `<div class="row">${[['praise', 'Praise them'], ['encourage', 'Encourage'], ['demand', 'Demand more'], ['calm', 'Keep calm, stay focused']].map(([k, l]) => `<button class="btn" data-a="talk" data-v="${k}">${l}</button>`).join('')}</div>`}</div>`;
   }
   if (LM.panel === 'subs' && !M.done) {
     const on = S.ps.filter(e => e.on);
     panel = `<div class="box pad" style="margin-top:10px">${LM.alertTxt ? `<div class="alert" style="margin-bottom:8px">${esc(LM.alertTxt)}</div>` : ''}<h2 class="sect" style="margin-top:0">Substitutions · ${S.subs} left</h2>
       <div class="grid2"><div><label class="lb">Take off</label>${on.map((e, i) => `<button class="btn ${LM.sel === S.ps.indexOf(e) ? 'on' : ''}" style="display:block;width:100%;text-align:left;margin-bottom:3px" data-a="subOut" data-v="${S.ps.indexOf(e)}"><span class="mono">${ROLE_LABEL[e.role]}</span> ${esc(surname(e.p.n))} <span class="dim">${e.rt.toFixed(1)} · ${Math.round(e.p.cond)}%</span>${e.inj ? ' <span class="red">injured</span>' : ''}${e.yc ? ' <span class="yel">booked</span>' : ''}</button>`).join('')}</div>
       <div><label class="lb">Bring on</label>${S.bench.map((p, i) => `<button class="btn" style="display:block;width:100%;text-align:left;margin-bottom:3px" data-a="subIn" data-v="${i}" ${LM.sel == null || S.subs <= 0 ? 'disabled' : ''}><span class="mono">${POS_LABEL[p.pos]}</span> ${esc(p.n)} <span class="dim">${p.ca}${LM.sel != null ? ' · fit ' + Math.round(effSkill(p, S.ps[LM.sel].role)) : ''}</span></button>`).join('') || '<span class="dim">Bench is empty.</span>'}</div></div>
+      ${posPanel(LM, S)}
       <h2 class="sect">Team instructions</h2><div style="display:grid;gap:8px">${tacControls(S.tac, 'mtac')}</div></div>`;
   }
   app().innerHTML = `<div class="start" style="max-width:1180px;padding-top:12px">
