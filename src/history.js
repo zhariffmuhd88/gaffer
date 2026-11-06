@@ -43,7 +43,7 @@ function recordSeason() {
   add('CH', ct[0].t, ct[1].t);
   if (G.ll && G.ll.length && typeof llTable === 'function') { const lt = llTable(); add('LL', lt[0].t, lt[1].t); }
   if (G.sa && G.sa.length && typeof saTable === 'function') { const st = saTable(); add('SA', st[0].t, st[1].t); }
-  for (const c of ['FA', 'LC', 'PO', 'CDR', 'SCE', 'CIT', 'SCI']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
+  for (const c of ['FA', 'LC', 'PO', 'CDR', 'SCE', 'CIT', 'SCI', 'DFB', 'CDF']) { const cup = G.cups[c]; if (!cup) continue; const f = finalOf(c); const w = cup.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
   for (const c of ['UCL', 'UEL', 'UECL']) { const E = G.euro && G.euro[c]; if (!E) continue; const f = finalOf(c); const w = E.winner; add(c, w, f ? (f.h === w ? f.a : f.h) : null); }
   return rec;
 }

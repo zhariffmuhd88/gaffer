@@ -440,7 +440,7 @@ function finishDay() {
     const target = Math.floor(plRound * 46 / 38);
     while (G.champ.played < target && G.champ.played < 46) { for (const f of G.champ.rounds[G.champ.played]) f.r = quickScore(f.h, f.a); G.champ.played++; }
   }
-  for (const c of ['LC', 'FA', 'PO', 'CDR', 'SCE', 'CIT', 'SCI']) if (G.cups[c]) checkCupProgress(c);
+  for (const c of ['LC', 'FA', 'PO', 'CDR', 'SCE', 'CIT', 'SCI', 'DFB', 'CDF']) if (G.cups[c]) checkCupProgress(c);
   for (const c of ['UCL', 'UEL', 'UECL']) checkEuroProgress(c);
   G.lastResults = ids;
   checkBoard();

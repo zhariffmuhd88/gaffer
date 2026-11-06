@@ -176,3 +176,76 @@ const _rsXL = restore;
 restore = function (obj) { _rsXL(obj); try { migrateXL(); } catch (e) { console.error(e); } };
 const _rnXL = render;
 render = function () { if (G && G.teams && G.sa && !G.xl) { try { migrateXL(); } catch (e) { console.error(e); } } _rnXL(); };
+
+// ---------- domestic cups: DFB-Pokal (DFB) and Coupe de France (CDF) ----------
+// Only the 18 top-flight clubs are in the game, so each cup is an 18-team knockout: the four lowest-placed clubs
+// of last season (or the weakest on paper) play a first round, the other 14 join in the round of 16. Single games,
+// neutral final (Berlin / Saint-Denis). The winners and runners-up can qualify for the Cup Winners' Cup.
+const XL_CUPS = {
+  DFB: { lg: 'BL', n: 'DFB-Pokal', ven: ['Olympiastadion, Berlin', 74475], rounds: [['First round', ['2026-08-19']], ['Round of 16', ['2026-10-28']], ['Quarter-final', ['2027-02-03']], ['Semi-final', ['2027-04-21']], ['Final', ['2027-05-29'], 1]] },
+  CDF: { lg: 'L1', n: 'Coupe de France', ven: ['Stade de France, Saint-Denis', 80698], rounds: [['First round', ['2026-08-19']], ['Round of 16', ['2026-12-16']], ['Quarter-final', ['2027-02-10']], ['Semi-final', ['2027-04-14']], ['Final', ['2027-05-22'], 1]] }
+};
+Object.assign(COMP_NAME, { DFB: 'DFB-Pokal', CDF: 'Coupe de France' });
+Object.assign(COMP_SHORT, { DFB: 'DFB', CDF: 'CdF' });
+Object.assign(COMP_LINK, { 'DFB-Pokal': 'DFB', 'Coupe de France': 'CDF' });
+if (typeof TRO_W !== 'undefined') Object.assign(TRO_W, { 'DFB-Pokal': 6, 'Coupe de France': 5, Bundesliga: 18, 'Ligue 1': 15, 'Saudi Pro League': 10 });
+function xlCupRounds(c) { return XL_CUPS[c].rounds.map(([n, ds, neu]) => ({ n, d: ds.map(sd), neutral: !!neu, ties: [], done: false })); }
+function drawXLCup(c) {
+  const X = XL_CUPS[c]; const teams = (G.xl && G.xl[X.lg]) || []; if (teams.length < 4) return;
+  const L = G.lastSeasonXL && G.lastSeasonXL[X.lg];
+  const order = L && L.lt && L.lt.every(x => teams.includes(x[0])) ? L.lt.map(x => x[0]) : teams.slice().sort((a, b) => teamStrength(b) - teamStrength(a));
+  const n1 = Math.max(0, 2 * (teams.length - 16)); const low = R.shuffle(order.slice(order.length - n1));
+  const cup = G.cups[c]; cup.byes = order.slice(0, order.length - n1);
+  const pairs = []; for (let i = 0; i + 1 < low.length; i += 2) pairs.push([low[i], low[i + 1]]);
+  drawFixed(c, 0, pairs);
+}
+function buildXLCups() {
+  if (!G.xl || !G.cups) return;
+  for (const c in XL_CUPS) { G.cups[c] = { id: c, rounds: xlCupRounds(c), ri: 0, winner: null }; drawXLCup(c); }
+}
+const _bsXC = buildSeason;
+buildSeason = function () { _bsXC(); try { buildXLCups(); } catch (e) { console.error(e); } };
+for (const c in XL_CUPS) CUP_NEXT[c] = (winners) => {
+  const cup = G.cups[c]; const ri = cup.ri + 1; const nr = cup.rounds[ri];
+  for (const t of cup.rounds[ri - 1].ties) if (T(t.w) && !T(t.w).lite) prize(t.w, 0.2 * ri);
+  const l = R.shuffle(ri === 1 ? winners.concat(cup.byes || []) : winners); const pairs = [];
+  for (let i = 0; i + 1 < l.length; i += 2) pairs.push([l[i], l[i + 1]]);
+  drawFixed(c, ri, pairs);
+  if (nr.neutral) for (const t of nr.ties) for (const id of t.fx) { G.fx[id].ven = XL_CUPS[c].ven[0]; G.fx[id].vcap = XL_CUPS[c].ven[1]; G.fx[id].neutral = true; }
+  const ut = nr.ties.find(t => t.t.includes(G.user));
+  if (ut) news(XL_CUPS[c].n + ' draw', `${nr.n}: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(nr.d[0], false)}).`, G.user);
+};
+const _venXC = venueOf;
+venueOf = function (f) { if (f && f.ven && XL_CUPS[f.comp]) return { name: f.ven, cap: f.vcap || 70000, neutral: true, stands: STANDS_DEF }; return _venXC(f); };
+const _rsXC = recordSeason;
+recordSeason = function () { const rec = _rsXC(); try { for (const c in XL_CUPS) { const cup = G.cups[c]; if (!cup || !cup.winner) continue; const f = finalOf(c); rec.c[c] = { w: cup.winner, r: f ? (f.h === cup.winner ? f.a : f.h) : null }; } } catch (e) { console.error(e); } return rec; };
+const _gocXC = goComp;
+goComp = function (code) { if (XL_CUPS[code]) { UI.modal = null; UI.mstack = []; UI.mcur = null; UI.scr = 'comps'; UI.tab.cp = code; render(); window.scrollTo(0, 0); return; } _gocXC(code); };
+const _cpXC = scrComps;
+scrComps = function () {
+  if (!G.cups.DFB) return _cpXC();
+  const d = divOf(G.user); if (!UI.tab.cp && (d === 'BL' || d === 'L1')) UI.tab.cp = d === 'BL' ? 'DFB' : 'CDF';
+  const tab = UI.tab.cp;
+  const add = Object.keys(XL_CUPS).map(c => `<button class="${tab === c ? 'on' : ''}" data-a="tab" data-k="cp" data-v="${c}">${XL_CUPS[c].n}</button>`).join('');
+  if (!XL_CUPS[tab]) { const h = _cpXC(); const i0 = h.indexOf('<div class="tabs"'); const i = h.indexOf('</div>', i0); return i > 0 ? h.slice(0, i) + add + h.slice(i) : h; }
+  UI.tab.cp = 'LC'; const h = _cpXC(); UI.tab.cp = tab;
+  const cup = G.cups[tab];
+  let body = cup.winner ? `<div class="box pad yel" style="margin-bottom:8px">Winners: ${tLink(cup.winner, true)}</div>` : '';
+  body += cup.rounds.slice().reverse().filter(r => r.ties.length).map(r => `<h2 class="sect">${r.n} <span class="dim mono" style="font-size:16px">${r.d.map(x => dShort(x)).join(' & ')}</span></h2><div class="tw">${tiesTable(r)}</div>`).join('');
+  body += `<p class="dim" style="margin-top:6px">Game format: only the ${XL[XL_CUPS[tab].lg].n} clubs are in this game, so the cup is an 18-team knockout. The four lowest-placed clubs play a first round; ${(cup.byes || []).length} clubs join in the round of 16. Single games; the final is at the ${XL_CUPS[tab].ven[0]}. Winners and runners-up can qualify for the Cup Winners' Cup.</p>`;
+  const i0 = h.indexOf('<div class="tabs"'); const i1 = h.indexOf('</div>', i0);
+  const tabs = h.slice(i0, i1).replace(/ class="on"/g, ' class=""') + add + '</div>';
+  return `<div class="band">Cups &amp; Europe<small>${COMP_NAME[tab]} ${seasonLabel(G.year)}</small></div>${tabs}${body}`;
+};
+// older saves: add this season's cups; rounds already due are played at team level
+function migrateXLCups() {
+  if (!G || !G.xl || !G.xlL || !G.cups || G.cups.DFB || typeof cupRounds !== 'function') return;
+  const savedTasks = G.tasks.slice(); buildXLCups(); G.tasks = savedTasks;
+  for (const c in XL_CUPS) for (let k = 0; k < 6; k++) {
+    const cup = G.cups[c]; const rd = cup.rounds[cup.ri]; if (!rd || !rd.ties.length || rd.done) break;
+    let all = true; for (const t of rd.ties) for (const id of t.fx) { const f = G.fx[id]; if (!f.r) { if (f.d < G.date) quickFixture(f); else all = false; } }
+    if (!all) break; checkCupProgress(c);
+  }
+}
+const _rsXC2 = restore;
+restore = function (obj) { _rsXC2(obj); try { migrateXLCups(); } catch (e) { console.error(e); } };
