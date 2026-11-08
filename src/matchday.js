@@ -260,6 +260,12 @@ function buildPlan(LM, SC, evs, poss) {
       const gy = .5 + (R.f() - .5) * .085;
       let shotFrom;
       if (ev.type === 'pen') {
+        // the foul happens inside the box: build up, the victim carries the ball into the area, a defender brings him down
+        buildUp(s, 1); const vic = ev.pv || e;
+        const spot = wpt(s, .875 + R.f() * .06, .3 + R.f() * .4);
+        push({ k: 'pass', to: vic, place: spot, w: 1, through: true }); holder = vic; hs = s;
+        const dfd = ev.def || onPitch(M, 1 - s, x => ['DC', 'DL', 'DR', 'DM'].includes(x.role))[0];
+        if (dfd) push({ k: 'foul', e: dfd, v: vic, w: .9 });
         push({ k: 'whistle', txt: 'Penalty!', w: .9 });
         shotFrom = wpt(s, .895, .5);
         push({ k: 'place', at: shotFrom, e, w: 1.3, pen: s });
@@ -340,6 +346,7 @@ function buildPlan(LM, SC, evs, poss) {
       const nx = evs[i + 1];
       if (!(nx && nx.t === 'shot' && nx.type === 'corner')) { const d = onPitch(M, 1 - s, x => x.role === 'DC')[0] || onPitch(M, 1 - s)[1]; push({ k: 'cross', to: wpt(s, .9, .5), e: d, w: 1 }); push({ k: 'header', e: d, to: wpt(s, .62, .3 + R.f() * .4), w: .8 }); holder = null; }
     } else if (ev.t === 'foul') {
+      if (!ev.card && evs.slice(i + 1).some(x => x.t === 'shot' && x.type === 'pen' && x.side === 1 - ev.side)) continue;
       const vs = 1 - ev.side; buildUp(vs, 1);
       push({ k: 'foul', e: ev.e, v: holder, w: .9 });
       push({ k: 'whistle', txt: ev.card === 'y' ? 'Yellow card' : ev.card ? 'Red card' : 'Foul', card: ev.card, w: ev.card ? 1.3 : .8 });

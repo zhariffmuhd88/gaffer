@@ -218,7 +218,7 @@ function scrFinance() {
     <div class="box pad"><label class="lb">Wage bill / budget</label><div class="big" style="font-size:30px">${wageStr(wageBill(G.user))}</div><div class="dim">of ${wageStr(t.wb)}</div><div class="bar" style="margin-top:6px"><i style="width:${Math.min(100, wageBill(G.user) / t.wb * 100)}%;background:${wageBill(G.user) > t.wb ? 'var(--red)' : 'var(--grn)'}"></i></div></div>
   </div>
   <div class="grid2" style="margin-top:12px">
-    <div class="box pad"><h2 class="sect" style="margin-top:0">Income · ${money(inT)}</h2>${rows(f.in, Object.assign({ gate: 'Matchday', tv: 'Broadcasting', com: 'Commercial', spon: 'Sponsorship' }, f.in.shirt ? { shirt: 'Shirt sales' } : {}, { prize: 'Prize money', sales: 'Player sales' }), inT, 'var(--grn)')}</div>
+    <div class="box pad"><h2 class="sect" style="margin-top:0">Income · ${money(inT)}</h2>${rows(f.in, Object.assign({ gate: 'Matchday', tv: 'Broadcasting', com: 'Commercial', spon: 'Sponsorship' }, f.in.shirt ? { shirt: 'Shirt sales' } : {}, f.in.fr ? { fr: 'Friendlies & tours' } : {}, { prize: 'Prize money', sales: 'Player sales' }), inT, 'var(--grn)')}</div>
     <div class="box pad"><h2 class="sect" style="margin-top:0">Expenditure · ${money(outT)}</h2>${rows(f.out, Object.assign({ wages: 'Wages', buys: 'Transfer fees', other: 'Settlements' }, f.out.build ? { build: 'Building work' } : {}, f.out.fine ? { fine: 'Fines' } : {}), outT, 'var(--red)')}</div>
   </div>
   <p class="dim" style="margin-top:10px">Wages are paid every Monday. Home gate receipts depend on stadium size (${t.cap.toLocaleString('en-GB')} at ${esc(t.stadium)}). Selling players adds 90% of the fee to your transfer budget.</p>`;

@@ -69,11 +69,14 @@ function shot(M, si, e, ae, type) {
   const defs = O.ps.filter(x => x.on && ['DC', 'DL', 'DR', 'WBL', 'WBR', 'DM'].includes(x.role));
   const def = defs.length ? R.pick(defs) : null;
   if (ae === e) ae = null;
-  if (type === 'pen') { const pv = R.chance(.3); say(M, M.min, 'big', `PENALTY to ${S.name}!${pv ? ' It is given after a VAR review.' : ''} ${sname} steps up...`, si); M.ev.push({ min: M.min, t: 'pk', side: si, p: e.p.id, v: pv ? 1 : 0 }); }
+  let penV = null;
+  if (type === 'pen') {
+    const fw = S.ps.filter(x => x.on && ['FC', 'AML', 'AMR', 'AMC', 'ML', 'MR'].includes(x.role)); penV = fw.length ? R.pick(fw) : e;
+    const pv = R.chance(.3); say(M, M.min, 'big', `PENALTY to ${S.name}! ${cap1(pn(penV.p))} is brought down inside the box${def ? ' by ' + pn(def.p) : ''}.${pv ? ' It is given after a VAR review.' : ''} ${penV === e ? 'He picks himself up and steps up himself...' : sname + ' steps up...'}`, si); M.ev.push({ min: M.min, t: 'pk', side: si, p: e.p.id, v: pv ? 1 : 0 }); }
   const res = R.chance(pg) ? 'goal' : R.chance(type === 'pen' ? .6 : .31) ? 'save' : 'miss';
   const sty = shotStyle(e, ae, type, res);
   if (M.shots) M.shots.push({ min: M.min, side: si, xg: +xg.toFixed(3), goal: res === 'goal' });
-  const vis = (r, extra) => { if (M.live) M.vis.push(Object.assign({ min: M.min, t: 'shot', side: si, e, ae, r, type, st: sty.st, sk: sty.sk, det: sty.det, def, gk: gkE }, extra || {})); };
+  const vis = (r, extra) => { if (M.live) M.vis.push(Object.assign({ min: M.min, t: 'shot', side: si, e, ae, r, type, st: sty.st, sk: sty.sk, det: sty.det, def, gk: gkE, pv: penV }, extra || {})); };
   if (sty.sk) say(M, M.min, 'skill', `${sname} ${skillLine(sty.sk, def)}`, si);
   if (res === 'goal' && type !== 'pen' && R.chance(.035)) {
     S.st.ot++;
