@@ -315,3 +315,24 @@ playerModal = function (pid) {
     if (String(p.c).startsWith('AS_') && !T(G.user).nat && i >= 0) { UI.modal = UI.modal.slice(0, i + k.length) + `<button class="btn pri" data-a="signas" data-v="${pid}">Sign from ${esc(tName(p.c))} · ${money(asiaFee(p))}</button>` + UI.modal.slice(i + k.length); render(); }
   } catch (e) { console.error(e); }
 };
+
+// ---------- club colours, Legends managers, gold trophy on show at the Legends match ----------
+const ASIA_KIT = { SEL: ['#d71920', '#ffd200'], JPN: ['#0047ab', '#ffffff'], SGP: ['#0a3d91', '#ffffff'], HKG: ['#1c4c9c', '#ffffff'], CHN: ['#c8102e', '#ffffff'] };
+function kitAsia() { for (const k in ASIA_KIT) { const t = T('AS_' + k); if (t) { t.c1 = ASIA_KIT[k][0]; t.c2 = ASIA_KIT[k][1]; } } const L = T('ARL'); if (L) { L.coach = 'Arsène Wenger & Mikel Arteta'; L.mgr = L.coach; } }
+const _eapPS = ensureAsiaPlayers; ensureAsiaPlayers = function () { _eapPS(); kitAsia(); };
+const _elpPS = ensureLegendPlayers; ensureLegendPlayers = function () { _elpPS(); kitAsia(); };
+function goldTrophySvg(h) {
+  return `<svg viewBox="0 0 64 80" width="${h * .8}" height="${h}" role="img" aria-label="Gold trophy"><defs><linearGradient id="gtg" x1="0" x2="1"><stop offset="0" stop-color="#8a6a12"/><stop offset=".45" stop-color="#ffe07a"/><stop offset="1" stop-color="#a77c14"/></linearGradient></defs>
+  <path d="M14 8h36v14c0 12-8 20-18 20S14 34 14 22z" fill="url(#gtg)"/><path d="M14 12H6c0 10 4 15 10 16M50 12h8c0 10-4 15-10 16" fill="none" stroke="url(#gtg)" stroke-width="3"/>
+  <path d="M18 4l4 5 5-6 5 6 5-6 5 6 4-5v6H18z" fill="url(#gtg)"/><rect x="28" y="42" width="8" height="14" fill="url(#gtg)"/><path d="M20 56h24l3 10H17z" fill="url(#gtg)"/><rect x="14" y="66" width="36" height="8" rx="1" fill="#2a2a2a"/><rect x="18" y="68" width="28" height="4" fill="url(#gtg)" opacity=".8"/></svg>`;
+}
+function goldCard() {
+  return `<div class="box pad gold-show" style="display:flex;gap:12px;align-items:center;margin:8px 0;border-color:#c9a227">${goldTrophySvg(64)}<div><b style="color:#e8c547">On display: the gold Premier League trophy</b><div class="dim" style="font-size:12.5px">Presented to Arsenal for going the 2003/04 league season unbeaten. Wenger's Invincibles, with Arteta alongside him in the Legends dugout today.</div></div></div>`;
+}
+const _rmPS = renderMatch;
+renderMatch = function () {
+  _rmPS.apply(this, arguments);
+  try { const LM = UI.match; if (!LM || !LM.M) return; const f = G.fx[LM.M.fid || LM.fid]; const leg = (f && f.leg) || LM.M.sides.some(S => T(S.tid) && T(S.tid).leg); if (!leg) return; const sc = document.querySelector('.score'); if (sc && !document.querySelector('.gold-show')) sc.insertAdjacentHTML('afterend', goldCard()); } catch (e) { console.error(e); }
+};
+const _cmPS2 = clubModal;
+clubModal = function (tid) { _cmPS2(tid); try { if (T(tid) && T(tid).leg && UI.modal) { UI.modal = UI.modal.replace('<h2 class="sect">Squad</h2>', goldCard() + '<h2 class="sect">Squad</h2>').replace('<dt>Head coach</dt>', '<dt>Managers</dt>'); render(); } } catch (e) { console.error(e); } };
