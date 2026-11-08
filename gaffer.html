@@ -16420,6 +16420,26 @@ const ASIA = {
   HKG: { c: 'Hong Kong', n: 'Kitchee', str: 60, ven: 'Kai Tak Stadium, Hong Kong', cap: 50000, f: 1, flag: '🇭🇰' },
   CHN: { c: 'China', n: 'Shanghai Port', str: 68, ven: 'Shanghai Stadium', cap: 56000, f: 1.3, flag: '🇨🇳' }
 };
+// Real squads for the Asia Tour opponents: FotMob team pages (Selangor via starting11.com; Kitchee via Wikipedia's
+// 2025-26 season page, the latest list found), read 8 Nov 2026. Ratings are game estimates. Names as listed there.
+const ASIA_SQ = {
+  SEL: { coach: 'Kim Pan-gon', sq: [['Al Hafiz', 'GK', 61], ['Al Amin', 'GK', 58], ['Nazrel', 'GK', 52], ['Quentin Cheng', 'RB', 63], ['Ankrah', 'CB', 64], ['Xhemajli', 'CB', 66], ['Khalili', 'LB', 60], ['Safuwan Baharudin', 'CB', 62], ['Tabinas', 'CB', 63], ["Ra'op", 'RB', 58], ['Afkar', 'LB', 56], ['Laine', 'CM', 61], ['Makrillos', 'AM', 64], ['Boumous', 'AM', 66], ['Sosa', 'CM', 64], ['Azih', 'DM', 64], ['Alex Agyarkwa', 'CM', 63], ['Mahamé Siby', 'DM', 66], ['Mahadi', 'CM', 58], ['Bashah', 'CM', 56], ['Izwan', 'CM', 56], ['Faisal Halim', 'LW', 66], ['Kay Tejan', 'ST', 66], ['A. Selvan', 'RW', 59], ['Chrigor', 'ST', 67], ['Pernambuco', 'RW', 64]] },
+  JPN: { coach: 'Hideo Oshima', sq: [['Park Il-gyu', 'GK', 68], ['Rubén Blanco', 'GK', 66], ['Hiroki Iikura', 'GK', 62], ['Yuya Tsuboi', 'GK', 57], ['Jeison Quiñónes', 'CB', 70], ['Thomas Deng', 'CB', 69], ['Ryotaro Tsunoda', 'CB', 68], ['Ken Matsubara', 'RB', 69], ['Kosei Suwama', 'RB', 66], ['Toichi Suzuki', 'LB', 64], ['Taisei Inoue', 'CB', 64], ['Takuto Kimura', 'LB', 63], ['Shota Fujii', 'CB', 62], ['Kanta Sekitomi', 'CB', 60], ['Kanata Hirano', 'RB', 58], ['Taiki Watanabe', 'DM', 68], ['Takuya Kida', 'DM', 69], ['Riku Yamane', 'CM', 70], ['Jun Amano', 'AM', 67], ['Tevis', 'AM', 68], ['Daiya Tono', 'CM', 66], ['Kei Chinen', 'CM', 66], ['Kosuke Matsumura', 'AM', 64], ['Yuta Tanaka', 'CM', 62], ['Dean David', 'ST', 70], ['Yuri Araújo', 'LW', 69], ['Jordy Croux', 'RW', 68], ['Kaina Tanimura', 'ST', 66], ['George Onaiwu', 'ST', 66], ['Ryo Miyaichi', 'LW', 64], ['Tomoki Kondo', 'RW', 62], ['Hikaru Takahashi', 'ST', 60], ['Rio Nitta', 'RW', 60], ['Shin Miidera', 'ST', 58]] },
+  SGP: { coach: 'Mark Jackson', sq: [['Ivan Sušak', 'GK', 62], ['Adib Azahari', 'GK', 58], ['Victor Aznar', 'GK', 56], ['Toni Datković', 'CB', 66], ['Bailey Wright', 'CB', 65], ['Diogo Costa', 'CB', 63], ['Hugo Gomes', 'CB', 62], ['Hariss Harun', 'DM', 62], ['Lionel Tan', 'CB', 60], ['Jorge Karse', 'LB', 60], ['Ryhan Stewart', 'RB', 60], ['Nur Adam Abdullah', 'LB', 58], ['Adrian Jaccard', 'RB', 54], ['Tiryaq Suhaimi', 'CB', 52], ['Bart Ramselaar', 'AM', 68], ['Tsiy Ndenge', 'CM', 66], ['Kyoga Nakamura', 'CM', 62], ['Song Ui-young', 'AM', 62], ['Giovanni Haag', 'DM', 62], ['Hami Syahin', 'CM', 60], ['Muhammad Asis', 'CM', 55], ['Yasir Nizamudin', 'CM', 52], ['Izrafil Yusof', 'CM', 52], ['Ahmad Danial', 'CM', 52], ['Yazid Rais', 'CM', 52], ['Lennart Thy', 'ST', 66], ['Antonio Mance', 'ST', 64], ['Matthias Phaëton', 'LW', 64], ['Bobby Adekanye', 'RW', 63], ['Shawal Anuar', 'RW', 60], ['Glenn Kweh', 'LW', 58], ['Ilhan Fandi', 'ST', 58], ['Abdul Rasaq Akeem', 'ST', 55], ['Farhan Zulkifli', 'LW', 54], ['Izzan Rifqi', 'ST', 50]] },
+  HKG: { coach: 'Iñigo Calderón', sq: [['Wang Zhenpeng', 'GK', 60], ['Law Tsz Chun', 'RB', 58], ['Roger Riera', 'CB', 62], ['Matheus Dantas', 'CB', 61], ['Jason Kam', 'CB', 57], ['Jay Haddow', 'LB', 56], ['Jordan Lam', 'CB', 56], ['Callum Beattie', 'RB', 55], ['Asier Illarramendi', 'DM', 66], ['Kendy Ikegami', 'CM', 60], ['Yumemi Kanda', 'CM', 60], ['Cheng Chin Lung', 'AM', 59], ['Tan Chun Lok', 'CM', 58], ['Pong Cheuk Hei', 'CM', 55], ['Ruslan Mingazow', 'AM', 62], ['Adrián Revilla', 'ST', 63], ['Leandro Martínez', 'ST', 63], ['Juninho', 'RW', 58], ['Seb Buddle', 'LW', 57]] },
+  CHN: { coach: 'Kevin Muscat', sq: [['Yan Junling', 'GK', 66], ['Chen Wei', 'GK', 62], ['Li Zhiliang', 'GK', 57], ['Zhang Yuhang', 'GK', 55], ['Tyias Browning', 'CB', 66], ['Wei Zhen', 'CB', 64], ['Wang Shenchao', 'CB', 64], ['Miguel Campos', 'RB', 64], ['Zhang Linpeng', 'RB', 62], ['Fu Huan', 'LB', 62], ['Umidjan Yusup', 'LB', 60], ['Wang Zhenao', 'CB', 60], ['Alex Yang', 'RB', 60], ['Yue Xin', 'CB', 58], ['Bao Shimeng', 'LB', 58], ['Li Shuai', 'CB', 58], ['Wang Dongcheng', 'CB', 55], ['Mateus Vital', 'AM', 70], ['Óscar Melendo', 'AM', 68], ['Jean Claude', 'DM', 66], ['Jaume Grau', 'CM', 66], ['Yang Shiyuan', 'CM', 63], ['Kuai Jiwen', 'CM', 63], ['Liu Ruofan', 'CM', 62], ['Lu Yongtao', 'CM', 60], ['Zhang Yuan', 'CM', 58], ['Li Ruilong', 'DM', 58], ['Cao Zhezhe', 'CM', 56], ['Leonardo', 'ST', 70], ['Gabrielzinho', 'RW', 68], ['Wu Lei', 'ST', 66], ['Prince Ampem', 'LW', 64], ['Liu Zhurun', 'RW', 62], ['Matthew Orr', 'ST', 60], ['Li Xinxiang', 'LW', 58], ['Wen Junxiang', 'ST', 58], ['Cui Juncheng', 'ST', 56], ['Zhang Junjie', 'ST', 55]] }
+};
+const SLOT_PREF = { GK: ['GK'], DR: ['RB', 'CB'], DL: ['LB', 'CB', 'RB'], DC: ['CB', 'DM'], DM: ['DM', 'CM'], MC: ['CM', 'DM', 'AM'], AMR: ['RW', 'AM', 'LW'], AML: ['LW', 'AM', 'RW'], AMC: ['AM', 'CM'], FC: ['ST', 'RW', 'LW'], MR: ['RW', 'AM'], ML: ['LW', 'AM'] };
+function rosterSide(S, k) {
+  const R0 = ASIA_SQ[k]; const form = '4-2-3-1'; const slots = FORMS[form];
+  const pool = R0.sq.map((x, i) => ({ id: 'rs' + k + i, n: x[0], pseudo: true, pos: x[1], ca: x[2], age: 26, mor: 75, cond: 100, seed: 300 + i }));
+  const left = pool.slice(); const take = (prefs) => { const sc = (p) => p.ca - 4 * prefs.indexOf(p.pos); const c0 = left.filter(p => prefs.includes(p.pos)).sort((a, b) => sc(b) - sc(a))[0]; if (c0) { left.splice(left.indexOf(c0), 1); return c0; } const c = left.filter(p => p.pos !== 'GK').sort((a, b) => b.ca - a.ca)[0]; if (c) left.splice(left.indexOf(c), 1); return c; };
+  const xi = slots.map(s => take(SLOT_PREF[s[0]] || ['CM']));
+  S.form = form; S.ps = slots.map((s, i) => ({ p: xi[i], role: s[0], pr: DEF_PR[s[0]], x: s[1], y: s[2], on: true, rt: 6.3, g: 0, as: 0, yc: 0, rc: 0, inj: false, mins: 0, subOn: 0 }));
+  const gk2 = left.filter(p => p.pos === 'GK').sort((a, b) => b.ca - a.ca)[0];
+  S.bench = (gk2 ? [gk2] : []).concat(left.filter(p => p.pos !== 'GK').sort((a, b) => b.ca - a.ca).slice(0, 8));
+  return S;
+}
 // Arsenal Legends: estimated prime-years ability; ab = attribute bonuses for their trademark strengths
 const LEGENDS_XI = [
   ['Jens Lehmann', 'GK', 86, { Ref: 2, OvO: 2 }], ['Lauren', 'RB', 83, { Sta: 2, Tck: 1 }], ['Sol Campbell', 'CB', 88, { Str: 3, Hea: 2, Tck: 1 }], ['Kolo Touré', 'CB', 85, { Pac: 2, Tck: 2 }], ['Thomas Vermaelen', 'LB', 83, { Hea: 2, Lon: 1 }],
@@ -16451,6 +16471,7 @@ mkSide = function (tid, home) {
     S.tac = Object.assign(S.tac, { ment: 4, press: 3, tempo: 3, pass: 2 });
     return S;
   }
+  if (t && t.lite && tid.startsWith('AS_') && ASIA_SQ[tid.slice(3)]) return rosterSide(_mkSidePS(tid, home), tid.slice(3));
   return _mkSidePS(tid, home);
 };
 const _stepPS = stepMinute;
@@ -16512,7 +16533,7 @@ function bookTour(stops, start) {
   stops.forEach((k, i) => { const a = ASIA[k]; const f = psFx({ d: free[i], h: 'AS_' + k, a: u, rnd: `Asia Tour: ${a.c}`, ven: a.ven, vcap: a.cap, tour: k }); ms.push(f.id); });
   const fee = stops.reduce((s, k) => s + tourFee(k), 0);
   G.ps.tour = { stops, ms, fee };
-  news('Asia Tour', `${tName(u, false)} announce a pre-season Asia Tour: ${stops.map((k, i) => `${ASIA[k].n} at the ${ASIA[k].ven} (${dNice(free[i], false)})`).join(', ')}. Expected appearance fees about ${money(fee)}, plus a lift in global popularity and commercial income.`, u, true);
+  news('Asia Tour', `${tName(u, false)} announce a pre-season Asia Tour: ${stops.map((k, i) => `${ASIA[k].n} (coach ${ASIA_SQ[k].coach}) at the ${ASIA[k].ven} (${dNice(free[i], false)})`).join(', ')}. Expected appearance fees about ${money(fee)}, plus a lift in global popularity and commercial income.`, u, true);
   try { fanPost(u, R.pick([`ASIA TOUR 🌏✈️ ${stops.map(k => ASIA[k].flag).join('')} Let's go!!`, `Asia Tour confirmed. ${stops.includes('SEL') ? 'See you in Petaling Jaya, Selangor fans 🔴🟡' : 'Our fans out there are the best'}`]), { u: 1, big: true }); } catch (e) { }
 }
 function tourFee(k) { const r = (T(G.user).rep || 70) / 100; return Math.round(Math.pow(r, 3) * 4.5 * ASIA[k].f * 10) / 10; }
