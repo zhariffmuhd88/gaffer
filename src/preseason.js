@@ -26,7 +26,7 @@ const ASIA_SQ = {
 const SLOT_PREF = { GK: ['GK'], DR: ['RB', 'CB'], DL: ['LB', 'CB', 'RB'], DC: ['CB', 'DM'], DM: ['DM', 'CM'], MC: ['CM', 'DM', 'AM'], AMR: ['RW', 'AM', 'LW'], AML: ['LW', 'AM', 'RW'], AMC: ['AM', 'CM'], FC: ['ST', 'RW', 'LW'], MR: ['RW', 'AM'], ML: ['LW', 'AM'] };
 function rosterSide(S, k) {
   const R0 = ASIA_SQ[k]; const form = '4-2-3-1'; const slots = FORMS[form];
-  const pool = R0.sq.map((x, i) => ({ id: 'rs' + k + i, n: x[0], pseudo: true, pos: x[1], ca: x[2], age: 26, mor: 75, cond: 100, seed: 300 + i }));
+  ensureAsiaPlayers(); const pool = squad('AS_' + k).filter(p => p.inj <= 0); for (const p of pool) p.cond = 100;
   const left = pool.slice(); const take = (prefs) => { const sc = (p) => p.ca - 4 * prefs.indexOf(p.pos); const c0 = left.filter(p => prefs.includes(p.pos)).sort((a, b) => sc(b) - sc(a))[0]; if (c0) { left.splice(left.indexOf(c0), 1); return c0; } const c = left.filter(p => p.pos !== 'GK').sort((a, b) => b.ca - a.ca)[0]; if (c) left.splice(left.indexOf(c), 1); return c; };
   const xi = slots.map(s => take(SLOT_PREF[s[0]] || ['CM']));
   S.form = form; S.ps = slots.map((s, i) => ({ p: xi[i], role: s[0], pr: DEF_PR[s[0]], x: s[1], y: s[2], on: true, rt: 6.3, g: 0, as: 0, yc: 0, rc: 0, inj: false, mins: 0, subOn: 0 }));
@@ -34,6 +34,50 @@ function rosterSide(S, k) {
   S.bench = (gk2 ? [gk2] : []).concat(left.filter(p => p.pos !== 'GK').sort((a, b) => b.ca - a.ca).slice(0, 8));
   return S;
 }
+// ---------- real player records for the tour clubs and the legends (viewable, comparable; tour players can be signed) ----------
+const ASIA_NAT = { 'Rubén Blanco': 'ESP', 'Jeison Quiñónes': 'COL', 'Thomas Deng': 'AUS', 'Tevis': 'BRA', 'Jordy Croux': 'BEL', 'Dean David': 'ISR', 'Yuri Araújo': 'BRA',
+  'Victor Aznar': 'BRA', 'Ivan Sušak': 'CRO', 'Jorge Karse': 'GEO', 'Hugo Gomes': 'BRA', 'Toni Datković': 'CRO', 'Bailey Wright': 'AUS', 'Diogo Costa': 'POR', 'Tsiy Ndenge': 'CMR', 'Bart Ramselaar': 'NED', 'Giovanni Haag': 'FRA', 'Lennart Thy': 'GER', 'Antonio Mance': 'CRO', 'Matthias Phaëton': 'GLP', 'Bobby Adekanye': 'NED',
+  'Miguel Campos': 'POR', 'Jean Claude': 'TOG', 'Mateus Vital': 'BRA', 'Jaume Grau': 'ESP', 'Óscar Melendo': 'ESP', 'Gabrielzinho': 'BRA', 'Matthew Orr': 'HKG', 'Prince Ampem': 'GHA', 'Leonardo': 'BRA',
+  'Roger Riera': 'ESP', 'Matheus Dantas': 'BRA', 'Asier Illarramendi': 'ESP', 'Kendy Ikegami': 'BRA', 'Yumemi Kanda': 'JPN', 'Ruslan Mingazow': 'TKM', 'Adrián Revilla': 'ESP', 'Leandro Martínez': 'ESP',
+  'Kay Tejan': 'NED', 'Chrigor': 'BRA', 'Pernambuco': 'BRA', 'Alex Agyarkwa': 'GHA', 'Safuwan Baharudin': 'SGP', 'Xhemajli': '', 'Ankrah': '', 'Boumous': '', 'Sosa': '', 'Azih': '', 'Makrillos': '', 'Mahamé Siby': '', 'Tabinas': '' };
+const ASIA_HOME = { SEL: 'MAS', JPN: 'JPN', SGP: 'SGP', HKG: 'HKG', CHN: 'CHN' };
+// ages: Selangor from starting11.com; other well-known players from their published birth years; the rest are estimates (26)
+const ASIA_AGE = { 'Al Amin': 26, 'Nazrel': 23, 'Al Hafiz': 31, 'Quentin Cheng': 26, 'Ankrah': 25, 'Xhemajli': 27, 'Khalili': 24, 'Safuwan Baharudin': 34, 'Tabinas': 27, "Ra'op": 26, 'Afkar': 24, 'Laine': 23, 'Makrillos': 30, 'Boumous': 30, 'Sosa': 29, 'Azih': 30, 'Alex Agyarkwa': 25, 'Mahadi': 24, 'Bashah': 24, 'Izwan': 22, 'Faisal Halim': 28, 'Kay Tejan': 29, 'A. Selvan': 25, 'Chrigor': 25, 'Pernambuco': 28,
+  'Wu Lei': 35, 'Yan Junling': 35, 'Zhang Linpeng': 37, 'Wang Shenchao': 37, 'Hariss Harun': 36, 'Asier Illarramendi': 36, 'Bailey Wright': 34, 'Lennart Thy': 34, 'Bart Ramselaar': 30, 'Dean David': 30, 'Ryo Miyaichi': 34, 'Jun Amano': 35, 'Rubén Blanco': 31, 'Mateus Vital': 28, 'Óscar Melendo': 29, 'Thomas Deng': 29, 'Toni Datković': 33, 'Shawal Anuar': 35, 'Tyias Browning': 32, 'Jordy Croux': 32 };
+const LEG_NAT = { 'Jens Lehmann': 'GER', 'Lauren': 'CMR', 'Sol Campbell': 'ENG', 'Kolo Touré': 'CIV', 'Thomas Vermaelen': 'BEL', 'Freddie Ljungberg': 'SWE', 'Patrick Vieira': 'FRA', 'Gilberto Silva': 'BRA', 'Robert Pirès': 'FRA', 'Dennis Bergkamp': 'NED', 'Thierry Henry': 'FRA',
+  'David Seaman': 'ENG', 'Lee Dixon': 'ENG', 'Martin Keown': 'ENG', 'Tony Adams': 'ENG', 'Nigel Winterburn': 'ENG', 'Tomáš Rosický': 'CZE', 'Aaron Ramsey': 'WAL', 'Santi Cazorla': 'ESP', 'Mesut Özil': 'GER', 'Alexis Sánchez': 'CHI', 'Ian Wright': 'ENG' };
+function ensureAsiaPlayers() {
+  ensureAsia();
+  for (const k in ASIA_SQ) {
+    const id = 'AS_' + k; const t = T(id); t.coach = ASIA_SQ[k].coach; t.mgr = ASIA_SQ[k].coach; G.sq[id] = G.sq[id] || [];
+    if (!t.made) {
+      t.made = 1;
+      ASIA_SQ[k].sq.forEach((x, i) => {
+        const age = ASIA_AGE[x[0]] || 26; const nat = x[0] in ASIA_NAT ? ASIA_NAT[x[0]] : ASIA_HOME[k];
+        const p = mkPlayer({ n: x[0], pos: x[1], ca: x[2], pa: Math.min(90, x[2] + (age <= 21 ? 8 : age <= 24 ? 3 : 0)), age, nat, c: id, seed: 300 + i, con: G.year + 2 });
+        p.wage = Math.max(2, Math.round(calcWageDemand(p, 60) * .35)); p.val = calcValue(p); p.no = i + 1;
+        G.players[p.id] = p; G.sq[id].push(p.id);
+      });
+    }
+    G.sq[id] = G.sq[id].filter(pid => P(pid) && P(pid).c === id);
+    // keep at least 18 players: academy graduates fill gaps left by sales and retirements
+    while (G.sq[id].length < 18) { const pos = R.pick(['GK', 'CB', 'CB', 'LB', 'RB', 'CM', 'CM', 'DM', 'AM', 'LW', 'RW', 'ST']); const ca = Math.round(ASIA[k].str - 8 + R.i(-3, 3)); const p = mkPlayer({ n: genName(), pos, ca, age: R.i(18, 21), nat: ASIA_HOME[k], c: id, seed: R.i(1, 9999), con: G.year + 2 }); p.wage = 2; p.val = calcValue(p); G.players[p.id] = p; G.sq[id].push(p.id); }
+  }
+}
+function ensureLegendPlayers() {
+  ensureLegends();
+  if (!G.legXI || !G.legXI.every(id => P(id))) {
+    const mk = (x, i, k) => { const p = mkPlayer({ n: x[0], pos: x[1], ca: x[2], pa: x[2], age: 28, nat: LEG_NAT[x[0]] || 'ENG', c: 'ARL', seed: 100 + i + k * 20, ab: x[3], abv: 50, leg: 1, con: 9999 }); p.wage = 0; p.no = k === 1 ? i + 1 : i + 12; G.players[p.id] = p; return p.id; };
+    G.legXI = LEG_ORDER1.map((j, i) => mk(LEGENDS_XI[j], i, 1)); G.legSubs = LEG_ORDER2.map((j, i) => mk(LEGENDS_SUBS[j], i, 2));
+  }
+  // forever in their prime: undo ageing, form and injuries every time
+  const all = LEGENDS_XI.concat(LEGENDS_SUBS); const ids = G.legXI.concat(G.legSubs);
+  ids.forEach((id, i) => { const p = P(id); const x = (i < 11 ? LEGENDS_XI[LEG_ORDER1[i]] : LEGENDS_SUBS[LEG_ORDER2[i - 11]]); Object.assign(p, { c: 'ARL', age: 28, ca: x[2], pa: x[2], inj: 0, injT: '', sus: 0, cond: 100, mor: 85, leg: 1, listed: false }); });
+  G.sq.ARL = ids.slice();
+}
+// legends are never called up by national teams
+const _npPS = natPool;
+natPool = function (c) { return _npPS(c).filter(p => !p.leg); };
 // Arsenal Legends: estimated prime-years ability; ab = attribute bonuses for their trademark strengths
 const LEGENDS_XI = [
   ['Jens Lehmann', 'GK', 86, { Ref: 2, OvO: 2 }], ['Lauren', 'RB', 83, { Sta: 2, Tck: 1 }], ['Sol Campbell', 'CB', 88, { Str: 3, Hea: 2, Tck: 1 }], ['Kolo Touré', 'CB', 85, { Pac: 2, Tck: 2 }], ['Thomas Vermaelen', 'LB', 83, { Hea: 2, Lon: 1 }],
@@ -60,8 +104,9 @@ mkSide = function (tid, home) {
   if (t && t.leg) {
     const S = _mkSidePS(tid, home); // pseudo side with the right shape, then put the legends in a 4-4-2
     const slots = FORMS['4-4-2'];
-    S.form = '4-4-2'; S.ps = slots.map((s, i) => ({ p: legP(LEGENDS_XI[LEG_ORDER1[i]], i, 1), role: s[0], pr: DEF_PR[s[0]], x: s[1], y: s[2], on: true, rt: 6.3, g: 0, as: 0, yc: 0, rc: 0, inj: false, mins: 0, subOn: 0 }));
-    S.bench = []; S.subs = 0; S.windows = 0; S.leg2 = LEG_ORDER2.map((j, i) => legP(LEGENDS_SUBS[j], i, 2));
+    ensureLegendPlayers(); const L1 = G.legXI.map(P), L2 = G.legSubs.map(P); for (const p of L1.concat(L2)) p.cond = 100;
+    S.form = '4-4-2'; S.ps = slots.map((s, i) => ({ p: L1[i], role: s[0], pr: DEF_PR[s[0]], x: s[1], y: s[2], on: true, rt: 6.3, g: 0, as: 0, yc: 0, rc: 0, inj: false, mins: 0, subOn: 0 }));
+    S.bench = []; S.subs = 0; S.windows = 0; S.leg2 = L2;
     S.tac = Object.assign(S.tac, { ment: 4, press: 3, tempo: 3, pass: 2 });
     return S;
   }
@@ -71,7 +116,7 @@ mkSide = function (tid, home) {
 const _stepPS = stepMinute;
 stepMinute = function (M) {
   const r = _stepPS(M);
-  if (M.min >= 46 && !M.legSwap) for (let s = 0; s < 2; s++) { const S = M.sides[s]; if (!S.leg2) continue; M.legSwap = true; S.ps.forEach((e, i) => { if (S.leg2[i]) { e.p = S.leg2[i]; e.rt = 6.3; e.g = 0; e.as = 0; e.yc = 0; e.mins = 0; e.on = true; } }); say(M, 46, 'tac', `Eleven changes for Arsenal Legends at half-time: ${S.leg2.map(p => p.n.split(' ').slice(-1)[0]).join(', ')} come on.`, s); }
+  if (M.min >= 46 && !M.legSwap) for (let s = 0; s < 2; s++) { const S = M.sides[s]; if (!S.leg2) continue; M.legSwap = true; const old = S.ps.filter(e => e.on); old.forEach((e, i) => { const np = S.leg2[i]; if (!np) return; e.on = false; S.ps.push({ p: np, role: e.role, pr: e.pr, x: e.x, y: e.y, on: true, rt: 6.3, g: 0, as: 0, yc: 0, rc: 0, inj: false, mins: 0, subOn: 46 }); }); try { units(S); } catch (e) { } say(M, 46, 'tac', `Eleven changes for Arsenal Legends at half-time: ${S.leg2.map(p => p.n.split(' ').slice(-1)[0]).join(', ')} come on.`, s); }
   return r;
 };
 
@@ -101,7 +146,7 @@ function psSetup() {
   else msg('Pre-season', `Pre-season friendlies: arrange your own, let your assistant do it, or take the squad on an Asia Tour (Selangor, Japan, Singapore, Hong Kong, China). See Fixtures › Pre-season. The annual Arsenal Legends match is already in the diary.`);
 }
 const _bsPS = buildSeason;
-buildSeason = function () { _bsPS(); try { G.ps = null; psSetup(); } catch (e) { console.error(e); } };
+buildSeason = function () { _bsPS(); try { G.ps = null; ensureAsiaPlayers(); ensureLegendPlayers(); psSetup(); } catch (e) { console.error(e); } };
 function psOppPool() {
   const u = G.user; const d = divOf(u);
   return fullTeams().filter(t => t !== u).sort((a, b) => (T(b).rep || 0) - (T(a).rep || 0));
@@ -228,4 +273,45 @@ Object.assign(ACT, {
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.ps === 'auto') { G.psAuto = !!el.checked; autosave(); toast(G.psAuto ? 'Your assistant will arrange friendlies every pre-season.' : 'You will arrange friendlies yourself.'); } });
 // older saves still in pre-season get the set-up when loaded
 const _rsPSF = restore;
-restore = function (obj) { _rsPSF(obj); try { if (G && G.user && !G.ps && psFirstComp() > addDays(G.date, 3)) psSetup(); } catch (e) { console.error(e); } };
+restore = function (obj) { _rsPSF(obj); try { if (G && G.user && T(G.user)) { ensureAsiaPlayers(); ensureLegendPlayers(); } } catch (e) { console.error(e); } try { if (G && G.user && !G.ps && psFirstComp() > addDays(G.date, 3)) psSetup(); } catch (e) { console.error(e); } };
+
+// ---------- club pop-up with the squad, player pop-up notes, signing tour players ----------
+const _cmPS = clubModal;
+clubModal = function (tid) {
+  const t = T(tid); if (t && t.leg) ensureLegendPlayers(); if (!t || !(t.leg || String(tid).startsWith('AS_')) || !squad(tid).length) return _cmPS(tid);
+  const fs = Object.values(G.fx).filter(f => (f.h === tid || f.a === tid)).sort((a, b) => a.d < b.d ? -1 : 1);
+  const sq = t.leg ? G.legXI.concat(G.legSubs).map(P) : squad(tid).sort((a, b) => (POS_ORDER[a.pos] ?? 9) - (POS_ORDER[b.pos] ?? 9) || b.ca - a.ca);
+  const row = (p, i) => `<tr${t.leg && i === 11 ? ' style="border-top:2px solid var(--line,#555)"' : ''}><td class="mono dim">${t.leg ? (i < 11 ? 'XI' : '2H') : (p.no || '')}</td><td>${pLink(p.id)}</td><td class="mono">${POS_LABEL[p.pos] || p.pos}</td><td class="n">${p.age}</td><td class="mono dim">${esc(p.nat || '—')}</td><td class="n">${p.ca}</td>${t.leg ? '' : `<td class="n">${money(calcValue(p))}</td>`}</tr>`;
+  UI.modal = `<div class="band"><span>${badge(tid)} ${esc(t.name)}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+    <dl class="kv"><dt>${t.leg ? 'Venue' : 'Stadium'}</dt><dd>${esc(t.stadium)} · ${(t.cap || 0).toLocaleString('en-GB')}</dd>${t.coach ? `<dt>Head coach</dt><dd>${esc(t.coach)}</dd>` : ''}<dt>Team strength</dt><dd>${Math.round(t.str || 0)}</dd></dl>
+    <p class="dim" style="font-size:12.5px">${t.leg ? 'Arsenal Legends in their prime: XI plays the first half, the second eleven (2H) the second half. Ratings are game estimates; legends cannot be signed.' : 'Real squad; ratings and some ages are game estimates. Tap a player to view, compare or sign him.'}</p>
+    <h2 class="sect">Squad</h2><div class="tw"><table class="t"><thead><tr><th>#</th><th>Name</th><th>Pos</th><th class="n">Age</th><th>Nat</th><th class="n">Rating</th>${t.leg ? '' : '<th class="n">Value</th>'}</tr></thead><tbody>${sq.map(row).join('')}</tbody></table></div>
+    ${fs.length ? `<h2 class="sect">Matches this season</h2><div class="tw">${resTable(fs)}</div>` : ''}</div>`;
+  render();
+};
+function asiaFee(p) { return Math.max(.2, Math.round(calcValue(p) * 1.15 * 10) / 10); }
+function signAsia(pid) {
+  const p = P(pid); if (!p || !String(p.c).startsWith('AS_')) return { ok: false, msg: 'He is no longer available.' };
+  const u = userTeam(); const fee = asiaFee(p); const club = tName(p.c);
+  if (!G.window) return { ok: false, msg: 'You can only sign players while a window is open.' };
+  if (fee > u.tb) return { ok: false, msg: `${club} want ${money(fee)}, more than your budget (${money(u.tb)}).` };
+  const w = Math.max(wageFor(p, G.user), Math.round((p.wage || 0) * 1.2));
+  if (wageBill(G.user) + w > u.wb + .5) return { ok: false, msg: `He wants ${wageStr(w)}. Not enough room in the wage budget.` };
+  const from = p.c; G.sq[from] = (G.sq[from] || []).filter(x => x !== pid);
+  completeTransfer(p, G.user, fee, w, p.age >= 30 ? 2 : 4);
+  news('Transfer', `${p.n} joins ${u.name} from ${club} for ${money(fee)}.`, G.user, true);
+  try { fanPost(G.user, R.pick([`Signing ${p.n} from ${club}?? Scouting department cooking 🍳`, `${p.n} from ${club}. Hidden gem or tour souvenir? 🤔`])); } catch (e) { }
+  return { ok: true, msg: `${p.n} signs from ${club} for ${money(fee)}.` };
+}
+ACT.signas = (v) => { const r = signAsia(v); toast(r.msg); if (r.ok) { UI.modal = null; autosave(); } render(); };
+const _pmPS2 = playerModal;
+playerModal = function (pid) {
+  try { const q = P(pid); if (q && q.leg) ensureLegendPlayers(); } catch (e) { }
+  _pmPS2(pid);
+  try {
+    const p = P(pid); if (!p || !UI.modal) return;
+    const k = '<div class="row" style="margin-top:14px">'; const i = UI.modal.lastIndexOf(k);
+    if (p.leg) { const note = `<p class="dim" style="font-size:12.5px;margin-top:8px">Arsenal Legends · rating from his prime years (game estimate) · not available to sign.</p>`; UI.modal = i >= 0 ? UI.modal.slice(0, i) + note + UI.modal.slice(i) : UI.modal; render(); return; }
+    if (String(p.c).startsWith('AS_') && !T(G.user).nat && i >= 0) { UI.modal = UI.modal.slice(0, i + k.length) + `<button class="btn pri" data-a="signas" data-v="${pid}">Sign from ${esc(tName(p.c))} · ${money(asiaFee(p))}</button>` + UI.modal.slice(i + k.length); render(); }
+  } catch (e) { console.error(e); }
+};
