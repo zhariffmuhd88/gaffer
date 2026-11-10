@@ -214,22 +214,22 @@ const SA_CLUBS = [
 13|Alberto Dossena|CB|28|ITA|74
 18|Edoardo Goldaniga|CB|32|ITA|71
 53|Willy Kambwala|CB|22|COD|72
-99|Trevoh Chalobah|CB|27|ENG|80
-3|Álex Valle|LB|22|ESP|78
+99|Trevoh Chalobah|CB|27|ENG|78
+3|Álex Valle|LB|22|ESP|76
 16|Kaiki|LB|23|BRA|70
-5|Máximo Perrone|DM|23|ARG|81
-7|Lucas Da Cunha|CM|25|FRA|80
+5|Máximo Perrone|DM|23|ARG|79
+7|Lucas Da Cunha|CM|25|FRA|78
 6|Luis Milla|CM|32|ESP|77
-21|Samuele Ricci|DM|25|ITA|80
-8|Maxence Caqueret|CM|26|FRA|79
-10|Nico Paz|AM|22|ARG|86
+21|Samuele Ricci|DM|25|ITA|78
+8|Maxence Caqueret|CM|26|FRA|77
+10|Nico Paz|AM|22|ARG|83
 30|Mattia Liberali|AM|19|ITA|66
-11|Assane Diao|RW|21|SEN|79
+11|Assane Diao|RW|21|SEN|77
 42|Jayden Addai|LW|21|NED|73
-17|Jesús Rodríguez|LW|20|ESP|78
-20|Martin Baturina|AM|23|CRO|80
+17|Jesús Rodríguez|LW|20|ESP|76
+20|Martin Baturina|AM|23|CRO|78
 9|Anastasios Douvikas|ST|27|GRE|77
-90|Moise Kean|ST|26|ITA|83
+90|Moise Kean|ST|26|ITA|81
 `},
 {"id": "BGN", "name": "Bologna", "short": "Bologna", "c1": "#1a2f48", "c2": "#a21c26", "stadium": "Stadio Renato Dall'Ara", "cap": 38279, "mgr": "Raffaele Palladino", "capt": "Lorenzo De Silvestri", "rep": 82, "bal": 60, "form": "4-2-3-1",sq:`
 1|Łukasz Skorupski|GK|35|POL|78

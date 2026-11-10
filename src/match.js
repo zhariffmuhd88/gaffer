@@ -69,6 +69,11 @@ function validateLineup(tid) {
         if ((slots[i][0] === 'GK') !== (q.pos === 'GK')) continue;
         const v = effSkill(q, slots[i][0]); if (v > bv) { bv = v; best = q; }
       }
+      // nobody fits (e.g. no fit goalkeeper left): anyone available, then anyone at all, so the side can always be picked
+      if (!best) best = squad(tid).filter(q => available(q) && !seen.has(q.id) && !t.tac.xi.includes(q.id)).sort((a, b) => b.ca - a.ca)[0] || squad(tid).filter(q => !seen.has(q.id) && !t.tac.xi.includes(q.id)).sort((a, b) => b.ca - a.ca)[0];
+      if (!best) { // fewer than eleven players left: an academy trialist makes up the numbers
+        best = mkPlayer({ n: genName(), pos: slots[i][0] === 'GK' ? 'GK' : 'CM', ca: 45, age: 18, nat: 'ENG', c: tid, seed: R.i(1, 9999), con: G.year + 1 }); best.wage = 1; best.val = calcValue(best);
+        G.players[best.id] = best; G.sq[tid].push(best.id); sqIds.add(best.id); if (tid === G.user) msg('Squad numbers', `${best.n}, an academy trialist, has been registered so the team can field eleven players. Sign more players.`); }
       if (best) { t.tac.xi[i] = best.id; issues.push(pn(best) + ' comes into the XI'); }
     }
     if (t.tac.xi[i]) seen.add(t.tac.xi[i]);
@@ -136,7 +141,7 @@ function units(S) {
   const cb = ce ? 1 + (lead(ce.p) - 10) * .0025 : .99; def *= cb; mid *= cb; att *= cb;
   if (S.tid === G.user) { const tr = trainTeam(); if (tr === 'att') { att *= 1.025; def *= .99; } if (tr === 'def') { def *= 1.025; att *= .99; } if (tr === 'light') { mid *= .99; att *= .99; } }
   if (S.shout) { const sk = S.shout.k; if (sk === 'push') { att *= 1.045; def *= .965; } else if (sk === 'focus') { def *= 1.03; att *= .985; } else if (sk === 'enc') { mid *= 1.02; att *= 1.015; } }
-  const df = S.dayF || 1;
+  const df = (S.dayF || 1) * (S.cupF || 1);
   S.u = { gk: gk * (0.5 + df / 2), def: def * df, mid: mid * df, att: att * df };
   return S.u;
 }
@@ -193,6 +198,10 @@ function stepMinute(M) {
   // attack
   let mentF = 1 + (S.tac.ment - 3) * 0.1;
   if (O.tac.waste === 2 && M.min >= 65 && M.score[1 - side] + M.agg[1 - side] > M.score[side] + M.agg[side]) mentF *= .9;
+  // game state: a side three or more goals up eases off (rotation, keeping the ball), so 7-0s stay rare
+  const gsl = M.score[side] - M.score[1 - side];
+  if (['UNL', 'EQ', 'EURO', 'WCQ', 'WC', 'FR'].includes(M.comp)) { if (gsl >= 2) mentF *= gsl >= 4 ? .45 : gsl >= 3 ? .6 : .82; } // internationals: favourites manage games
+  else if (gsl >= 3) mentF *= gsl >= 4 ? .55 : .72;
   const tempoF = 1 + (S.tac.tempo - 2) * 0.14;
   if (R.chance(0.40 * mentF * tempoF * (M.wx === 'snow' ? .94 : 1))) {
     let q = 0.52 * Math.pow(S.u.att / O.u.def, 1.15) * (1 + (O.tac.ment - 3) * 0.05) * (1 - (S.tac.tempo - 2) * 0.05);

@@ -26,6 +26,14 @@ The WUPH.com screen (formerly Media) adds the emotional side: fans react to resu
 
 Storyline (game scenario, not a real ruling; can be switched off in Game > Options until it lands): after their appeal, Manchester City are deducted 60 points on 29 Jan 2027 and in each of the next four seasons, and fined £500m.
 
+Pre-season (from 1 July; the first season now starts on 1 July 2026): arrange friendlies yourself, let the assistant do it, or book an Asia Tour (Selangor, Japan, Singapore, Hong Kong, China) against real squads of Selangor FC, Yokohama F. Marinos, Lion City Sailors, Kitchee and Shanghai Port (FotMob and other sources, 8 Nov 2026; ratings are estimates) for appearance fees, reputation and commercial income. Every save plays Arsenal Legends each summer (prime-years ratings, game estimates; co-managers Arsène Wenger and Mikel Arteta; first XI in the first half, eleven substitutes in the second; the gold trophy is on show). Tour players can be viewed, compared and signed; legends can be viewed and compared but not signed. Friendlies do not count towards stats, cards or form.
+
+WUPH.com banter includes rival fans' digs at each club's sore points and the comebacks to them (counts come from real honours plus your save), Judas and "finished" posts, hate-watching, ex-players facing their old clubs and Gen Z slang; fictional pundits have former clubs. Trophy wins and headline transfers get long news write-ups. Big signings sell shirts, and you choose a shirt sponsor (fictional brands) with perks and clauses. Unbeaten Premier League champions get the gold trophy (Arsenal 2003/04 in the honours).
+
+Navigation is grouped (Home, Squad, Competitions, Club, World, Manager): collapsible on desktop, two compact rows on a phone. The inbox has filters (Important, Transfers, Staff, Media, All), "Mark all read", and one weekly Staff digest that collects the assistant's report, scout reports, fitness, morale and development notes. The WUPH.com badge counts only unread official, reporter and pundit posts about your club. First-week tips (tactics, assistant report, scouts, pre-season) can be dismissed.
+
+Calibration (10-season Node runs, `node tests/calib.js 10 BRE`): a side three goals up eases off (two in internationals), underdogs raise their game in early cup rounds, a small home advantage, per-league scoring factors, and Como's ratings toned down.
+
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 
 ## Layout
@@ -46,6 +54,8 @@ Storyline (game scenario, not a real ruling; can be switched off in Game > Optio
 - `src/scenario.js`: optional storylines (Manchester City sanction)
 - `src/laliga.js`: Spanish competitions, Copa del Rey and Supercopa draws, season end, migration that adds Spain to older saves
 - `src/data_intl.js`: nations (FIFA ranking, Oct 2026), Nations League 2026/27 draw and results, England caps, international winners; checked 31 Oct 2026
+- `src/rivalry.js`, `src/preseason.js`, `src/polish.js`: rivalry banter, sponsors and news write-ups; pre-season, Asia Tour and Arsenal Legends; grouped navigation, inbox digest and filters, tips, cup and calibration tweaks
+- `tests/run_all.sh [OUT_DIR] [JOBS]`: builds and runs every node and browser test, prints ok/FAIL per test; `tests/calib.js`: 10-season calibration run
 - `docs/screenshots/`: reference screenshots
 
 ## Build

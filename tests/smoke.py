@@ -65,7 +65,7 @@ async def main():
         print('mobile scrollWidth', await pg.evaluate('document.documentElement.scrollWidth'))
         await pg.screenshot(path='shot_mobile.png')
         # old-save migration
-        await pg.evaluate("(()=>{const s=JSON.parse(localStorage.getItem(SAVE_KEY)); delete s.staff; delete s.staffPool; delete s.train; for(const id in s.teams){const t=s.teams[id]; delete t.capt; delete t.vice; if(t.tac){delete t.tac.pr; delete t.tac.line; delete t.tac.trap;}} localStorage.setItem(SAVE_KEY, JSON.stringify(s));})()")
+        await pg.evaluate("(()=>{const s=loadSave(); delete s.staff; delete s.staffPool; delete s.train; for(const id in s.teams){const t=s.teams[id]; delete t.capt; delete t.vice; if(t.tac){delete t.tac.pr; delete t.tac.line; delete t.tac.trap;}} localStorage.setItem(SAVE_KEY, JSON.stringify(s));})()")
         await pg.reload(); await pg.wait_for_timeout(500)
         await pg.click('nav [data-v="tactics"]'); await pg.click('nav [data-v="staff"]'); print('migrated staff rows', len(await pg.query_selector_all('[data-a="hire"]')))
         print('band color', await pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--band')"))

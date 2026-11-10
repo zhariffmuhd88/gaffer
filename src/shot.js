@@ -62,6 +62,8 @@ function shot(M, si, e, ae, type) {
   if (M.wx === 'rain' && type !== 'pen') pg = Math.min(.9, pg * 1.05);
   const nf = M.comp === 'CH' && G.normCH ? G.normCH : M.comp === 'LL' && G.normLL ? G.normLL : M.comp === 'SA' && G.normSA ? G.normSA : G.normX && G.normX[M.comp] ? G.normX[M.comp] : G.normF;
   if (nf && type !== 'pen') pg *= nf;
+  // league scoring calibration (10-season runs against real goals per game)
+  if (type !== 'pen') pg *= ({ PL: .965, CH: 1.04, LL: 1.02, SA: 1.07 })[M.comp] || 1;
   S.st.sh++; S.st.xg += xg;
   const sname = cap1(pn(e.p));
   const gkE = O.ps.find(x => x.on && x.role === 'GK');

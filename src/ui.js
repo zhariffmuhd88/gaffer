@@ -27,6 +27,23 @@ function statusTags(p) {
 }
 function unreadCount() { return G.news.filter(n => !n.read).length; }
 
+// ---------- navigation: six groups; collapsible on desktop, two compact rows on a phone ----------
+const NAV_GROUPS = [['Ghome', 'Home', ['inbox', 'media']], ['Gsquad', 'Squad', ['squad', 'tactics', 'train', 'dyn']], ['Gcomp', 'Competitions', ['fixtures', 'table', 'comps', 'intl']], ['Gclub', 'Club', ['transfers', 'finance', 'staff', 'reports', 'club']], ['Gworld', 'World', ['stats', 'awards', 'history']], ['Gme', 'Manager', ['mgr', 'game']]];
+function navGroupOf(k) { const g = NAV_GROUPS.find(x => x[2].includes(k)); return g ? g[0] : 'Ghome'; }
+function navHtml(nav, scr) {
+  const cnt = (k) => k === 'inbox' ? unreadCount() : k === 'media' && typeof mediaUnread === 'function' ? mediaUnread() : 0;
+  const byK = Object.fromEntries(nav); const cur = navGroupOf(scr); const msel = UI.navM || cur;
+  let shut = {}; try { shut = JSON.parse(localStorage.getItem('gaffer_navshut') || '{}'); } catch (e) { }
+  const btn = (k) => `<button class="${scr === k ? 'on' : ''}" data-a="nav" data-v="${k}">${byK[k]}${cnt(k) ? `<span class="cnt">${cnt(k)}</span>` : ''}</button>`;
+  const known = new Set(NAV_GROUPS.flatMap(g => g[2]));
+  const extra = nav.filter(([k]) => !known.has(k)).map(([k]) => k);
+  const tabs = NAV_GROUPS.filter(([g, l, ks], gi) => ks.some(k => byK[k]) || gi === NAV_GROUPS.length - 1).map(([g, label, ks], gi) => { const sum = ks.filter(k => byK[k]).reduce((a, k) => a + (typeof cnt(k) === 'number' ? cnt(k) : 9), 0); return `<button class="ngt ${g === msel ? 'on' : ''} ${g === cur ? 'cur' : ''}" data-a="navg" data-v="${g}">${({ Gcomp: 'Comps', Gme: 'Me' })[g] || label}${sum ? `<span class="cnt">${sum > 9 ? '9+' : sum}</span>` : ''}</button>`; }).join('');
+  return `<nav class="nav gnav" aria-label="Sections"><div class="nghs">${tabs}</div><div class="ngall">${NAV_GROUPS.map(([g, label, ks], gi) => {
+    const items = ks.filter(k => byK[k]).concat(gi === NAV_GROUPS.length - 1 ? extra : []); if (!items.length) return '';
+    const sum = items.reduce((a, k) => a + (typeof cnt(k) === 'number' ? cnt(k) : 9), 0); const isShut = shut[g] && g !== cur;
+    return `<div class="ngrp ${isShut ? 'shut' : ''} ${g === cur ? 'cur' : ''} ${g === msel ? 'msel' : ''}" data-g="${g}"><button class="ngh" data-a="navg" data-v="${g}" aria-expanded="${!isShut}">${label}${sum ? `<span class="cnt">${sum}</span>` : ''}<i aria-hidden="true">▾</i></button><div class="ngi">${items.map(btn).join('')}</div></div>`;
+  }).join('')}</div></nav>`;
+}
 // ---------- root render ----------
 function render() {
   if (UI.match) return renderMatch();
@@ -46,7 +63,7 @@ function render() {
     <button class="go" id="go" data-a="continue">${contLabel} ▸</button>
   </header>
   <div class="frame">
-    <nav class="nav" aria-label="Sections">${nav.map(([k, l]) => `<button class="${scr === k ? 'on' : ''}" data-a="nav" data-v="${k}">${l}${k === 'inbox' && unreadCount() ? `<span class="cnt">${unreadCount()}</span>` : ''}${k === 'media' && typeof mediaUnread === 'function' && mediaUnread() ? `<span class="cnt">${mediaUnread()}</span>` : ''}</button>`).join('')}</nav>
+    ${navHtml(nav, scr)}
     <main class="main" id="main">${screen(scr)}</main>
   </div>
   ${UI.modal ? `<div class="ov" data-a="closeov"><div class="modal" role="dialog" aria-modal="true">${UI.modal}</div></div>` : ''}`;
