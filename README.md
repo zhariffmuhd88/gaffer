@@ -34,6 +34,8 @@ Navigation is grouped (Home, Squad, Competitions, Club, World, Manager): collaps
 
 Calibration (10-season Node runs, `node tests/calib.js 10 BRE`): a side three goals up eases off (two in internationals), underdogs raise their game in early cup rounds, a small home advantage, per-league scoring factors, and Como's ratings toned down.
 
+3D matchday (stage 1): a "3D" option next to "2D pitch" draws the same live scene with three.js (loaded from cdnjs when chosen; needs an internet connection, otherwise the 2D pitch stays): pitch, goals, four stands in club colours, players in their kits with running animation, the ball and its shadow, and TV, wide and behind-the-goal cameras.
+
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 
 ## Layout
