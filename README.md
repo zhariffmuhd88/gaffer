@@ -38,6 +38,8 @@ Calibration (10-season Node runs, `node tests/calib.js 10 BRE`): a side three go
 
 Cinematic intro: a 31-second film rendered in the game's 3D engine opens the game (skippable; "Tap for sound" for the synthesised soundtrack): a night fly-over of a bowl stadium inspired by a famous North London ground (no names or logos; also Arsenal's home ground in the 3D view), the walk-out, title cards, a dribble, a low-angle goal with the net rippling, a corner celebration with flares and confetti, and the final title. Game > Options turns it on or off, plays it again, and lets you add your own "Intro photo" with a caption: the photo is kept in this browser only (IndexedDB) and never uploaded or published. Without an internet connection the 2D intro cards play instead.
 
+Manager statue: reaching legend status at a club (a league title and five seasons, or three major trophies) unveils an illustrated bronze statue outside the ground: the head is your own manager avatar (hair, beard, glasses) cast in bronze, the pose follows your honours (trophy aloft, fist pump or pointing), and a plaque gives your name, years, trophies and games. Eight trophies at the club add a gold laurel and "Club legend". The statue appears on the day (with the club-coloured cloth sliding off), on the club's honours page and on your manager profile.
+
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 
 ## Layout
