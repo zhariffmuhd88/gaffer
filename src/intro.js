@@ -61,11 +61,13 @@ function runIntro(opts) {
   opts = opts || {};
   if (_introOn) return; _introOn = true;
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const cards = opts.only === 'disc' ? ['disc'] : ['ayep', 'disc', 'race', 'logo'];
+  const cine = !reduce && typeof cineRun === 'function' && opts.only !== 'disc' && (opts.cineOnly || introPref('cine') !== 'off');
+  const cards = opts.only === 'disc' ? ['disc'] : opts.cineOnly ? ['cine'] : (cine ? ['cine'] : []).concat(['ayep', 'disc', 'race', 'logo']);
   const dur = reduce ? { ayep: 1000, disc: 1000, race: 1500, logo: 1000 } : { ayep: 2600, disc: 3200, race: 3000, logo: 2400 };
   const el = document.createElement('div');
   el.className = 'intro' + (reduce ? ' still' : ''); el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Game intro'); el.tabIndex = -1;
   el.innerHTML = `
+    <section class="ic ic-cine"><div class="cine-host"></div><div class="cine-photo"><div class="cp-frame"><img alt=""><div class="cp-sweep"></div><div class="cp-grain"></div></div><div class="cp-cap"></div></div><div class="cine-txt"></div><button class="cine-snd" type="button">🔇 Tap for sound</button></section>
     <section class="ic ic-ayep"><div class="ay-wrap">${ayepSvg()}<div class="ay-word"><span class="ay-1">AYEP</span><span class="ay-2">INTERACTIVE</span></div></div></section>
     <section class="ic ic-disc"><div class="dc"><div class="dc-rule"></div><h2 class="dc-h">Please note</h2><div class="dc-rule"></div>${DISCLAIMER_P.map(p => `<p>${esc(p)}</p>`).join('')}<div class="dc-rule"></div><p class="dc-c">${esc(DISCLAIMER_C)}</p><p class="dc-tap">Tap or press any key to continue</p></div></section>
     <section class="ic ic-race"><div class="rc"><div class="rc-card" aria-hidden="true"></div><h2 class="rc-h">Kick racism<span>out of football</span></h2><p class="rc-p">Football is for everyone. If you see racist abuse, in the ground or online, report it. Never share it.</p></div></section>
@@ -74,26 +76,28 @@ function runIntro(opts) {
     <button class="ic-skip" type="button">Skip intro</button>`;
   document.body.appendChild(el);
   try { el.focus({ preventScroll: true }); } catch (e) { }
-  let i = -1, timer = null, ac = null, finished = false;
+  let i = -1, timer = null, ac = null, finished = false, cctl = null;
+  const cineOff = () => { if (cctl) { cctl.stop(); cctl = null; } };
   const show = (k) => { el.querySelectorAll('.ic').forEach(s => s.classList.toggle('on', s.classList.contains('ic-' + k))); };
   const finish = () => {
-    if (finished) return; finished = true; clearTimeout(timer);
+    if (finished) return; finished = true; clearTimeout(timer); cineOff();
     introPref('disc', '1');
     el.classList.add('out');
     document.removeEventListener('keydown', onKey, true);
     setTimeout(() => { el.remove(); _introOn = false; if (opts.done) opts.done(); }, reduce ? 50 : 450);
   };
   const next = () => {
-    clearTimeout(timer); i++;
+    clearTimeout(timer); cineOff(); i++;
     if (i >= cards.length) return finish();
     const k = cards[i];
+    if (k === 'cine') { show('cine'); const me = i; cctl = cineRun(el.querySelector('.cine-host'), ac, () => { cctl = null; if (i === me && !finished) next(); }); return; }
     if (k === 'logo' && !reduce) { el.classList.add('wipe'); setTimeout(() => el.classList.remove('wipe'), 520); }
     show(k);
     if (k === 'logo' && ac) introSting(ac);
     timer = setTimeout(next, dur[k]);
   };
   const gesture = () => { if (!ac) { try { const C = window.AudioContext || window.webkitAudioContext; if (C) { ac = new C(); if (ac.state === 'suspended') ac.resume(); } } catch (e) { ac = null; } } };
-  el.addEventListener('pointerdown', (ev) => { gesture(); if (ev.target.closest('.ic-skip')) { ev.preventDefault(); finish(); return; } next(); });
+  el.addEventListener('pointerdown', (ev) => { gesture(); if (ev.target.closest('.ic-skip')) { ev.preventDefault(); finish(); return; } if (ev.target.closest('.cine-snd')) { ev.preventDefault(); ev.stopPropagation(); if (cctl && ac) cctl.sound(ac); return; } next(); });
   const onKey = (ev) => { if (finished) return; gesture(); ev.preventDefault(); ev.stopPropagation(); if (ev.key === 'Escape') finish(); else next(); };
   document.addEventListener('keydown', onKey, true);
   next();

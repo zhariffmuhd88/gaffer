@@ -1,7 +1,7 @@
 # Real 3D render screenshots: serves a local three.min.js (r128) to the page. python3 tests/md3d_real.py OUT_DIR THREE_JS [tag]
 import asyncio, pathlib, sys
 from playwright.async_api import async_playwright
-out = pathlib.Path(sys.argv[1]); tj = pathlib.Path(sys.argv[2]).read_text(); tag = sys.argv[3] if len(sys.argv) > 3 else 'a'
+out = pathlib.Path(sys.argv[1]); tj = pathlib.Path(sys.argv[2]).read_text(); tag = sys.argv[3] if len(sys.argv) > 3 else 'a'; club = sys.argv[4] if len(sys.argv) > 4 else 'LIV'
 w = out / 'wrap_3dr.html'
 w.write_text('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body>' + pathlib.Path('gaffer.html').read_text() + '</body></html>')
 async def shot(pg, path):
@@ -16,8 +16,8 @@ async def main():
             await pg.route('**/three.min.js', lambda r: r.fulfill(status=200, content_type='application/javascript', body=tj))
             await pg.goto('file://' + str(w.resolve())); await pg.wait_for_timeout(300)
             await pg.click('.intro .ic-skip'); await pg.wait_for_timeout(300)
-            await pg.click('[data-v="LIV"]'); await pg.click('[data-a="start"]'); await pg.wait_for_timeout(300)
-            await pg.evaluate("()=>{let g=0;while(!userFixtureOn(G.date)&&g++<60){const r=advance();if(r.type==='match')break;}startLive(userFixtureOn(G.date).id);}"); await pg.wait_for_timeout(300)
+            await pg.click(f'[data-v="{club}"]'); await pg.click('[data-a="start"]'); await pg.wait_for_timeout(300)
+            await pg.evaluate("()=>{let g=0;while(!userFixtureOn(G.date)&&g++<60){const r=advance();if(r.type==='match')break;}const f0=userFixtureOn(G.date);if(G.user==='ARS'&&f0.h!=='ARS'){const o=f0.h;f0.h=f0.a;f0.a=o;}startLive(f0.id);}"); await pg.wait_for_timeout(300)
             await pg.click('[data-a="mview"][data-v="3d"]'); await pg.wait_for_timeout(1500)
             await pg.wait_for_timeout(6000)
             el = pg.locator('#p2dwrap')

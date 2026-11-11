@@ -99,10 +99,13 @@ function build3d(LM, T3) {
   const hc = [kits[0].body, kits[0].body, kits[0].trim, '#d9d9d9', '#555b6e'], ac = [kits[1].body, kits[1].body, kits[1].trim, '#d9d9d9'];
   const roofM = new T3.MeshLambertMaterial({ color: night ? '#1a1e2a' : '#c9ced8' }), wallM = new T3.MeshLambertMaterial({ color: night ? '#121522' : '#3a4152' });
   const dz = P3.W / 2 + 6, dx = P3.L / 2 + 7;
+  const bowl = M.sides[0].tid === 'ARS'; // Arsenal's home: the bowl
+  if (bowl) buildBowl(T3, scene, { night, fill, home: kits[0], away: kits[1] }); else {
   stand3(T3, scene, { w: P3.L + 10, d: 22, h: 15, tex: crowdTex(T3, hc, fill, night), roofM, wallM, x: 0, z: -dz, ry: 0 });
   stand3(T3, scene, { w: P3.L + 10, d: 18, h: 12, tex: crowdTex(T3, hc, fill, night), roofM, wallM, x: 0, z: dz, ry: Math.PI });
   stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: crowdTex(T3, hc, fill, night), roofM, wallM, x: -dx, z: 0, ry: Math.PI / 2 });
   stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: crowdTex(T3, ac, Math.min(1, fill + .1), night), roofM, wallM, x: dx, z: 0, ry: -Math.PI / 2 });
+  }
   // advertising boards and dugouts
   const bt = boardTex(T3, `${(home.short || home.name).toUpperCase()}   ·   GAFFER 26/27   ·   WUPH.com`, home.c1 || '#c8102e', '#ffffff');
   for (const [z, ry] of [[-(P3.W / 2 + 2.5), 0], [P3.W / 2 + 2.5, Math.PI]]) { const b = new T3.Mesh(new T3.PlaneGeometry(P3.L, .9), new T3.MeshBasicMaterial({ map: bt })); b.position.set(0, .45, z); b.rotation.y = ry; scene.add(b); }
@@ -112,7 +115,7 @@ function build3d(LM, T3) {
   // floodlight pylons at the corners; glowing at night
   const pyM = new T3.MeshLambertMaterial({ color: '#9aa2b1' }); const lampM = new T3.MeshBasicMaterial({ color: night ? '#fffbe0' : '#e8ecf2' });
   const glow = night ? (() => { const [c, g] = cvs(64, 64); const r = g.createRadialGradient(32, 32, 0, 32, 32, 32); r.addColorStop(0, 'rgba(255,250,220,1)'); r.addColorStop(1, 'rgba(255,250,220,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); return new T3.SpriteMaterial({ map: new T3.CanvasTexture(c), transparent: true, depthWrite: false, blending: T3.AdditiveBlending }); })() : null;
-  for (const x of [-1, 1]) for (const z of [-1, 1]) {
+  if (!bowl) for (const x of [-1, 1]) for (const z of [-1, 1]) {
     const px = x * (P3.L / 2 + 16), pz = z * (P3.W / 2 + 16);
     const p = new T3.Mesh(new T3.CylinderGeometry(.5, .8, 42, 8), pyM); p.position.set(px, 21, pz); scene.add(p);
     const lamp = new T3.Mesh(new T3.BoxGeometry(6, 4, .6), lampM); lamp.position.set(px, 43, pz); lamp.lookAt(0, 0, 0); scene.add(lamp);
@@ -261,3 +264,85 @@ try { const q = localStorage.getItem('gaffer_v3q'); if (q) UI.v3q = q; } catch (
 // keep the choice for the next match
 const _sl3 = startLive;
 startLive = function () { const r = _sl3.apply(this, arguments); try { const LM = UI.match; if (LM && LM.vis && UI.v3Pref && LM.view === '2d') { LM.v3 = true; start3d(LM); renderMatch(); } } catch (e) { console.error(e); } return r; };
+
+// ---------- the bowl: one continuous oval stadium (Arsenal's home ground in the 3D view, and the intro) ----------
+// Inspired by a well-known North London ground: two red tiers with a thin club-level band between them, a light
+// translucent roof on slim trusses that rises over the sides and dips at the ends, big screens in two corners, a
+// clock on one end, a glass facade outside. No names or logos.
+function bowlPt(a, b, t) { const c = Math.cos(t), s = Math.sin(t); return [a * Math.sign(c) * Math.pow(Math.abs(c), .5), b * Math.sign(s) * Math.pow(Math.abs(s), .5)]; }
+function bowlStrip(T3, scene, mat, f, N, rep) {
+  // f(t) -> [[x, y, z] inner, [x, y, z] outer]; a ring strip with u around the bowl and v from inner to outer
+  const pos = [], uv = [], idx = [];
+  for (let i = 0; i <= N; i++) { const t = i / N * Math.PI * 2; const [p, q] = f(t); pos.push(...p, ...q); uv.push(i / N * rep, 0, i / N * rep, 1); if (i < N) { const k = i * 2; idx.push(k, k + 1, k + 2, k + 1, k + 3, k + 2); } }
+  const g = new T3.BufferGeometry(); g.setAttribute('position', new T3.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new T3.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
+  const m = new T3.Mesh(g, mat); scene.add(m); return m;
+}
+function seatsTex(T3, fill, night, home) {
+  const [c, g] = cvs(512, 256); g.fillStyle = night ? '#5e0a10' : '#a3121c'; g.fillRect(0, 0, 512, 256);
+  const shirts = [home.body, home.body, home.trim, '#e9e9e9', '#22252e', home.body];
+  for (let r = 0; r < 18; r++) {
+    const y = 4 + r * 14; g.fillStyle = night ? '#3a060a' : '#7d0d15'; g.fillRect(0, y + 10, 512, 2);
+    for (let x = 2; x < 510; x += 6) {
+      if ((x > 200 && x < 214 && r % 6 === 2)) { g.fillStyle = '#e9e9e9'; g.fillRect(x, y + 4, 5, 6); continue; } // a few white seats
+      if (Math.random() > fill) continue;
+      g.fillStyle = shirts[(Math.random() * shirts.length) | 0]; g.fillRect(x, y + 3, 4, 7);
+      g.fillStyle = night ? '#8a6d58' : '#c99a73'; g.fillRect(x + .5, y, 3, 3);
+    }
+  }
+  const t = new T3.CanvasTexture(c); t.wrapS = T3.RepeatWrapping; return t;
+}
+function screenTex(T3, txt) {
+  const [c, g] = cvs(512, 256); g.fillStyle = '#05070f'; g.fillRect(0, 0, 512, 256); g.strokeStyle = '#2b3350'; g.lineWidth = 8; g.strokeRect(4, 4, 504, 248);
+  g.fillStyle = '#ffd23f'; g.font = 'bold 64px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(txt || 'GAFFER 26/27', 256, 128);
+  const t = new T3.CanvasTexture(c); return t;
+}
+function clockTex(T3) {
+  const [c, g] = cvs(256, 256); g.fillStyle = '#f5f5f5'; g.beginPath(); g.arc(128, 128, 120, 0, 7); g.fill(); g.strokeStyle = '#111'; g.lineWidth = 10; g.stroke();
+  for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2; g.beginPath(); g.moveTo(128 + Math.sin(a) * 96, 128 - Math.cos(a) * 96); g.lineTo(128 + Math.sin(a) * 110, 128 - Math.cos(a) * 110); g.lineWidth = 6; g.stroke(); }
+  const h = new Date(); const ha = ((h.getHours() % 12) + h.getMinutes() / 60) / 12 * Math.PI * 2, ma = h.getMinutes() / 60 * Math.PI * 2;
+  g.lineCap = 'round'; g.lineWidth = 10; g.beginPath(); g.moveTo(128, 128); g.lineTo(128 + Math.sin(ha) * 55, 128 - Math.cos(ha) * 55); g.stroke();
+  g.lineWidth = 6; g.beginPath(); g.moveTo(128, 128); g.lineTo(128 + Math.sin(ma) * 85, 128 - Math.cos(ma) * 85); g.stroke();
+  return new T3.CanvasTexture(c);
+}
+function facadeTex(T3, night) {
+  const [c, g] = cvs(256, 128); g.fillStyle = night ? '#1b2a3d' : '#9fbad6'; g.fillRect(0, 0, 256, 128);
+  for (let x = 0; x < 256; x += 16) { g.fillStyle = night ? '#0c121b' : '#d9e2ec'; g.fillRect(x, 0, 3, 128); }
+  for (let y = 0; y < 128; y += 32) { g.fillStyle = night ? '#0c121b' : '#d9e2ec'; g.fillRect(0, y, 256, 3); }
+  if (night) for (let i = 0; i < 60; i++) { g.fillStyle = 'rgba(255,220,150,.75)'; g.fillRect(Math.random() * 250, Math.random() * 120, 10, 6); }
+  const t = new T3.CanvasTexture(c); t.wrapS = T3.RepeatWrapping; return t;
+}
+function buildBowl(T3, scene, o) {
+  const night = !!o.night, N = 128, a0 = P3.L / 2 + 5, b0 = P3.W / 2 + 5;
+  const ring = (da, y) => (t) => { const [x, z] = bowlPt(a0 + da, b0 + da, t); return [x, y, z]; };
+  const strip = (mat, f, rep) => bowlStrip(T3, scene, mat, f, N, rep);
+  const seats = new T3.MeshLambertMaterial({ map: seatsTex(T3, o.fill || .95, night, o.home || { body: '#d0101b', trim: '#ffffff' }), side: T3.DoubleSide });
+  // lower tier, club band, upper tier
+  strip(seats, (t) => [ring(0, .6)(t), ring(17, 11)(t)], 14);
+  const band = new T3.MeshLambertMaterial({ color: night ? '#1d2433' : '#3b4558', emissive: night ? '#2a2414' : '#000000', side: T3.DoubleSide });
+  strip(band, (t) => [ring(17, 11)(t), ring(18, 14.5)(t)], 1);
+  strip(seats, (t) => [ring(18, 14.5)(t), ring(37, 31)(t)], 16);
+  const wall = new T3.MeshLambertMaterial({ color: night ? '#141a26' : '#566074', side: T3.DoubleSide });
+  strip(wall, (t) => [ring(37, 31)(t), ring(38, 34)(t)], 1);
+  // glass facade outside and the concourse
+  const fac = new T3.MeshLambertMaterial({ map: facadeTex(T3, night), side: T3.DoubleSide, emissive: night ? '#101826' : '#000000' });
+  strip(fac, (t) => [ring(39, 0)(t), ring(39, 34)(t)], 24);
+  const conc = new T3.MeshLambertMaterial({ color: night ? '#2b2f37' : '#a3a8b0', side: T3.DoubleSide });
+  strip(conc, (t) => [ring(39, .05)(t), ring(62, .05)(t)], 1);
+  // the roof: light and translucent, higher over the sides, lower at the ends
+  const rh = (t) => 37 + 6 * Math.abs(Math.sin(t));
+  const roof = new T3.MeshLambertMaterial({ color: '#f3f5f8', transparent: true, opacity: .62, side: T3.DoubleSide, emissive: night ? '#2a2c30' : '#000000' });
+  strip(roof, (t) => { const [x1, z1] = bowlPt(a0 + 12, b0 + 12, t), [x2, z2] = bowlPt(a0 + 40, b0 + 40, t); return [[x1, rh(t), z1], [x2, rh(t) - 2.5, z2]]; }, 1);
+  const trussM = new T3.MeshLambertMaterial({ color: '#cfd6df' }); const lampM = new T3.MeshBasicMaterial({ color: night ? '#fffbe0' : '#e8ecf2' });
+  for (let i = 0; i < 48; i++) {
+    const t = i / 48 * Math.PI * 2; const [x1, z1] = bowlPt(a0 + 12, b0 + 12, t), [x2, z2] = bowlPt(a0 + 40, b0 + 40, t); const y = rh(t) - .6;
+    const len = Math.hypot(x2 - x1, z2 - z1); const tr = new T3.Mesh(new T3.BoxGeometry(len, .5, .3), trussM); tr.position.set((x1 + x2) / 2, y - 1.2, (z1 + z2) / 2); tr.rotation.y = -Math.atan2(z2 - z1, x2 - x1); tr.rotation.z = .05; scene.add(tr);
+    if (i % 2 === 0) { const l = new T3.Mesh(new T3.BoxGeometry(1.4, .5, .8), lampM); l.position.set(x1, y - .3, z1); scene.add(l); }
+  }
+  // big screens in two corners and a clock at one end
+  for (const t of [Math.PI * .25, Math.PI * 1.25]) { const [x, z] = bowlPt(a0 + 34, b0 + 34, t); const sc = new T3.Mesh(new T3.PlaneGeometry(14, 7), new T3.MeshBasicMaterial({ map: screenTex(T3, o.screen) })); sc.position.set(x, 37, z); sc.lookAt(0, 30, 0); scene.add(sc); }
+  { const [x, z] = bowlPt(a0 + 36, b0 + 36, Math.PI); const ck = new T3.Mesh(new T3.CircleGeometry(3.2, 32), new T3.MeshBasicMaterial({ map: clockTex(T3) })); ck.position.set(x + 1, 35.5, z); ck.lookAt(0, 30, 0); scene.add(ck); }
+  // footbridges over the concourse
+  const brM = new T3.MeshLambertMaterial({ color: night ? '#3a3f4a' : '#b7bcc4' });
+  for (const t of [Math.PI * .5, Math.PI * 1.5, Math.PI * .1]) { const [x, z] = bowlPt(a0 + 62, b0 + 62, t); const br = new T3.Mesh(new T3.BoxGeometry(4, .6, 40), brM); br.position.set(x * 1.08, 4, z * 1.08); br.lookAt(0, 4, 0); scene.add(br); }
+  const ground = new T3.Mesh(new T3.PlaneGeometry(600, 600), new T3.MeshLambertMaterial({ color: night ? '#15181f' : '#5c6470' })); ground.rotation.x = -Math.PI / 2; ground.position.y = -.08; scene.add(ground);
+}
