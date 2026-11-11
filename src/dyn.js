@@ -162,10 +162,10 @@ function interviewFor(M) {
   let q;
   if (red) q = `You had a man sent off. Was it the right decision from the referee?`;
   else if (won && gf - ga >= 3) q = `A big win. Was this your best performance of the season?`;
-  else if (won) q = `Three points. What pleased you most today?`;
+  else if (won) q = fxHasPoints(G.fx[M.fid] || { comp: M.comp }) ? `Three points. What pleased you most today?` : `A win today. What pleased you most?`;
   else if (lost && ga - gf >= 3) q = `That was a heavy defeat. What went wrong?`;
   else if (lost) q = `A disappointing result. How do you explain it?`;
-  else q = `A point today. Is that a fair result?`;
+  else q = fxHasPoints(G.fx[M.fid] || { comp: M.comp }) ? `A point today. Is that a fair result?` : `All square today. Is that a fair result?`;
   return { q, won, lost, star, worst, red };
 }
 function interviewAnswer(k) {

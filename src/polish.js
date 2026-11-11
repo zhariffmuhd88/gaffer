@@ -128,3 +128,39 @@ quickScore = function (h, a, neutral) {
   const cap = 6 + (R.chance(.1) ? 1 : 0); if (r[0] - r[1] > cap) r[0] = r[1] + cap; if (r[1] - r[0] > cap) r[1] = r[0] + cap;
   return r;
 };
+
+// ---------- league points only where there are points: cup ties, knockouts and friendlies get cup wording ----------
+function fxHasPoints(f) {
+  if (!f) return true; const c = f.comp, r = String(f.rnd || '');
+  if (LEAGUE_COMPS.includes(c)) return true;
+  if (['UCL', 'UEL', 'UECL'].includes(c)) return /Matchday|League phase|Group/i.test(r);
+  if (['UNL', 'EQ', 'WCQ'].includes(c)) return true;
+  if (['WC', 'EURO', 'CA', 'AFCON', 'ACUP'].includes(c)) return /Group|Matchday/i.test(r);
+  return false;
+}
+let _noPts = false;
+const NOPTS_RX = [[/\bEasiest three points\b/gi, 'Easiest win'], [/\bThanks for the points\b/gi, 'Thanks for the easy night'], [/\bThree points, job done\b/g, 'Job done'], [/\bthree points\b/gi, 'the win'], [/\bA point\. Could be/g, 'All square. Could be'], [/\bTwo points dropped, simple as that\b/g, 'Should have won that, simple as that'], [/\bTwo points dropped\b/gi, 'Should have won that'], [/\bdropped points\b/gi, 'slipped up'], [/\bdrop points\b/gi, 'slip up'], [/\bCost us points\b/gi, 'Cost us the tie'], [/\bA point today\b/g, 'All square today']];
+function ptsFix(t) { if (!_noPts || typeof t !== 'string') return t; for (const [a, b] of NOPTS_RX) t = t.replace(a, b); return t; }
+const _postPL = post;
+post = function (o) { if (_noPts && o) o.t = ptsFix(o.t); return _postPL(o); };
+const _repPL = reply;
+reply = function (p, tid, text, who) { return _repPL(p, tid, ptsFix(text), who); };
+const _pmPL = postMatch;
+postMatch = function (f, pre) { const was = _noPts; _noPts = !fxHasPoints(f); try { return _pmPL(f, pre); } finally { _noPts = was; } };
+
+// ---------- doubles, trebles, quadruples ... ----------
+const MULTI = ['', '', 'Double', 'Treble', 'Quadruple', 'Quintuple', 'Sextuple', 'Septuple'];
+function seasonTrophies(tid) { const s = seasonLabel(G.year) + ' '; return (G.honours[tid] || []).filter(x => x.startsWith(s)).map(x => x.slice(s.length)).filter(n => !/Fair Play|gold trophy|Manager of|Player of/i.test(n)); }
+function multiStory(tid, list) {
+  const n = list.length; const word = MULTI[n] || `${n}-trophy haul`; const t = T(tid); const dom = list.every(x => !/Champions League|Europa|Conference|Cup Winners|Club World|Super Cup/.test(x));
+  const lg = list.some(x => /Premier League|La Liga|Serie A|Bundesliga|Ligue 1|Saudi Pro League|Championship/.test(x));
+  const label = dom && n === 2 ? (lg ? 'domestic Double' : 'cup Double') : dom && n === 3 ? 'domestic Treble' : word;
+  news(`${t.name}: the ${label}!`, `${t.name} have won the ${label} in ${seasonLabel(G.year)}: ${list.join(', ')}. ${n >= 4 ? `A ${word.toLowerCase()} is something very few clubs in history have achieved.` : n === 3 ? 'A treble season goes straight into the club\'s history books.' : 'Two trophies in one season.'} ${tid === G.user && n >= 3 ? `${G.mgr} joins the club's greatest managers.` : ''}`, tid, true);
+  try { const p = fanPost(tid, `${label.toUpperCase()} 🏆${'🏆'.repeat(Math.min(n, 6) - 1)} ${list.join(' + ')}. Say it with me: ${word.toUpperCase()}!!!`, { big: true, u: tid === G.user ? 1 : 0 }); const rv = typeof rivalsOf === 'function' ? rivalsOf(tid)[0] : null; if (rv) reply(p, rv, R.pick(['Calm down, it\'s only a ' + word.toLowerCase(), 'Asterisk*', 'Wake me up when it\'s a ' + (MULTI[n + 1] || 'bigger haul').toLowerCase() + ' 🙄'])); trend(word, 4); } catch (e) { }
+  if (tid === G.user) { G.board = clamp((G.board || 50) + 4, 0, 100); G.fans = clamp((G.fans ?? 60) + 5, 0, 100); }
+}
+const _honPL = honour;
+honour = function (tid, name) {
+  _honPL(tid, name);
+  try { const t = T(tid); if (!t || t.lite || t.nat || /Fair Play|gold trophy/i.test(name)) return; const list = seasonTrophies(tid); if (list.length >= 2) multiStory(tid, list); } catch (e) { console.error(e); }
+};
