@@ -36,31 +36,39 @@ function pickFrom(tid, pool, score, benchPool) {
   autoTakers(tid);
   return holes;
 }
-// rotation: start from the best XI, then rest up to four of the most tired or most used starters when a fresher
-// squad player is close enough in quality for that slot (fringe players get a game, the side stays competitive)
-const ROT_MAX = 4;
+// rotation: a completely fresh XI. Every player in the current lineup drops out, fit or tired, and the best of the
+// rest of the first-team squad starts. When the squad runs short (often the goalkeeper), the best reserve and
+// academy players fill the gaps. A slot nobody can fill keeps its current player. The rested XI sits on the bench.
 function pickRotation(tid) {
-  autoPick(tid, true);
   const t = T(tid); const tac = t.tac; const slots = FORMS[tac.form];
-  const recent = lastStarters(tid);
-  const load = (p) => (100 - p.cond) + (recent[0] && recent[0].has(p.id) ? 6 : 0) + (recent[1] && recent[1].has(p.id) ? 4 : 0) + (recent[2] && recent[2].has(p.id) ? 2 : 0);
-  const order = tac.xi.map((id, i) => [i, P(id)]).filter(([, p]) => p).sort((a, b) => load(b[1]) - load(a[1]));
-  let changes = 0; const out = [];
-  for (const [i, cur] of order) {
-    if (changes >= ROT_MAX || load(cur) < 8) break;
-    const role = slots[i][0]; const base = effSkill(cur, role, false);
-    let best = null, bv = -1;
-    for (const q of squad(tid)) {
-      if (!available(q) || tac.xi.includes(q.id) || (role === 'GK') !== (q.pos === 'GK') || load(q) >= load(cur) - 4) continue;
-      const v = effSkill(q, role, false); if (v >= base * (role === 'GK' ? .93 : .9) && v > bv) { bv = v; best = q; }
+  validateLineup(tid);
+  const old = tac.xi.slice(); const oldSet = new Set(old.filter(Boolean));
+  const first = squad(tid).filter(p => available(p) && !oldSet.has(p.id));
+  const youth = youthIds(tid).map(P).filter(p => p && p.c === tid && p.sq && available(p) && !oldSet.has(p.id));
+  const prio = (r) => ({ GK: 0, FC: 1, DC: 2, DM: 3, AMC: 4, DL: 5, DR: 5, WBL: 5, WBR: 5, MC: 6, AML: 7, AMR: 7, ML: 8, MR: 8 }[r]);
+  const order = slots.map((s, i) => i).sort((a, b) => prio(slots[a][0]) - prio(slots[b][0]));
+  const used = new Set(); const xi = new Array(11).fill(null); const fromYouth = [];
+  const fill = (pool, mark) => {
+    for (const i of order) {
+      if (xi[i]) continue;
+      const role = slots[i][0]; let best = null, bv = -1;
+      for (const p of pool) { if (used.has(p.id) || (role === 'GK') !== (p.pos === 'GK')) continue; const v = effSkill(p, role, false); if (v > bv) { bv = v; best = p; } }
+      if (best) { xi[i] = best.id; used.add(best.id); if (mark) fromYouth.push(best); }
     }
-    if (best) { tac.xi[i] = best.id; out.push(cur); changes++; }
-  }
-  tac.bench = tac.bench.filter(id => !tac.xi.includes(id));
-  for (const p of out) if (!tac.bench.includes(p.id)) tac.bench.unshift(p.id);
-  tac.bench = tac.bench.slice(0, 9);
+  };
+  fill(first, false); fill(youth, true);
+  let kept = 0;
+  for (let i = 0; i < 11; i++) if (!xi[i] && old[i]) { xi[i] = old[i]; used.add(old[i]); kept++; }
+  tac.xi = xi;
+  // bench: the rested starters first (keeper included), then the best of the rest
+  const restOld = old.filter(id => id && !used.has(id) && P(id) && available(P(id)));
+  const others = first.concat(youth).filter(p => !used.has(p.id) && !restOld.includes(p.id)).sort((a, b) => b.ca - a.ca).map(p => p.id);
+  const cand = restOld.concat(others); const bench = [];
+  const gk = cand.find(id => P(id).pos === 'GK'); if (gk) bench.push(gk);
+  for (const id of cand) { if (bench.length >= 9) break; if (P(id).pos !== 'GK') bench.push(id); }
+  tac.bench = bench;
   validateLineup(tid); autoTakers(tid);
-  return changes;
+  return { changes: 11 - kept, youth: fromYouth, kept };
 }
 function youthPool(tid) {
   const ys = (typeof youthIds === 'function' ? youthIds(tid) : []).map(P).filter(p => p && p.c === tid && p.sq);
@@ -128,7 +136,7 @@ function selBox() {
   return `<div class="box pad selbox" style="margin:10px 0">
     <div class="row" style="gap:6px;flex-wrap:wrap;align-items:center"><span class="lb" style="margin:0 6px 0 0">Pick team</span>
       <button class="btn" data-a="selpick" data-v="best" title="Strongest available XI; tired players are rested">Best XI</button>
-      <button class="btn" data-a="selpick" data-v="rot" title="Fresh legs: players who started recently or are tired drop out, fringe players get a game">Rotate squad</button>
+      <button class="btn" data-a="selpick" data-v="rot" title="A completely new XI: everyone in the current lineup is rested, tired or not. Reserves and academy players fill any gaps.">Rotate squad</button>
       <button class="btn" data-a="selpick" data-v="youth" title="Best XI and bench from players aged ${YOUTH_AGE} or under, including reserves and academy">Youth XI (U${YOUTH_AGE})</button></div>
     <div class="row" style="gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px"><span class="lb" style="margin:0 6px 0 0">Saved tactics</span>
       ${sets.length ? `<select class="f" id="selset" aria-label="Saved tactics">${sets.map((s, i) => `<option value="${i}" ${UI.selI === i ? 'selected' : ''}>${esc(s.n)} · ${esc(s.form)}</option>`).join('')}</select>
@@ -149,7 +157,7 @@ Object.assign(ACT, {
   selpick: (v) => {
     UI.tSel = null;
     if (v === 'best') { autoPick(G.user, true); toast('Best available XI selected.'); }
-    else if (v === 'rot') { const n = pickRotation(G.user); toast(n ? `Rotated: ${n} change${n > 1 ? 's' : ''} from the best XI, tired or overused starters rested.` : 'No need to rotate: the first choices are fresh, or the alternatives are too far behind.'); }
+    else if (v === 'rot') { const r = pickRotation(G.user); const y = r.youth.length ? ` ${r.youth.length} from the reserves/academy (${r.youth.map(p => surname(p.n)).join(', ')}).` : ''; toast(`Rotated: ${r.changes} change${r.changes !== 1 ? 's' : ''}, the previous XI rested on the bench.${y}${r.kept ? ` ${r.kept} kept: nobody else for that position.` : ''}`); }
     else { const r = pickYouth(G.user); toast(r.holes ? `Youth XI picked from ${r.n} players aged ${YOUTH_AGE} or under; ${r.holes} gap${r.holes > 1 ? 's' : ''} filled from the first team.` : `Youth XI picked from ${r.n} players aged ${YOUTH_AGE} or under.`); }
     autosave(); render();
   },
