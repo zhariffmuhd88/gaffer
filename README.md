@@ -40,6 +40,10 @@ Cinematic intro: a 31-second film rendered in the game's 3D engine opens the gam
 
 Manager statue: reaching legend status at a club (a league title and five seasons, or three major trophies) unveils an illustrated bronze statue outside the ground: the head is your own manager avatar (hair, beard, glasses) cast in bronze, the pose follows your honours (trophy aloft, fist pump or pointing), and a plaque gives your name, years, trophies and games. Eight trophies at the club add a gold laurel and "Club legend". The statue appears on the day (with the club-coloured cloth sliding off), on the club's honours page and on your manager profile.
 
+Former players on the staff: Staff lists up to ten retired players and veterans in their last contract year (your own 33+ players included) who would start a new career as First-Team Coach, Assistant Manager, Chief Scout or Head Physio. Each has a non-playing profile (also reachable from his player card): ability for every role, coaching badges, medical training, speciality by position, scouting contacts, personality and his playing career in the save. Hiring one ends his playing career (a club still holding his contract asks a release fee); well-known players sometimes retire into a staff job at their last club on their own.
+
+National-team trophies (World Cup, European Championship, Nations League) get a full celebration: a long news story (final score, how many titles and since when, top scorer, your club's players among the winners), a victory parade through the capital with a drawn parade scene, a drawn trophy banner in the inbox, a popup when it is your nation, "International honours" on the winners' player cards, a national honour and trophy banners on the manager profile if you managed them, and a trophy cabinet on International › History. Trophy drawings are generic shapes, not the real designs.
+
 > Fan-made game for personal, non-commercial use only; not affiliated with the Premier League, the EFL, LaLiga, the RFEF, UEFA, The FA, any club, or Sports Interactive / SEGA, and no official logos are used.
 
 ## Layout

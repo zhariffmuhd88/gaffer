@@ -17654,6 +17654,355 @@ scrManager = function () {
   } catch (e) { console.error(e); return h; }
 };
 
+// exstaff.js: retired and retiring players can join the backroom staff (coach, assistant, scout, physio).
+// Each one gets a non-playing profile: coaching ability by role, badges, specialities and the playing career behind it.
+// Loaded after statue.js.
+
+const EX_ROLES = ['coach', 'asst', 'scout', 'physio'];
+const EX_POOL_N = 10;
+
+// ---------- the non-playing profile (worked out from the player, so it never changes) ----------
+function exNoise(p, k, span) { return ((hash(p.n + '|ex|' + k) % 1000) / 1000 - .5) * span; }
+function exProfile(p) {
+  const a = attrs(p); const caps = p.ic || 0; const apps = (p.car && p.car.a) || 0;
+  const exp = clamp((p.age - 30) / 8, 0, 1) * 2 + Math.min(2, caps / 50) + Math.min(1.5, apps / 200);
+  const mind = ((a.Det || 10) + (a.Tea || 10)) / 2; const read = ((a.Pos || 10) + (a.Cre || 10) + (a.Pas || 10)) / 3;
+  const body = ((a.Sta || 10) + (a.Str || 10)) / 2;
+  const ab = {
+    coach: Math.round(clamp(3 + mind * .33 + read * .25 + (p.ca - 60) * .05 + exp + exNoise(p, 'c', 4), 4, 18)),
+    asst: Math.round(clamp(3 + mind * .4 + read * .2 + (p.ca - 60) * .04 + exp + exNoise(p, 'a', 4), 4, 18)),
+    scout: Math.round(clamp(3 + read * .38 + exp * 1.2 + (a.Fla || 10) * .08 + exNoise(p, 's', 4), 4, 18)),
+    physio: Math.round(clamp(2 + body * .25 + (a.Det || 10) * .15 + exNoise(p, 'p', 5), 3, 14))
+  };
+  const best = EX_ROLES.slice().sort((x, y) => ab[y] - ab[x])[0];
+  const grp = p.pos === 'GK' ? 'gk' : ['CB', 'LB', 'RB', 'LWB', 'RWB', 'DC', 'DL', 'DR'].includes(p.pos) ? 'def' : ['DM', 'CM', 'AM', 'MC', 'DMC', 'AMC'].includes(p.pos) ? 'mid' : 'att';
+  const spec = { gk: 'Goalkeeping and distribution', def: 'Defensive organisation and set-piece defending', mid: 'Passing patterns and pressing triggers', att: 'Finishing, movement and attacking runs' }[grp];
+  const badge = ab.coach >= 15 ? 'Pro Licence' : ab.coach >= 11 ? 'A Licence' : ab.coach >= 8 ? 'B Licence' : 'Badges in progress';
+  const phys = ab.physio >= 11 ? 'Sports therapy degree, studied part-time while playing' : ab.physio >= 8 ? 'Strength and conditioning certificate' : 'First-aid and rehab course';
+  const traits = [];
+  if ((a.Det || 0) >= 15) traits.push('Demanding perfectionist'); if ((a.Tea || 0) >= 15) traits.push("Players' favourite"); if ((a.Fla || 0) >= 15) traits.push('Free spirit with new ideas');
+  if (caps >= 50) traits.push('Big-tournament experience'); if (apps >= 150) traits.push('Knows this game inside out'); if (!traits.length) traits.push('Quiet, studious type');
+  const fame = Math.max(0, p.ca - 72) / 3 + Math.min(4, caps / 25);
+  return { ab, best, spec, badge, phys, traits, scoutOn: NATS_REGION(p.nat), fame, wage: (r) => Math.round(2 + Math.pow(ab[r], 1.6) / 2 + fame) };
+}
+function NATS_REGION(nat) { try { const n = natRow(nat); return n ? n.name : nat; } catch (e) { return nat; } }
+
+// ---------- who can be hired ----------
+function exStatus(p) {
+  if (p.stf) return { k: 'staff', t: `${STAFF_ROLES[p.stf.role]} at ${tName(p.stf.tid, false)}` };
+  if (p.c === 'RETIRED') return p.gone && /at /.test(p.gone) ? { k: 'busy', t: p.gone } : { k: 'ret', t: `Retired${p.retY ? ' in ' + p.retY : ''}${p.lastC && T(p.lastC) ? ', last club ' + tName(p.lastC, false) : ''}` };
+  if (p.c === 'FA') return { k: 'fa', t: 'Free agent, ready to retire' };
+  if (p.c === G.user) return { k: 'own', t: `Your player (age ${p.age}), would retire to join the staff` };
+  if (T(p.c) && !T(p.c).nat) return { k: 'club', t: `Retiring: final year at ${tName(p.c, false)}` };
+  return null;
+}
+function exEligible(p) {
+  if (!p || p.pseudo || p.leg || p.stf || p.sq) return false;
+  if (p.c === 'RETIRED') return !(p.gone && /at /.test(p.gone)) && ((p.car && p.car.a) || p.ic || p.ca >= 70);
+  if (p.c === 'FA') return p.age >= 33;
+  if (p.c === G.user) return p.age >= 33 && !p.loan;
+  const t = T(p.c); if (!t || t.nat || t.lite || !divOf(p.c)) return false;
+  return p.age >= 34 && p.con <= G.year + 1;
+}
+function buildExPool() {
+  const c = Object.values(G.players).filter(exEligible).map(p => [p, exProfile(p).fame + (p.c === G.user ? 6 : 0) + (p.c === 'RETIRED' ? 1 : 0) + p.ca / 20]);
+  c.sort((a, b) => b[1] - a[1]);
+  G.exPool = c.slice(0, EX_POOL_N).map(x => x[0].id);
+}
+function exPool() { if (!G.exPool) buildExPool(); G.exPool = G.exPool.filter(id => exEligible(P(id))); return G.exPool.map(P); }
+
+// ---------- hiring ----------
+function exFee(p) { if (!T(p.c) || p.c === G.user || p.c === 'RETIRED' || p.c === 'FA') return 0; return Math.round(calcValue(p) * .2 * 10) / 10; }
+function hireEx(pid, role) {
+  ensureStaff();
+  const p = P(pid); if (!p || !exEligible(p) || !EX_ROLES.includes(role)) return 'He is no longer available.';
+  const pr = exProfile(p); const t = userTeam(); const fee = exFee(p);
+  if (fee && t.bal < fee) return `${tName(p.c, false)} want ${money(fee)} to release him early. You cannot afford that.`;
+  const cur = G.staff[role]; const comp = cur ? Math.round(cur.wage * 26) / 1000 : 0;
+  t.bal -= comp + fee; t.fin.out.other += comp + fee;
+  if (cur && cur.pid && P(cur.pid)) { const q = P(cur.pid); delete q.stf; q.gone = 'Retired'; }
+  const from = p.c; let how = '';
+  if (from !== 'RETIRED') {
+    if (G.sq[from]) G.sq[from] = G.sq[from].filter(x => x !== p.id);
+    G.fa = (G.fa || []).filter(x => x !== p.id);
+    for (const k of ['xi', 'bench']) if (T(from) && T(from).tac && T(from).tac[k]) T(from).tac[k] = T(from).tac[k].map(x => x === p.id ? null : x).filter((x, i) => k === 'xi' || x);
+    p.lastC = T(from) ? from : p.lastC; p.retY = G.year + 1; p.c = 'RETIRED'; p.listed = false;
+    how = from === G.user ? ` He hangs up his boots after ${p.car.a || 'many'} appearances in this save to start his new career.` : fee ? ` ${tName(from, false)} release him from his final year for ${money(fee)}.` : ' He confirms his retirement as a player.';
+    if (from === G.user) try { validateLineup(G.user); } catch (e) { }
+  }
+  p.stf = { role, tid: G.user, from: G.date }; p.gone = `${STAFF_ROLES[role]} at ${t.name}`;
+  G.staff[role] = { role, n: p.n, ab: pr.ab[role], age: p.age, wage: pr.wage(role), pid: p.id, ex: 1 };
+  G.exPool = (G.exPool || []).filter(x => x !== p.id);
+  news('Staff', `${p.n} joins ${t.name} as ${STAFF_ROLES[role]}.${how}${cur ? ` ${cur.n} leaves with ${money(comp)} compensation.` : ''}`, G.user);
+  try { const fp = fanPost(G.user, R.pick([`${surname(p.n)} on the coaching staff?! Love to see it 🙌`, `Get a former pro in the dressing room. ${surname(p.n)} knows what it takes`, `${surname(p.n)} as ${STAFF_ROLES[role].toLowerCase()}… this could be the start of something`]), { u: 1 }); } catch (e) { }
+  return `${p.n} joins as ${STAFF_ROLES[role]}.${how}`;
+}
+// a normal hire replacing an ex-player frees him again
+const _hsEx = hireStaff;
+hireStaff = function (idx) {
+  const s = G.staffPool[idx]; const cur = s && G.staff[s.role];
+  const r = _hsEx(idx);
+  if (cur && cur.pid && G.staff[s.role] !== cur && P(cur.pid)) { delete P(cur.pid).stf; P(cur.pid).gone = 'Retired'; }
+  return r;
+};
+const _rspEx = refreshStaffPool;
+refreshStaffPool = function () { _rspEx(); try { if (G && G.players) buildExPool(); } catch (e) { console.error(e); } };
+
+// remember when and where players retire; some well-known names take a staff job at their last club
+const _dpEx = developPlayers;
+developPlayers = function () {
+  const before = {}; for (const id in G.players) { const p = G.players[id]; if (p && p.c !== 'RETIRED') before[id] = p.c; }
+  _dpEx.apply(this, arguments);
+  try {
+    for (const id in before) {
+      const p = G.players[id]; if (!p || p.c !== 'RETIRED') continue;
+      p.retY = G.year + 1; if (T(before[id]) && !T(before[id]).nat) p.lastC = before[id];
+      const last = p.lastC && T(p.lastC);
+      if (last && p.lastC !== G.user && (p.ca >= 78 || (p.ic || 0) >= 40) && R.chance(.25)) {
+        const role = R.pick(['coach', 'asst', 'coach', 'scout']);
+        p.gone = `${STAFF_ROLES[role]} at ${last.name}`;
+        if (p.car && p.car.a >= 30) news('Staff', `${p.n} retires and stays at ${last.name} as ${STAFF_ROLES[role].toLowerCase()}.`, p.lastC, true);
+      }
+    }
+  } catch (e) { console.error(e); }
+};
+// staff and pool players are never pruned from the save
+const _ppEx = prunePlayers;
+prunePlayers = function () {
+  const keep = []; for (const id in G.players) { const p = G.players[id]; if (p && p.c === 'RETIRED' && (p.stf || (G.exPool || []).includes(id) || p.nh)) keep.push([id, p]); }
+  const n = _ppEx(); for (const [id, p] of keep) G.players[id] = p; return n;
+};
+
+// ---------- the non-playing profile modal ----------
+function exStars(v) { return typeof roleStars === 'function' ? roleStars(v) : '★'.repeat(Math.round(v / 4)); }
+function exProfileHtml(p) {
+  const pr = exProfile(p); const st = exStatus(p) || { t: p.gone || 'Retired' };
+  const hireable = exEligible(p) && exPool().includes(p); const fee = exFee(p);
+  const clubs = [...new Set((p.exc || []).concat(p.lastC ? [p.lastC] : []).concat(T(p.c) && !T(p.c).nat ? [p.c] : []))].filter(x => T(x));
+  const row = (r) => { const cur = G.staff && G.staff[r]; const up = cur && pr.ab[r] > cur.ab; return `<tr><td><b>${STAFF_ROLES[r]}</b>${r === pr.best ? ' <span class="tag" style="background:var(--yel);color:#111">best fit</span>' : ''}</td><td><span class="stars">${exStars(pr.ab[r])}</span> <span class="mono dim">${pr.ab[r]}/20</span>${up ? ' <span class="grn">▲</span>' : ''}</td><td class="n">${wageStr(pr.wage(r))}</td><td class="dim" style="font-size:12px">${cur ? `now: ${esc(cur.n)} ${cur.ab}/20` : ''}</td><td>${hireable ? `<button class="btn" data-a="exhire" data-v="${p.id}" data-k="${r}">Hire</button>` : ''}</td></tr>`; };
+  return `<div class="band"><span>${esc(p.n)} · non-playing profile</span><button class="x" data-a="close" aria-label="Close">×</button></div>
+  <div class="mc">
+    <div class="row" style="gap:16px;align-items:flex-start;flex-wrap:wrap">
+      <dl class="kv" style="flex:1;min-width:220px">
+        <dt>Now</dt><dd><b>${esc(st.t)}</b></dd>
+        <dt>Age / Nation</dt><dd>${p.age} · ${esc(p.nat)}</dd>
+        <dt>Coaching badges</dt><dd>${esc(pr.badge)}</dd>
+        <dt>Medical training</dt><dd>${esc(pr.phys)}</dd>
+        <dt>Speciality</dt><dd>${esc(pr.spec)}</dd>
+        <dt>Scouting</dt><dd>Best contacts in ${esc(pr.scoutOn)}</dd>
+        <dt>Personality</dt><dd>${pr.traits.map(esc).join(' · ')}</dd>
+      </dl>
+    </div>
+    <h2 class="sect">Ability by role</h2>
+    <div class="tw"><table class="t"><thead><tr><th>Role</th><th>Ability</th><th class="n">Wage</th><th>Your current staff</th><th></th></tr></thead><tbody>${EX_ROLES.map(row).join('')}</tbody></table></div>
+    ${hireable ? `<p class="dim" style="font-size:12.5px">${p.c === G.user ? 'Hiring him ends his playing career: he leaves the squad straight away.' : fee ? `He still has a contract at ${esc(tName(p.c, false))}; they want ${money(fee)} to let him retire early.` : p.c === 'RETIRED' ? 'Already retired: he can start straight away.' : 'He retires as a player and starts straight away.'} The person he replaces leaves with six months' wages.</p>` : p.stf ? '' : '<p class="dim" style="font-size:12.5px">Not looking for a staff job right now. The list of former players open to offers refreshes each summer.</p>'}
+    <h2 class="sect">Playing career</h2>
+    <dl class="kv">
+      <dt>Position</dt><dd>${esc(POS_LABEL[p.pos] || p.pos)}</dd>
+      <dt>Clubs (this save)</dt><dd>${clubs.length ? clubs.map(x => tLink(x, true)).join(', ') : '<span class="dim">Not recorded</span>'}</dd>
+      <dt>Appearances (this save)</dt><dd>${(p.car && p.car.a) || 0} apps, ${(p.car && p.car.g) || 0} goals</dd>
+      <dt>International</dt><dd>${p.ic ? `${p.ic} caps, ${p.ig || 0} goals` : '<span class="dim">Not recorded in this game</span>'}</dd>
+      ${p.nh && p.nh.length ? `<dt>International honours</dt><dd>${p.nh.map(x => '🏆 ' + esc(x)).join('<br>')}</dd>` : ''}
+      <dt>Playing rating at the end</dt><dd>${p.ca}</dd>
+    </dl>
+    <div class="row" style="margin-top:12px"><button class="btn" data-a="player" data-v="${p.id}">Player card</button></div>
+  </div>`;
+}
+function exModal(pid) { const p = P(pid); if (!p) return; UI.modal = exProfileHtml(p); render(); }
+Object.assign(ACT, {
+  expro: (v) => exModal(v),
+  exhire: (v, el) => { const role = el && el.dataset ? el.dataset.k : null; const m = hireEx(v, role); toast(m); autosave(); if (UI.modal) exModal(v); else render(); }
+});
+
+// player card: retired or veteran players get a link to the non-playing profile
+const _peEx = playerExtra;
+playerExtra = function (p) {
+  const h = _peEx(p);
+  try {
+    if (!p || p.leg || p.pseudo) return h;
+    const show = p.stf || p.c === 'RETIRED' || exEligible(p);
+    if (!show) return h;
+    const pr = exProfile(p); const st = exStatus(p);
+    return h + `<div class="box pad" style="margin-top:8px;border-color:var(--yel)"><label class="lb">After playing</label>${st ? `<div>${esc(st.t)}</div>` : ''}<div class="dim" style="font-size:12.5px">Best fit: ${STAFF_ROLES[pr.best]} (${pr.ab[pr.best]}/20) · ${esc(pr.badge)}</div><button class="btn" style="margin-top:6px" data-a="expro" data-v="${p.id}">Non-playing profile</button></div>`;
+  } catch (e) { console.error(e); return h; }
+};
+
+// staff screen: ex-players on the staff link to their profile; a list of former players open to offers
+const _ssEx = scrStaff;
+scrStaff = function () {
+  let h = _ssEx();
+  try {
+    for (const r in G.staff) { const s = G.staff[r]; if (s && s.pid && P(s.pid)) h = h.replace(`<td>${esc(s.n)}</td>`, `<td><button class="lnk" data-a="expro" data-v="${s.pid}" style="background:none;border:0;padding:0;color:var(--text);text-decoration:underline">${esc(s.n)}</button> <span class="tag" title="Former player">ex-pro</span></td>`); }
+    const pool = exPool();
+    const rows = pool.map(p => { const pr = exProfile(p); const st = exStatus(p) || { t: '' }; return `<tr class="${p.c === G.user ? 'me' : ''}"><td><button class="lnk" data-a="expro" data-v="${p.id}" style="background:none;border:0;padding:0;color:var(--text);text-decoration:underline;text-align:left">${esc(p.n)}</button></td><td class="n">${p.age}</td><td class="dim" style="white-space:normal;min-width:160px;font-size:12.5px">${esc(st.t)}</td>${EX_ROLES.map(r => `<td class="n mono ${r === pr.best ? 'yel' : ''}">${pr.ab[r]}${G.staff[r] && pr.ab[r] > G.staff[r].ab ? '<span class="grn">▲</span>' : ''}</td>`).join('')}<td><button class="btn" data-a="expro" data-v="${p.id}">Profile</button></td></tr>`; }).join('');
+    h += `<h2 class="sect">Former players open to a staff job</h2><p class="dim" style="margin-top:0">Retired players, and veterans in the last year of their contract, who would start a new career as Coach, Assistant, Scout or Physio. Open a profile to compare and hire. ▲ = better than your current staff member.</p>
+    <div class="tw"><table class="t"><thead><tr><th>Name</th><th class="n">Age</th><th>Status</th><th class="n">Coach</th><th class="n">Asst</th><th class="n">Scout</th><th class="n">Physio</th><th></th></tr></thead><tbody>${rows || '<tr><td colspan="8" class="dim">Nobody at the moment. The list refreshes each summer.</td></tr>'}</tbody></table></div>`;
+  } catch (e) { console.error(e); }
+  return h;
+};
+
+// nathon.js: national-team trophies are celebrated: a long news story, a victory parade, honours for the squad
+// and the manager, drawn trophies (generic designs, no real logos) in the inbox, the International history tab
+// and the manager profile. Loaded after exstaff.js.
+
+const NT_KIND = { WC: 'globe', EURO: 'euro', UNL: 'unl' };
+const NT_TROPHY = { WC: 'World Cup', EURO: 'European Championship trophy', UNL: 'Nations League trophy' };
+const NT_TAG = { WC: 'WORLD CHAMPIONS', EURO: 'CHAMPIONS OF EUROPE', UNL: 'NATIONS LEAGUE WINNERS' };
+const NT_CITY = { ENG: 'London', ESP: 'Madrid', FRA: 'Paris', GER: 'Berlin', ITA: 'Rome', POR: 'Lisbon', NED: 'Amsterdam', BEL: 'Brussels', CRO: 'Zagreb', BRA: 'Rio de Janeiro', ARG: 'Buenos Aires', URU: 'Montevideo', DEN: 'Copenhagen', SUI: 'Bern', AUT: 'Vienna', NOR: 'Oslo', SWE: 'Stockholm', SCO: 'Glasgow', WAL: 'Cardiff', POL: 'Warsaw', TUR: 'Istanbul', SRB: 'Belgrade', GRE: 'Athens', CZE: 'Prague', HUN: 'Budapest', UKR: 'Kyiv', MAR: 'Rabat', SEN: 'Dakar', JPN: 'Tokyo', KOR: 'Seoul', USA: 'New York', MEX: 'Mexico City', COL: 'Bogotá', IRL: 'Dublin' };
+const NT_HIST_ALIAS = { GER: ['Germany', 'West Germany'], CZE: ['Czechia', 'Czech Republic', 'Czechoslovakia'], RUS: ['Russia', 'Soviet Union'] };
+
+// ---------- drawn trophies (generic shapes) ----------
+function ntMix(a, b, t) { try { const A = hexRgb(a), B = hexRgb(b); return rgbHex(A.map((v, i) => Math.round(v + (B[i] - v) * t))); } catch (e) { return a; } }
+function natTrophySvg(kind, s) {
+  s = s || 1; const g = (inner) => `<g transform="scale(${s})">${inner}</g>`;
+  if (kind === 'globe') return g(`<defs><radialGradient id="ntg" cx=".35" cy=".35"><stop offset="0" stop-color="#fff6c8"/><stop offset=".5" stop-color="#e6b422"/><stop offset="1" stop-color="#9c6f10"/></radialGradient></defs>
+    <rect x="-13" y="20" width="26" height="9" rx="2" fill="#7a5410"/><rect x="-11" y="13" width="22" height="8" rx="2" fill="#c8961c"/>
+    <path d="M-10,13 C-14,0 -4,-6 -6,-14 L6,-14 C4,-6 14,0 10,13 Z" fill="url(#ntg)"/><path d="M-4,10 C-8,0 2,-4 -1,-12" stroke="#9c6f10" stroke-width="1.4" fill="none"/><path d="M4,10 C8,0 -2,-4 1,-12" stroke="#9c6f10" stroke-width="1.4" fill="none"/>
+    <circle cx="0" cy="-24" r="12" fill="url(#ntg)"/><ellipse cx="0" cy="-24" rx="5" ry="12" fill="none" stroke="#9c6f10" stroke-width="1"/><path d="M-12,-24 h24 M-10,-30 h20 M-10,-18 h20" stroke="#9c6f10" stroke-width="1"/>`);
+  if (kind === 'euro') return g(`<defs><linearGradient id="nte" x1="0" x2="1"><stop offset="0" stop-color="#8d96a8"/><stop offset=".45" stop-color="#f4f6fb"/><stop offset="1" stop-color="#9aa3b5"/></linearGradient></defs>
+    <rect x="-12" y="22" width="24" height="7" rx="2" fill="#5d6577"/><path d="M-9,22 L-5,8 L5,8 L9,22 Z" fill="url(#nte)"/><rect x="-3" y="-6" width="6" height="15" fill="url(#nte)"/>
+    <path d="M-12,-34 L12,-34 L9,-12 Q0,-2 -9,-12 Z" fill="url(#nte)"/><path d="M-12,-34 q-8,4 -6,12 q2,6 9,6 M12,-34 q8,4 6,12 q-2,6 -9,6" fill="none" stroke="#c9cfdb" stroke-width="2"/>`);
+  return g(`<defs><linearGradient id="ntu" x1="0" x2="1"><stop offset="0" stop-color="#9aa3b5"/><stop offset=".5" stop-color="#ffffff"/><stop offset="1" stop-color="#8d96a8"/></linearGradient></defs>
+    <rect x="-12" y="22" width="24" height="7" rx="2" fill="#2a3550"/><path d="M-8,22 L-3,-30 L3,-30 L8,22 Z" fill="url(#ntu)"/><path d="M-12,-30 L12,-30 L6,-40 L-6,-40 Z" fill="url(#ntu)"/>
+    ${[0, 1, 2, 3, 4].map(i => `<circle cx="${-6 + i * 3}" cy="${-4 + (i % 2) * 4}" r="1.4" fill="#2a3550"/>`).join('')}`);
+}
+function natCelebSvg(tid, comp, label) {
+  const t = T(tid) || {}; const c1 = t.c1 || '#c00', c2 = t.c2 || '#fff';
+  let conf = ''; for (let i = 0; i < 70; i++) { const x = (i * 89) % 600, y = (i * 37) % 230; conf += `<rect x="${x}" y="${y}" width="4" height="8" fill="${[c1, c2, '#ffd54a'][i % 3]}" transform="rotate(${i * 31} ${x} ${y})" opacity=".9"/>`; }
+  let rays = ''; for (let i = 0; i < 18; i++) { const a = i * 20 * Math.PI / 180; rays += `<path d="M300,120 L${300 + Math.cos(a) * 340},${120 + Math.sin(a) * 340} L${300 + Math.cos(a + .17) * 340},${120 + Math.sin(a + .17) * 340} Z" fill="#fff" opacity=".07"/>`; }
+  return `<svg viewBox="0 0 600 250" role="img" aria-label="${esc(t.name || '')} ${esc(NT_TAG[comp] || 'winners')}" style="width:100%;max-width:640px;display:block;background:linear-gradient(135deg,${c1},${ntMix(c1, '#000000', .45)});border:1px solid var(--line);border-radius:6px">
+    ${rays}<rect x="0" y="196" width="600" height="54" fill="${c2}" opacity=".9"/><rect x="0" y="190" width="600" height="6" fill="#ffd54a"/>
+    <g transform="translate(300,112)">${natTrophySvg(NT_KIND[comp], 2.3)}</g>${conf}
+    <text x="300" y="230" text-anchor="middle" font-size="26" font-weight="900" letter-spacing="3" fill="${readable(c2)}">${esc(NT_TAG[comp] || 'WINNERS')}</text>
+    <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="800" fill="${readable(c1)}">${esc(t.name || '')} · ${esc(label || '')}</text></svg>`;
+}
+function natParadeSvg(tid, comp, city) {
+  const t = T(tid) || {}; const c1 = t.c1 || '#c00', c2 = t.c2 || '#fff';
+  let crowd = ''; for (let i = 0; i < 150; i++) { const x = (i * 41) % 600, y = 158 + ((i * 53) % 62); crowd += `<circle cx="${x}" cy="${y}" r="5" fill="${['#e9c39b', '#c68f5e', '#8d5a3b', '#f1d3b5', '#5e3a24'][i % 5]}"/><rect x="${x - 4}" y="${y + 4}" width="8" height="10" fill="${i % 2 ? c1 : c2}"/>${i % 7 === 0 ? `<rect x="${x + 3}" y="${y - 18}" width="12" height="8" fill="${c1}"/><rect x="${x + 3}" y="${y - 14}" width="12" height="4" fill="${c2}"/><line x1="${x + 3}" y1="${y - 18}" x2="${x + 3}" y2="${y}" stroke="#333"/>` : ''}`; }
+  let bld = ''; for (let i = 0; i < 9; i++) { const h = 50 + (i * 37) % 60; bld += `<rect x="${i * 68}" y="${150 - h}" width="60" height="${h}" fill="#8b93a6"/>${Array.from({ length: 3 }, (_, k) => `<rect x="${i * 68 + 8 + k * 17}" y="${160 - h}" width="9" height="12" fill="#cfd8ea"/>`).join('')}`; }
+  let conf = ''; for (let i = 0; i < 60; i++) conf += `<rect x="${(i * 97) % 600}" y="${(i * 29) % 140}" width="4" height="7" fill="${i % 2 ? c1 : '#ffd54a'}" transform="rotate(${i * 23} ${(i * 97) % 600} ${(i * 29) % 140})"/>`;
+  return `<svg viewBox="0 0 600 240" role="img" aria-label="Victory parade" style="width:100%;max-width:640px;display:block;background:linear-gradient(#5aa0e6,#bfe0ff);border-radius:6px">${bld}<rect y="148" width="600" height="92" fill="#777"/>${crowd}
+    <g transform="translate(190,82)"><rect width="220" height="70" rx="8" fill="${c1}" stroke="#111"/><rect y="-10" width="220" height="12" fill="${c2}"/><rect x="10" y="12" width="200" height="22" fill="rgba(255,255,255,.35)"/>${[30, 70, 110, 150, 190].map(x => `<circle cx="${x}" cy="-14" r="5" fill="#e9c39b"/><rect x="${x - 4}" y="-10" width="8" height="10" fill="${c2}"/>`).join('')}<circle cx="44" cy="80" r="13" fill="#222"/><circle cx="176" cy="80" r="13" fill="#222"/><g transform="translate(110,-30)">${natTrophySvg(NT_KIND[comp], .9)}</g><text x="110" y="62" text-anchor="middle" font-size="13" font-weight="800" fill="${readable(c1)}">${esc(NT_TAG[comp] || 'CHAMPIONS')}</text></g>${conf}
+    <text x="20" y="24" font-size="15" font-weight="800" fill="#111">${esc(t.name || '')} victory parade · ${esc(city)}</text></svg>`;
+}
+
+// ---------- counting titles ----------
+function natHistNames(code) { return NT_HIST_ALIAS[code] || [(natRow(code) || {}).name || code]; }
+function natTitles(tid, comp) {
+  const code = T(tid) && T(tid).code; const names = natHistNames(code);
+  const real = (INTL_HIST[comp] || '').split(';').map(x => x.split('|')).filter(r => names.includes(r[1])).map(r => +r[0]);
+  const game = ((G.intl && G.intl.hist) || []).filter(h => h.comp === comp && h.w === tid).map(h => +((String(h.name).match(/\d{4}/) || [0])[0]));
+  return { real, game, n: real.length + game.length, years: real.concat(game).sort((a, b) => a - b) };
+}
+function natFinalFx(E) { for (const r of (E.ko || []).slice().reverse()) if (r.n === 'Final') return G.fx[r.fx[r.fx.length - 1]]; return null; }
+function natTopScorer(E, tid) {
+  const g = {}; for (const id of edFx(E)) { const f = G.fx[id]; if (!f || !f.sc || (f.h !== tid && f.a !== tid)) continue; const side = f.h === tid ? 0 : 1; for (const e of f.sc) if (e[2] === 'G' && e[1] === side && e[3] && P(e[3]) && e[5] !== 'og') g[e[3]] = (g[e[3]] || 0) + 1; }
+  const top = Object.entries(g).sort((a, b) => b[1] - a[1])[0]; return top ? [P(top[0]), top[1]] : null;
+}
+
+// ---------- the celebration ----------
+function natArt(a) { const m = G.news.find(x => x.id === G.newsId); if (m) m.art = a; }
+function natCelebrate(E, w, r) {
+  const t = T(w); if (!t || !NT_KIND[E.comp]) return;
+  const code = t.code; const city = NT_CITY[code] || 'the capital'; const comp = E.comp; const tro = NT_TROPHY[comp];
+  const ti = natTitles(w, comp); const n = ti.n || 1; const prev = ti.years.filter(y => y < +((String(E.name).match(/\d{4}/) || [9999])[0]));
+  const last = prev.length ? prev[prev.length - 1] : null; const thisY = +((String(E.name).match(/\d{4}/) || [G.year])[0]);
+  const nth = n === 1 ? 'first' : ordinal(n);
+  const hist = n === 1 ? `It is the first ${tro} in ${t.name}'s history.` : last && thisY - last >= 20 ? `It is their ${nth} ${tro} and the first since ${last}, ending a wait of ${thisY - last} years.` : `It is their ${nth} ${tro}${last ? `, after ${last}` : ''}.`;
+  const f = natFinalFx(E); let fin = '';
+  if (f && f.r) { const wh = f.h === w; const sc = wh ? `${f.r[0]}-${f.r[1]}` : `${f.r[1]}-${f.r[0]}`; fin = ` They beat ${tName(r, false)} ${sc}${f.pen ? ` after extra time, then ${wh ? f.pen[0] : f.pen[1]}-${wh ? f.pen[1] : f.pen[0]} on penalties` : f.et ? ' after extra time' : ''} in the final${f.ven ? ` at ${f.ven}` : ''}.`; }
+  else fin = ` They beat ${tName(r, false)} in the final.`;
+  const ts = natTopScorer(E, w); const tsl = ts && ts[1] >= 2 ? ` ${ts[0].n} led the way with ${ts[1]} goals in the tournament.` : '';
+  const userMgr = w === ENGID && userIsEng();
+  const mgl = userMgr ? ` Manager ${G.mgr} becomes a national hero.` : '';
+  let sq = []; try { sq = natSquad(code) || []; } catch (e) { }
+  const mine = sq.filter(p => p.c === G.user);
+  const ml = mine.length ? ` ${userTeam().name}'s ${mine.map(p => p.n).join(', ')} ${mine.length > 1 ? 'are' : 'is'} among the winners.` : '';
+  const head = comp === 'WC' ? `${t.name} are world champions!` : comp === 'EURO' ? `${t.name} are champions of Europe!` : `${t.name} win the Nations League`;
+  news(head, `${t.name} have won the ${E.name}!${fin} ${hist}${tsl}${mgl}${ml} The squad return home for a victory parade through ${city}.`, w, true);
+  natArt({ k: 'ntro', tid: w, comp, l: E.name });
+  const crowd = comp === 'UNL' ? 'tens of thousands of' : comp === 'EURO' ? 'hundreds of thousands of' : 'more than a million';
+  news(`Victory parade in ${city}`, `${crowd[0].toUpperCase() + crowd.slice(1)} supporters line the streets of ${city} as the ${t.name} squad parade the ${tro} on an open-top bus. ${comp !== 'UNL' ? `The players and staff are expected to be recognised in the national honours list, and the ${E.name} winners will be remembered as one of the great ${t.name} sides.` : 'Players take turns lifting the trophy from the top deck as flares light up the evening.'}`, w, true);
+  natArt({ k: 'npar', tid: w, comp, city });
+  // honours for the squad (shown on player cards and non-playing profiles)
+  for (const p of sq) { p.nh = (p.nh || []).concat(`${E.name} winner`); if (p.c === G.user) p.mor = clamp((p.mor || 70) + 10, 0, 100); }
+  const honT = comp === 'WC' ? 'world champion' : comp === 'EURO' ? 'European champion' : 'Nations League winner';
+  if (mine.length) msg(mine.length > 1 ? `Your players are ${honT}s` : `Your player is a ${honT}`, `${mine.map(p => p.n).join(', ')} won the ${E.name} with ${t.name}. Morale is sky high, and ${mine.length > 1 ? 'they come' : 'he comes'} back to ${userTeam().name} as ${honT}${mine.length > 1 ? 's' : ''}.`);
+  // the manager
+  if (userMgr) {
+    G.mgrNat = (G.mgrNat || []).concat({ n: E.name, comp, tid: w, y: thisY });
+    G.mgrRep = clamp(G.mgrRep + (comp === 'UNL' ? 2 : 4), 20, 99);
+    if (comp !== 'UNL') { G.mgrHon = (G.mgrHon || []).concat(`National honour for services to football (${thisY})`); msg('National honours', `${G.mgr} is named in the national honours list for services to football after winning the ${E.name} with ${t.name}.`); }
+  }
+  if (w === ENGID) G.natParade = { tid: w, comp, l: E.name, city };
+  // social
+  try {
+    const fp = fanPost(w, R.pick([`${NT_TAG[comp]} 🏆🏆🏆 I can't stop crying`, `${t.name.toUpperCase()}!!! ${nth === 'first' ? 'FIRST EVER' : nth.toUpperCase()} ${comp === 'WC' ? 'STAR ON THE SHIRT ⭐' : 'TROPHY'} 🏆`, `See you all in ${city} for the parade 🚌🏆`]), { big: true, u: w === ENGID ? 1 : 0 });
+    reply(fp, r, R.pick(['Lucky. Very lucky.', 'We\'ll be back. Enjoy it while it lasts', 'Ref had a shocker but fair play 🤝']));
+    for (const p of mine.slice(0, 2)) fanPost(G.user, `${surname(p.n)} is a ${comp === 'WC' ? 'WORLD CHAMPION' : comp === 'EURO' ? 'European champion' : 'Nations League winner'} and he plays for US 🏆😍`, { u: 1 });
+    trend(t.name, 6); trend(comp === 'WC' ? 'World Cup' : E.name, 4);
+  } catch (e) { }
+}
+const _feNH = finishEdition;
+finishEdition = function (E, w, r) {
+  const id0 = G.newsId; _feNH(E, w, r);
+  try { if (NT_KIND[E.comp]) G.news = G.news.filter(n => !(n.id > id0 && n.title === E.name && n.body.startsWith(tName(w, false) + ' win the'))); natCelebrate(E, w, r); } catch (e) { console.error(e); }
+};
+
+// ---------- showing it ----------
+function natArtHtml(a) {
+  if (!a || !T(a.tid)) return '';
+  if (a.k === 'ntro') return `<div style="margin:8px 0 12px">${natCelebSvg(a.tid, a.comp, a.l)}</div>`;
+  if (a.k === 'npar') return `<div style="margin:8px 0 12px">${natParadeSvg(a.tid, a.comp, a.city)}</div>`;
+  return '';
+}
+const _sibNH = scrInbox;
+scrInbox = function () {
+  const h = _sibNH();
+  try {
+    const m = G.news.find(x => x.id === UI.msg); if (!m || !m.art) return h;
+    const k = h.indexOf('<div class="box mbody">'); if (k < 0) return h;
+    const j = h.indexOf('</div>', h.indexOf('<div class="dim mono"', k)); if (j < 0) return h;
+    return h.slice(0, j + 6) + natArtHtml(m.art) + h.slice(j + 6);
+  } catch (e) { console.error(e); return h; }
+};
+const _renNH = render;
+render = function () {
+  try { if (G && G.natParade && !UI.match && !UI.modal) { const p = G.natParade; G.natParade = null; UI.modal = `<div class="band"><span>${esc(NT_TAG[p.comp] || 'Champions')}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">${natCelebSvg(p.tid, p.comp, p.l)}<div style="height:10px"></div>${natParadeSvg(p.tid, p.comp, p.city)}<p>${esc(T(p.tid).name)} win the ${esc(p.l)}. The squad parade the trophy through ${esc(p.city)} on an open-top bus${userIsEng() ? `, with ${esc(G.mgr)} on the top deck` : ''}.</p></div>`; } } catch (e) { console.error(e); }
+  _renNH.apply(this, arguments);
+};
+
+// national trophy cabinet on the International › History tab
+function natCabinetSvg(tid) {
+  const t = T(tid); if (!t) return '';
+  const items = ['WC', 'EURO', 'UNL'].filter(c => c !== 'EURO' || t.conf === 'UEFA').filter(c => c !== 'UNL' || t.conf === 'UEFA').map(c => ({ c, ...natTitles(tid, c) }));
+  const W = 600, H = 190;
+  const g = items.map((it, i) => { const x = 100 + i * 200; return `<g transform="translate(${x},92)" opacity="${it.n ? 1 : .35}">${natTrophySvg(NT_KIND[it.c], 1.5)}</g><text x="${x}" y="152" text-anchor="middle" font-size="12" fill="#fff">${esc({ WC: 'World Cup', EURO: 'European Championship', UNL: 'Nations League' }[it.c])}</text><text x="${x}" y="174" text-anchor="middle" font-size="16" font-weight="800" fill="#ffd54a">×${it.n}</text>`; }).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)} trophy cabinet" style="width:100%;max-width:640px;display:block;background:linear-gradient(${ntMix(t.c1 || '#223344', '#000000', .55)},#141a2c);border:1px solid var(--line);border-radius:6px"><text x="${W / 2}" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">${esc(t.name)} trophy cabinet</text>${g}<rect x="20" y="132" width="${W - 40}" height="4" fill="#6b4a2b"/></svg>`;
+}
+const _ihNH = intlHistHtml;
+intlHistHtml = function () {
+  const h = _ihNH();
+  try {
+    const t = T(ENGID); const yrs = ['WC', 'EURO', 'UNL'].map(c => [c, natTitles(ENGID, c)]).filter(x => x[1].n);
+    const list = yrs.length ? `<div class="dim" style="font-size:12.5px;margin-top:6px">${yrs.map(([c, x]) => `${{ WC: 'World Cup', EURO: 'European Championship', UNL: 'Nations League' }[c]}: ${x.years.join(', ')}`).join(' · ')}</div>` : '';
+    return `<h2 class="sect">Honours</h2>${natCabinetSvg(ENGID)}${list}` + h;
+  } catch (e) { console.error(e); return h; }
+};
+// player cards: international honours
+const _peNH = playerExtra;
+playerExtra = function (p) { const h = _peNH(p); try { if (p && p.nh && p.nh.length) return h + `<div class="box pad" style="margin-top:8px"><label class="lb">International honours</label>${p.nh.map(x => `<div>🏆 ${esc(x)}</div>`).join('')}</div>`; } catch (e) { } return h; };
+// manager profile: trophies won as a national manager and national honours
+const _smNH = scrManager;
+scrManager = function () {
+  let h = _smNH();
+  try {
+    const L = G.mgrNat || []; const hon = G.mgrHon || []; if (!L.length && !hon.length) return h;
+    const box = `<h2 class="sect">International honours</h2><div class="row" style="gap:10px;flex-wrap:wrap">${L.map(x => `<div style="flex:1 1 260px;max-width:320px">${natCelebSvg(x.tid, x.comp, x.n)}</div>`).join('')}</div>${hon.length ? `<div style="margin-top:8px">${hon.map(x => `<div>🎖️ ${esc(x)}</div>`).join('')}</div>` : ''}`;
+    const i = h.lastIndexOf('</div>'); return i > 0 ? h.slice(0, i) + box + h.slice(i) : h + box;
+  } catch (e) { console.error(e); return h; }
+};
+
 // intro.js: launch sting (Ayep Interactive logo, disclaimer card, GAFFER logo), Game > Options and Game > About.
 // Loaded just before boot.js. Plays once per page load, never on re-renders.
 
