@@ -37,7 +37,7 @@ G.intl.hist.push({ key: 'WC30', comp: 'WC', name: 'World Cup 2030', w: NID('ESP'
 console.log('WC', G.news[1].title, '::', G.news[1].body.slice(0, 200));
 console.log('titles ESP WC', natTitles(NID('ESP'), 'WC').n, 'GER', natTitles(NID('GER'), 'WC').n);
 const sv = natCelebSvg(NID('ESP'), 'WC', 'World Cup 2030') + natParadeSvg(NID('ESP'), 'WC', 'Madrid') + natCabinetSvg(NID('ENG'));
-fs.writeFileSync(process.env.OUT || '/tmp/nat.html', '<body style="background:#111">' + sv + '<div style="width:600px">' + intlHistHtml().slice(0, 3000) + '</div></body>');
+fs.writeFileSync(process.env.NAT_HTML || require('os').tmpdir() + '/nat.html', '<body style="background:#111">' + sv + '<div style="width:600px">' + intlHistHtml().slice(0, 3000) + '</div></body>');
 const nh = squad('ARS').filter(p => p.nh); console.log('ARS players with nh', nh.map(p => p.n + ':' + p.nh.join()).join(', '));
 console.log(fail ? 'FAIL ' + fail : 'OK');
 `);

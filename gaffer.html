@@ -15682,7 +15682,7 @@ function migrateXLCups() {
   if (!G || !G.xl || !G.xlL || !G.cups || G.cups.DFB || typeof cupRounds !== 'function') return;
   const savedTasks = G.tasks.slice(); buildXLCups(); G.tasks = savedTasks;
   for (const c in XL_CUPS) for (let k = 0; k < 6; k++) {
-    const cup = G.cups[c]; const rd = cup.rounds[cup.ri]; if (!rd || !rd.ties.length || rd.done) break;
+    const cup = G.cups[c]; if (!cup) break; const rd = cup.rounds[cup.ri]; if (!rd || !rd.ties.length || rd.done) break;
     let all = true; for (const t of rd.ties) for (const id of t.fx) { const f = G.fx[id]; if (!f.r) { if (f.d < G.date) quickFixture(f); else all = false; } }
     if (!all) break; checkCupProgress(c);
   }

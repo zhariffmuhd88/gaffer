@@ -14,10 +14,10 @@ const sw = (x) => back[x] || x;
 for (const f of Object.values(G.fx)) { f.h = sw(f.h); f.a = sw(f.a); }
 for (const c in G.euro) G.euro[c].teams = G.euro[c].teams.map(sw);
 const all = [].concat(...Object.values(G.xl));
-for (const id of Object.keys(G.fx)) { const f = G.fx[id]; if (['BL', 'L1', 'SPL', 'DFB', 'CDF'].includes(f.comp)) { G.byDate[f.d] = G.byDate[f.d].filter(x => x !== id); delete G.fx[id]; } }
+for (const id of Object.keys(G.fx)) { const f = G.fx[id]; if (['BL', 'L1', 'SPL', 'DFB', 'CDF', 'ED', 'LO', 'KNVB'].includes(f.comp) || all.includes(f.h) || all.includes(f.a)) { G.byDate[f.d] = G.byDate[f.d].filter(x => x !== id); delete G.fx[id]; } }
 for (const id of all) { for (const pid of G.sq[id]) { const p = G.players[pid]; if (p.n === 'Harry Kane') { p.c = 'ABROAD'; p.ab = 'Bayern Munich'; } else delete G.players[pid]; } for (const pid of [].concat(G.res[id] || [], G.acad[id] || [])) delete G.players[pid]; delete G.res[id]; delete G.acad[id]; delete G.sq[id]; delete G.teams[id]; }
 const sold = Object.values(G.players).find(p => p.n === 'Bruno Guimarães') || squad('NEW')[0]; G.sq[sold.c] = G.sq[sold.c].filter(x => x !== sold.id); sold.c = 'ABROAD'; sold.gone = 'Al-Hilal';
-delete G.xl; delete G.xlL; delete G.cups.DFB; delete G.cups.CDF; for (const k of ['BLR', 'BLA', 'L1R', 'L1A', 'SPR', 'SPA']) delete G.yl[k];
+delete G.xl; delete G.xlL; delete G.cups.DFB; delete G.cups.CDF; delete G.cups.KNVB; for (const k of ['BLR', 'BLA', 'L1R', 'L1A', 'SPR', 'SPA', 'EDJ', 'EDU', 'LOP', 'LOU']) delete G.yl[k]; G.lowerTeams = G.lowerTeams.filter(t => G.teams[t]); G.l1 = G.lowerTeams.slice(0, 24); delete G.loDone;
 for (const k in G.euroIn) G.euroIn[k] = G.euroIn[k].filter(t => !back[t]);
 let g = 0; while (G.date < '2026-12-10' && g++ < 5000) { const r = advance(); if (r.type === 'match') { const f = G.fx[r.fid]; const pre = preMatch(f); const M = createMatch(r.fid, false); simulateFull(M); finalizeMatch(M); postMatch(f, pre); finishDay(); } }
 console.log('old save', G.date, '| xl', !!G.xl, '| E_ lites in UCL', G.euro.UCL.teams.filter(t => t.startsWith('E_')).length);
