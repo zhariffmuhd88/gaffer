@@ -1,0 +1,28 @@
+Ruben den Uil
+Stijn van Gassel|GK|Netherlands|1|27
+Celton Biai|GK|Guinea-Bissau||25
+Tijmen Holla|GK|Netherlands||21
+Marlon van de Wetering|CB|Netherlands||22
+Eric da Silva Moreira|RB|Germany||20
+Rick Meissen|CB|Netherlands|3|27
+Casper Widell|CB|Sweden|4|26
+Kasey Bos|LB|Australia|12|21
+Jan Plug|CB|Netherlands|14|24
+Simon Janssen|RB|Netherlands||22
+Osman Mohamed Turay|CB|Germany||21
+Guilliano Cairo|LB|Netherlands||21
+Daniël van Vianen|CM|Netherlands||22
+Irakli Yegoian|DM|Georgia|8|25
+Noah Naujoks|AM|Netherlands|10|23
+Valentin Sulzbacher|CM|Austria||22
+Lennard Hartjes|CM|Netherlands|20|24
+Gijs van den Berg|CM|Netherlands||21
+Quinten Kraaijvanger|CM|Netherlands||20
+Aymen Sliti|RW|Netherlands|7|21
+Mario Domínguez|ST|Spain|9|22
+Alireza Jahanbakhsh|RW|Iran||32
+David Garden|ST|Netherlands||20
+Ilano Silva Timas|LW|Cape Verde||22
+Yaqub Finey|ST|Sweden||20
+Nesto Groen|LW|Netherlands||22
+Ágúst Thorsteinsson|ST|Iceland|30|21

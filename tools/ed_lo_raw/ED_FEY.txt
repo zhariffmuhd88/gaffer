@@ -1,0 +1,35 @@
+Giovanni van Bronckhorst
+Tjark Ernst|GK|Germany|1|23
+Florian Kastenmeier|GK|Germany|33|29
+Mannou Berger|GK|Netherlands|37|22
+Liam Bossin|GK|Ireland|39|30
+Kwame Tabiri|RB|Netherlands||20
+Bart Nieuwkoop|RB|Netherlands|2|30
+Mats Deijl|RB|Netherlands|20|29
+Givairo Read|RB|Netherlands|26|20
+Thomas Beelen|CB|Netherlands|3|25
+Tsuyoshi Watanabe|CB|Japan|4|29
+Jeremiah St. Juste|CB|Netherlands|6|30
+Thijs Kraaijeveld|CB|Netherlands|24|19
+Tijme Wessels|CB|Netherlands|32|19
+Mika Mármol|CB|Spain|35|25
+Hakeem Agboluaje|CB|Netherlands|72|19
+Gijs Smal|LB|Netherlands|5|29
+Jordan Bos|LB|Australia|15|24
+Javi López|LB|Spain|16|24
+Luciano Valente|DM|Netherlands|10|23
+Oussama Targhalline|DM|Morocco|28|24
+Charles Vanhoutte|DM|Belgium|34|28
+Jakub Moder|CM|Poland|7|27
+Gjivai Zechiël|CM|Netherlands|8|22
+Sem Steijn|AM|Netherlands|14|24
+Ilai Grootfaam|RW|Netherlands|79|16
+Anis Hadj Moussa|RW|Algeria|23|24
+Shaqueel van Persie|RW|Netherlands|49|19
+Gonçalo Borges|LW|Portugal|11|25
+Reiss Nelson|LW|England|17|26
+Tobias van den Elshout|LW|Netherlands|22|19
+Gaoussou Diarra|LW|Mali|27|23
+Jivayno Zinhagel|LW|Netherlands|36|17
+Theodoros Delianidis|ST|Greece|50|20
+Nacho Ferri|ST|Spain|19|22

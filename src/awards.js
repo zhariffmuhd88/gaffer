@@ -86,7 +86,7 @@ function seasonAwards(comp) {
   for (const x of mine) playerAwardBoost(x.pid, 5);
 }
 const _se1 = seasonEnd;
-seasonEnd = function () { try { for (const c of ['PL', 'CH', 'LL', 'SA', 'BL', 'L1', 'SPL']) { if (divTeams(c).length && (['PL', 'CH'].includes(c) || divTeams(c) !== G.pl)) { monthAwards(c); seasonAwards(c); } } } catch (e) { console.error(e); } _se1(); };
+seasonEnd = function () { try { for (const c of LG_ALL()) { if (divTeams(c).length && (['PL', 'CH'].includes(c) || divTeams(c) !== G.pl)) { monthAwards(c); seasonAwards(c); } } } catch (e) { console.error(e); } _se1(); };
 
 // ---------- UI ----------
 function awPlayer(x, extra) { if (!x) return '<span class="dim">-</span>'; const p = P(x.pid); return `<span class="${p ? 'click' : ''}" ${p ? `data-a="player" data-v="${x.pid}"` : ''}><b>${esc(x.n)}</b></span> <span class="dim">${esc(tName(x.club))}</span>${extra ? ` <span class="mono dim">${extra}</span>` : ''}`; }
@@ -130,7 +130,7 @@ function scrAwards() {
     body = `<p class="dim" style="margin-top:0">Who is leading the race this season (league games, at least 5 appearances).</p><h2 class="sect">Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${best.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div><h2 class="sect">Young Player of the Season</h2><div class="tw"><table class="t">${hd}<tbody>${young.map(row).join('') || '<tr><td colspan="7" class="dim">Not enough games yet.</td></tr>'}</tbody></table></div>`;
   }
   return `<div class="band">Awards<small>${COMP_NAME[lg]} monthly and season awards</small></div>
-  <div class="tabs" style="margin-top:8px">${['PL', 'CH', 'LL', 'SA', 'BL', 'L1', 'SPL'].map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
+  <div class="tabs" style="margin-top:8px">${LG_ALL().map(k => `<button class="${lg === k ? 'on' : ''}" data-a="tab" data-k="awl" data-v="${k}">${COMP_NAME[k]}</button>`).join('')}</div>
   <div class="tabs" style="margin-top:4px">${[['month', 'Monthly'], ['race', 'Award race'], ['season', 'Season awards']].map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-k="aw" data-v="${k}">${l}</button>`).join('')}</div>${body}`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el.dataset && el.dataset.a === 'aws') { UI.tab.aws = el.value; render(); } });

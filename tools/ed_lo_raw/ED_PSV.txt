@@ -1,0 +1,25 @@
+Peter Bosz
+Matěj Kovár|GK|Czech Republic|32|26
+Sergiño Dest|RB|United States|8|26
+Kilian Sildillia|RB|France|25|24
+Lutsharel Geertruida|CB|Netherlands|2|26
+Yarek Gąsiorowski|CB|Spain|3|21
+Armando Obispo|CB|Curaçao|4|27
+Ryan Flamingo|CB|Netherlands|6|23
+Jerdy Schouten|CB|Netherlands|22|29
+Adamo Nagalo|CB|Burkina Faso|39|24
+Mauro Júnior|LB|Brazil|17|27
+Filip Kostić|LB|Serbia|18|34
+Paul Wanner|DM|Austria|10|20
+Kodai Sano|DM|Japan|24|23
+Guus Til|AM|Netherlands|20|28
+Sven Mijnans|AM|Netherlands|21|26
+Shuryjano Cornecion|AM|Netherlands|42|18
+Esmir Bajraktarević|RW|Bosnia-Herzegovina|19|21
+Dennis Man|RW|Romania|27|28
+Ivan Perišić|LW|Croatia|5|37
+Ruben van Bommel|LW|Netherlands|7|22
+Amir Bouhamdi|LW|Morocco|37|18
+Sam Lammers|ST|Netherlands||29
+Ricardo Pepi|ST|United States|9|23
+Alassane Pléa|ST|France|14|33

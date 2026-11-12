@@ -1,0 +1,28 @@
+Míchel
+Marc ter Stegen|GK|Germany|1|34
+Maarten Paes|GK|Indonesia|26|28
+Lucas Rosa|RB|Brazil|2|26
+Anton Gaaei|RB|Denmark|3|23
+Thilo Kehrer|CB|Germany|6|30
+Youri Baas|CB|Netherlands|15|23
+Daley Blind|CB|Netherlands|17|36
+Aaron Bouwman|CB|Netherlands|30|19
+Dies Janse|CB|Netherlands|36|20
+Owen Wijndal|LB|Netherlands|5|26
+Caio Henrique|LB|Brazil|12|29
+Jofre Torrents|LB|Spain|21|19
+Simon Adingra|LW|Ivory Coast|7|24
+Yves Bissouma|DM|Mali|28|30
+Sofyan Amrabat|CM|Morocco|4|30
+Oscar Gloukh|CM|Israel|10|22
+Davy Klaassen|CM|Netherlands|18|33
+Jorthy Mokio|CM|DR Congo|24|18
+Julian Brandt|AM|Germany|8|30
+Abdellah Ouazane|AM|Morocco|68|17
+Viktor Tsigankov|RW|Ukraine|11|28
+Steven Berghuis|RW|Netherlands|23|34
+Rayane Bounida|RW|Morocco|43|20
+Oliver Edvardsen|LW|Norway|20|27
+Kasper Dolberg|ST|Denmark|9|29
+Marcos Leonardo|ST|Brazil|38|23
+Tolu Arokodare|ST|Nigeria|99|25

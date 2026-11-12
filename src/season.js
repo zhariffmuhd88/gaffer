@@ -337,15 +337,16 @@ function postMatch(f, pre) {
   for (const id of pre) { const p = P(id); if (p && p.sus > 0) p.sus--; }
   // gate receipts and TV
   if (!f.neutral && !T(f.h).lite) {
-    const t = T(f.h); const ch = divOf(f.h) === 'CH'; const es = ['LL', 'SA', 'BL', 'L1', 'SPL'].includes(divOf(f.h)); const lg = LEAGUE_COMPS.includes(f.comp);
+    const t = T(f.h); const lo = divOf(f.h) === 'LO'; const ch = divOf(f.h) === 'CH' || lo; const es = ['LL', 'SA', 'BL', 'L1', 'SPL', 'ED'].includes(divOf(f.h)); const lg = LEAGUE_COMPS.includes(f.comp);
     const fill = ch ? clamp(0.55 + t.rep / 250 + (lg ? 0 : -0.12), 0.4, 0.97) : es ? clamp(0.62 + t.rep / 330 + (lg ? 0 : -0.1), 0.45, 0.98) : clamp(0.8 + t.rep / 600 + (lg ? 0 : -0.08), 0.5, 1);
-    const gate = t.cap * fill * (ch ? 8 + t.rep * 0.33 : es ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38) / 1e6 * (lg ? 1 : 0.8);
+    const gate = t.cap * fill * (lo ? 5 + t.rep * 0.25 : ch ? 8 + t.rep * 0.33 : es ? 12 + t.rep * 0.34 : 20 + t.rep * 0.38) / 1e6 * (lg ? 1 : 0.8);
     t.bal += gate; t.fin.in.gate += gate; f.att = Math.round(t.cap * fill);
   }
   if (f.comp === 'PL') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 1.5; t.fin.in.tv += 1.5; }
   if (f.comp === 'CH') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 0.12; t.fin.in.tv += 0.12; }
+  if (f.comp === 'LO') for (const tid of [f.h, f.a]) { const t = T(tid); t.bal += 0.03; t.fin.in.tv += 0.03; }
   // La Liga TV money (collective deal, weighted towards the bigger clubs; scaled to the game's £ finances)
-  if (['LL', 'SA', 'BL', 'L1', 'SPL'].includes(f.comp)) for (const tid of [f.h, f.a]) { const t = T(tid); const tv = 0.55 + Math.max(0, t.rep - 70) * 0.02; t.bal += tv; t.fin.in.tv += tv; }
+  if (['LL', 'SA', 'BL', 'L1', 'SPL', 'ED'].includes(f.comp)) for (const tid of [f.h, f.a]) { const t = T(tid); const tv = (f.comp === 'ED' ? 0.25 : 0.55) + Math.max(0, t.rep - 70) * 0.02; t.bal += tv; t.fin.in.tv += tv; }
   if (['UCL', 'UEL', 'UECL'].includes(f.comp) && f.rnd && String(f.rnd).startsWith('Matchday')) {
     const win = f.r[0] > f.r[1] ? f.h : f.r[1] > f.r[0] ? f.a : null;
     const per = f.comp === 'UCL' ? 2.1 : f.comp === 'UEL' ? .45 : .4;
@@ -373,13 +374,14 @@ function welcomeNews() {
 }
 function boardTarget(tid) {
   const t = T(tid || G.user);
-  if (divOf(t.id) === 'CH') {
-    const rc = divTeams('CH').slice().sort((a, b) => T(b).rep - T(a).rep).indexOf(t.id) + 1;
+  if (divOf(t.id) === 'CH' || divOf(t.id) === 'LO') {
+    const lo = divOf(t.id) === 'LO';
+    const rc = divTeams(lo ? 'LO' : 'CH').slice().sort((a, b) => T(b).rep - T(a).rep).indexOf(t.id) + 1;
     if (rc <= 2) return { pos: 2, txt: 'win promotion' };
     if (rc <= 6) return { pos: 6, txt: 'reach the play-offs' };
     if (rc <= 12) return { pos: 12, txt: 'finish in the top half' };
     if (rc <= 18) return { pos: 18, txt: 'finish in mid-table' };
-    return { pos: 21, txt: 'avoid relegation' };
+    return { pos: lo ? 20 : 21, txt: 'avoid relegation' };
   }
   const ranks = (divOf(t.id) === 'LL' ? G.ll : divOf(t.id) === 'SA' ? G.sa : G.xl && G.xl[divOf(t.id)] ? G.xl[divOf(t.id)] : G.pl).slice().sort((a, b) => T(b).rep - T(a).rep);
   const rk = ranks.indexOf(t.id) + 1;

@@ -1,0 +1,31 @@
+Levi Schwiebbe
+Kilian Nikièma|GK|Burkina Faso|1|23
+Caleb Kramer|GK|Netherlands|20|20
+Niclas Thiede|GK|Germany|23|27
+Othniël Raterink|RB|Netherlands|2|20
+Jonas Jensen-Abbew|RB|Denmark|5|24
+Pascal Mulder|CB|Netherlands|3|27
+Matteo Waem|CB|Belgium|4|26
+Milan Hokke|CB|Netherlands|15|23
+Lasse Wilhelm|CB|Germany|22|23
+Devyn Payne|CB|United States|31|21
+Sékou Sylla|LB|Guinea|18|27
+Sanyika Bergtop|LB|Suriname|35|19
+Mylian Jiménez|DM|Netherlands|14|23
+Juho Kilo|DM|Finland|25|24
+Jan Žambůrek|CM|Czech Republic|8|25
+Finn de Bruin|CM|Netherlands|16|22
+Joey Brandt|CM|Netherlands|30|21
+Matěj Sín|CM|Czech Republic|33|22
+Jalen Hawkings|RW|United States|17|25
+Daryl van Mieghem|RW|Netherlands|7|36
+Alex Pozo|RW|Spain|24|27
+Nigel Thomas|RW|Netherlands|27|25
+Illaijh de Ruijter|LW|Netherlands|10|20
+Cameron Peupion|LW|Australia|21|24
+Dani van Leonen|ST|Netherlands|32|19
+Evan Rottier|ST|Netherlands|11|24
+Jesse Bal|ST|Netherlands|9|20
+Luka Reischl|ST|Austria|19|22
+Yannick Eduardo|ST|Czech Republic|46|20
+Donat Barany|ST|Hungary|77|26

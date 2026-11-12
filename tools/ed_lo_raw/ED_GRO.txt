@@ -1,0 +1,30 @@
+Dick Lukkien
+Etienne Vaessen|GK|Suriname|1|31
+Lovro Štubljar|GK|Slovenia|13|22
+Pelle Boevink|GK|Netherlands|30|28
+Rijk Janse|GK|Netherlands|31|24
+Daan Erdman|GK|Netherlands|73|17
+Marco Rente|RB|Germany|5|29
+Tyrique Mercera|RB|Curaçao|29|22
+Hans Hateboer|RB|Netherlands|33|32
+Thijmen Blokzijl|CB|Netherlands|3|21
+Márk Csinger|CB|Hungary|4|23
+Elvis van der Laan|CB|Sweden|15|18
+Malcolm Jeng|CB|Sweden|21|21
+Jesper Mosselaar|Defender|Netherlands|42|21
+Wouter Prins|LB|Netherlands|2|22
+Nikolas Brandis|LB|Slovakia|12|21
+Tika de Jonge|DM|Netherlands|8|23
+Tygo Land|DM|Netherlands|18|20
+Pelle Clement|DM|Netherlands|24|30
+Jismerai Dillema|Midfielder|Netherlands|44|19
+Alvin Nordin|RM|Sweden|16|18
+Travis Hernes|LM|Norway|7|21
+David van der Werff|RW|Netherlands|17|22
+Jacob Ondrejka|LW|Sweden|11|24
+Ryan Metu|Attacker|Netherlands|34|18
+Mark Hoekstra|Attacker|Netherlands|69|20
+Brynjólfur Willumsson|ST|Iceland|9|26
+Oskar Zawada|ST|Poland|19|30
+Nils Eggens|ST|Netherlands|20|21
+Thom van Bergen|ST|Netherlands|26|22

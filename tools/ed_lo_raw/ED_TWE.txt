@@ -1,0 +1,33 @@
+John van den Brom
+Issam El Maach|GK|Morocco||26
+Lars Unnerstall|GK|Germany|1|36
+Joël Drommel|GK|Netherlands|16|29
+Remko Pasveer|GK|Netherlands|22|43
+Yannick Gerritsen|GK|Netherlands|31|20
+Bart van Rooij|RB|Netherlands|28|25
+Juliën Mesbahi|RB|Netherlands|44|20
+Bjorn Titulaer|CB|Netherlands||18
+Robin Pröpper|CB|Netherlands|3|33
+Ruud Nijstad|CB|Netherlands|4|18
+Stav Lemkin|CB|Israel|23|23
+Max Bruns|CB|Netherlands|38|24
+Jip Meilink|CB|Netherlands|39|19
+Krzysztof Kurowski|LB|Poland|24|20
+Aske Adelgaard|LB|Denmark|29|22
+Michał Rosiak|RB|Poland|2|21
+Ramiz Zerrouki|DM|Algeria|6|28
+Daouda Weidmann|DM|France|8|23
+Jordy Bawuah|DM|Belgium|18|19
+Thomas van den Belt|DM|Netherlands|20|25
+Benjamin Nagel|CM|Netherlands|26|18
+Gijs Besselink|CM|Netherlands|41|22
+Younes Taha|AM|Morocco|10|23
+Kristian Hlynsson|AM|Iceland|14|22
+Marko Pjaca|RW|Croatia|7|31
+Daan Rots|RW|Netherlands|11|25
+Sondre Ørjasæter|LW|Norway|27|22
+Nigel Groenewald|ST|Netherlands|36|19
+Naci Ünüvar|LW|Netherlands|37|23
+Wout Weghorst|ST|Netherlands|9|34
+Filip Thorvaldsen|ST|Norway|17|20
+Lucas Vennegoor of Hesselink|ST|Netherlands|25|20

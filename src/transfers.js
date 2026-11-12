@@ -204,11 +204,11 @@ function seasonEnd() {
   if (!natU) G.mgrRep = clamp(G.mgrRep + (target.pos - upos) * (udiv === 'CH' ? 0.8 : 1.5) + cupsWon.length * 6 + (upos === 1 ? (udiv === 'CH' ? 5 : 10) : 0) + (promoted ? 6 : 0) - (relegated ? 5 : 0), 20, 99);
   const uname = userTeam().name;
   if (natU) verdict = `You are managing ${T(G.user).name} full-time.`;
-  else if (relegated && udiv === 'CH') { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
+  else if (relegated && udiv === 'CH' && !(G.xl && G.xl.LO && G.xl.LO.length)) { G.sacked = true; verdict = `${uname} have been relegated to League One and the board has dismissed you.`; }
   else if (relegated && udiv === 'LL') { G.sacked = true; verdict = `${uname} have been relegated to the Segunda División and the board has dismissed you.`; }
   else if (relegated && udiv === 'SA') { G.sacked = true; verdict = `${uname} have been relegated to Serie B and the board has dismissed you.`; }
   else if (relegated && G.board < 40) { G.sacked = true; verdict = `${uname} have been relegated and the board has dismissed you.`; }
-  else if (relegated) verdict = `${uname} have been relegated to the Championship. The board wants an immediate promotion push next season.`;
+  else if (relegated) verdict = `${uname} have been relegated to ${udiv === 'CH' ? 'League One' : 'the Championship'}. The board wants an immediate promotion push next season.`;
   else if (G.board < 20) { G.sacked = true; verdict = `The board is unhappy with a ${ordinal(upos)}-place finish against a target of ${target.txt}. You have been dismissed.`; }
   else if (promoted) verdict = `Promotion! ${uname} will play in the Premier League next season${ct[0].t === G.user ? ' as Championship winners' : poW === G.user ? ' after winning the play-off final' : ''}.`;
   else verdict = gap <= 0 ? `The board is delighted: ${ordinal(upos)} place met the target to ${target.txt}.` : `The board expected you to ${target.txt}. ${ordinal(upos)} place falls short, but they will give you another season.`;

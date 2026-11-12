@@ -1,0 +1,27 @@
+Karl Robinson
+Grant Smith|GK|England|1|32
+Shamal George|GK|Dominica|30|28
+Owen Mason|GK|Ireland|31|22
+Chanse Headman|RB|England|2|21
+Marcus Ifill|RB|England|12|23
+Omar Sowunmi|CB|England|5|31
+Deon Woodman|CB|Kenya|15|23
+Kamarl Grant|CB|England|21|23
+Adam Jackson|CB|England|45|32
+Richard Taylor|LB|England|3|26
+Jacob Mendy|LB|Gambia|17|29
+Jodi Jones|LW|Malta|10|29
+Ashley Charles|DM|Grenada|4|27
+George Saville|DM|Northern Ireland|6|33
+Kamil Conteh|CM|Sierra Leone|22|23
+Tobias Brenan|CM|England|27|20
+Ben Thompson|AM|England|8|31
+Will Hondermarck|AM|Congo|16|25
+JJ McKiernan|AM|Northern Ireland|28|24
+Corey Whitely|RW|England|18|35
+Ethon Archer|LW|England|7|24
+Mitch Pinnock|LW|England|11|31
+Mickel Miller|LW|England|19|30
+Michael Cheek|ST|England|9|35
+Nicke Kabamba|ST|DR Congo|14|33
+Victor Adeboyejo|ST|Nigeria|20|28

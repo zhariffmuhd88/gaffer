@@ -1,0 +1,34 @@
+Johan Plat
+Thijs Jansen|GK|Netherlands|1|24
+Jasper Meijster|GK|Netherlands|21|21
+Luca Plogmann|GK|Germany|22|26
+Matthijs Kalisvaart|GK|Netherlands|24|20
+Jannick Coehoorn|GK|Netherlands|54|18
+Devid Eugene Bouah|RB|Italy|2|25
+Rik Mulders|RB|Netherlands|16|26
+Wiebe Kooistra|RB|Netherlands|27|20
+Jorn Berkhout|CB|Netherlands|3|24
+Ismaël Baouf|CB|Morocco|4|20
+Jamal Amofa|CB|Netherlands|6|27
+Billy van Duijl|CB|Netherlands|14|21
+Buddy Vogelzang|Defender|Netherlands|45|20
+Lucas Jetten|LB|Netherlands|23|19
+Morgan Costarelli|LB|France|28|21
+Amar Bakkati|DM|Netherlands|43|19
+Wout Asselman|DM|Belgium||21
+Damian Westerhof|DM|Netherlands|48|17
+Danyello Look|DM|Netherlands|19|19
+Nicky Souren|CM|Curaçao|8|26
+Rafik El Arguioui|CM|Morocco|10|21
+Ethan Apkakou|CM|France|17|20
+Wiebe van der Heide|CM|Netherlands|18|20
+Daan Visser|CM|Netherlands|20|22
+Iwan Henstra|RW|Netherlands|29|20
+Jason Çeka|RW|Germany|30|26
+Ilyès Hamache|LW|France|11|23
+Fabian Kvam|LW|Norway|15|21
+Yme Bruinsma|Attacker|Netherlands|38|21
+Mathieu Maertens|ST|Belgium|33|31
+Sami Bouhoudane|ST|Netherlands|7|18
+Skye Vink|ST|Netherlands|9|20
+Nicolas Binder|ST|Austria|13|24

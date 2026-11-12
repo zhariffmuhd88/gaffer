@@ -3,10 +3,10 @@
 // playable nations can be added later: everything England-specific goes through PLAY_NAT.
 // Loaded after history.js, before intro.js.
 
-let PLAY_NAT = 'ENG'; // the nation the user manages or is linked to (England, Spain or Italy); set from G.intl.nat
-const PLAYABLE_NATS = ['ENG', 'ESP', 'ITA'];
-const NAT_FED = { ENG: ['The FA', 'FA'], ESP: ['The RFEF', 'RFEF'], ITA: ['The FIGC', 'FIGC'] };
-const NAT_HOME = { ENG: ['Wembley Stadium', 90000], ESP: ['Riyadh Air Metropolitano', 70692], ITA: ['Stadio Olimpico', 70634] };
+let PLAY_NAT = 'ENG'; // the nation the user manages or is linked to (England, Spain, Italy or the Netherlands); set from G.intl.nat
+const PLAYABLE_NATS = ['ENG', 'ESP', 'ITA', 'NED'];
+const NAT_FED = { ENG: ['The FA', 'FA'], ESP: ['The RFEF', 'RFEF'], ITA: ['The FIGC', 'FIGC'], NED: ['The KNVB', 'KNVB'] };
+const NAT_HOME = { ENG: ['Wembley Stadium', 90000], ESP: ['Riyadh Air Metropolitano', 70692], ITA: ['Stadio Olimpico', 70634], NED: ['Johan Cruyff Arena', 55865] };
 function NATN(c) { const r = natRow(c || PLAY_NAT); return r ? r.name : (c || PLAY_NAT); }
 function FED(c) { return (NAT_FED[c || PLAY_NAT] || NAT_FED.ENG)[0]; }
 function FEDS(c) { return (NAT_FED[c || PLAY_NAT] || NAT_FED.ENG)[1]; }
@@ -122,6 +122,23 @@ function setupItalyPool() {
   }
   if (G.intl) G.intl.ita = 1;
 }
+// the Netherlands: players based outside the game's leagues, then caps and goals (estimates, Nov 2026)
+function setupNetherlandsPool() {
+  if (typeof NED_ABROAD === 'undefined') return;
+  for (const [n, pos, age, club, ca] of NED_ABROAD) {
+    if (Object.values(G.players).some(p => p.n === n)) continue;
+    const p = mkPlayer({ n, c: 'ABROAD', ab: club, pos, age, nat: 'NED', ca, seed: hash(n) % 999, pa: ca + (age < 24 ? 3 : 0) });
+    p.wage = 0; G.players[p.id] = p;
+  }
+  const byName = {}; for (const p of Object.values(G.players)) if (p) (byName[p.n] = byName[p.n] || []).push(p);
+  for (const [n, c, g] of NED_CAPS) {
+    const ps = byName[n]; if (!ps) continue;
+    const p = ps.find(x => x.nat === 'NED') || ps[0];
+    p.nat = 'NED'; p.ic = parseInt(c.replace('~', ''), 10); p.ig = parseInt(g.replace('~', ''), 10); if (c.includes('~')) p.icE = 1;
+  }
+  const t = G.teams && G.teams[NID('NED')]; if (t && t.mgr === 'Head coach') t.mgr = natMgr(t.name);
+  if (G.intl) G.intl.ned = 1;
+}
 
 // ---------- state ----------
 function userIsEng() { return !!(G && G.intl && G.intl.job === PLAY_NAT); }
@@ -140,7 +157,7 @@ function intlInit() {
   if (G.intl) return;
   G.intl = { v: 1, mode: 'club', job: null, club: null, sw: 0, elo: {}, ed: {}, order: [], hist: [], squad: [], aiSq: [], prev: [], ann: {}, fa: 60, tasks: [], called: {}, seen: {}, fr: [] };
   for (const n of natRows()) addNation(n);
-  setupEnglandPool(); setupSpainPool(); setupItalyPool();
+  setupEnglandPool(); setupSpainPool(); setupItalyPool(); setupNetherlandsPool();
   G.intl.nat = PLAY_NAT;
   T(ENGID).str = engStr();
   buildUNL27();

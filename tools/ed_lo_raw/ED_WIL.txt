@@ -1,0 +1,37 @@
+Jurgen Streppel
+Boet van der Linden|GK|Netherlands||20
+Thomas Didillon-Hödl|GK|France|1|30
+Wouter van der Steen|GK|Netherlands|21|36
+Maxime Delanghe|GK|Belgium|26|25
+Karst de Leeuw|GK|Netherlands|31|22
+Tygo Kotte|GK|Netherlands|41|19
+Alessandro Ciranni|RB|Belgium|2|30
+Finn Stam|CB|Netherlands|3|23
+Justin Hoogma|CB|Netherlands|4|28
+Hidde ter Avest|RB|Netherlands|5|29
+Jens Mathijsen|RB|Netherlands|14|19
+Amine Et-Taïbi|RB|Belgium|15|23
+Per van Loon|LB|Netherlands|22|21
+Maxim Dekker|CB|Netherlands|23|22
+Nathan Tjoe-A-On|LB|Indonesia|24|24
+Kayen Scheepens|RB|Netherlands|46|20
+Mats Lemmens|CB|Belgium|83|24
+Calvin Twigt|DM|Netherlands|6|23
+Kasper Boogaard|DM|Netherlands|8|20
+Jari Schuurman|CM|Netherlands|10|29
+Armin Culum|RW|Sweden|11|23
+Anass Zarrouk|CM|Netherlands|18|20
+Uriël van Aalst|AM|Netherlands|19|20
+Vito van Crooij|AM|Netherlands|32|30
+Amine Lachkar|CM|Netherlands|34|23
+Divano Iglesias|CM|Netherlands|40|19
+Julian van Esdonk|CM|Netherlands|48|20
+Tonny Vilhena|DM|Netherlands|52|31
+Jaden Slory|RW|Netherlands|7|21
+Devin Haen|ST|Netherlands|9|22
+Chido Obi|ST|Denmark|17|18
+Thijs Muller|ST|Netherlands|20|19
+Thomas Verheijdt|ST|Netherlands|28|34
+Luca Maal|ST|Netherlands|44|18
+Ismael Mouhoul|ST|Netherlands|49|20
+Eser Gürbüz|RW|Netherlands|50|19

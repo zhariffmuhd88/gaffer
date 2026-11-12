@@ -1,0 +1,24 @@
+Leam Richardson
+Joel Pereira|GK|Portugal|1|30
+Jack Stevens|GK|England|25|29
+Ashqar Ahmed|RB|England|39|19
+Udoka Godwin-Malife|CB|England|2|26
+Paudie O'Connor|CB|Ireland|15|29
+Benn Ward|CB|England|16|23
+Josh Knight|CB|England|20|29
+Conor Masterson|CB|Ireland|23|28
+Jeriel Dorsett|LB|Montserrat|3|24
+Haydon Roberts|LB|England|5|24
+Andy Rinomhota|DM|Zimbabwe|4|29
+Liam Fraser|DM|Canada|6|28
+Charlie Savage|DM|Wales|8|23
+Lewis Wing|DM|England|10|31
+George Earthy|AM|England|17|22
+Josh Stokes|AM|England|28|22
+Randell Williams|RW|England|14|29
+Kyreece Lisbie|RW|England|19|22
+Daniel Kyerewaa|LW|Germany|11|25
+Paddy Lane|LW|Northern Ireland|32|25
+Jack Marriott|ST|England|7|32
+Jamie Reid|ST|Northern Ireland|9|32
+Jacob Brown|ST|Scotland|18|28

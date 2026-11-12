@@ -86,7 +86,7 @@ render = function () {
 
 // ---------- cup magic: underdogs raise their game, favourites rotate in the early rounds ----------
 const CUP_MAGIC = ['FA', 'LC', 'CDR', 'CIT', 'DFB', 'CDF'];
-function tierOf(t) { const d = divOf(t); return ['PL', 'LL', 'SA', 'BL', 'L1', 'SPL'].includes(d) ? 1 : d === 'CH' ? 2 : 3; }
+function tierOf(t) { const d = divOf(t); return ['PL', 'LL', 'SA', 'BL', 'L1', 'SPL', 'ED'].includes(d) ? 1 : d === 'CH' ? 2 : 3; }
 const _cmPL = createMatch;
 createMatch = function (fid, live) {
   const M = _cmPL(fid, live);

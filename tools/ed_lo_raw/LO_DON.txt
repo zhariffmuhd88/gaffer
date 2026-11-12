@@ -1,0 +1,31 @@
+Grant McCann
+Tommy Simkin|GK|England||
+Jake Oram|GK|England||
+Jacob Bryant|GK|England||
+Josh Clarke|GK|Northern Ireland||
+Jamie Sterry|RB|England||
+James Husband|LB|England||
+Matthew Pearson|Defender|England||
+Jay McGrath|Defender|England||
+Neill Byrne|Defender|Ireland||
+Tom Nixon|Defender|England||
+Jack Senior|LB|England||
+Seán Grehan|Defender|Ireland||
+Lincoln Pawlak|Defender|England||
+Alex Pavan|Midfielder|England||
+Owen Bailey|Midfielder|England||
+George Broadbent|Midfielder|England||
+Harry Clifton|Midfielder|England||
+Darren Robinson|Midfielder|Northern Ireland||
+Isaac Hutchinson|AM|England||
+Robbie Gotts|Midfielder|England||
+Bayley McCann|Midfielder|Northern Ireland||
+Ashton Swales|Midfielder|England||
+James Collins|Forward|Ireland||
+Tommi O'Reilly|AM|England||
+Brandon Hanlan|Forward|England||
+Alfie May|Forward|England||
+Leon Ayinde|Forward|England||
+Francis Okoronkwo|Forward|England||
+Jordan Thomas|Forward|England||
+Hakeeb Adelakun|RW|England||

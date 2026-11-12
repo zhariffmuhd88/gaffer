@@ -1,0 +1,27 @@
+Alex Revell
+Tommy Setford|GK|England|1|
+Daniel Barden|GK|Wales||
+Luther James-Wildin|RB|Antigua and Barbuda||
+Carl Piergianni|Defender|England|5|
+Lewis Freestone|LB|England||
+Saxon Earley|LB|England|14|
+Terence Vancooten|Defender|Guyana|15|
+Kaelan Casey|Defender|England|16|
+Alfie Thornett|Defender|England||
+Jordan Houghton|Midfielder|England||
+Terry Taylor|Midfielder|Wales||
+Daniel Phillips|Midfielder|Trinidad and Tobago|8|
+Dan Kemp|AM|England||
+Jordan Roberts|Midfielder|England||
+Jasper Pattenden|Midfielder|England||
+Louis Thompson|Midfielder|Wales|23|
+Matt Smith|Midfielder|England||
+Wanya Marçal|RW|Portugal||
+Tatenda Mutanga|Midfielder|England||
+Josh Magennis|Forward|Northern Ireland|9|
+Oliver Sanderson|Forward|England|18|
+Tuğra Turhan|Forward|Turkey||
+Chem Campbell|RW|Wales||
+Ben Broggio|Forward|England|27|
+Michael Mellon|Forward|Scotland||
+Phoenix Patterson|LW|Scotland|44|

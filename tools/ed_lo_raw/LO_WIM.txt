@@ -1,0 +1,28 @@
+Johnnie Jackson
+Nathan Bishop|GK|England|1|27
+Joe McDonnell|GK|England|20|32
+Josef Bursik|GK|England|39|26
+Andy Yiadom|RB|Ghana|17|34
+Steve Seddon|LB|England|3|28
+Ryan Johnson|CB|Northern Ireland|6|30
+Freddie Simmonds|CB|England|15|18
+Riley Horan|CB|England|22|19
+Dan Sweeney|CB|England|26|32
+Isaac Ogundere|CB|England|33|23
+Sam Goma|CB|England|35|18
+Steven Sessegnon|LB|Turks and Caicos Islands|2|26
+Ollie Harrison|CM|England|5|19
+Callum Maycock|CM|England|8|28
+Zack Nelson|CM|England|10|21
+Alistair Smith|CM|England|12|27
+Delano McCoy-Splatt|CM|Jamaica|18|22
+Myles Hippolyte|CM|Grenada|21|31
+James Tilley|DM|England|7|28
+Dujuan Richards|DM|Jamaica|31|20
+Harry Hedges|ST|England|34|18
+Jayden Stockley|ST|England|9|33
+Marcus Browne|RW|England|11|28
+Matty Stevens|ST|England|14|28
+Donnell McNeilly|ST|England|19|21
+Harry Cornick|ST|England|23|31
+Aron Sasu|ST|Norway|29|21

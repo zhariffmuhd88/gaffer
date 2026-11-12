@@ -1,0 +1,27 @@
+Nigel Clough
+Anthony Núñez|GK|Dominican Republic||21
+Liam Roberts|GK|England|1|31
+Harry Lewis|GK|England|21|28
+Kyle Knoyle|RB|England|2|30
+Elliott Hewitt|CB|Wales|4|32
+Ryan Sweeney|CB|Ireland|5|29
+Baily Cargill|CB|England|6|31
+Jordan Bowery|ST|Saint Kitts and Nevis|9|35
+Frazer Blake-Tracy|LB|England|20|31
+Adedeji Oshilaja|CB|England|23|33
+Lucas Akins|RB|Grenada|7|37
+Stephen McLaughlin|LB|Ireland|3|36
+Owen Dodgson|LB|England|39|23
+Louis Reed|DM|England|25|29
+Jon Russell|AM|Jamaica|13|26
+Liam Thompson|AM|England|16|24
+Tyler Roberts|AM|Wales|19|27
+Nathan Moriah-Welsh|CM|Guyana|22|24
+Regan Hendry|CM|Scotland|24|28
+George Abbott|CM|England|40|21
+George Maris|AM|England|10|30
+Luke Bolton|RW|England|8|27
+Ollie Taylor|RW|England|28|20
+Michael Smith|ST|England|14|35
+David McGoldrick|ST|Ireland|17|38
+Rhys Oates|ST|England|18|31

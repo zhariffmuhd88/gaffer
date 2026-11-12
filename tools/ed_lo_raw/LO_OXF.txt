@@ -1,0 +1,30 @@
+Aaron Ramsey
+Jamie Cumming|GK|England|1|27
+Simon Eastwood|GK|England|13|37
+Monty Marriott|GK|England|41|20
+Sam Long|RB|England|2|31
+Brodie Spencer|RB|Northern Ireland|15|22
+Peter Kioso|RB|DR Congo|30|27
+Aidan Elliott-Wheeler|RB|England|37|20
+Ciaron Brown|CB|Northern Ireland|3|28
+Frankie Kent|CB|England|5|30
+Michał Helik|CB|Poland|6|31
+James Golding|CB|Ireland|25|22
+Aaron Lacey|CB|England|46|19
+Ruben Roosken|LB|Netherlands|12|26
+Greg Leigh|LB|Jamaica|22|32
+Jack Currie|LB|England|26|24
+Kai Andrews|DM|Wales|4|20
+Cameron Brannagan|DM|England|8|30
+Jamie McDonnell|DM|Northern Ireland|18|22
+Louie Sibley|DM|England|32|25
+Harrison Bradney|DM|England|44|19
+Leo Snowden|CM|England|27|18
+Tyler Goodrham|AM|Ireland|11|23
+Luka Lynch|RW|England|20|19
+Mo Missanga|RW|England|57|18
+Jeon Jin-Woo|LW|South Korea|7|27
+Aidomo Emakhu|LW|Ireland|10|23
+Siriki Dembélé|LW|Scotland|23|30
+Mark Harris|ST|Wales|9|27
+Gatlin O'Donkor|ST|England|19|22

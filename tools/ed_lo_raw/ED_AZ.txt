@@ -1,0 +1,28 @@
+Leeroy Echteld
+Rome Owusu-Oduro|GK|Netherlands|1|22
+Hobie Verhulst|GK|Netherlands|12|33
+Jari De Busser|GK|Belgium|28|27
+Jeroen Zoet|GK|Netherlands|41|35
+Jur Schipper|GK|Netherlands|71|20
+Seiya Maikuma|RB|Japan|2|29
+Elijah Dijkstra|RB|Netherlands|22|20
+Denso Kasius|RB|Netherlands|30|24
+Wouter Goes|CB|Netherlands|3|22
+Lewis Schouten|CB|Netherlands|4|22
+Wesley Hoedt|CB|Netherlands|29|32
+Mateo Chávez|LB|Mexico|5|22
+Mees de Wit|LB|Netherlands|34|28
+Peer Koopmeiners|DM|Netherlands|6|26
+Jordy Clasie|DM|Netherlands|8|35
+Stije Resink|DM|Netherlands|16|23
+Dave Kwakman|DM|Netherlands|21|22
+Rio Robbemond|DM|Netherlands|56|21
+Kees Smit|CM|Netherlands|10|20
+Valdemar Byskov|AM|Denmark|17|21
+Weslley Pinto|RW|Brazil|7|23
+Calvin Stengs|RW|Netherlands|14|27
+Ayoub Oufkir|RW|Morocco|24|20
+Ro-Zangelo Daal|LW|Netherlands|11|22
+Wassim Bouziane|LW|Netherlands|27|19
+Mexx Meerdink|ST|Netherlands|9|23
+Jizz Hornkamp|ST|Netherlands|19|28

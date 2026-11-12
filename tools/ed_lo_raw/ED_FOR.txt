@@ -1,0 +1,30 @@
+Danny Buijs
+Luuk Koopmans|GK|Netherlands|1|32
+Mattijs Branderhorst|GK|Netherlands|31|32
+Kaylen Reitmaier|GK|Germany|33|22
+Siebe Wylin|RB|Belgium|2|23
+Ivo Pinto|RB|Portugal|12|36
+Rodrigo Guth|CB|Brazil|3|25
+Iván Márquez|CB|Spain|4|32
+Syb van Ottele|CB|Netherlands|6|24
+Justin Hubner|CB|Indonesia|28|23
+Kevin van Burgsteden|Defender|Netherlands|35|19
+Jasper Dahlhaus|LB|Netherlands|8|24
+Nick de Groot|LB|Netherlands|15|25
+Édouard Michut|DM|France|20|23
+Philip Brittijn|DM|Netherlands|23|22
+Moussa Gbemou|DM|Belgium|38|19
+Daley Sinkgraven|CM|Netherlands|24|31
+Yassin Oukili|CM|Netherlands|5|25
+Sven Simons|CM|Netherlands|14|22
+Shiloh Zand|CM|Netherlands|22|23
+Alhaji Bah|Midfielder|Netherlands|36|18
+Gani Buyukhan|Midfielder|Türkiye|39|17
+Amin Laoukili|Midfielder|Netherlands|47|21
+Ole Romeny|AM|Indonesia|10|26
+Mohammed Ihattaren|RW|Morocco|52|24
+Kristoffer Peterson|LW|Sweden|7|31
+Sjors-Lowis Hermsen|Attacker|Netherlands|27|20
+Owen Johnson|Attacker|Netherlands|45|21
+Anthony Descotte|ST|Belgium|9|23
+Lequincio Zeefuik|ST|Netherlands|25|21

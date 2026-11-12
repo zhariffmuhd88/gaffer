@@ -1,0 +1,25 @@
+Rogier Meijer
+Michael Brouwer|GK|Netherlands|1|33
+Filip Bednarek|GK|Poland|20|34
+Pascal Kuiper|GK|Netherlands|30|22
+Lushendry Martes|RB|Netherlands|2|18
+Boyd Reith|RB|Netherlands|12|27
+Max de Ligt|CB|Netherlands||22
+Marvin Young|CB|Netherlands|3|21
+Bruno Martins Indi|CB|Netherlands|4|34
+Nick Verschuren|CB|Netherlands|6|21
+Bas Kuipers|LB|Netherlands|5|32
+Teo Quintero|LB|Venezuela|6|27
+Giannino Vianello|LB|Netherlands|15|19
+Cedric Hatenboer|DM|Netherlands|8|21
+Julian Baas|DM|Netherlands|13|24
+Jens Toornstra|DM|Netherlands|21|37
+Alwande Roaldsøy|CM|Norway|16|22
+Isaac Babadi|LM|Netherlands|11|21
+Robin van Cruijsen|AM|Netherlands|18|20
+Mitchell van Bergen|RW|Netherlands|7|27
+Casper Terho|RW|Finland|17|23
+Shunsuke Mito|LW|Japan|10|24
+Joel Ideho|LW|Netherlands|22|23
+Milan Zonneveld|ST|Netherlands|9|23
+Andrej Kostić|ST|Montenegro|19|19

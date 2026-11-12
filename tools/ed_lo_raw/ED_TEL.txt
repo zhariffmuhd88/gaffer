@@ -1,0 +1,27 @@
+Henk Brugge
+Ronald Koeman Jr.|GK|Netherlands|1|31
+Daan Reiziger|GK|Netherlands|20|25
+Finn Mulder|GK|Netherlands|13|18
+Jeff Hardeveld|LB|Netherlands|2|31
+Abdelnour Soualhia|CB|France|4|25
+Nigel Ogidi Nwankwo|CB|Netherlands|15|28
+Sem Valk|CB|Netherlands|16|24
+Gabi Caschili|RB|Netherlands|18|23
+Marvin Peersman|LB|Belgium|43|35
+Rojendro Oudsten|CB|Suriname|28|18
+Prince Aning|CM|Netherlands|5|22
+Isaiah Ahmed|DM|Curaçao|6|20
+Tyrone Owusu|CM|Netherlands|10|27
+Harrie Kuster|CM|Netherlands|14|21
+Nils Rossen|CM|Netherlands|17|22
+Noach Shenkman|CM|Netherlands|23|20
+Gerald Alders|CM|Netherlands||21
+Rui Mendes|RW|Portugal|7|27
+Emirhan Demircan|LW|Turkey|8|21
+Jelani Seedorf|ST|Suriname|9|21
+Nökkvi Thórisson|ST|Iceland|11|27
+Fabiano Rust|RW|Netherlands|19|21
+Fofin Turay|LW|Netherlands|21|22
+Patrick Brouwer|AM|Netherlands|27|25
+Ar'jany Martha|LW|Curaçao|42|23
+Soufiane Hetli|RW|Netherlands||25

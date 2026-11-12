@@ -1,0 +1,31 @@
+Joseph Oosting
+Kjetil Haug|GK|Norway|1|28
+Nick Marsman|GK|Netherlands|22|36
+Jasper Cillessen|GK|Netherlands|24|37
+Thomas Hulleman|GK|Netherlands|30|16
+Nando Verdoni|GK|Netherlands|33|23
+Alfons Sampsted|RB|Iceland|2|28
+Eus Waayers|RB|Netherlands|20|20
+Gerrit Nauber|CB|Germany|3|34
+Joris Kramer|CB|Netherlands|4|30
+Tino Jukić|CB|Croatia|6|25
+Giovanni van Zwam|CB|Netherlands|25|22
+Julius Dirksen|CB|Netherlands|26|23
+Pim Saathof|CB|Netherlands|28|22
+Dani Tijman|Defender|Netherlands|31|20
+Terence Lantveld|Defender|Netherlands|35|19
+Dean James|LB|Indonesia|5|26
+Tomas Galvez|LB|Finland|27|21
+Evert Linthorst|DM|Netherlands|8|26
+Robbin Weijenberg|DM|Netherlands|15|21
+Melle Meulensteen|DM|Netherlands|21|27
+Yassir Salah Rahmouni|DM|Netherlands|34|20
+Victor Edvardsen|AM|Sweden|16|30
+Søren Tengstedt|RW|Denmark|10|26
+Oskar Siira Sivertsen|RW|Norway|11|22
+Thibo Baeten|RW|Belgium|23|24
+Mathis Suray|LW|Belgium|17|25
+Richonell Margaret|LW|Suriname|18|26
+Ofosu Boakye|Attacker|Netherlands|32|19
+Stefán Sigurðarson|ST|Iceland|9|25
+Erik Flataker|ST|Norway|29|21

@@ -9,11 +9,11 @@ global.navigator = { userAgent: 'node' }; global.requestAnimationFrame = () => 0
 global.NS = +(process.argv[2] || 10); global.UC = process.argv[3] || 'BRE';
 (0, eval)(files.map(f => fs.readFileSync('src/' + f, 'utf8')).join('\n') + `
 ;toast = () => {}; render = () => {}; autosave = () => {};
-const BIG = { PL: ['ARS','MCI','LIV','CHE','MUN','TOT','NEW'], LL: ['RMA','BAR','ATM'], SA: ['INT','ACM','JUV','NAP'], BL: ['BAY','BVB','B04','RBL'], L1: ['PSG','OM','ASM'], SPL: ['HIL','NAS','ITT','AHL'], CH: [] };
-const LGS = ['PL','CH','LL','SA','BL','L1','SPL'];
-const CUPS = ['FA','LC','CDR','CIT','DFB','CDF'];
+const BIG = { PL: ['ARS','MCI','LIV','CHE','MUN','TOT','NEW'], LL: ['RMA','BAR','ATM'], SA: ['INT','ACM','JUV','NAP'], BL: ['BAY','BVB','B04','RBL'], L1: ['PSG','OM','ASM'], SPL: ['HIL','NAS','ITT','AHL'], CH: [], LO: [], ED: ['PSV','AJX','FEY'] };
+const LGS = ['PL','CH','LO','LL','SA','BL','L1','SPL','ED'];
+const CUPS = ['FA','LC','CDR','CIT','DFB','CDF','KNVB'];
 const out = { seasons: [] };
-function tier(t) { const d = divOf(t); return ['PL','LL','SA','BL','L1','SPL'].includes(d) ? 1 : d === 'CH' ? 2 : 3; }
+function tier(t) { const d = divOf(t); return ['PL','LL','SA','BL','L1','SPL','ED'].includes(d) ? 1 : d === 'CH' ? 2 : 3; }
 const _se = seasonEnd;
 seasonEnd = function () {
   const S = { y: seasonLabel(G.year), lg: {}, cups: {}, intl: {} };

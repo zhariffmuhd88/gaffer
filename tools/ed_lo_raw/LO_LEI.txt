@@ -1,0 +1,27 @@
+Russell Martin
+Jakub Stolarczyk|GK|Poland|1|25
+David Cornell|GK|Wales|13|35
+Franco Ravizzoli|GK|Argentina|21|29
+Alex McCarthy|GK|England|29|36
+Woyo Coulibaly|RB|Mali|26|27
+Ben Nelson|CB|England|4|22
+Caleb Okoli|CB|Italy|5|25
+Harry Souttar|CB|Australia|15|28
+Warren O'Hora|CB|Ireland|16|27
+Ilari Kangasniemi|CB|Finland|24|19
+Christian McFarlane|LB|England|18|19
+Luke Thomas|LB|England|33|25
+John Lundstram|DM|England|6|32
+Will Smallbone|DM|Ireland|12|26
+Louis Page|DM|England|25|18
+Sammy Braybrooke|DM|England|36|22
+Conor Chaplin|AM|England|8|29
+Liam Cullen|AM|Wales|11|27
+Bobby De Cordova-Reid|AM|Jamaica|14|33
+Kamari Doyle|AM|England|27|21
+Wes Burns|RW|Wales|7|31
+Harry Howell|RW|England|20|18
+Will Alves|LW|England|37|21
+Tom Watson|LW|England|23|20
+Admir Bristrić|ST|Bosnia-Herzegovina|9|23
+Emil Riis|ST|Denmark|17|28

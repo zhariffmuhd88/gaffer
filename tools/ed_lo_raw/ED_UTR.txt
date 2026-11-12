@@ -1,0 +1,31 @@
+Anthony Correia
+Vasilios Barkas|GK|Greece|1|32
+Sergio Padt|GK|Netherlands|22|36
+Mees Eppink|GK|Netherlands|31|20
+Kevin Gadellaa|GK|Netherlands|33|23
+Siebe Horemans|RB|Belgium|2|28
+Niklas Vesterlund|RB|Denmark|23|27
+Matisse Didden|CB|Belgium|3|25
+Nikolas Panayiotou|CB|Cyprus|5|26
+Guus Offerhaus|CB|Netherlands|6|25
+Jakov Medić|CB|Croatia|18|28
+Neville Ogidi Nwankwo|CB|Netherlands|21|24
+Per Kloosterboer|CB|Netherlands|32|21
+Arthur Zagré|LB|Burkina Faso|92|25
+Joris van Overeem|DM|Netherlands|8|32
+Alonzo Engwanda|DM|Belgium|27|23
+Oualid Agougil|DM|Netherlands|38|21
+Victor Jensen|CM|Denmark|7|26
+Davy van den Berg|CM|Netherlands|34|26
+Jaygo van Ommeren|CM|Netherlands|46|18
+Dani de Wit|AM|Netherlands|20|28
+Ángel Alarcón|RW|Spain|11|22
+Miliano Jonathans|RW|Indonesia|26|22
+Nordin Amrabat|RW|Morocco|39|39
+Marius Broholm|RW|Norway|80|21
+Kevin Paredes|LW|United States|30|23
+Yoann Cathline|LW|France|10|24
+Adrian Blake|LW|England|15|21
+Artem Stepanov|ST|Ukraine|9|19
+Sem van Duijn|ST|Netherlands|17|22
+Noah Ohio|ST|Netherlands|29|23

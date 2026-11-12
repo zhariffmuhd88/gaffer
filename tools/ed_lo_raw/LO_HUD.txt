@@ -1,0 +1,30 @@
+Martin Drury
+Matt Young|GK|England|1|19
+Jak Alnwick|GK|England|31|33
+Nik Tzanev|GK|New Zealand|33|29
+Ilias Bronkhorst|RB|Netherlands|22|29
+Murray Wallace|CB|Scotland|3|33
+Joe Low|CB|Wales|5|24
+Jack Whatmough|CB|England|6|30
+Radinio Balker|CB|Suriname|12|28
+Ibane Bowat|CB|Scotland|15|24
+Seán Roughan|CB|Ireland|23|23
+Max Murray|CB|England|29|19
+Lasse Sørensen|RW|Denmark|2|27
+Lynden Gooch|RW|United States|7|30
+Bali Mumba|LW|England|19|25
+Jay Smith-Sway|LW|England|27|19
+Ryan Ledson|DM|England|4|29
+Archie Collins|DM|England|8|27
+Ethan Brierley|DM|England|14|22
+Marcus McGuane|DM|England|17|27
+Cameron Humphreys|DM|England|20|23
+Herbie Kane|CM|England|16|27
+Cameron Ashia|CM|England|24|21
+Marcus Harness|AM|Ireland|10|30
+David Kasumu|AM|England|18|27
+Derensili Sanches Fernandes|RW|Cape Verde|30|25
+Joe Taylor|ST|Wales|9|23
+Ashley Fletcher|ST|England|11|31
+Bojan Radulović|ST|Serbia|25|26
+Samson Tovide|ST|England|34|22

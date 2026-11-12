@@ -1,0 +1,34 @@
+Dick Schreuder
+Martijn Overmars|GK|Netherlands||20
+Gonzalo Crettaz|GK|Argentina|1|26
+Nikolas Polster|GK|Austria|12|24
+Freek Entius|GK|Netherlands|36|20
+Joep Geneste|GK|Netherlands|38|19
+Philippe Sandler|CB|Netherlands|3|29
+Perr Schuurs|CB|Netherlands|4|26
+Bram Nuytinck|CB|Netherlands|17|36
+Tobias Storm|CB|Denmark|21|22
+Ahmetcan Kaplan|CB|Türkiye|22|23
+Deveron Fonville|CB|Curaçao|24|23
+Merijn van de Wiel|CB|Netherlands|37|20
+Yassin Moslih|CB|Netherlands|42|19
+Mees Rensen|CB|Netherlands|44|16
+Gabriel Brás|CB|Portugal|73|22
+Mitchel Bakker|CB|Netherlands|5|26
+Almugera Kabar|CB|Germany|66|20
+Emre Mor|RW|Türkiye|7|29
+Kevin Kers|RB|Netherlands|34|20
+Clement Bischoff|LB|Denmark|99|20
+Darko Nejašmić|DM|Croatia|6|27
+Isak Hansen-Aarøen|DM|Norway|8|22
+Tjaronn Chery|AM|Suriname|9|38
+Dušan Tadić|AM|Serbia|10|37
+Willum Willumsson|AM|Iceland|11|28
+Dennis Geiger|AM|Germany|18|28
+Adam Tahaui|AM|Netherlands|19|21
+Noé Lebreton|AM|France|20|22
+Sam de Laat|AM|Netherlands|26|20
+Jamiro Monteiro|AM|Cape Verde|35|32
+Ayodele Thomas|LW|Netherlands|77|19
+Kaj Sierhuis|ST|Netherlands|14|28
+Bryan Linssen|ST|Netherlands|30|36

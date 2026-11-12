@@ -1,0 +1,28 @@
+Neil Harris
+Jake Eastwood|GK|England|1|30
+Gabriel Breeze|GK|England|13|22
+Jasper Briggs|GK|England|31|19
+Sam Curtis|RB|Ireland|29|20
+Callum Perry|CB|England|3|21
+Patrick Bauer|CB|Germany|5|34
+Kelland Watts|CB|England|6|27
+Cathal Heffernan|CB|Ireland|15|21
+Daniel Herd|RW|England|33|18
+Liam Bennett|RB|England|2|24
+Zak Bradshaw|LB|England|22|23
+Isaac Heath|LW|England|7|22
+Dominic Ball|DM|England|4|31
+Owen Moxon|DM|England|8|28
+Pelly Mpanzu|DM|DR Congo|17|32
+Shane McLoughlin|DM|Ireland|21|29
+George Hoddle|DM|England|38|21
+Lohan McDougald|CM|England|39|17
+Ben Knight|AM|England|10|24
+Sullay Kaikai|AM|Sierra Leone|11|31
+Callum Stead|AM|England|12|26
+Glenn McConnell|AM|Ireland|27|21
+Ra'ees Bangura-Williams|AM|Sierra Leone|44|22
+Louis Appéré|ST|Scotland|9|27
+Gassan Ahadme|ST|Morocco|14|25
+Shayne Lavery|ST|Northern Ireland|19|27
+Daniel Efobi|ST|England|32|17

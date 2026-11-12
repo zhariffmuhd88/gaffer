@@ -1,0 +1,30 @@
+Martin Paterson
+James Belshaw|GK|England|1|36
+Harry Griffiths|GK|England|21|21
+James Gibbons|CB|England|2|28
+Rodney McDonald|CB|England|3|34
+Jacob Bedeau|CB|England|4|26
+Matty Platt|CB|England|5|29
+Lucas Ness|CB|England|12|24
+Ishé Samuels-Smith|CB|England|26|20
+Lewis Macari|CB|Scotland|28|24
+Matthew Baker|CB|Wales|44|23
+Rosaire Longelo|RB|England|10|26
+Nicholas Tsaroulla|RB|Cyprus|25|27
+Max Sanders|DM|England|6|27
+Jack Evans|DM|England|15|26
+Matthew Palmer|DM|England|18|31
+Scott Robertson|DM|Scotland|20|25
+Rory Finneran|DM|Ireland|27|18
+Dean Campbell|CM|Scotland|16|25
+Darius Lipsiuc|RM|Ireland|14|21
+Oliver Cooper|AM|Wales|8|26
+Conor Grant|AM|Ireland|11|25
+Maziar Kouhyar|AM|Afghanistan|17|29
+Hindolo Mustapha|AM|Sierra Leone|42|20
+Callum Roberts|RW|England|7|29
+Beck-Ray Enoru|LW|England|22|24
+Daniel Kanu|ST|Sierra Leone|9|21
+Luka Smyth|ST|Australia|19|22
+Emile Acquah|ST|England|33|26
+Lee Ndlovu|ST|Zimbabwe|39|32
