@@ -74,7 +74,7 @@ function cmpTable(ps, gk) {
     row('International caps', ps.map(p => p.ic || 0))
   ].join('');
   const extra = `<tr><td>Form (last ratings)</td>${ps.map((p, j) => `<td class="n">${formSpark(p, CMP_COL[j])}</td>`).join('')}</tr>
-    <tr><td>Happiness</td>${ps.map(p => { if (p.c !== G.user) return '<td class="n dim">-</td>'; const h = Math.round(hap(p)); return `<td class="n ${hapCls(h)}">${hapLabel(h)}</td>`; }).join('')}</tr>
+    <tr><td>Happiness</td>${ps.map(p => { if (!T(p.c) || T(p.c).lite || T(p.c).nat) return '<td class="n dim">-</td>'; const h = Math.round(hap(p)); return `<td class="n ${hapCls(h)}">${hapLabel(h)}</td>`; }).join('')}</tr>
     <tr><td>Condition / morale</td>${ps.map(p => `<td class="n mono">${Math.round(p.cond)}% / ${Math.round(p.mor)}</td>`).join('')}</tr>
     <tr><td>Contract until</td>${ps.map(p => `<td class="n mono">${p.con || '-'}</td>`).join('')}</tr>`;
   return `<h2 class="sect">Face stats</h2><div class="tw"><table class="t cmpt">${head}<tbody>${face}</tbody></table></div>
