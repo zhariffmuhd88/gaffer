@@ -484,12 +484,13 @@ function weekly() {
   }
   if (!G.sacked && T(G.user) && !T(G.user).lite) weeklyDynamics();
   // AI manager changes occasionally
-  if (dDiff(sd('2026-10-01'), G.date) > 0 && dDiff(G.date, sd('2027-04-15')) > 0 && R.chance(0.08)) {
+  // (replaced by job security in jobs.js: managers are sacked when their club's board and fans run out of patience)
+  if (false) {
     const tb = R.chance(.5) ? leagueTable() : champTable(); const cand = tb.slice(Math.round(tb.length / 2)).map(r => r.t).filter(t => t !== G.user && !T(t).lite && (tb.findIndex(r => r.t === t) + 1) > boardTarget(t).pos + 3);
     if (cand.length) { const t = T(R.pick(cand)); const old = t.mgr; t.mgr = genName(); news('Manager', `${t.name} have sacked ${old} and appointed ${t.mgr} as the new head coach.`, t.id, true); }
   }
   // caretakers are replaced after a few weeks
-  for (const tid of fullTeams()) { const t = T(tid); if (tid !== G.user && /caretaker/i.test(t.mgr || '') && R.chance(0.3)) { t.mgr = genName(); news('Manager', `${t.name} have appointed ${t.mgr} as their new head coach.`, tid, true); }
+  for (const tid of fullTeams()) { const t = T(tid); if (tid !== G.user && !t.vac && /caretaker/i.test(t.mgr || '') && R.chance(0.3)) { t.mgr = genName(); news('Manager', `${t.name} have appointed ${t.mgr} as their new head coach.`, tid, true); }
   }
 }
 function checkBoard() {
