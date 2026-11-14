@@ -28,7 +28,7 @@ function statusTags(p) {
 function unreadCount() { return G.news.filter(n => !n.read).length; }
 
 // ---------- navigation: six groups; collapsible on desktop, two compact rows on a phone ----------
-const NAV_GROUPS = [['Ghome', 'Home', ['inbox', 'media']], ['Gsquad', 'Squad', ['squad', 'tactics', 'train', 'dyn']], ['Gcomp', 'Competitions', ['fixtures', 'table', 'comps', 'intl']], ['Gclub', 'Club', ['transfers', 'finance', 'staff', 'reports', 'club']], ['Gworld', 'World', ['stats', 'awards', 'history']], ['Gme', 'Manager', ['mgr', 'jobs', 'game']]];
+const NAV_GROUPS = [['Ghome', 'Home', ['inbox', 'media']], ['Gsquad', 'Squad', ['squad', 'tactics', 'train', 'dyn']], ['Gcomp', 'Competitions', ['fixtures', 'table', 'comps', 'intl']], ['Gclub', 'Club', ['transfers', 'finance', 'staff', 'reports', 'club']], ['Gworld', 'World', ['stats', 'awards', 'history', 'wff']], ['Gme', 'Manager', ['mgr', 'jobs', 'game']]];
 function navGroupOf(k) { const g = NAV_GROUPS.find(x => x[2].includes(k)); return g ? g[0] : 'Ghome'; }
 function navHtml(nav, scr) {
   const cnt = (k) => k === 'inbox' ? unreadCount() : k === 'media' && typeof mediaUnread === 'function' ? mediaUnread() : 0;
@@ -49,7 +49,7 @@ function render() {
   if (UI.match) return renderMatch();
   if (!G) return renderStart();
   const scr = UI.scr;
-  const nav = [['inbox', 'Inbox'], ['media', 'WUPH.com'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['jobs', 'Manager options'], ['staff', 'Staff'], ['reports', 'Reports'], ['club', 'Club'], ['game', 'Game']];
+  const nav = [['inbox', 'Inbox'], ['media', 'WUPH.com'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['wff', 'WFF'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['jobs', 'Manager options'], ['staff', 'Staff'], ['reports', 'Reports'], ['club', 'Club'], ['game', 'Game']];
   const nf = nextUserFixture();
   const t = userTeam();
   const nextTxt = nf ? `Next: ${COMP_SHORT[nf.comp]} · ${dShort(nf.d)} · ${nf.h === G.user ? 'v ' + tName(nf.a) + ' (H)' : 'v ' + tName(nf.h) + ' (A)'}` : (G.sacked ? 'Unemployed' : 'Season complete');

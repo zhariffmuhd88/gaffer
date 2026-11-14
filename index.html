@@ -8002,6 +8002,7 @@ function units(S) {
   const cb = ce ? 1 + (lead(ce.p) - 10) * .0025 : .99; def *= cb; mid *= cb; att *= cb;
   if (S.tid === G.user) { const tr = trainTeam(); if (tr === 'att') { att *= 1.025; def *= .99; } if (tr === 'def') { def *= 1.025; att *= .99; } if (tr === 'light') { mid *= .99; att *= .99; } }
   if (S.shout) { const sk = S.shout.k; if (sk === 'push') { att *= 1.045; def *= .965; } else if (sk === 'focus') { def *= 1.03; att *= .985; } else if (sk === 'enc') { mid *= 1.02; att *= 1.015; } }
+  if (G.rules && G.rules.dl && G.date >= G.rules.dl) att *= 1.03; // daylight offside law (game scenario, wff.js)
   const df = (S.dayF || 1) * (S.cupF || 1);
   S.u = { gk: gk * (0.5 + df / 2), def: def * df, mid: mid * df, att: att * df };
   return S.u;
@@ -9802,7 +9803,7 @@ function statusTags(p) {
 function unreadCount() { return G.news.filter(n => !n.read).length; }
 
 // ---------- navigation: six groups; collapsible on desktop, two compact rows on a phone ----------
-const NAV_GROUPS = [['Ghome', 'Home', ['inbox', 'media']], ['Gsquad', 'Squad', ['squad', 'tactics', 'train', 'dyn']], ['Gcomp', 'Competitions', ['fixtures', 'table', 'comps', 'intl']], ['Gclub', 'Club', ['transfers', 'finance', 'staff', 'reports', 'club']], ['Gworld', 'World', ['stats', 'awards', 'history']], ['Gme', 'Manager', ['mgr', 'jobs', 'game']]];
+const NAV_GROUPS = [['Ghome', 'Home', ['inbox', 'media']], ['Gsquad', 'Squad', ['squad', 'tactics', 'train', 'dyn']], ['Gcomp', 'Competitions', ['fixtures', 'table', 'comps', 'intl']], ['Gclub', 'Club', ['transfers', 'finance', 'staff', 'reports', 'club']], ['Gworld', 'World', ['stats', 'awards', 'history', 'wff']], ['Gme', 'Manager', ['mgr', 'jobs', 'game']]];
 function navGroupOf(k) { const g = NAV_GROUPS.find(x => x[2].includes(k)); return g ? g[0] : 'Ghome'; }
 function navHtml(nav, scr) {
   const cnt = (k) => k === 'inbox' ? unreadCount() : k === 'media' && typeof mediaUnread === 'function' ? mediaUnread() : 0;
@@ -9823,7 +9824,7 @@ function render() {
   if (UI.match) return renderMatch();
   if (!G) return renderStart();
   const scr = UI.scr;
-  const nav = [['inbox', 'Inbox'], ['media', 'WUPH.com'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['jobs', 'Manager options'], ['staff', 'Staff'], ['reports', 'Reports'], ['club', 'Club'], ['game', 'Game']];
+  const nav = [['inbox', 'Inbox'], ['media', 'WUPH.com'], ['squad', 'Squad'], ['tactics', 'Tactics'], ['train', 'Training'], ['dyn', 'Dynamics'], ['fixtures', 'Fixtures'], ['table', 'League'], ['comps', 'Cups & Europe'], ['stats', 'Stats'], ['awards', 'Awards'], ['history', 'History'], ['wff', 'WFF'], ['transfers', 'Transfers'], ['finance', 'Finances'], ['mgr', 'Manager'], ['jobs', 'Manager options'], ['staff', 'Staff'], ['reports', 'Reports'], ['club', 'Club'], ['game', 'Game']];
   const nf = nextUserFixture();
   const t = userTeam();
   const nextTxt = nf ? `Next: ${COMP_SHORT[nf.comp]} · ${dShort(nf.d)} · ${nf.h === G.user ? 'v ' + tName(nf.a) + ' (H)' : 'v ' + tName(nf.h) + ' (A)'}` : (G.sacked ? 'Unemployed' : 'Season complete');
@@ -16082,7 +16083,7 @@ function scrJobs() {
   const pt = T(G.user) && !T(G.user).lite ? clubPat(G.user) : null;
   const me = pt ? `<div class="box pad" style="margin-bottom:12px"><label class="lb">Your job security at ${esc(userTeam().name)}</label><div style="font-size:18px">${secTag(userSec())} ${secBar(userSec())}</div><div class="dim" style="font-size:12.5px;margin-top:4px">Board confidence ${Math.round(G.board)} · Fans ${Math.round(G.fans ?? 60)} · Board: ${patLabel(pt.b)} · Fans: ${patLabel(pt.f)}. ${pt.b < .95 ? 'This board reacts quickly to bad results.' : pt.b > 1.1 ? 'This board gives managers time.' : ''}</div></div>` : (G.sacked ? `<div class="box pad" style="margin-bottom:12px"><b>You are out of work.</b> Apply for a vacant job below.</div>` : '');
   const all = jobClubs().filter(t => t !== G.user);
-  const row = (t, btn) => { const L = lgRow(t); const m = msOf(t); return `<tr><td>${esc(mgrOf(t))}</td><td>${tLink(t, true)}</td><td class="dim mono">${COMP_SHORT[divOf(t)] || ''}</td><td class="n">${L ? ordinal(L.pos) : ''}</td><td class="n dim">${(() => { try { return ordinal(boardTarget(t).pos); } catch (e) { return ''; } })()}</td><td class="mono" style="font-size:12px">${L ? (L.r.form || []).slice(-5).join('') : ''}</td><td>${secTag(m.s)} ${secBar(m.s)}</td><td>${btn || ''}</td></tr>`; };
+  const row = (t, btn) => { const L = lgRow(t); const m = msOf(t); return `<tr><td>${mLink(mgrOf(t))}</td><td>${tLink(t, true)}</td><td class="dim mono">${COMP_SHORT[divOf(t)] || ''}</td><td class="n">${L ? ordinal(L.pos) : ''}</td><td class="n dim">${(() => { try { return ordinal(boardTarget(t).pos); } catch (e) { return ''; } })()}</td><td class="mono" style="font-size:12px">${L ? (L.r.form || []).slice(-5).join('') : ''}</td><td>${secTag(m.s)} ${secBar(m.s)}</td><td>${btn || ''}</td></tr>`; };
   const head = `<thead><tr><th>Manager</th><th>Club</th><th>Lg</th><th class="n">Pos</th><th class="n" title="Board target">Target</th><th>Form</th><th>Job security</th><th></th></tr></thead>`;
   const warn = (t) => { if (G.sacked || !T(G.user) || T(G.user).lite) return ''; return isRival(G.user, t) ? ' <span class="red" title="Your fans and board will be furious">⚠ rival</span>' : T(t).rep - userTeam().rep >= 8 ? ' <span class="dim" title="Some fans will understand a step up">step up</span>' : T(t).rep - userTeam().rep <= -8 ? ' <span class="amb" title="Your board and fans will not understand it">step down</span>' : ' <span class="amb" title="Your board and fans will not like it">sideways</span>'; };
   let body = '';
@@ -16100,7 +16101,7 @@ function scrJobs() {
     const lgs = LG_ALL(); const lg = UI.jlg && lgs.includes(UI.jlg) ? UI.jlg : (divOf(G.user) && lgs.includes(divOf(G.user)) ? divOf(G.user) : 'PL');
     const pick = `<div class="tabs" style="flex-wrap:wrap">${lgs.map(k => `<button class="${lg === k ? 'on' : ''}" data-a="jlg" data-v="${k}">${COMP_SHORT[k] || k}</button>`).join('')}</div>`;
     const list = divTeams(lg).filter(t => T(t) && !T(t).lite).map(t => [t, t === G.user ? userSec() : msOf(t).s]).sort((a, b) => b[1] - a[1]);
-    body += pick + `<p class="dim" style="margin-top:6px">${esc(COMP_NAME[lg] || lg)}: managers ranked from very secure to very unsecure. Board and fan patience differ by club.</p><div class="tw"><table class="t"><thead><tr><th>Manager</th><th>Club</th><th class="n">Pos</th><th class="n">Target</th><th>Form</th><th>Board</th><th>Fans</th><th>Job security</th></tr></thead><tbody>${list.map(([t, s]) => { const L = lgRow(t); const p2 = clubPat(t); return `<tr class="${t === G.user ? 'me' : ''}"><td>${esc(mgrOf(t))}</td><td>${tLink(t, true)}</td><td class="n">${L ? ordinal(L.pos) : ''}</td><td class="n dim">${(() => { try { return ordinal(boardTarget(t).pos); } catch (e) { return ''; } })()}</td><td class="mono" style="font-size:12px">${L ? (L.r.form || []).slice(-5).join('') : ''}</td><td class="dim" style="font-size:12px">${patLabel(p2.b)}</td><td class="dim" style="font-size:12px">${patLabel(p2.f)}</td><td>${isVac(t) ? '<span class="dim">Vacant</span>' : secTag(s) + ' ' + secBar(s)}</td></tr>`; }).join('')}</tbody></table></div>`;
+    body += pick + `<p class="dim" style="margin-top:6px">${esc(COMP_NAME[lg] || lg)}: managers ranked from very secure to very unsecure. Board and fan patience differ by club.</p><div class="tw"><table class="t"><thead><tr><th>Manager</th><th>Club</th><th class="n">Pos</th><th class="n">Target</th><th>Form</th><th>Board</th><th>Fans</th><th>Job security</th></tr></thead><tbody>${list.map(([t, s]) => { const L = lgRow(t); const p2 = clubPat(t); return `<tr class="${t === G.user ? 'me' : ''}"><td>${mLink(mgrOf(t))}</td><td>${tLink(t, true)}</td><td class="n">${L ? ordinal(L.pos) : ''}</td><td class="n dim">${(() => { try { return ordinal(boardTarget(t).pos); } catch (e) { return ''; } })()}</td><td class="mono" style="font-size:12px">${L ? (L.r.form || []).slice(-5).join('') : ''}</td><td class="dim" style="font-size:12px">${patLabel(p2.b)}</td><td class="dim" style="font-size:12px">${patLabel(p2.f)}</td><td>${isVac(t) ? '<span class="dim">Vacant</span>' : secTag(s) + ' ' + secBar(s)}</td></tr>`; }).join('')}</tbody></table></div>`;
   } else {
     const hot = all.filter(t => !isVac(t) && msOf(t).s < 45).sort((a, b) => msOf(a).s - msOf(b).s);
     body += `<h2 class="sect">Managers under pressure</h2><div class="tw"><table class="t">${head}<tbody>${hot.map(t => row(t)).join('') || '<tr><td colspan="8" class="dim">Nobody is under real pressure at the moment.</td></tr>'}</tbody></table></div>`;
@@ -16201,6 +16202,483 @@ playerExtra = function (p) {
 // unsettled players cost less
 const _apAH = askingPrice;
 askingPrice = function (p) { const v = _apAH(p); try { if (p.c !== G.user) { const h = hap(p); if (h < 50) return Math.round(v * (1 - (50 - h) / 160) * 10) / 10; } } catch (e) { } return v; };
+
+// lore.js: season-by-season player history, club lore (legends, rivals, fans' villains), clickable manager profiles
+// with playing and managing careers, and "favoured / least favoured" clubs and people on player and manager profiles.
+// Loaded after aihap.js.
+
+// ---------- real-world club lore (fan sentiment, with the factual reason) ----------
+// legends: [name, why]; villains: [name, why] = people booed or disliked by that club's supporters
+const CLUB_LORE = {
+  ARS: { leg: [['Arsène Wenger', 'manager 1996–2018, three league titles, the 2003/04 Invincibles'], ['Thierry Henry', "the club's record goalscorer"], ['Dennis Bergkamp', 'Dutch genius, 1995–2006'], ['Patrick Vieira', 'Invincibles captain'], ['Tony Adams', 'one-club captain'], ['Ian Wright', 'goalscoring hero of the 1990s'], ['Robert Pires', 'Invincibles winger'], ['Santi Cazorla', 'fans\' favourite playmaker']],
+    vil: [['Ruud van Nistelrooy', 'Manchester United striker at the heart of the 2003 "Battle of Old Trafford"'], ['Robin van Persie', 'left for rivals Manchester United in 2012'], ['Emmanuel Adebayor', 'joined Manchester City and later Tottenham; his 2009 celebration in front of the away end'], ['José Mourinho', 'years of touchline feuds with Arsène Wenger'], ['Ashley Cole', 'left for Chelsea in 2006']] },
+  TOT: { leg: [['Jimmy Greaves', "the club's great goalscorer of the 1960s"], ['Glenn Hoddle', 'midfield artist of the 1980s'], ['Ledley King', 'one-club captain'], ['Gary Mabbutt', 'long-serving captain'], ['Gareth Bale', 'winger who lit up White Hart Lane'], ['Son Heung-min', 'captain and 2025 Europa League winner'], ['Harry Kane', "the club's record goalscorer"]],
+    vil: [['Sol Campbell', 'left on a free transfer for Arsenal in 2001'], ['Emmanuel Adebayor', 'former Arsenal striker'], ['Arsène Wenger', 'Arsenal manager for 22 years']] },
+  MUN: { leg: [['Sir Alex Ferguson', 'manager 1986–2013, 13 league titles'], ['Sir Bobby Charlton', 'Munich survivor and World Cup winner'], ['George Best', 'Ballon d\'Or winner 1968'], ['Eric Cantona', 'the King of Old Trafford'], ['Ryan Giggs', 'record appearance maker'], ['Paul Scholes', 'one-club midfielder'], ['Wayne Rooney', "the club's record goalscorer"]],
+    vil: [['Carlos Tevez', 'joined neighbours Manchester City in 2009'], ['Arsène Wenger', 'the great rivalry with Ferguson\'s United'], ['Steven Gerrard', 'Liverpool captain']] },
+  CHE: { leg: [['Frank Lampard', "the club's record goalscorer"], ['John Terry', 'captain, five league titles'], ['Didier Drogba', 'scorer in the 2012 Champions League final'], ['Gianfranco Zola', 'Italian magician of the late 1990s'], ['Petr Čech', 'goalkeeper of the title years'], ['José Mourinho', 'three league titles in two spells']],
+    vil: [['Rafael Benítez', 'interim manager in 2012/13, never accepted by the fans'], ['Steven Gerrard', 'Liverpool captain who turned Chelsea down in 2005']] },
+  LIV: { leg: [['Bill Shankly', 'built the modern club'], ['Bob Paisley', 'three European Cups as manager'], ['Kenny Dalglish', 'player and title-winning manager'], ['Steven Gerrard', 'captain, 2005 Champions League winner'], ['Jamie Carragher', 'one-club defender'], ['Ian Rush', "the club's record goalscorer"], ['Jürgen Klopp', '2019 Champions League and 2020 league title'], ['Mohamed Salah', 'modern goalscoring great']],
+    vil: [['Fernando Torres', 'left for Chelsea in January 2011'], ['Michael Owen', 'joined Manchester United in 2009'], ['Gary Neville', 'Manchester United full-back and celebrations in front of the Kop']] },
+  MCI: { leg: [['Sergio Agüero', '93:20 and the 2012 title'], ['Vincent Kompany', 'captain of four title-winning sides'], ['David Silva', 'playmaker of the title years'], ['Yaya Touré', 'powerhouse midfielder'], ['Colin Bell', 'hero of the 1960s and 70s'], ['Pep Guardiola', 'the 2023 treble']],
+    vil: [['Gary Neville', 'Manchester United full-back and pundit']] },
+  EVE: { leg: [['Dixie Dean', '60 league goals in 1927/28'], ['Neville Southall', 'record appearance maker'], ['Duncan Ferguson', 'cult hero'], ['Tim Cahill', 'big-game goalscorer'], ['Leighton Baines', 'left-back of the Moyes years']], vil: [] },
+  NEW: { leg: [['Alan Shearer', "the club's record goalscorer"], ['Kevin Keegan', 'player and the "Entertainers" manager'], ['Jackie Milburn', 'hero of the 1950s FA Cup wins'], ['Sir Bobby Robson', 'beloved manager 1999–2004']], vil: [] },
+  WHU: { leg: [['Bobby Moore', '1966 World Cup-winning captain'], ['Sir Geoff Hurst', 'hat-trick in the 1966 World Cup final'], ['Mark Noble', 'one-club captain'], ['Billy Bonds', 'captain and manager']], vil: [['Frank Lampard', 'left West Ham for Chelsea in 2001']] },
+  AVL: { leg: [['Paul McGrath', 'supporters\' favourite defender'], ['Peter Withe', 'scored the 1982 European Cup winner'], ['Gabriel Agbonlahor', 'local lad'], ['Unai Emery', 'took the club back into the Champions League']], vil: [] },
+  RMA: { leg: [['Alfredo Di Stéfano', 'five European Cups in a row'], ['Raúl', 'captain and long-time record scorer'], ['Cristiano Ronaldo', "the club's record goalscorer"], ['Iker Casillas', 'captain and goalkeeper'], ['Zinedine Zidane', 'player and three-time Champions League-winning coach'], ['Sergio Ramos', 'captain of four Champions League wins']], vil: [['Gerard Piqué', 'outspoken Barcelona defender']] },
+  BAR: { leg: [['Lionel Messi', "the club's record goalscorer"], ['Johan Cruyff', 'player and Dream Team coach'], ['Xavi Hernández', 'midfield heart of the Guardiola era'], ['Andrés Iniesta', 'scorer of the 2010 World Cup winner'], ['Carles Puyol', 'captain'], ['Pep Guardiola', 'the 2009 sextuple']], vil: [['Luís Figo', 'moved straight to Real Madrid in 2000'], ['José Mourinho', 'Real Madrid manager in the Clásico wars of 2010–13']] },
+  ATM: { leg: [['Luis Aragonés', 'player and coach'], ['Diego Simeone', 'player and the coach of two league titles'], ['Fernando Torres', 'El Niño, the academy hero'], ['Koke', 'one-club captain']], vil: [] },
+  JUV: { leg: [['Alessandro Del Piero', "the club's record goalscorer"], ['Gianluigi Buffon', 'goalkeeper for 19 seasons'], ['Michel Platini', 'three Ballons d\'Or at Juventus'], ['Pavel Nedvěd', 'Ballon d\'Or 2003'], ['Giorgio Chiellini', 'defender and captain']], vil: [['Leonardo Bonucci', 'left for Milan in 2017 (and returned)']] },
+  NAP: { leg: [['Diego Maradona', 'the two league titles of 1987 and 1990'], ['Marek Hamšík', 'captain and record appearance maker'], ['Lorenzo Insigne', 'local captain'], ['Dries Mertens', "the club's record goalscorer"]], vil: [['Gonzalo Higuaín', 'moved to Juventus in 2016']] },
+  INT: { leg: [['Javier Zanetti', 'record appearance maker'], ['Giacinto Facchetti', 'captain of Grande Inter'], ['Sandro Mazzola', 'Grande Inter forward'], ['Diego Milito', 'two goals in the 2010 Champions League final'], ['José Mourinho', 'the 2010 treble']], vil: [['Romelu Lukaku', 'talks with Juventus in 2023 turned the fans against him']] },
+  ACM: { leg: [['Paolo Maldini', 'one-club captain'], ['Franco Baresi', 'captain, shirt retired'], ['Marco van Basten', 'three Ballons d\'Or'], ['Andriy Shevchenko', 'Ballon d\'Or 2004'], ['Kaká', 'Ballon d\'Or 2007']], vil: [['Gianluigi Donnarumma', 'left on a free transfer in 2021']] },
+  ROM: { leg: [['Francesco Totti', 'one-club captain'], ['Daniele De Rossi', 'Capitan Futuro'], ['Bruno Conti', 'World Cup winner of 1982']], vil: [] },
+  BAY: { leg: [['Franz Beckenbauer', 'Der Kaiser'], ['Gerd Müller', 'record goalscorer'], ['Philipp Lahm', 'captain of the 2013 treble'], ['Thomas Müller', 'record appearance maker'], ['Oliver Kahn', 'goalkeeper and captain']], vil: [] },
+  BVB: { leg: [['Jürgen Klopp', 'two league titles'], ['Marco Reus', 'local hero'], ['Michael Zorc', 'captain and sporting director'], ['Roman Weidenfeller', 'goalkeeper of the Klopp years']], vil: [['Mario Götze', 'agreed to join Bayern before the 2013 Champions League final'], ['Robert Lewandowski', 'joined Bayern in 2014']] },
+  PSG: { leg: [['Zlatan Ibrahimović', 'goalscorer of the first Qatari-era titles'], ['Thiago Silva', 'captain for eight seasons'], ['Edinson Cavani', 'long-time record scorer'], ['Pauleta', 'hero of the early 2000s']], vil: [] },
+  OM: { leg: [['Jean-Pierre Papin', 'five straight scoring titles'], ['Didier Drogba', 'one season that became legend'], ['Basile Boli', 'scored the 1993 European Cup winner']], vil: [] },
+  AJX: { leg: [['Johan Cruyff', 'three European Cups as a player'], ['Marco van Basten', 'academy striker'], ['Frank Rijkaard', 'player and 1995 winner'], ['Jari Litmanen', 'the 1995 Champions League team']], vil: [] },
+  FEY: { leg: [['Wim van Hanegem', 'the 1970 European Cup side'], ['Coen Moulijn', 'winger of the 1960s'], ['Robin van Persie', 'came home as a player in 2018 and later became head coach']], vil: [] },
+  PSV: { leg: [['Willy van der Kuijlen', "the club's record goalscorer"], ['Phillip Cocu', 'player and coach'], ['Ronaldo', 'the Brazilian\'s two seasons in Eindhoven']], vil: [] }
+};
+function loreOf(tid) { return CLUB_LORE[tid] || { leg: [], vil: [] }; }
+
+// ---------- real-world manager careers (to 2025/26, game summary) ----------
+// name: [playing clubs, managing jobs, favoured clubs, favoured people]
+const MGR_CAREER = {
+  'Mikel Arteta': ['Barcelona B, Paris Saint-Germain (loan), Rangers, Real Sociedad, Everton, Arsenal', 'Manchester City (assistant), Arsenal', 'Arsenal, Everton, Real Sociedad', 'Pep Guardiola (mentor), Arsène Wenger (his manager at Arsenal)'],
+  'Pep Guardiola': ['Barcelona, Brescia, Roma, Al-Ahli, Dorados', 'Barcelona B, Barcelona, Bayern Munich, Manchester City', 'Barcelona, Manchester City', 'Johan Cruyff (mentor), Juan Manuel Lillo'],
+  'Arne Slot': ['PEC Zwolle, NAC Breda, Sparta Rotterdam', 'Cambuur, AZ, Feyenoord, Liverpool', 'Feyenoord, Liverpool', ''],
+  'Unai Emery': ['Real Sociedad, Toledo, Racing Ferrol, Leganés, Lorca', 'Lorca, Almería, Valencia, Spartak Moscow, Sevilla, Paris Saint-Germain, Arsenal, Villarreal, Aston Villa', 'Sevilla, Villarreal, Aston Villa', ''],
+  'Eddie Howe': ['Bournemouth, Portsmouth', 'Bournemouth, Burnley, Newcastle United', 'Bournemouth, Newcastle United', ''],
+  'Diego Simeone': ['Vélez Sarsfield, Pisa, Sevilla, Atlético Madrid, Inter, Lazio, Racing Club', 'Racing Club, Estudiantes, River Plate, San Lorenzo, Catania, Atlético Madrid', 'Atlético Madrid, Racing Club', ''],
+  'Carlo Ancelotti': ['Parma, Roma, Milan', 'Reggiana, Parma, Juventus, Milan, Chelsea, Paris Saint-Germain, Real Madrid, Bayern Munich, Napoli, Everton, Brazil', 'Milan, Real Madrid', ''],
+  'Hansi Flick': ['Bayern Munich, Köln', 'Hoffenheim, Bayern Munich, Germany, Barcelona', 'Bayern Munich, Barcelona', 'Joachim Löw (worked as his assistant)'],
+  'Vincent Kompany': ['Anderlecht, Hamburg, Manchester City', 'Anderlecht, Burnley, Bayern Munich', 'Manchester City, Anderlecht', 'Pep Guardiola (his manager at City)'],
+  'Luis Enrique': ['Sporting Gijón, Real Madrid, Barcelona', 'Barcelona B, Roma, Celta Vigo, Barcelona, Spain, Paris Saint-Germain', 'Barcelona, Sporting Gijón', ''],
+  'Xabi Alonso': ['Real Sociedad, Eibar (loan), Liverpool, Real Madrid, Bayern Munich', 'Real Sociedad B, Bayer Leverkusen, Real Madrid', 'Real Sociedad, Liverpool, Real Madrid', 'Carlo Ancelotti, Pep Guardiola, José Mourinho (his coaches)'],
+  'Antonio Conte': ['Lecce, Juventus', 'Arezzo, Bari, Atalanta, Siena, Juventus, Italy, Chelsea, Inter, Tottenham, Napoli', 'Juventus, Lecce', ''],
+  'Massimiliano Allegri': ['Pescara, Cagliari, Perugia, Napoli', 'Cagliari, Milan, Juventus', 'Juventus, Milan', ''],
+  'Luciano Spalletti': ['Spezia, Empoli', 'Empoli, Udinese, Roma, Zenit, Inter, Napoli, Italy, Juventus', 'Napoli, Roma', ''],
+  'Andoni Iraola': ['Athletic Club, New York City FC', 'AEK Larnaca, Mirandés, Rayo Vallecano, Bournemouth', 'Athletic Club', ''],
+  'Oliver Glasner': ['SV Ried', 'LASK, Wolfsburg, Eintracht Frankfurt, Crystal Palace', 'Eintracht Frankfurt, Crystal Palace', ''],
+  'Marco Silva': ['Estoril', 'Estoril, Sporting CP, Olympiacos, Hull City, Watford, Everton, Fulham', 'Fulham, Estoril', ''],
+  'Thomas Frank': ['', 'Brøndby, Brentford, Tottenham', 'Brentford', ''],
+  'José Mourinho': ['', 'Benfica, União de Leiria, Porto, Chelsea, Inter, Real Madrid, Manchester United, Tottenham, Roma, Fenerbahçe', 'Porto, Chelsea, Inter', ''],
+  'Thomas Tuchel': ['Augsburg, Ulm (lower leagues)', 'Mainz, Borussia Dortmund, Paris Saint-Germain, Chelsea, Bayern Munich, England', 'Chelsea, Mainz', ''],
+  'Ruben Amorim': ['Belenenses, Benfica, Braga, Al-Wakrah', 'Casa Pia, Braga, Sporting CP, Manchester United', 'Sporting CP, Benfica', ''],
+  'Enzo Maresca': ['West Brom, Juventus, Sevilla, Olympiacos, Málaga', 'Ascoli, Parma, Leicester City, Chelsea', 'Leicester City, Chelsea', 'Pep Guardiola (worked with him at City)'],
+  'Jürgen Klopp': ['Mainz', 'Mainz, Borussia Dortmund, Liverpool', 'Liverpool, Borussia Dortmund, Mainz', ''],
+  'Arsène Wenger': ['Strasbourg (and amateur clubs)', 'Nancy, Monaco, Nagoya Grampus, Arsenal', 'Arsenal, Monaco', ''],
+  'Didier Deschamps': ['Nantes, Marseille, Bordeaux, Juventus, Chelsea, Valencia', 'Monaco, Juventus, Marseille, France', 'Marseille, Juventus', ''],
+  'Xavi Hernández': ['Barcelona, Al Sadd', 'Al Sadd, Barcelona', 'Barcelona', 'Pep Guardiola, Johan Cruyff'],
+  'Nuno Espírito Santo': ['Vitória Guimarães, Deportivo, Porto, Dynamo Moscow', 'Rio Ave, Valencia, Porto, Wolves, Tottenham, Al-Ittihad, Nottingham Forest', 'Wolves, Porto', ''],
+  'David Moyes': ['Celtic, Cambridge United, Bristol City, Shrewsbury, Dunfermline, Hamilton, Preston', 'Preston, Everton, Manchester United, Real Sociedad, Sunderland, West Ham, Everton', 'Everton, West Ham', ''],
+  'Sir Alex Ferguson': ['Queen\'s Park, St Johnstone, Dunfermline, Rangers, Falkirk, Ayr United', 'East Stirlingshire, St Mirren, Aberdeen, Scotland, Manchester United', 'Manchester United, Aberdeen', '']
+};
+
+function pLinkL(id) { const p = P(id); return p ? `<button class="lnk" data-a="player" data-v="${id}" style="background:none;border:0;padding:0;color:var(--text);text-decoration:underline;font:inherit">${esc(p.n)}</button>` : ''; }
+// ---------- season history of every player ----------
+// p.sh rows: [season, club id or name, apps, goals, assists, clean sheets, manager]
+const ZST = () => ({ a: 0, g: 0, as: 0, cs: 0 });
+function shClub(c, p) { return T(c) ? c : (p.gone || p.ab || (c === 'ABROAD' ? 'Abroad' : c)); }
+function shPush(p, club) {
+  const b = p.stb || ZST(); const st = p.st || newStats();
+  const r = [seasonLabel(G.year), shClub(club, p), st.a - b.a, st.g - b.g, st.as - b.as, st.cs - b.cs, T(club) ? mgrOf(club) : ''];
+  if (r[2] > 0) (p.sh = p.sh || []).push(r);
+  // a player who goes straight to a rival is a villain to his old club
+  if (p.shc && T(p.shc) && T(p.c) && p.c !== p.shc && isRival(p.shc, p.c) && (p.car && p.car.a >= 20)) { G.vil = G.vil || {}; (G.vil[p.shc] = G.vil[p.shc] || []).push([p.id, p.c, seasonLabel(G.year)]); }
+}
+function shSync(p) {
+  if (!p || p.pseudo || p.leg) return;
+  // only players with games this season (or a real career) are tracked, to keep saves small
+  if (p.shc === undefined) { if (p.st.a > 0 || (p.car && p.car.a >= 20)) p.shc = p.c; return; }
+  if (p.c !== p.shc) { shPush(p, p.shc); p.shc = p.c; p.stb = { a: p.st.a, g: p.st.g, as: p.st.as, cs: p.st.cs }; }
+}
+const _wkLore = weekly;
+weekly = function () { _wkLore.apply(this, arguments); try { if (G && G.players) { for (const id in G.players) shSync(G.players[id]); loreMgrScan(); } } catch (e) { console.error(e); } };
+const _seLore = seasonEnd;
+seasonEnd = function () {
+  try {
+    for (const id in G.players) { const p = G.players[id]; if (!p || p.pseudo || p.leg) continue; shSync(p); shPush(p, p.c); delete p.stb; if (p.shc !== undefined) p.shc = p.c; }
+    // managers' league finishes
+    G.mrec = G.mrec || {};
+    for (const k of LG_ALL()) tableOf(k).forEach((r, i) => { const m = r.t === G.user ? G.mgr : (T(r.t) && T(r.t).mgr); if (m && !/caretaker/i.test(m)) (G.mrec[m] = G.mrec[m] || []).push([seasonLabel(G.year), r.t, i + 1, k]); });
+  } catch (e) { console.error(e); }
+  return _seLore.apply(this, arguments);
+};
+// managers' jobs in this save
+function loreMgrScan() {
+  G.mcur = G.mcur || {}; G.mh = G.mh || {};
+  for (const k of LG_ALL()) for (const tid of divTeams(k)) {
+    const t = T(tid); if (!t || t.lite) continue; const m = tid === G.user ? G.mgr : t.mgr; if (!m) continue;
+    const was = G.mcur[tid];
+    if (was !== m) {
+      if (was) { const h = (G.mh[was] || []).find(x => x[0] === tid && !x[2]); if (h) h[2] = G.date; }
+      if (!/caretaker/i.test(m)) (G.mh[m] = G.mh[m] || []).push([tid, was ? G.date : null, null]);
+      G.mcur[tid] = m;
+    }
+  }
+}
+// trophies won by managers in this save
+const _honLore = honour;
+honour = function (tid, name) { const r = _honLore.apply(this, arguments); try { const t = T(tid); if (t && !t.nat) { const m = tid === G.user ? G.mgr : t.mgr; if (m && !/caretaker/i.test(m)) { G.mtro = G.mtro || {}; (G.mtro[m] = G.mtro[m] || []).push([seasonLabel(G.year), tid, name]); } } } catch (e) { } return r; };
+
+function seasonRows(p) {
+  const rows = (p.sh || []).slice();
+  const b = p.stb || ZST(); const st = p.st || newStats();
+  if (st.a - (b.a || 0) > 0) rows.push([seasonLabel(G.year) + ' (now)', shClub(p.c, p), st.a - b.a, st.g - b.g, st.as - b.as, st.cs - b.cs, T(p.c) ? mgrOf(p.c) : '']);
+  return rows;
+}
+function clubCell(c) { return T(c) ? tLink(c, true) : esc(c); }
+function historyHtml(p) {
+  const rows = seasonRows(p); const gk = p.pos === 'GK';
+  const tot = rows.reduce((s, r) => [s[0] + r[2], s[1] + r[3], s[2] + r[4], s[3] + r[5]], [0, 0, 0, 0]);
+  const pre = (p.exc || []).filter(x => T(x));
+  return `<h2 class="sect">History</h2>${rows.length ? `<div class="tw"><table class="t"><thead><tr><th>Season</th><th>Club</th><th class="n">Apps</th><th class="n">Goals</th><th class="n">Assists</th>${gk ? '<th class="n">Clean sheets</th>' : ''}</tr></thead><tbody>${rows.map(r => `<tr><td class="mono">${esc(r[0])}</td><td>${clubCell(r[1])}</td><td class="n">${r[2]}</td><td class="n">${r[3]}</td><td class="n">${r[4]}</td>${gk ? `<td class="n">${r[5]}</td>` : ''}</tr>`).join('')}${rows.length > 1 ? `<tr><td><b>Total</b></td><td></td><td class="n"><b>${tot[0]}</b></td><td class="n"><b>${tot[1]}</b></td><td class="n"><b>${tot[2]}</b></td>${gk ? `<td class="n"><b>${tot[3]}</b></td>` : ''}</tr>` : ''}</tbody></table></div>` : '<p class="dim">No first-team games in this save yet.</p>'}<p class="dim" style="font-size:12px;margin-top:4px">Seasons from 2026/27 (all competitions).${pre.length ? ` Earlier clubs: ${pre.map(x => tLink(x, true)).join(', ')}.` : ''}</p>`;
+}
+
+// ---------- favoured / least favoured ----------
+function playerLikes(p) {
+  const fav = [], favP = [], bad = [];
+  const apps = {}; for (const r of seasonRows(p)) if (T(r[1])) apps[r[1]] = (apps[r[1]] || 0) + r[2];
+  const byApps = Object.entries(apps).sort((a, b) => b[1] - a[1]);
+  for (const [c, a] of byApps) if (a >= 25 || (c === p.c && hap(p) >= 62)) fav.push([c, c === p.c ? 'his club' : `${a} games for them`]);
+  for (const k in CLUB_LORE) if (CLUB_LORE[k].leg.some(x => x[0] === p.n)) fav.push([k, 'a club legend there']);
+  // managers he played under the most
+  const mg = {}; for (const r of seasonRows(p)) if (r[6] && r[6] !== G.mgr && !/caretaker/i.test(r[6])) mg[r[6]] = (mg[r[6]] || 0) + r[2]; else if (r[6] === G.mgr && p.c === G.user) mg[r[6]] = (mg[r[6]] || 0) + r[2];
+  const topM = Object.entries(mg).sort((a, b) => b[1] - a[1])[0]; if (topM && topM[1] >= 15) favP.push([topM[0], `played ${topM[1]} games under him`]);
+  if (T(p.c) && !T(p.c).lite) { const sq = squad(p.c).filter(q => q.id !== p.id); const friend = sq.filter(q => q.nat === p.nat && Math.abs(q.age - p.age) <= 8).sort((a, b) => hash(p.id + a.id) % 97 - hash(p.id + b.id) % 97)[0]; if (friend) favP.push([friend.n, 'team-mate he gets on well with', friend.id]); }
+  // least favoured
+  for (const k in G.vil || {}) for (const v of G.vil[k]) if (v[0] === p.id) bad.push([k, `fans see him as a traitor after his move to ${tName(v[1], false)}`]);
+  for (const k in CLUB_LORE) if (CLUB_LORE[k].vil.some(x => x[0] === p.n)) bad.push([k, 'booed by their supporters']);
+  if (p.hr && p.hr.some(x => x[1] === 'lf') && T(p.c)) bad.push(['@' + mgrOf(p.c), 'has lost faith in him']);
+  return { fav: fav.slice(0, 4), favP: favP.slice(0, 3), bad: bad.slice(0, 3) };
+}
+function likesHtml(L, who) {
+  const it = (x) => x[0][0] === '@' ? `<b>${esc(x[0].slice(1))}</b> <span class="dim">(${esc(x[1])})</span>` : T(x[0]) ? `${tLink(x[0], true)} <span class="dim">(${esc(x[1])})</span>` : x[2] && P(x[2]) ? `${pLinkL(x[2])} <span class="dim">(${esc(x[1])})</span>` : `<b>${esc(x[0])}</b> <span class="dim">(${esc(x[1])})</span>`;
+  const sec = (t, xs) => xs.length ? `<div style="margin:4px 0"><span class="lb">${t}</span> ${xs.map(it).join(' · ')}</div>` : '';
+  const body = sec('Favoured clubs', L.fav) + sec('Favoured people', L.favP) + sec('Least favoured', L.bad);
+  return `<h2 class="sect">Likes and dislikes</h2>${body || `<p class="dim">Nothing known yet about ${who}'s favourite clubs and people.</p>`}`;
+}
+const _peLore = playerExtra;
+playerExtra = function (p) {
+  const h = _peLore(p);
+  try { if (p && !p.pseudo && !p.leg) return h + historyHtml(p) + likesHtml(playerLikes(p), surname(p.n)); } catch (e) { console.error(e); }
+  return h;
+};
+
+// ---------- club lore on club pages ----------
+function gameLegends(tid) {
+  const out = [];
+  const apps = {}; for (const id in G.players) { const p = G.players[id]; if (!p || p.pseudo) continue; let a = 0; for (const r of seasonRows(p)) if (r[1] === tid) a += r[2]; if (a >= 150) out.push([p.n, `${a} games in this save`, p.id]); }
+  for (const m in G.mtro || {}) { const n = G.mtro[m].filter(x => x[1] === tid).length; if (n >= 3) out.push([m, `${n} trophies as manager in this save`]); }
+  return out;
+}
+function gameVillains(tid) { return (G.vil && G.vil[tid] || []).filter(v => P(v[0])).map(v => [P(v[0]).n, `left for rivals ${tName(v[1], false)} (${v[2]})`, v[0]]); }
+function loreHtml(tid) {
+  const L = loreOf(tid); const rv = RIVALS.filter(([a, b]) => a === tid || b === tid).map(([a, b]) => a === tid ? b : a).filter(t => T(t));
+  const gl = gameLegends(tid), gv = gameVillains(tid);
+  const row = (x) => `<li>${x[2] && P(x[2]) ? pLinkL(x[2]) : `<b>${esc(x[0])}</b>`} <span class="dim">— ${esc(x[1])}</span></li>`;
+  if (!rv.length && !L.leg.length && !L.vil.length && !gl.length && !gv.length) return '';
+  return `<h2 class="sect">Club lore</h2>
+  ${rv.length ? `<div style="margin:4px 0"><span class="lb">Rivals</span> ${rv.map(t => tLink(t, true)).join(' · ')}</div>` : ''}
+  <div class="grid2" style="gap:10px;margin-top:6px"><div class="box pad"><label class="lb">Favoured: club legends</label><ul class="hapl">${L.leg.map(row).join('') + gl.map(row).join('') || '<li class="dim">None listed</li>'}</ul></div>
+  <div class="box pad"><label class="lb">Least favoured: fans' villains</label><ul class="hapl">${L.vil.map(row).join('') + gv.map(row).join('') || '<li class="dim">None listed</li>'}</ul></div></div>
+  <p class="dim" style="font-size:12px">Supporters' feelings, with the reason. Players reach legend status in this save at 150 games for the club; managers with three trophies.</p>`;
+}
+const _cmLore = clubModal;
+clubModal = function (tid) {
+  _cmLore(tid);
+  try {
+    const t = T(tid); if (!UI.modal || !t || t.nat) return;
+    let m = UI.modal;
+    if (t.mgr && tid !== G.user) m = m.replace(esc(t.mgr), `<button class="lnk" data-a="mgrp" data-v="${esc(t.mgr)}" style="background:none;border:0;padding:0;color:var(--text);text-decoration:underline;font:inherit">${esc(t.mgr)}</button>`);
+    const lh = loreHtml(tid);
+    if (lh) { const k = m.indexOf('<h2 class="sect">Squad</h2>'); m = k > 0 ? m.slice(0, k) + lh + m.slice(k) : m.replace(/<\/div>\s*$/, lh + '</div>'); }
+    UI.modal = m; render();
+  } catch (e) { console.error(e); }
+};
+
+// ---------- manager profiles ----------
+function mgrProfileHtml(name) {
+  const md = (typeof mgrIndex === 'function' && mgrIndex()[name]) || null; const car = MGR_CAREER[name];
+  const tid = fullTeams().find(t => T(t).mgr === name && t !== G.user) || (name === G.mgr && !G.sacked ? G.user : null);
+  const ex = Object.values(G.players).find(p => p.n === name && (p.stf || p.c === 'RETIRED'));
+  const hist = (G.mh && G.mh[name]) || []; const tro = (G.mtro && G.mtro[name]) || []; const rec = (G.mrec && G.mrec[name]) || [];
+  const hon = md && md[4] ? md[4].split(' ').filter(Boolean).map(tok => `${+tok.slice(1) || 1}× ${MGR_CODE_N[tok[0]] || tok[0]}`).join(', ') : '';
+  // favoured / least favoured
+  const fav = []; const bad = [];
+  if (car && car[2]) for (const c of car[2].split(', ')) fav.push(c);
+  for (const h of hist) { const days = dDiff(h[1] || sd('2026-07-01'), h[2] || G.date); if (days >= 300 && !fav.includes(tName(h[0], false))) fav.push(tName(h[0], false)); }
+  for (const k in CLUB_LORE) { if (CLUB_LORE[k].leg.some(x => x[0] === name) && !fav.includes(tName(k, false))) fav.push(tName(k, false)); if (CLUB_LORE[k].vil.some(x => x[0] === name)) bad.push(`${tName(k, false)} supporters`); }
+  for (const s of G.sackLog || []) if (s.n === name) bad.push(`${tName(s.tid, false)} (sacked him, ${dShort(s.d)})`);
+  const favP = car && car[3] ? car[3] : '';
+  return `<div class="band"><span>${esc(name)}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+  <dl class="kv"><dt>Now</dt><dd>${tid ? `Manager of ${tLink(tid, true)}` : md && md[3] ? esc(md[3]) : 'Without a club'}</dd>
+  ${md ? `<dt>Nationality</dt><dd>${esc(md[1])}</dd>` : ''}
+  ${hon ? `<dt>Major honours (to 2025/26)</dt><dd>${esc(hon)}</dd>` : ''}
+  ${tid && G.ms && G.ms[tid] ? `<dt>Job security</dt><dd>${secTag(tid === G.user ? userSec() : G.ms[tid].s)}</dd>` : ''}</dl>
+  <h2 class="sect">Playing career</h2>${car && car[0] ? `<p style="margin:0">${esc(car[0])}</p>` : ex ? `<p style="margin:0">Former player in this save. <button class="btn" data-a="expro" data-v="${ex.id}">Non-playing profile</button></p>` : '<p class="dim" style="margin:0">Not recorded in this game.</p>'}
+  <h2 class="sect">Managerial career</h2>${car && car[1] ? `<p style="margin:0 0 6px"><span class="lb">Before this save</span> ${esc(car[1])}</p>` : ''}
+  ${hist.length ? `<div class="tw"><table class="t"><thead><tr><th>Club (this save)</th><th>From</th><th>To</th></tr></thead><tbody>${hist.map(h => `<tr><td>${tLink(h[0], true)}</td><td class="dim">${h[1] ? dShort(h[1]) : 'before 2026/27'}</td><td class="dim">${h[2] ? dShort(h[2]) : 'now'}</td></tr>`).join('')}</tbody></table></div>` : (car ? '' : '<p class="dim">No jobs recorded yet in this save.</p>')}
+  ${rec.length ? `<h2 class="sect">League finishes (this save)</h2><div class="tw"><table class="t"><tbody>${rec.map(r => `<tr><td class="mono">${r[0]}</td><td>${tLink(r[1], true)}</td><td class="n">${ordinal(r[2])}</td><td class="dim">${esc(COMP_NAME[r[3]] || r[3])}</td></tr>`).join('')}</tbody></table></div>` : ''}
+  ${tro.length ? `<h2 class="sect">Trophies (this save)</h2>${tro.map(x => `<div>🏆 ${esc(x[0])} ${esc(x[2])} <span class="dim">(${esc(tName(x[1], false))})</span></div>`).join('')}` : ''}
+  <h2 class="sect">Likes and dislikes</h2>${fav.length ? `<div><span class="lb">Favoured clubs</span> ${fav.map(esc).join(' · ')}</div>` : ''}${favP ? `<div><span class="lb">Favoured people</span> ${esc(favP)}</div>` : ''}${bad.length ? `<div><span class="lb">Least favoured</span> ${bad.map(esc).join(' · ')}</div>` : ''}${!fav.length && !favP && !bad.length ? '<p class="dim">Nothing known yet.</p>' : ''}
+  <p class="dim" style="font-size:12px;margin-top:8px">Careers before this save are a game summary of public records up to 2025/26.</p></div>`;
+}
+ACT.mgrp = (v) => { UI.modal = mgrProfileHtml(v); render(); };
+function mLink(name) { if (!name || name === G.mgr || /caretaker|vacant/i.test(name)) return esc(name || ''); return `<button class="lnk" data-a="mgrp" data-v="${esc(name)}" style="background:none;border:0;padding:0;color:var(--text);text-decoration:underline;font:inherit;text-align:left">${esc(name)}</button>`; }
+
+// wff.js: football politics. The game's world governing body is a fictional stand-in, the World Football Federation
+// (WFF), with fictional officials, so the storyline never puts invented words or results on real people.
+// Game scenario for 2026/27: the WFF debates the "daylight" offside law (an idea first put forward publicly by
+// Arsène Wenger), a challenger runs for president on it, wins the May 2027 congress vote, and the law comes in for
+// 2027/28 (attackers level with any part of a defender are onside: slightly more goals). Loaded after lore.js.
+
+const WFF = {
+  name: 'World Football Federation', short: 'WFF', hq: 'Zurich, Switzerland', founded: 1904, members: 211,
+  inc: { n: 'Henrik Aldenberg', nat: 'Denmark', role: 'President since 2015', bio: 'Former lawyer and administrator who expanded the Club World Cup and the World Cup. Campaigns on stability and record revenues.' },
+  ch: { n: 'Laurent Mercier', nat: 'France', role: 'Chief of Global Football Development', bio: 'Former coach who spent two decades in club management before joining the WFF. Campaigns on the daylight offside law, a bigger grassroots fund and a lighter fixture calendar.' },
+  sec: 'Amara Kouyaté (Secretary General)'
+};
+// the season's storyline: [date, key]
+const WFF_PLAN = [['2026-09-16', 'prop'], ['2026-11-18', 'cand'], ['2027-01-20', 'man'], ['2027-02-17', 'poll'], ['2027-03-24', 'poll'], ['2027-04-21', 'poll'], ['2027-05-19', 'vote'], ['2027-06-09', 'law']];
+const WFF_RULES = [
+  { k: 'day', n: 'Daylight offside', d: 'An attacker is onside unless there is clear daylight between him and the second-last defender. First put forward publicly by Arsène Wenger.', st0: 'Proposed', tag: 'Game scenario (idea from the real world)' },
+  { k: 'eight', n: 'Eight-second rule for goalkeepers', d: 'A goalkeeper holding the ball for more than eight seconds concedes a corner.', st0: 'In force', tag: 'Real-world law since 2025/26' },
+  { k: 'saot', n: 'Semi-automated offside technology', d: 'Cameras track players\' limbs so offside decisions are made faster.', st0: 'In force', tag: 'Real-world technology' },
+  { k: 'sin', n: 'Sin bins for dissent', d: 'Ten minutes off the pitch for dissent in professional football.', st0: 'Under review', tag: 'Game scenario' },
+  { k: 'capt', n: 'Only captains approach the referee', d: 'Only the captain may speak to the referee about a decision.', st0: 'Trial', tag: 'Game scenario based on real trials' }
+];
+function wff() { if (!G.wff) G.wff = { log: [], poll: 41, st: {}, pres: WFF.inc.n }; return G.wff; }
+function wffNews(title, body, big) { news(title, body, null, true); const W = wff(); W.log.unshift([G.date, title, body]); W.log = W.log.slice(0, 30); if (big) try { trend('WFF', 3); } catch (e) { } }
+function wffStep(k) {
+  const W = wff(); const I = WFF.inc, C = WFF.ch;
+  if (k === 'prop') { W.st.day = 'Consultation'; wffNews('WFF', `Game scenario: the ${WFF.name} opens a consultation on the "daylight" offside law. An attacker would be onside unless there is clear daylight between him and the defender. Supporters of the idea say it rewards attacking play; critics fear it will make defending impossible.`, true); try { journPost(jr('gp'), 'Daylight offside: brilliant for the game or the end of defending? Discuss.', {}); fanPost(G.user, R.pick(['Daylight offside would be class. More goals, fewer toenail VAR calls', 'Leave offside alone. Defenders have it hard enough']), {}); } catch (e) { } }
+  if (k === 'cand') { wffNews('WFF election', `Game scenario: ${C.n}, the WFF's ${C.role.toLowerCase()}, will stand against president ${I.n} at the May congress. His platform: the daylight offside law, a bigger grassroots fund and a lighter fixture calendar.`, true); }
+  if (k === 'man') { wffNews('WFF election', `Manifestos published. ${I.n} promises "stability and record revenues" and a 48-team Club World Cup. ${C.n} promises the daylight law, 25% of revenue to grassroots football and a mandatory winter rest for players.`); }
+  if (k === 'poll') { W.poll = clamp(W.poll + R.i(3, 6), 40, 58); wffNews('WFF election', `Latest soundings of member associations: ${C.n} ${W.poll}%, ${I.n} ${100 - W.poll}%. ${W.poll >= 50 ? 'The challenger has momentum.' : 'The incumbent still leads, but the gap is closing.'}`); }
+  if (k === 'vote') {
+    const yes = Math.round(WFF.members * clamp(W.poll + R.i(1, 4), 52, 62) / 100); const no = WFF.members - yes - 3;
+    W.pres = C.n; W.res = [yes, no, 3]; W.st.day = 'Approved for 2027/28';
+    wffNews('WFF election', `Game scenario: ${C.n} is elected president of the ${WFF.name}, beating ${I.n} by ${yes} votes to ${no} (3 abstentions). His first act: putting the daylight offside law to the congress, which approves it for the 2027/28 season.`, true);
+    try { fanPost(G.user, R.pick([`New WFF president, daylight offside coming. Football is about to change 👀`, `${surname(C.n)} actually did it. Daylight offside next season!`]), { big: true }); journPost(jr('mh'), `${C.n} wins the WFF presidency. Daylight offside from 2027/28.`, { big: true }); } catch (e) { }
+    if (W.end) { const ok = W.end === 'ch'; G.mgrRep = clamp(G.mgrRep + (ok ? 2 : -1), 20, 99); msg('WFF election', ok ? `You backed ${C.n} publicly, and he won. Your profile in the game's corridors of power has grown.` : `You backed ${I.n}, who lost. The new president's team will remember.`); }
+  }
+  if (k === 'law') { G.rules = G.rules || {}; G.rules.dl = '2027-07-01'; W.st.day = 'In force from 1 July 2027'; wffNews('WFF', 'The daylight offside law comes into force on 1 July 2027 in every competition. Expect fewer offside calls and a few more goals.'); }
+}
+const _dtWFF = dailyTick;
+dailyTick = function () {
+  try { if (G && G.teams) { const W = wff(); W.done = W.done || {}; for (const [d, k] of WFF_PLAN) { const key = d + k; if (G.date >= d && !W.done[key] && G.date <= addDays(d, 10)) { W.done[key] = 1; wffStep(k); } } } } catch (e) { console.error(e); }
+  return _dtWFF.apply(this, arguments);
+};
+function wffEndorse(v) {
+  const W = wff(); if (W.end) return 'You have already given your view.'; if (W.res) return 'The election is over.';
+  W.end = v; const who = v === 'ch' ? WFF.ch.n : WFF.inc.n;
+  if (v === 'no') { W.end = 'no'; return 'You stay neutral.'; }
+  news('WFF election', `${G.mgr} publicly backs ${who} in the WFF presidential election.`, G.user, true);
+  try { journPost(jr('gp'), `${G.mgr} comes out for ${who} in the WFF race.`, { u: 1 }); fanPost(G.user, v === 'ch' ? 'Gaffer backing daylight offside. Based.' : 'Why is our manager getting involved in WFF politics?', { u: 1 }); } catch (e) { }
+  return `You back ${who}.`;
+}
+ACT.wffe = (v) => { toast(wffEndorse(v)); autosave(); render(); };
+ACT.wffo = () => { UI.modal = null; UI.scr = 'wff'; render(); };
+function scrWFF() {
+  const W = wff(); const I = WFF.inc, C = WFF.ch; const presC = W.pres === C.n;
+  const st = (r) => (W.st[r.k] || r.st0);
+  const elect = W.res ? `<p><b>Result (19 May 2027):</b> ${esc(C.n)} ${W.res[0]} · ${esc(I.n)} ${W.res[1]} · abstentions ${W.res[2]}</p>` : W.done && W.done['2026-11-18cand'] ? `<p>Congress vote on 19 May 2027. Latest soundings: <b>${esc(C.n)} ${W.poll}%</b>, ${esc(I.n)} ${100 - W.poll}%.</p>${W.end ? `<p class="dim">Your position: ${W.end === 'ch' ? 'backing ' + esc(C.n) : W.end === 'inc' ? 'backing ' + esc(I.n) : 'neutral'}.</p>` : `<div class="row"><button class="btn" data-a="wffe" data-v="ch">Back ${esc(C.n)}</button><button class="btn" data-a="wffe" data-v="inc">Back ${esc(I.n)}</button><button class="btn" data-a="wffe" data-v="no">Stay neutral</button></div>`}` : '<p class="dim">The next presidential election is at the May 2027 congress.</p>';
+  const cand = (x, cur) => `<div class="box pad"><label class="lb">${cur ? 'President' : 'Candidate'}</label><div style="font-size:17px;font-weight:700">${esc(x.n)}</div><div class="dim">${esc(x.nat)} · ${esc(x.role)}</div><p style="margin:6px 0 0;font-size:13px">${esc(x.bio)}</p></div>`;
+  return `<div class="band">${WFF.name}<small>${WFF.short} · world governing body</small></div>
+  <div class="box pad" style="margin-bottom:10px"><dl class="kv"><dt>President</dt><dd><b>${esc(W.pres)}</b></dd><dt>General secretariat</dt><dd>${esc(WFF.sec)}</dd><dt>Headquarters</dt><dd>${WFF.hq}</dd><dt>Founded</dt><dd>${WFF.founded}</dd><dt>Member associations</dt><dd>${WFF.members}</dd><dt>Competitions</dt><dd>World Cup, Club World Cup, youth and women's world cups</dd></dl>
+  <p class="dim" style="font-size:12px;margin:6px 0 0">A fictional governing body for this game; its officials and their storyline are invented.</p></div>
+  <h2 class="sect">Presidential election</h2><div class="grid2" style="gap:10px">${cand(presC ? C : I, true)}${cand(presC ? I : C, false)}</div>${elect}
+  <h2 class="sect">Laws of the game</h2><div class="tw"><table class="t"><thead><tr><th>Change</th><th>Status</th><th></th></tr></thead><tbody>${WFF_RULES.map(r => `<tr><td><b>${esc(r.n)}</b><div class="dim" style="font-size:12px;white-space:normal;min-width:200px">${esc(r.d)}</div></td><td>${esc(st(r))}</td><td class="dim" style="font-size:12px;white-space:normal">${esc(r.tag)}</td></tr>`).join('')}</tbody></table></div>
+  <h2 class="sect">Latest</h2>${W.log.length ? W.log.map(x => `<div style="margin:6px 0"><span class="dim mono">${dShort(x[0])}</span> <b>${esc(x[1])}</b> ${esc(x[2])}</div>`).join('') : '<p class="dim">Nothing yet this season.</p>'}`;
+}
+const _scrWFF = screen;
+screen = function (s) { if (s === 'wff') return scrWFF(); return _scrWFF(s); };
+// news about the WFF links to its page
+const _maWFF = msgActions;
+msgActions = function (m) { const h = _maWFF(m); try { if (m && /^WFF/.test(m.title || '')) return h + `<div class="row" style="margin-top:10px"><button class="btn" data-a="wffo">Open the WFF page</button></div>`; } catch (e) { } return h; };
+
+// doc2.js: "Behind the Badge" episodes you can open: title, summary, the plot scene by scene, the drama and quotes.
+// Episodes are built from what actually happened (results, scorers, table, injuries, the next game). Quotes come only
+// from fictional people: you (the manager), your staff, a kit man and a groundsman invented for the series, academy
+// players generated by the game, and the narrator. Real players appear in the narration of match events.
+// Replaces docWeek() from clublife.js. Loaded after wff.js.
+
+function docCtx() {
+  const t = userTeam(); const sq = squad(G.user);
+  const fx = Object.values(G.fx).filter(f => f.r && (f.h === G.user || f.a === G.user) && f.d <= G.date && f.d >= addDays(G.date, -14) && f.comp !== 'PSF').sort((a, b) => a.d < b.d ? -1 : 1);
+  const desc = (f) => {
+    const home = f.h === G.user; const us = home ? f.r[0] : f.r[1], them = home ? f.r[1] : f.r[0]; const opp = home ? f.a : f.h; const side = home ? 0 : 1;
+    const sc = (f.sc || []).filter(e => e[2] === 'G' && e[1] === side && P(e[3])).map(e => surname(P(e[3]).n));
+    const res = us > them ? 'win' : us < them ? 'defeat' : 'draw';
+    return { res, txt: `${us}-${them} ${res === 'win' ? 'win over' : res === 'defeat' ? 'defeat to' : 'draw with'} ${tName(opp, false)}${sc.length ? ` (${[...new Set(sc)].join(', ')})` : ''}`, opp, comp: COMP_NAME[f.comp] || f.comp };
+  };
+  const last = fx.length ? desc(fx[fx.length - 1]) : null; const prev = fx.length > 1 ? desc(fx[fx.length - 2]) : null;
+  const L = lgRow(G.user); const inj = sq.filter(p => p.inj > 0); const top = sq.slice().sort((a, b) => b.st.g - a.st.g)[0];
+  const nx = Object.values(G.fx).filter(f => !f.r && (f.h === G.user || f.a === G.user) && f.d > G.date).sort((a, b) => a.d < b.d ? -1 : 1)[0];
+  const kids = sq.filter(p => p.gen && p.age <= 21).concat((typeof youthIds === 'function' ? youthIds(G.user) : []).map(P).filter(p => p && p.gen && p.c === G.user)).slice(0, 6);
+  return { t, sq, last, prev, L, inj, top, nx, kid: kids.length ? R.pick(kids) : null, asst: (G.staff && G.staff.asst && G.staff.asst.n) || 'the assistant manager' };
+}
+function docEpisode(ev, p) {
+  const D = G.doc; const c = docCtx(); const t = c.t; const m = G.mgr;
+  D.kit = D.kit || genName(); D.gm = D.gm || genName();
+  const res = c.last ? c.last.res : null;
+  const pos = c.L && c.L.r.p >= 3 ? `${t.name} sit ${ordinal(c.L.pos)} in the ${COMP_NAME[c.L.d] || 'league'}.` : 'The season has barely started.';
+  const titles = { rant: res === 'defeat' ? 'Not Good Enough' : 'Standards', tension: 'Behind Closed Doors', star: 'The Main Character', fans: 'The Twelfth Man' };
+  const title = `Episode ${D.ep}: "${titles[ev]}"`;
+  const open = c.last ? `The episode opens in the tunnel after the ${c.last.txt} in the ${c.last.comp}.${c.prev ? ` It follows the ${c.prev.txt}.` : ''}` : 'The episode opens on a quiet morning at the training ground.';
+  const scenes = [['Cold open', open]];
+  const quotes = [];
+  if (ev === 'rant') {
+    scenes.push([res ? 'Half-time' : 'Training ground meeting', `Cameras catch ${m} slamming the tactics board in the dressing room. ${res === 'win' ? 'The response in the second half is immediate.' : res ? 'The players sit in silence; nobody looks up.' : 'It is only a training session, but nobody is laughing.'}`]);
+    quotes.push([m, 'Manager', res === 'defeat' ? 'That is not who we are. If you want to wear this shirt, you run until you drop. Every single one of you.' : res === 'win' ? 'We won, fine. But if we play like that against a good side, we get punished. I want more.' : res === 'draw' ? 'A point. A point! We had them there and we let them off. Not again.' : 'Pre-season is where you decide what kind of team you are. Right now I don\'t know. Show me.']);
+    quotes.push([c.asst, 'Assistant manager', 'When he goes like that, you just let it land. Ten minutes later he\'s hugging everyone.']);
+  } else if (ev === 'tension') {
+    scenes.push(['The row', `After being left out of the starting line-up, ${p.n} is seen in a heated exchange with the coaching staff on the training pitch. ${c.asst} steps in to separate them.`]);
+    quotes.push([m, 'Manager', `Nobody is bigger than ${t.name}. I pick the team that gives us the best chance to win, and that is the end of it.`]);
+    quotes.push([c.asst, 'Assistant manager', 'Frustration is fine. Showing it in front of the whole squad is not.']);
+  } else if (ev === 'star') {
+    scenes.push(['A day in the life', `The camera follows ${p.n} from the gym at 7am to an evening visit to a local school. Team-mates queue up to tease him in the canteen.`]);
+    quotes.push([D.kit, 'Kit man (series)', `${surname(p.n)} is the first in and the last out. Always asks how my kids are doing.`]);
+    quotes.push([m, 'Manager', `Players like ${surname(p.n)} set the standard. The young lads watch everything he does.`]);
+  } else {
+    scenes.push(['Matchday', `A family from the season-ticket waiting list gets the call they have waited eleven years for. The cameras follow them from the pub to their seats.`]);
+    quotes.push([D.gm, 'Head groundsman (series)', 'You hear the roar from the tunnel and the hair on your arms stands up. Thirty years and it never gets old.']);
+    quotes.push([m, 'Manager', 'Those people pay their money and give us everything. The least we can do is leave everything out there.']);
+  }
+  scenes.push(['Training ground', `${c.inj.length ? `The medical team is dealing with ${c.inj.length} injur${c.inj.length > 1 ? 'ies' : 'y'}${c.inj[0] ? `, with ${c.inj[0].n} the latest worry` : ''}. ` : 'A rare clean bill of health for the squad. '}${c.top && c.top.st.g ? `${c.top.n} leads the scoring charts with ${c.top.st.g} this season.` : ''}`]);
+  if (c.kid) quotes.push([c.kid.n, 'Academy player', R.pick([`Training with the first team this week was mad. I just tried not to give the ball away.`, `The gaffer told me to stay ready. That's all I'm doing, staying ready.`, `My mum's watching this, so I'm on my best behaviour.`])]);
+  scenes.push(['Closing', `${pos}${c.nx ? ` Next up: ${tName(c.nx.h === G.user ? c.nx.a : c.nx.h, false)} (${COMP_NAME[c.nx.comp] || c.nx.comp}) on ${dShort(c.nx.d)}.` : ''} The narrator closes the episode: "In this building, there is no such thing as a quiet week."`]);
+  quotes.push(['Narrator', 'Series voice-over', R.pick(['Every club tells itself a story. This one is still deciding how it ends.', 'Results decide everything here. Even the mood in the canteen.', 'Behind every badge there is a dressing room. Behind every dressing room, a secret.'])]);
+  const drama = clamp((ev === 'tension' ? 4 : ev === 'rant' ? 3 : 2) + (res === 'defeat' ? 1 : 0), 1, 5);
+  const talk = ev === 'tension' ? `Social media splits over ${surname(p.n)}: some fans back him, others say no player should react like that.` : ev === 'rant' ? 'The half-time team talk becomes the most-watched clip of the series so far.' : ev === 'star' ? `${surname(p.n)} trends as viewers fall for his personality.` : 'Viewers call it the most moving episode of the series.';
+  const summary = ev === 'tension' ? `Tension at ${t.name} as ${p.n} clashes with the coaching staff.` : ev === 'rant' ? `${m} lets rip at half-time${res === 'defeat' ? ' after a painful defeat' : ''}.` : ev === 'star' ? `${p.n} steals the show off the pitch.` : `The supporters take centre stage.`;
+  return { n: D.ep, d: G.date, ev, title, summary, scenes, quotes, drama, talk, pid: p ? p.id : null };
+}
+// the weekly hook (same effects as before, plus the episode record)
+docWeek = function () {
+  const D = G.doc; if (!D || D.y !== G.year || D.tid !== G.user || !R.chance(.3)) return;
+  D.ep++; const sq = squad(G.user); const p = R.pick(sq);
+  const ev = R.pick(['rant', 'tension', 'star', 'fans']);
+  if (ev === 'rant') { for (const q of sq) q.mor = clamp(q.mor + R.i(-3, 4), 5, 100); fanPost(G.user, `Episode ${D.ep} of ${DOC_NAME}: the half-time team talk is going viral 😳🔥`, { big: true }); trend(DOC_NAME.replace(/ /g, ''), 3); }
+  else if (ev === 'tension') { setHap(p, -6); fanPost(G.user, `That ${surname(p.n)} scene in ${DOC_NAME}... 👀 drama`, { big: true }); }
+  else if (ev === 'star') { setHap(p, 5); p.mor = clamp(p.mor + 6, 5, 100); fanPost(G.user, `${surname(p.n)} is the star of ${DOC_NAME}. What a character 😂❤️`, { big: true }); }
+  else { G.fans = clamp((G.fans ?? 60) + 2, 0, 100); const t = userTeam(); const b = Math.round(t.rep * 0.02 * 10) / 10; t.bal += b; t.fin.in.com += b; fanPost(G.user, `Binge-watched ${DOC_NAME} in one night. Proud of this club 💙`); }
+  try { const e = docEpisode(ev, p); D.eps = (D.eps || []).concat(e); news('Media', `${DOC_NAME} — ${e.title}. ${e.summary}`, G.user); const nw = G.news.find(x => x.id === G.newsId); if (nw) nw.act = { k: 'doc', i: D.eps.length - 1 }; } catch (e) { console.error(e); }
+};
+function docEpHtml(i) {
+  const D = G.doc; const e = D && D.eps && D.eps[i]; if (!e) return '';
+  return `<div class="band"><span>${esc(DOC_NAME)} · ${esc(userTeam().name)}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+  <h2 style="margin:0">${esc(e.title)}</h2><div class="dim">${dShort(e.d)} · Drama ${'🔥'.repeat(e.drama)}${'·'.repeat(5 - e.drama)}</div>
+  <p style="font-size:15px"><b>${esc(e.summary)}</b></p>
+  <h2 class="sect">The episode</h2>${e.scenes.map(([h, x]) => `<div style="margin:8px 0"><span class="lb">${esc(h)}</span><div>${esc(x)}</div></div>`).join('')}
+  <h2 class="sect">Quotes</h2>${e.quotes.map(([who, role, q]) => `<blockquote style="margin:8px 0;padding:6px 10px;border-left:3px solid var(--yel)">"${esc(q)}"<div class="dim" style="font-size:12px;margin-top:2px">— ${esc(who)}, ${esc(role)}</div></blockquote>`).join('')}
+  <h2 class="sect">Talking point</h2><p>${esc(e.talk)}</p>
+  <div class="row" style="margin-top:10px">${i > 0 ? `<button class="btn" data-a="docep" data-v="${i - 1}">‹ Episode ${D.eps[i - 1].n}</button>` : ''}${i < D.eps.length - 1 ? `<button class="btn" data-a="docep" data-v="${i + 1}">Episode ${D.eps[i + 1].n} ›</button>` : ''}</div>
+  <p class="dim" style="font-size:12px">The series' quotes come from you, your staff, invented crew members and academy players; real players appear only in the narration.</p></div>`;
+}
+ACT.docep = (v) => { UI.modal = docEpHtml(+v); render(); };
+const _maDoc = msgActions;
+msgActions = function (m) { if (m && m.act && m.act.k === 'doc') return `<div class="row" style="margin-top:12px"><button class="btn pri" data-a="docep" data-v="${m.act.i}">Episode summary</button></div>`; return _maDoc(m); };
+const _cbDoc = scrClubBoard;
+scrClubBoard = function () {
+  let h = _cbDoc(); const D = G.doc && G.doc.y === G.year && G.doc.tid === G.user ? G.doc : null;
+  if (D && D.eps && D.eps.length) h += `<div class="box pad" style="margin-top:10px"><h3 class="h3">${esc(DOC_NAME)}: episodes</h3><div class="tw"><table class="t"><tbody>${D.eps.map((e, i) => `<tr class="click" data-a="docep" data-v="${i}"><td class="mono dim">${dShort(e.d)}</td><td><b>${esc(e.title)}</b><div class="dim" style="font-size:12px;white-space:normal">${esc(e.summary)}</div></td><td>${'🔥'.repeat(e.drama)}</td></tr>`).join('')}</tbody></table></div></div>`;
+  return h;
+};
+
+// bdo.js: the Ballon d'Or, with managers voting (game scenario: club managers, you included, form the jury).
+// At the end of each season a 30-man shortlist is drawn up from the season's performances (ratings, goals, assists,
+// clean sheets, trophies, international titles). You rank your top five before the ceremony in late September;
+// every other club manager votes too, leaning a little towards his own players, compatriots and his own league.
+// Loaded after doc2.js.
+
+const BDO_PTS = [6, 4, 3, 2, 1];
+function bdoScore(p) {
+  const st = p.st; if (!st || st.a < 20) return -1;
+  const avg = st.r / st.a; let s = (avg - 6.6) * 45 + st.g * 1.3 + st.as * .8 + p.ca * .6 + (p.pos === 'GK' ? st.cs * .9 : 0);
+  try { for (const tr of seasonTrophies(p.c)) s += (TRO_W[tr] || 3) * .9; } catch (e) { }
+  const y = String(G.year + 1); for (const h of p.nh || []) if (h.includes(y)) s += /World Cup/.test(h) ? 25 : /Euro|European/.test(h) ? 18 : 5;
+  return s * ({ PL: 1, LL: 1, SA: .97, BL: .97, L1: .92, ED: .8, SPL: .72, CH: .6, LO: .4 }[divOf(p.c)] || .7);
+}
+function bdoShortlist() {
+  const ps = Object.values(G.players).filter(p => p && T(p.c) && !T(p.c).lite && !T(p.c).nat && !p.pseudo && !p.leg).map(p => [p, bdoScore(p)]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).slice(0, 30);
+  G.bdo = { s: seasonLabel(G.year), due: `${G.year + 1}-09-22`, list: ps.map(([p, sc]) => [p.id, Math.round(sc), p.c, p.st.a, p.st.g, p.st.as, p.st.cs, Math.round(p.st.r / p.st.a * 100) / 100]), uv: null, done: false };
+  msg(`Ballon d'Or ${G.bdo.s}: cast your vote`, `The 30-man shortlist for the ${G.bdo.s} Ballon d'Or is out. As a manager you are part of the jury: rank your top five before the ceremony on ${dShort(G.bdo.due)}.`, { k: 'bdo' });
+  news("Ballon d'Or", `The ${G.bdo.s} shortlist is out: ${ps.slice(0, 6).map(([p]) => p.n).join(', ')} and 24 more. Managers vote this year (game scenario); the winner is crowned on ${dShort(G.bdo.due)}.`, null, true);
+}
+const _seBdo = seasonEnd;
+seasonEnd = function () { try { if (G && G.players) bdoShortlist(); } catch (e) { console.error(e); } return _seBdo.apply(this, arguments); };
+
+function natName(code) { try { const n = natRow(code); return n ? n.name : code; } catch (e) { return code; } }
+function bdoCeremony() {
+  const B = G.bdo; if (!B || B.done) return; B.done = true;
+  const pts = {}; const add = (pid, v) => { pts[pid] = (pts[pid] || 0) + v; };
+  const cands = B.list.filter(x => P(x[0]));
+  let voters = 0;
+  for (const tid of jobClubs()) {
+    if (tid === G.user) continue; const t = T(tid); const mn = t.mgr || ''; const md = (typeof mgrIndex === 'function' && mgrIndex()[mn]) || null; const lg = divOf(tid);
+    const ranked = cands.map(x => { const p = P(x[0]); let v = x[1] * (0.7 + R.f() * .6); if (p.c === tid) v *= 1.15; if (md && natName(p.nat) === md[1]) v *= 1.08; if (divOf(p.c) === lg) v *= 1.05; return [x[0], v]; }).sort((a, b) => b[1] - a[1]).slice(0, 5);
+    ranked.forEach(([pid], i) => add(pid, BDO_PTS[i])); voters++;
+  }
+  if (B.uv) { B.uv.forEach((pid, i) => { if (pid) add(pid, BDO_PTS[i]); }); voters++; }
+  const res = Object.entries(pts).sort((a, b) => b[1] - a[1]);
+  B.res = res.slice(0, 10).map(([pid, v]) => [pid, v, P(pid).c]); B.voters = voters;
+  const w = P(res[0][0]); w.bdo = (w.bdo || []).concat(B.s);
+  G.bdoHist = (G.bdoHist || []).concat({ s: B.s, w: w.id, n: w.n, c: w.c });
+  news("Ballon d'Or", `${w.n} (${tName(w.c, false)}) wins the ${B.s} Ballon d'Or with ${res[0][1]} points from ${voters} managers' votes. ${P(res[1][0]).n} is second and ${P(res[2][0]).n} third.`, w.c, true);
+  const nw = G.news.find(x => x.id === G.newsId); if (nw) nw.act = { k: 'bdor' };
+  try { fanPost(w.c, R.pick([`BALLON D'OR WINNER 🏆✨ ${surname(w.n).toUpperCase()}!!!`, `Best player on the planet. Officially. ${surname(w.n)} 👑`]), { big: true, u: w.c === G.user ? 1 : 0 }); trend('BallonDor', 6); } catch (e) { }
+  if (w.c === G.user) { G.fans = clamp((G.fans ?? 60) + 5, 0, 100); G.board = clamp(G.board + 3, 0, 100); w.mor = clamp(w.mor + 10, 5, 100); }
+  if (B.uv) msg("Ballon d'Or", `Your vote: ${B.uv.map((pid, i) => `${i + 1}. ${P(pid) ? P(pid).n : '-'}`).join(', ')}. ${B.uv[0] === w.id ? 'Your number one won it.' : `The winner was ${w.n}.`}`, { k: 'bdor' });
+}
+const _dtBdo = dailyTick;
+dailyTick = function () { try { if (G && G.bdo && !G.bdo.done && G.date >= G.bdo.due) bdoCeremony(); } catch (e) { console.error(e); } return _dtBdo.apply(this, arguments); };
+
+// ---------- voting and results ----------
+function bdoVoteHtml() {
+  const B = G.bdo; if (!B) return '';
+  UI.bdoPick = UI.bdoPick || (B.uv ? B.uv.slice() : [null, null, null, null, null]);
+  const pk = UI.bdoPick; const open = !B.done;
+  const rows = B.list.filter(x => P(x[0])).map(x => { const p = P(x[0]); const r = pk.indexOf(x[0]); return `<tr class="${r >= 0 ? 'me' : ''}"><td>${pLink(x[0])} <span class="dim mono">${POS_LABEL[p.pos] || p.pos}</span></td><td>${tLink(x[2], false)}</td><td class="n">${x[3]}</td><td class="n">${x[4]}</td><td class="n">${x[5]}</td><td class="n">${p.pos === 'GK' ? x[6] : ''}</td><td class="n mono">${x[7]}</td><td style="white-space:nowrap">${open ? [0, 1, 2, 3, 4].map(i => `<button class="btn${pk[i] === x[0] ? ' pri' : ''}" style="padding:2px 7px;min-width:0" data-a="bdop" data-v="${x[0]}" data-k="${i}">${i + 1}</button>`).join('') : (r >= 0 ? ordinal(r + 1) : '')}</td></tr>`; }).join('');
+  return `<div class="band"><span>Ballon d'Or ${esc(B.s)} · your vote</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+  <p>${open ? `Rank five players (1 = your winner; points 6-4-3-2-1). Votes close on ${dShort(B.due)}.` : 'Voting has closed.'}</p>
+  <p><b>Your ballot:</b> ${pk.map((pid, i) => `${i + 1}. ${pid && P(pid) ? esc(P(pid).n) : '<span class="dim">—</span>'}`).join(' · ')}</p>
+  ${open ? `<div class="row" style="margin-bottom:8px"><button class="btn pri" data-a="bdos">${B.uv ? 'Update my vote' : 'Submit my vote'}</button>${B.uv ? '<span class="grn" style="align-self:center">Vote submitted</span>' : ''}</div>` : ''}
+  <div class="tw"><table class="t"><thead><tr><th>Player</th><th>Club</th><th class="n">Apps</th><th class="n">Gls</th><th class="n">Ast</th><th class="n">CS</th><th class="n">Avg</th><th>Rank</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="dim" style="font-size:12px">Season stats in all competitions for ${esc(B.s)}. Game scenario: managers form the jury.</p></div>`;
+}
+function bdoResHtml() {
+  const B = G.bdo; if (!B || !B.res) return '';
+  return `<div class="band"><span>Ballon d'Or ${esc(B.s)} · results</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+  <div class="tw"><table class="t"><thead><tr><th>#</th><th>Player</th><th>Club</th><th class="n">Points</th><th>Your vote</th></tr></thead><tbody>${B.res.map(([pid, v, c], i) => `<tr class="${i === 0 ? 'me' : ''}"><td>${i === 0 ? '🏆' : i + 1}</td><td>${pLink(pid)}</td><td>${tLink(c, false)}</td><td class="n">${v}</td><td class="dim">${B.uv && B.uv.includes(pid) ? ordinal(B.uv.indexOf(pid) + 1) : ''}</td></tr>`).join('')}</tbody></table></div>
+  <p class="dim">${B.voters} managers voted.</p>${(G.bdoHist || []).length > 1 ? `<h2 class="sect">Winners in this save</h2>${G.bdoHist.map(h => `<div>${esc(h.s)}: ${pLink(h.w, h.n)} <span class="dim">(${esc(tName(h.c, false))})</span></div>`).join('')}` : ''}</div>`;
+}
+Object.assign(ACT, {
+  bdov: () => { UI.bdoPick = null; UI.modal = bdoVoteHtml(); render(); },
+  bdop: (v, el) => { const i = +(el && el.dataset ? el.dataset.k : 0); const pk = UI.bdoPick; for (let j = 0; j < 5; j++) if (pk[j] === v) pk[j] = null; pk[i] = v; UI.modal = bdoVoteHtml(); render(); },
+  bdos: () => { const pk = UI.bdoPick || []; if (pk.filter(Boolean).length < 5) { toast('Rank five different players first.'); return; } G.bdo.uv = pk.slice(); toast("Your Ballon d'Or vote is in."); autosave(); UI.modal = bdoVoteHtml(); render(); },
+  bdor: () => { UI.modal = bdoResHtml(); render(); }
+});
+const _maBdo = msgActions;
+msgActions = function (m) {
+  if (m && m.act && m.act.k === 'bdo') return G.bdo && !G.bdo.done ? `<div class="row" style="margin-top:12px"><button class="btn pri" data-a="bdov">${G.bdo.uv ? 'See or change my vote' : 'Vote now'}</button></div>` : '<div class="dim" style="margin-top:12px">Voting has closed.</div>';
+  if (m && m.act && m.act.k === 'bdor') return G.bdo && G.bdo.res ? `<div class="row" style="margin-top:12px"><button class="btn pri" data-a="bdor">Full results</button></div>` : '';
+  return _maBdo(m);
+};
+// awards screen and player cards
+const _awBdo = scrAwards;
+scrAwards = function () {
+  let h = _awBdo(); const B = G.bdo;
+  if (B) h = h.replace('</div>', `</div><div class="box pad" style="margin:8px 0"><b>Ballon d'Or ${esc(B.s)}</b> · ${B.res ? `Winner: ${pLink(B.res[0][0])} <button class="btn" data-a="bdor">Results</button>` : `ceremony ${dShort(B.due)} <button class="btn pri" data-a="bdov">${B.uv ? 'Your vote' : 'Vote now'}</button>`}</div>`);
+  return h;
+};
+const _peBdo = playerExtra;
+playerExtra = function (p) { const h = _peBdo(p); try { if (p && p.bdo && p.bdo.length) return h + `<div class="box pad" style="margin-top:8px;border-color:var(--yel)"><label class="lb">Ballon d'Or</label>${p.bdo.map(s => `<div>🏆 ${esc(s)}</div>`).join('')}</div>`; } catch (e) { } return h; };
 
 // selection.js: squad selection helpers on the Tactics screen.
 // Saved tactics (shape, roles, instructions, set-piece takers and lineup), best XI, squad rotation and a youth (U21) XI.

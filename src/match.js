@@ -141,6 +141,7 @@ function units(S) {
   const cb = ce ? 1 + (lead(ce.p) - 10) * .0025 : .99; def *= cb; mid *= cb; att *= cb;
   if (S.tid === G.user) { const tr = trainTeam(); if (tr === 'att') { att *= 1.025; def *= .99; } if (tr === 'def') { def *= 1.025; att *= .99; } if (tr === 'light') { mid *= .99; att *= .99; } }
   if (S.shout) { const sk = S.shout.k; if (sk === 'push') { att *= 1.045; def *= .965; } else if (sk === 'focus') { def *= 1.03; att *= .985; } else if (sk === 'enc') { mid *= 1.02; att *= 1.015; } }
+  if (G.rules && G.rules.dl && G.date >= G.rules.dl) att *= 1.03; // daylight offside law (game scenario, wff.js)
   const df = (S.dayF || 1) * (S.cupF || 1);
   S.u = { gk: gk * (0.5 + df / 2), def: def * df, mid: mid * df, att: att * df };
   return S.u;

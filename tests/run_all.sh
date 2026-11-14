@@ -4,8 +4,8 @@
 cd "$(dirname "$0")/.." || exit 1
 OUT=${1:-test-out}; JOBS=${2:-4}; mkdir -p "$OUT/logs"
 python3 build.py >/dev/null && python3 build_pwa.py >/dev/null; rm -f bundle.js
-NODE_TESTS="aihap_test jobs_test edlo_test multi_test rot_test exnat_test sa_test ll_test rep_test clublife_test sel_test ch_test club_test cmp_test so_test xl_test intl_test youth_test social_test clinch_test xlcup_test rv_quick ps_test asia_test asia2_test sa_old_save ll_old_save xl_old_save intl_old_save cwc_old_save"
-PY_TESTS="smoke jobs_browser edlo_browser exnat_browser md3d_browser cine_real statue_browser ll_browser sa_browser xl_browser rep_browser cmp_browser so_browser rv_browser ps_browser polish_browser sel_browser club_browser intl_browser youth_browser"
+NODE_TESTS="lore_test aihap_test jobs_test edlo_test multi_test rot_test exnat_test sa_test ll_test rep_test clublife_test sel_test ch_test club_test cmp_test so_test xl_test intl_test youth_test social_test clinch_test xlcup_test rv_quick ps_test asia_test asia2_test sa_old_save ll_old_save xl_old_save intl_old_save cwc_old_save"
+PY_TESTS="smoke lore_browser jobs_browser edlo_browser exnat_browser md3d_browser cine_real statue_browser ll_browser sa_browser xl_browser rep_browser cmp_browser so_browser rv_browser ps_browser polish_browser sel_browser club_browser intl_browser youth_browser"
 run() { # name cmd...
   local n=$1; shift; local log="$OUT/logs/$n.log"
   timeout 900 "$@" >"$log" 2>&1; local rc=$?
