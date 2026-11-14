@@ -48,12 +48,18 @@ function wffStep(k) {
 }
 function wffRun() {
   const W = wff(); W.done = W.done || {}; const late = [];
-  for (const [d, k] of WFF_PLAN) { const key = d + k; if (G.date < d || W.done[key]) continue; W.done[key] = 1; if (G.date > addDays(d, 10)) late.push([d, k]); else wffStep(k); }
+  for (const [d, k] of WFF_PLAN) { const key = d + k; if (G.date < d || W.done[key]) continue; W.done[key] = 1; if (G.date > addDays(d, 10)) late.push([d, k]); else try { wffStep(k); } catch (e) { console.error(e); } }
   if (late.length) {
     WFF_CATCH = { d: null, lines: [] };
-    try { for (const [d, k] of late) { WFF_CATCH.d = d; wffStep(k); } } finally { const L = WFF_CATCH.lines; WFF_CATCH = null; if (L.length) news('WFF', `What has happened at the ${WFF.name} so far (game scenario): ${L.join(' ')}`, null, true); }
+    try { for (const [d, k] of late) { WFF_CATCH.d = d; try { wffStep(k); } catch (e) { console.error(e); } } } finally { const L = WFF_CATCH.lines; WFF_CATCH = null; if (L.length) news('WFF', `What has happened at the ${WFF.name} so far (game scenario): ${L.join(' ')}`, null, true); }
   }
+  // self-heal: once the congress vote is past, the challenger is president
+  if (W.done['2027-05-19vote'] && W.pres !== WFF.ch.n) { W.pres = WFF.ch.n; W.st.day = W.st.day || 'Approved for 2027/28'; }
+  if (W.done['2027-06-09law']) { G.rules = G.rules || {}; G.rules.dl = G.rules.dl || '2027-07-01'; }
 }
+// catch up as soon as a save is loaded, not only when the next day is played
+const _rsWFF = restore;
+restore = function (obj) { const r = _rsWFF.apply(this, arguments); try { if (G && G.teams && G.date) wffRun(); } catch (e) { console.error(e); } return r; };
 const _dtWFF = dailyTick;
 dailyTick = function () {
   try { if (G && G.teams) wffRun(); } catch (e) { console.error(e); }
@@ -70,6 +76,7 @@ function wffEndorse(v) {
 ACT.wffe = (v) => { toast(wffEndorse(v)); autosave(); render(); };
 ACT.wffo = () => { UI.modal = null; UI.scr = 'wff'; render(); };
 function scrWFF() {
+  try { wffRun(); } catch (e) { console.error(e); }
   const W = wff(); const I = WFF.inc, C = WFF.ch; const presC = W.pres === C.n;
   const st = (r) => (W.st[r.k] || r.st0);
   const elect = W.res ? `<p><b>Result (19 May 2027):</b> ${esc(C.n)} ${W.res[0]} · ${esc(I.n)} ${W.res[1]} · abstentions ${W.res[2]}</p>` : W.done && W.done['2026-11-18cand'] ? `<p>Congress vote on 19 May 2027. Latest soundings: <b>${esc(C.n)} ${W.poll}%</b>, ${esc(I.n)} ${100 - W.poll}%.</p>${W.end ? `<p class="dim">Your position: ${W.end === 'ch' ? 'backing ' + esc(C.n) : W.end === 'inc' ? 'backing ' + esc(I.n) : 'neutral'}.</p>` : `<div class="row"><button class="btn" data-a="wffe" data-v="ch">Back ${esc(C.n)}</button><button class="btn" data-a="wffe" data-v="inc">Back ${esc(I.n)}</button><button class="btn" data-a="wffe" data-v="no">Stay neutral</button></div>`}` : '<p class="dim">The next presidential election is at the May 2027 congress.</p>';
