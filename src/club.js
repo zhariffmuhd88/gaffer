@@ -370,7 +370,7 @@ document.addEventListener('change', (ev) => {
 
 // club screen tabs
 const _scrClubC = scrClub;
-const CLUB_TABS = [['ov', 'Overview'], ['stad', 'Stadium'], ['board', 'Board'], ['hon', 'Honours']];
+const CLUB_TABS = [['ov', 'Overview'], ['stad', 'Stadium'], ['board', 'Board'], ['hon', 'Honours'], ['lore', 'Club lore']];
 scrClub = function () {
   ensureAllStadia();
   const tab = UI.tab.club || 'ov';
@@ -380,6 +380,7 @@ scrClub = function () {
   if (tab === 'stad') return band + tabs + `<div style="margin-top:10px">${scrClubStadium()}</div>`;
   if (tab === 'board') return band + tabs + scrClubBoard();
   if (tab === 'hon') return band + tabs + (typeof clubHonoursHtml === 'function' ? clubHonoursHtml(G.user) : '');
+  if (tab === 'lore') return band + tabs + (typeof loreHtml === 'function' ? (loreHtml(G.user) || '<p class="dim">No lore recorded for this club yet. Legends and villains appear as the save goes on.</p>') : '');
   const html = _scrClubC();
   const i = html.indexOf('</div>'); // end of the band
   return i > 0 ? html.slice(0, i + 6) + tabs + html.slice(i + 6) : tabs + html;
