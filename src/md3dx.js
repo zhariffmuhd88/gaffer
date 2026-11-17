@@ -35,11 +35,12 @@ function liveScreen(T3) {
   return { c, g, tex, txt: null };
 }
 function drawScreen(S3, M, sc, clock) {
-  const L = S3.scr; if (!L) return; const txt = `${M.sides[0].tid}|${sc[0]}|${sc[1]}|${M.sides[1].tid}|${clock}`; if (L.txt === txt) return; L.txt = txt;
+  const L = S3.scr; if (!L) return; const bi = (typeof BADGE_IMG === 'object') ? [BADGE_IMG[M.sides[0].tid], BADGE_IMG[M.sides[1].tid]] : []; const txt = `${M.sides[0].tid}|${sc[0]}|${sc[1]}|${M.sides[1].tid}|${clock}|${!!bi[0]}${!!bi[1]}`; if (L.txt === txt) return; L.txt = txt;
   const g = L.g; g.fillStyle = '#05070f'; g.fillRect(0, 0, 512, 256); g.strokeStyle = '#2b3350'; g.lineWidth = 8; g.strokeRect(4, 4, 504, 248);
   const k = S3.kits; g.textAlign = 'center'; g.textBaseline = 'middle';
   g.fillStyle = k[0].body; g.fillRect(24, 40, 150, 90); g.fillStyle = k[1].body; g.fillRect(338, 40, 150, 90);
-  g.font = 'bold 54px sans-serif'; g.fillStyle = k[0].trim; g.fillText(M.sides[0].tid, 99, 88); g.fillStyle = k[1].trim; g.fillText(M.sides[1].tid, 413, 88);
+  g.font = 'bold 54px sans-serif';
+  [[0, 99], [1, 413]].forEach(([i, cx]) => { const im = bi[i]; if (im && im.width) { const s = Math.min(80 / im.width, 80 / im.height); const w = im.width * s, h = im.height * s; try { g.drawImage(im, cx - w / 2, 85 - h / 2, w, h); } catch (e) { } } else { g.fillStyle = k[i].trim; g.fillText(M.sides[i].tid, cx, 88); } });
   g.fillStyle = '#ffffff'; g.font = 'bold 84px sans-serif'; g.fillText(`${sc[0]}-${sc[1]}`, 256, 88);
   g.fillStyle = '#ffd23f'; g.font = 'bold 50px monospace'; g.fillText(clock, 256, 196);
   L.tex.needsUpdate = true;
@@ -198,6 +199,9 @@ function netRipple3d(S3, SC, bw, bh, ts) {
   }
 }
 
+const sbImg = (tid) => (typeof BADGES === 'object' && BADGES[tid]) ? `<img src="${BADGES[tid]}" alt="">` : '';
+// shirt crest from the badge you uploaded (this device only)
+function crestTex3(T3, tid) { const im = typeof BADGE_IMG === 'object' && BADGE_IMG[tid]; if (!im) return null; if (!im._t3) { const t = new T3.Texture(im); t.needsUpdate = true; im._t3 = t; } return im._t3; }
 // ---------- broadcast graphics: score box, GOAL banner, fly-over title ----------
 function bug3d(LM, S3, ts) {
   const w = document.getElementById('p2dwrap'); if (!w) return; const M = LM.M, V = LM.vis;
@@ -205,7 +209,7 @@ function bug3d(LM, S3, ts) {
   const hide = typeof momHide === 'function' && momHide(LM); const sc = hide ? M.score.map((s, i) => s - M.ev.filter(e => e.t === 'goal' && e.side === i && e.min === M.min).length) : M.score;
   const clock = M.done ? 'FT' : M.min === 0 ? 'KO' : (M.min > 90 && !M.et ? '90+' : M.min) + "'";
   const k = V.kits; const flying = S3.fly && !S3.flyDone;
-  const h = flying ? `<span class="sbv">${esc(V.venue && V.venue.name || '')}</span>` : `<span class="sbt" style="background:${k[0].body};color:${k[0].trim}">${esc(M.sides[0].tid)}</span><span class="sbs">${sc[0]}-${sc[1]}</span><span class="sbt" style="background:${k[1].body};color:${k[1].trim}">${esc(M.sides[1].tid)}</span><span class="sbc">${V.rp ? 'REPLAY' : clock}</span>`;
+  const h = flying ? `<span class="sbv">${esc(V.venue && V.venue.name || '')}</span>` : `<span class="sbt" style="background:${k[0].body};color:${k[0].trim}">${sbImg(M.sides[0].tid)}${esc(M.sides[0].tid)}</span><span class="sbs">${sc[0]}-${sc[1]}</span><span class="sbt" style="background:${k[1].body};color:${k[1].trim}">${sbImg(M.sides[1].tid)}${esc(M.sides[1].tid)}</span><span class="sbc">${V.rp ? 'REPLAY' : clock}</span>`;
   if (o.dataset.h !== h) { o.dataset.h = h; o.innerHTML = h; }
   drawScreen(S3, M, sc, M.done ? 'FULL TIME' : clock);
   // GOAL banner with the scorer (live only)

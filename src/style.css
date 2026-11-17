@@ -162,6 +162,9 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .score .tm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .score .tm.r { justify-content: flex-end; text-align: right; }
 .score .tm .badge { width: 18px; height: 24px; }
+.badge.bimg { border: none; background: none; width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; }
+.score .tm .badge.bimg { width: 34px; height: 34px; }
+#p2dwrap .sb3d .sbt img { width: 16px; height: 16px; object-fit: contain; margin-right: 5px; }
 .score .sc { font-family: var(--f-disp); font-size: 54px; line-height: .9; color: var(--yel); text-align: center; white-space: nowrap; }
 .score .mn { font-family: var(--f-disp); font-size: 24px; color: var(--cyan); text-align: center; }
 .score .sub { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; color: var(--dim); }
