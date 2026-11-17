@@ -76,12 +76,12 @@ function build3d(LM, T3) {
   const cam = new T3.PerspectiveCamera(42, 16 / 9, .5, 700);
   const ren = new T3.WebGLRenderer({ antialias: !lo, powerPreference: 'high-performance' }); ren.setPixelRatio(lo ? 1 : Math.min(1.75, window.devicePixelRatio || 1)); ren.shadowMap.enabled = !lo;
   ren.domElement.className = 'p3d'; ren.domElement.setAttribute('role', 'img'); ren.domElement.setAttribute('aria-label', 'Live 3D match view'); ren.domElement.style.display = 'block'; ren.domElement.style.width = '100%';
-  scene.add(new T3.HemisphereLight(night ? '#9fb2ff' : '#e6eeff', '#203020', night ? .55 : .8));
+  const hemi = new T3.HemisphereLight(night ? '#9fb2ff' : '#e6eeff', '#203020', night ? .55 : .8); scene.add(hemi);
   const sun = new T3.DirectionalLight(night ? '#fff6dd' : '#ffffff', night ? .65 : .85); sun.position.set(-40, 90, 50); sun.castShadow = !lo; sun.shadow.mapSize.set(1024, 1024);
   Object.assign(sun.shadow.camera, { left: -70, right: 70, top: 50, bottom: -50, near: 10, far: 220 }); if (sun.shadow.camera.updateProjectionMatrix) sun.shadow.camera.updateProjectionMatrix(); scene.add(sun);
   // ground and pitch
   const turf = new T3.Mesh(new T3.PlaneGeometry(P3.L + 30, P3.W + 26), new T3.MeshLambertMaterial({ color: '#2b6f31' })); turf.rotation.x = -Math.PI / 2; turf.position.y = -.02; turf.receiveShadow = true; scene.add(turf);
-  const pitch = new T3.Mesh(new T3.PlaneGeometry(P3.L, P3.W), new T3.MeshLambertMaterial({ map: pitchTex(T3) })); pitch.rotation.x = -Math.PI / 2; pitch.receiveShadow = true; scene.add(pitch);
+  const pitch = new T3.Mesh(new T3.PlaneGeometry(P3.L, P3.W), pitchMat3d(T3, V, M)); pitch.rotation.x = -Math.PI / 2; pitch.receiveShadow = true; scene.add(pitch);
   // goals with nets set behind the line
   const postM = new T3.MeshLambertMaterial({ color: '#ffffff' }); const netM = new T3.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: .22, side: T3.DoubleSide, wireframe: true });
   const nets = [];
@@ -103,11 +103,12 @@ function build3d(LM, T3) {
   const dz = P3.W / 2 + 6, dx = P3.L / 2 + 7;
   const bowl = M.sides[0].tid === 'ARS'; // Arsenal's home: the bowl
   const scr = liveScreen(T3);
-  if (bowl) buildBowl(T3, scene, { night, fill, home: kits[0], away: kits[1], scrTex: scr.tex }); else {
-  stand3(T3, scene, { w: P3.L + 10, d: 22, h: 15, tex: crowdTex(T3, hc, fill, night), roofM, wallM, x: 0, z: -dz, ry: 0 });
-  stand3(T3, scene, { w: P3.L + 10, d: 18, h: 12, tex: crowdTex(T3, hc, fill, night), roofM, wallM, x: 0, z: dz, ry: Math.PI });
-  stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: crowdTex(T3, hc, fill, night), roofM, wallM, x: -dx, z: 0, ry: Math.PI / 2 });
-  stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: crowdTex(T3, ac, Math.min(1, fill + .1), night), roofM, wallM, x: dx, z: 0, ry: -Math.PI / 2 });
+  const crowd = []; const ct = (cols, f, side) => { const t = crowdTex(T3, cols, f, night); crowd.push({ tex: t, side, ph: crowd.length * 1.3, ox: 0 }); return t; };
+  if (bowl) buildBowl(T3, scene, { night, fill, home: kits[0], away: kits[1], scrTex: scr.tex, crowd }); else {
+  stand3(T3, scene, { w: P3.L + 10, d: 22, h: 15, tex: ct(hc, fill, 0), roofM, wallM, x: 0, z: -dz, ry: 0 });
+  stand3(T3, scene, { w: P3.L + 10, d: 18, h: 12, tex: ct(hc, fill, 0), roofM, wallM, x: 0, z: dz, ry: Math.PI });
+  stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: ct(hc, fill, 0), roofM, wallM, x: -dx, z: 0, ry: Math.PI / 2 });
+  stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: ct(ac, Math.min(1, fill + .1), 1), roofM, wallM, x: dx, z: 0, ry: -Math.PI / 2 });
   // a big screen on the roof of the home end, showing the live score
   const sc = new T3.Mesh(new T3.PlaneGeometry(16, 8), new T3.MeshBasicMaterial({ map: scr.tex })); sc.position.set(-(dx + 9), 24, 0); sc.rotation.y = Math.PI / 2; scene.add(sc);
   const fr = new T3.Mesh(new T3.BoxGeometry(.6, 9, 17), wallM); fr.position.set(-(dx + 9.4), 24, 0); scene.add(fr);
@@ -139,8 +140,9 @@ function build3d(LM, T3) {
     wxp = new T3.Points(geo, new T3.PointsMaterial({ color: wx === 'rain' ? '#c6d3e6' : '#ffffff', size: wx === 'rain' ? .3 : .45, transparent: true, opacity: wx === 'rain' ? .75 : .95 }));
     wxp.userData = { snow: wx === 'snow' }; scene.add(wxp);
   }
-  const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets };
+  const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd };
   try { buildCast3d(S3, LM, T3); makeTrail(S3, T3); } catch (e) { console.error(e); }
+  try { buildAtmo3d(S3, LM, T3); } catch (e) { console.error(e); }
   _last3 = S3; return S3;
 }
 function figure(T3, kit, gk, gkCol, num, o) {
@@ -216,20 +218,23 @@ function frame3d(LM, ts) {
   for (const [e, f] of S3.figs) if (!seen.has(e)) f.g.visible = false;
   const bh = .42 + (b.h || 0) * 4.5;
   S3.ball.position.set(bw.x, bh, bw.z);
-  try { ball3d(S3, SC, cs, bh, bw, dt); netRipple3d(S3, SC, bw, bh, ts); cast3d(S3, LM, SC, bw, ts, dt); subWatch3d(S3, LM, T3, ts); } catch (er) { console.error(er); } S3.bsh.position.set(bw.x, .02, bw.z); S3.bsh.scale.setScalar(Math.max(.4, 1 - (b.h || 0) * .5));
+  try { ball3d(S3, SC, cs, bh, bw, dt); netRipple3d(S3, SC, bw, bh, ts); cast3d(S3, LM, SC, bw, ts, dt); subWatch3d(S3, LM, T3, ts); } catch (er) { console.error(er); }
+  try { atmo3d(S3, LM, SC, cs, celeb, ts, dt); } catch (er) { console.error(er); } S3.bsh.position.set(bw.x, .02, bw.z); S3.bsh.scale.setScalar(Math.max(.4, 1 - (b.h || 0) * .5));
   // weather
   if (S3.wxp) { const a = S3.wxp.geometry.attributes.position; const snow = S3.wxp.userData.snow; for (let i = 0; i < a.count; i++) { let y = a.getY(i) - (snow ? .08 : .9); if (y < 0) y = 50; a.setY(i, y); if (snow) a.setX(i, a.getX(i) + Math.sin(ts / 900 + i) * .02); } a.needsUpdate = true; }
   // cameras: broadcast (follows the ball), wide, behind the goal; a slow orbit around the scorer after a goal; low and close for replays
   const tx = Math.max(-P3.L / 2 + 8, Math.min(P3.L / 2 - 8, bw.x)), tz = bw.z * .5;
-  let want, look, k = .06;
+  let want, look, k = .06, pcam = null;
   const fly = fly3d(S3, LM, ts);
   if (S3.dbg) { want = S3.dbg.want; look = S3.dbg.look; k = 1; } // test hook (screenshots)
   else if (fly) { want = fly.want; look = fly.look; k = .2; }
   else if (celeb && SC.pos.get(celeb.e)) { const sp = W3(SC.pos.get(celeb.e)); const a = ts / 2600; want = { x: sp.x + Math.cos(a) * 16, y: 6.5, z: sp.z + Math.sin(a) * 16 }; look = { x: sp.x, y: 1.6, z: sp.z }; k = .05; }
-  else if (V.rp) { const sgn = bw.x >= 0 ? 1 : -1; want = { x: bw.x - sgn * 14, y: 4.5, z: bw.z - 18 }; look = { x: bw.x + sgn * 6, y: 1.2, z: bw.z }; k = .09; }
+  else if (V.rp) { const rc = replayCam3d(S3, SC, bw); want = rc.want; look = rc.look; k = .09; if (S3.rpAng !== rc.ang) { S3.rpAng = rc.ang; S3.camPos = null; } }
+  else if (S3.mode === 'player' && (pcam = playerCam3d(S3, SC))) { want = pcam.want; look = pcam.look; k = .08; }
   else if (S3.mode === 'wide') { want = { x: tx * .3, y: 56, z: -36 }; look = { x: tx * .6, y: 0, z: tz * .4 + 6 }; }
   else if (S3.mode === 'behind') { const sgn = bw.x >= 0 ? 1 : -1; want = { x: sgn * (P3.L / 2 + 14), y: 11, z: bw.z * .35 }; look = { x: bw.x - sgn * 6, y: 0, z: bw.z }; }
   else { want = { x: tx * .85, y: 19, z: -39 }; look = { x: tx, y: 0, z: tz + 4 }; } // TV gantry under the roof edge of the main stand
+  if (S3.free && !S3.dbg && !fly && !celeb && !V.rp) { want = freeCam3d(S3, look); k = .25; }
   if (!S3.camPos || S3.cut !== !!(celeb || V.rp)) { S3.cut = !!(celeb || V.rp); if (!S3.camPos || S3.cut) { S3.camPos = { ...want }; S3.look = { ...look }; } }
   for (const a of ['x', 'y', 'z']) { S3.camPos[a] += (want[a] - S3.camPos[a]) * k; S3.look[a] += (look[a] - S3.look[a]) * k * 1.5; }
   S3.cam.position.set(S3.camPos.x, S3.camPos.y, S3.camPos.z); S3.cam.lookAt(S3.look.x, S3.look.y, S3.look.z);
@@ -262,7 +267,7 @@ renderMatch = function () {
     if (LM.v3 && LM.view === '2d') {
       const cs = document.querySelector('[data-a="mcam"][data-v="full"]');
       const mode = LM.v3s ? LM.v3s.mode : (UI.v3cam || 'tv');
-      if (cs) cs.parentElement.outerHTML = `<div class="seg">${[['tv', 'TV camera'], ['wide', 'Wide'], ['behind', 'Behind goal']].map(([k, l]) => `<button class="${mode === k ? 'on' : ''}" data-a="m3cam" data-v="${k}">${l}</button>`).join('')}</div><button class="btn ${q3lo() ? 'on' : ''}" data-a="m3q" title="Low quality: no shadows, lower resolution; smoother on phones">Low quality ${q3lo() ? 'on' : 'off'}</button>`;
+      if (cs) cs.parentElement.outerHTML = `<div class="seg">${[['tv', 'TV camera'], ['wide', 'Wide'], ['behind', 'Behind goal'], ['player', 'Player cam']].map(([k, l]) => `<button class="${mode === k ? 'on' : ''}" data-a="m3cam" data-v="${k}">${l}</button>`).join('')}</div><button class="btn ${q3lo() ? 'on' : ''}" data-a="m3q" title="Low quality: no shadows, lower resolution; smoother on phones">Low quality ${q3lo() ? 'on' : 'off'}</button>${mode === 'player' ? playerPick3d(LM) : ''}<span class="dim" style="font-size:11.5px">Drag to turn the camera · pinch or scroll to zoom · double-tap to reset</span>`;
       if (LM.v3s) attach3d(LM); else start3d(LM);
     } else if (LM.vis.cv) { LM.vis.cv.style.display = ''; for (const o of document.querySelectorAll('#p2dwrap .o3d, #p2dwrap .sb3d, #p2dwrap .gb3d')) o.remove(); }
   } catch (e) { console.error(e); }
@@ -273,7 +278,7 @@ ACT.mview = (v) => {
   if (v === '3d') { LM.v3 = true; UI.v3Pref = true; _mview3('2d'); start3d(LM); return; }
   LM.v3 = false; UI.v3Pref = false; _mview3(v);
 };
-ACT.m3cam = (v) => { const LM = UI.match; UI.v3cam = v; if (LM && LM.v3s) { LM.v3s.mode = v; LM.v3s.camPos = null; } renderMatch(); };
+ACT.m3cam = (v) => { const LM = UI.match; UI.v3cam = v; if (LM && LM.v3s) { LM.v3s.mode = v; LM.v3s.camPos = null; LM.v3s.free = null; } renderMatch(); };
 // quality: rebuild the scene with or without shadows and at a lower resolution
 ACT.m3q = () => {
   UI.v3q = q3lo() ? 'hi' : 'lo'; try { localStorage.setItem('gaffer_v3q', UI.v3q); } catch (e) { }
@@ -335,7 +340,8 @@ function buildBowl(T3, scene, o) {
   const night = !!o.night, N = 128, a0 = P3.L / 2 + 5, b0 = P3.W / 2 + 5;
   const ring = (da, y) => (t) => { const [x, z] = bowlPt(a0 + da, b0 + da, t); return [x, y, z]; };
   const strip = (mat, f, rep) => bowlStrip(T3, scene, mat, f, N, rep);
-  const seats = new T3.MeshLambertMaterial({ map: seatsTex(T3, o.fill || .95, night, o.home || { body: '#d0101b', trim: '#ffffff' }), side: T3.DoubleSide });
+  const seatT = seatsTex(T3, o.fill || .95, night, o.home || { body: '#d0101b', trim: '#ffffff' }); if (o.crowd) o.crowd.push({ tex: seatT, side: 0, ph: 0, ox: 0 });
+  const seats = new T3.MeshLambertMaterial({ map: seatT, side: T3.DoubleSide });
   // lower tier, club band, upper tier
   strip(seats, (t) => [ring(0, .6)(t), ring(17, 11)(t)], 14);
   const band = new T3.MeshLambertMaterial({ color: night ? '#1d2433' : '#3b4558', emissive: night ? '#2a2414' : '#000000', side: T3.DoubleSide });

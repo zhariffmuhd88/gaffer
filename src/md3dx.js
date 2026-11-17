@@ -209,7 +209,7 @@ function bug3d(LM, S3, ts) {
   const hide = typeof momHide === 'function' && momHide(LM); const sc = hide ? M.score.map((s, i) => s - M.ev.filter(e => e.t === 'goal' && e.side === i && e.min === M.min).length) : M.score;
   const clock = M.done ? 'FT' : M.min === 0 ? 'KO' : (M.min > 90 && !M.et ? '90+' : M.min) + "'";
   const k = V.kits; const flying = S3.fly && !S3.flyDone;
-  const h = flying ? `<span class="sbv">${esc(V.venue && V.venue.name || '')}</span>` : `<span class="sbt" style="background:${k[0].body};color:${k[0].trim}">${sbImg(M.sides[0].tid)}${esc(M.sides[0].tid)}</span><span class="sbs">${sc[0]}-${sc[1]}</span><span class="sbt" style="background:${k[1].body};color:${k[1].trim}">${sbImg(M.sides[1].tid)}${esc(M.sides[1].tid)}</span><span class="sbc">${V.rp ? 'REPLAY' : clock}</span>`;
+  const h = flying ? `<span class="sbv">${esc(V.venue && V.venue.name || '')}</span>` : `<span class="sbt" style="background:${k[0].body};color:${k[0].trim}">${sbImg(M.sides[0].tid)}${esc(M.sides[0].tid)}</span><span class="sbs">${sc[0]}-${sc[1]}</span><span class="sbt" style="background:${k[1].body};color:${k[1].trim}">${sbImg(M.sides[1].tid)}${esc(M.sides[1].tid)}</span><span class="sbc">${V.rp ? `REPLAY ${(S3.rpAng | 0) + 1}/3` : clock}</span>`;
   if (o.dataset.h !== h) { o.dataset.h = h; o.innerHTML = h; }
   drawScreen(S3, M, sc, M.done ? 'FULL TIME' : clock);
   // GOAL banner with the scorer (live only)

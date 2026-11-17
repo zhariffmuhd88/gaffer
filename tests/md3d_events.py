@@ -32,7 +32,11 @@ async def main():
         print('celebration captured', got)
         if got:
             for i in range(40):
-                if await pg.evaluate("()=>!!UI.match.vis.rp"): await pg.wait_for_timeout(1200); await shot(pg, str(out / 'r3d_replay.png')); print('replay captured; label', await pg.evaluate("()=>document.querySelector('#p2dwrap .o3d').textContent")); break
+                if await pg.evaluate("()=>!!UI.match.vis.rp"):
+                    angs = []
+                    for i in range(3):
+                        await pg.wait_for_timeout(1200 if i == 0 else 2400); await shot(pg, str(out / f'r3d_replay{i}.png')); angs.append(await pg.evaluate("()=>UI.match.v3s.rpAng"))
+                    print('replay captured; angles', angs, 'label', await pg.evaluate("()=>document.querySelector('#p2dwrap .o3d').textContent")); break
                 await pg.wait_for_timeout(400)
         print('errors', errs[:5]); await b.close()
 asyncio.run(main())
