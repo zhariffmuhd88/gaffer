@@ -1,0 +1,26 @@
+desk intro visible: True
+desk disclaimer on: True
+desk logo on: False
+desk intro gone after taps: False
+desk skip works: True
+m390 intro visible: True
+m390 disclaimer on: True
+m390 logo on: False
+m390 intro gone after taps: False
+m390 skip works: True
+key advances to disclaimer: True
+intro ends by itself: False
+date Tue 29 Sep 2026
+stadium tab: True True | stands: 4
+board replies: Board approves: Better training facilities | Board approves: Stand expansion
+works: exp 2027-11-03, tr 2027-04-04 | home venue works: [2]
+honours tab: 2
+history rows: 127 | links in history: 254
+rank rows: 93 | me row: 1
+MUN honours text: English champions	20	17	1907/08	2012/13	-
+manager rankings box: True
+club modal stadium: 1
+game options/about: True True
+finance build row: False
+390 overflow: False
+errors []

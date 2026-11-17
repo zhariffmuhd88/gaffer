@@ -1,0 +1,23 @@
+user RSO LL | LL clubs 20 | players 26 | Segunda 22 | PF 20 | play nat ESP | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
+LL fixtures 380 | UCL Spanish VIL,BAR,RMA,ATM,BET | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 968
+youth 19 15 Pablo Romero IRL, Carlos Larrañaga NGA, Alejandro Soler SCO | comps LLB DHJ
+Supercopa Barcelona v Atlético 1-0, Real Sociedad v Real Madrid 1-0 / Barcelona v Real Sociedad 0-1 | winner Real Sociedad
+=== season 2026/27 | user pos 6 LL | sacked false | now 2027-08-07
+LL top5 Barcelona 98, Real Madrid 96, Atlético 75, Athletic 71, Betis 71 | down Levante, Racing, Málaga | up Mallorca, Leganés, Girona | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Julián Álvarez","ATM",33,"p1248"] | SCE RSO
+LL awards best Vinícius Júnior | Pichichi Julián Álvarez 33 | Zamora Thibaut Courtois 0.39 | TOS 11 | GOS Orri Óskarsson
+LL months 10 | gotmLL 10 | next euro {"UCL":["LIV","CHE","AVL","TOT","ARS","BAR","RMA","ATM","ATH","BAY","RBL","B04","VFB","PSG","RCL","OM","ASM","FEY","PSV","INT","ATA","ROM","ACM"],"UEL":["NEW","CRY","BET","RSO","SVW","SRFC","TWE","JUV","NAP"],"UECL":["BHA","CEL","BVB","LOSC","UTR","COM"]} | sce next Barcelona,Levante,Atlético,Real Madrid
+Supercopa Barcelona v Levante 2-0, Atlético v Real Madrid 2-1 / Barcelona v Atlético 0-1 | winner Atlético
+=== season 2027/28 | user pos 7 LL | sacked false | now 2028-08-05
+LL top5 Real Madrid 102, Barcelona 97, Atlético 77, Villarreal 72, Athletic 69 | down Espanyol, Elche, Getafe | up Levante, Racing, Las Palmas | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | LL ts ["Joan Serrano","S_Mallorca",28,"p11170"] | SCE ATM
+LL awards best Lamine Yamal | Pichichi Joan Serrano 28 | Zamora Carlos Soler 0.42 | TOS 11 | GOS Dani Olmo
+LL months 20 | gotmLL 20 | next euro {"UCL":["CHE","ARS","LIV","TOT","MUN","RMA","BAR","ATM","VIL","BAY","RBL","B04","VFB","PSG","RCSA","OM","LOSC","PSV","AZ","ROM","INT","COM","NAP"],"UEL":["BOU","NFO","ATH","S_Mallorca","SGE","OL","FEY","ATA","B_Palermo"],"UECL":["NEW","RSO","BVB","ASM","TWE","JUV"]} | sce next Real Madrid,Villarreal,Atlético,Barcelona
+goals per game this season: PL - | CH - | LL - | CDR -
+cross-league moves 103 Gianluigi Donnarumma -> Al-Ahli; Marc Guehi -> Twente; Josko Gvardiol -> Roma; Rayan Cherki -> Leipzig; Phil Foden -> Lyon
+errors 0 | sim time 871.5s
+screens 9636 11108 1344 1920 46156 12012
+save parts KB players 4575, fx 444, teams 251, feed 73, awards 71, yl 54, sq 41, byDate 40
+national team ESP null | games 23 Spain 3-0 Finland | Spain 3-1 Switzerland | France 0-2 Spain | Spain 2-1 England | caps leaders Rodri 82, Dani Olmo 82, Pedri 73
+save 5853 KB JSON, 630K chars compressed (743 ms, unpack 246 ms, round trip true) | restore ok 20
+time 875.3s

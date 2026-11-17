@@ -1,0 +1,49 @@
+ASSISTANT Kian Pearce 2026-12-14 
+ sum: Viktor Gyokeres is our best performer right now; William Saliba should come out of the team; I would sell Martin Zubimendi in the next window. 
+ start:
+    
+ drop:
+   William Saliba — Suspended. Take him out of the team. 
+ form:
+   Viktor Gyokeres — 7.60 average over his last 5 games, 10 goals this season.
+   Declan Rice — 7.40 average over his last 5 games, 4 goals this season, 4 assists.
+   Noni Madueke — 7.30 average over his last 5 games, 3 goals this season, 1 assist. 
+ under:
+   Riccardo Calafiori — Below the standard we expect from him (6.36 recently).
+   Bukayo Saka — Below the standard we expect from him (6.50 recently).
+   Eberechi Eze — Below the standard we expect from him (6.53 recently). 
+ sell:
+   Martin Zubimendi — Is unhappy and unsettling the dressing room. Estimated value £70.0m.
+   Riccardo Calafiori — Is unhappy and unsettling the dressing room. Estimated value £52.0m.
+   Eberechi Eze — Is unhappy and unsettling the dressing room. Estimated value £45.0m.
+   Ben White — Is unhappy and unsettling the dressing room. Estimated value £32.0m.
+inbox asst msgs 0 | scout msgs 0
+SCOUT Tariq Price L:PL win Gianluigi Donnarumma 27y 89/89 Man City £117m | Alexander Isak 26y 88/88 Liverpool £150m | Josko Gvardiol 24y 87/92 Man City £158m
+SCOUT Emil Owusu L:LL young Marc Bernal 19y 80/99 Barcelona £71.5m | Yan Diomande 20y 78/97 Real Madrid £52.8m | Endrick 20y 78/96 Real Madrid £51.7m
+SCOUT Hugo De Vries R:sa wonder Luis Vargas 18y 66/88 a club in South America £18.9m | Vitor Benitez 18y 58/85 a club in South America £5.4m | Lautaro Silva 17y 59/84 a club in South America £8.8m
+SCOUT2 Tariq Price L:SA wonder  Francesco Camarda ST 18y 73/99 £35.2m | Rodrigo Mora AM 19y 77/96 £51.7m | Matteo Palma CB 18y 65/94 £11.7m
+SCOUT2 Emil Owusu L:CH stop D Maximilian Kilman CB 29y 76/76 £24.3m | Kyle Walker-Peters RB 29y 74/76 £18.9m | Konstantinos Mavropanos CB 28y 74/78 £18.9m
+HAP Riccardo Calafiori 22 
+  + Excited to be playing Champions League football 
+  - Unhappy with the club sitting 6th in the league
+  - Unhappy that Piero Hincapie keeps starting ahead of him
+  - Low on morale
+HAP Eberechi Eze 26 
+  + Excited to be playing Champions League football
+  + Thinks Martin Odegaard is a great captain
+  + Gets on well with Myles Lewis-Skelly 
+  - Unhappy with the club sitting 6th in the league
+  - Has fallen out with Ben White after a training-ground row
+  - Unhappy that Martin Odegaard keeps starting ahead of him
+HAP Julienne 65 
+  + Excited to be playing Champions League football
+  + Gets on well with Ibrahim 
+  - Unhappy with the club sitting 6th in the league
+HAP Piero Hincapie 100 
+  + Excited to be playing Champions League football
+  + Thinks Martin Odegaard is a great captain
+  + Thinks William Saliba is a world-class player
+  + Happy with his playing time 
+  - Unhappy with the club sitting 6th in the league
+after talk {"d":"2026-12-20","k":"praise","l":"praised his form","dh":-4}
+screens 4348 8837 true | errors 0

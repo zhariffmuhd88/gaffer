@@ -1,0 +1,10 @@
+1280 3D button 1
+1280 renders 74 -> 227 {'v3': True, 'canvas': True, 'cv2hidden': True, 'figs': 22, 'cams': 3}
+1280 phase3 {'bug': 'Emirates Stadium', 'refs': 3, 'mgrs': 2, 'board': True, 'nets': 2, 'banner': True}
+1280 back to 2D: cv shown True | overflow False
+390 3D button 1
+390 renders 79 -> 222 {'v3': True, 'canvas': True, 'cv2hidden': True, 'figs': 22, 'cams': 3}
+390 phase3 {'bug': 'Emirates Stadium', 'refs': 3, 'mgrs': 2, 'board': True, 'nets': 2, 'banner': True}
+390 back to 2D: cv shown True | overflow False
+fallback: v3 False | 2D visible True
+errors []

@@ -1,0 +1,16 @@
+start button enabled for England only: True
+user team: N_ENG nat ENG | screen intl
+club nav hidden: [True, True, True]
+press modal: 3
+England games played: England 0-1 Spain | Czechia 0-2 England True
+nation modal: England
+× | rows 25
+friendly arranged: 1
+rankings me: 62 - Zhariff Malaysia  England 0 trophies 0
+comp links in inbox: 0
+390 overflow: False
+dual: TOT dual ENG
+dual swapped to England: True 2026-09-26 N_ENG
+squad screen during England duty: 26 First-team squad
+back at club: True 2026-10-07 TOT
+errors []

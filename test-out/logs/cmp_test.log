@@ -1,0 +1,12 @@
+Bukayo Saka            89 RW [["PAC",91],["SHO",86],["PAS",90],["DRI",93],["DEF",72],["PHY",89]]
+Kylian Mbappé          92 ST [["PAC",95],["SHO",92],["PAS",90],["DRI",94],["DEF",71],["PHY",93]]
+Lamine Yamal           91 RW [["PAC",95],["SHO",88],["PAS",93],["DRI",95],["DEF",78],["PHY",85]]
+Virgil van Dijk        86 CB [["PAC",74],["SHO",67],["PAS",79],["DRI",74],["DEF",93],["PHY",89]]
+Rodri                  87 DM [["PAC",77],["SHO",78],["PAS",89],["DRI",84],["DEF",90],["PHY",91]]
+David Raya             86 GK [["DIV",90],["HAN",95],["KIC",88],["REF",95],["SPD",67],["POS",88]]
+Gianluigi Donnarumma   88 GK [["DIV",93],["HAN",88],["KIC",84],["REF",95],["SPD",67],["POS",88]]
+3 players screen 15798 true 7 | best marks 27
+GK v GK uses GK axes true
+GK v outfield uses outfield axes true | Kane club Bayern
+search "yamal" true | search accent-free "mbappe" true
+max 3 3

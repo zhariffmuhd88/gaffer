@@ -1,0 +1,13 @@
+doc: ok 172
+2026-09-15 request loan Andre Harriman-Annous -> Harriman-Annous: "Thanks boss. I'll go in the next window."
+2026-09-26 request loan Max Dowman -> Dowman: "If I am part of your plans, I'll give it another go."
+2026-09-29 request play Riccardo Calafiori -> Calafiori: "Thanks boss. I'll go in the next window."
+2026-10-06 request play Kepa Arrizabalaga -> Arrizabalaga: "Thank you for being honest. I'll stay professional until a deal is done."
+requests 21 loan:done loan:done play:done play:done play:ignored play:ignored loan:ignored play:ignored play:ignored play:ignored leave:ignored play:ignored play:ignored leave:ignored play:ignored leave:ignored loan:ignored play:ignored loan:ignored loan:ignored play:ignored
+doc episodes 9
+CWC PSG beat Juventus | CWX none
+trophy room svg 2786 | parade 19130
+statue {"ARS":{"n":"T","y":2028}}
+son ask ask
+son Adam Zhariff 16 91 a ENG
+import compressed ok 20 | errors 0

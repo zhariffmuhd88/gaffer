@@ -1,0 +1,35 @@
+feed 260 | fan 126 jour 72 club 16 | rumours 22 closed 18 came true 8
+   Marcus Hale T1 3/5
+   Luca Ferraro T1 3/4
+   Ellie Brennan T2 2/6
+   Gary Pratt T3 0/2
+   Javier Montero T1 0/0
+   Paco Ríos T3 0/1
+fans 72 | trending ArsenalChampions Champions BayernChampions PSGChampions RealMadridChampions
+pundit 16 creator 12 var 14 | varw 60 correct,correct,correct,correct
+sample:
+  [fan] Ellis (@HeerenveenEllis11): Hate-watched Cambuur lose 0-4. Better than our own match tbh 🍿 I'm crying
+      ↳ Mo: Scoreboard from today says otherwise 😂
+      ↳ Lewis ⚽: Mid-table merchants. Know your place lowkey
+  [fan] Ane (@GoonerAne): Bergkamp is still HIM 🥶
+      ↳ Raj: Thierry Henry. That's the tweet
+  [pun] Tyrone Asante (former winger (ex-Spurs, Arsenal)): Arsenal will moan about the penalty, but they didn't lay a glove on them.
+      ↳ Danny Shields: Rubbish. The penalty decided that game. Referees have to be braver.
+      ↳ Lucía ⚽: L take
+      ↳ Jake ⚽: Bias much? You played for them for years mate
+      ↳ Becky: No cap
+  [cre] Big Lenny (Arsenal fan channel): LIVE NOW 🔴 MELTDOWN. Arsenal 0-1 Arsenal Legends. I'm calling it: this squad isn't good enough and the board knows it. Comments are OPEN 😡
+  [fan] Amir (@GoonerAmir): That penalty against us was never a penalty. Ref bottled it under pressure ykb
+      ↳ Ellis: Scoreboard. 🤫
+  [fan] Big Steve (@SwanseaBigSteve90): Stephen Eustaquio kissed the badge in May and he's off to Schalke in the summer. Snake 🐍
+      ↳ Deano: He wanted a club that wins things 🏆
+  [fan] Tom (@VeneziaTom67): Filip Stanković kissed the badge in May and he's off to Elche in the summer. Snake 🐍
+      ↳ Iker: No cap
+  [fan] Lewis (@MonzaLewis53): Matteo Pessina kissed the badge in May and he's off to Como in the summer. Snake 🐍 I'm crying
+      ↳ Sully: He wanted a club that wins things 🏆 (respectfully)
+  [fan] Becky ⚽ (@InterBecky66): DOMESTIC TREBLE 🏆🏆🏆 Supercoppa Italiana + Coppa Italia + Serie A. Say it with me: TREBLE!!!
+      ↳ Amir: Wake me up when it's a quadruple 🙄 it's giving relegation
+  [fan] Jake (@InterJake4): SERIE A WINNERS 🏆🏆🏆 I'm not crying, you're crying
+      ↳ Jonno: Pazza Inter: bottle it in May, every May
+      ↳ Amir ⚽: Not gonna lie, seethe. Cope. Mald.
+errors 0 | html 79731 | save KB 4927 feed KB 69

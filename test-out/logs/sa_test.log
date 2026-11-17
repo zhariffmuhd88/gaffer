@@ -2,3 +2,28 @@ user LAZ SA | SA clubs 20 | players 25 | SB 20 | SC 16 | play nat ITA | euroIn {
 SA fixtures 380 | UCL Italian ROM,COM,NAP,INT | UEL ACM,JUV | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 677 | Josep INT
 CIT R1 16 Cagliari v Pisa, Genoa v Mantova, Lazio v Juve Stabia | SCI Inter v Lazio 2026-12-22
 youth 19 15 Mattia Valentini ITA, Marco Pellegrini ITA, Emanuele Ferraro ITA | comps PRI U18I
+Supercopa Barcelona v Atlético 1-2, Real Sociedad v Real Madrid 1-0 / Atlético v Real Sociedad 2-3 | winner Real Sociedad
+Coppa Quarter-final: Roma v Torino 3-2, Bologna v Atalanta 0-1, Milan v Fiorentina 0-1, Como v Inter 1-2 / Semi-final: Inter v Fiorentina 2-2/2-0, Atalanta v Roma 0-2/3-1 / Final: Fiorentina v Roma 0-1 | winner Roma | SCI Inter
+gpg PL 2.76 370 | home win % 42
+gpg LL 2.62 380 | home win % 41
+gpg SA 2.59 370 | home win % 41
+=== season 2026/27 | user pos 10 SA | sacked false | now 2027-08-07
+SA top5 Inter 88, Napoli 87, Juventus 83, Roma 79, Como 78 | down Venezia, Monza, Frosinone | up Cremonese, Sampdoria, Empoli | CIT Roma | SB top Cremonese 72, Sampdoria 71, Palermo 66
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Lautaro Martínez","INT",34,"p1715"] | SCI INT | CIT ROM
+SA awards best Lautaro Martínez | Pichichi Lautaro Martínez 34 | Zamora null | TOS 11 | GOS null
+SA months 10 | gotmSA 10 | next euro {"UCL":["MUN","ARS","TOT","LIV","NEW","BAR","RMA","RSO","ATH","BAY","VFB","SGE","B04","PSG","ASM","LOSC","OM","AJX","FEY","INT","NAP","JUV","ROM"],"UEL":["LEE","CHE","ATM","RAY","BVB","RCL","PSV","COM","ATA"],"UECL":["BOU","GET","RBL","OGCN","TWE","FIO"]} | sci next Inter,Roma | seeds INT,NAP,JUV,ROM,COM,ATA,FIO,ACM
+Supercopa Barcelona v Real Sociedad 0-1, Athletic v Real Madrid 0-4 / Real Sociedad v Real Madrid 1-0 | winner Real Sociedad
+Coppa Quarter-final: Como v Milan 3-2, Inter v Napoli 2-1, Fiorentina v Juventus 1-0, Atalanta v Cagliari 2-0 / Semi-final: Como v Inter 1-1/1-0, Fiorentina v Atalanta 1-1/0-1 / Final: Inter v Fiorentina 1-0 | winner Inter | SCI Inter
+=== season 2027/28 | user pos 12 SA | sacked false | now 2028-08-05
+SA top5 Inter 93, Como 83, Napoli 79, Empoli 65, Milan 65 | down Cagliari, Udinese, Lecce | up Hellas Verona, Palermo, Pisa | CIT Inter | SB top Hellas Verona 80, Palermo 78, Pisa 67
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | SA ts ["Francesco Pio Esposito","INT",28,"p1718"] | SCI INT | CIT INT
+SA awards best Lautaro Martínez | Pichichi Francesco Pio Esposito 28 | Zamora null | TOS 11 | GOS null
+SA months 20 | gotmSA 20 | next euro {"UCL":["ARS","CHE","TOT","LIV","MUN","BAR","RMA","ATM","ATH","BAY","RBL","SGE","VFB","PSG","RCSA","LOSC","OM","PSV","FEY","INT","COM","NAP","B_Empoli"],"UEL":["NFO","BRE","RSO","S_Girona","BVB","OL","AZ","ACM","B_Sampdoria"],"UECL":["BOU","SEV","B04","ASM","AJX","ATA"]} | sci next Inter,Fiorentina | seeds INT,COM,NAP,B_Empoli,ACM,B_Sampdoria,ATA,FIO
+goals per game this season: PL - | CH - | LL - | SA - | CIT -
+cross-league moves 127 Marc Guehi -> Al-Ahli; Josko Gvardiol -> Leipzig; Mateo Kovacic -> Roma; Enzo Fernandez -> Strasbourg; Phil Foden -> Lille
+errors 0 | sim time 880.1s
+screens 9619 10302 true 6678 1657 true 45005 21066 11536
+save parts KB players 4586, fx 444, teams 252, feed 72, awards 71, yl 54, news 42, sq 41
+national team ITA null | games 22 Italy 3-0 Denmark | Italy 4-1 Netherlands | Italy 3-0 Wales | Italy 2-4 Spain | caps leaders Gianluigi Donnarumma 107, Nicolò Barella 85, Giovanni Di Lorenzo 62
+save 5865 KB JSON, 632K chars compressed (839 ms, unpack 199 ms, round trip true) | restore ok 20 20
+time 886.1s
