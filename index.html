@@ -16862,6 +16862,22 @@ playerExtra = function (p) {
   try { if (p && G.user && p.c !== G.user && !p.leg && !p.pseudo && !(T(p.c) && T(p.c).nat) && rwFreeTokens() > 0) return h + `<div class="box pad" style="margin-top:8px;border-color:var(--yel)"><label class="lb">Career reward</label><button class="btn pri" data-a="rwfree" data-v="${p.id}">Sign for free (reward)</button> <span class="dim" style="font-size:12px">${rwFreeTokens()} left in this save</span></div>`; } catch (e) { }
   return h;
 };
+// saves started before rewards existed: count their finished seasons, trophies and matches once, when first loaded
+function rwBackfill() {
+  if (!G || !G.user || G.rwBack) return; G.rwBack = 1;
+  // an id that stays the same each time this old save is loaded, so nothing is counted twice
+  if (!G.cid) G.cid = 'o' + hash(String(G.user) + '|' + Object.keys(G.players || {}).slice(0, 8).join(',') + '|' + JSON.stringify((G.honours || {})[G.user] || []).slice(0, 60)).toString(36);
+  try {
+    for (let y = BASE_YEAR; y < G.year; y++) careerGain('s' + seasonLabel(y), 'seasons', RW_XP.season, `Completed season ${seasonLabel(y)} (earlier play)`);
+    for (const h of (G.honours && G.honours[G.user]) || []) { const lg = /League|Liga|Serie A|Bundesliga|Ligue 1|Eredivisie|Premiership|Championship|League One/.test(h) && !/Cup|Champions League|Europa|Conference/.test(h); const m = h.match(/^(\S+) (.*)$/); careerGain('h' + (m ? m[1] + m[2] : h), 'trophies', lg ? RW_XP.league : RW_XP.trophy, `Won the ${m ? m[2] : h} (earlier play)`); }
+    for (const f of Object.values(G.fx || {})) { if (!f.r || f.comp === 'PSF' || (f.h !== G.user && f.a !== G.user)) continue; const s = f.h === G.user ? 0 : 1; const me = f.r[s], op = f.r[1 - s]; const c = career(); if (!c.seen[saveId() + ':g' + f.id]) { c.games++; careerSave(c); } careerGain('g' + f.id, me > op ? 'wins' : me === op ? 'draws' : null, me > op ? RW_XP.win : me === op ? RW_XP.draw : 0, null); }
+  } catch (e) { console.error(e); }
+  try { autosave(); } catch (e) { }
+}
+const _rsRw = restore;
+restore = function (obj) { const r = _rsRw.apply(this, arguments); try { rwBackfill(); } catch (e) { console.error(e); } return r; };
+const _ngRw = newGame;
+newGame = function () { const r = _ngRw.apply(this, arguments); try { if (G) G.rwBack = 1; } catch (e) { } return r; };
 
 // selection.js: squad selection helpers on the Tactics screen.
 // Saved tactics (shape, roles, instructions, set-piece takers and lineup), best XI, squad rotation and a youth (U21) XI.
