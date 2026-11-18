@@ -1,35 +1,40 @@
-feed 260 | fan 126 jour 72 club 16 | rumours 22 closed 18 came true 8
-   Marcus Hale T1 3/5
-   Luca Ferraro T1 3/4
-   Ellie Brennan T2 2/6
+feed 260 | fan 126 jour 66 club 16 | rumours 15 closed 12 came true 6
+   Marcus Hale T1 0/2
+   Luca Ferraro T1 2/2
+   Ellie Brennan T2 4/5
    Gary Pratt T3 0/2
-   Javier Montero T1 0/0
-   Paco Ríos T3 0/1
-fans 72 | trending ArsenalChampions Champions BayernChampions PSGChampions RealMadridChampions
-pundit 16 creator 12 var 14 | varw 60 correct,correct,correct,correct
+   Javier Montero T1 0/1
+   Paco Ríos T3 0/0
+fans 84 | trending ArsenalChampions InterChampions Champions BayernChampions Double
+pundit 21 creator 11 var 16 | varw 60 correct,correct,correct,correct
 sample:
-  [fan] Ellis (@HeerenveenEllis11): Hate-watched Cambuur lose 0-4. Better than our own match tbh 🍿 I'm crying
-      ↳ Mo: Scoreboard from today says otherwise 😂
-      ↳ Lewis ⚽: Mid-table merchants. Know your place lowkey
-  [fan] Ane (@GoonerAne): Bergkamp is still HIM 🥶
-      ↳ Raj: Thierry Henry. That's the tweet
-  [pun] Tyrone Asante (former winger (ex-Spurs, Arsenal)): Arsenal will moan about the penalty, but they didn't lay a glove on them.
-      ↳ Danny Shields: Rubbish. The penalty decided that game. Referees have to be braver.
-      ↳ Lucía ⚽: L take
-      ↳ Jake ⚽: Bias much? You played for them for years mate
-      ↳ Becky: No cap
-  [cre] Big Lenny (Arsenal fan channel): LIVE NOW 🔴 MELTDOWN. Arsenal 0-1 Arsenal Legends. I'm calling it: this squad isn't good enough and the board knows it. Comments are OPEN 😡
-  [fan] Amir (@GoonerAmir): That penalty against us was never a penalty. Ref bottled it under pressure ykb
-      ↳ Ellis: Scoreboard. 🤫
-  [fan] Big Steve (@SwanseaBigSteve90): Stephen Eustaquio kissed the badge in May and he's off to Schalke in the summer. Snake 🐍
-      ↳ Deano: He wanted a club that wins things 🏆
-  [fan] Tom (@VeneziaTom67): Filip Stanković kissed the badge in May and he's off to Elche in the summer. Snake 🐍
-      ↳ Iker: No cap
-  [fan] Lewis (@MonzaLewis53): Matteo Pessina kissed the badge in May and he's off to Como in the summer. Snake 🐍 I'm crying
-      ↳ Sully: He wanted a club that wins things 🏆 (respectfully)
-  [fan] Becky ⚽ (@InterBecky66): DOMESTIC TREBLE 🏆🏆🏆 Supercoppa Italiana + Coppa Italia + Serie A. Say it with me: TREBLE!!!
-      ↳ Amir: Wake me up when it's a quadruple 🙄 it's giving relegation
-  [fan] Jake (@InterJake4): SERIE A WINNERS 🏆🏆🏆 I'm not crying, you're crying
-      ↳ Jonno: Pazza Inter: bottle it in May, every May
-      ↳ Amir ⚽: Not gonna lie, seethe. Cope. Mald.
-errors 0 | html 79731 | save KB 4927 feed KB 69
+  [fan] Pablo ⚽ (@HeerenveenPablo): Groningen losing is a public holiday in my house 🎉
+      ↳ Priya: At least Groningen have a soul
+      ↳ Priya ⚽: Groningen fans acting like they've won something 😂
+  [pun] Danny Shields (former centre-back (ex-Arsenal, Inter)): Feyenoord and Ajax both looked scared to lose. Nobody took a risk.
+      ↳ Lukas Brenner: I'm sorry, I disagree. That was a chess match. Tactically fascinating.
+      ↳ Priya: Source: trust me bro
+  [fan] Ane (@GoonerAne31): Henry in his prime is just unfair fr
+      ↳ Ane: Touch grass
+  [fan] Jake (@BlueJake): Put the Arsenal game on just to see them suffer. Worth every second 😂
+      ↳ Mo: Imagine watching our games instead of your own
+  [pun] Tyrone Asante (former winger (ex-Spurs, Arsenal)): Arteta got his tactics spot on. Sat in, hit them on the break. Textbook.
+      ↳ Danny Shields: Masterclass? They had 29% of the ball and parked the bus. Nobody pays to watch that.
+      ↳ Big Steve: Bro finally someone talking sense, Danny
+      ↳ Gav: Pundits arguing again 🍿
+      ↳ Becky: Take the Arsenal scarf off before you go on air 🧣
+      ↳ Dan: Ratio + he played at the top level + you didn't
+  [cre] xG Ollie (stats account): xG: Arsenal 4.45 - 1.13 Arsenal Legends. Possession 71-29. Football, eh? 🤷
+      ↳ Kev: xG doesn't win trophies
+  [cre] Big Lenny (Arsenal fan channel): Emergency stream in 10 mins. That was the worst 90 minutes I've watched this season. We need to talk about Ezri Konsa
+      ↳ Jonno: Clip this for the "best fan reactions" compilation 🍿
+  [fan] Pablo (@GoonerPablo37): Y'all we had 4.5 xG to their 1.1. Football is cruel. Daylight robbery
+      ↳ Jonno: Every week it's the ref with you lot 🤣 I'm crying
+      ↳ Liam ⚽: Keep crying? You lot were time-wasting at 0-0 😂
+      ↳ Dan ⚽: Seethe.
+  [fan] Iker (@GoonerIker): Arsenal Legends parked the bus for 90 minutes. Time-wasting from the first minute. Ref did nothing about it
+      ↳ Raj: Bus parked? We just defended better than you attacked 🚌😂
+      ↳ Raj: Say that after the ref gets demoted. Shambles fr fr
+  [fan] Big Steve (@UdineseBigSteve): Loyalty is dead. Karlström chose the money
+      ↳ Amir ⚽: He chose ambition. Ykb
+errors 0 | html 82046 | save KB 4929 feed KB 72

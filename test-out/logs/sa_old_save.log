@@ -1,5 +1,5 @@
 old save at 2026-12-10 | sa false | E_Inter true | UCL teams with E_ 14
-after load: sa 20 | sb 20 | E_Inter gone true | Euro Italian UCL:ROM,COM,NAP,INT UEL:JUV,ACM UECL:ATA
-SA table after 14 games: Napoli 28, Juventus 28, Inter 28, Fiorentina 26 | next SA 2026-12-12
+after load: sa 20 | sb 20 | E_Inter gone true | Euro Italian UCL:COM,NAP,ROM,INT UEL:ACM,JUV UECL:ATA
+SA table after 14 games: Napoli 30, Como 29, Milan 28, Bologna 27 | next SA 2026-12-12
 Chalobah 1 COM caps 3 | Josep INT | CIT 16/8/8/4/0/0 ri 3 | SCI 1 | msg Serie A
-end of season 2027-08-07 | SA champion Inter | CIT Inter | SCI INT | errors 0
+end of season 2027-08-07 | SA champion Napoli | CIT Inter | SCI INT | errors 0

@@ -1,49 +1,53 @@
-ASSISTANT Kian Pearce 2026-12-14 
- sum: Viktor Gyokeres is our best performer right now; William Saliba should come out of the team; I would sell Martin Zubimendi in the next window. 
+ASSISTANT Max Mitchell 2026-12-14 
+ sum: Kai Havertz is our best performer right now; Gabriel Magalhaes deserves a start; I would sell Ben White in the next window. 
  start:
-    
+   Gabriel Magalhaes — Start him ahead of Riccardo Calafiori (7.08 recently); he has averaged 7.28 when called on.
+   Martin Odegaard — Start him ahead of Mikel Merino (7.18 recently); he has averaged 6.86 when called on.
+   Viktor Gyokeres — Start him ahead of Christos Tzolis (6.48 recently); he has averaged 6.76 when called on. 
  drop:
-   William Saliba — Suspended. Take him out of the team. 
+    
  form:
-   Viktor Gyokeres — 7.60 average over his last 5 games, 10 goals this season.
-   Declan Rice — 7.40 average over his last 5 games, 4 goals this season, 4 assists.
-   Noni Madueke — 7.30 average over his last 5 games, 3 goals this season, 1 assist. 
+   Kai Havertz — 8.20 average over his last 5 games, 15 goals this season, 4 assists.
+   William Saliba — 7.30 average over his last 5 games, 3 goals this season, 3 assists.
+   Noni Madueke — 7.13 average over his last 3 games, 1 goal this season. 
  under:
-   Riccardo Calafiori — Below the standard we expect from him (6.36 recently).
-   Bukayo Saka — Below the standard we expect from him (6.50 recently).
-   Eberechi Eze — Below the standard we expect from him (6.53 recently). 
+   Piero Hincapie — Below the standard we expect from him (6.56 recently).
+   Ben White — Below the standard we expect from him (6.32 recently). 
  sell:
-   Martin Zubimendi — Is unhappy and unsettling the dressing room. Estimated value £70.0m.
-   Riccardo Calafiori — Is unhappy and unsettling the dressing room. Estimated value £52.0m.
-   Eberechi Eze — Is unhappy and unsettling the dressing room. Estimated value £45.0m.
-   Ben White — Is unhappy and unsettling the dressing room. Estimated value £32.0m.
+   Ben White — Has asked to leave; sell while his value holds. Estimated value £32.0m.
+   Illan Meslier — Is not good enough for this squad. Estimated value £14.0m.
 inbox asst msgs 0 | scout msgs 0
-SCOUT Tariq Price L:PL win Gianluigi Donnarumma 27y 89/89 Man City £117m | Alexander Isak 26y 88/88 Liverpool £150m | Josko Gvardiol 24y 87/92 Man City £158m
-SCOUT Emil Owusu L:LL young Marc Bernal 19y 80/99 Barcelona £71.5m | Yan Diomande 20y 78/97 Real Madrid £52.8m | Endrick 20y 78/96 Real Madrid £51.7m
-SCOUT Hugo De Vries R:sa wonder Luis Vargas 18y 66/88 a club in South America £18.9m | Vitor Benitez 18y 58/85 a club in South America £5.4m | Lautaro Silva 17y 59/84 a club in South America £8.8m
-SCOUT2 Tariq Price L:SA wonder  Francesco Camarda ST 18y 73/99 £35.2m | Rodrigo Mora AM 19y 77/96 £51.7m | Matteo Palma CB 18y 65/94 £11.7m
-SCOUT2 Emil Owusu L:CH stop D Maximilian Kilman CB 29y 76/76 £24.3m | Kyle Walker-Peters RB 29y 74/76 £18.9m | Konstantinos Mavropanos CB 28y 74/78 £18.9m
-HAP Riccardo Calafiori 22 
-  + Excited to be playing Champions League football 
-  - Unhappy with the club sitting 6th in the league
-  - Unhappy that Piero Hincapie keeps starting ahead of him
-  - Low on morale
-HAP Eberechi Eze 26 
+SCOUT Tom Clarke L:PL win Gianluigi Donnarumma 27y 88/88 Man City £105m | Ruben Dias 29y 87/92 Man City £109m | Alexander Isak 26y 88/90 Liverpool £150m
+SCOUT Tyler Mitchell L:LL young Yan Diomande 20y 79/98 Real Madrid £57.2m | Facundo Buonanotte 21y 76/97 Elche £51.3m | Endrick 20y 80/93 Real Madrid £58.3m
+SCOUT Aaron Cooper R:sa wonder Vitor Benitez 18y 67/99 a club in South America £23.0m | Luis Benitez 18y 68/83 a club in South America £24.3m | Thiago Acosta 16y 60/74 a club in South America £9.1m
+SCOUT2 Tom Clarke L:SA wonder  Jeff Ekhator ST 19y 69/95 £18.0m | Franco Mastantuono AM 19y 81/93 £91.8m | Massimo Pessina GK 18y 71/90 £18.7m
+SCOUT2 Tyler Mitchell L:CH stop D Maximilian Kilman CB 29y 76/79 £24.3m | Kyle Walker-Peters RB 29y 75/75 £21.6m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
+HAP Ben White 17 
+  + Loves being top of the Premier League
+  + Excited to be playing Champions League football
+  + Gets on well with Eberechi Eze 
+  - Has fallen out with Eberechi Eze after a training-ground row
+  - Unhappy that Jurrien Timber keeps starting ahead of him
+  - Has asked to leave the club
+HAP Eberechi Eze 33 
+  + Loves being top of the Premier League
   + Excited to be playing Champions League football
   + Thinks Martin Odegaard is a great captain
   + Gets on well with Myles Lewis-Skelly 
-  - Unhappy with the club sitting 6th in the league
   - Has fallen out with Ben White after a training-ground row
-  - Unhappy that Martin Odegaard keeps starting ahead of him
-HAP Julienne 65 
+  - Unhappy that Mikel Merino keeps starting ahead of him
+  - Low on morale
+HAP Julienne 73 
+  + Loves being top of the Premier League
   + Excited to be playing Champions League football
   + Gets on well with Ibrahim 
-  - Unhappy with the club sitting 6th in the league
-HAP Piero Hincapie 100 
+  - 
+HAP Kai Havertz 100 
+  + Loves being top of the Premier League
   + Excited to be playing Champions League football
   + Thinks Martin Odegaard is a great captain
-  + Thinks William Saliba is a world-class player
-  + Happy with his playing time 
-  - Unhappy with the club sitting 6th in the league
+  + Happy with his playing time
+  + Enjoying his football (7.44 average in his last games) 
+  - 
 after talk {"d":"2026-12-20","k":"praise","l":"praised his form","dh":-4}
-screens 4348 8837 true | errors 0
+screens 4119 8853 true | errors 0

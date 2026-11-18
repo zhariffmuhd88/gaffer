@@ -1,6 +1,8 @@
+FAIL intl_test (exit 124)
 ok   aihap_test
 ok   asia2_test
 ok   asia_test
+ok   badge_browser
 ok   ch_test
 ok   cine_real
 ok   clinch_test
@@ -16,7 +18,6 @@ ok   exnat_browser
 ok   exnat_test
 ok   intl_browser
 ok   intl_old_save
-ok   intl_test
 ok   jobs_browser
 ok   jobs_test
 ok   ll_browser

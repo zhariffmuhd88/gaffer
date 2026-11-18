@@ -1,18 +1,18 @@
-rows [["2026/27 (now)","ARS",28,8,4,0,"T"]] | likes {"fav":[["ARS","his club"]],"favP":[["T","played 28 games under him"],["Noni Madueke","team-mate he gets on well with","p23"]],"bad":[]}
+rows [["2026/27 (now)","ARS",14,7,1,0,"T"]] | likes {"fav":[["ARS","his club"]],"favP":[["Noni Madueke","team-mate he gets on well with","p23"]],"bad":[]}
 MCI manager Enzo Maresca 
 WFF log 2026-11-18 WFF election | 2026-09-16 WFF
-doc episodes 6 Episode 1: "Standards" — T lets rip at half-time.
-Cold open: The episode opens in the tunnel after the 1-1 draw with Coventry City (Saka) in the Premier League.
-Half-time: Cameras catch T slamming the tactics board in the dressing room. The players sit in silence; nobody looks up.
-Training ground: A rare clean bill of health for the squad. Bukayo Saka leads the scoring charts with 1 this season.
-Closing: The season has barely started. Next up: Brentford (Premier League) on 29 Aug. The narrator closes the episode: "In this building, there is no such thing as a quiet week." 
-QUOTES T (Manager): A point. A point! We had them there and we let them off. Not again.
-Dylan Pearce (Assistant manager): When he goes like that, you just let it land. Ten minutes later he's hugging everyone.
-Mason Okoro (Academy player): My mum's watching this, so I'm on my best behaviour.
-Narrator (Series voice-over): Every club tells itself a story. This one is still deciding how it ends.
-shortlist top Kylian Mbappé 201, Erling Haaland 191, Vinícius Júnior 171, Antoine Semenyo 161, Julián Álvarez 158
-saka sh [["2026/27","ARS",39,10,6,0,"T"]]
-WFF pres Laurent Mercier [127,81,3] rule {"dl":"2027-07-01"}
-Ballon d Or Kylian Mbappé 579, Erling Haaland 510, Vinícius Júnior 290 voters 180
-mrec ARS mgr [["2026/27","ARS",4,"PL"]] mh sample 204
+doc episodes 7 Episode 1: "Behind Closed Doors" — Tension at Arsenal as Declan Rice clashes with the coaching staff.
+Cold open: The episode opens on a quiet morning at the training ground.
+The row: After being left out of the starting line-up, Declan Rice is seen in a heated exchange with the coaching staff on the training pitch. Luca Okoro steps in to separate them.
+Training ground: A rare clean bill of health for the squad. 
+Closing: The season has barely started. Next up: Arsenal Legends (Pre-season friendly) on 8 Aug. The narrator closes the episode: "In this building, there is no such thing as a quiet week." 
+QUOTES T (Manager): Nobody is bigger than Arsenal. I pick the team that gives us the best chance to win, and that is the end of it.
+Luca Okoro (Assistant manager): Frustration is fine. Showing it in front of the whole squad is not.
+Andre Vaughan (Academy player): The gaffer told me to stay ready. That's all I'm doing, staying ready.
+Narrator (Series voice-over): Behind every badge there is a dressing room. Behind every dressing room, a secret.
+shortlist top Lautaro Martínez 212, Vinícius Júnior 186, Lamine Yamal 184, Luis Díaz 175, Erling Haaland 173
+saka sh [["2026/27","ARS",29,13,2,0,"T"]]
+WFF pres Laurent Mercier [116,92,3] rule {"dl":"2027-07-01"}
+Ballon d Or Lautaro Martínez 646, Vinícius Júnior 433, Lamine Yamal 378 voters 180
+mrec ARS mgr [["2026/27","ARS",1,"PL"]] mh sample 204
 OK

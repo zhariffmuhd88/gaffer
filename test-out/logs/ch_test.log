@@ -1,11 +1,11 @@
-== Season 2026/27 {"PL":"380 games, 2.67 goals/game, home 44%, draws 24%","CH":"552 games, 2.55 goals/game, home 46%, draws 23%"}
-PL top scorers: Joao Pedro (Chelsea) 31; Alexander Isak (Liverpool) 23; Thierno Barry (Everton) 23; Kai Havertz (Arsenal) 22
-CH top scorers: Mathias Kvistgaarden (Norwich) 35; Thomas Cannon (Sheff Utd) 34; Mihailo Ivanović (Millwall) 34; Adam Armstrong (Wolves) 30
-CH table: 1.Wolves 105 2.Burnley 94 3.Sheff Utd 93 4.Southampton 87(-4) 5.Birmingham 86 6.Watford 75 7.Derby 75 8.Middlesbrough 74 9.Norwich 73 10.West Ham 69 11.Wrexham 69 12.Bolton 69 13.West Brom 66 14.Charlton 65 15.Millwall 62 16.Stoke 59 17.Bristol City 44 18.Portsmouth 44 19.Lincoln 43 20.Cardiff 41 21.Preston 41 22.Swansea 38 23.QPR 30 24.Blackburn 24
-Play-offs: Eliminator: Birmingham v Middlesbrough -> Birmingham, Watford v Derby -> Derby | Semi-final: Derby v Sheff Utd -> Derby, Birmingham v Southampton -> Birmingham | Final: Derby v Birmingham -> Derby winner Derby
-PL table top/bottom: 1.Chelsea 77 2.Liverpool 73 3.Arsenal 71 4.Spurs 68 18.Ipswich 31 19.Man City 19 20.Hull 18
-Save size 7997 KB | players 13302 | fixtures 4357
-User WHU CH bal 180.1 tb 87 wb 775 wagebill 704
-CH balances: West Ham 180, Middlesbrough 51, Norwich 44, Portsmouth 28, West Brom 48, Watford 32, Millwall 24, Bristol City 32, Stoke 49, Preston 13, Birmingham 49, Wrexham 15, Charlton 22, Cardiff 32, Ipswich 206, Man City 262, Leicester 49, Luton 32, Wolves 226, Burnley 138, Derby 96, Blackburn 41, Swansea 41, QPR 17
+== Season 2026/27 {"PL":"380 games, 2.58 goals/game, home 43%, draws 24%","CH":"552 games, 2.48 goals/game, home 45%, draws 24%"}
+PL top scorers: Benjamin Sesko (Man Utd) 34; Joao Pedro (Chelsea) 26; Erling Haaland (Man City) 25; Yankuba Minteh (Brighton) 25
+CH top scorers: Jusef Erabi (Preston) 35; Adam Armstrong (Wolves) 32; Stephy Mavididi (Watford) 31; Mathias Kvistgaarden (Norwich) 30
+CH table: 1.Wolves 110 2.West Ham 102 3.Burnley 80 4.Sheff Utd 79 5.Birmingham 79 6.Middlesbrough 78 7.Southampton 76(-4) 8.Preston 73 9.West Brom 71 10.Watford 69 11.Stoke 68 12.Norwich 65 13.Derby 64 14.Swansea 61 15.QPR 56 16.Blackburn 53 17.Millwall 52 18.Bristol City 51 19.Bolton 45 20.Wrexham 42 21.Cardiff 39 22.Lincoln 38 23.Portsmouth 36 24.Charlton 33
+Play-offs: Eliminator: Birmingham v Preston -> Birmingham, Middlesbrough v Southampton -> Southampton | Semi-final: Southampton v Burnley -> Burnley, Birmingham v Sheff Utd -> Birmingham | Final: Burnley v Birmingham -> Burnley winner Burnley
+PL table top/bottom: 1.Liverpool 75 2.Sunderland 65 3.Arsenal 64 4.Chelsea 64 18.Coventry 30 19.Man City 20 20.Hull 9
+Save size 8007 KB | players 13334 | fixtures 4357
+User WHU CH bal 192.2 tb 89 wb 578 wagebill 525
+CH balances: Southampton 72, Middlesbrough 52, Sheff Utd 57, Norwich 49, West Brom 45, Watford 31, Millwall 31, Bristol City 29, Stoke 39, Derby 33, QPR 12, Preston 20, Blackburn 32, Wrexham 12, Bolton 31, Cardiff 29, Coventry 212, Man City 370, Burnley 166, West Ham 192, Wolves 191, Stockport 21, Charlton 27, Portsmouth 19
 Dev news: 
-time 866.7s
+time 800.5s
