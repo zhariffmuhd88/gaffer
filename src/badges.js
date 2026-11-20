@@ -56,11 +56,62 @@ clubModal = function (tid) {
   _clubModalB(tid);
   try { if (T(tid) && UI.modal && !UI.modal.includes('badgebox')) { const i = UI.modal.lastIndexOf('</div>'); if (i > 0) { UI.modal = UI.modal.slice(0, i) + badgeBoxHtml(tid, true) + UI.modal.slice(i); UI.badgeClub = tid; render(); } } } catch (e) { console.error(e); }
 };
-function badgeRefresh(tid) { if (UI.modal && UI.badgeClub === tid && UI.modal.includes('badgebox')) { UI.modal = null; clubModal(tid); } else render(); }
-ACT.badgedel = (v) => { const tid = v || G.user; delete _badgeData[tid]; try { URL.revokeObjectURL(BADGES[tid]); } catch (e) { } delete BADGES[tid]; delete BADGE_IMG[tid]; badgeSave().then(() => { toast('Badge removed from this device.'); badgeRefresh(tid); }); };
+function badgeRefresh(tid) {
+  if (/^comp:/.test(tid)) { if (UI.modal && UI.clogoOpen === tid) UI.modal = compLogoModal(tid.slice(5)); render(); return; } if (UI.modal && UI.badgeClub === tid && UI.modal.includes('badgebox')) { UI.modal = null; clubModal(tid); } else render(); }
+ACT.badgedel = (v) => { const tid = v || G.user; delete _badgeData[tid]; try { URL.revokeObjectURL(BADGES[tid]); } catch (e) { } delete BADGES[tid]; delete BADGE_IMG[tid]; badgeSave().then(() => { toast(/^comp:/.test(tid) ? 'Logo removed from this device.' : 'Badge removed from this device.'); badgeRefresh(tid); }); };
 document.addEventListener('change', (ev) => {
   const el = ev.target; if (!el || !el.classList || !el.classList.contains('badgeFile') || !el.files || !el.files[0] || !G) return;
-  const tid = el.dataset.tid || G.user; if (!T(tid)) return;
-  shrinkBadge(el.files[0]).then(d => { _badgeData[tid] = d; badgeMount(tid, d); return badgeSave(); }).then(() => { toast('Badge saved on this device.'); setTimeout(() => badgeRefresh(tid), 60); }).catch(() => toast('That file could not be used as a badge.'));
+  const tid = el.dataset.tid || G.user; if (!T(tid) && !/^comp:/.test(tid)) return;
+  shrinkBadge(el.files[0]).then(d => { _badgeData[tid] = d; badgeMount(tid, d); return badgeSave(); }).then(() => { toast(/^comp:/.test(tid) ? 'Logo saved on this device.' : 'Badge saved on this device.'); setTimeout(() => badgeRefresh(tid), 60); }).catch(() => toast('That file could not be used as a badge.'));
 });
 badgeLoad().then(() => { try { if (G && G.user) render(); } catch (e) { } });
+
+// ---------- competition logos (also device-only) ----------
+// key 'comp:<id>' in the same store: league, cup, European and international competitions
+function cLogo(cid, px) { const u = BADGES['comp:' + cid]; return u ? `<img class="clogo" src="${u}" alt="" style="width:${px || 16}px;height:${px || 16}px">` : ''; }
+function compList() {
+  const groups = [['Leagues', ['PL', 'CH', 'LO', 'LL', 'SD', 'SA', 'SB', 'BL', 'L1', 'ED', 'SPL']], ['Domestic cups', ['FA', 'LC', 'PO', 'CDR', 'SCE', 'CIT', 'SCI', 'DFB', 'CDF', 'KNVB']], ['Europe and world', ['UCL', 'UEL', 'UECL', 'CWC', 'CWX']]];
+  const seen = new Set(groups.flatMap(g => g[1]));
+  const intl = Object.keys(COMP_NAME).filter(k => !seen.has(k) && typeof INTL_NAMES === 'object' && INTL_NAMES[k]);
+  const youth = Object.keys(COMP_NAME).filter(k => !seen.has(k) && !intl.includes(k) && k !== 'PSF');
+  return groups.map(([g, ks]) => [g, ks.filter(k => COMP_NAME[k])]).concat([['International', intl], ['Youth and reserves', youth]]).filter(g => g[1].length);
+}
+function compLogoRow(cid, compact) {
+  const key = 'comp:' + cid; const has = !!BADGES[key];
+  return `<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid var(--line)">
+  <span style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;flex:none">${has ? `<img src="${BADGES[key]}" alt="" style="width:36px;height:36px;object-fit:contain">` : '<span class="dim" style="font-size:20px">🏆</span>'}</span>
+  <span style="flex:1;min-width:120px">${esc(COMP_NAME[cid] || cid)}</span>
+  <label class="btn" style="cursor:pointer">${has ? 'Replace' : 'Upload'}<input type="file" class="badgeFile" data-tid="${key}" accept="image/*" style="display:none"></label>${has ? `<button class="btn" data-a="badgedel" data-v="${key}">Remove</button>` : ''}</div>`;
+}
+function compLogoModal(cid) {
+  return `<div class="band"><span>${esc(COMP_NAME[cid] || cid)} · logo</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+  ${compLogoRow(cid)}<p class="dim" style="font-size:12px;margin-top:8px">Kept in this browser on this device only: never in your save, a save export or the published game. Other competitions: Game › Competition logos.</p></div>`;
+}
+ACT.clogo = (v) => { UI.clogoOpen = 'comp:' + v; UI.modal = compLogoModal(v); render(); };
+// Game screen: every competition in one list
+const _scrGameCL = scrGame;
+scrGame = function () {
+  const n = Object.keys(BADGES).filter(k => /^comp:/.test(k)).length;
+  return _scrGameCL() + `<details class="box pad" style="margin-top:10px"${UI.clOpen ? ' open' : ''}><summary style="cursor:pointer"><b>Competition logos</b> <span class="dim">(${n} uploaded)</span></summary>
+  <p class="dim" style="font-size:12.5px">Upload a logo for any league, cup or tournament. It stays in this browser on this device only (not in your save, never uploaded or published). Logos show next to the competition name in match headers, fixtures, the league and cup pages and the 3D score box.</p>
+  ${compList().map(([g, ks]) => `<h3 class="h3">${esc(g)}</h3>${ks.map(k => compLogoRow(k)).join('')}`).join('')}</details>`;
+};
+document.addEventListener('toggle', (ev) => { const el = ev.target; if (el && el.tagName === 'DETAILS' && /Competition logos/.test(el.textContent.slice(0, 40))) UI.clOpen = el.open; }, true);
+// league and cup pages: logo in the header and on the tabs, plus a quick upload button
+function activeComp(s) {
+  if (s === 'table') { const t = UI.tab.tb || (userDiv() === 'CH' ? 'ch' : 'pl'); return t === 'pl' ? 'PL' : t === 'ch' ? 'CH' : String(t).toUpperCase(); }
+  if (s === 'comps') return UI.tab.cp || 'LC';
+  return null;
+}
+const _scrCL = screen;
+screen = function (s) {
+  let h = _scrCL(s);
+  try {
+    if (s === 'table' || s === 'comps') {
+      const cid = activeComp(s);
+      h = h.replace(/(data-a="tab" data-k="(?:tb|cp)" data-v="([^"]+)">)/g, (m, all, v) => { const k = v === 'pl' ? 'PL' : v === 'ch' ? 'CH' : v.toUpperCase(); return all + cLogo(k, 16); });
+      if (cid && COMP_NAME[cid]) h = h.replace('<div class="band">', `<div class="band">${cLogo(cid, 22)}`).replace(/(<div class="tabs"[^>]*>)/, `<div class="row" style="justify-content:flex-end;margin:6px 0 -2px"><button class="btn" style="padding:3px 8px;font-size:12px" data-a="clogo" data-v="${cid}">${BADGES['comp:' + cid] ? 'Change' : 'Add'} ${esc(COMP_NAME[cid])} logo</button></div>$1`);
+    }
+  } catch (e) { console.error(e); }
+  return h;
+};

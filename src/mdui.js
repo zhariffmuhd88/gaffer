@@ -174,7 +174,7 @@ function xgSvg(LM, kits) {
 function scoresPanel(LM) {
   const rows = LM.others.map(o => {
     const f = o.f; const sc = o.quick ? (f.r ? f.r : null) : o.M2.score; const mn = o.quick ? (f.r ? 'FT' : '') : o.M2.done ? 'FT' : o.M2.min ? o.M2.min + "'" : '';
-    return `<tr><td class="mono dim">${COMP_SHORT[f.comp]}</td><td style="text-align:right">${esc(tName(f.h))}</td><td class="c mono"><b>${sc ? sc[0] + '-' + sc[1] : 'v'}</b></td><td>${esc(tName(f.a))}</td><td class="mono dim">${mn}</td></tr>`;
+    return `<tr><td class="mono dim">${cLogo(f.comp, 14)}${COMP_SHORT[f.comp]}</td><td style="text-align:right">${esc(tName(f.h))}</td><td class="c mono"><b>${sc ? sc[0] + '-' + sc[1] : 'v'}</b></td><td>${esc(tName(f.a))}</td><td class="mono dim">${mn}</td></tr>`;
   }).join('');
   const vd = LM.vidi.slice(0, 14).map(v => `<div><span class="dim">${v.min}'</span> ${v.k === 'goal' ? '<b class="yel">GOAL</b>' : '<b class="red">RED</b>'} ${esc(v.txt)}${v.who ? ` <span class="dim">(${esc(v.who)})</span>` : ''}</div>`).join('');
   return `${rows ? `<div class="tw"><table class="t"><tbody>${rows}</tbody></table></div>` : '<p class="dim">No other matches today.</p>'}${LM.others.length ? `<h2 class="sect">Vidiprinter</h2><div class="box vidi">${vd || '<div class="dim">No goals elsewhere yet.</div>'}</div>` : ''}`;
@@ -230,7 +230,7 @@ function renderMatch() {
     post = `<div class="box pad" style="margin-top:10px"><div class="row" style="justify-content:space-between"><h2 class="sect" style="margin:0">Full-time analysis</h2><div class="seg">${ptabs.map(([k, l]) => `<button class="${LM.ptab === k ? 'on' : ''}" data-a="mptab" data-v="${k}">${l}</button>`).join('')}</div></div><div style="margin-top:10px">${pbody}</div></div>`;
   }
   app().innerHTML = `<div class="start" style="max-width:1180px;padding-top:12px">
-    <div class="band"><span>${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${esc(venueOf(f).name)} · ${meta.ko} · ${WX_TXT[meta.wx]} ${meta.temp}°C · Ref ${esc(meta.ref.n)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${dScore[0] + M.agg[0]}-${dScore[1] + M.agg[1]}` : ''}</small></div>
+    <div class="band"><span>${cLogo(M.comp, 18)}${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${esc(venueOf(f).name)} · ${meta.ko} · ${WX_TXT[meta.wx]} ${meta.temp}°C · Ref ${esc(meta.ref.n)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${dScore[0] + M.agg[0]}-${dScore[1] + M.agg[1]}` : ''}</small></div>
     <div class="score"><div class="tm">${badge(A.tid)}<span>${esc(A.name)}</span></div><div><div class="sc">${dScore[0]}-${dScore[1]}</div><div class="mn">${clock}${M.pens && !hide ? ` · pens ${M.pens[0]}-${M.pens[1]}` : ''}</div></div><div class="tm r"><span>${esc(B.name)}</span>${badge(B.tid)}</div>
       <div class="sub"><div>${scorers(0)} ${reds(0)}</div><div style="text-align:right">${scorers(1)} ${reds(1)}</div></div></div>
     ${momSvg(LM, kits, dScore)}

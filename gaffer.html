@@ -169,6 +169,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .score .tm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .score .tm.r { justify-content: flex-end; text-align: right; }
 .score .tm .badge { width: 18px; height: 24px; }
+.clogo { object-fit: contain; vertical-align: -3px; margin-right: 5px; }
 .badge.bimg { border: none; background: none; width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; }
 .score .tm .badge.bimg { width: 34px; height: 34px; }
 #p2dwrap .sb3d .sbt img { width: 16px; height: 16px; object-fit: contain; margin-right: 5px; }
@@ -418,6 +419,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 @media (max-width: 760px) { #p2dwrap .o3d.big { font-size: 20px; } }
 #p2dwrap .sb3d { position: absolute; left: 10px; top: 10px; display: flex; align-items: stretch; pointer-events: none; font-family: var(--f-mono); font-weight: 700; font-size: 14px; line-height: 1; box-shadow: 0 2px 8px rgba(0,0,0,.5); border-radius: 3px; overflow: hidden; }
 #p2dwrap .sb3d span { padding: 6px 8px; display: flex; align-items: center; }
+#p2dwrap .sb3d .sbl { background: #fff; padding: 3px 5px; } #p2dwrap .sb3d .sbl img { margin: 0; }
 #p2dwrap .sb3d .sbs { background: #0b0e18; color: #fff; padding: 6px 10px; }
 #p2dwrap .sb3d .sbc { background: #ffd23f; color: #111; min-width: 34px; justify-content: center; }
 #p2dwrap .sb3d .sbv { background: rgba(10,12,22,.8); color: #fff; letter-spacing: 1px; }
@@ -9911,7 +9913,7 @@ function lastResultsBox() {
   return `<h2 class="sect">Latest results · ${dShort(fs[0].d)}</h2><div class="tw">${resTable(fs)}</div>`;
 }
 function resTable(fs, showComp = true) {
-  return `<table class="t"><tbody>${fs.map(f => `<tr class="click ${f.h === G.user || f.a === G.user ? 'me' : ''}" data-a="report" data-v="${f.id}">${showComp ? `<td class="dim">${COMP_SHORT[f.comp]}</td>` : ''}<td style="text-align:right">${esc(tName(f.h))} ${badge(f.h)}</td><td class="c mono"><b>${f.r ? f.r[0] + ' - ' + f.r[1] : 'v'}</b>${f.pen ? ` <span class="dim">(p ${f.pen[0]}-${f.pen[1]})</span>` : f.et ? ' <span class="dim">aet</span>' : ''}</td><td>${badge(f.a)} ${esc(tName(f.a))}</td></tr>`).join('')}</tbody></table>`;
+  return `<table class="t"><tbody>${fs.map(f => `<tr class="click ${f.h === G.user || f.a === G.user ? 'me' : ''}" data-a="report" data-v="${f.id}">${showComp ? `<td class="dim">${cLogo(f.comp, 14)}${COMP_SHORT[f.comp]}</td>` : ''}<td style="text-align:right">${esc(tName(f.h))} ${badge(f.h)}</td><td class="c mono"><b>${f.r ? f.r[0] + ' - ' + f.r[1] : 'v'}</b>${f.pen ? ` <span class="dim">(p ${f.pen[0]}-${f.pen[1]})</span>` : f.et ? ' <span class="dim">aet</span>' : ''}</td><td>${badge(f.a)} ${esc(tName(f.a))}</td></tr>`).join('')}</tbody></table>`;
 }
 
 // ---------- squad ----------
@@ -10059,7 +10061,7 @@ function scrFixtures() {
   let fs = Object.values(G.fx).filter(f => tab === 'mine' ? (f.h === G.user || f.a === G.user) : f.comp === 'PL').sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
   let body;
   if (tab === 'mine') {
-    body = `<div class="tw"><table class="t"><thead><tr><th>Date</th><th>Comp</th><th>Round</th><th>Opponent</th><th class="c">H/A</th><th class="c">Result</th><th>Scorers</th></tr></thead><tbody>${fs.map(f => { const home = f.h === G.user, opp = home ? f.a : f.h; let res = ''; if (f.r) { const gf = home ? f.r[0] : f.r[1], ga = home ? f.r[1] : f.r[0]; let w = gf > ga ? 'W' : gf < ga ? 'L' : 'D'; if (f.pen) { const pw = home ? f.pen[0] > f.pen[1] : f.pen[1] > f.pen[0]; w = pw ? 'W' : 'L'; } res = `<span class="form"><span class="${w}">${w}</span></span> <b class="mono">${gf}-${ga}</b>${f.pen ? ' <span class="dim">p</span>' : f.et ? ' <span class="dim">aet</span>' : ''}`; } const sc = f.sc ? f.sc.filter(s => s[2] === 'G' && s[1] === (home ? 0 : 1)).map(s => esc(surname(P(s[3]) ? P(s[3]).n : '?')) + ' ' + s[0] + "'").join(', ') : ''; return `<tr class="click ${f.d === G.date && !f.r ? 'me' : ''}" data-a="report" data-v="${f.id}"><td class="mono">${dNice(f.d)}</td><td class="mono dim">${COMP_SHORT[f.comp]}</td><td class="dim">${esc(f.rnd ? (typeof f.rnd === 'number' ? 'Round ' + f.rnd : f.rnd + (f.leg ? ' (leg ' + f.leg + ')' : '')) : '')}</td><td>${tLink(opp)}</td><td class="c">${f.neutral ? 'N' : home ? 'H' : 'A'}</td><td class="c">${res || '<span class="dim">' + (f.d < G.date ? '' : 'v') + '</span>'}</td><td class="dim" style="white-space:normal;min-width:140px">${sc}</td></tr>`; }).join('')}</tbody></table></div>`;
+    body = `<div class="tw"><table class="t"><thead><tr><th>Date</th><th>Comp</th><th>Round</th><th>Opponent</th><th class="c">H/A</th><th class="c">Result</th><th>Scorers</th></tr></thead><tbody>${fs.map(f => { const home = f.h === G.user, opp = home ? f.a : f.h; let res = ''; if (f.r) { const gf = home ? f.r[0] : f.r[1], ga = home ? f.r[1] : f.r[0]; let w = gf > ga ? 'W' : gf < ga ? 'L' : 'D'; if (f.pen) { const pw = home ? f.pen[0] > f.pen[1] : f.pen[1] > f.pen[0]; w = pw ? 'W' : 'L'; } res = `<span class="form"><span class="${w}">${w}</span></span> <b class="mono">${gf}-${ga}</b>${f.pen ? ' <span class="dim">p</span>' : f.et ? ' <span class="dim">aet</span>' : ''}`; } const sc = f.sc ? f.sc.filter(s => s[2] === 'G' && s[1] === (home ? 0 : 1)).map(s => esc(surname(P(s[3]) ? P(s[3]).n : '?')) + ' ' + s[0] + "'").join(', ') : ''; return `<tr class="click ${f.d === G.date && !f.r ? 'me' : ''}" data-a="report" data-v="${f.id}"><td class="mono">${dNice(f.d)}</td><td class="mono dim">${cLogo(f.comp, 14)}${COMP_SHORT[f.comp]}</td><td class="dim">${esc(f.rnd ? (typeof f.rnd === 'number' ? 'Round ' + f.rnd : f.rnd + (f.leg ? ' (leg ' + f.leg + ')' : '')) : '')}</td><td>${tLink(opp)}</td><td class="c">${f.neutral ? 'N' : home ? 'H' : 'A'}</td><td class="c">${res || '<span class="dim">' + (f.d < G.date ? '' : 'v') + '</span>'}</td><td class="dim" style="white-space:normal;min-width:140px">${sc}</td></tr>`; }).join('')}</tbody></table></div>`;
   } else {
     const rounds = tab === 'ch' && G.chLeague ? G.chLeague.rounds : tab === 'll' && G.llLeague ? G.llLeague.rounds : G.league.rounds;
     const ri = UI.tab.round != null ? UI.tab.round : Math.max(0, rounds.findIndex(r => r.some(id => !G.fx[id].r)));
@@ -10085,7 +10087,7 @@ function matchReport(fid) {
       ${f.att ? `<p class="dim">Attendance ${f.att.toLocaleString('en-GB')}</p>` : ''}
       ${f.rt ? `<div class="grid2">${[0, 1].map(i => f.rt[i] && f.rt[i].length ? `<div class="tw"><table class="t"><thead><tr><th>${esc(tName(i ? f.a : f.h))}</th><th class="n">Rtg</th></tr></thead><tbody>${f.rt[i].map(([id, r, g, a, on]) => `<tr><td>${on ? '<span class="grn">↑</span> ' : ''}${esc(P(id) ? P(id).n : '?')}${g ? ' ⚽'.repeat(g) : ''}</td><td class="n ${rClass(r)}">${r.toFixed(1)}</td></tr>`).join('')}</tbody></table></div>` : '<div></div>').join('')}</div>` : ''}`;
   }
-  UI.modal = `<div class="band"><span>${COMP_NAME[f.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">${inner}</div>`;
+  UI.modal = `<div class="band"><span>${cLogo(f.comp, 18)}${COMP_NAME[f.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">${inner}</div>`;
   render();
 }
 function statBars(st) {
@@ -10261,7 +10263,7 @@ function scrPrematch() {
   let oppInfo;
   if (ot.lite) oppInfo = `<p>${esc(ot.name)} are simulated at team level (strength ${ot.str}). ${ot.str >= teamStrength(G.user) ? 'They look stronger than you on paper.' : 'You are favourites on paper.'}</p>`;
   else { autoPick(opp); const oxi = ot.tac.xi.map(P).filter(Boolean); oppInfo = `<p class="dim">${esc(ot.mgr)} · usual shape ${ot.tac.form} · league position ${pos(opp)} ${formOf(opp)}</p><div class="tw"><table class="t"><tbody>${oxi.map((p, i) => `<tr class="click" data-a="player" data-v="${p.id}"><td class="mono dim">${ROLE_LABEL[FORMS[ot.tac.form][i][0]]}</td><td>${esc(p.n)}</td><td class="n">${p.ca}</td></tr>`).join('')}</tbody></table></div>`; }
-  return `<div class="band yel">${COMP_NAME[f.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}${f.leg ? ' · leg ' + f.leg : ''}<small>${dNice(f.d)} · ${esc(venueOf(f).name)}</small></div>
+  return `<div class="band yel">${cLogo(f.comp, 18)}${COMP_NAME[f.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}${f.leg ? ' · leg ' + f.leg : ''}<small>${dNice(f.d)} · ${esc(venueOf(f).name)}</small></div>
   <div class="score" style="margin-top:10px"><div class="tm">${badge(f.h)}<span>${esc(tName(f.h))}</span></div><div class="sc" style="font-size:38px">v</div><div class="tm r"><span>${esc(tName(f.a))}</span>${badge(f.a)}</div></div>
   ${mdCard(f)}
   ${f.l1 && G.fx[f.l1].r ? `<p class="yel">First leg: ${esc(tName(G.fx[f.l1].h))} ${G.fx[f.l1].r[0]}-${G.fx[f.l1].r[1]} ${esc(tName(G.fx[f.l1].a))}</p>` : ''}
@@ -10327,7 +10329,7 @@ function renderMatch() {
       <h2 class="sect">Team instructions</h2><div style="display:grid;gap:8px">${tacControls(S.tac, 'mtac')}</div></div>`;
   }
   app().innerHTML = `<div class="start" style="max-width:1180px;padding-top:12px">
-    <div class="band"><span>${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${M.neutral ? 'Neutral venue' : esc(T(f.h).stadium)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${M.score[0] + M.agg[0]}-${M.score[1] + M.agg[1]}` : ''}</small></div>
+    <div class="band"><span>${cLogo(M.comp, 18)}${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${M.neutral ? 'Neutral venue' : esc(T(f.h).stadium)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${M.score[0] + M.agg[0]}-${M.score[1] + M.agg[1]}` : ''}</small></div>
     <div class="score"><div class="tm">${badge(A.tid)}<span>${esc(A.name)}</span></div><div><div class="sc">${M.score[0]}-${M.score[1]}</div><div class="mn">${clock}${M.pens ? ` · pens ${M.pens[0]}-${M.pens[1]}` : ''}</div></div><div class="tm r"><span>${esc(B.name)}</span>${badge(B.tid)}</div>
       <div class="sub"><div>${scorers(0)} ${reds(0)}</div><div style="text-align:right">${scorers(1)} ${reds(1)}</div></div></div>
     <div class="ticker" aria-live="polite">${last ? `<span class="mono">${last.min}'</span> ${esc(last.text)}` : ''}</div>
@@ -11896,7 +11898,7 @@ function xgSvg(LM, kits) {
 function scoresPanel(LM) {
   const rows = LM.others.map(o => {
     const f = o.f; const sc = o.quick ? (f.r ? f.r : null) : o.M2.score; const mn = o.quick ? (f.r ? 'FT' : '') : o.M2.done ? 'FT' : o.M2.min ? o.M2.min + "'" : '';
-    return `<tr><td class="mono dim">${COMP_SHORT[f.comp]}</td><td style="text-align:right">${esc(tName(f.h))}</td><td class="c mono"><b>${sc ? sc[0] + '-' + sc[1] : 'v'}</b></td><td>${esc(tName(f.a))}</td><td class="mono dim">${mn}</td></tr>`;
+    return `<tr><td class="mono dim">${cLogo(f.comp, 14)}${COMP_SHORT[f.comp]}</td><td style="text-align:right">${esc(tName(f.h))}</td><td class="c mono"><b>${sc ? sc[0] + '-' + sc[1] : 'v'}</b></td><td>${esc(tName(f.a))}</td><td class="mono dim">${mn}</td></tr>`;
   }).join('');
   const vd = LM.vidi.slice(0, 14).map(v => `<div><span class="dim">${v.min}'</span> ${v.k === 'goal' ? '<b class="yel">GOAL</b>' : '<b class="red">RED</b>'} ${esc(v.txt)}${v.who ? ` <span class="dim">(${esc(v.who)})</span>` : ''}</div>`).join('');
   return `${rows ? `<div class="tw"><table class="t"><tbody>${rows}</tbody></table></div>` : '<p class="dim">No other matches today.</p>'}${LM.others.length ? `<h2 class="sect">Vidiprinter</h2><div class="box vidi">${vd || '<div class="dim">No goals elsewhere yet.</div>'}</div>` : ''}`;
@@ -11952,7 +11954,7 @@ function renderMatch() {
     post = `<div class="box pad" style="margin-top:10px"><div class="row" style="justify-content:space-between"><h2 class="sect" style="margin:0">Full-time analysis</h2><div class="seg">${ptabs.map(([k, l]) => `<button class="${LM.ptab === k ? 'on' : ''}" data-a="mptab" data-v="${k}">${l}</button>`).join('')}</div></div><div style="margin-top:10px">${pbody}</div></div>`;
   }
   app().innerHTML = `<div class="start" style="max-width:1180px;padding-top:12px">
-    <div class="band"><span>${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${esc(venueOf(f).name)} · ${meta.ko} · ${WX_TXT[meta.wx]} ${meta.temp}°C · Ref ${esc(meta.ref.n)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${dScore[0] + M.agg[0]}-${dScore[1] + M.agg[1]}` : ''}</small></div>
+    <div class="band"><span>${cLogo(M.comp, 18)}${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${esc(venueOf(f).name)} · ${meta.ko} · ${WX_TXT[meta.wx]} ${meta.temp}°C · Ref ${esc(meta.ref.n)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${dScore[0] + M.agg[0]}-${dScore[1] + M.agg[1]}` : ''}</small></div>
     <div class="score"><div class="tm">${badge(A.tid)}<span>${esc(A.name)}</span></div><div><div class="sc">${dScore[0]}-${dScore[1]}</div><div class="mn">${clock}${M.pens && !hide ? ` · pens ${M.pens[0]}-${M.pens[1]}` : ''}</div></div><div class="tm r"><span>${esc(B.name)}</span>${badge(B.tid)}</div>
       <div class="sub"><div>${scorers(0)} ${reds(0)}</div><div style="text-align:right">${scorers(1)} ${reds(1)}</div></div></div>
     ${momSvg(LM, kits, dScore)}
@@ -20113,7 +20115,7 @@ function bug3d(LM, S3, ts) {
   const hide = typeof momHide === 'function' && momHide(LM); const sc = hide ? M.score.map((s, i) => s - M.ev.filter(e => e.t === 'goal' && e.side === i && e.min === M.min).length) : M.score;
   const clock = M.done ? 'FT' : M.min === 0 ? 'KO' : (M.min > 90 && !M.et ? '90+' : M.min) + "'";
   const k = V.kits; const flying = S3.fly && !S3.flyDone;
-  const h = flying ? `<span class="sbv">${esc(V.venue && V.venue.name || '')}</span>` : `<span class="sbt" style="background:${k[0].body};color:${k[0].trim}">${sbImg(M.sides[0].tid)}${esc(M.sides[0].tid)}</span><span class="sbs">${sc[0]}-${sc[1]}</span><span class="sbt" style="background:${k[1].body};color:${k[1].trim}">${sbImg(M.sides[1].tid)}${esc(M.sides[1].tid)}</span><span class="sbc">${V.rp ? `REPLAY ${(S3.rpAng | 0) + 1}/3` : clock}</span>`;
+  const h = flying ? `<span class="sbv">${esc(V.venue && V.venue.name || '')}</span>` : `${typeof cLogo === 'function' && cLogo(M.comp, 18) ? `<span class="sbl">${cLogo(M.comp, 18)}</span>` : ''}<span class="sbt" style="background:${k[0].body};color:${k[0].trim}">${sbImg(M.sides[0].tid)}${esc(M.sides[0].tid)}</span><span class="sbs">${sc[0]}-${sc[1]}</span><span class="sbt" style="background:${k[1].body};color:${k[1].trim}">${sbImg(M.sides[1].tid)}${esc(M.sides[1].tid)}</span><span class="sbc">${V.rp ? `REPLAY ${(S3.rpAng | 0) + 1}/3` : clock}</span>`;
   if (o.dataset.h !== h) { o.dataset.h = h; o.innerHTML = h; }
   drawScreen(S3, M, sc, M.done ? 'FULL TIME' : clock);
   // GOAL banner with the scorer (live only)
@@ -21086,14 +21088,65 @@ clubModal = function (tid) {
   _clubModalB(tid);
   try { if (T(tid) && UI.modal && !UI.modal.includes('badgebox')) { const i = UI.modal.lastIndexOf('</div>'); if (i > 0) { UI.modal = UI.modal.slice(0, i) + badgeBoxHtml(tid, true) + UI.modal.slice(i); UI.badgeClub = tid; render(); } } } catch (e) { console.error(e); }
 };
-function badgeRefresh(tid) { if (UI.modal && UI.badgeClub === tid && UI.modal.includes('badgebox')) { UI.modal = null; clubModal(tid); } else render(); }
-ACT.badgedel = (v) => { const tid = v || G.user; delete _badgeData[tid]; try { URL.revokeObjectURL(BADGES[tid]); } catch (e) { } delete BADGES[tid]; delete BADGE_IMG[tid]; badgeSave().then(() => { toast('Badge removed from this device.'); badgeRefresh(tid); }); };
+function badgeRefresh(tid) {
+  if (/^comp:/.test(tid)) { if (UI.modal && UI.clogoOpen === tid) UI.modal = compLogoModal(tid.slice(5)); render(); return; } if (UI.modal && UI.badgeClub === tid && UI.modal.includes('badgebox')) { UI.modal = null; clubModal(tid); } else render(); }
+ACT.badgedel = (v) => { const tid = v || G.user; delete _badgeData[tid]; try { URL.revokeObjectURL(BADGES[tid]); } catch (e) { } delete BADGES[tid]; delete BADGE_IMG[tid]; badgeSave().then(() => { toast(/^comp:/.test(tid) ? 'Logo removed from this device.' : 'Badge removed from this device.'); badgeRefresh(tid); }); };
 document.addEventListener('change', (ev) => {
   const el = ev.target; if (!el || !el.classList || !el.classList.contains('badgeFile') || !el.files || !el.files[0] || !G) return;
-  const tid = el.dataset.tid || G.user; if (!T(tid)) return;
-  shrinkBadge(el.files[0]).then(d => { _badgeData[tid] = d; badgeMount(tid, d); return badgeSave(); }).then(() => { toast('Badge saved on this device.'); setTimeout(() => badgeRefresh(tid), 60); }).catch(() => toast('That file could not be used as a badge.'));
+  const tid = el.dataset.tid || G.user; if (!T(tid) && !/^comp:/.test(tid)) return;
+  shrinkBadge(el.files[0]).then(d => { _badgeData[tid] = d; badgeMount(tid, d); return badgeSave(); }).then(() => { toast(/^comp:/.test(tid) ? 'Logo saved on this device.' : 'Badge saved on this device.'); setTimeout(() => badgeRefresh(tid), 60); }).catch(() => toast('That file could not be used as a badge.'));
 });
 badgeLoad().then(() => { try { if (G && G.user) render(); } catch (e) { } });
+
+// ---------- competition logos (also device-only) ----------
+// key 'comp:<id>' in the same store: league, cup, European and international competitions
+function cLogo(cid, px) { const u = BADGES['comp:' + cid]; return u ? `<img class="clogo" src="${u}" alt="" style="width:${px || 16}px;height:${px || 16}px">` : ''; }
+function compList() {
+  const groups = [['Leagues', ['PL', 'CH', 'LO', 'LL', 'SD', 'SA', 'SB', 'BL', 'L1', 'ED', 'SPL']], ['Domestic cups', ['FA', 'LC', 'PO', 'CDR', 'SCE', 'CIT', 'SCI', 'DFB', 'CDF', 'KNVB']], ['Europe and world', ['UCL', 'UEL', 'UECL', 'CWC', 'CWX']]];
+  const seen = new Set(groups.flatMap(g => g[1]));
+  const intl = Object.keys(COMP_NAME).filter(k => !seen.has(k) && typeof INTL_NAMES === 'object' && INTL_NAMES[k]);
+  const youth = Object.keys(COMP_NAME).filter(k => !seen.has(k) && !intl.includes(k) && k !== 'PSF');
+  return groups.map(([g, ks]) => [g, ks.filter(k => COMP_NAME[k])]).concat([['International', intl], ['Youth and reserves', youth]]).filter(g => g[1].length);
+}
+function compLogoRow(cid, compact) {
+  const key = 'comp:' + cid; const has = !!BADGES[key];
+  return `<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid var(--line)">
+  <span style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;flex:none">${has ? `<img src="${BADGES[key]}" alt="" style="width:36px;height:36px;object-fit:contain">` : '<span class="dim" style="font-size:20px">🏆</span>'}</span>
+  <span style="flex:1;min-width:120px">${esc(COMP_NAME[cid] || cid)}</span>
+  <label class="btn" style="cursor:pointer">${has ? 'Replace' : 'Upload'}<input type="file" class="badgeFile" data-tid="${key}" accept="image/*" style="display:none"></label>${has ? `<button class="btn" data-a="badgedel" data-v="${key}">Remove</button>` : ''}</div>`;
+}
+function compLogoModal(cid) {
+  return `<div class="band"><span>${esc(COMP_NAME[cid] || cid)} · logo</span><button class="x" data-a="close" aria-label="Close">×</button></div><div class="mc">
+  ${compLogoRow(cid)}<p class="dim" style="font-size:12px;margin-top:8px">Kept in this browser on this device only: never in your save, a save export or the published game. Other competitions: Game › Competition logos.</p></div>`;
+}
+ACT.clogo = (v) => { UI.clogoOpen = 'comp:' + v; UI.modal = compLogoModal(v); render(); };
+// Game screen: every competition in one list
+const _scrGameCL = scrGame;
+scrGame = function () {
+  const n = Object.keys(BADGES).filter(k => /^comp:/.test(k)).length;
+  return _scrGameCL() + `<details class="box pad" style="margin-top:10px"${UI.clOpen ? ' open' : ''}><summary style="cursor:pointer"><b>Competition logos</b> <span class="dim">(${n} uploaded)</span></summary>
+  <p class="dim" style="font-size:12.5px">Upload a logo for any league, cup or tournament. It stays in this browser on this device only (not in your save, never uploaded or published). Logos show next to the competition name in match headers, fixtures, the league and cup pages and the 3D score box.</p>
+  ${compList().map(([g, ks]) => `<h3 class="h3">${esc(g)}</h3>${ks.map(k => compLogoRow(k)).join('')}`).join('')}</details>`;
+};
+document.addEventListener('toggle', (ev) => { const el = ev.target; if (el && el.tagName === 'DETAILS' && /Competition logos/.test(el.textContent.slice(0, 40))) UI.clOpen = el.open; }, true);
+// league and cup pages: logo in the header and on the tabs, plus a quick upload button
+function activeComp(s) {
+  if (s === 'table') { const t = UI.tab.tb || (userDiv() === 'CH' ? 'ch' : 'pl'); return t === 'pl' ? 'PL' : t === 'ch' ? 'CH' : String(t).toUpperCase(); }
+  if (s === 'comps') return UI.tab.cp || 'LC';
+  return null;
+}
+const _scrCL = screen;
+screen = function (s) {
+  let h = _scrCL(s);
+  try {
+    if (s === 'table' || s === 'comps') {
+      const cid = activeComp(s);
+      h = h.replace(/(data-a="tab" data-k="(?:tb|cp)" data-v="([^"]+)">)/g, (m, all, v) => { const k = v === 'pl' ? 'PL' : v === 'ch' ? 'CH' : v.toUpperCase(); return all + cLogo(k, 16); });
+      if (cid && COMP_NAME[cid]) h = h.replace('<div class="band">', `<div class="band">${cLogo(cid, 22)}`).replace(/(<div class="tabs"[^>]*>)/, `<div class="row" style="justify-content:flex-end;margin:6px 0 -2px"><button class="btn" style="padding:3px 8px;font-size:12px" data-a="clogo" data-v="${cid}">${BADGES['comp:' + cid] ? 'Change' : 'Add'} ${esc(COMP_NAME[cid])} logo</button></div>$1`);
+    }
+  } catch (e) { console.error(e); }
+  return h;
+};
 
 // intro.js: launch sting (Ayep Interactive logo, disclaimer card, GAFFER logo), Game > Options and Game > About.
 // Loaded just before boot.js. Plays once per page load, never on re-renders.

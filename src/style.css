@@ -162,6 +162,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .score .tm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .score .tm.r { justify-content: flex-end; text-align: right; }
 .score .tm .badge { width: 18px; height: 24px; }
+.clogo { object-fit: contain; vertical-align: -3px; margin-right: 5px; }
 .badge.bimg { border: none; background: none; width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; }
 .score .tm .badge.bimg { width: 34px; height: 34px; }
 #p2dwrap .sb3d .sbt img { width: 16px; height: 16px; object-fit: contain; margin-right: 5px; }
@@ -411,6 +412,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 @media (max-width: 760px) { #p2dwrap .o3d.big { font-size: 20px; } }
 #p2dwrap .sb3d { position: absolute; left: 10px; top: 10px; display: flex; align-items: stretch; pointer-events: none; font-family: var(--f-mono); font-weight: 700; font-size: 14px; line-height: 1; box-shadow: 0 2px 8px rgba(0,0,0,.5); border-radius: 3px; overflow: hidden; }
 #p2dwrap .sb3d span { padding: 6px 8px; display: flex; align-items: center; }
+#p2dwrap .sb3d .sbl { background: #fff; padding: 3px 5px; } #p2dwrap .sb3d .sbl img { margin: 0; }
 #p2dwrap .sb3d .sbs { background: #0b0e18; color: #fff; padding: 6px 10px; }
 #p2dwrap .sb3d .sbc { background: #ffd23f; color: #111; min-width: 34px; justify-content: center; }
 #p2dwrap .sb3d .sbv { background: rgba(10,12,22,.8); color: #fff; letter-spacing: 1px; }

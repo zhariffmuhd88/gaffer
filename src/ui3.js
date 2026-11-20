@@ -13,7 +13,7 @@ function scrPrematch() {
   let oppInfo;
   if (ot.lite) oppInfo = `<p>${esc(ot.name)} are simulated at team level (strength ${ot.str}). ${ot.str >= teamStrength(G.user) ? 'They look stronger than you on paper.' : 'You are favourites on paper.'}</p>`;
   else { autoPick(opp); const oxi = ot.tac.xi.map(P).filter(Boolean); oppInfo = `<p class="dim">${esc(ot.mgr)} · usual shape ${ot.tac.form} · league position ${pos(opp)} ${formOf(opp)}</p><div class="tw"><table class="t"><tbody>${oxi.map((p, i) => `<tr class="click" data-a="player" data-v="${p.id}"><td class="mono dim">${ROLE_LABEL[FORMS[ot.tac.form][i][0]]}</td><td>${esc(p.n)}</td><td class="n">${p.ca}</td></tr>`).join('')}</tbody></table></div>`; }
-  return `<div class="band yel">${COMP_NAME[f.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}${f.leg ? ' · leg ' + f.leg : ''}<small>${dNice(f.d)} · ${esc(venueOf(f).name)}</small></div>
+  return `<div class="band yel">${cLogo(f.comp, 18)}${COMP_NAME[f.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}${f.leg ? ' · leg ' + f.leg : ''}<small>${dNice(f.d)} · ${esc(venueOf(f).name)}</small></div>
   <div class="score" style="margin-top:10px"><div class="tm">${badge(f.h)}<span>${esc(tName(f.h))}</span></div><div class="sc" style="font-size:38px">v</div><div class="tm r"><span>${esc(tName(f.a))}</span>${badge(f.a)}</div></div>
   ${mdCard(f)}
   ${f.l1 && G.fx[f.l1].r ? `<p class="yel">First leg: ${esc(tName(G.fx[f.l1].h))} ${G.fx[f.l1].r[0]}-${G.fx[f.l1].r[1]} ${esc(tName(G.fx[f.l1].a))}</p>` : ''}
@@ -79,7 +79,7 @@ function renderMatch() {
       <h2 class="sect">Team instructions</h2><div style="display:grid;gap:8px">${tacControls(S.tac, 'mtac')}</div></div>`;
   }
   app().innerHTML = `<div class="start" style="max-width:1180px;padding-top:12px">
-    <div class="band"><span>${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${M.neutral ? 'Neutral venue' : esc(T(f.h).stadium)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${M.score[0] + M.agg[0]}-${M.score[1] + M.agg[1]}` : ''}</small></div>
+    <div class="band"><span>${cLogo(M.comp, 18)}${COMP_NAME[M.comp]} · ${esc(typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : f.rnd || '')}</span><small>${M.neutral ? 'Neutral venue' : esc(T(f.h).stadium)}${M.agg[0] + M.agg[1] || f.l1 ? ` · aggregate ${M.score[0] + M.agg[0]}-${M.score[1] + M.agg[1]}` : ''}</small></div>
     <div class="score"><div class="tm">${badge(A.tid)}<span>${esc(A.name)}</span></div><div><div class="sc">${M.score[0]}-${M.score[1]}</div><div class="mn">${clock}${M.pens ? ` · pens ${M.pens[0]}-${M.pens[1]}` : ''}</div></div><div class="tm r"><span>${esc(B.name)}</span>${badge(B.tid)}</div>
       <div class="sub"><div>${scorers(0)} ${reds(0)}</div><div style="text-align:right">${scorers(1)} ${reds(1)}</div></div></div>
     <div class="ticker" aria-live="polite">${last ? `<span class="mono">${last.min}'</span> ${esc(last.text)}` : ''}</div>

@@ -137,7 +137,7 @@ function lastResultsBox() {
   return `<h2 class="sect">Latest results · ${dShort(fs[0].d)}</h2><div class="tw">${resTable(fs)}</div>`;
 }
 function resTable(fs, showComp = true) {
-  return `<table class="t"><tbody>${fs.map(f => `<tr class="click ${f.h === G.user || f.a === G.user ? 'me' : ''}" data-a="report" data-v="${f.id}">${showComp ? `<td class="dim">${COMP_SHORT[f.comp]}</td>` : ''}<td style="text-align:right">${esc(tName(f.h))} ${badge(f.h)}</td><td class="c mono"><b>${f.r ? f.r[0] + ' - ' + f.r[1] : 'v'}</b>${f.pen ? ` <span class="dim">(p ${f.pen[0]}-${f.pen[1]})</span>` : f.et ? ' <span class="dim">aet</span>' : ''}</td><td>${badge(f.a)} ${esc(tName(f.a))}</td></tr>`).join('')}</tbody></table>`;
+  return `<table class="t"><tbody>${fs.map(f => `<tr class="click ${f.h === G.user || f.a === G.user ? 'me' : ''}" data-a="report" data-v="${f.id}">${showComp ? `<td class="dim">${cLogo(f.comp, 14)}${COMP_SHORT[f.comp]}</td>` : ''}<td style="text-align:right">${esc(tName(f.h))} ${badge(f.h)}</td><td class="c mono"><b>${f.r ? f.r[0] + ' - ' + f.r[1] : 'v'}</b>${f.pen ? ` <span class="dim">(p ${f.pen[0]}-${f.pen[1]})</span>` : f.et ? ' <span class="dim">aet</span>' : ''}</td><td>${badge(f.a)} ${esc(tName(f.a))}</td></tr>`).join('')}</tbody></table>`;
 }
 
 // ---------- squad ----------
