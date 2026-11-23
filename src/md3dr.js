@@ -76,6 +76,7 @@ function figureRig(T3, kit, gk, gkCol, num, o) {
   const g = new T3.Group(); g.rotation.order = 'YZX'; g.add(mesh);
   // hair, beard and face ride on the head bone; numbers, name, crest and armband on the chest and arm
   const hg = new T3.Group(); hg.position.y = -2.05; R.head.add(hg); headDress(T3, hg, L, o.lo, new T3.MeshLambertMaterial({ color: LOOK_SKIN[L.skin] }));
+  if (!o.lo) { const mo = new T3.Mesh(new T3.BoxGeometry(.02, .025, .09), new T3.MeshBasicMaterial({ color: '#5a2a24' })); mo.position.set(.2, 2.13, 0); hg.add(mo); }
   const txtCol = gk ? '#111' : (colDist(kit.trim, shirtCol) > 90 ? kit.trim : (colDist('#ffffff', shirtCol) > 120 ? '#ffffff' : '#111111'));
   const chestY = 1.55;
   if (num) { const nb = new T3.Mesh(new T3.PlaneGeometry(.42, .42), new T3.MeshBasicMaterial({ map: numTex(T3, num, txtCol), transparent: true })); nb.position.set(-.225, 1.5 - chestY, 0); nb.rotation.y = -Math.PI / 2; R.chest.add(nb); }
@@ -90,15 +91,28 @@ function figureRig(T3, kit, gk, gkCol, num, o) {
 // the pose system (legs/arms/lean/roll/lift) on bones: knees and elbows bend with the swing
 function rigPose(f, P) {
   const R = f.rig; const legs = P.legs || [0, 0], arms = P.arms || [[0, 0], [0, 0]];
+  const k = f.snap ? 1 : Math.min(1, ((f.dt || 16) / 1000) * 14); f.snap = false; // smooth blending between poses
+  const to = (o, ax, v) => { o.rotation[ax] += (v - o.rotation[ax]) * k; };
   for (let i = 0; i < 2; i++) {
-    const v = legs[i] || 0; R.th[i].rotation.z = v; R.th[i].rotation.x = 0;
-    const kn = P.knees ? P.knees[i] : -(Math.max(0, -v) * 1.15 + Math.max(0, v - .9) * .4); R.sn[i].rotation.z = kn; R.ft[i].rotation.z = -kn * .35 - v * .15;
-    const a = arms[i] || [0, 0]; R.ua[i].rotation.x = a[0]; R.ua[i].rotation.z = a[1];
-    R.fa[i].rotation.z = P.elbows ? P.elbows[i] : .25 + Math.max(0, a[1]) * .45 + (Math.abs(a[0]) > 1.2 ? .2 : 0);
+    const v = legs[i] || 0; to(R.th[i], 'z', v); to(R.th[i], 'x', P.inside === i + 1 ? (i ? .45 : -.45) : 0); // inside of the foot on passes
+    const kn = P.knees ? P.knees[i] : -(Math.max(0, -v) * 1.15 + Math.max(0, v - .9) * .4); to(R.sn[i], 'z', kn); to(R.ft[i], 'z', -kn * .35 - v * .15);
+    const a = arms[i] || [0, 0]; to(R.ua[i], 'x', a[0]); to(R.ua[i], 'z', a[1]);
+    to(R.fa[i], 'z', P.elbows ? P.elbows[i] : .25 + Math.max(0, a[1]) * .45 + (Math.abs(a[0]) > 1.2 ? .2 : 0));
   }
   const lean = P.lean || 0; const small = Math.max(-.5, Math.min(.5, lean));
-  R.spine.rotation.z = small * .35; R.chest.rotation.z = small * .25; R.neck.rotation.z = -small * .3;
-  f.g.rotation.z = lean - small * .6; f.g.rotation.x = P.roll || 0; f.g.position.y = P.lift || 0;
+  to(R.spine, 'z', small * .35); to(R.chest, 'z', small * .25); to(R.neck, 'z', -small * .3);
+  const g = f.g; g.rotation.z += (lean - small * .6 - g.rotation.z) * k; g.rotation.x += ((P.roll || 0) - g.rotation.x) * Math.min(1, k * 1.6); g.position.y += ((P.lift || 0) - g.position.y) * Math.min(1, k * 1.6);
+}
+// head turns to follow the ball
+function rigLook(f, bw) {
+  if (!f.rig) return; const p = f.g.position; let d = Math.atan2(-(bw.z - p.z), bw.x - p.x) - f.g.rotation.y;
+  while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI; d = Math.max(-1.1, Math.min(1.1, d));
+  const h = f.rig.head; h.rotation.y += (d - h.rotation.y) * .15;
+}
+// getting up after a fall
+function getUpPose(f, ts) {
+  const q = Math.min(1, (ts - f.upT) / 650); if (q >= 1) { f.upT = 0; return null; }
+  const r = 1 - q; return { legs: [-1.3 * r, .3 * r], arms: [[-.6 * r, .8 * r], [.6 * r, .8 * r]], roll: 1.45 * Math.max(0, r - .35) / .65, lift: .15 * r, lean: .5 * Math.sin(Math.PI * q) };
 }
 const _setPoseRig = setPose;
 setPose = function (f, P) { if (f && f.rig) return rigPose(f, P); return _setPoseRig(f, P); };

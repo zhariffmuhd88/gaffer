@@ -49,6 +49,7 @@ function drawScreen(S3, M, sc, clock) {
 // ---------- officials, managers, fourth official ----------
 function refKit(kits) { for (const c of ['#111111', '#f2e600', '#ff3d8b', '#2fd36b', '#00a7e1']) if (colDist(c, kits[0].body) > 110 && colDist(c, kits[1].body) > 110) return c; return '#111111'; }
 function addFlag(T3, f, col) {
+  if (f.rig) { const fl = new T3.Group(); fl.name = 'flag'; const st = new T3.Mesh(new T3.CylinderGeometry(.015, .015, .6, 5), new T3.MeshLambertMaterial({ color: '#222' })); st.position.y = -.3; fl.add(st); const cl = new T3.Mesh(new T3.PlaneGeometry(.32, .24), new T3.MeshLambertMaterial({ color: col, side: T3.DoubleSide })); cl.position.set(0, -.5, .16); cl.rotation.y = Math.PI / 2; fl.add(cl); fl.position.y = -.36; f.rig.fa[1].add(fl); return fl; }
   const arm = f.g.children.find(c => c.name === 'armR'); if (!arm) return null;
   const fl = new T3.Group(); fl.name = 'flag';
   const st = new T3.Mesh(new T3.CylinderGeometry(.015, .015, .6, 5), new T3.MeshLambertMaterial({ color: '#222' })); st.position.y = -.3; fl.add(st);
@@ -57,7 +58,7 @@ function addFlag(T3, f, col) {
 }
 function buildCast3d(S3, LM, T3) {
   const kits = LM.vis.kits; const rk = refKit(kits); const k = { body: rk, trim: rk === '#111111' ? '#444444' : '#111111' };
-  const mk = (kit, hairN) => { const g = figure(T3, kit, false, null, 0); g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); S3.scene.add(g); return { g, last: null, ph: Math.random() * 6, v: 0, n: hairN }; };
+  const mk = (kit, hairN) => { const g = (S3.rig ? figureRig : figure)(T3, kit, false, null, 0, S3.rig ? { look: lookOf({ id: 'off' + hairN + kit.body }), lo: S3.lo } : undefined); const rg = g.userData && g.userData.rig; g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); S3.scene.add(g); return { g, rig: rg, last: null, ph: Math.random() * 6, v: 0, n: hairN }; };
   S3.refs = [mk(k, 1), mk(k, 2), mk(k, 3)]; // referee, assistant on the near touchline, assistant on the far one
   S3.refs[0].g.position.set(-6, 0, 8); S3.refs[1].g.position.set(20, 0, -(P3.W / 2 + 1)); S3.refs[2].g.position.set(-20, 0, P3.W / 2 + 1);
   S3.flags = [null, addFlag(T3, S3.refs[1], '#ffd23f'), addFlag(T3, S3.refs[2], '#ff3d3d')];
@@ -79,10 +80,15 @@ function walkTo(f, to, dt, vmax, face) {
   gait3d(f, dt); return f.v;
 }
 // run cycle by speed: walk, jog, sprint (legs and arms swing, the body leans and bobs)
+function armOf(f, i) { return f.rig ? f.rig.ua[i] : f.g.children.find(c => c.name === (i ? 'armR' : 'armL')); }
 function gait3d(f, dt) {
-  const v = Math.min(10, f.v || 0); f.ph += (dt / 1000) * (v < .3 ? 0 : 3 + v * 1.25);
+  const v = Math.min(10, f.v || 0);
+  if (f.rig) { const stride = 2.1 + v * .16; f.ph += v < .3 ? 0 : (v * dt / 1000) / stride * Math.PI * 2; } // the stride matches the ground covered, so feet do not slide
+  else f.ph += (dt / 1000) * (v < .3 ? 0 : 3 + v * 1.25);
   const amp = v < .3 ? 0 : Math.min(.95, .2 + v * .085); const sw = Math.sin(f.ph) * amp;
-  setPose(f, { legs: [-sw, sw], arms: [[0, sw * .9], [0, -sw * .9]], lean: -Math.min(.24, v * .025), lift: v < .3 ? 0 : Math.abs(Math.sin(f.ph)) * Math.min(.08, v * .012) });
+  const touch = f.drib && v > .8 ? Math.max(0, Math.sin(f.ph * .5)) * .35 : 0; // a touch of the ball every other stride when dribbling
+  const turn = Math.max(-.22, Math.min(.22, (f.turn || 0) * .06 * Math.min(1, v / 4))); // lean into turns
+  setPose(f, { legs: [-sw, sw + touch], arms: [[f.drib ? -.25 : 0, sw * .9], [f.drib ? .25 : 0, -sw * .9]], lean: -Math.min(.24, v * .025) - (f.drib ? .06 : 0), roll: turn, lift: v < .3 ? 0 : Math.abs(Math.sin(f.ph)) * Math.min(.08, v * .012) });
 }
 function setPose(f, P) {
   let li = 0;
@@ -110,7 +116,7 @@ function cast3d(S3, LM, SC, bw, ts, dt) {
     const a = S3.refs[i]; const lx = Math.max(0, Math.min(P3.L / 2 - 1, Math.max(offsideLine(S3, sg) * sg, bw.x * sg))) * sg;
     walkTo(a, { x: lx, z: (i === 1 ? -1 : 1) * (P3.W / 2 + 1) }, dt, 8, Math.atan2(-(0 - a.g.position.z), 0));
     const up = SC.offShow && SC.t < SC.offShow && Math.sign(bw.x || 1) === sg;
-    const arm = a.g.children.find(c => c.name === 'armR'); if (up && arm) { arm.rotation.z = Math.PI * .95; arm.rotation.x = 0; }
+    const arm = armOf(a, 1); if (up && arm) { arm.rotation.z = Math.PI * .95; arm.rotation.x = 0; }
     else if (arm) { arm.rotation.x = -.15; }
   }
   // managers pace the technical area and jump when their side scores
@@ -123,8 +129,8 @@ function cast3d(S3, LM, SC, bw, ts, dt) {
   });
   // fourth official with the board for a substitution
   const fo = S3.fourth; const up = S3.sub && ts - S3.sub.t < 7000;
-  S3.subBoard.visible = !!up; const arm = fo.g.children.find(c => c.name === 'armR'); if (arm) { arm.rotation.z = up ? 2.6 : 0; arm.rotation.x = 0; }
-  const armL = fo.g.children.find(c => c.name === 'armL'); if (armL) { armL.rotation.z = up ? 2.6 : 0; armL.rotation.x = 0; }
+  S3.subBoard.visible = !!up; const arm = armOf(fo, 1); if (arm) { arm.rotation.z = up ? 2.6 : 0; arm.rotation.x = 0; }
+  const armL = armOf(fo, 0); if (armL) { armL.rotation.z = up ? 2.6 : 0; armL.rotation.x = 0; }
 }
 // substitutions: a player who was on the pitch goes off and a new one comes on
 function subWatch3d(S3, LM, T3, ts) {
@@ -140,10 +146,10 @@ function subWatch3d(S3, LM, T3, ts) {
 function actPose3d(S3, f, e, SC, V, M, ts) {
   const st = SC.plan && SC.plan[SC.si]; if (!st) return null;
   const dt = SC.t - (st.ts || 0); const len = Math.max(1, (st.te || 0) - (st.ts || 0)); const fr = Math.max(0, Math.min(1, dt / len));
-  const kickQ = dt / 420;
+  const kickQ = dt / 420; const kickKind = st.k === 'pass' ? 'pass' : st.k === 'shot' && st.st === 'chip' ? 'chip' : 'drive';
   const kick = (q, foot) => { // foot 1 = right
     const th = q < .35 ? -.95 * (q / .35) : q < .6 ? -.95 + 2.45 * ((q - .35) / .25) : 1.5 * (1 - (q - .6) / .4);
-    const lg = foot ? [-.15, th] : [th, -.15]; return { legs: lg, arms: [[-.7, -.3], [.7, -.3]], lean: q < .6 ? .1 : -.05 };
+    const lg = foot ? [-.15, th] : [th, -.15]; return { legs: lg, arms: [[-.7, -.3], [.7, -.3]], lean: q < .6 ? .1 : -.05, inside: kickKind === 'pass' && q > .3 && q < .75 ? (foot ? 1 : 2) : 0 };
   };
   const jump = (q) => ({ legs: [-.45, .25], arms: [[-1.1, .6], [1.1, .6]], lift: Math.sin(Math.PI * Math.min(1, q)) * 1.0, lean: -.15 });
   const throwP = (q, both) => { const z = q < .45 ? 3.4 : 3.4 - 2.4 * Math.min(1, (q - .45) / .3); return { legs: [.2, -.2], arms: both ? [[0, z], [0, z]] : [[-.4, -.2], [0, z]], lean: q < .45 ? .12 : -.12 }; };

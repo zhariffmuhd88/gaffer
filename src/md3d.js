@@ -210,7 +210,7 @@ function frame3d(LM, ts) {
     f.g.position.set(w.x, 0, w.z);
     // face the way he runs; when standing, face the ball
     const ang = cer && cer.face != null && sp < .2 ? cer.face : sp > .03 ? Math.atan2(-dz, dx) : Math.atan2(-(bw.z - w.z), bw.x - w.x);
-    let da = ang - f.g.rotation.y; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; f.g.rotation.y += da * .25;
+    let da = ang - f.g.rotation.y; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; f.g.rotation.y += da * .25; f.turn = dt > 0 ? (f.turn || 0) * .8 + (da * .25) / (dt / 1000) * .2 : 0; f.dt = dt; f.drib = SC.holder === e;
     f.v = f.v * .8 + (dt > 0 && sp < 20 ? sp / (dt / 1000) : 0) * .2;
     const party = celeb && sideOf(V, M, e) === celeb.side;
     // down only while the fall lasts, and never while he has the ball or is striking it
@@ -218,11 +218,13 @@ function frame3d(LM, ts) {
     let P = null;
     // keeper dive
     if (SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0 && SC.t < SC.dive.t1 + 700 && SC.holder !== e) { const q = Math.min(1, (SC.t - SC.dive.t0) / Math.max(1, Math.min(380, SC.dive.t1 - SC.dive.t0))); /* a quick, sharp dive; he gets up again shortly after */ const dir = SC.dive.to.y >= SC.dive.from.y ? 1 : -1; P = { legs: [.3, -.2], arms: [[-dir * 2.6, 0], [-dir * 2.6, 0]], roll: dir * Math.min(1, q * 1.6) * (SC.dive.stretch ? 1.35 : .5), lift: Math.sin(Math.PI * Math.min(1, q)) * (SC.dive.stretch ? .9 : .3) }; }
-    else if (down) P = { legs: [.2, -.1], arms: [[-.5, .3], [.5, .3]], roll: 1.45, lift: .3 };
+    else if (down) { P = { legs: [.2, -.1], arms: [[-.5, .3], [.5, .3]], roll: 1.45, lift: .3 }; f.wasDown = true; }
+    else if (f.wasDown || f.upT) { if (f.wasDown) { f.wasDown = false; f.upT = ts; } P = f.rig ? getUpPose(f, ts) : null; if (!P) f.upT = 0; }
     else if (cer && cer.pose) P = cer.pose;
     else if (party) { try { P = celebPose3d(S3, f, e, celeb, ts, SC); } catch (er) { P = { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]] }; } }
     else { try { P = actPose3d(S3, f, e, SC, V, M, ts); } catch (er) { P = null; } }
     if (P) setPose(f, P); else gait3d(f, dt);
+    if (f.rig) rigLook(f, bw);
     f.g.visible = !(cer && cer.hide); f.last = w;
   }
   for (const [e, f] of S3.figs) if (!seen.has(e)) f.g.visible = false;
