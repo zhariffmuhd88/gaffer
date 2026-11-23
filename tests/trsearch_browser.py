@@ -1,4 +1,4 @@
-# Transfers > Player search: the "Would join you" filter, the "Loan listed" status, and the transfer outlook in the player pop-up. python3 tests/trsearch_browser.py OUT
+# Transfers: budget split (transfer budget <-> weekly wages); Player search: the "Would join you" filter, the "Loan listed" status, and the transfer outlook in the player pop-up. python3 tests/trsearch_browser.py OUT
 import asyncio, pathlib
 from playwright.async_api import async_playwright
 import sys
@@ -23,6 +23,15 @@ async def main():
             n3 = await pg.evaluate("()=>document.body.innerText.match(/(\\d+) players match/)?.[1]")
             ov = await pg.evaluate("()=>document.documentElement.scrollWidth>innerWidth+1")
             await pg.screenshot(path=str(out/f'tr_{vw}.png'))
+            # budget split: move £10m into wages
+            await pg.evaluate("()=>{UI.scr='transfers';render();}"); await pg.wait_for_timeout(200)
+            b0 = await pg.evaluate("()=>[T(G.user).tb,T(G.user).wb]")
+            await pg.evaluate("(v)=>{const el=document.getElementById('bsR');el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}));}", b0[1] + 192.3)
+            await pg.click('#bsA'); await pg.wait_for_timeout(200)
+            b1 = await pg.evaluate("()=>[T(G.user).tb,T(G.user).wb]")
+            print(vw, 'budget before', b0, 'after', b1)
+            if not (abs((b0[0] - b1[0]) - 10) < .3 and b1[1] > b0[1] + 190): errs.append('budget split ' + str([b0, b1]))
+            await pg.screenshot(path=str(out/f'budget_{vw}.png'))
             pid = await pg.evaluate("()=>{const p=Object.values(G.players).find(p=>p.c==='MCI');playerModal(p.id);return [(UI.modal||'').includes('Transfer outlook'), (UI.modal||'').length]}")
             print(vw, 'all', n0, 'loan listed', n1, 'keen', n2, 'consider', n3, 'overflow', ov, 'outlook', pid)
             if not (int(n1) < int(n0) and int(n1) > 0 and int(n2) <= int(n3) and not ov and pid[0]): errs.append('filters ' + str([n0, n1, n2, n3, ov, pid]))
