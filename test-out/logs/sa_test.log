@@ -1,15 +1,16 @@
 user LAZ SA | SA clubs 20 | players 25 | SB 20 | SC 16 | play nat ITA | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-SA fixtures 380 | UCL Italian NAP,ROM,COM,INT | UEL JUV,ACM | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 654 | Josep INT
-CIT R1 16 Monza v Hellas Verona, Udinese v Mantova, Parma v Juve Stabia | SCI Inter v Lazio 2026-12-22
-youth 19 15 Michele Costantini ITA, Vincenzo Conti ITA, Salvatore Santoro ITA | comps PRI U18I
-Supercopa Barcelona v Atlético 3-2, Real Sociedad v Real Madrid 0-2 / Barcelona v Real Madrid 4-1 | winner Barcelona
-Coppa Quarter-final: Como v Roma 0-3, Inter v Bologna 2-1, Atalanta v Hellas Verona 2-0, Milan v Torino 5-1 / Semi-final: Inter v Atalanta 0-0/1-1, Milan v Roma 1-2/1-0 / Final: Roma v Inter 1-2 | winner Inter | SCI Inter
-gpg PL 2.59 370 | home win % 42
-gpg LL 2.87 380 | home win % 43
-gpg SA 2.49 370 | home win % 44
-=== season 2026/27 | user pos 9 SA | sacked false | now 2027-08-07
-SA top5 Inter 85, Juventus 83, Napoli 82, Roma 81, Fiorentina 71 | down Venezia, Monza, Frosinone | up Cremonese, Palermo, Pisa | CIT Inter | SB top Cremonese 79, Palermo 77, Hellas Verona 72
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Donyell Malen","ROM",31,"p1826"] | SCI INT | CIT INT
-SA awards best Kenan Yıldız | Pichichi Donyell Malen 31 | Zamora null | TOS 11 | GOS null
-SA months 10 | gotmSA 10 | next euro {"UCL":["TOT","ARS","LIV","CHE","MUN","ATM","RSO","RMA","BAR","BAY","BVB","RBL","SGE","PSG","LOSC","OL","RCSA","AZ","FEY","INT","JUV","NAP","ROM"],"UEL":["NFO","SUN","RAY","ATH","VFB","RCL","TWE","FIO","COM"],"UECL":["BOU","VIL","B04","SRFC","AJX","ATA"]} | sci next Inter,Roma | seeds INT,JUV,NAP,ROM,FIO,COM,ATA,BGN
-Supercopa Atlético v Barcelona 0-2, Real Madrid v Real Sociedad 1-0 / Barcelona v Real Madrid 0-3 | winner Real Madrid
+SA fixtures 380 | UCL Italian ROM,INT,COM,NAP | UEL JUV,ACM | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 668 | Josep INT
+CIT R1 16 Venezia v Cremonese, Genoa v Arezzo, Fiorentina v Palermo | SCI Inter v Lazio 2026-12-22
+youth 19 15 Lorenzo Gallo ITA, Edoardo Conte ITA, Luca Barone ITA | comps PRI U18I
+Supercopa Barcelona v Atlético 1-0, Real Sociedad v Real Madrid 1-3 / Barcelona v Real Madrid 1-1 p7-6 | winner Barcelona
+Coppa Quarter-final: Lazio v Genoa 3-0, Napoli v Juventus 0-1, Fiorentina v Inter 1-1, Atalanta v Roma 1-2 / Semi-final: Inter v Juventus 1-0/3-1, Roma v Lazio 2-0/1-1 / Final: Roma v Juventus 2-0 | winner Roma | SCI Inter
+gpg PL 2.58 370 | home win % 48
+gpg LL 2.49 380 | home win % 49
+gpg SA 2.54 370 | home win % 41
+=== season 2026/27 | user pos 8 SA | sacked false | now 2027-08-07
+SA top5 Inter 93, Atalanta 81, Juventus 80, Napoli 76, Como 71 | down Genoa, Venezia, Cagliari | up Hellas Verona, Pisa, Cremonese | CIT Roma | SB top Hellas Verona 82, Pisa 73, Modena 66
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Lautaro Martínez","INT",34,"p1715"] | SCI INT | CIT ROM
+SA awards best Lautaro Martínez | Pichichi Lautaro Martínez 34 | Zamora null | TOS 11 | GOS null
+SA months 10 | gotmSA 10 | next euro {"UCL":["ARS","TOT","CHE","LIV","NFO","BAR","ATM","RMA","ATH","BAY","B04","VFB","BVB","PSG","ASM","RCL","OM","AJX","PSV","INT","ATA","JUV","NAP"],"UEL":["NEW","MUN","BET","RSO","SGE","OL","AZ","COM","ROM"],"UECL":["LEE","RAY","RBL","OGCN","FEY","ACM"]} | sci next Inter,Roma | seeds INT,ATA,JUV,NAP,COM,ACM,ROM,LAZ
+Supercopa Barcelona v Real Madrid 0-0 p7-6, Betis v Atlético 2-0 / Barcelona v Betis 2-0 | winner Barcelona
+Coppa Quarter-final: Bologna v Inter 0-3, Roma v Lazio 1-1, Juventus v Milan 1-3, Atalanta v Napoli 2-1 / Semi-final: Inter v Lazio 1-0/0-0, Milan v Atalanta 1-1/2-3 / Final: Inter v Milan 1-2 | winner Milan | SCI Inter

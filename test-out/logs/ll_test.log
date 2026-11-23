@@ -1,10 +1,10 @@
 user RSO LL | LL clubs 20 | players 26 | Segunda 22 | PF 20 | play nat ESP | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-LL fixtures 380 | UCL Spanish BAR,BET,ATM,RMA,VIL | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 963
-youth 19 15 Sergio León ESP, Daniel Goikoetxea ESP, Izan Aguilar ESP | comps LLB DHJ
-Supercopa Barcelona v Atlético 3-2, Real Sociedad v Real Madrid 0-4 / Barcelona v Real Madrid 1-0 | winner Barcelona
-=== season 2026/27 | user pos 7 LL | sacked false | now 2027-08-07
-LL top5 Barcelona 97, Real Madrid 94, Atlético 82, Athletic 76, Sevilla 76 | down Alavés, Espanyol, Racing | up Las Palmas, Mallorca, Castellón | CdR Real Madrid
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Kylian Mbappé","RMA",30,"p1194"] | SCE BAR
-LL awards best Kylian Mbappé | Pichichi Kylian Mbappé 30 | Zamora Joan García 0.43 | TOS 11 | GOS Ante Budimir
-LL months 10 | gotmLL 10 | next euro {"UCL":["ARS","MUN","CHE","LIV","TOT","BAR","RMA","ATM","ATH","BAY","B04","RBL","BVB","PSG","RCSA","ASM","OGCN","PSV","FEY","ROM","INT","JUV","COM"],"UEL":["AVL","NEW","SEV","VIL","VFB","RCL","UTR","NAP","ACM"],"UECL":["LEE","RSO","SGE","OL","AJX","ATA"]} | sce next Barcelona,Sevilla,Atlético,Real Madrid
-Supercopa Barcelona v Sevilla 3-0, Atlético v Real Madrid 0-4 / Barcelona v Real Madrid 0-0 p4-5 | winner Real Madrid
+LL fixtures 380 | UCL Spanish RMA,BAR,VIL,ATM,BET | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 996
+youth 19 15 Mario Fuentes NIR, Arnau Ferrer ESP, Andrés Cortés ENG | comps LLB DHJ
+Supercopa Barcelona v Atlético 0-2, Real Sociedad v Real Madrid 0-1 / Atlético v Real Madrid 1-1 p6-5 | winner Atlético
+=== season 2026/27 | user pos 4 LL | sacked false | now 2027-08-07
+LL top5 Real Madrid 95, Barcelona 90, Atlético 87, Real Sociedad 65, Athletic 62 | down Málaga, Racing, Deportivo | up Girona, Mallorca, Almería | CdR Barcelona
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Raphinha","BAR",33,"p1221"] | SCE ATM
+LL awards best Raphinha | Pichichi Raphinha 33 | Zamora Thibaut Courtois 0.34 | TOS 11 | GOS Gabriel Jesus
+LL months 10 | gotmLL 10 | next euro {"UCL":["LIV","ARS","MUN","NEW","CHE","RMA","BAR","ATM","RSO","BAY","BVB","SGE","VFB","PSG","OGCN","OL","ASM","PSV","AZ","ATA","JUV","NAP","INT"],"UEL":["TOT","BOU","ATH","VIL","RBL","RCSA","FEY","ROM","COM"],"UECL":["BHA","CEL","B04","RCL","TWE","BGN"]} | sce next Real Madrid,Betis,Atlético,Barcelona
+Supercopa Real Madrid v Betis 2-1, Atlético v Barcelona 0-2 / Real Madrid v Barcelona 0-1 | winner Barcelona

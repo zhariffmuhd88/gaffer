@@ -1,36 +1,35 @@
-feed 260 | fan 125 jour 62 club 18 | rumours 19 closed 13 came true 2
-   Marcus Hale T1 0/1
-   Luca Ferraro T1 1/2
+feed 260 | fan 127 jour 73 club 13 | rumours 20 closed 13 came true 2
+   Marcus Hale T1 0/3
+   Luca Ferraro T1 0/1
    Ellie Brennan T2 1/5
-   Gary Pratt T3 0/2
-   Javier Montero T1 0/0
-   Paco Ríos T3 0/3
-fans 60 | trending Champions InterChampions BayernChampions Double AlAhliChampions
-pundit 22 creator 9 var 19 | varw 60 debatable,correct,correct,debatable
+   Gary Pratt T3 1/3
+   Javier Montero T1 0/1
+   Paco Ríos T3 0/0
+fans 35 | trending Champions AlAhliChampions ChelseaChampions PSGChampions InterChampions
+pundit 18 creator 11 var 16 | varw 60 debatable,correct,debatable,debatable
 sample:
-  [fan] Marta (@FeyenoordMarta79): Excelsior fans have gone very quiet 🤫 (respectfully)
-      ↳ Pablo ⚽: Proper club with proper fans. You wouldn't understand ✋😐🤚
-      ↳ Lewis: Excelsior? Small club mentality
-  [cre] Kicks & Giggles (banter page): Fortuna fans this weekend 📉😭
-  [fan] Ellis ⚽ (@FortunaEllis53): That penalty against us was never a penalty. Ref bottled it under pressure bro is cooked
-      ↳ Tom: You don't know ball
-  [pun] Pascal Dumont (former midfielder (ex-AC Milan, Man City)): Fortuna will moan about the penalty, but they were awful long before that.
-      ↳ Tyrone Asante: Rubbish. The penalty decided that game. Referees have to be braver.
-      ↳ Robbo: NPC take
-      ↳ Jake ⚽: Tyrone still bitter after all these years 😂 it's giving relegation
-  [fan] Lucía (@GoonerLucia): Got cooked by Arsenal Legends 💀 0-5
-      ↳ Lucía ⚽: Invincibles. Gold trophy. Enough said 🏆✨
-  [fan] Sophie (@COYSSophie97): Nah put the Arsenal game on just to see them suffer. Worth every second 😂
-      ↳ Gav: Imagine watching our games instead of your own
-  [pun] Wesley Ojo (former striker (ex-Liverpool, Bayern)): Arsenal were a disgrace. No leaders on that pitch.
-      ↳ Danny Shields: Calm down. Give Arsenal Legends some credit, they were on another level today.
-      ↳ Sergi: Agenda pundit 🙄 😭😭
-      ↳ Tom ⚽: L take
-  [cre] Big Lenny (Arsenal fan channel): I've thrown my remote. Genuinely. 0-5. T has to answer for that second half. Watchalong reaction up now
-      ↳ Amir ⚽: Clip this for the "best fan reactions" compilation 🍿
-  [fan] Becky (@InterBecky78): DOMESTIC DOUBLE 🏆🏆 Supercoppa Italiana + Serie A. Say it with me: DOUBLE!!!
-      ↳ Pablo: Wake me up when it's a treble 🙄 💀
-  [fan] Amir ⚽ (@InterAmir): Tell your grandkids you were here for this 🏆
-      ↳ Lucía: Got handed the 2005/06 title in an office 😂
-      ↳ Ola: Scoreboard 🏆
-errors 0 | html 83406 | save KB 4920 feed KB 71
+  [fan] Deano ⚽ (@HeerenveenDeano): Groningen fans have gone very quiet 🤫 and that's on period
+      ↳ Chloe: At least Groningen have a soul
+      ↳ Amir: Nah groningen? Small club mentality
+  [cre] Kicks & Giggles (banter page): Ref's phone has been ringing nonstop since Go Ahead v Feyenoord 😂📞
+  [fan] Priya (@GoAheadPriya): That penalty against us was a joke a penalty. He went down like he'd been shot 🙄 lowkey
+      ↳ Iker: Imagine blaming the ref when you had 6 shots and scored 0 I'm crying
+  [pun] Marco Bellandi (former Italy midfielder (ex-Inter, Juventus)): Go Ahead will moan about the penalty, but they were awful long before that.
+      ↳ Lukas Brenner: Rubbish. The penalty decided that game. That's the VAR problem in a nutshell.
+      ↳ Macca: Nah marco always hated us
+  [fan] Robbo (@GoonerRobbo): We beat the Invincibles era. Frame it 🖼️
+      ↳ Macca: Thierry Henry. That's the tweet
+  [fan] Pablo (@COYSPablo): Only watched to see Arsenal slip up. Wasted my evening 🙄
+      ↳ Sophie: Obsessed 😂 Rent free 🏠
+  [pun] Danny Shields (former centre-back (ex-Arsenal, Inter)): Arsenal showed real character. Title talk is real.
+      ↳ Rob Kettering: Steady on. They were rescued by their keeper. Arsenal Legends deserved more.
+      ↳ Sophie: Finally someone talking sense, Rob
+      ↳ Nina ⚽: Ex-Arsenal player defending Arsenal. Shocking. Truly shocking 🙄
+      ↳ Priya: Ratio + he played at the top level + you didn't
+  [cre] Big Lenny (Arsenal fan channel): Scenes in the studio 😂 Arsenal Legends fans in my comments are VERY quiet tonight
+  [fan] Jonno (@InterJonno): POV: qUADRUPLE 🏆🏆🏆🏆 Supercoppa Italiana + Coppa Italia + Cup Winners' Cup + Serie A. Say it with me: QUADRUPLE!!!
+      ↳ Liam ⚽: Calm down, it's only a quadruple (respectfully)
+  [fan] Macca (@InterMacca52): We did it. 20th Serie A. Proudest day of my life I'm crying
+      ↳ Robbo: Pazza Inter: bottle it in May, every May bro is cooked
+      ↳ Liam: Touch grass
+errors 0 | html 80063 | save KB 4932 feed KB 70

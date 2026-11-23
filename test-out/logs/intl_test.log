@@ -1,12 +1,14 @@
 take job: ok | user ARS | mode dual
-nations 142 | England pool 1743 | Kane caps 125 | UNL fixtures 156
+nations 142 | England pool 1700 | Kane caps 125 | UNL fixtures 156
 England str (AI) 86 | top ranks ESP,ARG,FRA,ENG,POR,BRA
 2026-08-08 UNL27 league   | England: 2nd in group
 2026-11-15 UNL27 qf   | England: Quarter-final
 2026-12-06 EQ28 league   | England: 1st in group
 2027-03-28 UNL27 finals   | England: Semi-final
-2027-06-13 UNL27 done winner England (ru Netherlands)  | England: Winners
-=== season end 2026/27 team ARS pos 2 | date now 2027-08-07 | user ARS | sacked false
-2027-11-15 EQ28 po  qualified 21 incl ENG | England: Qualified
+2027-06-13 UNL27 done winner France (ru England)  | England: Runners-up
+=== season end 2026/27 team ARS pos 1 | date now 2027-08-07 | user ARS | sacked false
+2027-11-15 EQ28 po  qualified 22 incl ENG | England: Qualified
 2028-03-26 EQ28 done  qualified 24 incl ENG | England: Qualified
 2028-04-01 EURO28 groups   | England: 1st in group
+DBG 2028-06-20 seasonEnd task 2028-06-23 | euro played 30/36 | missing 0
+2028-06-23 EURO28 ko   | England: Round of 16

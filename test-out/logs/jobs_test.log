@@ -1,12 +1,11 @@
-security levels {"Secure":63,"Stable":55,"Very unsecure":7,"Very secure":20,"Unsecure":34}
-sackings by Dec 20 {"CH":3,"L1":1,"BL":1,"PL":1,"LO":2} Nuno Espírito Santo (West Ham United, 17th); Stéphane Gilli (Angers, 18th); Christian Ilzer (Hoffenheim, 18th); Matthias Jaissle (Newcastle United, 17th)
-vacant 
-You have declared interest in the Newcastle United job. If Kian Walker is sacked, they will call you first.
-board 66.23066424021836 -> 62.23066424021836 fans 55 -> 52 | rival false
+security levels {"Secure":57,"Stable":65,"Very unsecure":5,"Very secure":23,"Unsecure":29}
+sackings by Dec 20 {"LO":2,"SA":1,"PL":2} Daniel Stendel (Barnsley, 22nd); Luciano Spalletti (Juventus, 13th); Matthias Jaissle (Newcastle United, 18th); Xabi Alonso (Chelsea, 16th)
+vacant Barnsley [Mateo Clarke (caretaker)]
+You have declared interest in the Aston Villa job. If Unai Emery is sacked, they will call you first.
+board 53.6516151046406 -> 49.6516151046406 fans 44 -> 41 | rival false
 You have declared interest in the Fulham job. If Alvaro Arbeloa is sacked, they will call you first.
-rival interest: board 62.23066424021836 -> 47.23066424021836 fans -> 30
-Application sent to Leicester City. Expect an answer within about a week.
-offer from Leicester City true Job offer: Leicester City
-You are the new manager of Leicester City.
-sackings in the season {"SPL":1,"PL":3,"LO":8,"L1":2,"CH":3,"BL":1} total 18
+rival interest: board 49.6516151046406 -> 34.6516151046406 fans -> 19
+Application sent to Barnsley. Expect an answer within about a week.
+offer from Barnsley false Job offer: Aston Villa
+sackings in the season {"SPL":2,"L1":1,"LL":3,"BL":1,"LO":3,"SA":2,"PL":3} total 15
 OK
