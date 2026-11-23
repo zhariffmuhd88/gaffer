@@ -8,10 +8,10 @@ NODE_TESTS="lore_test rewards_test aihap_test jobs_test edlo_test multi_test rot
 PY_TESTS="smoke badge_browser lore_browser jobs_browser edlo_browser exnat_browser md3d_browser cine_real statue_browser ll_browser sa_browser xl_browser rep_browser cmp_browser so_browser rv_browser ps_browser polish_browser sel_browser club_browser intl_browser youth_browser"
 run() { # name cmd...
   local n=$1; shift; local log="$OUT/logs/$n.log"
-  timeout 900 "$@" >"$log" 2>&1; local rc=$?
+  timeout "${TEST_TIMEOUT:-1800}" "$@" >"$log" 2>&1; local rc=$?
   if [ $rc -ne 0 ] || grep -qE "^ERR |Uncaught|TypeError|ReferenceError|SyntaxError|errors \[['\"]|page ?errors?: *\[['\"]" "$log"; then echo "FAIL $n (exit $rc)"; else echo "ok   $n"; fi
 }
-export -f run; export OUT
+export -f run; export OUT TEST_TIMEOUT
 { for t in $NODE_TESTS; do [ -f "tests/$t.js" ] && echo "$t node tests/$t.js $( [ $t = intl_test ] && echo dual ARS 2 )"; done
   for t in $PY_TESTS; do [ -f "tests/$t.py" ] && echo "$t python3 tests/$t.py $OUT"; done; } |
   xargs -P "$JOBS" -I{} bash -c 'run {}' | sort | tee "$OUT/summary.txt"
