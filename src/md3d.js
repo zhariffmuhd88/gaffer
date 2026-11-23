@@ -212,10 +212,11 @@ function frame3d(LM, ts) {
     let da = ang - f.g.rotation.y; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; f.g.rotation.y += da * .25;
     f.v = f.v * .8 + (dt > 0 && sp < 20 ? sp / (dt / 1000) : 0) * .2;
     const party = celeb && sideOf(V, M, e) === celeb.side;
-    const down = SC.fallen && SC.fallen.get && SC.fallen.get(e);
+    // down only while the fall lasts, and never while he has the ball or is striking it
+    const down = SC.fallen && SC.fallen.get && SC.fallen.get(e) > SC.t && SC.holder !== e && S3.kicker !== e && !(cs && cs.e === e && (cs.k === 'shot' || cs.k === 'pass' || cs.k === 'cross' || cs.k === 'place' || cs.k === 'dribble'));
     let P = null;
     // keeper dive
-    if (SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0) { const q = Math.min(1, (SC.t - SC.dive.t0) / Math.max(1, SC.dive.t1 - SC.dive.t0)); const dir = SC.dive.to.y >= SC.dive.from.y ? 1 : -1; P = { legs: [.3, -.2], arms: [[-dir * 2.6, 0], [-dir * 2.6, 0]], roll: dir * Math.min(1, q * 1.6) * (SC.dive.stretch ? 1.35 : .5), lift: Math.sin(Math.PI * Math.min(1, q)) * (SC.dive.stretch ? .9 : .3) }; }
+    if (SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0 && SC.t < SC.dive.t1 + 700 && SC.holder !== e) { const q = Math.min(1, (SC.t - SC.dive.t0) / Math.max(1, Math.min(380, SC.dive.t1 - SC.dive.t0))); /* a quick, sharp dive; he gets up again shortly after */ const dir = SC.dive.to.y >= SC.dive.from.y ? 1 : -1; P = { legs: [.3, -.2], arms: [[-dir * 2.6, 0], [-dir * 2.6, 0]], roll: dir * Math.min(1, q * 1.6) * (SC.dive.stretch ? 1.35 : .5), lift: Math.sin(Math.PI * Math.min(1, q)) * (SC.dive.stretch ? .9 : .3) }; }
     else if (down) P = { legs: [.2, -.1], arms: [[-.5, .3], [.5, .3]], roll: 1.45, lift: .3 };
     else if (cer && cer.pose) P = cer.pose;
     else if (party) { try { P = celebPose3d(S3, f, e, celeb, ts, SC); } catch (er) { P = { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]] }; } }
