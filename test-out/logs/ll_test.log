@@ -1,10 +1,23 @@
 user RSO LL | LL clubs 20 | players 26 | Segunda 22 | PF 20 | play nat ESP | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-LL fixtures 380 | UCL Spanish RMA,BAR,VIL,ATM,BET | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 996
-youth 19 15 Mario Fuentes NIR, Arnau Ferrer ESP, Andrés Cortés ENG | comps LLB DHJ
-Supercopa Barcelona v Atlético 0-2, Real Sociedad v Real Madrid 0-1 / Atlético v Real Madrid 1-1 p6-5 | winner Atlético
-=== season 2026/27 | user pos 4 LL | sacked false | now 2027-08-07
-LL top5 Real Madrid 95, Barcelona 90, Atlético 87, Real Sociedad 65, Athletic 62 | down Málaga, Racing, Deportivo | up Girona, Mallorca, Almería | CdR Barcelona
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Raphinha","BAR",33,"p1221"] | SCE ATM
-LL awards best Raphinha | Pichichi Raphinha 33 | Zamora Thibaut Courtois 0.34 | TOS 11 | GOS Gabriel Jesus
-LL months 10 | gotmLL 10 | next euro {"UCL":["LIV","ARS","MUN","NEW","CHE","RMA","BAR","ATM","RSO","BAY","BVB","SGE","VFB","PSG","OGCN","OL","ASM","PSV","AZ","ATA","JUV","NAP","INT"],"UEL":["TOT","BOU","ATH","VIL","RBL","RCSA","FEY","ROM","COM"],"UECL":["BHA","CEL","B04","RCL","TWE","BGN"]} | sce next Real Madrid,Betis,Atlético,Barcelona
-Supercopa Real Madrid v Betis 2-1, Atlético v Barcelona 0-2 / Real Madrid v Barcelona 0-1 | winner Barcelona
+LL fixtures 380 | UCL Spanish ATM,BAR,RMA,VIL,BET | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 995
+youth 19 15 Javier Arias IRL, Eneko Herrera ESP, Sergio Calvo ESP | comps LLB DHJ
+Supercopa Barcelona v Atlético 0-1, Real Sociedad v Real Madrid 0-2 / Atlético v Real Madrid 2-1 | winner Atlético
+=== season 2026/27 | user pos 3 LL | sacked false | now 2027-08-07
+LL top5 Barcelona 86, Real Madrid 85, Real Sociedad 72, Atlético 71, Celta 69 | down Levante, Deportivo, Málaga | up Girona, Almería, Valladolid | CdR Barcelona
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Kylian Mbappé","RMA",35,"p1194"] | SCE ATM
+LL awards best Kylian Mbappé | Pichichi Kylian Mbappé 35 | Zamora Joan García 0.58 | TOS 11 | GOS Dani Olmo
+LL months 10 | gotmLL 10 | next euro {"UCL":["CHE","TOT","ARS","MUN","LIV","BAR","RMA","RSO","ATM","BAY","SCF","B04","RBL","PSG","RCL","OM","OL","AJX","FEY","INT","NAP","ROM","JUV"],"UEL":["BHA","EVE","CEL","ATH","TSG","OGCN","PSV","ACM","COM"],"UECL":["FUL","BET","VFB","ASM","UTR","ATA"]} | sce next Barcelona,Atlético,Real Sociedad,Real Madrid
+Supercopa Barcelona v Atlético 2-1, Real Sociedad v Real Madrid 1-3 / Barcelona v Real Madrid 2-0 | winner Barcelona
+=== season 2027/28 | user pos 12 LL | sacked false | now 2028-08-05
+LL top5 Barcelona 86, Real Madrid 86, Atlético 79, Betis 74, Athletic 66 | down Getafe, Elche, Espanyol | up Levante, Mallorca, Málaga | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | LL ts ["Kylian Mbappé","RMA",31,"p1194"] | SCE BAR
+LL awards best Lamine Yamal | Pichichi Kylian Mbappé 31 | Zamora Joan García 0.42 | TOS 11 | GOS Mario Herrera
+LL months 20 | gotmLL 20 | next euro {"UCL":["CHE","ARS","LIV","TOT","MUN","BAR","RMA","ATM","BET","BAY","BVB","VFB","SGE","PSG","OM","ASM","RCSA","FEY","AZ","COM","ROM","NAP","JUV"],"UEL":["NFO","SUN","ATH","CEL","B04","RCL","PSV","INT","ACM"],"UECL":["BHA","RAY","RBL","OL","TWE","ATA"]} | sce next Barcelona,Girona,Atlético,Real Madrid
+goals per game this season: PL - | CH - | LL - | CDR -
+cross-league moves 103 Eberechi Eze -> Inter; Viktor Gyokeres -> Villarreal; Gianluigi Donnarumma -> AZ; Ruben Dias -> Sevilla; Marc Guehi -> Bologna
+errors 0 | sim time 367.1s
+screens 9634 11118 1342 1919 46159 11992
+save parts KB players 4585, fx 444, teams 251, awards 71, feed 71, yl 54, sq 41, byDate 40
+national team ESP null | games 23 Spain 4-1 Türkiye | Spain 7-2 Norway | Portugal 2-3 Spain | England 2-1 Spain | caps leaders Rodri 85, Mikel Oyarzabal 83, Koke 72
+save 5863 KB JSON, 630K chars compressed (385 ms, unpack 74 ms, round trip true) | restore ok 20
+time 368.9s

@@ -1,14 +1,26 @@
 take job: ok | user ARS | mode dual
-nations 142 | England pool 1700 | Kane caps 125 | UNL fixtures 156
+nations 142 | England pool 1753 | Kane caps 125 | UNL fixtures 156
 England str (AI) 86 | top ranks ESP,ARG,FRA,ENG,POR,BRA
 2026-08-08 UNL27 league   | England: 2nd in group
 2026-11-15 UNL27 qf   | England: Quarter-final
 2026-12-06 EQ28 league   | England: 1st in group
 2027-03-28 UNL27 finals   | England: Semi-final
-2027-06-13 UNL27 done winner France (ru England)  | England: Runners-up
+2027-06-13 UNL27 done winner Spain (ru France)  | England: Final
 === season end 2026/27 team ARS pos 1 | date now 2027-08-07 | user ARS | sacked false
 2027-11-15 EQ28 po  qualified 22 incl ENG | England: Qualified
 2028-03-26 EQ28 done  qualified 24 incl ENG | England: Qualified
 2028-04-01 EURO28 groups   | England: 1st in group
 DBG 2028-06-20 seasonEnd task 2028-06-23 | euro played 30/36 | missing 0
 2028-06-23 EURO28 ko   | England: Round of 16
+2028-07-09 EURO28 done winner England (ru Spain)  | England: Winners
+=== season end 2027/28 team ARS pos 8 | date now 2028-08-05 | user ARS | sacked false
+swaps 11 | England matches played by user 23 | errors 0
+intl hist: Nations League 2026/27: Spain | Nations League 2026/27: Final | Euro 2028: England | Euro 2028: Winners
+England caps leaders: Harry Kane 138/103, Declan Rice 98/9, Jordan Pickford 95/0, Kyle Walker 93/1, Jordan Henderson 91/3
+France caps (DB players): William Saliba 21/0, Rayan Cherki 21/1, Kylian Mbappé 21/3
+ranking top 8: ESP 2185, ENG 2094, FRA 1935, ARG 1916, POR 1906, BEL 1864, BRA 1782, CRO 1770 | England 2
+FA 100 | mgr rec: Arsenal 124 2026/27 Champions League/2026/27 Premier League/2027/28 Club World Cup (open) | England 23 2027/28 European Championship (open)
+user rank all-time 30 83 Arsenal & England
+screens 2140 15681 5231 9922 25079 45833
+save 5869 KB | restore ok true
+time 371.2s

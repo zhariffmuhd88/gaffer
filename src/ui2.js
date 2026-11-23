@@ -171,6 +171,8 @@ function scrTransfers() {
     if (f.con) list = list.filter(p => p.con <= G.year + +f.con);
     if (f.hap) list = list.filter(p => (typeof hap === 'function' ? hap(p) : 65) < +f.hap);
     if (f.st === 'listed') list = list.filter(p => p.listed); else if (f.st === 'req') list = list.filter(p => p.req || (typeof hap === 'function' && hap(p) < 20));
+    else if (f.st === 'loan') list = list.filter(loanListed); else if (f.st === 'any') list = list.filter(p => p.listed || loanListed(p));
+    if (f.int) list = list.filter(p => { const i = wouldJoin(p); return f.int === 'yes' ? i === 'yes' : i !== 'no'; });
     list.sort((a, b) => b.ca - a.ca);
     const shown = list.slice(0, 120);
     body = `<div class="row" style="margin-bottom:8px">
@@ -181,7 +183,8 @@ function scrTransfers() {
       <div><label class="lb" for="fm">Max value £m</label><input class="f" id="fm" type="number" min="0" style="width:90px" data-a="filt" data-k="max" value="${esc(f.max)}"></div>
       <div><label class="lb" for="fcon">Contract ends</label><select class="f" id="fcon" data-a="filt" data-k="con"><option value="">Any</option>${[['1', `Summer ${G.year + 1} (expiring)`], ['2', `By ${G.year + 2}`], ['3', `By ${G.year + 3}`]].map(([v, l]) => `<option value="${v}" ${f.con === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
       <div><label class="lb" for="fhap">Happiness</label><select class="f" id="fhap" data-a="filt" data-k="hap"><option value="">Any</option>${[['50', 'Unsettled (below 50)'], ['35', 'Unhappy (below 35)'], ['20', 'Wants out (below 20)']].map(([v, l]) => `<option value="${v}" ${f.hap === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
-      <div><label class="lb" for="fst">Status</label><select class="f" id="fst" data-a="filt" data-k="st"><option value="">Any</option><option value="listed" ${f.st === 'listed' ? 'selected' : ''}>Transfer listed</option><option value="req" ${f.st === 'req' ? 'selected' : ''}>Wants to leave</option></select></div>
+      <div><label class="lb" for="fst">Status</label><select class="f" id="fst" data-a="filt" data-k="st"><option value="">Any</option><option value="listed" ${f.st === 'listed' ? 'selected' : ''}>Transfer listed</option><option value="req" ${f.st === 'req' ? 'selected' : ''}>Wants to leave</option><option value="loan" ${f.st === 'loan' ? 'selected' : ''}>Loan listed</option><option value="any" ${f.st === 'any' ? 'selected' : ''}>Transfer or loan listed</option></select></div>
+      <div><label class="lb" for="fint">Would join you</label><select class="f" id="fint" data-a="filt" data-k="int"><option value="">Any</option><option value="yes" ${f.int === 'yes' ? 'selected' : ''}>Keen to join</option><option value="maybe" ${f.int === 'maybe' ? 'selected' : ''}>Would at least consider</option></select></div>
       <div><label class="lb" for="fa">Max age</label><input class="f" id="fa" type="number" min="15" style="width:70px" data-a="filt" data-k="age" value="${esc(f.age || '')}"></div>
     </div><p class="dim" style="margin:0 0 6px">${list.length} players match${list.length > 120 ? ', showing the top 120 by rating' : ''}.</p>${playerTable(shown, { club: true, hide: ['no', 'mor', 'fa'] })}`;
   } else if (tab === 'short') {

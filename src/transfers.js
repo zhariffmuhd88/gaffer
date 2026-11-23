@@ -22,6 +22,31 @@ function playerInterest(p, toTid) {
   if (diff >= -12) return p.listed || importance(p) === 'backup' || p.age >= 31 ? 'yes' : 'maybe';
   return 'no';
 }
+// would this player realistically join the user's club? Club stature, plus an unsettled or listed player is keener,
+// and a club in the Champions League or a much bigger wage packet helps; a rival club puts him off.
+function wouldJoin(p) {
+  if (!p || !G.user || p.c === G.user) return 'no';
+  let i = playerInterest(p, G.user); const h = typeof hap === 'function' ? hap(p) : 60;
+  const from = T(p.c), to = T(G.user); const rf = from && !from.lite ? from.rep : 60, rt = to ? to.rep : 60; const imp = importance(p);
+  const down = (i) => i === 'yes' ? 'maybe' : 'no', up = (i) => i === 'no' ? 'maybe' : 'yes';
+  // a settled star at a club of similar standing needs convincing
+  if (imp === 'key' && rf >= rt - 2 && h >= 50) i = down(i);
+  // a step down in division (or a club outside the top flight) is a hard sell for regulars
+  const tier = (d) => ({ CH: 2, LO: 3 }[d] || 1); if (tier(divOf(G.user)) > tier(divOf(p.c)) && imp !== 'backup') i = down(i);
+  // unsettled, listed or unwanted players are keener
+  if (h < 30 || p.req || p.listed) i = up(i); if (imp === 'backup' && p.age <= 29 && rt >= rf - 8) i = up(i);
+  try { if (typeof isRival === 'function' && isRival(p.c, G.user) && h >= 35) i = down(i); } catch (e) { }
+  return i;
+}
+// loan listed: young players and squad players his club would send out on loan (never your own players)
+function loanListed(p) {
+  if (!p || p.loan || p.c === G.user || !divOf(p.c) || (T(p.c) && (T(p.c).nat || T(p.c).lite))) return false;
+  const imp = importance(p); if (imp === 'key' || imp === 'first') return false;
+  if (imp !== 'backup' && !(imp === 'rotation' && p.age <= 20)) return false;
+  // young players worth a season of football elsewhere, and surplus squad players outside the club's top 18
+  const rank = squad(p.c).slice().sort((a, b) => b.ca - a.ca).indexOf(p);
+  return rank >= 18 && p.ca >= 50 && (p.age <= 22 || (p.age <= 26 && hash(String(p.id) + G.year) % 4 === 0));
+}
 // user makes a bid
 function makeBid(pid, fee, swap) {
   const p = P(pid); const u = userTeam();
@@ -399,3 +424,11 @@ function aiRecruit(tid) {
   const sq = squad(tid);
   if (sq.length > 30) for (const p of sq.sort((a, b) => a.ca - b.ca).slice(0, sq.length - 30)) { G.sq[tid] = G.sq[tid].filter(x => x !== p.id); p.c = 'FA'; G.fa.push(p.id); }
 }
+
+// player pop-up: would he join, and is he available on loan
+const _peWJ = playerExtra;
+playerExtra = function (p) {
+  const h = _peWJ(p);
+  try { if (p && G.user && p.c !== G.user && divOf(p.c)) { const w = wouldJoin(p); const txt = { yes: '<b class="grn">Keen to join you</b>', maybe: '<b class="yel">Would consider joining you</b>', no: '<b class="red">Not interested in joining you</b>' }[w]; return h + `<div class="box pad" style="margin-top:8px"><label class="lb">Transfer outlook</label>${txt}${p.listed ? ' · transfer listed' : ''}${loanListed(p) ? ' · <b>available on loan</b>' : ''}</div>`; } } catch (e) { }
+  return h;
+};

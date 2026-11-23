@@ -1,13 +1,13 @@
 doc: ok 172
-2026-09-29 request play Viktor Gyokeres -> Gyokeres: "That's all I want. I'll hold you to it."
-2026-10-20 request play Kepa Arrizabalaga -> Arrizabalaga: "I've earned more than that. I'm disappointed."
-2026-11-03 request loan Andre Harriman-Annous -> Harriman-Annous: "Thanks boss, that means a lot. I want to learn."
-2026-11-12 request play Ben White -> White: "Thank you for being honest. I'll stay professional until a deal is done."
-requests 19 play:done play:done loan:done play:done play:ignored play:ignored loan:ignored loan:ignored play:ignored play:ignored play:ignored loan:ignored leave:ignored play:ignored leave:ignored loan:ignored play:ignored play:ignored loan:ignored
-doc episodes 17
-CWC Bayern beat Marseille | CWX none
-trophy room svg 3280 | parade 19130
+2026-09-10 request loan Marli Salmon -> Salmon: "Thanks boss. I'll go in the next window."
+2026-10-28 request play Eberechi Eze -> Eze: "I've earned more than that. I'm disappointed."
+2026-11-03 request loan Max Dowman -> Dowman: "Thanks boss, that means a lot. I want to learn."
+2026-11-12 request play Viktor Gyokeres -> Gyokeres: "Thank you for being honest. I'll stay professional until a deal is done."
+requests 23 loan:done play:done loan:done play:done loan:ignored play:ignored play:ignored play:ignored play:ignored loan:ignored play:ignored loan:ignored leave:ignored leave:ignored loan:ignored play:ignored leave:ignored loan:ignored leave:ignored leave:ignored leave:ignored play:ignored play:ignored
+doc episodes 7
+CWC Real Madrid beat Stuttgart | CWX none
+trophy room svg 2786 | parade 19130
 statue {"ARS":{"n":"T","y":2028}}
 son ask ask
-son Adam Zhariff 16 90 a ENG
+son Adam Zhariff 16 86 a ENG
 import compressed ok 20 | errors 0

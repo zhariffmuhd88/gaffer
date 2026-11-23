@@ -1,9 +1,9 @@
-2027-04-16 L1 PSG 80 v Lille 58 | played 28/34 | valid true
-2027-05-01 CH Sheff Utd 93 v Wolves 90 | played 46/46 | valid true
-2027-05-07 BL Bayern 83 v Leverkusen 75 | played 32/34 | valid true
-2027-05-15 PL Liverpool 79 v Chelsea 75 | played 37/38 | valid true
-2027-05-20 SPL Al-Ahli 86 v Al-Hilal 80 | played 33/34 | valid true
-2027-05-23 LL Barcelona 88 v Atlético 87 | played 38/38 | valid true
-2027-05-23 SA Como 89 v Inter 85 | played 37/38 | valid true
+2027-04-13 CH Wolves 97 v Southampton 87 | played 43/46 | valid true
+2027-04-30 L1 PSG 79 v Lille 66 | played 30/34 | valid true
+2027-05-07 BL Bayern 81 v Dortmund 72 | played 32/34 | valid true
+2027-05-15 PL Arsenal 74 v Man Utd 66 | played 37/38 | valid true
+2027-05-16 LL Barcelona 84 v Real Madrid 79 | played 37/38 | valid true
+2027-05-27 SPL Al-Ahli 78 v Al-Qadsiah 75 | played 34/34 | valid true
+2027-05-30 SA Inter 85 v Atalanta 82 | played 38/38 | valid true
 news 
-inbox  | WUPH posts 24 | trends PSGChampions,Champions,SheffUtdChampions,BayernChampions,LiverpoolChampions,AlAhliChampions,BarcelonaChampions,ComoChampions | errors 0
+inbox  | WUPH posts 18 | trends ArsenalChampions,WolvesChampions,Champions,PSGChampions,BayernChampions,BarcelonaChampions,AlAhliChampions,InterChampions | errors 0

@@ -7,7 +7,21 @@ toast: Request sent. The board will reply in the next few days.
 toast: Request sent. The board will reply in the next few days.
 toast: Request sent. The board will reply in the next few days.
 toast: The board is still considering your last request.
-stand reopened 2027-04-06 cap 37633 -> 33903 -> 40633 | bal £75.2m | build spend £28.2m
---- season end 2026/27 pos 17 | chist 1 | ranks all 74 cur 55 | pts 0
-  winners: PL Arsenal (ru Chelsea, ts Jean-Philippe Mateta 30, bp Erling Haaland) | CH Birmingham (ru West Ham, ts Carlos Vicente 38, bp Carlos Vicente) | LL Real Madrid (ru Barcelona, ts Kylian Mbappé 38, bp Kylian Mbappé) | SA Inter (ru Napoli, ts Lautaro Martínez 32, bp Lautaro Martínez) | FA Man Utd (ru Arsenal, ts Thomas Cannon 9, bp Florian Wirtz) | LC Man City (ru Liverpool, ts Omar Marmoush 7, bp Rayan Cherki) | PO Wolves (ru Southampton, ts Mateus Mané 5, bp Mateus Mané) | CDR Barcelona (ru Villarreal, ts Georges Mikautadze 8, bp Antony) | SCE Atlético (ru Real Madrid, ts Dani Olmo 1, bp Dean Huijsen) | CIT Inter (ru Atalanta, ts Lautaro Martínez 5, bp Federico Dimarco) | SCI Inter (ru Lazio, ts Lautaro Martínez 1, bp -) | DFB Bayern (ru Union Berlin, ts -, bp -) | CDF PSG (ru Lille, ts -, bp -) | UCL Man City (ru PSG, ts Kylian Mbappé 12, bp Kylian Mbappé) | UEL Sunderland (ru Juventus, ts Jean-Philippe Mateta 13, bp Kenan Yıldız) | UECL Brighton (ru Atalanta, ts Gianluca Scamacca 13, bp Gianluca Scamacca) | CWC Man Utd (ru Bayern, ts -, bp -)
+stand reopened 2027-04-06 cap 37633 -> 33903 -> 40633 | bal £79.3m | build spend £28.2m
+--- season end 2026/27 pos 12 | chist 1 | ranks all 71 cur 52 | pts 0
+  winners: PL Arsenal (ru Liverpool, ts Kai Havertz 36, bp Kai Havertz) | CH Wolves (ru West Ham, ts Valentín Castellanos 34, bp Valentín Castellanos) | LL Barcelona (ru Athletic, ts Raphinha 30, bp Raphinha) | SA Juventus (ru Inter, ts Kenan Yıldız 33, bp Kenan Yıldız) | FA Arsenal (ru Aston Villa, ts Kai Havertz 11, bp Kai Havertz) | LC Liverpool (ru Arsenal, ts Moises Caicedo 6, bp Antoine Semenyo) | PO Sheff Utd (ru Burnley, ts Liam Millar 4, bp Liam Millar) | CDR Athletic (ru Sevilla, ts Maroan Sannadi 10, bp Lucas Stassin) | SCE Real Madrid (ru Barcelona, ts Mikel Oyarzabal 2, bp Joan García) | CIT Inter (ru Atalanta, ts Gonçalo Ramos 4, bp Charles De Ketelaere) | SCI Inter (ru Lazio, ts Lautaro Martínez 2, bp -) | DFB Dortmund (ru Leverkusen, ts -, bp -) | CDF Paris FC (ru Marseille, ts -, bp -) | UCL Napoli (ru Roma, ts Ousmane Dembélé 12, bp Ousmane Dembélé) | UEL Juventus (ru Milan, ts Jean-Philippe Mateta 15, bp Francisco Conceição) | UECL Rennes (ru Augsburg, ts Gianluca Scamacca 16, bp Gianluca Scamacca) | CWC Liverpool (ru Atalanta, ts -, bp -)
 toast: Request sent. The board will reply in the next few days.
+--- season end 2027/28 pos 15 | chist 2 | ranks all 75 cur 56 | pts 0
+  winners: PL Spurs (ru Chelsea, ts Gonzalo Garcia 23, bp Oscar Bobb) | CH Ipswich (ru Coventry, ts Abdul Fatawu 54, bp Abdul Fatawu) | LL Barcelona (ru Real Madrid, ts Vinícius Júnior 34, bp Vinícius Júnior) | SA Inter (ru Juventus, ts Gianluca Scamacca 30, bp Francesco Pio Esposito) | FA Arsenal (ru Aston Villa, ts Wilson Isidor 7, bp Kai Havertz) | LC Arsenal (ru Man Utd, ts Benjamin Sesko 8, bp Owen Nash) | PO Norwich (ru Birmingham, ts Carlos Vicente 6, bp Carlos Vicente) | CDR Villarreal (ru Sevilla, ts Lucas Boyé 5, bp Williot Swedberg) | SCE Real Madrid (ru Sevilla, ts Rodrygo 3, bp Rodrygo) | CIT Atalanta (ru Juventus, ts Kevin Carlos 6, bp Kevin Carlos) | SCI Juventus (ru Inter, ts Tommaso Riva 1, bp -) | DFB Stuttgart (ru Bayern, ts -, bp -) | CDF PSG (ru Lyon, ts -, bp -) | UCL Bayern (ru PSG, ts Raphinha 9, bp Antoine Semenyo) | UEL Spurs (ru Milan, ts Omar Marmoush 15, bp Xavi Simons) | UECL Stuttgart (ru Lazio, ts Christantus Uche 13, bp Tijjani Noslin) | CWC Bayern (ru Juventus, ts -, bp -) | CWX Al-Ahli (ru Pyramids FC, ts -, bp -)
+board replies: 
+sample reply: undefined
+tb £32.0m -> £73.0m | fac {"tr":11,"yth":8} | projects left  | log 5
+stadium now Tester Park 61000 | record this save 56222
+real managers in-game points: José Mourinho 13, Andoni Iraola 20, Edin Terzić 11, Luciano Spalletti 25, Mikel Arteta 44, Chris Wilder 3, Niko Kovač 6, Massimiliano Allegri 33
+top 8 current: 1. Pep Guardiola 416, 2. Carlo Ancelotti 318, 3. José Mourinho 287, 4. Luis Enrique 261, 5. Massimiliano Allegri 183, 6. Hansi Flick 180, 7. Roberto Mancini 136, 8. Antonio Conte 130
+ranking news: Tester drops 4 places to 75th in the all-time manager rankings.
+club honours: English champions 3 (game 0), Championship 2 (game 0), FA Cup 1 (game 0), League Cup 1 (game 0), European Cup / Champions League 0 (game 0), Cup Winners' Cup 0 (game 0)
+history html 59469 | club html 10500 5287 4617
+restore ok true | save size 5874 KB
+old-save migration ok true | history screen true
+time 368.3s
