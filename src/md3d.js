@@ -143,6 +143,7 @@ function build3d(LM, T3) {
   const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd, rig: UI.v3q !== 'lo' && !!T3.SkinnedMesh }; // human models unless Low quality was chosen by hand (phones too; slow devices fall back by themselves)
   try { buildCast3d(S3, LM, T3); makeTrail(S3, T3); } catch (e) { console.error(e); }
   try { buildAtmo3d(S3, LM, T3); } catch (e) { console.error(e); }
+  try { phase8Build(S3, LM); } catch (e) { console.error(e); }
   _last3 = S3; return S3;
 }
 function figure(T3, kit, gk, gkCol, num, o) {
@@ -251,6 +252,7 @@ function frame3d(LM, ts) {
   for (const a of ['x', 'y', 'z']) { S3.camPos[a] += (want[a] - S3.camPos[a]) * k; S3.look[a] += (look[a] - S3.look[a]) * k * 1.5; }
   S3.cam.position.set(S3.camPos.x, S3.camPos.y, S3.camPos.z); S3.cam.lookAt(S3.look.x, S3.look.y, S3.look.z);
   overlay3d(LM, SC); try { bug3d(LM, S3, ts); } catch (er) { console.error(er); }
+  try { phase8Frame(S3); } catch (er) { }
   S3.ren.render(S3.scene, S3.cam);
 }
 function start3d(LM) {

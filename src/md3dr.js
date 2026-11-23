@@ -119,5 +119,5 @@ setPose = function (f, P) { if (f && f.rig) return rigPose(f, P); return _setPos
 // automatic fallback: if frames are slow with the models, switch to the block figures (unless quality was chosen)
 function rigAuto3d(S3, dt) {
   if (!S3.rig || S3.rigOff || UI.v3q) return; S3.rtN = (S3.rtN || 0) + 1; S3.rtS = (S3.rtS || 0) + dt;
-  if (S3.rtN === 150) { if (S3.rtS / S3.rtN > 48) { S3.rigOff = true; for (const [, f] of S3.figs) { S3.scene.remove(f.g); if (f.sh) S3.scene.remove(f.sh); } S3.figs.clear(); try { toast('3D: simpler players for smoother play on this device.'); } catch (e) { } } }
+  if (S3.rtN === 150) { if (S3.rtS / S3.rtN > 48) { S3.rigOff = true; S3.slow = true; for (const [, f] of S3.figs) { S3.scene.remove(f.g); if (f.sh) S3.scene.remove(f.sh); } S3.figs.clear(); try { toast('3D: simpler players for smoother play on this device.'); } catch (e) { } } }
 }
