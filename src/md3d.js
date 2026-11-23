@@ -140,7 +140,7 @@ function build3d(LM, T3) {
     wxp = new T3.Points(geo, new T3.PointsMaterial({ color: wx === 'rain' ? '#c6d3e6' : '#ffffff', size: wx === 'rain' ? .3 : .45, transparent: true, opacity: wx === 'rain' ? .75 : .95 }));
     wxp.userData = { snow: wx === 'snow' }; scene.add(wxp);
   }
-  const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd };
+  const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd, rig: UI.v3q !== 'lo' && !!T3.SkinnedMesh }; // human models unless Low quality was chosen by hand (phones too; slow devices fall back by themselves)
   try { buildCast3d(S3, LM, T3); makeTrail(S3, T3); } catch (e) { console.error(e); }
   try { buildAtmo3d(S3, LM, T3); } catch (e) { console.error(e); }
   _last3 = S3; return S3;
@@ -199,10 +199,11 @@ function frame3d(LM, ts) {
   // who struck the ball in this step: the player who had it before a pass or cross; the shooter on a shot
   if (S3.si !== SC.si || S3.sc !== SC) { S3.si = SC.si; S3.sc = SC; S3.kicker = cs && (cs.k === 'pass' || cs.k === 'cross') ? (S3.hold || null) : (cs && cs.e) || null; }
   if (SC.holder) S3.hold = SC.holder;
+  try { rigAuto3d(S3, dt); } catch (er) { }
   for (let s = 0; s < 2; s++) for (const e of M.sides[s].ps) {
     const p = SC.pos.get(e); if (!p || (!e.on && !V.rp)) continue; seen.add(e);
     let f = S3.figs.get(e);
-    if (!f) { const S = M.sides[s]; f = { g: figure(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid), look: lookOf(e.p), body: bodyOf(e.p), pat: kitPat(S.tid, V.kits[sideOf(V, M, e)]), wx: kitWx(V), lo: S3.lo }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
+    if (!f) { const S = M.sides[s]; f = { g: (S3.rig && !S3.rigOff ? figureRig : figure)(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid), look: lookOf(e.p), body: bodyOf(e.p), pat: kitPat(S.tid, V.kits[sideOf(V, M, e)]), wx: kitWx(V), lo: S3.lo }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; f.rig = f.g.userData && f.g.userData.rig; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
     let w = W3(p); let cer = null; try { cer = cer3d(S3, LM, e, f, ts); } catch (er) { cer = null; }
     if (cer && cer.w) { f.cw = f.cw || { x: w.x, z: w.z }; const kk = Math.min(1, dt / 1000 * 2.2); f.cw.x += (cer.w.x - f.cw.x) * kk; f.cw.z += (cer.w.z - f.cw.z) * kk; if (S3.fly && !S3.flyDone) f.cw = { x: cer.w.x, z: cer.w.z }; w = { x: f.cw.x, z: f.cw.z }; } else if (!cer) f.cw = null;
     const prev = f.last || w; const dx = w.x - prev.x, dz = w.z - prev.z; const sp = Math.hypot(dx, dz);
