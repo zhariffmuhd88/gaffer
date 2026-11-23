@@ -223,9 +223,14 @@ function bug3d(LM, S3, ts) {
 }
 // a slow aerial pass over the stadium before kick-off; tap the picture to skip
 function fly3d(S3, LM, ts) {
-  const M = LM.M; if (S3.flyDone) return null;
-  if (!S3.fly) { if (M.min > 1 || LM.vis.rp) { S3.flyDone = true; return null; } S3.fly = ts; try { S3.ren.domElement.addEventListener('pointerdown', () => { S3.flyDone = true; }, { once: true }); } catch (e) { } }
-  const q = (ts - S3.fly) / 6500; if (q >= 1 || LM.vis.rp) { S3.flyDone = true; return null; }
+  const M = LM.M; if (S3.flyDone) { if (S3.flyHeld) { S3.flyHeld = false; LM.hold = false; if (UI.match === LM && !M.done && S3.flyRun) { LM.run = true; try { renderMatch(); schedule(); } catch (e) { } } } return null; }
+  if (!S3.fly) {
+    if (M.min > 1 || LM.vis.rp) { S3.flyDone = true; return null; } S3.fly = ts;
+    // the walk-out happens before kick-off: hold the match clock until the fly-over ends (tap the picture to skip)
+    S3.flyHeld = true; S3.flyRun = !!LM.run; LM.run = false; LM.hold = true;
+    try { S3.ren.domElement.addEventListener('pointerdown', () => { S3.flyDone = true; }, { once: true }); } catch (e) { }
+  }
+  S3.flyLen = 9000; const q = (ts - S3.fly) / S3.flyLen; if (q >= 1 || LM.vis.rp) { S3.flyDone = true; return null; }
   const e = q * q * (3 - 2 * q); const a = -2.3 + e * 1.75; const r = 150 - e * 105, y = 95 - e * 76;
   return { want: { x: Math.cos(a) * r * .9, y, z: Math.sin(a) * r }, look: { x: 0, y: 0, z: 0 } };
 }

@@ -530,7 +530,7 @@ function visFrame(LM, ts) {
   if (V.w !== W || V.dpr !== dpr) { V.w = W; V.dpr = dpr; V.L = layout(V); cv.width = Math.ceil(W * dpr); cv.height = Math.ceil(V.L.H * dpr); cv.style.height = V.L.H + 'px'; buildLayers(V, M); V.cam = { x: W / 2, y: V.L.H / 2, z: 1 }; }
   const dt = Math.min(80, ts - (V.lastTs || ts)); V.lastTs = ts;
   const SC = V.rp || V.live;
-  runScene(LM, V.live, dt * V.live.rate);
+  if (!LM.hold) runScene(LM, V.live, dt * V.live.rate); // held during the line-ups and the 3D walk-out
   if (V.rp) { runScene(LM, V.rp, dt); if (V.rp.t > V.rp.end) endReplay(LM); }
   // automatic replay after a goal celebration
   const L0 = V.live; if (L0.pendingRp && L0.t >= L0.pendingRp.at && !V.rp) { const idx = L0.pendingRp.idx; L0.pendingRp = null; if (LM.view === '2d') startReplay(LM, idx); }

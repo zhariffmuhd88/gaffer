@@ -149,30 +149,35 @@ function figure(T3, kit, gk, gkCol, num, o) {
   o = o || {}; const g = new T3.Group(); g.rotation.order = 'YZX'; // heading, then lean, then roll (dives) in the body's own frame
   const shirtCol = gk ? gkCol : kit.body; const trimCol = gk ? '#1b1b1b' : kit.trim;
   const shirt = new T3.MeshLambertMaterial({ color: shirtCol });
-  const trim = new T3.MeshLambertMaterial({ color: trimCol }); const skin = new T3.MeshLambertMaterial({ color: ['#c99a73', '#8d5a3b', '#e2b896', '#5e3a26'][(num || 0) % 4] });
-  const sock = new T3.MeshLambertMaterial({ color: gk ? shirtCol : kit.body }); const boot = new T3.MeshLambertMaterial({ color: '#111111' }); const hair = new T3.MeshLambertMaterial({ color: ['#2a1d14', '#0e0e0e', '#6b4a2b', '#c9a35c'][(num || 0) % 4] });
-  const torso = new T3.Mesh(new T3.CylinderGeometry(.34, .27, .95, 10), shirt); torso.position.y = 1.5; torso.castShadow = true; g.add(torso);
+  const L = o.look || null; const wx = o.wx || {};
+  const trim = new T3.MeshLambertMaterial({ color: trimCol }); const skin = new T3.MeshLambertMaterial({ color: L ? LOOK_SKIN[L.skin] : ['#c99a73', '#8d5a3b', '#e2b896', '#5e3a26'][(num || 0) % 4] });
+  const stex = !gk && o.pat ? shirtTex(T3, kit, o.pat) : null; const shirtB = stex ? new T3.MeshLambertMaterial({ map: stex }) : shirt;
+  const sleeveM = !gk && o.pat === 'sleeves' ? new T3.MeshLambertMaterial({ color: kit.trim }) : shirt;
+  const sock = new T3.MeshLambertMaterial({ color: gk ? shirtCol : kit.body }); const boot = new T3.MeshLambertMaterial({ color: L ? LOOK_BOOT[L.boot] : '#111111' }); const hair = new T3.MeshLambertMaterial({ color: ['#2a1d14', '#0e0e0e', '#6b4a2b', '#c9a35c'][(num || 0) % 4] });
+  const torso = new T3.Mesh(new T3.CylinderGeometry(.34, .27, .95, 10), shirtB); torso.position.y = 1.5; torso.castShadow = true; g.add(torso);
   const collar = new T3.Mesh(new T3.TorusGeometry(.2, .045, 6, 14), trim); collar.rotation.x = Math.PI / 2; collar.position.y = 1.97; g.add(collar);
   const shorts = new T3.Mesh(new T3.CylinderGeometry(.28, .3, .36, 10), trim); shorts.position.y = .9; g.add(shorts);
   for (const s of [-1, 1]) {
     const leg = new T3.Group(); leg.position.set(0, .82, s * .14); leg.name = 'leg';
-    const thigh = new T3.Mesh(new T3.CylinderGeometry(.11, .09, .78, 6), sock); thigh.position.y = -.4; thigh.castShadow = true; leg.add(thigh);
+    const knee = new T3.Mesh(new T3.CylinderGeometry(.11, .1, .3, 6), wx.snow ? new T3.MeshLambertMaterial({ color: '#16181d' }) : skin); knee.position.y = -.15; leg.add(knee); // tights in snow
+    const thigh = new T3.Mesh(new T3.CylinderGeometry(.1, .09, .5, 6), sock); thigh.position.y = -.54; thigh.castShadow = true; leg.add(thigh);
     const b = new T3.Mesh(new T3.BoxGeometry(.28, .1, .14), boot); b.position.set(.06, -.8, 0); leg.add(b);
     g.add(leg);
     const arm = new T3.Group(); arm.position.set(0, 1.9, s * .42); arm.name = 'arm' + (s > 0 ? 'R' : 'L');
-    const sl = new T3.Mesh(new T3.CylinderGeometry(.085, .075, .34, 6), shirt); sl.position.y = -.17; arm.add(sl);
-    const cuff = new T3.Mesh(new T3.CylinderGeometry(.08, .08, .06, 6), trim); cuff.position.y = -.35; arm.add(cuff);
-    const fa = new T3.Mesh(new T3.CylinderGeometry(.062, .055, .36, 6), skin); fa.position.y = -.55; arm.add(fa);
+    const sl = new T3.Mesh(new T3.CylinderGeometry(.085, .075, .34, 6), sleeveM); sl.position.y = -.17; arm.add(sl);
+    const cuff = new T3.Mesh(new T3.CylinderGeometry(.08, .08, .06, 6), trim); cuff.position.y = wx.long ? -.75 : -.35; arm.add(cuff);
+    const fa = new T3.Mesh(new T3.CylinderGeometry(.062, .055, .36, 6), wx.long ? sleeveM : skin); fa.position.y = -.55; arm.add(fa); // long sleeves when cold or wet
     if (o.capt && s < 0) { const band = new T3.Mesh(new T3.CylinderGeometry(.09, .09, .09, 8), new T3.MeshLambertMaterial({ color: colDist('#ffd23f', shirtCol) > 90 ? '#ffd23f' : '#ffffff' })); band.position.y = -.14; arm.add(band); }
-    const hand = new T3.Mesh(new T3.SphereGeometry(.07, 6, 5), gk ? trim : skin); hand.position.y = -.76; arm.add(hand); g.add(arm);
+    const hand = new T3.Mesh(new T3.SphereGeometry(gk ? .095 : .07, 6, 5), gk ? new T3.MeshLambertMaterial({ color: '#dfff3d' }) : skin); hand.position.y = -.77; arm.add(hand); g.add(arm); // keeper gloves
   }
   const head = new T3.Mesh(new T3.SphereGeometry(.22, 12, 10), skin); head.position.y = 2.22; head.castShadow = true; g.add(head);
-  const cap = new T3.Mesh(new T3.SphereGeometry(.225, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2.2), hair); cap.position.y = 2.25; g.add(cap);
+  if (L) headDress(T3, g, L, o.lo, skin); else { const cap = new T3.Mesh(new T3.SphereGeometry(.225, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2.2), hair); cap.position.y = 2.25; g.add(cap); }
+  if (wx.snow) { const sn = new T3.Mesh(new T3.CylinderGeometry(.17, .2, .16, 10), new T3.MeshLambertMaterial({ color: '#16181d' })); sn.position.y = 2.02; g.add(sn); } // snood
   const txtCol = gk ? '#111' : (colDist(kit.trim, shirtCol) > 90 ? kit.trim : (colDist('#ffffff', shirtCol) > 120 ? '#ffffff' : '#111111'));
   if (num) { const nb = new T3.Mesh(new T3.PlaneGeometry(.5, .5), new T3.MeshBasicMaterial({ map: numTex(T3, num, txtCol), transparent: true })); nb.position.set(-.33, 1.52, 0); nb.rotation.y = -Math.PI / 2; g.add(nb); }
   if (o.crest) { const cr = new T3.Mesh(new T3.PlaneGeometry(.2, .2), new T3.MeshBasicMaterial({ map: o.crest, transparent: true })); cr.position.set(.31, 1.74, -.14); cr.rotation.y = Math.PI / 2; g.add(cr); }
   if (o.name) { const nm = new T3.Mesh(new T3.PlaneGeometry(.6, .15), new T3.MeshBasicMaterial({ map: nameTex(T3, o.name, txtCol), transparent: true })); nm.position.set(-.345, 1.82, 0); nm.rotation.y = -Math.PI / 2; g.add(nm); }
-  g.scale.setScalar(1.35); return g;
+  const B = o.body || { w: 1, h: 1 }; g.scale.set(1.35 * B.w, 1.35 * B.h, 1.35 * B.w); return g;
 }
 // the label the 2D view would show (Penalty!, GOAL!, saves), plus REPLAY
 function overlay3d(LM, SC) {
@@ -197,11 +202,13 @@ function frame3d(LM, ts) {
   for (let s = 0; s < 2; s++) for (const e of M.sides[s].ps) {
     const p = SC.pos.get(e); if (!p || (!e.on && !V.rp)) continue; seen.add(e);
     let f = S3.figs.get(e);
-    if (!f) { const S = M.sides[s]; f = { g: figure(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid) }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
-    const w = W3(p); const prev = f.last || w; const dx = w.x - prev.x, dz = w.z - prev.z; const sp = Math.hypot(dx, dz);
+    if (!f) { const S = M.sides[s]; f = { g: figure(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid), look: lookOf(e.p), body: bodyOf(e.p), pat: kitPat(S.tid, V.kits[sideOf(V, M, e)]), wx: kitWx(V), lo: S3.lo }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
+    let w = W3(p); let cer = null; try { cer = cer3d(S3, LM, e, f, ts); } catch (er) { cer = null; }
+    if (cer && cer.w) { f.cw = f.cw || { x: w.x, z: w.z }; const kk = Math.min(1, dt / 1000 * 2.2); f.cw.x += (cer.w.x - f.cw.x) * kk; f.cw.z += (cer.w.z - f.cw.z) * kk; if (S3.fly && !S3.flyDone) f.cw = { x: cer.w.x, z: cer.w.z }; w = { x: f.cw.x, z: f.cw.z }; } else if (!cer) f.cw = null;
+    const prev = f.last || w; const dx = w.x - prev.x, dz = w.z - prev.z; const sp = Math.hypot(dx, dz);
     f.g.position.set(w.x, 0, w.z);
     // face the way he runs; when standing, face the ball
-    const ang = sp > .03 ? Math.atan2(-dz, dx) : Math.atan2(-(bw.z - w.z), bw.x - w.x);
+    const ang = cer && cer.face != null && sp < .2 ? cer.face : sp > .03 ? Math.atan2(-dz, dx) : Math.atan2(-(bw.z - w.z), bw.x - w.x);
     let da = ang - f.g.rotation.y; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; f.g.rotation.y += da * .25;
     f.v = f.v * .8 + (dt > 0 && sp < 20 ? sp / (dt / 1000) : 0) * .2;
     const party = celeb && sideOf(V, M, e) === celeb.side;
@@ -210,10 +217,11 @@ function frame3d(LM, ts) {
     // keeper dive
     if (SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0) { const q = Math.min(1, (SC.t - SC.dive.t0) / Math.max(1, SC.dive.t1 - SC.dive.t0)); const dir = SC.dive.to.y >= SC.dive.from.y ? 1 : -1; P = { legs: [.3, -.2], arms: [[-dir * 2.6, 0], [-dir * 2.6, 0]], roll: dir * Math.min(1, q * 1.6) * (SC.dive.stretch ? 1.35 : .5), lift: Math.sin(Math.PI * Math.min(1, q)) * (SC.dive.stretch ? .9 : .3) }; }
     else if (down) P = { legs: [.2, -.1], arms: [[-.5, .3], [.5, .3]], roll: 1.45, lift: .3 };
-    else if (party) P = { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]], lift: Math.abs(Math.sin(ts / 140 + f.ph)) * .7 };
+    else if (cer && cer.pose) P = cer.pose;
+    else if (party) { try { P = celebPose3d(S3, f, e, celeb, ts, SC); } catch (er) { P = { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]] }; } }
     else { try { P = actPose3d(S3, f, e, SC, V, M, ts); } catch (er) { P = null; } }
     if (P) setPose(f, P); else gait3d(f, dt);
-    f.g.visible = true; f.last = w;
+    f.g.visible = !(cer && cer.hide); f.last = w;
   }
   for (const [e, f] of S3.figs) if (!seen.has(e)) f.g.visible = false;
   const bh = .42 + (b.h || 0) * 4.5;

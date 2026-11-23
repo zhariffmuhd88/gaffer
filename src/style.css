@@ -454,3 +454,42 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .statuesvg.unveil .st-cloth { animation: stCloth 2.4s .7s cubic-bezier(.5, 0, .75, .3) forwards; }
 @keyframes stCloth { to { transform: translateY(360px) skewX(-6deg); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .statuesvg.unveil .st-cloth { animation: none; display: none; } }
+/* pre-match line-up graphic */
+#luov { position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; background: rgba(4,6,14,.78); padding: 10px; cursor: pointer; }
+#luov.on { display: flex; }
+#luov .luX { position: absolute; top: 8px; right: 10px; background: none; border: none; color: #fff; font-size: 30px; cursor: pointer; z-index: 2; }
+.luCard { container-type: inline-size; width: min(1100px, 100%); aspect-ratio: 16 / 9; max-height: calc(100vh - 20px); position: relative; border-radius: 1.4cqw; overflow: hidden; color: #fff; font-family: var(--f-ui, sans-serif);
+  background: radial-gradient(120% 90% at 70% 30%, #1d4d2a 0%, #0f2c1a 55%, #0a1a12 100%); box-shadow: 0 0 0 .5cqw var(--luA), 0 1cqw 4cqw rgba(0,0,0,.6); display: flex; flex-direction: column; }
+.luHead { display: flex; align-items: center; gap: 1.4cqw; padding: 1cqw 2cqw; background: linear-gradient(90deg, var(--luA), rgba(0,0,0,.55) 75%); border-bottom: .4cqw solid var(--luB); }
+.luHead .luName { flex: 1; font-weight: 800; font-size: 4.2cqw; letter-spacing: .1cqw; text-align: center; line-height: 1.1; text-shadow: 0 .2cqw .6cqw rgba(0,0,0,.6); }
+.luHead .luForm { font-family: var(--f-mono, monospace); font-size: 2.6cqw; font-weight: 700; background: rgba(0,0,0,.45); padding: .4cqw 1.2cqw; border-radius: .6cqw; }
+.luB { width: 5cqw; height: 5cqw; object-fit: contain; flex: none; }
+.luSw { display: inline-block; width: 3.4cqw; height: 4.4cqw; border: .2cqw solid rgba(255,255,255,.6); }
+.luBody { flex: 1; display: flex; gap: 1.4cqw; padding: 1.4cqw 2cqw; min-height: 0; }
+.luSubs { width: 24%; background: rgba(0,0,0,.42); border-radius: 1cqw; padding: 1.2cqw 1.4cqw; font-size: 1.55cqw; line-height: 1.75; overflow: hidden; border-left: .5cqw solid var(--luA); }
+.luSubs .mono { display: inline-block; min-width: 2.6cqw; color: #ffd23f; }
+.luSubsH { font-weight: 800; letter-spacing: .15cqw; color: #9ff; margin-bottom: .4cqw; font-size: 1.7cqw; }
+.luMgr { margin-top: .8cqw; font-size: 1.3cqw; color: #bcd; line-height: 1.4; }
+.luMgr b { color: #fff; font-size: 1.5cqw; }
+.luPitch { flex: 1; position: relative; border-radius: 1cqw; background: repeating-linear-gradient(180deg, rgba(255,255,255,.035) 0 10%, rgba(0,0,0,.03) 10% 20%); border: .2cqw solid rgba(255,255,255,.18); }
+.luLines { position: absolute; inset: 0; width: 100%; height: 100%; stroke: rgba(255,255,255,.28); stroke-width: .35; vector-effect: non-scaling-stroke; }
+.luP { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; width: 14cqw; }
+.lushirt { width: 5.4cqw; height: 5cqw; filter: drop-shadow(0 .3cqw .4cqw rgba(0,0,0,.5)); }
+.luP .luN { position: absolute; left: 2.2cqw; top: 1.1cqw; font-family: var(--f-mono, monospace); font-weight: 800; font-size: 1.7cqw; text-shadow: 0 0 .4cqw #000, 0 0 .2cqw #000; }
+.luP .luT { margin-top: -.2cqw; background: #f4f4f4; color: #111; font-weight: 800; font-size: 1.25cqw; padding: .25cqw .8cqw; border-radius: .3cqw; white-space: nowrap; box-shadow: 0 .2cqw .5cqw rgba(0,0,0,.4); max-width: 13.6cqw; overflow: hidden; text-overflow: ellipsis; }
+.luP .luT b { color: #c00; }
+.luFoot { display: flex; align-items: stretch; height: 5cqw; font-weight: 800; }
+.luComp { display: flex; align-items: center; gap: .8cqw; background: #ffd23f; color: #111; padding: 0 2cqw; font-size: 1.9cqw; letter-spacing: .1cqw; }
+.luComp .clogo { width: 3.4cqw !important; height: 3.4cqw !important; }
+.luRnd { flex: 1; display: flex; align-items: center; background: linear-gradient(90deg, var(--luA), #0b1220); padding: 0 2cqw; font-size: 1.7cqw; }
+.luHint { position: absolute; right: 2cqw; bottom: 6cqw; font-size: 1.2cqw; color: rgba(255,255,255,.65); }
+@media (max-width: 640px) and (orientation: portrait) {
+  .luCard { aspect-ratio: auto; height: min(calc(100vh - 20px), 175cqw); max-height: calc(100vh - 20px); }
+  .luHead .luName { font-size: 7cqw; } .luHead .luForm { font-size: 4.6cqw; } .luB { width: 8cqw; height: 8cqw; } .luSw { width: 6cqw; height: 7.5cqw; }
+  .luBody { flex-direction: column-reverse; padding: 2.4cqw; gap: 2.4cqw; }
+  .luSubs { width: auto; font-size: 3.3cqw; line-height: 1.5; columns: 2; column-gap: 4cqw; padding: 2.4cqw 3cqw; flex: none; }
+  .luSubsH { column-span: all; font-size: 3.6cqw; } .luSubs .mono { min-width: 5.4cqw; } .luMgr { column-span: all; font-size: 2.8cqw; } .luMgr b { font-size: 3.2cqw; }
+  .luP { width: 26cqw; } .lushirt { width: 10cqw; height: 9.3cqw; } .luP .luN { font-size: 3.4cqw; left: 3.4cqw; top: 2cqw; } .luP .luT { font-size: 2.6cqw; padding: .5cqw 1.4cqw; max-width: 25cqw; }
+  .luFoot { height: 10cqw; } .luComp { font-size: 3.4cqw; padding: 0 3cqw; } .luComp .clogo { width: 6cqw !important; height: 6cqw !important; } .luRnd { font-size: 3cqw; padding: 0 3cqw; }
+  .luHint { font-size: 2.6cqw; bottom: 11cqw; }
+}

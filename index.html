@@ -473,6 +473,45 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 .statuesvg.unveil .st-cloth { animation: stCloth 2.4s .7s cubic-bezier(.5, 0, .75, .3) forwards; }
 @keyframes stCloth { to { transform: translateY(360px) skewX(-6deg); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .statuesvg.unveil .st-cloth { animation: none; display: none; } }
+/* pre-match line-up graphic */
+#luov { position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; background: rgba(4,6,14,.78); padding: 10px; cursor: pointer; }
+#luov.on { display: flex; }
+#luov .luX { position: absolute; top: 8px; right: 10px; background: none; border: none; color: #fff; font-size: 30px; cursor: pointer; z-index: 2; }
+.luCard { container-type: inline-size; width: min(1100px, 100%); aspect-ratio: 16 / 9; max-height: calc(100vh - 20px); position: relative; border-radius: 1.4cqw; overflow: hidden; color: #fff; font-family: var(--f-ui, sans-serif);
+  background: radial-gradient(120% 90% at 70% 30%, #1d4d2a 0%, #0f2c1a 55%, #0a1a12 100%); box-shadow: 0 0 0 .5cqw var(--luA), 0 1cqw 4cqw rgba(0,0,0,.6); display: flex; flex-direction: column; }
+.luHead { display: flex; align-items: center; gap: 1.4cqw; padding: 1cqw 2cqw; background: linear-gradient(90deg, var(--luA), rgba(0,0,0,.55) 75%); border-bottom: .4cqw solid var(--luB); }
+.luHead .luName { flex: 1; font-weight: 800; font-size: 4.2cqw; letter-spacing: .1cqw; text-align: center; line-height: 1.1; text-shadow: 0 .2cqw .6cqw rgba(0,0,0,.6); }
+.luHead .luForm { font-family: var(--f-mono, monospace); font-size: 2.6cqw; font-weight: 700; background: rgba(0,0,0,.45); padding: .4cqw 1.2cqw; border-radius: .6cqw; }
+.luB { width: 5cqw; height: 5cqw; object-fit: contain; flex: none; }
+.luSw { display: inline-block; width: 3.4cqw; height: 4.4cqw; border: .2cqw solid rgba(255,255,255,.6); }
+.luBody { flex: 1; display: flex; gap: 1.4cqw; padding: 1.4cqw 2cqw; min-height: 0; }
+.luSubs { width: 24%; background: rgba(0,0,0,.42); border-radius: 1cqw; padding: 1.2cqw 1.4cqw; font-size: 1.55cqw; line-height: 1.75; overflow: hidden; border-left: .5cqw solid var(--luA); }
+.luSubs .mono { display: inline-block; min-width: 2.6cqw; color: #ffd23f; }
+.luSubsH { font-weight: 800; letter-spacing: .15cqw; color: #9ff; margin-bottom: .4cqw; font-size: 1.7cqw; }
+.luMgr { margin-top: .8cqw; font-size: 1.3cqw; color: #bcd; line-height: 1.4; }
+.luMgr b { color: #fff; font-size: 1.5cqw; }
+.luPitch { flex: 1; position: relative; border-radius: 1cqw; background: repeating-linear-gradient(180deg, rgba(255,255,255,.035) 0 10%, rgba(0,0,0,.03) 10% 20%); border: .2cqw solid rgba(255,255,255,.18); }
+.luLines { position: absolute; inset: 0; width: 100%; height: 100%; stroke: rgba(255,255,255,.28); stroke-width: .35; vector-effect: non-scaling-stroke; }
+.luP { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; width: 14cqw; }
+.lushirt { width: 5.4cqw; height: 5cqw; filter: drop-shadow(0 .3cqw .4cqw rgba(0,0,0,.5)); }
+.luP .luN { position: absolute; left: 2.2cqw; top: 1.1cqw; font-family: var(--f-mono, monospace); font-weight: 800; font-size: 1.7cqw; text-shadow: 0 0 .4cqw #000, 0 0 .2cqw #000; }
+.luP .luT { margin-top: -.2cqw; background: #f4f4f4; color: #111; font-weight: 800; font-size: 1.25cqw; padding: .25cqw .8cqw; border-radius: .3cqw; white-space: nowrap; box-shadow: 0 .2cqw .5cqw rgba(0,0,0,.4); max-width: 13.6cqw; overflow: hidden; text-overflow: ellipsis; }
+.luP .luT b { color: #c00; }
+.luFoot { display: flex; align-items: stretch; height: 5cqw; font-weight: 800; }
+.luComp { display: flex; align-items: center; gap: .8cqw; background: #ffd23f; color: #111; padding: 0 2cqw; font-size: 1.9cqw; letter-spacing: .1cqw; }
+.luComp .clogo { width: 3.4cqw !important; height: 3.4cqw !important; }
+.luRnd { flex: 1; display: flex; align-items: center; background: linear-gradient(90deg, var(--luA), #0b1220); padding: 0 2cqw; font-size: 1.7cqw; }
+.luHint { position: absolute; right: 2cqw; bottom: 6cqw; font-size: 1.2cqw; color: rgba(255,255,255,.65); }
+@media (max-width: 640px) and (orientation: portrait) {
+  .luCard { aspect-ratio: auto; height: min(calc(100vh - 20px), 175cqw); max-height: calc(100vh - 20px); }
+  .luHead .luName { font-size: 7cqw; } .luHead .luForm { font-size: 4.6cqw; } .luB { width: 8cqw; height: 8cqw; } .luSw { width: 6cqw; height: 7.5cqw; }
+  .luBody { flex-direction: column-reverse; padding: 2.4cqw; gap: 2.4cqw; }
+  .luSubs { width: auto; font-size: 3.3cqw; line-height: 1.5; columns: 2; column-gap: 4cqw; padding: 2.4cqw 3cqw; flex: none; }
+  .luSubsH { column-span: all; font-size: 3.6cqw; } .luSubs .mono { min-width: 5.4cqw; } .luMgr { column-span: all; font-size: 2.8cqw; } .luMgr b { font-size: 3.2cqw; }
+  .luP { width: 26cqw; } .lushirt { width: 10cqw; height: 9.3cqw; } .luP .luN { font-size: 3.4cqw; left: 3.4cqw; top: 2cqw; } .luP .luT { font-size: 2.6cqw; padding: .5cqw 1.4cqw; max-width: 25cqw; }
+  .luFoot { height: 10cqw; } .luComp { font-size: 3.4cqw; padding: 0 3cqw; } .luComp .clogo { width: 6cqw !important; height: 6cqw !important; } .luRnd { font-size: 3cqw; padding: 0 3cqw; }
+  .luHint { font-size: 2.6cqw; bottom: 11cqw; }
+}
 
 html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
 </style>
@@ -11531,7 +11570,7 @@ function visFrame(LM, ts) {
   if (V.w !== W || V.dpr !== dpr) { V.w = W; V.dpr = dpr; V.L = layout(V); cv.width = Math.ceil(W * dpr); cv.height = Math.ceil(V.L.H * dpr); cv.style.height = V.L.H + 'px'; buildLayers(V, M); V.cam = { x: W / 2, y: V.L.H / 2, z: 1 }; }
   const dt = Math.min(80, ts - (V.lastTs || ts)); V.lastTs = ts;
   const SC = V.rp || V.live;
-  runScene(LM, V.live, dt * V.live.rate);
+  if (!LM.hold) runScene(LM, V.live, dt * V.live.rate); // held during the line-ups and the 3D walk-out
   if (V.rp) { runScene(LM, V.rp, dt); if (V.rp.t > V.rp.end) endReplay(LM); }
   // automatic replay after a goal celebration
   const L0 = V.live; if (L0.pendingRp && L0.t >= L0.pendingRp.at && !V.rp) { const idx = L0.pendingRp.idx; L0.pendingRp = null; if (LM.view === '2d') startReplay(LM, idx); }
@@ -19695,30 +19734,35 @@ function figure(T3, kit, gk, gkCol, num, o) {
   o = o || {}; const g = new T3.Group(); g.rotation.order = 'YZX'; // heading, then lean, then roll (dives) in the body's own frame
   const shirtCol = gk ? gkCol : kit.body; const trimCol = gk ? '#1b1b1b' : kit.trim;
   const shirt = new T3.MeshLambertMaterial({ color: shirtCol });
-  const trim = new T3.MeshLambertMaterial({ color: trimCol }); const skin = new T3.MeshLambertMaterial({ color: ['#c99a73', '#8d5a3b', '#e2b896', '#5e3a26'][(num || 0) % 4] });
-  const sock = new T3.MeshLambertMaterial({ color: gk ? shirtCol : kit.body }); const boot = new T3.MeshLambertMaterial({ color: '#111111' }); const hair = new T3.MeshLambertMaterial({ color: ['#2a1d14', '#0e0e0e', '#6b4a2b', '#c9a35c'][(num || 0) % 4] });
-  const torso = new T3.Mesh(new T3.CylinderGeometry(.34, .27, .95, 10), shirt); torso.position.y = 1.5; torso.castShadow = true; g.add(torso);
+  const L = o.look || null; const wx = o.wx || {};
+  const trim = new T3.MeshLambertMaterial({ color: trimCol }); const skin = new T3.MeshLambertMaterial({ color: L ? LOOK_SKIN[L.skin] : ['#c99a73', '#8d5a3b', '#e2b896', '#5e3a26'][(num || 0) % 4] });
+  const stex = !gk && o.pat ? shirtTex(T3, kit, o.pat) : null; const shirtB = stex ? new T3.MeshLambertMaterial({ map: stex }) : shirt;
+  const sleeveM = !gk && o.pat === 'sleeves' ? new T3.MeshLambertMaterial({ color: kit.trim }) : shirt;
+  const sock = new T3.MeshLambertMaterial({ color: gk ? shirtCol : kit.body }); const boot = new T3.MeshLambertMaterial({ color: L ? LOOK_BOOT[L.boot] : '#111111' }); const hair = new T3.MeshLambertMaterial({ color: ['#2a1d14', '#0e0e0e', '#6b4a2b', '#c9a35c'][(num || 0) % 4] });
+  const torso = new T3.Mesh(new T3.CylinderGeometry(.34, .27, .95, 10), shirtB); torso.position.y = 1.5; torso.castShadow = true; g.add(torso);
   const collar = new T3.Mesh(new T3.TorusGeometry(.2, .045, 6, 14), trim); collar.rotation.x = Math.PI / 2; collar.position.y = 1.97; g.add(collar);
   const shorts = new T3.Mesh(new T3.CylinderGeometry(.28, .3, .36, 10), trim); shorts.position.y = .9; g.add(shorts);
   for (const s of [-1, 1]) {
     const leg = new T3.Group(); leg.position.set(0, .82, s * .14); leg.name = 'leg';
-    const thigh = new T3.Mesh(new T3.CylinderGeometry(.11, .09, .78, 6), sock); thigh.position.y = -.4; thigh.castShadow = true; leg.add(thigh);
+    const knee = new T3.Mesh(new T3.CylinderGeometry(.11, .1, .3, 6), wx.snow ? new T3.MeshLambertMaterial({ color: '#16181d' }) : skin); knee.position.y = -.15; leg.add(knee); // tights in snow
+    const thigh = new T3.Mesh(new T3.CylinderGeometry(.1, .09, .5, 6), sock); thigh.position.y = -.54; thigh.castShadow = true; leg.add(thigh);
     const b = new T3.Mesh(new T3.BoxGeometry(.28, .1, .14), boot); b.position.set(.06, -.8, 0); leg.add(b);
     g.add(leg);
     const arm = new T3.Group(); arm.position.set(0, 1.9, s * .42); arm.name = 'arm' + (s > 0 ? 'R' : 'L');
-    const sl = new T3.Mesh(new T3.CylinderGeometry(.085, .075, .34, 6), shirt); sl.position.y = -.17; arm.add(sl);
-    const cuff = new T3.Mesh(new T3.CylinderGeometry(.08, .08, .06, 6), trim); cuff.position.y = -.35; arm.add(cuff);
-    const fa = new T3.Mesh(new T3.CylinderGeometry(.062, .055, .36, 6), skin); fa.position.y = -.55; arm.add(fa);
+    const sl = new T3.Mesh(new T3.CylinderGeometry(.085, .075, .34, 6), sleeveM); sl.position.y = -.17; arm.add(sl);
+    const cuff = new T3.Mesh(new T3.CylinderGeometry(.08, .08, .06, 6), trim); cuff.position.y = wx.long ? -.75 : -.35; arm.add(cuff);
+    const fa = new T3.Mesh(new T3.CylinderGeometry(.062, .055, .36, 6), wx.long ? sleeveM : skin); fa.position.y = -.55; arm.add(fa); // long sleeves when cold or wet
     if (o.capt && s < 0) { const band = new T3.Mesh(new T3.CylinderGeometry(.09, .09, .09, 8), new T3.MeshLambertMaterial({ color: colDist('#ffd23f', shirtCol) > 90 ? '#ffd23f' : '#ffffff' })); band.position.y = -.14; arm.add(band); }
-    const hand = new T3.Mesh(new T3.SphereGeometry(.07, 6, 5), gk ? trim : skin); hand.position.y = -.76; arm.add(hand); g.add(arm);
+    const hand = new T3.Mesh(new T3.SphereGeometry(gk ? .095 : .07, 6, 5), gk ? new T3.MeshLambertMaterial({ color: '#dfff3d' }) : skin); hand.position.y = -.77; arm.add(hand); g.add(arm); // keeper gloves
   }
   const head = new T3.Mesh(new T3.SphereGeometry(.22, 12, 10), skin); head.position.y = 2.22; head.castShadow = true; g.add(head);
-  const cap = new T3.Mesh(new T3.SphereGeometry(.225, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2.2), hair); cap.position.y = 2.25; g.add(cap);
+  if (L) headDress(T3, g, L, o.lo, skin); else { const cap = new T3.Mesh(new T3.SphereGeometry(.225, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2.2), hair); cap.position.y = 2.25; g.add(cap); }
+  if (wx.snow) { const sn = new T3.Mesh(new T3.CylinderGeometry(.17, .2, .16, 10), new T3.MeshLambertMaterial({ color: '#16181d' })); sn.position.y = 2.02; g.add(sn); } // snood
   const txtCol = gk ? '#111' : (colDist(kit.trim, shirtCol) > 90 ? kit.trim : (colDist('#ffffff', shirtCol) > 120 ? '#ffffff' : '#111111'));
   if (num) { const nb = new T3.Mesh(new T3.PlaneGeometry(.5, .5), new T3.MeshBasicMaterial({ map: numTex(T3, num, txtCol), transparent: true })); nb.position.set(-.33, 1.52, 0); nb.rotation.y = -Math.PI / 2; g.add(nb); }
   if (o.crest) { const cr = new T3.Mesh(new T3.PlaneGeometry(.2, .2), new T3.MeshBasicMaterial({ map: o.crest, transparent: true })); cr.position.set(.31, 1.74, -.14); cr.rotation.y = Math.PI / 2; g.add(cr); }
   if (o.name) { const nm = new T3.Mesh(new T3.PlaneGeometry(.6, .15), new T3.MeshBasicMaterial({ map: nameTex(T3, o.name, txtCol), transparent: true })); nm.position.set(-.345, 1.82, 0); nm.rotation.y = -Math.PI / 2; g.add(nm); }
-  g.scale.setScalar(1.35); return g;
+  const B = o.body || { w: 1, h: 1 }; g.scale.set(1.35 * B.w, 1.35 * B.h, 1.35 * B.w); return g;
 }
 // the label the 2D view would show (Penalty!, GOAL!, saves), plus REPLAY
 function overlay3d(LM, SC) {
@@ -19743,11 +19787,13 @@ function frame3d(LM, ts) {
   for (let s = 0; s < 2; s++) for (const e of M.sides[s].ps) {
     const p = SC.pos.get(e); if (!p || (!e.on && !V.rp)) continue; seen.add(e);
     let f = S3.figs.get(e);
-    if (!f) { const S = M.sides[s]; f = { g: figure(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid) }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
-    const w = W3(p); const prev = f.last || w; const dx = w.x - prev.x, dz = w.z - prev.z; const sp = Math.hypot(dx, dz);
+    if (!f) { const S = M.sides[s]; f = { g: figure(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid), look: lookOf(e.p), body: bodyOf(e.p), pat: kitPat(S.tid, V.kits[sideOf(V, M, e)]), wx: kitWx(V), lo: S3.lo }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
+    let w = W3(p); let cer = null; try { cer = cer3d(S3, LM, e, f, ts); } catch (er) { cer = null; }
+    if (cer && cer.w) { f.cw = f.cw || { x: w.x, z: w.z }; const kk = Math.min(1, dt / 1000 * 2.2); f.cw.x += (cer.w.x - f.cw.x) * kk; f.cw.z += (cer.w.z - f.cw.z) * kk; if (S3.fly && !S3.flyDone) f.cw = { x: cer.w.x, z: cer.w.z }; w = { x: f.cw.x, z: f.cw.z }; } else if (!cer) f.cw = null;
+    const prev = f.last || w; const dx = w.x - prev.x, dz = w.z - prev.z; const sp = Math.hypot(dx, dz);
     f.g.position.set(w.x, 0, w.z);
     // face the way he runs; when standing, face the ball
-    const ang = sp > .03 ? Math.atan2(-dz, dx) : Math.atan2(-(bw.z - w.z), bw.x - w.x);
+    const ang = cer && cer.face != null && sp < .2 ? cer.face : sp > .03 ? Math.atan2(-dz, dx) : Math.atan2(-(bw.z - w.z), bw.x - w.x);
     let da = ang - f.g.rotation.y; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; f.g.rotation.y += da * .25;
     f.v = f.v * .8 + (dt > 0 && sp < 20 ? sp / (dt / 1000) : 0) * .2;
     const party = celeb && sideOf(V, M, e) === celeb.side;
@@ -19756,10 +19802,11 @@ function frame3d(LM, ts) {
     // keeper dive
     if (SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0) { const q = Math.min(1, (SC.t - SC.dive.t0) / Math.max(1, SC.dive.t1 - SC.dive.t0)); const dir = SC.dive.to.y >= SC.dive.from.y ? 1 : -1; P = { legs: [.3, -.2], arms: [[-dir * 2.6, 0], [-dir * 2.6, 0]], roll: dir * Math.min(1, q * 1.6) * (SC.dive.stretch ? 1.35 : .5), lift: Math.sin(Math.PI * Math.min(1, q)) * (SC.dive.stretch ? .9 : .3) }; }
     else if (down) P = { legs: [.2, -.1], arms: [[-.5, .3], [.5, .3]], roll: 1.45, lift: .3 };
-    else if (party) P = { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]], lift: Math.abs(Math.sin(ts / 140 + f.ph)) * .7 };
+    else if (cer && cer.pose) P = cer.pose;
+    else if (party) { try { P = celebPose3d(S3, f, e, celeb, ts, SC); } catch (er) { P = { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]] }; } }
     else { try { P = actPose3d(S3, f, e, SC, V, M, ts); } catch (er) { P = null; } }
     if (P) setPose(f, P); else gait3d(f, dt);
-    f.g.visible = true; f.last = w;
+    f.g.visible = !(cer && cer.hide); f.last = w;
   }
   for (const [e, f] of S3.figs) if (!seen.has(e)) f.g.visible = false;
   const bh = .42 + (b.h || 0) * 4.5;
@@ -20144,9 +20191,14 @@ function bug3d(LM, S3, ts) {
 }
 // a slow aerial pass over the stadium before kick-off; tap the picture to skip
 function fly3d(S3, LM, ts) {
-  const M = LM.M; if (S3.flyDone) return null;
-  if (!S3.fly) { if (M.min > 1 || LM.vis.rp) { S3.flyDone = true; return null; } S3.fly = ts; try { S3.ren.domElement.addEventListener('pointerdown', () => { S3.flyDone = true; }, { once: true }); } catch (e) { } }
-  const q = (ts - S3.fly) / 6500; if (q >= 1 || LM.vis.rp) { S3.flyDone = true; return null; }
+  const M = LM.M; if (S3.flyDone) { if (S3.flyHeld) { S3.flyHeld = false; LM.hold = false; if (UI.match === LM && !M.done && S3.flyRun) { LM.run = true; try { renderMatch(); schedule(); } catch (e) { } } } return null; }
+  if (!S3.fly) {
+    if (M.min > 1 || LM.vis.rp) { S3.flyDone = true; return null; } S3.fly = ts;
+    // the walk-out happens before kick-off: hold the match clock until the fly-over ends (tap the picture to skip)
+    S3.flyHeld = true; S3.flyRun = !!LM.run; LM.run = false; LM.hold = true;
+    try { S3.ren.domElement.addEventListener('pointerdown', () => { S3.flyDone = true; }, { once: true }); } catch (e) { }
+  }
+  S3.flyLen = 9000; const q = (ts - S3.fly) / S3.flyLen; if (q >= 1 || LM.vis.rp) { S3.flyDone = true; return null; }
   const e = q * q * (3 - 2 * q); const a = -2.3 + e * 1.75; const r = 150 - e * 105, y = 95 - e * 76;
   return { want: { x: Math.cos(a) * r * .9, y, z: Math.sin(a) * r }, look: { x: 0, y: 0, z: 0 } };
 }
@@ -20400,6 +20452,243 @@ function playerPick3d(LM) {
   const ps = S.ps.filter(e => e.on); return `<select class="f" data-m3pl="1" aria-label="Player to follow" style="max-width:170px;padding:4px 6px">${ps.map(e => `<option value="${esc(e.p.id)}"${UI.v3pl === e.p.id ? ' selected' : ''}>${esc((e.p.no ? e.p.no + ' ' : '') + surname(e.p.n || ''))}</option>`).join('')}</select>`;
 }
 document.addEventListener('change', (ev) => { const el = ev.target; if (el && el.dataset && el.dataset.m3pl) { UI.v3pl = el.value; const LM = UI.match; if (LM && LM.v3s) LM.v3s.camPos = null; } });
+
+// md3dz.js: 3D matchday, Phase 5. Loaded after md3dy.js (figure, frame3d and build3d call these helpers).
+// 1. A stable look per player from his id: skin tone (a wide, even palette), hair style, hair colour, beard and boots.
+//    Nothing is guessed from nationality or name. Player pop-up > Appearance lets you set any of it (stored in p.look).
+// 2. Body shape from attributes: strong players stockier, quick ones leaner, height by position and heading.
+// 3. Kit patterns in club colours (stripes, hoops, halves, sash, centre band, contrasting sleeves; no logos), the away
+//    kit when colours clash (kitFor), keeper gloves, long sleeves in cold or wet weather, tights and snoods in snow.
+// 4. Celebrations: knee slide, run to the fans, arms out, fist pump; each player has his own favourite; team-mates pile on.
+// 5. Ceremonies: walk-out from the tunnel and a team photo line-up before kick-off, handshakes at full time, then the
+//    winners applaud their fans. Low quality: simpler hair and no faces.
+
+const LOOK_SKIN = ['#f6d7c0', '#eccaa9', '#e0b48f', '#d2a27a', '#c08e66', '#a97650', '#93613f', '#7c4f32', '#653f28', '#4e301f', '#3b2418'];
+const LOOK_SKIN_N = ['Very light', 'Light', 'Light-medium', 'Medium-light', 'Medium', 'Medium-tan', 'Tan', 'Medium-deep', 'Deep', 'Very deep', 'Darkest'];
+const LOOK_HAIR = ['short', 'buzz', 'bald', 'curly', 'long', 'dreads', 'fade'];
+const LOOK_HAIR_N = { short: 'Short', buzz: 'Buzz cut', bald: 'Bald', curly: 'Curly', long: 'Long, tied back', dreads: 'Dreadlocks', fade: 'Fade' };
+const LOOK_HCOL = ['#0e0e0e', '#2a1d14', '#4b3220', '#6b4a2b', '#a5773f', '#c9a35c', '#e0c98f', '#9a9a9a', '#b5432b'];
+const LOOK_HCOL_N = ['Black', 'Dark brown', 'Brown', 'Light brown', 'Dark blond', 'Blond', 'Platinum', 'Grey', 'Red'];
+const LOOK_BEARD = ['none', 'stubble', 'full', 'goatee'];
+const LOOK_BEARD_N = { none: 'Clean-shaven', stubble: 'Stubble', full: 'Full beard', goatee: 'Goatee' };
+const LOOK_BOOT = ['#111111', '#f2f2f2', '#ff3b6b', '#2ec4ff', '#ffd23f', '#39e36b', '#ff7a1a', '#8b5cf6'];
+const LOOK_BOOT_N = ['Black', 'White', 'Pink', 'Sky blue', 'Yellow', 'Green', 'Orange', 'Purple'];
+const CELEBS = ['slide', 'fans', 'arms', 'pump', 'jump'];
+const CELEB_N = { slide: 'knee slide', fans: 'runs to the fans', arms: 'arms out', pump: 'fist pump', jump: 'leap' };
+
+// stable hash of the player id only (never nationality or name)
+function lookHash(id, salt) { return hash(String(id) + '|' + salt); }
+function lookOf(p) {
+  const id = p && p.id || 'x'; const o = (p && p.look) || {};
+  const d = {
+    skin: lookHash(id, 's') % LOOK_SKIN.length, hair: LOOK_HAIR[lookHash(id, 'h') % LOOK_HAIR.length],
+    hcol: lookHash(id, 'c') % LOOK_HCOL.length, beard: LOOK_BEARD[lookHash(id, 'b') % 7 < 3 ? 0 : lookHash(id, 'b') % LOOK_BEARD.length],
+    boot: lookHash(id, 'k') % LOOK_BOOT.length, celeb: CELEBS[lookHash(id, 'e') % CELEBS.length]
+  };
+  return Object.assign(d, o);
+}
+// body shape from attributes (1-20): strength widens, pace slims, height from position and heading
+function bodyOf(p) {
+  let A = {}; try { A = attrs(p) || {}; } catch (e) { }
+  const str = A.Str || 10, pac = A.Pac || 10, hea = A.Hea || A.Aer || 10; const pos = p && p.pos || 'MC';
+  const w = Math.max(.9, Math.min(1.14, 1 + (str - 10) * .014 - (pac - 10) * .006));
+  let h = 1 + (hea - 10) * .007 + (pos === 'GK' ? .05 : pos === 'DC' ? .035 : /AM|W|DL|DR/.test(pos) ? -.025 : 0) + ((lookHash(p && p.id, 'ht') % 9) - 4) * .006;
+  h = Math.max(.92, Math.min(1.09, h)); return { w, h };
+}
+// kit patterns in club colours, for the clubs where the pattern is well known (no logos)
+const KIT_PATS = [
+  [/Newcastle|Brighton|Sunderland|Stoke|Sheffield United|Brentford|Southampton|Juventus|Inter\b|Milan|Atl[ée]tico|Barcelona|Athletic|Crystal Palace|Udinese|Atalanta|Bologna|Genoa|Huddersfield|Sheffield Wed|West Brom|PSV|Girona|Real Sociedad|Lens|Club Brugge/, 'stripes'],
+  [/Celtic|Queens Park|Reading|Sporting/, 'hoops'], [/Blackburn|Feyenoord/, 'halves'], [/Rayo|River Plate/, 'sash'], [/Ajax/, 'band'], [/Arsenal|Burnley|Aston Villa|West Ham/, 'sleeves']
+];
+function kitPat(tid, kit) {
+  const t = T(tid); if (!t || !kit || kit.body !== t.c1) return 'plain'; // the change kit stays plain
+  for (const [re, p] of KIT_PATS) if (re.test(t.name || '')) return p; return 'plain';
+}
+function shirtTex(T3, kit, pat) {
+  if (!pat || pat === 'plain' || pat === 'sleeves') return null;
+  const [c, g] = cvs(128, 128); g.fillStyle = kit.body; g.fillRect(0, 0, 128, 128); g.fillStyle = kit.trim;
+  if (pat === 'stripes') for (let i = 0; i < 8; i++) g.fillRect(i * 16 + 8, 0, 8, 128);
+  else if (pat === 'hoops') for (let i = 0; i < 4; i++) g.fillRect(0, i * 32 + 16, 128, 16);
+  else if (pat === 'halves') { g.fillRect(0, 0, 32, 128); g.fillRect(96, 0, 32, 128); } // the cylinder's seam is at the back: half each side
+  else if (pat === 'sash') { g.beginPath(); g.moveTo(52, 0); g.lineTo(80, 0); g.lineTo(108, 128); g.lineTo(80, 128); g.fill(); }
+  else if (pat === 'band') g.fillRect(52, 0, 24, 128);
+  return new T3.CanvasTexture(c);
+}
+// kit for the conditions: long sleeves when cold or wet, tights and snood in snow
+function kitWx(V) { const m = V.meta || {}; const mo = +String(G.date || '2026-08-01').slice(5, 7); return { long: m.wx === 'rain' || m.wx === 'snow' || ((mo >= 11 || mo <= 2) && m.night), snow: m.wx === 'snow' }; }
+
+// hair, beard and face on the head (low quality: a simple cap, no face)
+function headDress(T3, g, L, lo, skinM) {
+  const hm = new T3.MeshLambertMaterial({ color: LOOK_HCOL[L.hcol] || '#2a1d14' });
+  const cap = (theta, r) => { const m = new T3.Mesh(new T3.SphereGeometry(r || .228, lo ? 8 : 12, 8, 0, Math.PI * 2, 0, theta), hm); m.position.y = 2.24; g.add(m); return m; };
+  const st = lo && L.hair !== 'bald' ? 'short' : L.hair;
+  if (st === 'short') cap(Math.PI / 2.2);
+  else if (st === 'buzz') { const m = cap(Math.PI / 2.4, .224); m.material = new T3.MeshLambertMaterial({ color: LOOK_HCOL[L.hcol], transparent: true, opacity: .75 }); }
+  else if (st === 'curly') { cap(Math.PI / 2.1, .235); for (let i = 0; i < 7; i++) { const a = i / 7 * Math.PI * 2; const b = new T3.Mesh(new T3.SphereGeometry(.09, 6, 5), hm); b.position.set(Math.cos(a) * .12, 2.42, Math.sin(a) * .12); g.add(b); } }
+  else if (st === 'long') { cap(Math.PI / 2); const bun = new T3.Mesh(new T3.SphereGeometry(.09, 8, 6), hm); bun.position.set(-.22, 2.28, 0); g.add(bun); const tail = new T3.Mesh(new T3.CylinderGeometry(.045, .02, .3, 6), hm); tail.position.set(-.27, 2.1, 0); g.add(tail); }
+  else if (st === 'dreads') { cap(Math.PI / 2); for (let i = 0; i < 9; i++) { const a = Math.PI * .45 + i / 8 * Math.PI * 1.1; const d = new T3.Mesh(new T3.CylinderGeometry(.03, .025, .34, 5), hm); d.position.set(Math.cos(a) * .2, 2.1, Math.sin(a) * .2); g.add(d); } }
+  else if (st === 'fade') { cap(Math.PI / 3.4); const top = new T3.Mesh(new T3.BoxGeometry(.3, .1, .26), hm); top.position.y = 2.43; g.add(top); }
+  if (!lo) {
+    if (L.beard === 'full' || L.beard === 'stubble') { const b = new T3.Mesh(new T3.SphereGeometry(.226, 12, 6, -Math.PI / 2, Math.PI, Math.PI / 1.9, Math.PI / 3), L.beard === 'full' ? hm : new T3.MeshLambertMaterial({ color: LOOK_HCOL[L.hcol], transparent: true, opacity: .4 })); b.position.y = 2.22; g.add(b); }
+    else if (L.beard === 'goatee') { const b = new T3.Mesh(new T3.SphereGeometry(.06, 6, 5), hm); b.position.set(.19, 2.06, 0); g.add(b); }
+    const eyeM = new T3.MeshBasicMaterial({ color: '#141414' });
+    for (const s of [-1, 1]) { const e = new T3.Mesh(new T3.SphereGeometry(.026, 6, 5), eyeM); e.position.set(.205, 2.26, s * .075); g.add(e); const br = new T3.Mesh(new T3.BoxGeometry(.02, .02, .07), hm); br.position.set(.215, 2.31, s * .075); g.add(br); }
+    const nose = new T3.Mesh(new T3.SphereGeometry(.03, 6, 5), skinM); nose.position.set(.225, 2.21, 0); g.add(nose);
+  }
+}
+
+// ---------- celebrations ----------
+function celebPose3d(S3, f, e, celeb, ts, SC) {
+  const t = SC.t - (celeb.ts || 0); const q = Math.min(1, Math.max(0, t / 1200));
+  if (e === celeb.e) {
+    const st = lookOf(e.p).celeb;
+    if (st === 'slide') return q < .35 ? { legs: [-.4, .4], arms: [[-1.4, .3], [1.4, .3]], lean: -.3 } : { legs: [-1.5, -1.5], arms: [[-2.3, .2], [2.3, .2]], lean: .45, lift: -.45 };
+    if (st === 'fans') { const sw = Math.sin(ts / 90) * .8; return { legs: [-sw, sw], arms: [[-1.5, 0], [1.5, 0]], lean: -.2, lift: Math.abs(Math.sin(ts / 90)) * .08 }; }
+    if (st === 'arms') return { legs: [.12, -.12], arms: [[-1.45, .15], [1.45, .15]], lean: .18 };
+    if (st === 'pump') { const k = Math.abs(Math.sin(ts / 160)); return { legs: [.3, -.5], arms: [[-.3, -.4], [0, 2.4 + k * .6]], lean: .1, lift: .1 }; }
+    return { legs: [.25, -.25], arms: [[-2.7, 0], [2.7, 0]], lift: Math.abs(Math.sin(ts / 140 + f.ph)) * .8 };
+  }
+  // team-mates near the scorer pile on; the rest run in with arms up
+  const sf = S3.figs.get(celeb.e); const d = sf ? Math.hypot(sf.g.position.x - f.g.position.x, sf.g.position.z - f.g.position.z) : 99;
+  if (d < 3.2) return { legs: [.3, -.35], arms: [[-.4, 1.6], [.4, 1.6]], lean: -.45, lift: d < 1.6 ? .35 : 0 };
+  return { legs: [.25, -.25], arms: [[-2.6, 0], [2.6, 0]], lift: Math.abs(Math.sin(ts / 140 + f.ph)) * .55 };
+}
+
+// ---------- ceremonies ----------
+// order of the eleven for walk-out and photo: keeper first, then the rest
+function ceremonyOrder(S3, M) {
+  if (S3.cord && S3.cordN === S3.figs.size) return S3.cord; const o = [[], []];
+  for (let s = 0; s < 2; s++) { const ps = M.sides[s].ps.filter(e => e.on); ps.sort((a, b) => (a.role === 'GK' ? -1 : 0) - (b.role === 'GK' ? -1 : 0)); o[s] = ps; }
+  S3.cord = o; S3.cordN = S3.figs.size; return o;
+}
+// returns {w:{x,z}, face, pose} to override a player's position and pose, or null
+function cer3d(S3, LM, e, f, ts) {
+  const M = LM.M, V = LM.vis; if (V.rp) return null; const sd = f.sd;
+  // before kick-off, during the fly-over: walk out of the tunnel, then line up for the team photo
+  if (S3.fly && !S3.flyDone) {
+    const q = (ts - S3.fly) / (S3.flyLen || 6500); const ord = ceremonyOrder(S3, M); const s = M.sides.findIndex(x => x.ps.includes(e)); const i = ord[s] ? ord[s].indexOf(e) : -1; if (i < 0) return null;
+    const vs = sideOf(V, M, e); const tun = { x: 0, z: -(P3.W / 2 + 4) };
+    if (q < .5) { // two lines walking out side by side
+      const k = q / .5; const z = tun.z + (k * (P3.W / 2 + 1)) - i * 1.4; const x = (vs ? 1.4 : -1.4);
+      const walk = z > tun.z; if (!walk) return { w: { x, z: tun.z - 2 }, face: -Math.PI / 2, hide: true };
+      return { w: { x, z: Math.min(z, -2) }, face: -Math.PI / 2, gait: 1.4 };
+    }
+    // team photo: back row standing, front row crouched, each team on its own side of the halfway line, facing the main stand
+    const back = i < 6; const col = back ? i : i - 6; const x0 = (vs ? 4 : -4) + (vs ? 1 : -1) * col * 1.15 + (back ? 0 : (vs ? .55 : -.55));
+    const z = back ? -2.4 : -3.6; const pose = back ? { legs: [0, 0], arms: [[-.25, 0], [.25, 0]] } : { legs: [-1.3, -1.3], arms: [[-.2, .6], [.2, .6]], lean: .25, lift: -.42 };
+    return { w: { x: x0, z }, face: Math.PI / 2, pose };
+  }
+  // full time: handshakes along the halfway line, then the winners applaud their fans
+  if (M.done) {
+    if (!S3.ft) S3.ft = ts; const age = (ts - S3.ft) / 1000; const ord = ceremonyOrder(S3, M); const s = M.sides.findIndex(x => x.ps.includes(e)); const i = ord[s] ? ord[s].indexOf(e) : -1; if (i < 0) return null;
+    const vs = sideOf(V, M, e);
+    if (age < 9) {
+      if (vs === 0) return { w: { x: -12 + i * 2.2, z: -1 }, face: -Math.PI / 2, pose: { legs: [0, 0], arms: [[0, 0], [0, 1.25]] } };
+      const x = 16 - age * 3.4 - i * 2.2 + 12; const near = Math.abs(x - (-12 + Math.round((x + 12) / 2.2) * 2.2)) < .6;
+      return { w: { x: Math.max(-16, Math.min(16, x)), z: .2 }, face: Math.PI, gait: near ? 0 : 1.2, pose: near ? { legs: [0, 0], arms: [[0, 0], [0, 1.25]] } : null };
+    }
+    const [a, b] = M.score; const pw = M.pens ? (M.pens[0] > M.pens[1] ? 0 : 1) : null; const win = a > b ? 0 : b > a ? 1 : pw;
+    const won = win == null || win === vs;
+    if (won) { const clap = Math.abs(Math.sin(ts / 170 + i)); const end = vs ? 1 : -1; return { w: { x: end * (20 + (i % 6) * 3), z: -(P3.W / 2 - 3) + Math.floor(i / 6) * 2.4 }, face: Math.PI / 2, gait: 1, pose: { legs: [0, 0], arms: [[-.15 - clap * .25, 1.4], [.15 + clap * .25, 1.4]] } }; }
+    return { w: null, pose: { legs: [0, 0], arms: [[-.4, -.5], [.4, -.5]], lean: .22 } }; // heads down, hands on hips
+  }
+  return null;
+}
+
+// ---------- appearance editor (player pop-up) ----------
+function lookEditorHtml(p) {
+  const L = lookOf(p); const sel = (k, opts) => `<select class="f" data-look="${k}" data-pid="${esc(p.id)}" style="max-width:150px">${opts.map(([v, n]) => `<option value="${esc(String(v))}"${String(L[k]) === String(v) ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
+  const sw = (cols, cur) => `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${cols[cur]};border:1px solid rgba(255,255,255,.4);vertical-align:-2px;margin-left:4px"></span>`;
+  return `<details class="box pad" style="margin-top:8px"><summary style="cursor:pointer"><b>Appearance</b> <span class="dim" style="font-size:12px">(3D match view)</span></summary>
+  <div class="grid2" style="gap:8px;margin-top:8px">
+  <label class="lb">Skin tone ${sw(LOOK_SKIN, L.skin)}${sel('skin', LOOK_SKIN.map((c, i) => [i, LOOK_SKIN_N[i]]))}</label>
+  <label class="lb">Hair ${sel('hair', LOOK_HAIR.map(h => [h, LOOK_HAIR_N[h]]))}</label>
+  <label class="lb">Hair colour ${sw(LOOK_HCOL, L.hcol)}${sel('hcol', LOOK_HCOL.map((c, i) => [i, LOOK_HCOL_N[i]]))}</label>
+  <label class="lb">Beard ${sel('beard', LOOK_BEARD.map(b => [b, LOOK_BEARD_N[b]]))}</label>
+  <label class="lb">Boots ${sw(LOOK_BOOT, L.boot)}${sel('boot', LOOK_BOOT.map((c, i) => [i, LOOK_BOOT_N[i]]))}</label>
+  <label class="lb">Goal celebration ${sel('celeb', CELEBS.map(c => [c, CELEB_N[c]]))}</label></div>
+  <p class="dim" style="font-size:12px;margin:6px 0 0">Every player gets a look of his own from the game; nothing is guessed from nationality or name. Set it here to match the real player. ${p.look ? '<button class="btn" style="padding:2px 8px" data-a="lookreset" data-v="' + esc(p.id) + '">Reset to default</button>' : ''}</p></details>`;
+}
+const _peLook = playerExtra;
+playerExtra = function (p) { const h = _peLook(p); try { if (p && p.id && !p.pseudo) return h + lookEditorHtml(p); } catch (e) { } return h; };
+document.addEventListener('change', (ev) => {
+  const el = ev.target; if (!el || !el.dataset || !el.dataset.look) return; const p = P(el.dataset.pid); if (!p) return;
+  const k = el.dataset.look; const v = ['skin', 'hcol', 'boot'].includes(k) ? +el.value : el.value; p.look = Object.assign({}, p.look || {}, { [k]: v }); autosave(); toast('Appearance saved.');
+  try { const LM = UI.match; if (LM && LM.v3s) for (const [e, f] of LM.v3s.figs) if (e.p === p) { LM.v3s.scene.remove(f.g); LM.v3s.figs.delete(e); } } catch (e) { }
+  try { if (UI.modal && typeof playerModal === 'function') { const det = el.closest('details'); playerModal(p.id); setTimeout(() => { const d = [...document.querySelectorAll('details')].find(x => /Appearance/.test(x.textContent.slice(0, 30))); if (d && det) d.open = true; }, 0); } } catch (e) { }
+});
+ACT.lookreset = (v) => { const p = P(v); if (p) { delete p.look; autosave(); toast('Appearance reset.'); if (typeof playerModal === 'function') playerModal(v); } };
+
+// lineup.js: a broadcast-style pre-match line-up graphic. Before kick-off it shows each team in turn: team name and
+// formation, the starting XI on a pitch (shirts in club colours and kit pattern, number and surname), the substitutes,
+// and a strip with the competition (its logo if you uploaded one on this device) and the round. Tap to move on.
+// It can be opened again during the match from the Line-ups button. No real logos are shipped. Loaded after md3dz.js.
+
+function shirtSvg(kit, pat, gk, gkCol) {
+  const b = gk ? gkCol : kit.body, t = gk ? '#1b1b1b' : kit.trim; const id = 'sp' + Math.random().toString(36).slice(2, 8);
+  let fill = `<rect width="60" height="60" fill="${b}"/>`;
+  if (!gk) {
+    if (pat === 'stripes') fill += [0, 1, 2, 3, 4].map(i => `<rect x="${i * 12 + 6}" width="6" height="60" fill="${t}"/>`).join('');
+    else if (pat === 'hoops') fill += [0, 1, 2].map(i => `<rect y="${i * 18 + 14}" width="60" height="8" fill="${t}"/>`).join('');
+    else if (pat === 'halves') fill += `<rect x="30" width="30" height="60" fill="${t}"/>`;
+    else if (pat === 'sash') fill += `<polygon points="8,0 22,0 52,60 38,60" fill="${t}"/>`;
+    else if (pat === 'band') fill += `<rect x="24" width="12" height="60" fill="${t}"/>`;
+  }
+  const sl = !gk && pat === 'sleeves' ? t : b;
+  return `<svg viewBox="0 0 60 56" class="lushirt" aria-hidden="true"><defs><clipPath id="${id}"><path d="M18 4 L24 2 Q30 8 36 2 L42 4 L54 12 L49 24 L44 21 L44 54 L16 54 L16 21 L11 24 L6 12 Z"/></clipPath></defs>
+  <g clip-path="url(#${id})">${fill}<path d="M6 12 L18 4 L16 21 L11 24 Z M54 12 L42 4 L44 21 L49 24 Z" fill="${sl}"/></g>
+  <path d="M18 4 L24 2 Q30 8 36 2 L42 4 L54 12 L49 24 L44 21 L44 54 L16 54 L16 21 L11 24 L6 12 Z" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.2"/>
+  <path d="M24 2 Q30 8 36 2" fill="none" stroke="${t}" stroke-width="2"/></svg>`;
+}
+function lineupHtml(LM, s) {
+  const M = LM.M, V = LM.vis || {}; const S = M.sides[s]; const t = T(S.tid) || {}; const f = G.fx[M.fid] || {};
+  const kits = V.kits || kitFor(M); const vs = V.kits ? sideOf(V, M, S.ps[0]) : s; const kit = kits[vs]; const gkc = gkColour(kits);
+  const pat = kitPat(S.tid, kit); const xi = S.ps.filter(e => e.on || true).slice(0, 11);
+  const no = (p, i) => p.no || (i + 1);
+  const slots = xi.map((e, i) => {
+    const x = 100 - e.x, y = 6 + (e.y / 90) * 84; const gk = e.role === 'GK';
+    return `<div class="luP" style="left:${x}%;top:${y}%">${shirtSvg(kit, pat, gk, gkc)}<span class="luN">${no(e.p, i)}</span><span class="luT">${esc(surname(e.p.n || '').toUpperCase())}${S.capt && e.p.id === S.capt ? ' <b>(C)</b>' : ''}</span></div>`;
+  }).join('');
+  const subs = (S.bench || []).map((p, i) => `<div><span class="mono">${p.no || 12 + i}</span> ${esc(surname(p.n || '').toUpperCase())}</div>`).join('');
+  const comp = COMP_NAME[M.comp] || ''; const rnd = typeof f.rnd === 'number' ? 'Matchweek ' + f.rnd : (f.rnd || '');
+  const bdg = typeof BADGES === 'object' && BADGES[S.tid] ? `<img src="${BADGES[S.tid]}" alt="" class="luB">` : `<span class="luB luSw" style="background:linear-gradient(90deg,${t.c1} 0 50%,${t.c2} 50% 100%)"></span>`;
+  const cl = typeof cLogo === 'function' ? cLogo(M.comp, 26) : '';
+  return `<div class="luCard" style="--luA:${kit.body};--luB:${kit.trim}">
+    <div class="luHead">${bdg}<span class="luName">${esc((t.name || S.tid).toUpperCase())}</span><span class="luForm">${esc(S.form || '')}</span></div>
+    <div class="luBody"><div class="luSubs"><div class="luSubsH">SUBSTITUTES</div>${subs || '<div class="dim">—</div>'}<div class="luMgr">MANAGER<br><b>${esc(String((S.tid === G.user ? G.mgr : (t.mgr || '')) || '').toUpperCase())}</b></div></div>
+    <div class="luPitch"><svg class="luLines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><rect x="1" y="1" width="98" height="98" fill="none"/><rect x="26" y="1" width="48" height="16" fill="none"/><rect x="38" y="1" width="24" height="6" fill="none"/><line x1="1" y1="99" x2="99" y2="99"/><path d="M36 99 A14 12 0 0 1 64 99" fill="none"/></svg>${slots}</div></div>
+    <div class="luFoot"><span class="luComp">${cl}${esc(comp.toUpperCase())}</span><span class="luRnd">${esc(rnd)}${M.neutral ? '' : ' · ' + esc((venueOf(f) || {}).name || '')}</span></div>
+    <div class="luHint">${s === 0 ? 'Tap for the away line-up' : 'Tap to close'} · <span class="mono">${s + 1}/2</span></div></div>`;
+}
+function lineupShow(LM, s) {
+  let o = document.getElementById('luov'); if (!o) { o = document.createElement('div'); o.id = 'luov'; o.setAttribute('role', 'dialog'); o.setAttribute('aria-label', 'Team line-ups'); document.body.appendChild(o); o.addEventListener('click', (ev) => { if (ev.target.closest('[data-luclose]')) { lineupClose(); return; } const n = (+o.dataset.s || 0) + 1; if (n > 1) lineupClose(); else lineupShow(UI.match, n); }); }
+  if (s === 0 && UI.lineupOn !== true) { UI.lineupOn = true; o.dataset.run = LM.run ? '1' : ''; LM.run = false; LM.hold = true; }
+  clearTimeout(UI.luT); UI.luT = setTimeout(() => { if (UI.lineupOn && (+o.dataset.s || 0) === s) { if (s === 0) lineupShow(UI.match, 1); else lineupClose(); } }, 7000);
+  o.dataset.s = s; o.innerHTML = `<button class="luX" data-luclose="1" aria-label="Close">×</button>${lineupHtml(LM, s)}`; o.className = 'on';
+}
+function lineupClose() {
+  clearTimeout(UI.luT); const o = document.getElementById('luov'); if (!o) return; o.className = ''; o.innerHTML = ''; const LM = UI.match; UI.lineupOn = false;
+  if (LM) { LM.hold = !!(LM.v3s && LM.v3s.flyHeld); if (o.dataset.run === '1' && !LM.hold) { LM.run = true; try { renderMatch(); schedule(); } catch (e) { } } else if (o.dataset.run === '1' && LM.v3s) LM.v3s.flyRun = true; }
+}
+ACT.luopen = () => { if (UI.match) lineupShow(UI.match, 0); };
+const _rmLU = renderMatch;
+renderMatch = function () {
+  const r = _rmLU.apply(this, arguments);
+  try {
+    const LM = UI.match; if (!LM) return r;
+    const mv = document.querySelector('[data-a="mview"]'); if (mv && !document.querySelector('[data-a="luopen"]')) mv.parentElement.insertAdjacentHTML('beforeend', '<button data-a="luopen" title="Team line-ups">Line-ups</button>');
+    if (!LM.luShown && LM.M && LM.M.min === 0 && !LM.M.done && !(LM.vis && LM.vis.rp)) { LM.luShown = true; if (UI.lineupAuto !== false) setTimeout(() => { if (UI.match === LM) lineupShow(LM, 0); }, 50); }
+  } catch (e) { console.error(e); }
+  return r;
+};
+// the 3D fly-over and walk-out wait until the line-ups are closed
+const _fly3dLU = fly3d;
+fly3d = function (S3, LM, ts) { if (UI.lineupOn && !S3.fly) return null; return _fly3dLU(S3, LM, ts); };
+// Game > Options: show the line-ups before every match (on by default)
+try { const v = localStorage.getItem('gaffer.lineups'); if (v === '0') UI.lineupAuto = false; } catch (e) { }
+ACT.lutog = () => { UI.lineupAuto = UI.lineupAuto === false; try { localStorage.setItem('gaffer.lineups', UI.lineupAuto === false ? '0' : '1'); } catch (e) { } render(); };
+const _scrGameLU = scrGame;
+scrGame = function () { return _scrGameLU() + `<div class="box pad" style="margin-top:10px"><b>Pre-match line-ups</b> <span class="dim" style="font-size:12.5px">Broadcast-style line-up graphic for both teams before kick-off (tap to move on; it also moves on by itself).</span> <button class="btn" data-a="lutog">${UI.lineupAuto === false ? 'Off' : 'On'}</button></div>`; };
 
 // cine.js: the cinematic intro (about 30 seconds), rendered in-engine with three.js in the bowl stadium at night:
 // a fly-over from outside, the walk-out, title cards, a dribble, a low-angle goal with the net rippling, a celebration
