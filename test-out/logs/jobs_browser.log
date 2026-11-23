@@ -1,0 +1,5 @@
+1280 apply buttons 3 | interest buttons 38 | overflow False
+1280 offer buttons 1
+390 apply buttons 4 | interest buttons 46 | overflow False
+390 offer buttons 1
+errors []
