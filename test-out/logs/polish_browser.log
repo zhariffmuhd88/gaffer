@@ -1,13 +1,13 @@
-1280 groups 6 | nav buttons 22 | tips 1
+1280 groups 6 | nav buttons 23 | tips 1
 1280 digests: Staff digest · week of 3 Aug [Scout reports] | Staff digest · week of 6 Jul [Scout reports]
-    imp 5    tr 16    staff 2    media 2    all 25
-1280 unread after mark all 0 | media badge 6
-1280 world shut 1 | visible nav 18
+    imp 6    tr 25    staff 2    media 2    all 35
+1280 unread after mark all 0 | media badge 5
+1280 world shut 1 | visible nav 19
 1280 overflow False
-390 groups 6 | nav buttons 22 | tips 1
+390 groups 6 | nav buttons 23 | tips 1
 390 digests: Staff digest · week of 3 Aug [Scout reports] | Staff digest · week of 6 Jul [Scout reports]
-    imp 6    tr 18    staff 2    media 2    all 28
-390 unread after mark all 0 | media badge 7
+    imp 5    tr 21    staff 2    media 1    all 29
+390 unread after mark all 0 | media badge 5
 390 phone group club items visible 5
 390 screen finance
 390 overflow False

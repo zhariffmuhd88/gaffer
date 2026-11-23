@@ -1,5 +1,5 @@
 old save at 2026-12-10 | ll false | E_RealMadrid true | UCL teams with E_ 15
-after load: ll 20 | seg 22 | E_RealMadrid gone true | UCL Spanish RMA,ATM,BAR,VIL,BET
-LL table after 15 games: Atlético 36, Celta 32, Real Madrid 31, Real Sociedad 28 | next LL 2026-12-13
+after load: ll 20 | seg 22 | E_RealMadrid gone true | UCL Spanish RMA,BAR,ATM,BET,VIL
+LL table after 15 games: Barcelona 40, Real Madrid 40, Getafe 29, Real Sociedad 29 | next LL 2026-12-13
 Bellingham 1 RMA caps 66 | CDR 28/16/0/0/0/0 | msg La Liga
-end of season 2027-08-07 | LL champion Real Madrid | CdR Real Madrid | SCE ATM | errors 0
+end of season 2027-08-07 | LL champion Real Madrid | CdR Osasuna | SCE RMA | errors 0

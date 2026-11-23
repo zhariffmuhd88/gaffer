@@ -1,13 +1,13 @@
 doc: ok 172
-2026-09-10 request loan Myles Lewis-Skelly -> Lewis-Skelly: "Thanks boss. I'll go in the next window."
-2026-10-06 request loan Marli Salmon -> Salmon: "If I am part of your plans, I'll give it another go."
-2026-10-13 request play Ben White -> White: "Thanks boss. I'll go in the next window."
-2026-11-24 request play Eberechi Eze -> Eze: "Thank you for being honest. I'll stay professional until a deal is done."
-requests 19 loan:done loan:done play:done play:done play:ignored loan:ignored play:ignored play:ignored play:ignored loan:ignored play:ignored play:ignored play:ignored play:ignored play:ignored play:ignored play:ignored loan:ignored leave:ignored
-doc episodes 12
-CWC Frankfurt beat Barcelona | CWX none
+2026-09-15 request loan Marli Salmon -> Salmon: "Thanks boss. I'll go in the next window."
+2026-09-26 request play Riccardo Calafiori -> Calafiori: "I've earned more than that. I'm disappointed."
+2026-10-06 request play Martin Zubimendi -> Zubimendi: "Thanks boss. I'll go in the next window."
+2026-10-13 request play Ben White -> White: "Thank you for being honest. I'll stay professional until a deal is done."
+requests 23 loan:done play:done play:done play:done play:ignored loan:ignored loan:ignored play:ignored play:ignored loan:ignored loan:ignored leave:ignored play:ignored play:ignored leave:ignored play:ignored loan:ignored leave:ignored leave:ignored play:ignored play:ignored play:ignored loan:ignored
+doc episodes 16
+CWC Everton beat Bayern | CWX none
 trophy room svg 2786 | parade 19130
 statue {"ARS":{"n":"T","y":2028}}
 son ask ask
-son Adam Zhariff 16 91 a ENG
+son Adam Zhariff 16 92 a ENG
 import compressed ok 20 | errors 0

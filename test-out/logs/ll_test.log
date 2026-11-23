@@ -1,23 +1,10 @@
 user RSO LL | LL clubs 20 | players 26 | Segunda 22 | PF 20 | play nat ESP | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-LL fixtures 380 | UCL Spanish ATM,BET,VIL,BAR,RMA | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 1013
-youth 19 15 Eneko Pascual ESP, Pol Álvarez ESP, Víctor Rubio ESP | comps LLB DHJ
-Supercopa Barcelona v Atlético 2-0, Real Sociedad v Real Madrid 0-3 / Barcelona v Real Madrid 2-3 | winner Real Madrid
+LL fixtures 380 | UCL Spanish BAR,BET,ATM,RMA,VIL | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 963
+youth 19 15 Sergio León ESP, Daniel Goikoetxea ESP, Izan Aguilar ESP | comps LLB DHJ
+Supercopa Barcelona v Atlético 3-2, Real Sociedad v Real Madrid 0-4 / Barcelona v Real Madrid 1-0 | winner Barcelona
 === season 2026/27 | user pos 7 LL | sacked false | now 2027-08-07
-LL top5 Real Madrid 99, Barcelona 94, Atlético 87, Betis 73, Athletic 67 | down Espanyol, Málaga, Elche | up Girona, Mallorca, Eibar | CdR Real Madrid
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Kylian Mbappé","RMA",38,"p1194"] | SCE RMA
-LL awards best Kylian Mbappé | Pichichi Kylian Mbappé 38 | Zamora Thibaut Courtois 0.46 | TOS 11 | GOS Gabriel Jesus
-LL months 10 | gotmLL 10 | next euro {"UCL":["MUN","LIV","CHE","ARS","EVE","RMA","BAR","ATM","BET","BAY","B04","SGE","BVB","PSG","OM","RCSA","LOSC","PSV","AJX","JUV","ROM","INT","COM"],"UEL":["TOT","FUL","ATH","GET","RBL","RCL","AZ","ACM","BGN"],"UECL":["BOU","RSO","VFB","OL","FEY","ATA"]} | sce next Real Madrid,Betis,Atlético,Barcelona
-Supercopa Real Madrid v Betis 3-0, Atlético v Barcelona 2-0 / Real Madrid v Atlético 4-1 | winner Real Madrid
-=== season 2027/28 | user pos 7 LL | sacked false | now 2028-08-05
-LL top5 Barcelona 87, Real Madrid 86, Athletic 85, Atlético 72, Celta 62 | down Getafe, Alavés, Levante | up Espanyol, Málaga, Elche | CdR Atlético
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | LL ts ["Xabi García","BAR",32,"p12554"] | SCE RMA
-LL awards best Vinícius Júnior | Pichichi Xabi García 32 | Zamora Joan García 0.66 | TOS 11 | GOS Troy Parrott
-LL months 20 | gotmLL 20 | next euro {"UCL":["LIV","CHE","TOT","ARS","SUN","BAR","RMA","ATH","ATM","BAY","VFB","B04","RBL","PSG","ASM","OL","OM","AJX","PSV","INT","JUV","ACM","COM"],"UEL":["NEW","BOU","CEL","S_Mallorca","SGE","SRFC","FEY","FIO","NAP"],"UECL":["AVL","RSO","BVB","LOSC","AZ","SAS"]} | sce next Barcelona,Athletic,Atlético,Real Madrid
-goals per game this season: PL - | CH - | LL - | CDR -
-cross-league moves 95 Ruben Dias -> Al-Ittihad; Marc Guehi -> Stuttgart; Josko Gvardiol -> Fiorentina; Mateo Kovacic -> Schalke; Rayan Cherki -> Al-Hilal
-errors 0 | sim time 806.5s
-screens 9621 11134 1344 1918 46161 12000
-save parts KB players 4576, fx 443, teams 250, feed 71, awards 71, yl 54, news 44, sq 41
-national team ESP null | games 23 Spain 1-0 Slovakia | Spain 2-0 Belgium | Spain 3-0 Croatia | Spain 2-0 France | caps leaders Rodri 81, Dani Olmo 75, Pedri 73
-save 5856 KB JSON, 631K chars compressed (638 ms, unpack 210 ms, round trip true) | restore ok 20
-time 810.1s
+LL top5 Barcelona 97, Real Madrid 94, Atlético 82, Athletic 76, Sevilla 76 | down Alavés, Espanyol, Racing | up Las Palmas, Mallorca, Castellón | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Kylian Mbappé","RMA",30,"p1194"] | SCE BAR
+LL awards best Kylian Mbappé | Pichichi Kylian Mbappé 30 | Zamora Joan García 0.43 | TOS 11 | GOS Ante Budimir
+LL months 10 | gotmLL 10 | next euro {"UCL":["ARS","MUN","CHE","LIV","TOT","BAR","RMA","ATM","ATH","BAY","B04","RBL","BVB","PSG","RCSA","ASM","OGCN","PSV","FEY","ROM","INT","JUV","COM"],"UEL":["AVL","NEW","SEV","VIL","VFB","RCL","UTR","NAP","ACM"],"UECL":["LEE","RSO","SGE","OL","AJX","ATA"]} | sce next Barcelona,Sevilla,Atlético,Real Madrid
+Supercopa Barcelona v Sevilla 3-0, Atlético v Real Madrid 0-4 / Barcelona v Real Madrid 0-0 p4-5 | winner Real Madrid

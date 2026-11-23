@@ -1,28 +1,28 @@
-AI happiness {"Settled":2316,"Content":7845,"Frustrated":521,"Delighted":157,"Unhappy":26}
-with reasons 4420 / 10865
-1767 enjoying regular first-team football
-1343 proud of … league position …
-1282 short of confidence
-1223 wants more first-team football
-644 worried about relegation
-538 frustrated not to be a regular starter
-516 embarrassed by … league position …
-346 believes …
-335 proud to play for one of the biggest clubs in the world
-323 doubts …
-238 loving Champions League nights
-211 in the form of his life
-204 loving a title race
-179 proud to captain the club
-117 proud of Al-… league position …
-106 has lost …
+AI happiness {"Content":7865,"Settled":2396,"Frustrated":437,"Delighted":145,"Unhappy":22}
+with reasons 4334 / 10865
+1756 enjoying regular first-team football
+1238 wants more first-team football
+1236 short of confidence
+985 proud of … league position …
+658 worried about relegation
+542 frustrated not to be a regular starter
+413 doubts …
+341 proud to play for one of the biggest clubs in the world
+309 embarrassed by … league position …
+261 loving Champions League nights
+247 believes …
+238 loving a title race
+218 in the form of his life
+175 proud to captain the club
+123 proud of Al-… league position …
+110 has lost …
 86 homesick
-74 embarrassed by Al-… league position …
-UNHAPPY Callum Hudson-Odoi Nott'm Forest 23 ["-14 frustrated not to be a regular starter","-12 embarrassed by Nott'm Forest's league position (19th, target 13th)","-8 worried about relegation","-5 short of confidence"]
-UNHAPPY Dan Ndoye Nott'm Forest 25 ["-14 frustrated not to be a regular starter","-12 embarrassed by Nott'm Forest's league position (19th, target 13th)","-8 worried about relegation","-5 short of confidence"]
-UNHAPPY Matz Sels Nott'm Forest 30 ["-12 frustrated not to be a regular starter","-12 embarrassed by Nott'm Forest's league position (19th, target 13th)","-8 worried about relegation","-3 doubts about Oliver Glasner's methods"]
-HAPPY David de Gea Fiorentina 96 ["12 proud of Fiorentina's league position (1st)","6 in the form of his life","5 loving a title race","5 proud to captain the club"]
-HAPPY David Neres Napoli 92 ["6 proud of Napoli's league position (2nd)","6 in the form of his life","4 enjoying regular first-team football","4 believes in Massimiliano Allegri's project"]
-Raya {"a":9,"s":9,"g":0,"as":0,"r":70.80000000000001,"mom":1,"cs":9,"y":0,"rc":0,"lg":0,"la":6,"lr":47.9,"las":0} key games 24 inj 0
-asking price unsettled 31.3 vs settled 37.8
+43 embarrassed by Al-… league position …
+UNHAPPY Christian Pulisic Milan 26 ["-19 frustrated not to be a regular starter","-14 embarrassed by Milan's league position (12th, target 5th)","-5 short of confidence","-3 doubts about Rúben Amorim's methods"]
+UNHAPPY Callum Hudson-Odoi Nott'm Forest 27 ["-14 frustrated not to be a regular starter","-5 short of confidence"]
+UNHAPPY Neco Williams Nott'm Forest 28 ["-14 frustrated not to be a regular starter","-5 short of confidence"]
+HAPPY David de Gea Fiorentina 95 ["12 proud of Fiorentina's league position (2nd)","6 in the form of his life","5 proud to captain the club","4 enjoying regular first-team football"]
+HAPPY Marquinhos PSG 93 ["6 in the form of his life","5 loving a title race","5 proud to captain the club","4 enjoying regular first-team football"]
+Raya {"a":24,"s":24,"g":0,"as":0,"r":170.80000000000004,"mom":1,"cs":10,"y":0,"rc":0,"lg":0,"la":15,"lr":103.5,"las":0} key games 24 inj 0
+asking price unsettled 65.1 vs settled 76.5
 OK

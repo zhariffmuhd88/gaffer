@@ -1,11 +1,11 @@
 best: Raya 31, Timber 25, Magalhaes 28, Saliba 25, Hincapie 24, Rice 27, Guimaraes 28, Merino 30, Saka 25, Havertz 27, Tzolis 24
-played Arsenal 1-1 Arsenal Legends
+played Arsenal 1-0 Arsenal Legends
 conds 89,91,91,91,90,91,91,90,91,90,90 | others 100,100,100,100,98,100,100,100
 rotated: Arrizabalaga 32, White 29, Konsa 29, Mosquera 22, Calafiori 24, Odegaard 27, Zubimendi 27, Eze 28, Madueke 24, Gyokeres 28, Harriman-Annous 18 | changes 11
 save: ok
-youth XI (pool 41, holes 0): Nygaard* 20, Lewis-Skelly 20, Salmon 17, Barnes* 20, Hartley* 20, Dowman 16, Nash* 20, Copley* 20, Stevens* 20, Holland* 19, Harriman-Annous 18 | bench youth 7
+youth XI (pool 41, holes 0): Nygaard* 20, Ogunneye* 20, Rossi* 21, Salmon 17, Kelly* 21, Dowman 16, Lewis-Skelly 20, Bennett* 21, Stevens* 20, Mitchell* 21, Harriman-Annous 18 | bench youth 7
 issues after validate: [] | still youth starters 7
-youth match Arsenal 0-3 Nott'm Forest | youth who played 10 | youth apps sample Lucas Nygaard 5.6, Noah Barnes 5.6, Yaw Hartley 4.9
+youth match Newcastle 5-0 Arsenal | youth who played 11 | youth apps sample Lucas Nygaard 5.8, Habeeb Ogunneye 6.2, Luca Rossi 5.4
 save 2: ok | sets Rotation 4-3-3, Kids 4-3-3
 load Rotation all: ok | form 4-3-3 | ment 3 | matches saved 11
 load Kids tactics only: ok

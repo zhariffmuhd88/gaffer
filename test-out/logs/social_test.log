@@ -1,40 +1,36 @@
-feed 260 | fan 126 jour 66 club 16 | rumours 15 closed 12 came true 6
-   Marcus Hale T1 0/2
-   Luca Ferraro T1 2/2
-   Ellie Brennan T2 4/5
+feed 260 | fan 125 jour 62 club 18 | rumours 19 closed 13 came true 2
+   Marcus Hale T1 0/1
+   Luca Ferraro T1 1/2
+   Ellie Brennan T2 1/5
    Gary Pratt T3 0/2
-   Javier Montero T1 0/1
-   Paco Ríos T3 0/0
-fans 84 | trending ArsenalChampions InterChampions Champions BayernChampions Double
-pundit 21 creator 11 var 16 | varw 60 correct,correct,correct,correct
+   Javier Montero T1 0/0
+   Paco Ríos T3 0/3
+fans 60 | trending Champions InterChampions BayernChampions Double AlAhliChampions
+pundit 22 creator 9 var 19 | varw 60 debatable,correct,correct,debatable
 sample:
-  [fan] Pablo ⚽ (@HeerenveenPablo): Groningen losing is a public holiday in my house 🎉
-      ↳ Priya: At least Groningen have a soul
-      ↳ Priya ⚽: Groningen fans acting like they've won something 😂
-  [pun] Danny Shields (former centre-back (ex-Arsenal, Inter)): Feyenoord and Ajax both looked scared to lose. Nobody took a risk.
-      ↳ Lukas Brenner: I'm sorry, I disagree. That was a chess match. Tactically fascinating.
-      ↳ Priya: Source: trust me bro
-  [fan] Ane (@GoonerAne31): Henry in his prime is just unfair fr
-      ↳ Ane: Touch grass
-  [fan] Jake (@BlueJake): Put the Arsenal game on just to see them suffer. Worth every second 😂
-      ↳ Mo: Imagine watching our games instead of your own
-  [pun] Tyrone Asante (former winger (ex-Spurs, Arsenal)): Arteta got his tactics spot on. Sat in, hit them on the break. Textbook.
-      ↳ Danny Shields: Masterclass? They had 29% of the ball and parked the bus. Nobody pays to watch that.
-      ↳ Big Steve: Bro finally someone talking sense, Danny
-      ↳ Gav: Pundits arguing again 🍿
-      ↳ Becky: Take the Arsenal scarf off before you go on air 🧣
-      ↳ Dan: Ratio + he played at the top level + you didn't
-  [cre] xG Ollie (stats account): xG: Arsenal 4.45 - 1.13 Arsenal Legends. Possession 71-29. Football, eh? 🤷
-      ↳ Kev: xG doesn't win trophies
-  [cre] Big Lenny (Arsenal fan channel): Emergency stream in 10 mins. That was the worst 90 minutes I've watched this season. We need to talk about Ezri Konsa
-      ↳ Jonno: Clip this for the "best fan reactions" compilation 🍿
-  [fan] Pablo (@GoonerPablo37): Y'all we had 4.5 xG to their 1.1. Football is cruel. Daylight robbery
-      ↳ Jonno: Every week it's the ref with you lot 🤣 I'm crying
-      ↳ Liam ⚽: Keep crying? You lot were time-wasting at 0-0 😂
-      ↳ Dan ⚽: Seethe.
-  [fan] Iker (@GoonerIker): Arsenal Legends parked the bus for 90 minutes. Time-wasting from the first minute. Ref did nothing about it
-      ↳ Raj: Bus parked? We just defended better than you attacked 🚌😂
-      ↳ Raj: Say that after the ref gets demoted. Shambles fr fr
-  [fan] Big Steve (@UdineseBigSteve): Loyalty is dead. Karlström chose the money
-      ↳ Amir ⚽: He chose ambition. Ykb
-errors 0 | html 82046 | save KB 4929 feed KB 72
+  [fan] Marta (@FeyenoordMarta79): Excelsior fans have gone very quiet 🤫 (respectfully)
+      ↳ Pablo ⚽: Proper club with proper fans. You wouldn't understand ✋😐🤚
+      ↳ Lewis: Excelsior? Small club mentality
+  [cre] Kicks & Giggles (banter page): Fortuna fans this weekend 📉😭
+  [fan] Ellis ⚽ (@FortunaEllis53): That penalty against us was never a penalty. Ref bottled it under pressure bro is cooked
+      ↳ Tom: You don't know ball
+  [pun] Pascal Dumont (former midfielder (ex-AC Milan, Man City)): Fortuna will moan about the penalty, but they were awful long before that.
+      ↳ Tyrone Asante: Rubbish. The penalty decided that game. Referees have to be braver.
+      ↳ Robbo: NPC take
+      ↳ Jake ⚽: Tyrone still bitter after all these years 😂 it's giving relegation
+  [fan] Lucía (@GoonerLucia): Got cooked by Arsenal Legends 💀 0-5
+      ↳ Lucía ⚽: Invincibles. Gold trophy. Enough said 🏆✨
+  [fan] Sophie (@COYSSophie97): Nah put the Arsenal game on just to see them suffer. Worth every second 😂
+      ↳ Gav: Imagine watching our games instead of your own
+  [pun] Wesley Ojo (former striker (ex-Liverpool, Bayern)): Arsenal were a disgrace. No leaders on that pitch.
+      ↳ Danny Shields: Calm down. Give Arsenal Legends some credit, they were on another level today.
+      ↳ Sergi: Agenda pundit 🙄 😭😭
+      ↳ Tom ⚽: L take
+  [cre] Big Lenny (Arsenal fan channel): I've thrown my remote. Genuinely. 0-5. T has to answer for that second half. Watchalong reaction up now
+      ↳ Amir ⚽: Clip this for the "best fan reactions" compilation 🍿
+  [fan] Becky (@InterBecky78): DOMESTIC DOUBLE 🏆🏆 Supercoppa Italiana + Serie A. Say it with me: DOUBLE!!!
+      ↳ Pablo: Wake me up when it's a treble 🙄 💀
+  [fan] Amir ⚽ (@InterAmir): Tell your grandkids you were here for this 🏆
+      ↳ Lucía: Got handed the 2005/06 title in an office 😂
+      ↳ Ola: Scoreboard 🏆
+errors 0 | html 83406 | save KB 4920 feed KB 71

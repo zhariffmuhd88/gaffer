@@ -1,18 +1,18 @@
-rows [["2026/27 (now)","ARS",14,7,1,0,"T"]] | likes {"fav":[["ARS","his club"]],"favP":[["Noni Madueke","team-mate he gets on well with","p23"]],"bad":[]}
+rows [["2026/27 (now)","ARS",20,5,3,0,"T"]] | likes {"fav":[["ARS","his club"]],"favP":[["T","played 20 games under him"],["Noni Madueke","team-mate he gets on well with","p23"]],"bad":[]}
 MCI manager Enzo Maresca 
 WFF log 2026-11-18 WFF election | 2026-09-16 WFF
-doc episodes 7 Episode 1: "Behind Closed Doors" — Tension at Arsenal as Declan Rice clashes with the coaching staff.
+doc episodes 7 Episode 1: "Standards" — T lets rip at half-time.
 Cold open: The episode opens on a quiet morning at the training ground.
-The row: After being left out of the starting line-up, Declan Rice is seen in a heated exchange with the coaching staff on the training pitch. Luca Okoro steps in to separate them.
+Training ground meeting: Cameras catch T slamming the tactics board in the dressing room. It is only a training session, but nobody is laughing.
 Training ground: A rare clean bill of health for the squad. 
-Closing: The season has barely started. Next up: Arsenal Legends (Pre-season friendly) on 8 Aug. The narrator closes the episode: "In this building, there is no such thing as a quiet week." 
-QUOTES T (Manager): Nobody is bigger than Arsenal. I pick the team that gives us the best chance to win, and that is the end of it.
-Luca Okoro (Assistant manager): Frustration is fine. Showing it in front of the whole squad is not.
-Andre Vaughan (Academy player): The gaffer told me to stay ready. That's all I'm doing, staying ready.
+Closing: The season has barely started. Next up: Brighton & Hove Albion (Premier League) on 22 Aug. The narrator closes the episode: "In this building, there is no such thing as a quiet week." 
+QUOTES T (Manager): Pre-season is where you decide what kind of team you are. Right now I don't know. Show me.
+Dylan Price (Assistant manager): When he goes like that, you just let it land. Ten minutes later he's hugging everyone.
+Noah Pearce (Academy player): Training with the first team this week was mad. I just tried not to give the ball away.
 Narrator (Series voice-over): Behind every badge there is a dressing room. Behind every dressing room, a secret.
-shortlist top Lautaro Martínez 212, Vinícius Júnior 186, Lamine Yamal 184, Luis Díaz 175, Erling Haaland 173
-saka sh [["2026/27","ARS",29,13,2,0,"T"]]
-WFF pres Laurent Mercier [116,92,3] rule {"dl":"2027-07-01"}
-Ballon d Or Lautaro Martínez 646, Vinícius Júnior 433, Lamine Yamal 378 voters 180
-mrec ARS mgr [["2026/27","ARS",1,"PL"]] mh sample 204
+shortlist top Vinícius Júnior 189, Raphinha 182, Dani Olmo 181, Désiré Doué 177, Lautaro Martínez 177
+saka sh [["2026/27","ARS",46,13,8,0,"T"]]
+WFF pres Laurent Mercier [124,84,3] rule {"dl":"2027-07-01"}
+Ballon d Or Vinícius Júnior 374, Dani Olmo 317, Raphinha 290 voters 180
+mrec ARS mgr [["2026/27","ARS",3,"PL"]] mh sample 204
 OK

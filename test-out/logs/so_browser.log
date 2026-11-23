@@ -1,7 +1,7 @@
 1280 penalty line-up: players inside the box 0 | outside 19
-1280 shoot-out 3-5 done true | continue btn 1 | overflow False
+1280 shoot-out 4-3 done true | continue btn 1 | overflow False
 1280 WUPH band WUPH.com | ticks 31
 390 penalty line-up: players inside the box 0 | outside 19
-390 shoot-out 4-2 done true | continue btn 1 | overflow False
+390 shoot-out 5-3 done true | continue btn 1 | overflow False
 390 WUPH band WUPH.com | ticks 34
 errors []

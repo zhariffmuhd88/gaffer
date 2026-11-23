@@ -1,11 +1,12 @@
-security levels {"Stable":61,"Secure":66,"Unsecure":32,"Very unsecure":4,"Very secure":16}
-sackings by Dec 20 {"PL":2,"LO":1,"SPL":2,"BL":1,"LL":1,"ED":1} Matthias Jaissle (Newcastle United, 14th); Tom Cleverley (Plymouth Argyle, 18th); Ange Postecoglou (Al-Nassr, 6th); Sebastian Hoeneß (VfB Stuttgart, 14th)
-vacant Newcastle United [Leo Costa (caretaker)], Plymouth Argyle [Mason Gallagher (caretaker)]
-You have declared interest in the Manchester United job. If Michael Carrick is sacked, they will call you first.
-board 60.06881255686988 -> 56.06881255686988 fans 54 -> 51 | rival false
+security levels {"Secure":63,"Stable":55,"Very unsecure":7,"Very secure":20,"Unsecure":34}
+sackings by Dec 20 {"CH":3,"L1":1,"BL":1,"PL":1,"LO":2} Nuno Espírito Santo (West Ham United, 17th); Stéphane Gilli (Angers, 18th); Christian Ilzer (Hoffenheim, 18th); Matthias Jaissle (Newcastle United, 17th)
+vacant 
+You have declared interest in the Newcastle United job. If Kian Walker is sacked, they will call you first.
+board 66.23066424021836 -> 62.23066424021836 fans 55 -> 52 | rival false
 You have declared interest in the Fulham job. If Alvaro Arbeloa is sacked, they will call you first.
-rival interest: board 56.06881255686988 -> 41.06881255686988 fans -> 29
-Application sent to Newcastle United. Expect an answer within about a week.
-offer from Newcastle United false 
-sackings in the season {"PL":5,"LO":5,"LL":2,"BL":2,"CH":1,"SPL":2,"ED":1} total 18
+rival interest: board 62.23066424021836 -> 47.23066424021836 fans -> 30
+Application sent to Leicester City. Expect an answer within about a week.
+offer from Leicester City true Job offer: Leicester City
+You are the new manager of Leicester City.
+sackings in the season {"SPL":1,"PL":3,"LO":8,"L1":2,"CH":3,"BL":1} total 18
 OK

@@ -1,29 +1,15 @@
 user LAZ SA | SA clubs 20 | players 25 | SB 20 | SC 16 | play nat ITA | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-SA fixtures 380 | UCL Italian COM,ROM,INT,NAP | UEL ACM,JUV | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 672 | Josep INT
-CIT R1 16 Fiorentina v Cesena, Monza v Arezzo, Genoa v Ascoli | SCI Inter v Lazio 2026-12-22
-youth 19 15 Riccardo Bruno GHA, Vincenzo Vitale ITA, Diego Gatti ESP | comps PRI U18I
-Supercopa Barcelona v Atlético 2-1, Real Sociedad v Real Madrid 0-1 / Barcelona v Real Madrid 3-1 | winner Barcelona
-Coppa Quarter-final: Atalanta v Napoli 2-1, Genoa v Milan 0-1, Lazio v Inter 1-0, Roma v Como 3-0 / Semi-final: Milan v Roma 0-0/2-3, Lazio v Atalanta 1-2/0-0 / Final: Atalanta v Milan 0-2 | winner Milan | SCI Inter
-gpg PL 2.59 370 | home win % 41
-gpg LL 2.59 380 | home win % 43
+SA fixtures 380 | UCL Italian NAP,ROM,COM,INT | UEL JUV,ACM | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 654 | Josep INT
+CIT R1 16 Monza v Hellas Verona, Udinese v Mantova, Parma v Juve Stabia | SCI Inter v Lazio 2026-12-22
+youth 19 15 Michele Costantini ITA, Vincenzo Conti ITA, Salvatore Santoro ITA | comps PRI U18I
+Supercopa Barcelona v Atlético 3-2, Real Sociedad v Real Madrid 0-2 / Barcelona v Real Madrid 4-1 | winner Barcelona
+Coppa Quarter-final: Como v Roma 0-3, Inter v Bologna 2-1, Atalanta v Hellas Verona 2-0, Milan v Torino 5-1 / Semi-final: Inter v Atalanta 0-0/1-1, Milan v Roma 1-2/1-0 / Final: Roma v Inter 1-2 | winner Inter | SCI Inter
+gpg PL 2.59 370 | home win % 42
+gpg LL 2.87 380 | home win % 43
 gpg SA 2.49 370 | home win % 44
-=== season 2026/27 | user pos 13 SA | sacked false | now 2027-08-07
-SA top5 Inter 88, Roma 85, Napoli 83, Como 77, Juventus 73 | down Monza, Venezia, Frosinone | up Modena, Empoli, Cremonese | CIT Milan | SB top Modena 82, Empoli 69, Cremonese 64
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Rasmus Højlund","NAP",33,"p1799"] | SCI INT | CIT ACM
-SA awards best Rasmus Højlund | Pichichi Rasmus Højlund 33 | Zamora null | TOS 11 | GOS null
-SA months 10 | gotmSA 10 | next euro {"UCL":["ARS","LIV","CHE","MUN","LEE","RMA","BAR","ATH","ATM","BAY","RBL","B04","SGE","PSG","ASM","LOSC","RCL","AJX","AZ","INT","ROM","NAP","COM"],"UEL":["TOT","NEW","BET","VIL","BVB","OL","PSV","JUV","ACM"],"UECL":["BOU","EPY","VFB","OM","FEY","ATA"]} | sci next Inter,Milan | seeds INT,ROM,NAP,COM,JUV,ATA,BGN,ACM
-Supercopa Real Madrid v Atlético 0-3, Athletic v Barcelona 1-3 / Atlético v Barcelona 1-4 | winner Barcelona
-Coppa Quarter-final: Inter v Milan 1-1, Roma v Juventus 0-1, Napoli v Parma 4-0, Bologna v Atalanta 2-0 / Semi-final: Napoli v Inter 0-1/0-0, Juventus v Bologna 1-1/0-0 / Final: Inter v Bologna 1-0 | winner Inter | SCI Inter
-=== season 2027/28 | user pos 6 SA | sacked false | now 2028-08-05
-SA top5 Milan 83, Inter 81, Como 80, Juventus 77, Atalanta 69 | down Cagliari, Sassuolo, Lecce | up Hellas Verona, Palermo, Catanzaro | CIT Inter | SB top Hellas Verona 89, Palermo 73, Venezia 68
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | SA ts ["Francesco Pio Esposito","INT",34,"p1718"] | SCI INT | CIT INT
-SA awards best Francesco Pio Esposito | Pichichi Francesco Pio Esposito 34 | Zamora null | TOS 11 | GOS null
-SA months 20 | gotmSA 20 | next euro {"UCL":["ARS","CHE","TOT","MUN","CRY","ATM","RMA","BAR","RSO","BAY","RBL","VFB","SGE","PSG","RCSA","OL","OGCN","AJX","PSV","ACM","INT","COM","JUV"],"UEL":["LIV","BOU","ATH","S_Mallorca","B04","ASM","FEY","ATA","LAZ"],"UECL":["BRE","VIL","BVB","LOSC","UTR","NAP"]} | sci next Milan,Inter | seeds ACM,INT,COM,JUV,ATA,LAZ,NAP,B_Cremonese
-goals per game this season: PL - | CH - | LL - | SA - | CIT -
-cross-league moves 124 Ibrahim -> Köln; Julienne -> Köln; Gianluigi Donnarumma -> Torino; Marcus Bettinelli -> Osasuna; Ruben Dias -> Athletic
-errors 0 | sim time 810.0s
-screens 9622 10311 true 6682 1654 true 45007 21058 11521
-save parts KB players 4575, fx 443, teams 251, awards 71, feed 70, yl 54, sq 41, byDate 40
-national team ITA null | games 23 Italy 6-0 Rep. Ireland | Italy 6-1 Denmark | Italy 3-0 Switzerland | Italy 1-0 England | caps leaders Gianluigi Donnarumma 110, Nicolò Barella 88, Alessandro Bastoni 69
-save 5846 KB JSON, 628K chars compressed (626 ms, unpack 184 ms, round trip true) | restore ok 20 20
-time 813.7s
+=== season 2026/27 | user pos 9 SA | sacked false | now 2027-08-07
+SA top5 Inter 85, Juventus 83, Napoli 82, Roma 81, Fiorentina 71 | down Venezia, Monza, Frosinone | up Cremonese, Palermo, Pisa | CIT Inter | SB top Cremonese 79, Palermo 77, Hellas Verona 72
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Donyell Malen","ROM",31,"p1826"] | SCI INT | CIT INT
+SA awards best Kenan Yıldız | Pichichi Donyell Malen 31 | Zamora null | TOS 11 | GOS null
+SA months 10 | gotmSA 10 | next euro {"UCL":["TOT","ARS","LIV","CHE","MUN","ATM","RSO","RMA","BAR","BAY","BVB","RBL","SGE","PSG","LOSC","OL","RCSA","AZ","FEY","INT","JUV","NAP","ROM"],"UEL":["NFO","SUN","RAY","ATH","VFB","RCL","TWE","FIO","COM"],"UECL":["BOU","VIL","B04","SRFC","AJX","ATA"]} | sci next Inter,Roma | seeds INT,JUV,NAP,ROM,FIO,COM,ATA,BGN
+Supercopa Atlético v Barcelona 0-2, Real Madrid v Real Sociedad 1-0 / Barcelona v Real Madrid 0-3 | winner Real Madrid
