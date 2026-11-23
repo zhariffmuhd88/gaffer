@@ -2,8 +2,8 @@ start button enabled for England only: True
 user team: N_ENG nat ENG | screen intl
 club nav hidden: [True, True, True]
 press modal: 3
-England games played: England 0-4 Spain | Czechia 1-4 England True
-nation modal: England
+England games played: England 2-2 Spain | Czechia 0-5 England True
+nation modal: Spain
 × | rows 25
 friendly arranged: 1
 rankings me: 62 - Zhariff Malaysia  England 0 trophies 0

@@ -1,12 +1,12 @@
 1280 3D button 1
-1280 renders 76 -> 231 {'v3': True, 'canvas': True, 'cv2hidden': True, 'figs': 22, 'cams': 4}
+1280 renders 73 -> 225 {'v3': True, 'canvas': True, 'cv2hidden': True, 'figs': 22, 'cams': 4}
 1280 phase3 {'bug': 'Emirates Stadium', 'refs': 3, 'mgrs': 2, 'board': True, 'nets': 2, 'banner': True}
 1280 phase4 {'flags': 16, 'crowd': 1, 'flares': 6, 'playerBtn': True} picker True drag True
 1280 phase5 look {"hair":"dreads","skin":9} lineup [True, 11]
 1280 phase6 rig {'rig': True, 'n': 22, 'withRig': 22, 'lo': False}
 1280 back to 2D: cv shown True | overflow False
 390 3D button 1
-390 renders 78 -> 232 {'v3': True, 'canvas': True, 'cv2hidden': True, 'figs': 22, 'cams': 4}
+390 renders 74 -> 226 {'v3': True, 'canvas': True, 'cv2hidden': True, 'figs': 22, 'cams': 4}
 390 phase3 {'bug': 'Emirates Stadium', 'refs': 3, 'mgrs': 2, 'board': True, 'nets': 2, 'banner': True}
 390 phase4 {'flags': 6, 'crowd': 1, 'flares': 3, 'playerBtn': True} picker True drag True
 390 phase5 look {"hair":"dreads","skin":9} lineup [True, 11]

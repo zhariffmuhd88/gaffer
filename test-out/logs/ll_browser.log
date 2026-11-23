@@ -2,7 +2,7 @@ La Liga clubs on start screen: 20
 user: ATH LL ESP | target qualify for the Champions League
 table tab active: None | rows 20
 stands: Tribuna Principal (main) | Tribuna Este | Tribuna Norte | Tribuna Sur
-LL games played by user: True Villarreal 1-1 Athletic | Athletic 0-0 Atlético
+LL games played by user: True Athletic 1-0 Rayo | Athletic 3-0 Deportivo
 Segunda rows: 22
 comps tab: CDR | has Supercopa button 1
 LL history rows: 95 | top chip  Real Madrid 36
@@ -14,6 +14,6 @@ player modal: 1. Unai Simón
 390 club overflow: False
 390 history overflow: False
 Spain job: N_ESP ESP ESP nat | band ['International', 'Spain · 1st in the world · data checked 31 Oct 2026']
-Spain games: True England 3-2 Spain
+Spain games: True England 1-0 Spain
 records top: 1 Sergio Ramos 180
 errors []
