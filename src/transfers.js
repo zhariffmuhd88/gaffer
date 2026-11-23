@@ -79,13 +79,17 @@ function acceptCounter(oid) { const o = G.offers.find(x => x.id === oid); if (!o
 function offerTerms(oid, wage, years) {
   const o = G.offers.find(x => x.id === oid); if (!o || o.st !== 'accepted') return { ok: false, msg: 'This deal is no longer available.' };
   const p = P(o.pid); const u = userTeam();
-  if (!G.window) return { ok: false, msg: 'The window is closed.' };
   if (o.fee > u.tb + 0.001) return { ok: false, msg: 'Not enough transfer budget.' };
   const bill = wageBill(G.user);
   if (bill + wage > u.wb * 1.0001 + 0.5) return { ok: false, msg: `That would take your wage bill to ${wageStr(bill + wage)}, over the ${wageStr(u.wb)} budget.` };
   if (wage < o.wage * 0.93) { o.wage = Math.round(o.wage * 1.02); return { ok: false, msg: `${p.n} rejects ${wageStr(wage)}. His agent insists on ${wageStr(o.wage)}.` }; }
   const sp = o.swap ? P(o.swap) : null;
   if (sp && sp.c !== G.user) return { ok: false, msg: `${sp.n} is no longer at the club, so the swap cannot go ahead.` };
+  if (!G.window) { // window closed: terms agreed now, the move goes through on the first day of the next window
+    o.st = 'agreed'; o.tw = wage; o.ty = years; p.agreed = G.user;
+    news('Transfer', `${p.n} has agreed terms with ${u.name} and will join from ${tName(o.from)} for ${money(o.fee)} when the transfer window opens.`, G.user, true);
+    return { ok: true, msg: `${p.n} agrees terms (${wageStr(wage)} until ${G.year + years}). He joins when the next window opens.` };
+  }
   completeTransfer(p, G.user, o.fee, wage, years);
   if (sp) completeTransfer(sp, o.from, 0, Math.round(wageFor(sp, o.from)), 4);
   o.st = 'done';
@@ -432,3 +436,17 @@ playerExtra = function (p) {
   try { if (p && G.user && p.c !== G.user && divOf(p.c)) { const w = wouldJoin(p); const txt = { yes: '<b class="grn">Keen to join you</b>', maybe: '<b class="yel">Would consider joining you</b>', no: '<b class="red">Not interested in joining you</b>' }[w]; return h + `<div class="box pad" style="margin-top:8px"><label class="lb">Transfer outlook</label>${txt}${p.listed ? ' · transfer listed' : ''}${loanListed(p) ? ' · <b>available on loan</b>' : ''}</div>`; } } catch (e) { }
   return h;
 };
+
+// deals agreed while the window was shut go through on the first day it opens (before other clubs can move)
+function completeAgreed() {
+  for (const o of G.offers) {
+    if (!o.user || o.st !== 'agreed') continue; const p = P(o.pid); const u = userTeam(); if (p) delete p.agreed;
+    if (!p || p.c !== o.from) { o.st = 'void'; msg('Transfer: ' + (p ? p.n : 'deal off'), `The agreed deal has fallen through: ${p ? p.n + ' is no longer at ' + tName(o.from) : 'the player is no longer available'}.`); continue; }
+    if (o.fee > u.tb + 0.001) { o.st = 'void'; msg('Transfer: ' + p.n, `The agreed move for ${p.n} has collapsed: your transfer budget (${money(u.tb)}) no longer covers the ${money(o.fee)} fee.`); continue; }
+    const sp = o.swap ? P(o.swap) : null;
+    completeTransfer(p, G.user, o.fee, o.tw || p.wage, o.ty || 4); if (sp && sp.c === G.user) completeTransfer(sp, o.from, 0, Math.round(wageFor(sp, o.from)), 4);
+    o.st = 'done'; msg('Transfer complete: ' + p.n, `The window is open and ${p.n} has joined ${u.name} from ${tName(o.from)} for ${money(o.fee)} (${wageStr(o.tw || p.wage)}, until ${G.year + (o.ty || 4)}).`);
+  }
+}
+const _taAgreed = transferAI;
+transferAI = function () { try { completeAgreed(); } catch (e) { console.error(e); } return _taAgreed.apply(this, arguments); };

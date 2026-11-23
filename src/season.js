@@ -468,7 +468,7 @@ function dailyTick() {
     if (tk.t === 'drawFA') { const ent = G.pl.concat(G.champTeams, R.shuffle(G.lowerTeams).slice(0, 20)); drawRound('FA', 0, ent); const ut = G.cups.FA.rounds[0].ties.find(t => t.t.includes(G.user)); if (ut) news('FA Cup draw', `Third Round: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(G.cups.FA.rounds[0].d[0], false)}).`, G.user); }
     if (tk.t === 'drawPO') drawPO();
     if (tk.t === 'winOpen') { G.window = true; msg('Transfer window open', `The January transfer window is now open until ${dNice(sd(CAL.WIN2_CLOSE))}.`); }
-    if (tk.t === 'winClose') { G.window = false; msg('Transfer window closed', 'The transfer window has closed. Squads are locked until the next window.'); G.offers = G.offers.filter(o => o.st === 'done'); }
+    if (tk.t === 'winClose') { G.window = false; msg('Transfer window closed', 'The transfer window has closed. Squads are locked until the next window.'); G.offers = G.offers.filter(o => o.st === 'done' || (o.user && (o.st === 'accepted' || o.st === 'agreed'))); for (const o of G.offers) if (o.user && o.st === 'accepted') msg('Transfer: ' + (P(o.pid) || {}).n, `The window has closed, but the deal agreed with ${tName(o.from)} still stands. You can agree personal terms now; he will join when the next window opens.`, { k: 'terms', o: o.id }); }
     if (tk.t === 'seasonEnd') { seasonEnd(); return { type: 'season' }; }
   }
   if (G.window) transferAI();

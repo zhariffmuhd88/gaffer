@@ -66,6 +66,8 @@ Calibration (10-season Node runs, `node tests/calib.js 10 BRE`): a side three go
 
 Pre-match line-ups: a broadcast-style graphic for each team before kick-off (team name and formation, the XI on a pitch with shirts in club colours and pattern, numbers and surnames, substitutes and manager, a strip with the competition and its logo if you uploaded one). Tap to move on; it moves on by itself after a few seconds, can be opened again from the Line-ups button, and can be switched off in Game.
 
+Agreed fees survive the deadline: if a club has accepted your bid and the window closes before you agree personal terms, the deal stays in Transfers > Deals (and the inbox). Agree terms while the window is shut and the player joins on the first day of the next window, before other clubs can move; the deal falls through only if he has left that club or your transfer budget no longer covers the fee. `tests/deal_test.js` covers it.
+
 Budget split: on the Transfers screen (and Club > Board) a slider moves money between the transfer budget and the weekly wage budget, as in Football Manager: £1m of transfers pays about £19.2k a week for a season. Wages can go up as far as the transfer budget allows and down to the current wage bill; confirm to apply.
 
 Transfers > Player search: a "Would join you" filter (Keen to join / Would at least consider) that weighs club stature, division, his role at his club, how settled he is, whether he is listed or has asked to leave, and rivalries; the Status filter adds "Loan listed" (young players and surplus squad players outside their club's top 18 whom the club would loan out) and "Transfer or loan listed". Other clubs' player pop-ups show a transfer outlook (keen, would consider, not interested; listed; available on loan).

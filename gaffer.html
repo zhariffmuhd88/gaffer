@@ -8961,7 +8961,7 @@ function dailyTick() {
     if (tk.t === 'drawFA') { const ent = G.pl.concat(G.champTeams, R.shuffle(G.lowerTeams).slice(0, 20)); drawRound('FA', 0, ent); const ut = G.cups.FA.rounds[0].ties.find(t => t.t.includes(G.user)); if (ut) news('FA Cup draw', `Third Round: ${tName(ut.t[0])} v ${tName(ut.t[1])} (${dNice(G.cups.FA.rounds[0].d[0], false)}).`, G.user); }
     if (tk.t === 'drawPO') drawPO();
     if (tk.t === 'winOpen') { G.window = true; msg('Transfer window open', `The January transfer window is now open until ${dNice(sd(CAL.WIN2_CLOSE))}.`); }
-    if (tk.t === 'winClose') { G.window = false; msg('Transfer window closed', 'The transfer window has closed. Squads are locked until the next window.'); G.offers = G.offers.filter(o => o.st === 'done'); }
+    if (tk.t === 'winClose') { G.window = false; msg('Transfer window closed', 'The transfer window has closed. Squads are locked until the next window.'); G.offers = G.offers.filter(o => o.st === 'done' || (o.user && (o.st === 'accepted' || o.st === 'agreed'))); for (const o of G.offers) if (o.user && o.st === 'accepted') msg('Transfer: ' + (P(o.pid) || {}).n, `The window has closed, but the deal agreed with ${tName(o.from)} still stands. You can agree personal terms now; he will join when the next window opens.`, { k: 'terms', o: o.id }); }
     if (tk.t === 'seasonEnd') { seasonEnd(); return { type: 'season' }; }
   }
   if (G.window) transferAI();
@@ -9080,13 +9080,17 @@ function acceptCounter(oid) { const o = G.offers.find(x => x.id === oid); if (!o
 function offerTerms(oid, wage, years) {
   const o = G.offers.find(x => x.id === oid); if (!o || o.st !== 'accepted') return { ok: false, msg: 'This deal is no longer available.' };
   const p = P(o.pid); const u = userTeam();
-  if (!G.window) return { ok: false, msg: 'The window is closed.' };
   if (o.fee > u.tb + 0.001) return { ok: false, msg: 'Not enough transfer budget.' };
   const bill = wageBill(G.user);
   if (bill + wage > u.wb * 1.0001 + 0.5) return { ok: false, msg: `That would take your wage bill to ${wageStr(bill + wage)}, over the ${wageStr(u.wb)} budget.` };
   if (wage < o.wage * 0.93) { o.wage = Math.round(o.wage * 1.02); return { ok: false, msg: `${p.n} rejects ${wageStr(wage)}. His agent insists on ${wageStr(o.wage)}.` }; }
   const sp = o.swap ? P(o.swap) : null;
   if (sp && sp.c !== G.user) return { ok: false, msg: `${sp.n} is no longer at the club, so the swap cannot go ahead.` };
+  if (!G.window) { // window closed: terms agreed now, the move goes through on the first day of the next window
+    o.st = 'agreed'; o.tw = wage; o.ty = years; p.agreed = G.user;
+    news('Transfer', `${p.n} has agreed terms with ${u.name} and will join from ${tName(o.from)} for ${money(o.fee)} when the transfer window opens.`, G.user, true);
+    return { ok: true, msg: `${p.n} agrees terms (${wageStr(wage)} until ${G.year + years}). He joins when the next window opens.` };
+  }
   completeTransfer(p, G.user, o.fee, wage, years);
   if (sp) completeTransfer(sp, o.from, 0, Math.round(wageFor(sp, o.from)), 4);
   o.st = 'done';
@@ -9433,6 +9437,20 @@ playerExtra = function (p) {
   try { if (p && G.user && p.c !== G.user && divOf(p.c)) { const w = wouldJoin(p); const txt = { yes: '<b class="grn">Keen to join you</b>', maybe: '<b class="yel">Would consider joining you</b>', no: '<b class="red">Not interested in joining you</b>' }[w]; return h + `<div class="box pad" style="margin-top:8px"><label class="lb">Transfer outlook</label>${txt}${p.listed ? ' · transfer listed' : ''}${loanListed(p) ? ' · <b>available on loan</b>' : ''}</div>`; } } catch (e) { }
   return h;
 };
+
+// deals agreed while the window was shut go through on the first day it opens (before other clubs can move)
+function completeAgreed() {
+  for (const o of G.offers) {
+    if (!o.user || o.st !== 'agreed') continue; const p = P(o.pid); const u = userTeam(); if (p) delete p.agreed;
+    if (!p || p.c !== o.from) { o.st = 'void'; msg('Transfer: ' + (p ? p.n : 'deal off'), `The agreed deal has fallen through: ${p ? p.n + ' is no longer at ' + tName(o.from) : 'the player is no longer available'}.`); continue; }
+    if (o.fee > u.tb + 0.001) { o.st = 'void'; msg('Transfer: ' + p.n, `The agreed move for ${p.n} has collapsed: your transfer budget (${money(u.tb)}) no longer covers the ${money(o.fee)} fee.`); continue; }
+    const sp = o.swap ? P(o.swap) : null;
+    completeTransfer(p, G.user, o.fee, o.tw || p.wage, o.ty || 4); if (sp && sp.c === G.user) completeTransfer(sp, o.from, 0, Math.round(wageFor(sp, o.from)), 4);
+    o.st = 'done'; msg('Transfer complete: ' + p.n, `The window is open and ${p.n} has joined ${u.name} from ${tName(o.from)} for ${money(o.fee)} (${wageStr(o.tw || p.wage)}, until ${G.year + (o.ty || 4)}).`);
+  }
+}
+const _taAgreed = transferAI;
+transferAI = function () { try { completeAgreed(); } catch (e) { console.error(e); } return _taAgreed.apply(this, arguments); };
 
 // ===== EXTENSIONS: roles, tactics, captaincy, staff, training, scouting, loans, theme =====
 
@@ -10257,7 +10275,7 @@ function scrTransfers() {
   } else if (tab === 'deals') {
     const mine = G.offers.filter(o => o.user && o.st !== 'void');
     const inc = G.offers.filter(o => o.from === G.user && !o.user);
-    const row = (o, out) => { const p = P(o.pid); let act = ''; if (out) { if (o.st === 'accepted') act = `<button class="btn pri" data-a="termsOpen" data-v="${o.id}">Agree terms</button>`; else if (o.st === 'countered') act = `<button class="btn pri" data-a="cntAcc" data-v="${o.id}">Pay ${money(o.counter)}</button> <button class="btn" data-a="withdraw" data-v="${o.id}">Withdraw</button>`; } else if (o.st === 'incoming') act = `<button class="btn pri" data-a="offAcc" data-v="${o.id}">Accept</button> <button class="btn" data-a="offCnt" data-v="${o.id}">Counter</button> <button class="btn warn" data-a="offRej" data-v="${o.id}">Reject</button>`; return `<tr><td class="mono">${dShort(o.d)}</td><td class="click" data-a="player" data-v="${p.id}"><b>${esc(p.n)}</b></td><td>${out ? tLink(o.from) : (o.abroad ? esc(o.buyer) : tLink(o.to))}</td><td class="n">${money(o.fee)}</td><td>${esc({ pending: 'Awaiting reply', accepted: 'Fee agreed', countered: 'Counter-offer', rejected: 'Rejected', done: 'Completed', incoming: 'Offer received', expired: 'Expired' }[o.st] || o.st)}</td><td>${act}</td></tr>`; };
+    const row = (o, out) => { const p = P(o.pid); let act = ''; if (out) { if (o.st === 'accepted') act = `<button class="btn pri" data-a="termsOpen" data-v="${o.id}">Agree terms</button>`; else if (o.st === 'countered') act = `<button class="btn pri" data-a="cntAcc" data-v="${o.id}">Pay ${money(o.counter)}</button> <button class="btn" data-a="withdraw" data-v="${o.id}">Withdraw</button>`; } else if (o.st === 'incoming') act = `<button class="btn pri" data-a="offAcc" data-v="${o.id}">Accept</button> <button class="btn" data-a="offCnt" data-v="${o.id}">Counter</button> <button class="btn warn" data-a="offRej" data-v="${o.id}">Reject</button>`; return `<tr><td class="mono">${dShort(o.d)}</td><td class="click" data-a="player" data-v="${p.id}"><b>${esc(p.n)}</b></td><td>${out ? tLink(o.from) : (o.abroad ? esc(o.buyer) : tLink(o.to))}</td><td class="n">${money(o.fee)}</td><td>${esc({ pending: 'Awaiting reply', accepted: 'Fee agreed', countered: 'Counter-offer', rejected: 'Rejected', done: 'Completed', incoming: 'Offer received', expired: 'Expired', agreed: 'Terms agreed · joins when the window opens', void: 'Fell through' }[o.st] || o.st)}</td><td>${act}</td></tr>`; };
     body = `<h2 class="sect">Your bids</h2><div class="tw"><table class="t"><thead><tr><th>Date</th><th>Player</th><th>Club</th><th class="n">Fee</th><th>Status</th><th></th></tr></thead><tbody>${mine.map(o => row(o, true)).join('') || '<tr><td colspan="6" class="dim">No bids yet.</td></tr>'}</tbody></table></div>
     <h2 class="sect">Offers for your players</h2><div class="tw"><table class="t"><thead><tr><th>Date</th><th>Player</th><th>From</th><th class="n">Fee</th><th>Status</th><th></th></tr></thead><tbody>${inc.map(o => row(o, false)).join('') || '<tr><td colspan="6" class="dim">No offers.</td></tr>'}</tbody></table></div>`;
   } else if (tab === 'fa') {
