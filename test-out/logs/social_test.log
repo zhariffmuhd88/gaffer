@@ -1,34 +1,33 @@
-feed 260 | fan 134 jour 66 club 17 | rumours 15 closed 10 came true 5
-   Marcus Hale T1 2/3
-   Luca Ferraro T1 1/2
-   Ellie Brennan T2 1/3
-   Gary Pratt T3 1/2
+feed 260 | fan 121 jour 74 club 13 | rumours 20 closed 14 came true 2
+   Marcus Hale T1 1/5
+   Luca Ferraro T1 0/3
+   Ellie Brennan T2 1/4
+   Gary Pratt T3 0/1
    Javier Montero T1 0/0
-   Paco Ríos T3 0/0
-fans 77 | trending Champions PSGChampions InterChampions Double AlHilalChampions
-pundit 19 creator 8 var 12 | varw 60 correct,correct,correct,wrong
+   Paco Ríos T3 0/1
+fans 24 | trending ArsenalOut Champions AtalantaChampions AlHilalChampions RealMadridChampions
+pundit 20 creator 13 var 16 | varw 60 wrong,correct,debatable,correct
 sample:
-  [fan] Ola (@PSVOla): Willem II fans have gone very quiet 🤫
-      ↳ Nina ⚽: At least Willem II have a soul
-  [cre] Kicks & Giggles (banter page): Go Ahead fans this weekend 📉😭
-  [pun] Wesley Ojo (former striker (ex-Liverpool, Bayern)): PSV look like a proper team now. Title talk is real.
-      ↳ Rob Kettering: Steady on. They were second best for an hour. Go Ahead deserved more.
-      ↳ Gav ⚽: Wesley always hated us
-      ↳ Mo ⚽: Wesley spot on as always
-  [fan] Sully (@GoonerSully79): Henry in his prime is just unfair fr
-      ↳ Hannah: POV: thierry Henry. That's the tweet
-  [fan] Sophie (@BlueSophie87): Live-tweeting the Arsenal meltdown 🍿🍿 Arsenal 1-1 Arsenal Legends
-      ↳ Priya: Ok and? 🤷
-  [fan] Chloe (@COYSChloe80): Hate-watching Arsenal is my cardio 🍿 Arsenal 1-1 Arsenal Legends 😂
-      ↳ Tom ⚽: Obsessed 😂 Rent free 🏠 😂
-  [pun] Marco Bellandi (former Italy midfielder (ex-Inter, Juventus)): Arsenal and Arsenal Legends both looked scared to lose. Nobody took a risk.
-      ↳ Tyrone Asante: I'm sorry, I disagree. That was a chess match. Tactically fascinating.
-      ↳ Ane ⚽: Not gonna lie, agenda pundit 🙄
-      ↳ Iker: Tyrone still bitter after all these years 😂 ✋😐🤚
-  [fan] Jake (@MiddlesbroJake26): Loyalty is dead. Berhalter chose the money
-      ↳ Nina: ykb 🤷
-  [fan] Becky (@ClaretBecky13): Good riddance Julio. You were never that good anyway (I'm coping)
-      ↳ Priya: Fr fr
-  [fan] Priya (@DoncasterPriya23): Loyalty is dead. Husband chose the money
-      ↳ Dan ⚽: You don't know ball
-errors 0 | html 80812 | save KB 4927 feed KB 71
+  [cre] Kicks & Giggles (banter page): Ref's phone has been ringing nonstop since Heerenveen v Feyenoord 😂📞
+  [pun] Lukas Brenner (former Germany goalkeeper (ex-Bayern, Dortmund)): Feyenoord found a way. Top four for me.
+      ↳ Wesley Ojo: Steady on. They were rescued by their keeper. Heerenveen deserved more.
+      ↳ Kev ⚽: Agenda pundit 🙄
+  [fan] Hannah (@GoonerHannah): Beat Arsenal Legends 2-1. Pre-season, but still. History 😤 😭😭
+      ↳ Kev: Invincibles. Gold trophy. Enough said 🏆✨
+  [fan] Lewis (@BlueLewis68): Hate-watched Arsenal for 90 minutes and they win 2-1. Ref carried them fr ykb
+      ↳ Raj: You lot watch us more than your own team 💀 highkey
+  [pun] Danny Shields (former centre-back (ex-Arsenal, Inter)): Arsenal showed real character. That's a big result.
+      ↳ Tyrone Asante: Steady on. They were lucky. Arsenal Legends deserved more.
+      ↳ Nina: Agenda pundit 🙄
+      ↳ Raj: Least biased Arsenal legend 😂
+  [cre] Big Lenny (Arsenal fan channel): Scenes in the studio 😂 Arsenal Legends fans in my comments are VERY quiet tonight
+  [fan] Sully ⚽ (@MOTSully84): Loyalty is dead. Rodon chose the money
+      ↳ Marta ⚽: He wanted a club that wins things 🏆 💀
+  [fan] Raj (@AtalantaRaj): SERIE A WINNERS 🏆🏆🏆 I'm not crying, you're crying highkey
+      ↳ Sully: Atalanta? Small club mentality
+      ↳ Robbo: Seethe. Cope. Mald.
+  [fan] Gav (@DeportivoGav46): Mario Soriano kissed the badge in May and he's off to Groningen in the summer. Snake 🐍
+      ↳ Sully: The way cry more, he's ours now 😂
+  [fan] Ane ⚽ (@MadridistaAne94): DOMESTIC DOUBLE 🏆🏆 Copa del Rey + La Liga. Say it with me: DOUBLE!!!
+      ↳ Nina: Wake me up when it's a treble 🙄
+errors 0 | html 78732 | save KB 4923 feed KB 71

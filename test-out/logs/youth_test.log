@@ -1,36 +1,36 @@
 youth squads: Arsenal 20/16 (real 20) | Man City 19/15 (real 10) | Liverpool 20/15 (real 16) | Man Utd 20/15 (real 16) | Chelsea 20/15 (real 13) | Aston Villa 20/17 (real 19) | total youth 6198
 first team sizes unchanged: 28,26,30,30 | staff hoyd 14
-user reserves top: Lucas Nygaard GK 20 64/66; Jack Adeyemi CB 21 64/75 GEN; Remy Mitchell GK 22 63/63; Rhys Price LB 19 63/83 GEN; Habeeb Ogunneye RB 20 62/69
+user reserves top: Lucas Nygaard GK 20 64/80; Ethan Turner CB 20 64/77 GEN; Remy Mitchell GK 22 63/67; Habeeb Ogunneye RB 20 62/72; Archie Stevens RW 20 62/68
 toast: Lucas Nygaard moves to the first team.
 promoted Lucas Nygaard level f first team 29
 toast: Ibrahim moves to the reserves.
 demoted Ibrahim level r
-bench call-up kept: true Jack Adeyemi
-loan academy player: Josh Ogunnaike goes on loan to Bolton. | level now f club Bolton
-PL2 rounds 19/19 | top Everton 40, Man City 38, Liverpool 37 | scorers Ibrahim Doyle 13, Martin Sherif 11, Daniel Onanuga 11
-PL2D2 rounds 23/23 | top Portsmouth 52, Wolves 44, Swansea 44 | scorers Nathan Fraser 16, Elijah Holland 16, Alfie Harper 12
-U18 rounds 19/19 | top Arsenal 38, Leeds 38, Ipswich 32 | scorers Louis Zečević-John 10, Evan Mooney 9, Elijah Larsen 9
-PDL rounds 23/23 | top Wolves 47, West Ham 46, Stoke 42 | scorers Jonas Hughes 14, Jaiden Francis-Caesar 12, Lewis Bailey 11
-LLB rounds 19/19 | top Sevilla 33, Betis 33, Real Madrid 33 | scorers Bruno Soto 10, Alejandro Lozano 10, Aitor Delgado 9
-DHJ rounds 19/19 | top Sevilla 36, Atlético 35, Betis 35 | scorers Gonzalo Benítez 10, Sergio Cano 10, Bruno Garrido 8
-PRI rounds 19/19 | top Atalanta 38, Como 37, Cagliari 36 | scorers Christian Montanari 13, Christian Benedetti 9, Davide Monti 8
-U18I rounds 19/19 | top Atalanta 39, Napoli 34, Fiorentina 31 | scorers Samuele Battaglia 10, Alessio Martinelli 9, Giacomo Benedetti 9
-BLR rounds 17/17 | top Freiburg 34, Union Berlin 31, M'gladbach 30 | scorers Jakob Meyer 10, Niklas Zimmermann 10, Lukas Meyer 9
-BLA rounds 17/17 | top Bayern 39, Köln 32, Leipzig 32 | scorers Julian Lange 9, Nico Krause 8, Niklas Schulz 8
-L1R rounds 17/17 | top Lille 35, Brest 34, Rennes 31 | scorers Sacha Moreau 9, Yanis Thomas 9, Nathan Richard 8
-L1A rounds 17/17 | top Strasbourg 39, Marseille 36, PSG 32 | scorers Sacha Moreau 9, Théo Leroy 9, Bastien Rousseau 9
-SPR rounds 17/17 | top Al-Ahli 35, Al-Nassr 34, Al-Hilal 30 | scorers Sultan Kanno 12, Omar Al Shehri 10, Turki Al Shahrani 9
-SPA rounds 17/17 | top Al-Shabab 35, Al-Khaleej 29, Al-Ittihad 28 | scorers Mohammed Al Mutairi 9, Abdullah Al Anazi 9, Saud Al Zahrani 8
-EDJ rounds 17/17 | top Cambuur 33, Ajax 32, Fortuna 27 | scorers Bram de Jong 9, Noah de Vries 7, Jesse Bakker 7
-EDU rounds 17/17 | top Willem II 34, Excelsior 31, Groningen 29 | scorers Stijn Visser 9, Mats van Beek 9, Sven Mulder 8
-LOP rounds 23/23 | top Leyton Orient 42, Wigan 41, Burton 40 | scorers Musa Quinn 12, Kian Vaughan 12, Marco Stone 12
-LOU rounds 23/23 | top Reading 44, Peterborough 43, Plymouth 40 | scorers Rhys Stone 12, Lars Hartley 10, Harry Reid 10
-youth change Aug-Apr: U17 2.15 (n=1717), 18-19 1.85 (n=2233), 20-22 1.41 (n=2233) | avg youth apps 15.6
-bench call-up player first-team apps: 2 | loan player Josh Ogunnaike at Bolton ca 56 -> 57
-season end 2026/27 user pos 2
-after rollover: user 31/13 (real 20) | loan returned: Josh Ogunnaike r Arsenal
-AI promotions sample: Liverpool ft 30 res 23 aca 15 | Man Utd ft 30 res 24 aca 16 | Chelsea ft 29 res 24 aca 14 | Aston Villa ft 28 res 24 aca 16 | Spurs ft 30 res 24 aca 12
-youth inbox: Youth football: Remy Mitchell turns 23. Promote, loan or sell them this season; reserves aged 24 are released in the summer. || Youth football: Your reserve squad has 31 players. Release, loan or sell some so they all get game time. || Youth football: Moving up from the academy to the reserves: Elijah Upson, Ife Ibrahim, Theo Julienne, Igor Tyjon, Ceadach O'Ne || Academy intake: 8 youngsters join the academy: Musa Quinn (DM), Dylan Moreno (GK), Musa Fletcher (D C), Ibrahim Lindqvist (AM 
+bench call-up kept: true Ethan Turner
+loan academy player: Kofi Penrose goes on loan to Portsmouth. | level now f club Portsmouth
+PL2 rounds 19/19 | top Spurs 41, Brentford 38, Fulham 36 | scorers Rafael Quinn 14, Adler Nascimento 9, Jose Sani 9
+PL2D2 rounds 23/23 | top Middlesbrough 53, West Ham 42, Wolves 41 | scorers Daniel Cummings 13, Yaw Barnes 12, Noah Shaw 10
+U18 rounds 19/19 | top Brentford 43, Arsenal 34, Fulham 33 | scorers Elijah Walker 12, Evan Mooney 12, Tyler Diallo 11
+PDL rounds 23/23 | top Southampton 50, West Ham 49, Norwich 48 | scorers Jerome Osei 17, Lewis Bailey 14, Braidin Derbyshire 12
+LLB rounds 19/19 | top Atlético 40, Real Madrid 39, Athletic 34 | scorers Raúl Soto 11, Jorge Flores 10, Pol Vázquez 9
+DHJ rounds 19/19 | top Real Sociedad 35, Betis 31, Atlético 31 | scorers Raúl Benítez 12, Álvaro Navarro 10, Nico Santos 9
+PRI rounds 19/19 | top Bologna 44, Udinese 36, Parma 36 | scorers Francesco Piras 12, Luca Milani 10, Salvatore Costantini 10
+U18I rounds 19/19 | top Sassuolo 42, Napoli 34, Lazio 34 | scorers Marco Giuliani 9, Edoardo Neri 9, Andrea Fontana 9
+BLR rounds 17/17 | top Hoffenheim 38, Dortmund 32, Mainz 31 | scorers Tim Fischer 11, Nico Klein 9, Elias Koch 8
+BLA rounds 17/17 | top Freiburg 39, Hoffenheim 32, Köln 31 | scorers Jakob Meyer 12, Noah Becker 12, Felix Meyer 11
+L1R rounds 17/17 | top Brest 34, Le Mans 33, Toulouse 32 | scorers Maël Lefebvre 12, Ilyes Petit 10, Nathan Lefebvre 9
+L1A rounds 17/17 | top Paris FC 35, Le Havre 31, Brest 31 | scorers Ilyes Leroy 11, Jules Diallo 10, Louis Michel 8
+SPR rounds 17/17 | top Al-Fateh 37, Al-Ittihad 33, Al-Khaleej 32 | scorers Mohammed Al Otaibi 13, Abdulrahman Al Harbi 10, Hamad Al Malki 8
+SPA rounds 17/17 | top Al-Ittihad 34, Al-Nassr 33, Al-Fateh 30 | scorers Bader Al Malki 11, Bader Al Anazi 10, Ali Al Shammari 10
+EDJ rounds 17/17 | top Fortuna 36, Heerenveen 33, Twente 28 | scorers Ruben de Graaf 10, Levi de Graaf 10, Levi Visser 9
+EDU rounds 17/17 | top Ajax 34, Sparta 32, PEC Zwolle 28 | scorers Ruben de Groot 10, Thomas Visser 9, Thomas van Beek 9
+LOP rounds 23/23 | top Doncaster 46, Notts County 44, Leicester 42 | scorers Lars Wells 14, Oliver Fletcher 14, Callum Costa 12
+LOU rounds 23/23 | top Plymouth 44, Mansfield 43, Sheff Wed 41 | scorers Joao Lowe 12, Tom Nash 10, Oliver Barnes 10
+youth change Aug-Apr: U17 2.13 (n=1690), 18-19 1.89 (n=2226), 20-22 1.42 (n=2262) | avg youth apps 15.6
+bench call-up player first-team apps: 10 | loan player Kofi Penrose at Portsmouth ca 59 -> 60
+season end 2026/27 user pos 4
+after rollover: user 32/12 (real 20) | loan returned: Kofi Penrose r Arsenal
+AI promotions sample: Liverpool ft 30 res 23 aca 15 | Man Utd ft 29 res 24 aca 15 | Chelsea ft 28 res 24 aca 15 | Aston Villa ft 26 res 24 aca 15 | Spurs ft 30 res 24 aca 15
+youth inbox: Youth football: Remy Mitchell turns 23. Promote, loan or sell them this season; reserves aged 24 are released in the summer. || Youth football: Your reserve squad has 32 players. Release, loan or sell some so they all get game time. || Youth football: Moving up from the academy to the reserves: Elijah Upson, Josh Ogunnaike, Ife Ibrahim, Theo Julienne, Igor Tyj || Academy intake: 8 youngsters join the academy: Rhys Fletcher (M C), Ibrahim Novak (DM), Musa Fofana (M C), Marco Ashworth (AM 
 restore ok true
-save size 4918 KB | players 12342
-time 167.2s
+save size 4936 KB | players 12407
+time 181.7s

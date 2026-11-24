@@ -1,54 +1,48 @@
-ASSISTANT Kofi Price 2026-12-14 
- sum: Martin Odegaard is our best performer right now; David Raya deserves a start; Jurrien Timber should come out of the team; I would sell Illan Meslier in the next window. 
+ASSISTANT Finn Moreno 2026-12-14 
+ sum: Kai Havertz is our best performer right now; Declan Rice deserves a start; I would sell Illan Meslier in the next window. 
  start:
-   David Raya — Start him ahead of Kepa Arrizabalaga (7.04 recently); he has averaged 7.58 when called on.
-   Riccardo Calafiori — Start him ahead of Jurrien Timber (7.16 recently); he has averaged 7.06 when called on.
-   Eberechi Eze — Start him ahead of Mikel Merino (7.06 recently).
-   Kai Havertz — Start him ahead of Viktor Gyokeres (7.60 recently); he has averaged 7.06 when called on. 
+   Declan Rice — Start him ahead of Martin Zubimendi (6.78 recently); he has averaged 6.72 when called on.
+   Bukayo Saka — Start him ahead of Noni Madueke (7.24 recently); he has averaged 7.24 when called on. 
  drop:
-   Jurrien Timber — Suspended. Take him out of the team. 
+    
  form:
-   Martin Odegaard — 7.84 average over his last 5 games, 13 goals this season, 3 assists.
-   Viktor Gyokeres — 7.60 average over his last 5 games, 8 goals this season, 5 assists.
-   Bukayo Saka — 7.52 average over his last 5 games, 11 goals this season, 7 assists. 
+   Kai Havertz — 7.76 average over his last 5 games, 18 goals this season.
+   David Raya — 7.74 average over his last 5 games, 1 goal this season.
+   Christos Tzolis — 7.42 average over his last 5 games, 6 goals this season, 4 assists. 
  under:
-   Cristhian Mosquera — Struggling: 6.13 average recently.
-   Noni Madueke — Below the standard we expect from him (6.25 recently).
-   Martin Zubimendi — Below the standard we expect from him (6.64 recently). 
+   Jurrien Timber — Below the standard we expect from him (6.36 recently).
+   Martin Odegaard — Below the standard we expect from him (6.60 recently).
+   Ezri Konsa — Below the standard we expect from him (6.66 recently). 
  sell:
    Illan Meslier — Is not good enough for this squad. Estimated value £14.0m.
-   Kepa Arrizabalaga — Is 32 and his best days are behind him; his contract ends in 2027. Estimated value £3.5m.
 inbox asst msgs 0 | scout msgs 0
-SCOUT Emil Ward L:PL win Gianluigi Donnarumma 27y 88/92 Man City £105m | Ruben Dias 29y 87/90 Man City £109m | Alexander Isak 26y 87/87 Liverpool £133m
-SCOUT Elijah Baker L:LL young Endrick 20y 79/94 Real Madrid £52.8m | Mamadou Sarr 21y 79/94 Real Sociedad £66.2m | Facundo Buonanotte 21y 74/95 Elche £31.9m
-SCOUT Leo Ward R:sa wonder Luis Ribeiro 18y 62/86 a club in South America £12.5m | Rodrigo Fernandez 16y 59/80 a club in South America £8.8m | Joaquin Cardoso 17y 58/80 a club in South America £7.8m
-SCOUT2 Emil Ward L:SA wonder  Franco Mastantuono AM 19y 81/99 £91.5m | Rodrigo Mora AM 19y 76/93 £42.9m | Samuele Guerra DM 17y 53/92 £3.4m
-SCOUT2 Elijah Baker L:CH stop D Maximilian Kilman CB 29y 76/76 £24.3m | Kyle Walker-Peters RB 29y 75/75 £21.6m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
-HAP Ben White 35 
-  + Loves being top of the Premier League
+SCOUT Tyler Gallagher L:PL win Gianluigi Donnarumma 27y 88/88 Man City £105m | Ruben Dias 29y 87/88 Man City £109m | Alexander Isak 26y 87/87 Liverpool £133m
+SCOUT Tariq Lindqvist L:LL young Marc Bernal 19y 79/97 Barcelona £63.8m | Mamadou Sarr 21y 78/95 Real Sociedad £63.5m | Jon Martín 20y 77/91 Real Sociedad £55.4m
+SCOUT Diego Nash R:sa wonder Facundo Acosta 17y 60/78 a club in South America £9.5m | Enzo Pereira 18y 67/86 a club in South America £20.3m | Lautaro Gomez 16y 56/79 a club in South America £6.1m
+SCOUT2 Tyler Gallagher L:SA wonder  Franco Mastantuono AM 19y 81/98 £95.9m | Rodrigo Mora AM 19y 77/93 £50.6m | Francesco Camarda ST 18y 73/91 £33.0m
+SCOUT2 Tariq Lindqvist L:CH stop D Kyle Walker-Peters RB 29y 76/78 £24.3m | Maximilian Kilman CB 29y 76/77 £24.3m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
+HAP Kepa Arrizabalaga 37 
+  + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
-  + Gets on well with Eberechi Eze 
-  - Has fallen out with Eberechi Eze after a training-ground row
-HAP Noni Madueke 38 
-  + Loves being top of the Premier League
-  + Excited to be playing Champions League football
-  + Thinks William Saliba is a world-class player
-  + Gets on well with Eberechi Eze 
-  - Unhappy that Bukayo Saka keeps starting ahead of him
-  - Short of confidence after a poor run of form
+  + Gets on well with Mikel Merino (both Spain) 
+  - Unhappy that David Raya keeps starting ahead of him
+HAP Riccardo Calafiori 37 
+  + Proud of the club's 2nd place in the league
+  + Excited to be playing Champions League football 
+  - Unhappy that Piero Hincapie keeps starting ahead of him
 HAP Illan Meslier 73 
-  + Loves being top of the Premier League
+  + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
   + Thinks Martin Odegaard is a great captain
   + Thinks William Saliba is a world-class player
   + Gets on well with William Saliba (both France) 
   - 
-HAP Bukayo Saka 100 
-  + Loves being top of the Premier League
+HAP Kai Havertz 100 
+  + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
-  + Gets on well with Noni Madueke
+  + Thinks Martin Odegaard is a great captain
   + Happy with his playing time
-  + Enjoying his football (7.68 average in his last games) 
+  + Enjoying his football (7.54 average in his last games) 
   - 
-after talk {"d":"2026-12-20","k":"praise","l":"praised his form","dh":3}
-screens 4918 8827 true | errors 0
+after talk {"d":"2026-12-20","k":"praise","l":"praised his form","dh":1}
+screens 13438 8858 true | errors 0

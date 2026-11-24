@@ -1,29 +1,29 @@
 user LAZ SA | SA clubs 20 | players 25 | SB 20 | SC 16 | play nat ITA | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-SA fixtures 380 | UCL Italian COM,INT,NAP,ROM | UEL JUV,ACM | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 656 | Josep INT
-CIT R1 16 Monza v Ascoli, Sassuolo v Cesena, Fiorentina v Vicenza | SCI Inter v Lazio 2026-12-22
-youth 19 15 Luca Silvestri ITA, Salvatore Benedetti ITA, Emanuele Rossetti NGA | comps PRI U18I
-Supercopa Barcelona v Atlético 0-1, Real Sociedad v Real Madrid 1-4 / Atlético v Real Madrid 1-3 | winner Real Madrid
-Coppa Quarter-final: Bologna v Milan 0-3, Roma v Atalanta 1-2, Como v Juventus 2-0, Napoli v Inter 0-0 / Semi-final: Como v Napoli 0-3/1-0, Milan v Atalanta 0-1/1-1 / Final: Napoli v Atalanta 2-1 | winner Napoli | SCI Inter
-gpg PL 2.59 370 | home win % 42
-gpg LL 2.55 380 | home win % 42
-gpg SA 2.63 370 | home win % 41
-=== season 2026/27 | user pos 9 SA | sacked false | now 2027-08-07
-SA top5 Napoli 88, Juventus 81, Inter 78, Roma 76, Como 75 | down Venezia, Frosinone, Monza | up Cremonese, Hellas Verona, Modena | CIT Napoli | SB top Cremonese 69, Hellas Verona 65, Pisa 63
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Lautaro Martínez","INT",34,"p1715"] | SCI INT | CIT NAP
-SA awards best Lautaro Martínez | Pichichi Lautaro Martínez 34 | Zamora null | TOS 11 | GOS null
-SA months 10 | gotmSA 10 | next euro {"UCL":["MUN","TOT","ARS","AVL","NEW","RMA","BAR","ATM","ATH","BAY","RBL","SGE","B04","PSG","OL","LOSC","OGCN","PSV","AJX","NAP","JUV","INT","ROM"],"UEL":["NFO","EVE","RSO","BET","BVB","RCSA","FEY","COM","BGN"],"UECL":["IPS","SEV","VFB","OM","AZ","ATA"]} | sci next Napoli,Atalanta | seeds NAP,JUV,INT,ROM,COM,BGN,ATA,ACM
-Supercopa Real Madrid v Real Sociedad 3-2, Atlético v Barcelona 4-1 / Real Madrid v Atlético 3-0 | winner Real Madrid
-Coppa Quarter-final: Hellas Verona v Bologna 1-3, Napoli v Como 5-1, Milan v Roma 1-0, Inter v Atalanta 1-0 / Semi-final: Inter v Milan 0-1/0-2, Napoli v Bologna 1-0/0-1 / Final: Napoli v Inter 3-1 | winner Napoli | SCI Napoli
-=== season 2027/28 | user pos 11 SA | sacked false | now 2028-08-05
-SA top5 Roma 78, Inter 74, Juventus 74, Napoli 73, Cremonese 70 | down Cagliari, Lecce, Parma | up Sampdoria, Palermo, Pisa | CIT Napoli | SB top Sampdoria 84, Palermo 68, Empoli 65
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | SA ts ["Lautaro Martínez","INT",25,"p1715"] | SCI NAP | CIT NAP
-SA awards best Kenan Yıldız | Pichichi Lautaro Martínez 25 | Zamora null | TOS 11 | GOS null
-SA months 20 | gotmSA 20 | next euro {"UCL":["CHE","LIV","MUN","NFO","CRY","BAR","ATH","RMA","S_Girona","BAY","RBL","B04","VFB","PSG","LOSC","ASM","OL","PSV","FEY","ROM","INT","JUV","NAP"],"UEL":["ARS","TOT","ATM","RSO","BVB","OGCN","AZ","B_Cremonese","ACM"],"UECL":["SUN","BET","SGE","RCSA","AJX","COM"]} | sci next Roma,Napoli | seeds ROM,INT,JUV,NAP,B_Cremonese,ACM,COM,B_HellasVerona
+SA fixtures 380 | UCL Italian NAP,INT,COM,ROM | UEL ACM,JUV | lites left  | Chalobah COM caps 3 | Barella caps 73 | ITA pool 692 | Josep INT
+CIT R1 16 Torino v Carrarese, Lazio v Palermo, Sassuolo v Cesena | SCI Inter v Lazio 2026-12-22
+youth 19 15 Luca Romano ITA, Luca Silvestri ITA, Samuele Romano ITA | comps PRI U18I
+Supercopa Barcelona v Atlético 3-0, Real Sociedad v Real Madrid 1-2 / Barcelona v Real Madrid 2-4 | winner Real Madrid
+Coppa Quarter-final: Inter v Atalanta 2-1, Bologna v Napoli 1-2, Como v Genoa 2-3, Roma v Milan 0-2 / Semi-final: Napoli v Genoa 1-0/1-4, Inter v Milan 0-0/2-1 / Final: Milan v Napoli 2-1 | winner Milan | SCI Inter
+gpg PL 2.72 370 | home win % 42
+gpg LL 2.62 380 | home win % 45
+gpg SA 2.56 370 | home win % 43
+=== season 2026/27 | user pos 11 SA | sacked false | now 2027-08-07
+SA top5 Juventus 83, Napoli 82, Atalanta 78, Roma 76, Inter 76 | down Venezia, Monza, Frosinone | up Catanzaro, Pisa, Empoli | CIT Milan | SB top Catanzaro 69, Pisa 68, Carrarese 65
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Donyell Malen","ROM",34,"p1826"] | SCI INT | CIT ACM
+SA awards best Kenan Yıldız | Pichichi Donyell Malen 34 | Zamora null | TOS 11 | GOS null
+SA months 10 | gotmSA 10 | next euro {"UCL":["TOT","ARS","CHE","MUN","LIV","RMA","BAR","ATH","ATM","BAY","B04","VFB","RBL","PSG","OM","OGCN","LOSC","AZ","PSV","JUV","NAP","ATA","ROM"],"UEL":["AVL","NEW","RSO","OSA","BMG","ASM","TWE","INT","ACM"],"UECL":["SUN","BET","BVB","RCSA","UTR","GEN"]} | sci next Juventus,Milan | seeds JUV,NAP,ATA,ROM,INT,ACM,GEN,FIO
+Supercopa Real Madrid v Atlético 2-0, Athletic v Barcelona 1-2 / Real Madrid v Barcelona 2-1 | winner Real Madrid
+Coppa Quarter-final: Inter v Genoa 2-0, Fiorentina v Milan 0-3, Pisa v Napoli 2-1, Juventus v Roma 2-0 / Semi-final: Inter v Pisa 3-0/0-2, Juventus v Milan 3-0/4-1 / Final: Inter v Milan 3-1 | winner Inter | SCI Milan
+=== season 2027/28 | user pos 15 SA | sacked true | now 2028-08-05
+SA top5 Inter 91, Napoli 83, Juventus 83, Atalanta 76, Como 66 | down Lecce, Genoa, Torino | up Hellas Verona, Cremonese, Sampdoria | CIT Inter | SB top Hellas Verona 80, Cremonese 77, Sampdoria 69
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | SA ts ["Kevin Carlos","CAG",24,"p2108"] | SCI ACM | CIT INT
+SA awards best Kenan Yıldız | Pichichi Kevin Carlos 24 | Zamora null | TOS 11 | GOS null
+SA months 20 | gotmSA 20 | next euro {"UCL":["TOT","CHE","ARS","MUN","LIV","RMA","BAR","ATM","RSO","BAY","RBL","SGE","BVB","PSG","LOSC","OGCN","ASM","FEY","AJX","INT","NAP","JUV","ATA"],"UEL":["BHA","CRY","VIL","S_RealOviedo","VFB","RCL","AZ","COM","B_Pisa"],"UECL":["NEW","ATH","B04","OM","TWE","ROM"]} | sci next Inter,Milan | seeds INT,NAP,JUV,ATA,COM,B_Pisa,ROM,ACM
 goals per game this season: PL - | CH - | LL - | SA - | CIT -
-cross-league moves 139 Gianluigi Donnarumma -> Napoli; Marc Guehi -> Bologna; Mateo Kovacic -> Al-Qadsiah; Enzo Fernandez -> Leverkusen; Phil Foden -> Marseille
-errors 0 | sim time 364.8s
-screens 9621 10298 true 6676 1652 true 45001 21066 11537
-save parts KB players 4588, fx 444, teams 252, feed 72, awards 71, yl 55, sq 41, news 40
-national team ITA null | games 23 Italy 5-0 Portugal | Switzerland 0-5 Italy | Italy 3-0 Croatia | England 1-1 Italy | caps leaders Gianluigi Donnarumma 110, Nicolò Barella 88, Alessandro Bastoni 62
-save 5868 KB JSON, 631K chars compressed (417 ms, unpack 72 ms, round trip true) | restore ok 20 20
-time 366.5s
+cross-league moves 149 Gianluigi Donnarumma -> Al-Hilal; Ruben Dias -> Real Madrid; Rayan Ait-Nouri -> Stuttgart; Josko Gvardiol -> Valencia; Abdukodir Khusanov -> Werder
+errors 0 | sim time 375.7s
+screens 9627 10302 true 6684 1652 true 44997 21064 11539
+save parts KB players 4589, fx 443, teams 252, awards 71, feed 70, yl 54, sq 41, byDate 40
+national team ITA null | games 23 Italy 3-0 Croatia | Italy 2-1 Netherlands | Italy 3-0 Spain | France 2-3 Italy | caps leaders Gianluigi Donnarumma 101, Nicolò Barella 89, Alessandro Bastoni 69
+save 5864 KB JSON, 630K chars compressed (362 ms, unpack 91 ms, round trip true) | restore ok 20 20
+time 377.5s

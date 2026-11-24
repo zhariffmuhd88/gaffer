@@ -1,11 +1,11 @@
 doc: ok 172
-2026-09-10 request loan Marli Salmon -> Salmon: "Thanks boss. I'll go in the next window."
-2026-10-28 request play Eberechi Eze -> Eze: "I've earned more than that. I'm disappointed."
-2026-11-03 request loan Max Dowman -> Dowman: "Thanks boss, that means a lot. I want to learn."
-2026-11-12 request play Viktor Gyokeres -> Gyokeres: "Thank you for being honest. I'll stay professional until a deal is done."
-requests 23 loan:done play:done loan:done play:done loan:ignored play:ignored play:ignored play:ignored play:ignored loan:ignored play:ignored loan:ignored leave:ignored leave:ignored loan:ignored play:ignored leave:ignored loan:ignored leave:ignored leave:ignored leave:ignored play:ignored play:ignored
-doc episodes 7
-CWC Real Madrid beat Stuttgart | CWX none
+2026-09-29 request play Riccardo Calafiori -> Calafiori: "That's all I want. I'll hold you to it."
+2026-10-13 request play Myles Lewis-Skelly -> Lewis-Skelly: "I've earned more than that. I'm disappointed."
+2026-10-20 request play Martin Zubimendi -> Zubimendi: "Thanks boss. I'll go in the next window."
+2026-10-28 request play Martin Odegaard -> Odegaard: "Thank you for being honest. I'll stay professional until a deal is done."
+requests 24 play:done play:done play:done play:done loan:ignored play:ignored play:ignored play:ignored play:ignored loan:ignored play:ignored play:ignored leave:ignored loan:ignored loan:ignored play:ignored loan:ignored leave:ignored loan:ignored play:ignored loan:ignored play:ignored leave:ignored play:ignored
+doc episodes 10
+CWC Liverpool beat Milan | CWX none
 trophy room svg 2786 | parade 19130
 statue {"ARS":{"n":"T","y":2028}}
 son ask ask

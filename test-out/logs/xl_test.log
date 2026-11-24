@@ -1,16 +1,16 @@
-user BVB BL GER | XL BL:18 fx 306 L1:18 fx 306 SPL:18 fx 306 ED:18 fx 306 LO:24 fx 552 | UCL XL RBL,OM,SGE,BVB,BAY,B04,PSG,ASM,VFB | lites left 
-Kane BAY | Kane copies 1 | Fabián Ruiz PSG | GER pool 772 | youth BVB 19 15 BLR | sample youth name Niklas Schneider
+user BVB BL GER | XL BL:18 fx 306 L1:18 fx 306 SPL:18 fx 306 ED:18 fx 306 LO:24 fx 552 | UCL XL SGE,OM,BAY,VFB,ASM,RBL,PSG,B04,BVB | lites left 
+Kane BAY | Kane copies 1 | Fabián Ruiz PSG | GER pool 772 | youth BVB 19 15 BLR | sample youth name Elias Wolf
 BL dates 2026-08-28 2026-09-04 2026-09-11 2026-09-18 2026-10-09 2026-10-16 2026-10-23 2026-10-30 2026-11-06 2026-11-20 2026-11-27 2026-12-04 2026-12-11 2026-12-18 2027-01-15 2027-01-22 2027-01-29 2027-02-05 2027-02-09 2027-02-12 2027-02-16 2027-02-19 2027-02-26 2027-03-05 2027-03-12 2027-03-19 2027-04-02 2027-04-09 2027-04-16 2027-04-23 2027-04-30 2027-05-07 2027-05-14 2027-05-21
-gpg PL 2.71 380
-gpg LL 2.54 380
-gpg SA 2.55 380
-gpg BL 2.71 306
-gpg L1 2.72 306
-gpg SPL 2.83 306
-BL top Bayern 82, Stuttgart 68, Leverkusen 67, Leipzig 67 | bottom Paderborn 23, Elversberg 13
-L1 top PSG 92, Nice 74, Marseille 71, Lens 69 | bottom Lorient 11, Angers 11
-SPL top Al-Ahli 78, Al-Ittihad 77, Al-Hilal 76, Al-Qadsiah 67 | bottom Abha 22, Al-Riyadh 18
-ED top Ajax 87, AZ 81, Utrecht 79, Feyenoord 78 | bottom Cambuur 21, Excelsior 20
-LO top Leicester 125, Luton 109, Oxford 104, Huddersfield 85 | bottom Doncaster 30, Barnsley 16
-next euroIn {"UCL":["ARS","CHE","LIV","NEW","TOT","RMA","BAR","ATM","SEV","BAY","VFB","B04","RBL","PSG","OGCN","OM","RCL","AJX","AZ","INT","ATA","LAZ","NAP"],"UEL":["BOU","MUN","VIL","BET","SGE","ASM","UTR","JUV","COM"],"UECL":["SUN","ATH","BVB","SRFC","FEY","ROM"]} | awards BL Michael Olise; L1 Ousmane Dembélé; SPL Ollie Watkins | clinch {"L1":"2026/27","LL":"2026/27","BL":"2026/27","CH":"2026/27","PL":"2026/27","SA":"2026/27","SPL":"2026/27"} | fair play {"s":"2026/27","PL":"BRE","CH":"WOL","LL":"RAY","SA":"COM","BL":"RBL","L1":"OL","SPL":"SHB"}
-screens 8714 true 1512 | errors 0 | save KB 4931
+gpg PL 2.51 380
+gpg LL 2.60 380
+gpg SA 2.53 380
+gpg BL 2.87 306
+gpg L1 2.86 306
+gpg SPL 2.74 306
+BL top Bayern 82, Leipzig 82, Frankfurt 71, Stuttgart 69 | bottom Paderborn 18, Schalke 10
+L1 top PSG 85, Marseille 81, Monaco 80, Lyon 72 | bottom Auxerre 19, Lorient 16
+SPL top Al-Hilal 80, Al-Ahli 79, Al-Ittihad 67, Al-Nassr 65 | bottom Al-Fayha 19, Al-Riyadh 11
+ED top Feyenoord 88, PSV 81, Ajax 78, AZ 71 | bottom Cambuur 11, Excelsior 10
+LO top Leicester 116, Luton 115, Stockport 103, Huddersfield 90 | bottom Barnsley 24, Burton 24
+next euroIn {"UCL":["MUN","ARS","CHE","TOT","BOU","RMA","BAR","RSO","ATM","BAY","RBL","SGE","VFB","PSG","OM","ASM","OL","FEY","PSV","INT","ROM","JUV","ACM"],"UEL":["LIV","CRY","ATH","BET","B04","LOSC","AJX","NAP","LAZ"],"UECL":["AVL","RAY","BVB","RCL","AZ","FIO"]} | awards BL Jonathan Burkardt; L1 Ousmane Dembélé; SPL Darwin Núñez | clinch {"CH":"2026/27","LL":"2026/27","SA":"2026/27","SPL":"2026/27","L1":"2026/27","PL":"2026/27"} | fair play {"s":"2026/27","PL":"EVE","CH":"WAT","LL":"ALA","SA":"NAP","BL":"SGE","L1":"RCL","SPL":"NEO"}
+screens 8714 true 1512 | errors 0 | save KB 4925

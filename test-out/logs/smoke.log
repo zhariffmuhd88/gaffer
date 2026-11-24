@@ -6,10 +6,10 @@ PREMATCH found: True
 asst: True
 press: 1
 interview: True
-talk: Tzolis: “It's early. I'm happy to fight for my place.”
+talk: Saka: “It's early. I'm happy to fight for my place.”
 Promise 3 starts in the next 5 games
-Tell him
-after match main: GAFFER26/27 | Arsenal | Sat 8 Aug 2026 | Next: PL · 22 Aug · v Leeds (A) · Window open | CONTINUE ▸
+Tell him t
+after match main: GAFFER26/27 | Arsenal | Sat 8 Aug 2026 | Next: PL · 22 Aug · v Hull (A) · Window open | CONTINUE ▸
 date now Fri 18 Sep 2026
 mobile scrollWidth 390
 migrated staff rows 24

@@ -1,28 +1,28 @@
-AI happiness {"Delighted":170,"Content":7796,"Settled":2363,"Frustrated":516,"Unhappy":20}
-with reasons 4388 / 10865
-1774 enjoying regular first-team football
-1260 short of confidence
-1214 wants more first-team football
-1112 proud of … league position …
-688 worried about relegation
-551 frustrated not to be a regular starter
-545 embarrassed by … league position …
-510 doubts …
-302 proud to play for one of the biggest clubs in the world
-277 believes …
-240 loving a title race
-238 in the form of his life
-207 loving Champions League nights
+AI happiness {"Delighted":165,"Content":7788,"Settled":2412,"Frustrated":483,"Unhappy":17}
+with reasons 4403 / 10865
+1778 enjoying regular first-team football
+1236 short of confidence
+1234 wants more first-team football
+1038 proud of … league position …
+697 worried about relegation
+549 frustrated not to be a regular starter
+535 doubts …
+445 embarrassed by … league position …
+315 proud to play for one of the biggest clubs in the world
+279 believes …
+231 loving a title race
+211 loving Champions League nights
+207 in the form of his life
 176 proud to captain the club
-140 proud of Al-… league position …
-98 has lost …
-90 homesick
-72 unsure where he fits under …
-UNHAPPY Bryan Mbeumo Man Utd 29 ["-19 frustrated not to be a regular starter","-16 embarrassed by Man Utd's league position (19th, target 5th)","-8 worried about relegation","-5 short of confidence"]
-UNHAPPY Amadou Onana Aston Villa 33 ["-12 frustrated not to be a regular starter","-10 embarrassed by Aston Villa's league position (13th, target 8th)","-10 has lost faith in Unai Emery","-5 short of confidence"]
-UNHAPPY Ian Maatsen Aston Villa 33 ["-14 frustrated not to be a regular starter","-10 embarrassed by Aston Villa's league position (13th, target 8th)","-10 has lost faith in Unai Emery","3 loving Champions League nights"]
-HAPPY Manuel Neuer Bayern 92 ["6 in the form of his life","5 loving a title race","5 proud to captain the club","4 enjoying regular first-team football"]
-HAPPY Can Uzun Frankfurt 90 ["12 proud of Frankfurt's league position (2nd)","6 in the form of his life","4 enjoying regular first-team football","4 believes in Adi Hütter's project"]
-Raya {"a":24,"s":24,"g":0,"as":0,"r":180.49999999999997,"mom":5,"cs":10,"y":0,"rc":0,"lg":0,"la":15,"lr":114.09999999999998,"las":0} key games 24 inj 0
-asking price unsettled 81.1 vs settled 93.5
+122 proud of Al-… league position …
+87 homesick
+74 unsure where he fits under …
+71 excited by …
+UNHAPPY Dwight McNeil C Palace 30 ["-14 frustrated not to be a regular starter","-14 embarrassed by C Palace's league position (20th, target 13th)","-8 worried about relegation","-5 short of confidence"]
+UNHAPPY Bryan Mbeumo Man Utd 30 ["-19 frustrated not to be a regular starter","-16 embarrassed by Man Utd's league position (13th, target 5th)","-5 short of confidence","-3 doubts about Michael Carrick's methods"]
+UNHAPPY Jorgen Strand Larsen C Palace 30 ["-14 embarrassed by C Palace's league position (20th, target 13th)","-8 wants more first-team football","-8 worried about relegation","-3 unsure where he fits under new manager Callum Costa"]
+HAPPY Mikel Oyarzabal Real Sociedad 94 ["12 proud of Real Sociedad's league position (2nd)","6 in the form of his life","5 proud to captain the club","4 enjoying regular first-team football"]
+HAPPY Lautaro Martínez Inter 93 ["6 in the form of his life","5 loving a title race","5 proud to captain the club","4 enjoying regular first-team football"]
+Raya {"a":22,"s":22,"g":0,"as":0,"r":161.3,"mom":4,"cs":10,"y":0,"rc":0,"lg":0,"la":15,"lr":109.49999999999999,"las":0} key games 22 inj 0
+asking price unsettled 33 vs settled 37.8
 OK
