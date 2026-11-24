@@ -1,23 +1,23 @@
 user RSO LL | LL clubs 20 | players 26 | Segunda 22 | PF 20 | play nat ESP | euroIn {"UCL":["ARS","MCI","MUN","AVL","LIV","BAR","RMA","VIL","ATM","BET","INT","NAP","ROM","COM","PSG","BAY","B04","BVB","PSV","AJX","FEY","OM","ASM","RBL","VFB","SGE"],"UEL":["BOU","SUN","CRY","RSO","CEL","ACM","JUV","OL","LOSC","OGCN","RCL","SCF","TSG","AZ","TWE"],"UECL":["BHA","GET","ATA","RCSA","SRFC","M05","FCA","UTR"]}
-LL fixtures 380 | UCL Spanish VIL,BET,ATM,BAR,RMA | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 987
-youth 19 15 Gorka Nieto ESP, Mikel Domínguez ESP, Gonzalo Arrieta ESP | comps LLB DHJ
-Supercopa Barcelona v Atlético 4-2, Real Sociedad v Real Madrid 1-3 / Barcelona v Real Madrid 1-1 p4-3 | winner Barcelona
-=== season 2026/27 | user pos 7 LL | sacked false | now 2027-08-07
-LL top5 Real Madrid 84, Athletic 77, Atlético 75, Valencia 75, Barcelona 73 | down Elche, Racing, Málaga | up Girona, Real Oviedo, Córdoba | CdR Real Madrid
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Vinícius Júnior","RMA",33,"p1195"] | SCE BAR
-LL awards best Vinícius Júnior | Pichichi Vinícius Júnior 33 | Zamora Jan Oblak 0.76 | TOS 11 | GOS Robert Navarro
-LL months 10 | gotmLL 10 | next euro {"UCL":["CHE","ARS","TOT","LIV","MUN","RMA","ATH","ATM","VAL","BAY","RBL","SGE","B04","PSG","ASM","LOSC","OM","FEY","PSV","ROM","INT","ATA","COM"],"UEL":["BOU","BHA","BAR","CEL","VFB","OL","AZ","JUV","NAP"],"UECL":["SUN","RSO","SVW","OGCN","AJX","LAZ"]} | sce next Real Madrid,Barcelona,Atlético,Athletic
-Supercopa Real Madrid v Barcelona 2-1, Atlético v Athletic 4-2 / Real Madrid v Atlético 1-3 | winner Atlético
-=== season 2027/28 | user pos 4 LL | sacked false | now 2028-08-05
-LL top5 Real Madrid 94, Barcelona 93, Atlético 80, Real Sociedad 79, Athletic 78 | down Espanyol, Córdoba, Levante | up Elche, Racing, Málaga | CdR Real Madrid
-chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | LL ts ["Kylian Mbappé","RMA",25,"p1194"] | SCE ATM
-LL awards best Lamine Yamal | Pichichi Kylian Mbappé 25 | Zamora Jon Marín 0.34 | TOS 11 | GOS Orri Óskarsson
-LL months 20 | gotmLL 20 | next euro {"UCL":["CHE","LIV","ARS","TOT","MUN","RMA","BAR","ATM","RSO","BAY","RBL","BVB","B04","OM","PSG","OL","LOSC","PSV","FEY","INT","NAP","ROM","COM"],"UEL":["CRY","BOU","ATH","S_Girona","SGE","RCL","AJX","JUV","ACM"],"UECL":["EVE","CEL","VFB","RCSA","UTR","B_Cremonese"]} | sce next Real Madrid,Villarreal,Atlético,Barcelona
+LL fixtures 380 | UCL Spanish VIL,ATM,BAR,BET,RMA | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 959
+youth 19 15 Jon Soler ESP, Aitor Díaz ESP, Mikel Velasco ESP | comps LLB DHJ
+Supercopa Barcelona v Atlético 1-0, Real Sociedad v Real Madrid 3-2 / Barcelona v Real Sociedad 1-0 | winner Barcelona
+=== season 2026/27 | user pos 3 LL | sacked false | now 2027-08-07
+LL top5 Barcelona 91, Atlético 88, Real Sociedad 85, Real Madrid 82, Betis 81 | down Elche, Deportivo, Málaga | up Girona, Mallorca, Real Oviedo | CdR Atlético
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Mikel Oyarzabal","RSO",35,"p1351"] | SCE BAR
+LL awards best Nico Williams | Pichichi Mikel Oyarzabal 35 | Zamora Jan Oblak 0.66 | TOS 11 | GOS Takefusa Kubo
+LL months 10 | gotmLL 10 | next euro {"UCL":["ARS","LIV","CHE","BOU","MUN","BAR","ATM","RSO","RMA","BAY","B04","VFB","BVB","PSG","ASM","OM","RCL","AJX","FEY","INT","JUV","NAP","COM"],"UEL":["SUN","NEW","BET","VIL","SCF","OL","UTR","LAZ","FIO"],"UECL":["TOT","ATH","SGE","LOSC","AZ","ATA"]} | sce next Barcelona,Real Madrid,Real Sociedad,Atlético
+Supercopa Barcelona v Real Madrid 0-1, Real Sociedad v Atlético 1-2 / Real Madrid v Atlético 1-0 | winner Real Madrid
+=== season 2027/28 | user pos 9 LL | sacked false | now 2028-08-05
+LL top5 Real Madrid 92, Barcelona 82, Betis 79, Atlético 78, Athletic 71 | down Rayo, Alavés, Racing | up Málaga, Castellón, Deportivo | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | LL ts ["Kylian Mbappé","RMA",30,"p1194"] | SCE RMA
+LL awards best Kylian Mbappé | Pichichi Kylian Mbappé 30 | Zamora Joan García 0.58 | TOS 11 | GOS Gerard Moreno
+LL months 20 | gotmLL 20 | next euro {"UCL":["ARS","LIV","CHE","MUN","AVL","RMA","BAR","BET","ATM","BAY","SGE","VFB","RBL","PSG","ASM","OL","LOSC","FEY","AZ","INT","JUV","B_HellasVerona","ATA"],"UEL":["TOT","CRY","ATH","VIL","B04","OM","PSV","ROM","BGN"],"UECL":["BOU","CEL","BVB","RCSA","AJX","LAZ"]} | sce next Real Madrid,Villarreal,Betis,Barcelona
 goals per game this season: PL - | CH - | LL - | CDR -
-cross-league moves 88 Gianluigi Donnarumma -> Al-Hilal; Ruben Dias -> Lille; Josko Gvardiol -> Utrecht; Elliot Anderson -> Valencia; Mateo Kovacic -> Lyon
-errors 0 | sim time 376.6s
-screens 9621 11134 1344 1920 46162 11995
-save parts KB players 4593, fx 443, teams 251, feed 72, awards 71, yl 53, news 41, sq 41
-national team ESP null | games 23 Spain 6-0 Germany | Spain 2-0 Wales | Spain 3-1 France | England 1-1 Spain | caps leaders Rodri 94, Unai Simón 75, Mikel Oyarzabal 74
-save 5871 KB JSON, 632K chars compressed (315 ms, unpack 169 ms, round trip true) | restore ok 20
-time 378.6s
+cross-league moves 120 Cristhian Mosquera -> Marseille; Gianluigi Donnarumma -> Al-Qadsiah; Ruben Dias -> Lille; Rayan Ait-Nouri -> Betis; Vitor Reis -> Lazio
+errors 0 | sim time 458.5s
+screens 9646 11099 1342 1915 46160 11995
+save parts KB players 4578, fx 444, teams 251, feed 71, awards 71, yl 54, sq 41, byDate 40
+national team ESP null | games 23 Spain 1-1 Germany | Spain 4-1 Norway | Spain 3-1 Türkiye | Spain 0-0 England | caps leaders Rodri 90, Dani Olmo 73, Koke 72
+save 5852 KB JSON, 629K chars compressed (365 ms, unpack 89 ms, round trip true) | restore ok 20
+time 460.4s

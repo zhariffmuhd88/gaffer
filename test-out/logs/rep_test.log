@@ -1,48 +1,49 @@
-ASSISTANT Finn Moreno 2026-12-14 
- sum: Kai Havertz is our best performer right now; Declan Rice deserves a start; I would sell Illan Meslier in the next window. 
+ASSISTANT Kian Wells 2026-12-14 
+ sum: Kai Havertz is our best performer right now; Viktor Gyokeres deserves a start; Christos Tzolis should come out of the team; I would sell Eberechi Eze in the next window. 
  start:
-   Declan Rice — Start him ahead of Martin Zubimendi (6.78 recently); he has averaged 6.72 when called on.
-   Bukayo Saka — Start him ahead of Noni Madueke (7.24 recently); he has averaged 7.24 when called on. 
+   Viktor Gyokeres — Start him ahead of Christos Tzolis (7.16 recently); he has averaged 6.80 when called on. 
  drop:
-    
+   Christos Tzolis — Injured (59 days). Take him out of the team. 
  form:
-   Kai Havertz — 7.76 average over his last 5 games, 18 goals this season.
-   David Raya — 7.74 average over his last 5 games, 1 goal this season.
-   Christos Tzolis — 7.42 average over his last 5 games, 6 goals this season, 4 assists. 
+   Kai Havertz — 8.02 average over his last 5 games, 21 goals this season, 3 assists.
+   Christos Tzolis — 7.16 average over his last 5 games, 8 goals this season, 1 assist.
+   Bukayo Saka — 7.06 average over his last 5 games, 8 goals this season, 4 assists. 
  under:
-   Jurrien Timber — Below the standard we expect from him (6.36 recently).
-   Martin Odegaard — Below the standard we expect from him (6.60 recently).
-   Ezri Konsa — Below the standard we expect from him (6.66 recently). 
+   Jurrien Timber — Below the standard we expect from him (6.16 recently).
+   Ezri Konsa — Below the standard we expect from him (6.38 recently).
+   Myles Lewis-Skelly — Below the standard we expect from him (6.40 recently). 
  sell:
+   Eberechi Eze — Is unhappy and unsettling the dressing room. Estimated value £45.0m.
    Illan Meslier — Is not good enough for this squad. Estimated value £14.0m.
 inbox asst msgs 0 | scout msgs 0
-SCOUT Tyler Gallagher L:PL win Gianluigi Donnarumma 27y 88/88 Man City £105m | Ruben Dias 29y 87/88 Man City £109m | Alexander Isak 26y 87/87 Liverpool £133m
-SCOUT Tariq Lindqvist L:LL young Marc Bernal 19y 79/97 Barcelona £63.8m | Mamadou Sarr 21y 78/95 Real Sociedad £63.5m | Jon Martín 20y 77/91 Real Sociedad £55.4m
-SCOUT Diego Nash R:sa wonder Facundo Acosta 17y 60/78 a club in South America £9.5m | Enzo Pereira 18y 67/86 a club in South America £20.3m | Lautaro Gomez 16y 56/79 a club in South America £6.1m
-SCOUT2 Tyler Gallagher L:SA wonder  Franco Mastantuono AM 19y 81/98 £95.9m | Rodrigo Mora AM 19y 77/93 £50.6m | Francesco Camarda ST 18y 73/91 £33.0m
-SCOUT2 Tariq Lindqvist L:CH stop D Kyle Walker-Peters RB 29y 76/78 £24.3m | Maximilian Kilman CB 29y 76/77 £24.3m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
-HAP Kepa Arrizabalaga 37 
-  + Proud of the club's 2nd place in the league
-  + Excited to be playing Champions League football
-  + Gets on well with Mikel Merino (both Spain) 
-  - Unhappy that David Raya keeps starting ahead of him
-HAP Riccardo Calafiori 37 
-  + Proud of the club's 2nd place in the league
-  + Excited to be playing Champions League football 
-  - Unhappy that Piero Hincapie keeps starting ahead of him
-HAP Illan Meslier 73 
+SCOUT Kian Morris L:PL win Gianluigi Donnarumma 27y 88/93 Man City £105m | Ruben Dias 29y 87/91 Man City £109m | Alexander Isak 26y 87/87 Liverpool £133m
+SCOUT Luca Fletcher L:LL young Arda Güler 21y 85/95 Real Madrid £93.5m | Marc Bernal 19y 80/94 Barcelona £65.8m | Endrick 20y 78/91 Real Madrid £41.8m
+SCOUT Lars Hartley R:sa wonder Lautaro Vargas 17y 62/98 a club in South America £12.5m | Matheus Cardoso 17y 67/87 a club in South America £21.6m | Luis Cardoso 18y 72/89 a club in South America £37.8m
+SCOUT2 Kian Morris L:SA wonder  Franco Mastantuono AM 19y 81/98 £89.5m | Rodrigo Mora AM 19y 77/96 £51.7m | Adrian Przyborek AM 19y 67/93 £17.6m
+SCOUT2 Luca Fletcher L:CH stop D Maximilian Kilman CB 29y 76/76 £24.3m | Kyle Walker-Peters RB 29y 75/75 £21.6m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
+HAP Eberechi Eze 26 
   + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
   + Thinks Martin Odegaard is a great captain
-  + Thinks William Saliba is a world-class player
-  + Gets on well with William Saliba (both France) 
+  + Gets on well with Myles Lewis-Skelly 
+  - Has fallen out with Ben White after a training-ground row
+  - Unhappy that Martin Odegaard keeps starting ahead of him
+  - Low on morale
+HAP Riccardo Calafiori 35 
+  + Proud of the club's 2nd place in the league
+  + Excited to be playing Champions League football 
+  - Unhappy that Piero Hincapie keeps starting ahead of him
+HAP Julienne 76 
+  + Proud of the club's 2nd place in the league
+  + Excited to be playing Champions League football
+  + Gets on well with Ibrahim 
   - 
 HAP Kai Havertz 100 
   + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
   + Thinks Martin Odegaard is a great captain
   + Happy with his playing time
-  + Enjoying his football (7.54 average in his last games) 
+  + Enjoying his football (7.88 average in his last games) 
   - 
 after talk {"d":"2026-12-20","k":"praise","l":"praised his form","dh":1}
-screens 13438 8858 true | errors 0
+screens 13890 8853 true | errors 0

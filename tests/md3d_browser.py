@@ -56,6 +56,11 @@ async def main():
             if '"hair":"dreads"' not in look or '"skin":9' not in look or not lu[0] or lu[1] != 11: errs.append('phase 5: ' + look + str(lu))
             if not (p4['flags'] >= 6 and p4['crowd'] >= 1 and p4['flares'] >= 3 and p4['playerBtn'] and pick and free): errs.append('phase 4 pieces missing: ' + str(p4) + str([pick, free]))
             if not (p3['bug'] and p3['refs'] == 3 and p3['mgrs'] == 2 and p3['board'] and p3['banner']): errs.append('phase 3 pieces missing: ' + str(p3))
+            # Phase 11: movement arrows and stamina arrows in 3D
+            await pg.evaluate("()=>{UI.match.v3s.flyDone=true;UI.mvArrows=false;ACT.mmove();const M=UI.match.M;for(const e of M.sides[0].ps.concat(M.sides[1].ps))if(e.on&&e.role==='MC'&&!e.p.pseudo){e.p._c0=e.p.cond;e.p.cond=40;}if(!UI.match.run)ACT.mrun();}"); await pg.wait_for_timeout(2500)
+            mv = await pg.evaluate("()=>{const S3=UI.match.v3s;const r={btn:!!document.querySelector('[data-a=\"mmove\"]'),pool:S3.mv?S3.mv.ar.length:0,arrows:S3.mv?S3.mv.ar.filter(a=>a.visible).length:0,stamina:S3.mv?[...S3.mv.st.values()].filter(s=>s.visible).length:0,run:UI.match.run,hold:!!UI.match.hold};const M=UI.match.M;for(const e of M.sides[0].ps.concat(M.sides[1].ps))if(e.p._c0!=null){e.p.cond=e.p._c0;delete e.p._c0;}ACT.mmove();return r}")
+            print(vw, 'phase11 movement', mv)
+            if not (mv['btn'] and mv['pool'] == 11 and mv['stamina'] >= 1): errs.append('phase 11: ' + str(mv))
             await pg.click('[data-a="m3cam"][data-v="behind"]'); await pg.wait_for_timeout(200)
             await pg.click('[data-a="mview"][data-v="2d"]'); await pg.wait_for_timeout(200)
             print(vw, 'back to 2D: cv shown', await pg.evaluate("()=>UI.match.vis.cv.style.display!=='none' && !UI.match.v3"), '| overflow', await pg.evaluate("()=>document.documentElement.scrollWidth>innerWidth+1"))

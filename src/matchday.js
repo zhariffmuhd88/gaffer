@@ -561,7 +561,7 @@ function runScene(LM, SC, dt) {
   const k = 1 - Math.exp(-Math.max(0, dt) / tau);
   const pressers = new Set();
   const ps = SC.poss, ds = 1 - ps;
-  if (!SC.kick) { const c = onPitch(M, ds, x => x.role !== 'GK').map(e => [e, SC.pos.get(e)]).filter(x => x[1]).sort((a, b) => Math.hypot(a[1].x - SC.ball.x, a[1].y - SC.ball.y) - Math.hypot(b[1].x - SC.ball.x, b[1].y - SC.ball.y)); const n = (M.sides[ds].tac.press || 2) === 3 ? 2 : 1; for (let i = 0; i < n && i < c.length; i++) pressers.add(c[i][0]); }
+  if (!SC.kick) { const c = onPitch(M, ds, x => x.role !== 'GK').map(e => [e, SC.pos.get(e)]).filter(x => x[1]).sort((a, b) => Math.hypot(a[1].x - SC.ball.x, a[1].y - SC.ball.y) - Math.hypot(b[1].x - SC.ball.x, b[1].y - SC.ball.y)); const n = typeof mvPressN === 'function' ? mvPressN(SC, M, ds) : (M.sides[ds].tac.press || 2) === 3 ? 2 : 1; for (let i = 0; i < n && i < c.length; i++) pressers.add(c[i][0]); }
   const tt = SC.t / 1000;
   for (let s = 0; s < 2; s++) for (const e of M.sides[s].ps) {
     if (!e.on) { SC.pos.delete(e); continue; }
@@ -575,7 +575,10 @@ function runScene(LM, SC, dt) {
       else if (pressers.has(e)) t = { x: SC.ball.x + (s === 0 ? -.02 : .02), y: SC.ball.y + (cur.y < SC.ball.y ? -.015 : .015) };
     }
     if (SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0) { const f = clamp((SC.t - SC.dive.t0) / Math.max(1, SC.dive.t1 - SC.dive.t0), 0, 1); cur.x = SC.dive.from.x + (SC.dive.to.x - SC.dive.from.x) * f; cur.y = SC.dive.from.y + (SC.dive.to.y - SC.dive.from.y) * Math.min(1, f * 1.4); continue; }
-    cur.x += (t.x - cur.x) * k; cur.y += (t.y - cur.y) * k;
+    if (SC.tg) SC.tg.set(e, t);
+    // each player moves at his own speed (pace, stamina, work rate; Phase 11), never jumping
+    const kk = typeof mvSpeed === 'function' ? 1 - Math.pow(1 - k, mvSpeed(SC, e, s)) : k;
+    cur.x += (t.x - cur.x) * kk; cur.y += (t.y - cur.y) * kk;
   }
   // ball trail
   SC.trail.push({ x: SC.ball.x, y: SC.ball.y, h: SC.ball.h }); if (SC.trail.length > 10) SC.trail.shift();
@@ -635,6 +638,7 @@ function drawScene(LM, SC, ts) {
       if (SC.holder === e) { c.strokeStyle = `rgba(255,255,255,${.6 + .4 * Math.sin(ts / 140)})`; c.lineWidth = 1.5; c.beginPath(); c.arc(X, Y, r + 3, 0, 6.29); c.stroke(); }
     }
   }
+  if (typeof mvDraw2d === 'function') { try { mvDraw2d(LM, SC, c, px, py, r); } catch (er) { } }
   // holder name
   if (SC.holder && SC.pos.get(SC.holder) && !SC.holder.p.pseudo) { const p = SC.pos.get(SC.holder); const nm = surname(SC.holder.p.n); c.font = `600 ${Math.max(9, r * 1.15)}px "IBM Plex Sans Condensed", Arial`; c.textAlign = 'center'; c.textBaseline = 'bottom'; const tw = c.measureText(nm).width + 8; c.fillStyle = 'rgba(0,0,0,.6)'; c.fillRect(px(p.x) - tw / 2, py(p.y) - r - 18, tw, 14); c.fillStyle = '#fff'; c.fillText(nm, px(p.x), py(p.y) - r - 5); }
   // ball trail + ball

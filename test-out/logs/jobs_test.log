@@ -1,12 +1,11 @@
-security levels {"Stable":59,"Secure":56,"Unsecure":33,"Very secure":24,"Very unsecure":7}
-sackings by Dec 20 {"LO":5,"L1":1,"PL":2,"LL":1} Jonas Bennett (Barnsley, 23rd); Mateo Fofana (Plymouth Argyle, 22nd); Gary Bowyer (Burton Albion, 24th); Stéphane Gilli (Angers, 18th)
-vacant Plymouth Argyle [Jack Shaw (caretaker)], Barnsley [Owen Gallagher (caretaker)], Burton Albion [Lars Carter (caretaker)], Angers [Sam Turner (caretaker)]
-You have declared interest in the Aston Villa job. If Unai Emery is sacked, they will call you first.
-board 70.12283894449502 -> 66.12283894449502 fans 65 -> 62 | rival false
+security levels {"Secure":48,"Unsecure":32,"Stable":67,"Very secure":26,"Very unsecure":6}
+sackings by Dec 20 {"PL":4,"BL":1,"LO":2,"L1":1} Tariq Stone (Newcastle United, 19th); Miron Muslić (Schalke 04, 18th); Tom Cleverley (Plymouth Argyle, 18th); Bruno Génésio (Marseille, 10th)
+vacant Newcastle United [Tyler Penrose (caretaker)], Schalke 04 [Hugo Holland (caretaker)]
+You have declared interest in the Manchester City job. If Enzo Maresca is sacked, they will call you first.
+board 50.64774795268425 -> 46.64774795268425 fans 38 -> 35 | rival false
 You have declared interest in the Fulham job. If Alvaro Arbeloa is sacked, they will call you first.
-rival interest: board 66.12283894449502 -> 51.122838944495015 fans -> 40
-Application sent to Plymouth Argyle. Expect an answer within about a week.
-offer from Plymouth Argyle true Job offer: Plymouth Argyle
-You are the new manager of Plymouth Argyle.
-sackings in the season {"LO":9,"LL":3,"L1":3,"CH":1,"PL":2} total 18
+rival interest: board 46.64774795268425 -> 31.64774795268425 fans -> 13
+Application sent to Newcastle United. Expect an answer within about a week.
+offer from Newcastle United false 
+sackings in the season {"L1":3,"CH":1,"LO":5,"PL":4,"BL":1} total 14
 OK
