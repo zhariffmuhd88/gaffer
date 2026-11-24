@@ -143,6 +143,7 @@ function build3d(LM, T3) {
   const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd, rig: UI.v3q !== 'lo' && !!T3.SkinnedMesh }; // human models unless Low quality was chosen by hand (phones too; slow devices fall back by themselves)
   try { buildCast3d(S3, LM, T3); makeTrail(S3, T3); } catch (e) { console.error(e); }
   try { buildAtmo3d(S3, LM, T3); } catch (e) { console.error(e); }
+  try { phase9Build(S3, LM); } catch (e) { console.error(e); }
   try { phase8Build(S3, LM); } catch (e) { console.error(e); }
   _last3 = S3; return S3;
 }
@@ -232,7 +233,8 @@ function frame3d(LM, ts) {
   const bh = .42 + (b.h || 0) * 4.5;
   S3.ball.position.set(bw.x, bh, bw.z);
   try { ball3d(S3, SC, cs, bh, bw, dt); netRipple3d(S3, SC, bw, bh, ts); cast3d(S3, LM, SC, bw, ts, dt); subWatch3d(S3, LM, T3, ts); } catch (er) { console.error(er); }
-  try { atmo3d(S3, LM, SC, cs, celeb, ts, dt); } catch (er) { console.error(er); } S3.bsh.position.set(bw.x, .02, bw.z); S3.bsh.scale.setScalar(Math.max(.4, 1 - (b.h || 0) * .5));
+  try { atmo3d(S3, LM, SC, cs, celeb, ts, dt); } catch (er) { console.error(er); }
+  phase9Frame(S3, LM, SC, cs, celeb, ts, dt); S3.bsh.position.set(bw.x, .02, bw.z); S3.bsh.scale.setScalar(Math.max(.4, 1 - (b.h || 0) * .5));
   // weather
   if (S3.wxp) { const a = S3.wxp.geometry.attributes.position; const snow = S3.wxp.userData.snow; for (let i = 0; i < a.count; i++) { let y = a.getY(i) - (snow ? .08 : .9); if (y < 0) y = 50; a.setY(i, y); if (snow) a.setX(i, a.getX(i) + Math.sin(ts / 900 + i) * .02); } a.needsUpdate = true; }
   // cameras: broadcast (follows the ball), wide, behind the goal; a slow orbit around the scorer after a goal; low and close for replays
