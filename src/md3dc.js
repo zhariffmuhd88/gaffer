@@ -21,13 +21,12 @@ function crowdSpots(S3, LM) {
     };
     tier(.8, 16.5, .6, 10.6, 13); tier(18.8, 36.5, 14.7, 30.6, 14);
   } else {
-    const dz = P3.W / 2 + 6, dx = P3.L / 2 + 7; let k = 0;
-    const stands = [{ w: P3.L + 10, d: 22, h: 15, x: 0, z: -dz, ry: 0, side: 0 }, { w: P3.L + 10, d: 18, h: 12, x: 0, z: dz, ry: Math.PI, side: 0 }, { w: P3.W + 8, d: 18, h: 12, x: -dx, z: 0, ry: Math.PI / 2, side: 0 }, { w: P3.W + 8, d: 18, h: 12, x: dx, z: 0, ry: -Math.PI / 2, side: 1 }];
+    let k = 0; const stands = S3.stands || [];
     for (const s of stands) {
-      const rows = Math.floor((s.d - 2) / 1.05), cols = Math.floor((s.w - 3) / .9); const c = Math.cos(s.ry), sn = Math.sin(s.ry);
+      const rows = Math.floor((s.d - 2) / (s.terrace ? .8 : 1.05)), cols = Math.floor((s.w - 3) / (s.terrace ? .7 : .9)); const c = Math.cos(s.ry), sn = Math.sin(s.ry);
       for (let r = 0; r < rows; r++) for (let i = 0; i < cols; i++) {
         if (!keep(++k)) continue; const u = 1.4 + r * 1.05, lx = -s.w / 2 + 1.5 + i * .9 + (r % 2) * .45, lz = 1 - u, y = u * s.h / s.d + .15;
-        out.push([s.x + lx * c + lz * sn, y, s.z - lx * sn + lz * c, s.ry, s.side]);
+        out.push([s.x + lx * c + lz * sn, y + (s.y0 || 0), s.z - lx * sn + lz * c, s.ry, s.side]);
       }
     }
   }

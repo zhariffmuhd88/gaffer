@@ -106,6 +106,11 @@ function crowdPt3d(S3, side, r1, r2) {
     const a0 = P3.L / 2 + 5, b0 = P3.W / 2 + 5; const t = side ? (r1 - .5) * .6 : .45 + r1 * (Math.PI * 2 - .9); const f = .12 + r2 * .7;
     const [x, z] = bowlPt(a0 + 17 * f, b0 + 17 * f, t); return { x, y: .6 + 10.4 * f + .3, z };
   }
+  if (S3.stands && S3.stands.length) {
+    const ss = S3.stands.filter(x => x.side === (side ? 1 : 0) && !x.upper); const st = ss[Math.floor(r1 * ss.length) % ss.length] || S3.stands[0];
+    const u = 1.5 + r2 * (st.d - 4), lx = (((r1 * 7.31) % 1) - .5) * (st.w - 4), lz = 1 - u; const c = Math.cos(st.ry), sn = Math.sin(st.ry);
+    return { x: st.x + lx * c + lz * sn, y: (st.y0 || 0) + u * st.h / st.d + .3, z: st.z - lx * sn + lz * c };
+  }
   const dz = P3.W / 2 + 6, dx = P3.L / 2 + 7;
   if (side) { const u = 2 + r2 * 13; return { x: dx - 1 + u, y: u * 12 / 18 + .3, z: (r1 - .5) * (P3.W - 4) }; }
   const s = r1 < .38 ? 0 : r1 < .76 ? 1 : 2; const q = (r1 % .38) / .38;
@@ -138,7 +143,7 @@ function buildAtmo3d(S3, LM, T3) {
     const tex = tifoTex(T3, M.sides[0].tid, kits[0]); const mat = new T3.MeshBasicMaterial({ map: tex, transparent: true, side: T3.DoubleSide });
     let m;
     if (S3.bowl) { const a0 = P3.L / 2 + 5; m = new T3.Mesh(new T3.PlaneGeometry(46, 19), mat); m.rotation.order = 'YXZ'; m.rotation.y = Math.PI / 2; m.rotation.x = -Math.atan2(10.4, 17); m.position.set(-(a0 + 8.2), 6.4, 0); }
-    else { const dx = P3.L / 2 + 7; const a = Math.atan2(12, 18); m = new T3.Mesh(new T3.PlaneGeometry(P3.W + 4, Math.hypot(18, 12) - 1.5), mat); m.rotation.order = 'YXZ'; m.rotation.y = Math.PI / 2; m.rotation.x = -a; m.position.set(-(dx + 8) + Math.cos(a) * .35, 6 + Math.sin(a) * .35, 0); }
+    else { const he = (S3.stands || []).find(x => x.x < -20 && !x.upper) || { x: -(P3.L / 2 + 7), d: 18, h: 12, w: P3.W + 8 }; const a = Math.atan2(he.h, he.d); m = new T3.Mesh(new T3.PlaneGeometry(he.w - 4, Math.hypot(he.d, he.h) - 1.5), mat); m.rotation.order = 'YXZ'; m.rotation.y = Math.PI / 2; m.rotation.x = -a; m.position.set(he.x - he.d / 2 + 1 + Math.cos(a) * .35, he.h / 2 + Math.sin(a) * .35, 0); }
     S3.scene.add(m); S3.tifo = m;
   }
   // flares and smoke for goals (crowd atmosphere), pooled

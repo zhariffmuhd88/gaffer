@@ -102,19 +102,19 @@ function build3d(LM, T3) {
   const roofM = new T3.MeshLambertMaterial({ color: night ? '#1a1e2a' : '#c9ced8' }), wallM = new T3.MeshLambertMaterial({ color: night ? '#121522' : '#3a4152' });
   const dz = P3.W / 2 + 6, dx = P3.L / 2 + 7;
   const bowl = M.sides[0].tid === 'ARS'; // Arsenal's home: the bowl
-  const scr = liveScreen(T3);
+  const scr = liveScreen(T3); let kind3 = 'bowl', stands3 = null;
   const crowd = []; const ct = (cols, f, side) => { const t = crowdTex(T3, cols, f, night); crowd.push({ tex: t, side, ph: crowd.length * 1.3, ox: 0 }); return t; };
   if (bowl) buildBowl(T3, scene, { night, fill, home: kits[0], away: kits[1], scrTex: scr.tex, crowd }); else {
-  stand3(T3, scene, { w: P3.L + 10, d: 22, h: 15, tex: ct(hc, fill, 0), roofM, wallM, x: 0, z: -dz, ry: 0 });
-  stand3(T3, scene, { w: P3.L + 10, d: 18, h: 12, tex: ct(hc, fill, 0), roofM, wallM, x: 0, z: dz, ry: Math.PI });
-  stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: ct(hc, fill, 0), roofM, wallM, x: -dx, z: 0, ry: Math.PI / 2 });
-  stand3(T3, scene, { w: P3.W + 8, d: 18, h: 12, tex: ct(ac, Math.min(1, fill + .1), 1), roofM, wallM, x: dx, z: 0, ry: -Math.PI / 2 });
+  kind3 = stadiumKind(V); stands3 = buildStands3d(T3, scene, { kind: kind3, roofM, wallM, ct, hc, ac, fill });
+  pylons3d(T3, scene, kind3);
   // a big screen on the roof of the home end, showing the live score
-  const sc = new T3.Mesh(new T3.PlaneGeometry(16, 8), new T3.MeshBasicMaterial({ map: scr.tex })); sc.position.set(-(dx + 9), 24, 0); sc.rotation.y = Math.PI / 2; scene.add(sc);
-  const fr = new T3.Mesh(new T3.BoxGeometry(.6, 9, 17), wallM); fr.position.set(-(dx + 9.4), 24, 0); scene.add(fr);
+  const he = stands3.filter(x => x.x < -20).sort((a, b) => (b.y0 + b.h) - (a.y0 + a.h))[0] || { x: -dx, d: 18, h: 12, y0: 0 };
+  const sx = he.x - he.d * .5, sy = he.y0 + he.h + 11; const sc = new T3.Mesh(new T3.PlaneGeometry(16, 8), new T3.MeshBasicMaterial({ map: scr.tex })); sc.position.set(sx, sy, 0); sc.rotation.y = Math.PI / 2; scene.add(sc);
+  const fr = new T3.Mesh(new T3.BoxGeometry(.6, 9, 17), wallM); fr.position.set(sx - .4, sy, 0); scene.add(fr);
   }
+  try { pitchDetail3d(T3, scene, kits); } catch (e) { console.error(e); }
   // advertising boards and dugouts
-  const bt = boardTex(T3, `${(home.short || home.name).toUpperCase()}   ·   GAFFER 26/27   ·   WUPH.com`, home.c1 || '#c8102e', '#ffffff');
+  const bt = ledTex(T3, Object.assign({ id: M.sides[0].tid }, home), kits[0]);
   for (const [z, ry] of [[-(P3.W / 2 + 2.5), 0], [P3.W / 2 + 2.5, Math.PI]]) { const b = new T3.Mesh(new T3.PlaneGeometry(P3.L, .9), new T3.MeshBasicMaterial({ map: bt })); b.position.set(0, .45, z); b.rotation.y = ry; scene.add(b); }
   for (const [x, ry] of [[-(P3.L / 2 + 2.5), Math.PI / 2], [P3.L / 2 + 2.5, -Math.PI / 2]]) { const b = new T3.Mesh(new T3.PlaneGeometry(P3.W, .9), new T3.MeshBasicMaterial({ map: bt })); b.position.set(x, .45, 0); b.rotation.y = ry; scene.add(b); }
   const dugM = new T3.MeshLambertMaterial({ color: '#1d2230', transparent: true, opacity: .85 });
@@ -140,7 +140,7 @@ function build3d(LM, T3) {
     wxp = new T3.Points(geo, new T3.PointsMaterial({ color: wx === 'rain' ? '#c6d3e6' : '#ffffff', size: wx === 'rain' ? .3 : .45, transparent: true, opacity: wx === 'rain' ? .75 : .95 }));
     wxp.userData = { snow: wx === 'snow' }; scene.add(wxp);
   }
-  const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd, rig: UI.v3q !== 'lo' && !!T3.SkinnedMesh }; // human models unless Low quality was chosen by hand (phones too; slow devices fall back by themselves)
+  const S3 = { scene, cam, ren, ball, bsh, wxp, figs: new Map(), camPos: null, look: null, mode: (LM.v3s && LM.v3s.mode) || UI.v3cam || 'tv', lo, gk: gkColour(kits), T3, kits, scr, nets, sun, hemi, bowl, crowd, stands: stands3, kind: kind3, led: bt, rig: UI.v3q !== 'lo' && !!T3.SkinnedMesh }; // human models unless Low quality was chosen by hand (phones too; slow devices fall back by themselves)
   try { buildCast3d(S3, LM, T3); makeTrail(S3, T3); } catch (e) { console.error(e); }
   try { buildAtmo3d(S3, LM, T3); } catch (e) { console.error(e); }
   try { phase9Build(S3, LM); } catch (e) { console.error(e); }
@@ -254,7 +254,7 @@ function frame3d(LM, ts) {
   for (const a of ['x', 'y', 'z']) { S3.camPos[a] += (want[a] - S3.camPos[a]) * k; S3.look[a] += (look[a] - S3.look[a]) * k * 1.5; }
   S3.cam.position.set(S3.camPos.x, S3.camPos.y, S3.camPos.z); S3.cam.lookAt(S3.look.x, S3.look.y, S3.look.z);
   overlay3d(LM, SC); try { bug3d(LM, S3, ts); } catch (er) { console.error(er); }
-  try { phase8Frame(S3); } catch (er) { }
+  try { phase8Frame(S3); phase10Frame(S3, dt); } catch (er) { }
   S3.ren.render(S3.scene, S3.cam);
 }
 function start3d(LM) {
