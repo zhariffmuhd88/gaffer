@@ -1,11 +1,11 @@
 best: Raya 31, Timber 25, Magalhaes 28, Saliba 25, Hincapie 24, Rice 27, Guimaraes 28, Merino 30, Saka 25, Havertz 27, Tzolis 24
-played Arsenal 2-1 Arsenal Legends
-conds 89,92,90,90,90,91,91,90,91,90,91 | others 100,100,100,99,100,100,100,100
+played Arsenal 2-0 Arsenal Legends
+conds 89,91,91,91,90,91,91,90,91,90,90 | others 100,100,100,100,98,100,100,100
 rotated: Arrizabalaga 32, White 29, Konsa 29, Mosquera 22, Calafiori 24, Odegaard 27, Zubimendi 27, Eze 28, Madueke 24, Gyokeres 28, Harriman-Annous 18 | changes 11
 save: ok
-youth XI (pool 41, holes 0): Ranson* 19, Ogunneye* 20, Salmon 17, Vaughan* 20, Lowe* 20, Dowman 16, Lewis-Skelly 20, Novak* 20, Stevens* 20, Clarke* 21, Harriman-Annous 18 | bench youth 7
-issues after validate: [] | still youth starters 7
-youth match Arsenal 0-5 Hull | youth who played 11 | youth apps sample Khari Ranson 5.1, Habeeb Ogunneye 5.9, Joao Vaughan 5.2
+youth XI (pool 41, holes 0): Nygaard* 20, Dixon* 19, Salmon 17, Lewis-Skelly 20, Bennett* 20, Dowman 16, Stone* 19, Ibrahim 18, Stevens* 20, Cooper* 21, Harriman-Annous 18 | bench youth 8
+issues after validate: [] | still youth starters 6
+youth match Arsenal 0-5 Brighton | youth who played 10 | youth apps sample Lucas Nygaard 5.5, Jaden Dixon 5.3, Max Bennett 5.7
 save 2: ok | sets Rotation 4-3-3, Kids 4-3-3
 load Rotation all: ok | form 4-3-3 | ment 3 | matches saved 11
 load Kids tactics only: ok

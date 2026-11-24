@@ -1,13 +1,13 @@
 doc: ok 172
-2026-09-29 request play Ben White -> White: "That's all I want. I'll hold you to it."
-2026-10-06 request loan Andre Harriman-Annous -> Harriman-Annous: "If I am part of your plans, I'll give it another go."
-2026-10-20 request play Riccardo Calafiori -> Calafiori: "Thanks boss. I'll go in the next window."
-2026-11-12 request play Eberechi Eze -> Eze: "Thank you for being honest. I'll stay professional until a deal is done."
-requests 19 play:done loan:done play:done play:done play:ignored play:ignored loan:ignored play:ignored play:ignored play:ignored play:ignored leave:ignored leave:ignored leave:ignored leave:ignored leave:ignored loan:ignored leave:ignored play:ignored
-doc episodes 19
-CWC Barcelona beat PSG | CWX none
-trophy room svg 3280 | parade 19130
+2026-09-15 request loan Max Dowman -> Dowman: "Thanks boss. I'll go in the next window."
+2026-09-26 request loan Marli Salmon -> Salmon: "If I am part of your plans, I'll give it another go."
+2026-09-29 request play Viktor Gyokeres -> Gyokeres: "Thanks boss. I'll go in the next window."
+2026-10-06 request play Martin Zubimendi -> Zubimendi: "Thank you for being honest. I'll stay professional until a deal is done."
+requests 24 loan:done loan:done play:done play:done play:ignored play:ignored loan:ignored play:ignored loan:ignored play:ignored leave:ignored leave:ignored play:ignored play:ignored play:ignored leave:ignored play:ignored loan:ignored leave:ignored leave:ignored play:ignored play:ignored loan:ignored play:ignored
+doc episodes 10
+CWC Napoli beat Bayern | CWX none
+trophy room svg 2786 | parade 19130
 statue {"ARS":{"n":"T","y":2028}}
 son ask ask
-son Adam Zhariff 16 85 a ENG
+son Adam Zhariff 16 92 a ENG
 import compressed ok 20 | errors 0

@@ -1,0 +1,14 @@
+desk button True on True overflow False
+desk frames 1350 maxJump/16ms 0.0911 at pass outside 0 None
+desk onside checks 2848 beyond the line 12 max 0.042
+desk box-run frames 268 support 1116 cover 407 through-run frames 90
+desk speed fresh/tired [1.07, 0.72, True] shots 4
+desk errors []
+desk PASS
+phone button True on True overflow False
+phone frames 1826 maxJump/16ms 0.0912 at pass outside 0 None
+phone onside checks 3584 beyond the line 19 max 0.128
+phone box-run frames 528 support 1654 cover 611 through-run frames 0
+phone speed fresh/tired [1.07, 0.72, True] shots 0
+phone errors []
+phone PASS

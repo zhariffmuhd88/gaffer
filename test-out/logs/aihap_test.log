@@ -1,28 +1,28 @@
-AI happiness {"Delighted":170,"Content":7772,"Settled":2377,"Frustrated":524,"Unhappy":22}
-with reasons 4405 / 10865
-1789 enjoying regular first-team football
-1255 proud of … league position …
-1243 wants more first-team football
-1237 short of confidence
-704 worried about relegation
-549 frustrated not to be a regular starter
-468 doubts …
-434 embarrassed by … league position …
-316 proud to play for one of the biggest clubs in the world
-279 believes …
-230 loving a title race
-229 loving Champions League nights
-225 in the form of his life
-179 proud to captain the club
+AI happiness {"Content":7848,"Settled":2344,"Frustrated":501,"Delighted":153,"Unhappy":19}
+with reasons 4366 / 10865
+1769 enjoying regular first-team football
+1253 short of confidence
+1223 wants more first-team football
+1129 proud of … league position …
+673 worried about relegation
+557 frustrated not to be a regular starter
+373 doubts …
+371 embarrassed by … league position …
+319 proud to play for one of the biggest clubs in the world
+290 believes …
+242 loving Champions League nights
+237 loving a title race
+234 in the form of his life
+178 proud to captain the club
+98 proud of Al-… league position …
 85 homesick
-70 unsure where he fits under …
-67 proud of Al-… league position …
-56 has lost …
-UNHAPPY Martin Baturina Como 36 ["-10 embarrassed by Como's league position (13th, target 8th)","-8 wants more first-team football","-5 short of confidence","-3 doubts about Cesc Fàbregas's methods"]
-UNHAPPY Malo Gusto Chelsea 37 ["-14 embarrassed by Chelsea's league position (12th, target 5th)","-8 wants more first-team football","-5 short of confidence","-3 unsure where he fits under new manager Kieran Silva"]
-UNHAPPY Estevao Chelsea 37 ["-14 frustrated not to be a regular starter","-14 embarrassed by Chelsea's league position (12th, target 5th)","4 excited by new manager Kieran Silva","-4 homesick"]
-HAPPY Lautaro Martínez Inter 90 ["6 in the form of his life","5 loving a title race","5 proud to captain the club","4 enjoying regular first-team football"]
-HAPPY James Trafford Leeds 90 ["12 proud of Leeds' league position (5th)","6 in the form of his life","4 enjoying regular first-team football","4 believes in Daniel Farke's project"]
-Raya {"a":24,"s":24,"g":0,"as":0,"r":182.79999999999998,"mom":4,"cs":9,"y":0,"rc":0,"lg":0,"la":15,"lr":112.1,"las":0} key games 24 inj 0
-asking price unsettled 33.1 vs settled 36.3
+74 has lost …
+67 unsure where he fits under …
+UNHAPPY Tyler Dibling Everton 26 ["-14 embarrassed by Everton's league position (20th, target 13th)","-10 has lost faith in David Moyes","-8 wants more first-team football","-8 worried about relegation"]
+UNHAPPY Kiernan Dewsbury-Hall Everton 29 ["-14 embarrassed by Everton's league position (20th, target 13th)","-10 frustrated not to be a regular starter","-10 has lost faith in David Moyes","-8 worried about relegation"]
+UNHAPPY Nikola Vlašić Torino 36 ["-14 frustrated not to be a regular starter","-3 doubts about Ignazio Abate's methods"]
+HAPPY Mike Maignan Milan 94 ["8 proud of Milan's league position (1st)","6 in the form of his life","5 loving a title race","5 proud to captain the club"]
+HAPPY Raphinha Barcelona 93 ["6 in the form of his life","5 loving a title race","5 proud to captain the club","4 enjoying regular first-team football"]
+Raya {"a":16,"s":16,"g":0,"as":0,"r":113.79999999999998,"mom":1,"cs":6,"y":1,"rc":0,"lg":0,"la":11,"lr":78.39999999999999,"las":0} key games 22 inj 0
+asking price unsettled 43.8 vs settled 51.7
 OK

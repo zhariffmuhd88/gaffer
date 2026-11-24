@@ -1,10 +1,26 @@
 take job: ok | user ARS | mode dual
-nations 142 | England pool 1723 | Kane caps 125 | UNL fixtures 156
+nations 142 | England pool 1755 | Kane caps 125 | UNL fixtures 156
 England str (AI) 86 | top ranks ESP,ARG,FRA,ENG,POR,BRA
 2026-08-08 UNL27 league   | England: 2nd in group
 2026-11-15 UNL27 qf   | England: Quarter-final
 2026-12-06 EQ28 league   | England: 1st in group
 2027-03-28 UNL27 finals   | England: Semi-final
-2027-06-13 UNL27 done winner England (ru Italy)  | England: Winners
-=== season end 2026/27 team ARS pos 1 | date now 2027-08-07 | user ARS | sacked false
+2027-06-13 UNL27 done winner France (ru Spain)  | England: Final
+=== season end 2026/27 team ARS pos 6 | date now 2027-08-07 | user ARS | sacked false
 2027-11-15 EQ28 po  qualified 22 incl ENG | England: Qualified
+2028-03-26 EQ28 done  qualified 24 incl ENG | England: Qualified
+2028-04-01 EURO28 groups   | England: 1st in group
+DBG 2028-06-20 seasonEnd task 2028-06-23 | euro played 30/36 | missing 0
+2028-06-23 EURO28 ko   | England: Round of 16
+2028-07-09 EURO28 done winner Spain (ru England)  | England: Runners-up
+=== season end 2027/28 team ARS pos 4 | date now 2028-08-05 | user ARS | sacked false
+swaps 9 | England matches played by user 23 | errors 0
+intl hist: Nations League 2026/27: France | Nations League 2026/27: Final | Euro 2028: Spain | Euro 2028: Runners-up
+England caps leaders: Harry Kane 135/99, Jordan Pickford 100/0, Declan Rice 94/8, Kyle Walker 93/1, Jordan Henderson 91/3
+France caps (DB players): William Saliba 22/0, Rayan Cherki 22/4, Kylian Mbappé 22/12
+ranking top 8: ESP 2209, ENG 2068, FRA 2048, ARG 1916, SUI 1844, BEL 1816, POR 1793, NED 1787 | England 2
+FA 100 | mgr rec: Arsenal 118 2026/27 Carabao Cup/2026/27 Cup Winners' Cup (open) | England 23 - (open)
+user rank all-time 51 19 Arsenal & England
+screens 2142 15671 5201 9896 25078 45784
+save 5875 KB | restore ok true
+time 469.9s

@@ -4,12 +4,12 @@
   move   GK,DR,DC,DC,DL,FC,DM,AMC,AMR,MC,AML
 1280 ET half-time: paused at 105 | talk title ?
 1280 sponsor offers 3 | overflow False
-1280 signed Nimbus Telecom 0
+1280 signed Northpeak Motors 0
 390 pos buttons 11 
   before GK,DR,DC,DC,DL,MC,DM,MC,AMR,FC,AML 
   swap   GK,DR,DC,DC,DL,FC,DM,MC,AMR,MC,AML 
   move   GK,DR,DC,DC,DL,FC,DM,AMC,AMR,MC,AML
 390 ET half-time: paused at 105 | talk title ?
 390 sponsor offers 3 | overflow False
-390 signed VoltRush Energy 0
+390 signed Nimbus Telecom 0
 errors []

@@ -1,4 +1,4 @@
-rows [["2026/27 (now)","ARS",15,3,4,0,"T"]] | likes {"fav":[["ARS","his club"]],"favP":[["T","played 15 games under him"],["Noni Madueke","team-mate he gets on well with","p23"]],"bad":[]}
+rows [["2026/27 (now)","ARS",29,14,2,0,"T"]] | likes {"fav":[["ARS","his club"]],"favP":[["T","played 29 games under him"],["Noni Madueke","team-mate he gets on well with","p23"]],"bad":[]}
 MCI manager Enzo Maresca 
 WFF log 2026-11-18 WFF election | 2026-09-16 WFF
 doc episodes 5 Episode 1: "The Twelfth Man" — The supporters take centre stage.
@@ -6,13 +6,13 @@ Cold open: The episode opens on a quiet morning at the training ground.
 Matchday: A family from the season-ticket waiting list gets the call they have waited eleven years for. The cameras follow them from the pub to their seats.
 Training ground: A rare clean bill of health for the squad. 
 Closing: The season has barely started. Next up: Arsenal Legends (Pre-season friendly) on 8 Aug. The narrator closes the episode: "In this building, there is no such thing as a quiet week." 
-QUOTES Ben Morris (Head groundsman (series)): You hear the roar from the tunnel and the hair on your arms stands up. Thirty years and it never gets old.
+QUOTES Lucas Okoro (Head groundsman (series)): You hear the roar from the tunnel and the hair on your arms stands up. Thirty years and it never gets old.
 T (Manager): Those people pay their money and give us everything. The least we can do is leave everything out there.
-Noah Dubois (Academy player): The gaffer told me to stay ready. That's all I'm doing, staying ready.
-Narrator (Series voice-over): Every club tells itself a story. This one is still deciding how it ends.
-shortlist top Vinícius Júnior 201, Kylian Mbappé 193, Raphinha 190, Gonçalo Ramos 168, Mikel Oyarzabal 165
-saka sh [["2026/27","ARS",21,3,4,0,"T"]]
-WFF pres Laurent Mercier [114,94,3] rule {"dl":"2027-07-01"}
-Ballon d Or Vinícius Júnior 530, Kylian Mbappé 423, Raphinha 394 voters 180
-mrec ARS mgr [["2026/27","ARS",1,"PL"]] mh sample 204
+Tom Bakari (Academy player): Training with the first team this week was mad. I just tried not to give the ball away.
+Narrator (Series voice-over): Results decide everything here. Even the mood in the canteen.
+shortlist top Benjamin Sesko 223, Kylian Mbappé 201, Vinícius Júnior 193, Mikel Oyarzabal 177, Bruno Fernandes 171
+saka sh [["2026/27","ARS",53,22,5,0,"T"]]
+WFF pres Laurent Mercier [118,90,3] rule {"dl":"2027-07-01"}
+Ballon d Or Benjamin Sesko 709, Kylian Mbappé 423, Vinícius Júnior 417 voters 180
+mrec ARS mgr [["2026/27","ARS",6,"PL"]] mh sample 204
 OK

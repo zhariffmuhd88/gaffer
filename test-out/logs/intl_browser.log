@@ -2,7 +2,7 @@ start button enabled for England only: True
 user team: N_ENG nat ENG | screen intl
 club nav hidden: [True, True, True]
 press modal: 3
-England games played: England 1-3 Spain | Czechia 1-8 England True
+England games played: England 0-0 Spain | Czechia 1-4 England True
 nation modal: England
 × | rows 25
 friendly arranged: 1

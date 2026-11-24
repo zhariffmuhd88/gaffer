@@ -212,12 +212,14 @@ function mv3dFrame(LM) {
     for (let i = 0; i < 11; i++) { const a = new T3.ArrowHelper(new T3.Vector3(1, 0, 0), new T3.Vector3(), 1, 0x78e6ff, .9, .6); a.visible = false; a.traverse(o => { if (o.material) { o.material.transparent = true; o.material.opacity = .85; o.material.depthTest = false; } o.renderOrder = 5; }); S3.scene.add(a); S3.mv.ar.push(a); }
   }
   const us = mvUserSide(M); let k = 0;
+  try {
   if (UI.mvArrows && us >= 0 && SC.tg && !(S3.fly && !S3.flyDone)) for (const e of M.sides[us].ps) {
     if (k >= S3.mv.ar.length) break; if (!e.on || e === SC.holder) continue; const p = SC.pos.get(e), t = SC.tg.get(e); if (!p || !t) continue;
     const d = Math.hypot(t.x - p.x, t.y - p.y); if (d < .035) continue;
     const a = W3(p), b = W3(t); const dir = new T3.Vector3(b.x - a.x, 0, b.z - a.z); const len = dir.length(); dir.normalize();
     const ar = S3.mv.ar[k++]; ar.position.set(a.x, .15, a.z); ar.setDirection(dir); ar.setLength(len, Math.min(1.4, len * .35), Math.min(.9, len * .25)); ar.visible = true;
   }
+  } catch (er) { }
   for (; k < S3.mv.ar.length; k++) S3.mv.ar[k].visible = false;
   // stamina arrows
   const seen = new Set();
