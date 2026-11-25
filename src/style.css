@@ -558,3 +558,17 @@ img.bcB { border: none; border-radius: 0; }
 #p2dwrap .ovx15 { position: absolute; left: 50%; top: 8px; transform: translateX(-50%); z-index: 4; background: rgba(6,10,20,.85); color: #fff; border: 1px solid #45e1f0; border-radius: 14px; padding: 3px 10px; font-size: 12px; cursor: pointer; }
 .bcIv .bcIvH { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 8px 12px; background: linear-gradient(90deg,#0d1424,#1b2a4a); color: #fff; border-bottom: 3px solid #45e1f0; }
 .bcLive { background: #e8202a; color: #fff; font-size: 10px; letter-spacing: 2px; padding: 2px 6px; border-radius: 2px; font-weight: 800; }
+/* Phase 16: trophy banner, kit editor */
+#p2dwrap .tr16 { position: absolute; left: 50%; top: 10%; transform: translateX(-50%); display: none; align-items: center; gap: 12px; background: linear-gradient(120deg, rgba(10,14,26,.92), rgba(30,24,8,.92)); border: 2px solid #e9c46a; border-radius: 10px; padding: 8px 16px; z-index: 5; color: #fff; max-width: calc(100% - 20px); box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+#p2dwrap .tr16.on { display: flex; animation: tr16 .6s ease-out; }
+#p2dwrap .tr16 span { display: block; font-size: 11px; letter-spacing: 2px; color: #e9c46a; }
+#p2dwrap .tr16 b { display: block; font-size: clamp(16px, 3vw, 26px); font-weight: 900; letter-spacing: 1px; }
+#p2dwrap .tr16 i { display: block; font-style: normal; font-size: 12px; letter-spacing: 4px; color: #ffd23f; }
+@keyframes tr16 { from { transform: translate(-50%, -20px); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+.kit16 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kit16c { display: flex; flex-direction: column; gap: 5px; align-items: stretch; background: rgba(255,255,255,.03); border-radius: 8px; padding: 8px; }
+.kit16c label { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12.5px; }
+.kit16c input[type=color] { width: 44px; height: 26px; padding: 0; border: none; background: none; }
+.kit16c select { max-width: 120px; }
+.kit16s { width: 70px; margin: 0 auto; } .kit16s .lushirt { width: 100%; height: auto; }
+@media (max-width: 520px) { .kit16 { grid-template-columns: 1fr; } .kit16c { flex-direction: row; flex-wrap: wrap; } .kit16s { width: 52px; margin: 0; } }
