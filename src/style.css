@@ -518,3 +518,43 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 #p2dwrap .brd14.on{display:flex}
 #p2dwrap .brd14 span{font-size:10px;letter-spacing:2px;color:#bbb}
 #p2dwrap .brd14 b{font-family:var(--f-mono);font-size:30px;color:#ff3030;line-height:1;text-shadow:0 0 8px rgba(255,48,48,.7)}
+/* Phase 15: broadcast graphics */
+#bcov { position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; background: rgba(4,6,14,.78); padding: 10px; cursor: pointer; }
+#bcov.on { display: flex; }
+#bcov .luX { position: absolute; top: 8px; right: 10px; background: none; border: none; color: #fff; font-size: 30px; cursor: pointer; z-index: 2; }
+.bcCard { width: min(980px, 100%); max-height: calc(100vh - 20px); overflow: auto; position: relative; border-radius: 12px; color: #fff; background: linear-gradient(160deg,#0d1424 0%,#111a30 55%,#0a0f1c 100%); box-shadow: 0 20px 60px rgba(0,0,0,.6); padding: 16px 18px 34px; cursor: default; }
+.bcCard .luHint { position: absolute; right: 14px; bottom: 10px; font-size: 12px; }
+.bcHead { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; border-bottom: 3px solid #45e1f0; padding-bottom: 10px; }
+.bcT { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: clamp(14px,2.4vw,24px); letter-spacing: .5px; min-width: 0; }
+.bcT span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bcT.r { justify-content: flex-end; text-align: right; }
+.bcB { width: 34px; height: 34px; border-radius: 50%; flex: none; object-fit: contain; display: inline-block; border: 2px solid rgba(255,255,255,.4); }
+img.bcB { border: none; border-radius: 0; }
+.bcSc { text-align: center; } .bcSc b { display: block; font-family: var(--f-mono); font-size: clamp(30px,6vw,54px); line-height: 1; } .bcSc span { font-size: 11px; letter-spacing: 3px; color: #45e1f0; }
+.bcGoals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px; color: #d7deee; margin: 8px 0 10px; } .bcGoals .r { text-align: right; }
+.bcBody { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; }
+.bcRow { display: grid; grid-template-columns: 52px 1fr 52px; align-items: center; gap: 8px; margin: 7px 0 0; position: relative; padding-top: 12px; }
+.bcRow .r { text-align: right; } .bcL { position: absolute; left: 0; right: 0; top: 0; text-align: center; font-size: 11px; letter-spacing: 1.5px; color: #9fb0cf; text-transform: uppercase; }
+.bcBar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: #222b40; } .bcBar i { display: block; height: 100%; }
+.bcH { font-size: 11px; letter-spacing: 2px; color: #45e1f0; margin-bottom: 4px; }
+.bcTop { display: grid; grid-template-columns: 18px 12px 1fr auto; gap: 8px; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.bcDot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); }
+.bcOv { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; } .bcOv .btn { font-size: 12px; padding: 4px 6px; }
+.bcPotm { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; padding: 14px; border-radius: 10px; background: linear-gradient(110deg, var(--bcA) 0 30%, rgba(0,0,0,.35) 30%); }
+.bcShirt { position: relative; width: clamp(90px,18vw,150px); } .bcShirt .lushirt { width: 100%; height: auto; display: block; } .bcShirt span { position: absolute; left: 0; right: 0; top: 38%; text-align: center; font-weight: 900; font-size: clamp(20px,4vw,34px); color: var(--bcB); text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+.bcPn { font-size: clamp(20px,3.6vw,34px); font-weight: 900; letter-spacing: .5px; }
+.bcNums { display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap; } .bcNums div { text-align: center; } .bcNums b { display: block; font-family: var(--f-mono); font-size: 24px; } .bcNums span { font-size: 11px; color: #9fb0cf; }
+@media (max-width: 640px) { .bcBody { grid-template-columns: 1fr; } .bcB { width: 24px; height: 24px; } .bcPotm { grid-template-columns: 1fr; background: linear-gradient(180deg, var(--bcA) 0 38%, rgba(0,0,0,.35) 38%); } .bcShirt { margin: 0 auto; } }
+#p2dwrap .tick15 { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; overflow: hidden; background: rgba(6,10,20,.85); border-top: 2px solid #45e1f0; z-index: 3; pointer-events: none; }
+#p2dwrap .tick15 div { white-space: nowrap; font-family: var(--f-mono); font-size: 11.5px; line-height: 20px; color: #e8eefc; display: inline-block; padding-left: 100%; animation: tk15 38s linear infinite; }
+@keyframes tk15 { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+#p2dwrap.hasTick .cmt13 { bottom: 30px; }
+#p2dwrap .lt15 { position: absolute; left: 10px; bottom: 30px; display: none; align-items: stretch; background: rgba(6,10,20,.92); border-radius: 4px; overflow: hidden; z-index: 4; max-width: calc(100% - 20px); box-shadow: 0 6px 16px rgba(0,0,0,.5); }
+#p2dwrap .lt15.on { display: flex; animation: lt15 .35s ease-out; }
+#p2dwrap .lt15 i { width: 8px; flex: none; } #p2dwrap .lt15 div { padding: 5px 10px; } #p2dwrap .lt15 b { display: block; font-size: 11px; letter-spacing: 2px; } #p2dwrap .lt15 span { font-size: 13px; }
+@keyframes lt15 { from { transform: translateX(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+#p2dwrap .pip15 { position: absolute; right: 10px; bottom: 30px; display: none; border: 2px solid #fff; border-radius: 4px; overflow: hidden; z-index: 4; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,.6); }
+#p2dwrap .pip15.on { display: block; } #p2dwrap .pip15 canvas { display: block; } #p2dwrap .pip15 span { position: absolute; left: 6px; top: 4px; font-size: 10px; letter-spacing: 2px; background: #e8202a; color: #fff; padding: 1px 5px; border-radius: 2px; }
+#p2dwrap .ovx15 { position: absolute; left: 50%; top: 8px; transform: translateX(-50%); z-index: 4; background: rgba(6,10,20,.85); color: #fff; border: 1px solid #45e1f0; border-radius: 14px; padding: 3px 10px; font-size: 12px; cursor: pointer; }
+.bcIv .bcIvH { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 8px 12px; background: linear-gradient(90deg,#0d1424,#1b2a4a); color: #fff; border-bottom: 3px solid #45e1f0; }
+.bcLive { background: #e8202a; color: #fff; font-size: 10px; letter-spacing: 2px; padding: 2px 6px; border-radius: 2px; font-weight: 800; }
