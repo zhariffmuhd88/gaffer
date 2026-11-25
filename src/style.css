@@ -497,3 +497,19 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 #p2dwrap.photo .o3d,#p2dwrap.photo .sb3d,#p2dwrap.photo .gb3d,#p2dwrap.photo .luov{display:none!important}
 #p2dwrap .phpanel{position:absolute;left:0;right:0;bottom:8px;margin:0 auto;max-width:640px;padding:6px 8px;background:rgba(8,12,18,.78);border-radius:10px;z-index:6}
 #p2dwrap .phpanel .btn{font-size:12.5px;padding:4px 9px}
+/* Phase 13: commentary, PA, VAR, goal-line technology */
+#p2dwrap .cmt13{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);max-width:92%;background:rgba(8,12,18,.82);color:#fff;font-size:13.5px;padding:5px 12px;border-radius:6px;border-left:3px solid #45e1f0;opacity:0;transition:opacity .25s;pointer-events:none;z-index:4;text-align:center}
+#p2dwrap .cmt13.on{opacity:1}
+#p2dwrap .pa13{position:absolute;left:8px;top:44px;max-width:min(360px,80%);background:rgba(20,20,10,.85);color:#f4f0d8;font-size:12px;padding:5px 9px;border-radius:6px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:4}
+#p2dwrap .pa13.on{opacity:1}
+#p2dwrap .var13{position:absolute;right:8px;top:44px;background:rgba(6,10,20,.9);color:#fff;border:2px solid #45e1f0;border-radius:8px;padding:6px 10px;display:none;z-index:5;text-align:center;max-width:calc(100% - 16px)}
+#p2dwrap .var13.on{display:block}
+#p2dwrap .var13 .vh{font-family:var(--f-mono);font-weight:800;letter-spacing:3px;color:#45e1f0;font-size:13px}
+#p2dwrap .var13 .vt{font-weight:800;font-size:17px;margin:2px 0 4px}
+#p2dwrap .var13 .vt.red{color:#ff5f5f}#p2dwrap .var13 .vt.grn{color:#2fd36b}
+#p2dwrap .var13 .vdia{display:block;max-width:100%;height:auto;margin:0 auto}
+#p2dwrap .var13 .vdots i{animation:v13 1s infinite;font-style:normal}#p2dwrap .var13 .vdots i:nth-child(2){animation-delay:.2s}#p2dwrap .var13 .vdots i:nth-child(3){animation-delay:.4s}
+@keyframes v13{0%,100%{opacity:.2}50%{opacity:1}}
+#p2dwrap .glt13{position:absolute;left:50%;top:22%;transform:translateX(-50%);display:none;gap:10px;align-items:center;background:rgba(6,10,20,.9);color:#fff;padding:8px 14px;border-radius:10px;z-index:5}
+#p2dwrap .glt13.on{display:flex}
+@media (max-width:480px){#p2dwrap .var13 .vdia{width:170px}#p2dwrap .cmt13{font-size:12.5px}}

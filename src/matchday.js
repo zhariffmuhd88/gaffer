@@ -484,7 +484,7 @@ function enterStep(LM, SC, st) {
       }
       break;
     }
-    case 'net': SC.net = { side: st.side, t0: SC.t }; lab('GOAL!', true, null); if (SC.live) { SND.roar(); V.cheer = { side: st.side === 0 ? 'h' : 'a', t0: performance.now() }; if (V.venue.neutral) V.cheer.side = st.side === 0 ? 'h' : 'a'; } break;
+    case 'net': SC.net = { side: st.side, t0: SC.t }; lab('GOAL!', true, null); if (SC.live) { SND.roar(st.side); V.cheer = { side: st.side === 0 ? 'h' : 'a', t0: performance.now() }; if (V.venue.neutral) V.cheer.side = st.side === 0 ? 'h' : 'a'; } break;
     case 'save': {
       const nm = { dive: 'WHAT A SAVE!', fingertip: 'FINGERTIP SAVE!', catch: 'Saved', parry: 'Parried', smother: 'SMOTHERED!', backpedal: 'TIPPED OVER!' }[st.det];
       lab(nm, false, st.det === 'catch' || st.det === 'parry' ? '#fff' : '#45e1f0');
