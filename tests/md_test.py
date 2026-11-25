@@ -17,7 +17,7 @@ async def main():
         errs=[]; pg.on('pageerror', lambda e: errs.append(str(e))); pg.on('console', lambda m: errs.append('c:'+m.text) if m.type=='error' and 'ERR_TUNNEL' not in m.text and 'Failed to load' not in m.text else None)
         await pg.goto('file://'+str(pathlib.Path('wrap.html').resolve())); await pg.wait_for_timeout(500)
         await pg.screenshot(path='md_start.png'); await pg.click('[data-v="LIV"]'); await pg.click('[data-a="start"]'); await pg.click('nav [data-v="club"]'); await pg.screenshot(path='md_club.png')
-        for i in range(8):
+        for i in range(20):
             await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break
         await pg.screenshot(path='md_pre.png', full_page=True)
@@ -50,7 +50,7 @@ async def main():
         print('after', (await pg.inner_text('.top'))[:100].replace('\n',' | '))
         await pg.set_viewport_size({'width':390,'height':844})
         await ivx(pg, 0) if await pg.query_selector('[data-a^="iv"]') else None
-        for i in range(8):
+        for i in range(20):
             await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break
         await pg.click('[data-a="kickoff"]'); await pg.wait_for_timeout(5000)

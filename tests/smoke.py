@@ -36,7 +36,7 @@ async def main():
         await pg.click('nav [data-v="transfers"]'); await pg.click('tr[data-a="player"] >> nth=5'); await pg.click('[data-a="bidOpen"]'); await pg.click('[data-a="bid"]')
         await pg.keyboard.press('Escape')
         # continue to first match
-        for i in range(6):
+        for i in range(20):
             await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(300)
             if await pg.query_selector('[data-a="kickoff"]'): break
         txt=await pg.inner_text('main')
