@@ -493,3 +493,7 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
   .luFoot { height: 10cqw; } .luComp { font-size: 3.4cqw; padding: 0 3cqw; } .luComp .clogo { width: 6cqw !important; height: 6cqw !important; } .luRnd { font-size: 3cqw; padding: 0 3cqw; }
   .luHint { font-size: 2.6cqw; bottom: 11cqw; }
 }
+/* Phase 12: photo mode */
+#p2dwrap.photo .o3d,#p2dwrap.photo .sb3d,#p2dwrap.photo .gb3d,#p2dwrap.photo .luov{display:none!important}
+#p2dwrap .phpanel{position:absolute;left:0;right:0;bottom:8px;margin:0 auto;max-width:640px;padding:6px 8px;background:rgba(8,12,18,.78);border-radius:10px;z-index:6}
+#p2dwrap .phpanel .btn{font-size:12.5px;padding:4px 9px}

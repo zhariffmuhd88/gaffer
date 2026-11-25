@@ -54,7 +54,7 @@ function bloom3d(S3) {
   const pts = [];
   if (!S3.bowl) for (const x of [-1, 1]) for (const z of [-1, 1]) pts.push([x * (P3.L / 2 + 16), 43, z * (P3.W / 2 + 16), S3.night ? 26 : 12]);
   else for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2; pts.push([Math.cos(a) * (P3.L / 2 + 22), 27, Math.sin(a) * (P3.W / 2 + 20), S3.night ? 14 : 0]); }
-  for (const [x, y, z, s] of pts) if (s) { const sp = new T3.Sprite(mat); sp.position.set(x, y, z); sp.scale.set(s, s, 1); S3.scene.add(sp); }
+  for (const [x, y, z, s] of pts) if (s) { const sp = new T3.Sprite(mat); sp.userData.glow = true; sp.position.set(x, y, z); sp.scale.set(s, s, 1); S3.scene.add(sp); }
 }
 // called from build3d after the scene and S3 exist
 function phase8Build(S3, LM) {
