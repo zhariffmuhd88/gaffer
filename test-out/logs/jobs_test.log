@@ -1,11 +1,11 @@
-security levels {"Stable":59,"Secure":63,"Very secure":19,"Unsecure":33,"Very unsecure":5}
-sackings by Dec 20 {"SA":1,"LO":3,"L1":1,"PL":1,"SPL":1,"CH":1,"LL":1} Gian Piero Gasperini (Roma, 15th); Daniel Stendel (Barnsley, 23rd); Gary Bowyer (Burton Albion, 24th); Davide Ancelotti (Lille, 13th)
-vacant Barnsley [Luca Lambert (caretaker)], Burton Albion [Sam Pearce (caretaker)], Roma [Sam Mensah (caretaker)]
-You have declared interest in the Newcastle United job. If Leo Rossi is sacked, they will call you first.
-board 66.30345768880802 -> 62.303457688808024 fans 61 -> 58 | rival false
+security levels {"Stable":57,"Secure":66,"Very unsecure":5,"Very secure":20,"Unsecure":31}
+sackings by Dec 20 {"LO":4,"CH":1,"L1":1,"SA":1,"LL":1} Nathan Diallo (Plymouth Argyle, 24th); Michael Skubala (Bristol City, 23rd); Michael Duff (Bradford City, 22nd); Bruno Génésio (Marseille, 9th)
+vacant Plymouth Argyle [Ben Clarke (caretaker)]
+You have declared interest in the Newcastle United job. If Matthias Jaissle is sacked, they will call you first.
+board 55.39467697907188 -> 51.39467697907188 fans 53 -> 50 | rival false
 You have declared interest in the Fulham job. If Alvaro Arbeloa is sacked, they will call you first.
-rival interest: board 62.303457688808024 -> 47.303457688808024 fans -> 36
-Application sent to Barnsley. Expect an answer within about a week.
-offer from Barnsley false 
-sackings in the season {"LL":2,"PL":3,"ED":1,"L1":2,"LO":8,"BL":1,"SA":1,"SPL":1,"CH":1} total 20
+rival interest: board 51.39467697907188 -> 36.39467697907188 fans -> 28
+Application sent to Plymouth Argyle. Expect an answer within about a week.
+offer from Plymouth Argyle false Job offer: Newcastle United
+sackings in the season {"L1":4,"LO":9,"PL":1,"CH":1,"SA":1,"LL":1} total 17
 OK

@@ -80,8 +80,16 @@ function cineRun(host, ac, onEnd) {
     // goals
     const postM = new T3.MeshLambertMaterial({ color: '#ffffff' }); const netM = new T3.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: .3, side: T3.DoubleSide, wireframe: true }); let net = null;
     for (const s of [-1, 1]) { const gx = s * P3.L / 2; for (const z of [-3.66, 3.66]) { const p = new T3.Mesh(new T3.CylinderGeometry(.08, .08, 2.44, 8), postM); p.position.set(gx, 1.22, z); scene.add(p); } const bar = new T3.Mesh(new T3.CylinderGeometry(.08, .08, 7.32, 8), postM); bar.rotation.x = Math.PI / 2; bar.position.set(gx, 2.44, 0); scene.add(bar); const n = new T3.Mesh(new T3.BoxGeometry(2, 2.44, 7.32, 4, 5, 10), netM); n.position.set(gx + s * 1.02, 1.22, 0); scene.add(n); if (s > 0) net = n; }
-    // players: 11 a side
-    const F = []; for (let s = 0; s < 2; s++) for (let i = 0; i < 11; i++) { const g = figure(T3, kits[s], i === 0, gkc, i === 0 ? 1 : [0, 2, 5, 6, 3, 8, 4, 10, 7, 9, 11][i]); scene.add(g); F.push({ g, s, i, last: null, ph: Math.random() * 6 }); }
+    // players: 11 a side — the human models (Phase 6/7) with club kit patterns and varied looks; block figures on phones
+    const useRig = !lo && !!T3.SkinnedMesh && typeof figureRig === 'function'; const hpat = u && typeof kitPat === 'function' ? kitPat(G.user, home) : 'plain';
+    const F = []; for (let s = 0; s < 2; s++) for (let i = 0; i < 11; i++) { const num = i === 0 ? 1 : [0, 2, 5, 6, 3, 8, 4, 10, 7, 9, 11][i]; const o = { look: typeof lookOf === 'function' ? lookOf({ id: 'cine' + s + i }) : undefined, pat: s === 0 ? hpat : 'plain', lo, capt: s === 0 && i === 6 };
+      let g; try { g = (useRig ? figureRig : figure)(T3, kits[s], i === 0, gkc, num, o); } catch (e) { g = figure(T3, kits[s], i === 0, gkc, num); } scene.add(g); F.push({ g, rig: g.userData && g.userData.rig, s, i, last: null, ph: Math.random() * 6, v: 0 }); }
+    // a mascot for the walk-out, the trophy, the podium and fireworks for the lift (Phases 14-16)
+    const masc = figure(T3, home, false, null, 0, { look: typeof lookOf === 'function' ? lookOf({ id: 'cinemascot' }) : undefined, lo: true }); masc.scale.setScalar(.6); masc.visible = false; scene.add(masc);
+    const tro = typeof trophyMesh === 'function' ? trophyMesh(T3, 'cup') : new T3.Group(); tro.scale.setScalar(1.5); tro.visible = false; scene.add(tro);
+    const pod = new T3.Group(); { const pb = new T3.Mesh(new T3.BoxGeometry(6, .5, 2.4), new T3.MeshLambertMaterial({ color: '#1b1f2e' })); pb.position.y = .25; pod.add(pb); const bd = new T3.Mesh(new T3.BoxGeometry(6.02, .2, 2.42), new T3.MeshLambertMaterial({ color: home.body })); bd.position.y = .42; pod.add(bd); } pod.position.set(0, 0, -6.4); pod.visible = false; scene.add(pod);
+    const fws = []; const firework = () => { const n = lo ? 60 : 140; const pos = new Float32Array(n * 3), vel = []; const cx = (Math.random() - .5) * 80, cy = 30 + Math.random() * 12, cz = 30 + Math.random() * 15; for (let i = 0; i < n; i++) { pos.set([cx, cy, cz], i * 3); const uu = Math.random() * 2 - 1, th = Math.random() * 6.283, sp = 9 + Math.random() * 5; vel.push([Math.sqrt(1 - uu * uu) * Math.cos(th) * sp, uu * sp, Math.sqrt(1 - uu * uu) * Math.sin(th) * sp]); } const geo = new T3.BufferGeometry(); geo.setAttribute('position', new T3.BufferAttribute(pos, 3)); const pt = new T3.Points(geo, new T3.PointsMaterial({ color: [home.body, home.trim, '#ffd23f'][fws.length % 3], size: 1.1, transparent: true, depthWrite: false, blending: T3.AdditiveBlending })); scene.add(pt); fws.push({ pt, vel, age: 0 }); if (fws.length > 8) { const o = fws.shift(); scene.remove(o.pt); } };
+    const fwStep = (dt) => { for (const f of fws) { f.age += dt; const a = f.pt.geometry.attributes.position.array; for (let i = 0; i < f.vel.length; i++) { const v = f.vel[i]; v[1] -= 6 * dt; a[i * 3] += v[0] * dt; a[i * 3 + 1] += v[1] * dt; a[i * 3 + 2] += v[2] * dt; } f.pt.geometry.attributes.position.needsUpdate = true; f.pt.material.opacity = Math.max(0, 1 - f.age / 2.2); f.pt.visible = f.age < 2.3; } };
     const ball = new T3.Mesh(new T3.SphereGeometry(.42, 16, 12), new T3.MeshLambertMaterial({ color: '#ffffff' })); scene.add(ball);
     // formations (metres; home attacks +x)
     const FORM = [[-48, 0], [-34, -20], [-36, -7], [-36, 7], [-34, 20], [-20, -12], [-22, 0], [-20, 12], [-8, -22], [-6, 0], [-8, 22]];
@@ -102,47 +110,68 @@ function cineRun(host, ac, onEnd) {
     const fly = new T3.CatmullRomCurve3([[-230, 110, -210], [-160, 92, -130], [-95, 80, -70], [-35, 66, -28], [0, 30, -40]].map(p => new T3.Vector3(...p)));
     const lerp = (a, b, k) => a + (b - a) * Math.max(0, Math.min(1, k)); const ease = (k) => k < 0 ? 0 : k > 1 ? 1 : k * k * (3 - 2 * k);
     const t0 = performance.now(); let shake = 0;
-    const place = (f, x, z, y, face) => { const p = { x, z }; const prev = f.last || p; const dx = x - prev.x, dz = z - prev.z, sp = Math.hypot(dx, dz); f.g.position.set(x, y || 0, z); f.g.rotation.y = face != null ? face : sp > .02 ? Math.atan2(-dz, dx) : f.g.rotation.y; f.ph += Math.min(.6, sp * 1.6); const sw = Math.sin(f.ph) * Math.min(.75, sp * 3); let li = 0; for (const c of f.g.children) { if (c.name === 'leg') c.rotation.z = (li++ ? 1 : -1) * sw; else if (c.name === 'armL' || c.name === 'armR') { c.rotation.x = 0; c.rotation.z = (c.name === 'armR' ? 1 : -1) * -sw * .8; } } f.last = p; };
-    const arms = (f, up) => { for (const c of f.g.children) if (c.name === 'armL' || c.name === 'armR') { c.rotation.x = up ? (c.name === 'armR' ? 2.7 : -2.7) : 0; c.rotation.z = 0; } };
+    let dtS = 16;
+    const place = (f, x, z, y, face) => { const p = { x, z }; const prev = f.last || p; const dx = x - prev.x, dz = z - prev.z, sp = Math.hypot(dx, dz); f.g.position.set(x, y || 0, z); f.g.rotation.y = face != null ? face : sp > .02 ? Math.atan2(-dz, dx) : f.g.rotation.y;
+      if (f.rig) { f.v = f.v * .7 + (sp / Math.max(.001, dtS / 1000)) * .3; f.dt = dtS; gait3d(f, dtS); if (y) f.g.position.y = y; }
+      else { f.ph += Math.min(.6, sp * 1.6); const sw = Math.sin(f.ph) * Math.min(.75, sp * 3); let li = 0; for (const c of f.g.children) { if (c.name === 'leg') c.rotation.z = (li++ ? 1 : -1) * sw; else if (c.name === 'armL' || c.name === 'armR') { c.rotation.x = 0; c.rotation.z = (c.name === 'armR' ? 1 : -1) * -sw * .8; } } }
+      f.last = p; };
+    const arms = (f, up) => { if (f.rig) { if (up) setPose(f, { legs: [0, 0], arms: [[-2.7, 0], [2.7, 0]], lift: f.g.position.y }); return; } for (const c of f.g.children) if (c.name === 'armL' || c.name === 'armR') { c.rotation.x = up ? (c.name === 'armR' ? 2.7 : -2.7) : 0; c.rotation.z = 0; } };
+    const kickLeg = (f, k) => { if (f.rig) setPose(f, { legs: [-.9 * k, .2], arms: [[-.3, .5], [.3, -.5]] }); else for (const c of f.g.children) if (c.name === 'leg') { c.rotation.z = -.9 * k; break; } };
+    const lt = (() => { let el = host.parentElement.querySelector('.cine-lt'); if (!el) { host.parentElement.insertAdjacentHTML('beforeend', '<div class="cine-lt"></div>'); el = host.parentElement.querySelector('.cine-lt'); } return (h) => { if (el.dataset.h !== h) { el.dataset.h = h; el.innerHTML = h; el.classList.toggle('on', !!h); } }; })();
+    const clubN = esc(((u && u.name) || 'GAFFER FC').toUpperCase()); const clubT = esc(String((G && G.user) || 'GAF').toUpperCase().slice(0, 3));
+    let lastT = performance.now();
     const loop = () => {
-      if (ctl.stopped) return; const tl = (performance.now() - t0) / 1000; ctl.tl = tl;
+      if (ctl.stopped) return; const now = performance.now(); dtS = Math.min(80, now - lastT); lastT = now; const tl = UI.cineAt != null ? UI.cineAt : (now - t0) / 1000; ctl.tl = tl; // UI.cineAt: test hook to hold a moment of the film
       if (tl > CINE_LEN) return end();
       const W = host.clientWidth || window.innerWidth, H = host.clientHeight || window.innerHeight; if (ctl.w !== W || ctl.h !== H) { ctl.w = W; ctl.h = H; ren.setSize(W, H); cam.aspect = W / H; cam.updateProjectionMatrix(); }
-      let cp_, look; conf.visible = false; flares.forEach(f => f.visible = false); smoke.forEach(s => s.visible = false); ph.classList.remove('on');
-      // default: everyone in formation, ball on the spot
-      const k = tl < 9 ? 0 : 1; ball.position.set(0, .42, 0);
+      let cp_, look; conf.visible = false; flares.forEach(f => f.visible = false); smoke.forEach(s => s.visible = false); ph.classList.remove('on'); masc.visible = false; tro.visible = false; pod.visible = false; fwStep(dtS / 1000);
+      const BAR = 60 / 128 * 4; const B = (n) => 9 + n * BAR; // cuts on the bar lines of the music
+      ball.position.set(0, .42, 0); let lower = '';
       if (tl < 5) { // fly-over from outside, over the roof, into the bowl
         F.forEach(f => f.g.visible = false); const p = fly.getPoint(ease(tl / 5)); cp_ = p; look = { x: 0, y: 5, z: 0 };
         say(tl > .8 && tl < 4.4 ? '<span class="c-small">AYEP INTERACTIVE presents</span>' : '', 'fade');
-      } else if (tl < 9) { // walk-out from the tunnel
-        const q = (tl - 5) / 4; F.forEach(f => { f.g.visible = true; const lead = -40 + q * 34; const z = lead - f.i * 1.7; const x = f.s ? 1.6 : -1.6; place(f, x, Math.min(z, -6 - f.i * .2)); f.g.rotation.y = Math.PI / 2; });
+      } else if (tl < 9) { // walk-out from the tunnel, the mascot holding the captain's hand
+        const q = (tl - 5) / 4; F.forEach(f => { f.g.visible = true; const lead = -40 + q * 34; const z = lead - f.i * 1.7; const x = f.s ? 1.6 : -1.6; place(f, x, Math.min(z, -6 - f.i * .2), 0, Math.PI / 2); });
+        const c = F[0]; masc.visible = true; masc.position.set(c.g.position.x - .8, 0, c.g.position.z); masc.rotation.y = Math.PI / 2;
         cp_ = { x: 5.5, y: 2.1, z: -40 + q * 34 + 9 }; look = { x: 0, y: 1.7, z: -40 + q * 34 - 2 }; say(tl > 5.6 ? '<span class="c-small">Tonight</span>' : '', 'fade');
-      } else if (tl < 11.5) { // title slam
+        if (tl > 6) lower = `<i></i><div><b>LINE-UPS</b><span>${clubN} · ${esc(String(F.length / 2))} v ${esc(String(F.length / 2))}</span></div>`;
+      } else if (tl < B(1)) { // title slam
         F.forEach(f => { f.g.visible = true; const x = (f.i - 5) * 1.25 + (f.s ? 8 : -8); place(f, x, -4, 0, Math.PI / 2); });
         cp_ = { x: 0, y: 12, z: -26 }; look = { x: 0, y: 2, z: -4 }; if (tl < 9.1) shake = 1; say('<b class="c-big">GAFFER</b>', 'slam');
-      } else if (tl < 15.5) { // the dribble
-        const q = (tl - 11.5) / 4; F.forEach(f => { f.g.visible = true; const [x, z] = posOf(f.s, f.i, 1); place(f, x + q * 6 * (f.s ? -1 : 1) + 8, z * .8); });
-        const at = F[9]; const ax = lerp(-12, 33, q), az = lerp(-18, -6, q) + Math.sin(q * 9) * 1.2; place(at, ax, az); ball.position.set(ax + .9, .42, az + .1);
+      } else if (tl < B(3)) { // the dribble, with the broadcast score bug
+        const q = (tl - B(1)) / (2 * BAR); F.forEach(f => { f.g.visible = true; const [x, z] = posOf(f.s, f.i, 1); place(f, x + q * 6 * (f.s ? -1 : 1) + 8, z * .8); });
+        const at = F[9]; const ax = lerp(-12, 33, q), az = lerp(-18, -6, q) + Math.sin(q * 9) * 1.2; at.drib = true; place(at, ax, az); ball.position.set(ax + .9, .42, az + .1);
         const d1 = F[14], d2 = F[13]; place(d1, ax - 2.2, az + 1.8); place(d2, ax - 4.2, az + 3.6);
         cp_ = { x: ax - 3, y: 3.2, z: az - 15 }; look = { x: ax + 2, y: 1, z: az }; say(q > .2 ? '<span class="c-mid">Every touch counts</span>' : '', 'fade');
-      } else if (tl < 18.5) { // the shot, low and behind the goal; the net ripples
-        const q = (tl - 15.5); const at = F[9]; F.forEach(f => { f.g.visible = true; if (f !== at && f.i) { const [x, z] = posOf(f.s, f.i, 1); place(f, x + 12, z * .7); } });
-        place(at, 34, -6, 0, Math.atan2(-(1.5 + 6), 52 - 34)); const gk = F[11]; const kick = .35, hit = .95;
-        if (q < kick) { ball.position.set(34.8, .42, -5.9); for (const c of at.g.children) if (c.name === 'leg') c.rotation.z = -.9 * (q / kick); }
+        lower = `<em>LIVE</em><div><b>${clubT} 0–0 RIV</b><span>${Math.round(lerp(76, 89, q))}'</span></div>`;
+      } else if (tl < B(4)) { // the shot, low and behind the goal; the net ripples on the impact
+        const q = tl - B(3); const at = F[9]; at.drib = false; F.forEach(f => { f.g.visible = true; if (f !== at && f.i) { const [x, z] = posOf(f.s, f.i, 1); place(f, x + 12, z * .7); } });
+        place(at, 34, -6, 0, Math.atan2(-(1.5 + 6), 52 - 34)); const gk = F[11]; const kick = .55, hit = 16.4 - B(3);
+        if (q < kick) { ball.position.set(34.8, .42, -5.9); kickLeg(at, q / kick); }
         else { const r = Math.min(1, (q - kick) / (hit - kick)); ball.position.set(lerp(34.8, 53.2, r), .42 + Math.sin(Math.PI * r) * 1.6 + r * 1.0, lerp(-5.9, 2.3, r)); }
-        const dv = Math.max(0, Math.min(1, (q - .6) / .4)); gk.g.position.set(51.5, Math.sin(Math.PI * dv) * .8, lerp(0, 2.6, dv)); gk.g.rotation.set(dv * 1.3, Math.PI, 0);
+        const dv = Math.max(0, Math.min(1, (q - (hit - .45)) / .45)); gk.g.position.set(51.5, Math.sin(Math.PI * dv) * .8, lerp(0, 2.6, dv)); gk.g.rotation.set(dv * 1.3, Math.PI, 0);
         if (q > hit) { const d = q - hit; net.scale.set(1 + Math.sin(d * 30) * .25 * Math.exp(-d * 3), 1, 1); if (d < .1) shake = .8; }
         cp_ = { x: 56, y: 1.4, z: 6.5 }; look = { x: 38, y: 1.2, z: -3 }; say(q > hit ? '<b class="c-big goal">GOAL!</b>' : '', q > hit ? 'slam' : '');
-      } else if (tl < 23.5) { // celebration in the corner, flares in the stands, confetti
-        const q = (tl - 18.5) / 5; const at = F[9]; const cx = lerp(36, 49, ease(q * 1.6)), cz = lerp(-6, -29, ease(q * 1.6)); place(at, cx, cz); arms(at, q > .3);
+      } else if (tl < B(6)) { // celebration in the corner, flares in the stands, confetti
+        const q = (tl - B(4)) / (2 * BAR); const at = F[9]; const cx = lerp(36, 49, ease(q * 1.6)), cz = lerp(-6, -29, ease(q * 1.6)); place(at, cx, cz); arms(at, q > .3);
         F.forEach(f => { f.g.visible = true; if (f.s === 0 && f !== at && f.i) { const [x, z] = posOf(0, f.i, 1); place(f, lerp(x + 12, cx - 1.5 - (f.i % 3), ease(q * 1.3)), lerp(z * .7, cz + 1.5 + (f.i % 4) * .6, ease(q * 1.3)), Math.abs(Math.sin(tl * 7 + f.i)) * .5 * (q > .45)); arms(f, q > .5 && f.i % 2); } else if (f.s === 1) { const [x, z] = posOf(1, f.i, 1); place(f, x + 12, z * .7); } });
         ball.position.set(53, .42, 2.2); net.scale.set(1, 1, 1);
-        flares.forEach((f, i) => { f.visible = true; f.scale.setScalar(4.5 + Math.sin(tl * 13 + i) * .8); }); smoke.forEach(s => { s.visible = true; const a = ((tl - 18.5) * .35 + s.userData.d) % 3; s.position.set(s.userData.x, 6 + a * 4, s.userData.z); s.scale.setScalar(3 + a * 3); s.material.opacity = Math.max(0, .6 - a * .2); });
+        flares.forEach((f, i) => { f.visible = true; f.scale.setScalar(4.5 + Math.sin(tl * 13 + i) * .8); }); smoke.forEach(s => { s.visible = true; const a = ((tl - B(4)) * .35 + s.userData.d) % 3; s.position.set(s.userData.x, 6 + a * 4, s.userData.z); s.scale.setScalar(3 + a * 3); s.material.opacity = Math.max(0, .6 - a * .2); });
         conf.visible = true; const p = cg.attributes.position; for (let i = 0; i < CN; i++) { let y = p.getY(i) - .12; if (y < 0) y = 30; p.setY(i, y); p.setX(i, p.getX(i) + Math.sin(tl * 2 + i) * .03); } p.needsUpdate = true;
         const a = -.9 + q * 1.6; cp_ = { x: cx + Math.cos(a) * 13, y: 4.5, z: cz + Math.sin(a) * 13 + 4 }; look = { x: cx, y: 1.6, z: cz }; say(q > .25 ? '<span class="c-mid">Moments like these</span>' : '', 'fade');
-      } else if (tl < 27) { // memories: the personal photo if there is one, otherwise the bowl from above
-        const q = (tl - 23.5) / 3.5; F.forEach(f => f.g.visible = true); conf.visible = true; flares.forEach(f => f.visible = true);
-        cp_ = { x: Math.cos(q * .8) * 95, y: 70, z: Math.sin(q * .8) * 95 - 20 }; look = { x: 0, y: 0, z: 0 };
+        lower = `<i style="background:#2fd36b"></i><div><b>GOAL · ${clubT} 1–0 RIV</b><span>89' · a winner to remember</span></div>`;
+      } else if (tl < 24) { // the trophy lift: podium, the captain raises the cup on the bar line, fireworks
+        const q = (tl - B(6)) / (24 - B(6)); const lift = tl > B(7); pod.visible = true; tro.visible = true; conf.visible = true; flares.forEach(f => f.visible = true);
+        const cap = F[6]; F.forEach(f => { if (f.s === 1) { f.g.visible = false; return; } f.g.visible = true; if (f === cap) { place(f, 0, -6.4, .5, Math.PI / 2); if (lift) setPose(f, { legs: [0, 0], arms: [[-2.75, .1], [2.75, .1]], lift: .5 + Math.abs(Math.sin(tl * 6)) * .1 }); else arms(f, false); return; }
+          const k = f.i - (f.i > 6 ? 1 : 0); const row = k % 2, col = k >> 1; place(f, -6 + col * 2.2 + row * 1.1, -4 + row * 1.4, lift ? Math.abs(Math.sin(tl * 7 + f.i)) * .5 : 0, Math.PI / 2); arms(f, lift); });
+        if (lift) { tro.position.set(cap.g.position.x, cap.g.position.y + 2.35 + Math.abs(Math.sin(tl * 6)) * .12, cap.g.position.z); if (!ctl.fwT || now - ctl.fwT > 420) { ctl.fwT = now; firework(); } if (tl < B(7) + .1) shake = .6; }
+        else tro.position.set(1.8, .5, -6.4);
+        const p = cg.attributes.position; for (let i = 0; i < CN; i++) { let y = p.getY(i) - .12; if (y < 0) y = 30; p.setY(i, y); } p.needsUpdate = true;
+        const a = -Math.PI / 2 - .5 + q * 1.0; cp_ = { x: Math.cos(a) * 15, y: 3.2 + q * 2, z: -5 + Math.sin(a) * 15 }; look = { x: 0, y: 2.2, z: -5.5 };
+        say(lift ? '<span class="c-mid">Lift it high</span>' : '', 'fade'); lower = lift ? `<i style="background:#e9c46a"></i><div><b>WINNERS</b><span>${clubN}</span></div>` : '';
+      } else if (tl < 27) { // memories: the personal photo if there is one, otherwise the squad with the trophy from above
+        const q = (tl - 24) / 3; F.forEach(f => { f.g.visible = f.s === 0; if (f.s === 0) { const back = f.i < 6; const col = back ? f.i : f.i - 6; place(f, -3.25 + col * 1.3, back ? -4 : -5.2, back ? 0 : 0, Math.PI / 2); if (!back && f.rig) setPose(f, { legs: [-1.3, -1.3], arms: [[-.2, .6], [.2, .6]], lean: .25, lift: -.42 }); } }); pod.visible = false; tro.visible = true; tro.position.set(0, .95, -5.8); conf.visible = true; flares.forEach(f => f.visible = true);
+        cp_ = { x: Math.sin(q * .6 - .3) * 12, y: 3 + q * 2, z: -18 }; look = { x: 0, y: 1.2, z: -4.6 };
         if (photo) { if (ph.dataset.src !== '1') { ph.querySelector('img').src = photo; ph.dataset.src = '1'; ph.querySelector('.cp-cap').textContent = caption; } ph.classList.add('on'); say(''); }
         else say('<span class="c-mid">Your club. Your story.</span>', 'fade');
       } else { // final title
@@ -150,6 +179,7 @@ function cineRun(host, ac, onEnd) {
         cp_ = { x: lerp(-30, 30, q), y: lerp(30, 20, q), z: -36 }; look = { x: 0, y: 0, z: 0 }; if (tl < 27.1) shake = 1;
         say('<b class="c-big">GAFFER</b><b class="c-yr">26/27</b><span class="c-small">Football management · tap to continue</span>', 'slam final');
       }
+      lt(lower);
       shake *= .9; const sx = (Math.random() - .5) * shake, sy = (Math.random() - .5) * shake;
       cam.position.set(cp_.x + sx, cp_.y + sy, cp_.z); cam.lookAt(look.x, look.y, look.z);
       ren.render(scene, cam); ctl.raf = requestAnimationFrame(loop);

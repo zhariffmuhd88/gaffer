@@ -68,7 +68,7 @@ function trophySvg(kind) {
   return `<svg viewBox="0 0 70 80" width="52" height="62" aria-hidden="true"><rect x="22" y="66" width="26" height="10" fill="${d}"/><rect x="29" y="54" width="12" height="13" fill="${g}"/><path d="M18 14 h34 q0 30 -17 40 q-17 -10 -17 -40z" fill="${g}"/><path d="M18 18 q-12 2 -10 14 q2 8 12 8" stroke="${g}" stroke-width="4" fill="none"/><path d="M52 18 q12 2 10 14 q-2 8 -12 8" stroke="${g}" stroke-width="4" fill="none"/></svg>`;
 }
 function trophyMesh(T3, kind) {
-  const g = new T3.Group(); const m = new T3.MeshStandardMaterial ? new T3.MeshStandardMaterial({ color: '#e9c46a', metalness: .9, roughness: .25 }) : new T3.MeshPhongMaterial({ color: '#e9c46a', shininess: 90 });
+  const g = new T3.Group(); const m = new T3.MeshPhongMaterial({ color: '#f2cf6b', emissive: '#4a3208', specular: '#fff2c0', shininess: 90 }); // gold that reads without an environment map
   const dk = new T3.MeshLambertMaterial({ color: kind === 'intl' ? '#2f7d36' : '#5a3d12' });
   const base = new T3.Mesh(new T3.CylinderGeometry(.16, .2, .16, 12), dk); base.position.y = .08; g.add(base);
   if (kind === 'intl') { const st = new T3.Mesh(new T3.CylinderGeometry(.06, .11, .32, 10), m); st.position.y = .32; g.add(st); const gl = new T3.Mesh(new T3.SphereGeometry(.17, 14, 10), m); gl.position.y = .62; g.add(gl); }
