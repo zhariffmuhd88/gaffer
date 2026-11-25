@@ -203,7 +203,7 @@ function frame3d(LM, ts) {
   if (SC.holder) S3.hold = SC.holder;
   try { rigAuto3d(S3, dt); } catch (er) { }
   for (let s = 0; s < 2; s++) for (const e of M.sides[s].ps) {
-    const p = SC.pos.get(e); if (!p || (!e.on && !V.rp)) continue; seen.add(e);
+    const p = SC.pos.get(e); if (!p || (!e.on && !V.rp && !(SC.exit && SC.exit.has(e)))) continue; seen.add(e);
     let f = S3.figs.get(e);
     if (!f) { const S = M.sides[s]; f = { g: (S3.rig && !S3.rigOff ? figureRig : figure)(T3, V.kits[sideOf(V, M, e)], e.role === 'GK', S3.gk, e.p.no || (S.ps.indexOf(e) + 1), { name: surname(e.p.n || ''), capt: S.capt && e.p.id === S.capt, crest: crestTex3(T3, S.tid), look: lookOf(e.p), body: bodyOf(e.p), pat: kitPat(S.tid, V.kits[sideOf(V, M, e)]), wx: kitWx(V), lo: S3.lo }), last: null, ph: Math.random() * 6, v: 0, sd: sideOf(V, M, e), foot: e.p.foot ? (e.p.foot === 'L' ? 0 : 1) : (String(e.p.id).split('').reduce((t, c) => t + c.charCodeAt(0), 0) % 4 ? 1 : 0) }; f.rig = f.g.userData && f.g.userData.rig; S3.figs.set(e, f); S3.scene.add(f.g); f.g.traverse(o => { if (o.isMesh) o.castShadow = !S3.lo; }); }
     let w = W3(p); let cer = null; try { cer = cer3d(S3, LM, e, f, ts); } catch (er) { cer = null; }

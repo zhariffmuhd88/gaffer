@@ -97,10 +97,10 @@ function buildPitchside3d(S3, LM) {
     for (const e of [-1, 1]) { const sd = new T3.Mesh(new T3.BoxGeometry(.1, 2.6, 2.4), shell); sd.position.set(cx + e * 4.55, 1.3, z0); S3.scene.add(sd); }
     for (let i = 0; i < 8; i++) { const st = new T3.Mesh(new T3.BoxGeometry(.9, .5, .7), seatM); st.position.set(cx - 3.6 + i * 1.03, .55, z0 - .55); S3.scene.add(st); const bk = new T3.Mesh(new T3.BoxGeometry(.9, .9, .15), seatM); bk.position.set(cx - 3.6 + i * 1.03, 1.15, z0 - .95); S3.scene.add(bk); }
     // the substitutes sitting in the dugout (up to six) and two warming up in bibs
-    const subs = M.sides[s].ps.filter(e => !e.on && !e.off).slice(0, 6); const kit = S3.kits[sideOf(V, M, M.sides[s].ps[0])] || S3.kits[s];
+    const subs = (M.sides[s].bench || []).slice(0, 6).map(p => ({ p })); const kit = S3.kits[sideOf(V, M, M.sides[s].ps[0])] || S3.kits[s];
     subs.forEach((e, i) => { const f = fig({ body: '#1b1f29', trim: kit.body }, e.p.id, { look: lookOf(e.p) }); f.g.position.set(cx - 3.6 + i * 1.03 + (i > 2 ? 1.03 : 0), .32, z0 - .4); f.g.rotation.y = -Math.PI / 2; setPose(f, { legs: [1.45, 1.45], knees: [-1.5, -1.5], arms: [[-.15, .5], [.15, .5]] }); f.snap = true; setPose(f, { legs: [1.45, 1.45], knees: [-1.5, -1.5], arms: [[-.15, .5], [.15, .5]] }); S3.side3.push({ f, k: 'sub' }); });
     const bib = s ? '#ff7a1a' : '#39e36b';
-    for (let i = 0; i < 2; i++) { const e = M.sides[s].ps.filter(x => !x.on && !x.off)[6 + i]; const f = fig({ body: bib, trim: '#ffffff' }, e ? e.p.id : 'w' + s + i, e ? { look: lookOf(e.p) } : {}); f.g.position.set(s ? 30 : -30, 0, P3.W / 2 + 2.9); S3.side3.push({ f, k: 'warm', s, i, x0: s ? 30 : -30 }); }
+    for (let i = 0; i < 2; i++) { const e = (M.sides[s].bench || []).map(p => ({ p }))[6 + i]; const f = fig({ body: bib, trim: '#ffffff' }, e ? e.p.id : 'w' + s + i, e ? { look: lookOf(e.p) } : {}); f.g.position.set(s ? 30 : -30, 0, P3.W / 2 + 2.9); S3.side3.push({ f, k: 'warm', s, i, x0: s ? 30 : -30 }); }
   }
 }
 function pitchside3d(S3, ts, dt) {

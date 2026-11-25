@@ -12,6 +12,7 @@ async def open_match(p, out, vw=1280, vh=900, club='ARS', three=True, view3d=Tru
     pg = await b.new_page(viewport={'width': vw, 'height': vh}, accept_downloads=True)
     if errs is not None:
         pg.on('pageerror', lambda e: errs.append(str(e)))
+        pg.on('console', lambda m: errs.append('console: ' + m.text) if m.type == 'error' and 'ERR_' not in m.text and 'favicon' not in m.text else None)
     if three: await pg.route('**/three.min.js', lambda r: r.fulfill(status=200, content_type='application/javascript', body=TJ))
     else: await pg.route('**/three.min.js', lambda r: r.abort())
     await pg.goto('file://' + str(wrap(out).resolve())); await pg.wait_for_timeout(300)
@@ -26,3 +27,10 @@ async def open_match(p, out, vw=1280, vh=900, club='ARS', three=True, view3d=Tru
 async def canvas_shot(pg, path, sel='canvas.p3d'):
     clip = await pg.evaluate("(s)=>{const r=document.querySelector(s).getBoundingClientRect();return {x:r.left+scrollX,y:r.top+scrollY,width:r.width,height:r.height}}", sel)
     await pg.screenshot(path=str(path), clip=clip, full_page=True)
+async def wait_sim(pg, ms, cap=30000):
+    # wait until the live scene's clock has moved on by ms (slow software rendering runs the scene slower than real time)
+    t0 = await pg.evaluate("()=>UI.match.vis.live.t")
+    waited = 0
+    while waited < cap:
+        await pg.wait_for_timeout(200); waited += 200
+        if await pg.evaluate("(t0)=>UI.match.vis.live.t", t0) - t0 >= ms: return

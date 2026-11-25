@@ -513,3 +513,8 @@ label.lb { font-size: 12px; color: var(--dim); text-transform: uppercase; letter
 #p2dwrap .glt13{position:absolute;left:50%;top:22%;transform:translateX(-50%);display:none;gap:10px;align-items:center;background:rgba(6,10,20,.9);color:#fff;padding:8px 14px;border-radius:10px;z-index:5}
 #p2dwrap .glt13.on{display:flex}
 @media (max-width:480px){#p2dwrap .var13 .vdia{width:170px}#p2dwrap .cmt13{font-size:12.5px}}
+/* Phase 14: the fourth official's added-time board */
+#p2dwrap .brd14{position:absolute;left:50%;top:44px;transform:translateX(-50%);display:none;flex-direction:column;align-items:center;background:#111;border:3px solid #444;border-radius:6px;padding:3px 12px 4px;z-index:5;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+#p2dwrap .brd14.on{display:flex}
+#p2dwrap .brd14 span{font-size:10px;letter-spacing:2px;color:#bbb}
+#p2dwrap .brd14 b{font-family:var(--f-mono);font-size:30px;color:#ff3030;line-height:1;text-shadow:0 0 8px rgba(255,48,48,.7)}

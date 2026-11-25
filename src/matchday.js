@@ -564,7 +564,11 @@ function runScene(LM, SC, dt) {
   if (!SC.kick) { const c = onPitch(M, ds, x => x.role !== 'GK').map(e => [e, SC.pos.get(e)]).filter(x => x[1]).sort((a, b) => Math.hypot(a[1].x - SC.ball.x, a[1].y - SC.ball.y) - Math.hypot(b[1].x - SC.ball.x, b[1].y - SC.ball.y)); const n = typeof mvPressN === 'function' ? mvPressN(SC, M, ds) : (M.sides[ds].tac.press || 2) === 3 ? 2 : 1; for (let i = 0; i < n && i < c.length; i++) pressers.add(c[i][0]); }
   const tt = SC.t / 1000;
   for (let s = 0; s < 2; s++) for (const e of M.sides[s].ps) {
-    if (!e.on) { SC.pos.delete(e); continue; }
+    if (!e.on) { // a player who has just gone off (substitution, red card) walks to the touchline first (Phase 14)
+      const ex = SC.exit && SC.exit.get(e);
+      if (ex && SC.t < ex.until) { const c = SC.pos.get(e) || { ...ex.from }; const kx = Math.min(1, Math.max(0, dt) / 1000 * ex.sp); const d = Math.hypot(ex.to.x - c.x, ex.to.y - c.y); if (d > .002) { c.x += (ex.to.x - c.x) / d * Math.min(d, kx * .07); c.y += (ex.to.y - c.y) / d * Math.min(d, kx * .07); } SC.pos.set(e, c); continue; }
+      if (ex) SC.exit.delete(e); SC.pos.delete(e); continue;
+    }
     let cur = SC.pos.get(e); if (!cur) { cur = wpt(s, .5, 1.04); SC.pos.set(e, cur); }
     if (SC.fallen.get(e) > SC.t) continue;
     let t = SC.ov.get(e);
@@ -622,7 +626,7 @@ function drawScene(LM, SC, ts) {
   for (let s = 0; s < 2; s++) {
     const kit = V.kits[s];
     for (const e of M.sides[s].ps) {
-      if (!e.on) continue; const p = SC.pos.get(e); if (!p) continue;
+      if (!e.on && !(SC.exit && SC.exit.has(e))) continue; const p = SC.pos.get(e); if (!p) continue;
       const X = px(p.x), Y = py(p.y), gk = e.role === 'GK';
       const fallen = SC.fallen.get(e) > SC.t;
       const diving = SC.dive && SC.dive.e === e && SC.t >= SC.dive.t0 && SC.t < SC.dive.t1 + 500 && SC.dive.stretch;
