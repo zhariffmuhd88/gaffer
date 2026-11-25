@@ -1,0 +1,22 @@
+desk ok   quality button Quality: Auto · High
+desk ok   photo mode on {'run': False, 'hold': True, 'panel': True, 'hidden': 'none', 'free': True, 'yaw': -2.13604974153477}
+desk ok   orbit moved the camera
+desk ok   saved photo gaffer-Arsenal-ArsenalLegends-1min.png 624980 bytes
+desk ok   no overflow in photo mode
+desk ok   photo mode off {'photo': False, 'panel': False, 'hold': False}
+desk ok   clip gaffer-goal-7-Saliba.mp4 99858 bytes
+desk ok   auto quality stepped down {'aq': 0, 'fans': False, 'rigOff': True, 'shadow': False, 'label': 'Quality: Auto · Low'}
+desk ok   manual Low Quality: Low
+desk ok   back to Auto Quality: Auto · High
+desk errors []
+phone ok   quality button Quality: Auto · Medium
+phone ok   photo mode on {'run': False, 'hold': True, 'panel': True, 'hidden': 'block', 'free': True, 'yaw': -1.8841670516108082}
+phone ok   orbit moved the camera
+phone ok   saved photo gaffer-Arsenal-ArsenalLegends-3min.png 204301 bytes
+phone ok   no overflow in photo mode
+phone ok   photo mode off {'photo': False, 'panel': False, 'hold': False}
+phone ok   auto quality stepped down {'aq': 0, 'fans': False, 'rigOff': True, 'shadow': False, 'label': 'Quality: Auto · Low'}
+phone ok   manual Low Quality: Low
+phone ok   back to Auto Quality: Auto · Medium
+phone errors []
+PASS

@@ -1,0 +1,27 @@
+desk ok   stats ticker ARS 0–0 ARL · POSSESSION 60%–40% · SHOTS 0–2 · ON TARGET 0–0
+desk ok   half-time card {'on': True, 'rows': 7, 'top': 3, 'run': False, 'hold': True, 'of': False}
+desk ok   half-time card closes and play resumes {'on': False, 'run': True, 'hold': False}
+desk ok   Player of the Match card {'potm': True, 'shirt': True, 'name': 'THIERRY HENRY', 'of': False}
+desk ok   heatmap on the 3D pitch {'mesh': True, 'chip': 'Heatmap · ARS ✕', 'heat': 209}
+desk ok   pass network {'side': 0, 'links': 5, 'nodes': 6, 'chip': 'Pass network · ARS ✕'}
+desk ok   overlay cleared
+desk ok   lower-third {'on': True, 't': 'YELLOW CARD'}
+desk ok   picture-in-picture replay {'rp': True, 'rate': 1, 'on': True, 'w': 478}
+desk ok   interview question 1 {'rep': True, 'n': 3}
+desk ok   interview question 2 (3 answers)
+desk ok   interview effect on the fans 60 -> 62
+desk errors []
+phone ok   stats ticker ARS 0–0 ARL · POSSESSION 47%–53% · SHOTS 3–2 · ON TARGET 1–1
+phone ok   half-time card {'on': True, 'rows': 7, 'top': 3, 'run': False, 'hold': True, 'of': False}
+phone ok   half-time card closes and play resumes {'on': False, 'run': True, 'hold': False}
+phone ok   Player of the Match card {'potm': True, 'shirt': True, 'name': 'DENNIS BERGKAMP', 'of': False}
+phone ok   heatmap on the 3D pitch {'mesh': True, 'chip': 'Heatmap · ARS ✕', 'heat': 473}
+phone ok   pass network {'side': 1, 'links': 8, 'nodes': 7, 'chip': 'Pass network · ARL ✕'}
+phone ok   overlay cleared
+phone ok   lower-third {'on': True, 't': 'YELLOW CARD'}
+phone ok   picture-in-picture replay {'rp': True, 'rate': 1, 'on': True, 'w': 258}
+phone ok   interview question 1 {'rep': True, 'n': 3}
+phone ok   interview question 2 (3 answers)
+phone ok   interview effect on the fans 60 -> 62
+phone errors []
+PASS

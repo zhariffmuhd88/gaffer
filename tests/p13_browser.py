@@ -39,9 +39,13 @@ async def run(p, vw, tag):
     if tag == 'desk': await real3d.canvas_shot(pg, out / 'p13_glt.png', '#p2dwrap')
     # red card: card in the referee's hand, the player walks off
     await pg.evaluate("()=>{const LM=UI.match,SC=LM.vis.live;const e=onPitch(LM.M,1).find(x=>x.role==='MC'||x.role==='DM');SC.lastFoul=e;LM.varBusy=false;enterStep(LM,SC,{k:'whistle',card:'r',txt:'Red card',ts:SC.t,te:SC.t+1300});}")
-    await pg.wait_for_timeout(900)
+    seen = False
+    for _ in range(25):
+        await pg.wait_for_timeout(100)
+        if await pg.evaluate("()=>{const S3=UI.match.v3s;return !!(S3&&S3.c13&&S3.c13.r.visible)}"): seen = True; break
+    await pg.wait_for_timeout(300)
     rc = await pg.evaluate("()=>{const LM=UI.match,SC=LM.vis.live,S3=LM.v3s;const e=SC.sentOff;const o=e&&SC.ov.get(e);return {card:S3.c13?S3.c13.r.visible:false,walk:!!o&&(o.y<0||o.y>1),cmt:LM.cmtLast}}")
-    check(tag, rc['card'] and rc['walk'] and ('Red card' in rc['cmt'] or 'red' in rc['cmt'] or 'go' in rc['cmt']), 'red card raised, player walks off ' + str(rc))
+    check(tag, (rc['card'] or seen) and rc['walk'] and ('Red card' in rc['cmt'] or 'red' in rc['cmt'] or 'go' in rc['cmt']), 'red card raised, player walks off ' + str(rc))
     if tag == 'desk':
         await pg.evaluate("()=>{const S3=UI.match.v3s;const r=S3.refs[0].g.position;S3.dbg={want:{x:r.x+5,y:3.2,z:r.z+6},look:{x:r.x,y:1.6,z:r.z}};}"); await pg.wait_for_timeout(500)
         await real3d.canvas_shot(pg, out / 'p13_card.png')

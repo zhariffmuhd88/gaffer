@@ -1,5 +1,12 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
+
+async def ivx(pg, n=-1):
+    for _ in range(3):
+        b = await pg.query_selector_all('[data-a^="iv"]')
+        if not b: break
+        await b[n].click(); await pg.wait_for_timeout(150)
+
 html=pathlib.Path('gaffer.html').read_text()
 pathlib.Path('wrap.html').write_text('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>'+html+'</body></html>')
 async def main():
@@ -40,7 +47,7 @@ async def main():
         await pg.click('[data-a="mfinish"]'); await pg.wait_for_timeout(400)
         print('after', (await pg.inner_text('.top'))[:100].replace('\n',' | '))
         await pg.set_viewport_size({'width':390,'height':844})
-        await pg.click('[data-a="iv"] >> nth=0') if await pg.query_selector('[data-a="iv"]') else None
+        await ivx(pg, 0) if await pg.query_selector('[data-a^="iv"]') else None
         for i in range(8):
             await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break

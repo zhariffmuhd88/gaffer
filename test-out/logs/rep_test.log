@@ -1,50 +1,58 @@
-ASSISTANT Sam Diallo 2026-12-14 
- sum: Kai Havertz is our best performer right now; David Raya deserves a start; I would sell Illan Meslier in the next window. 
+ASSISTANT Owen Lindqvist 2026-12-14 
+ sum: Bukayo Saka is our best performer right now; Gabriel Magalhaes deserves a start; I would sell Illan Meslier in the next window. 
  start:
-   David Raya — Start him ahead of Kepa Arrizabalaga (7.46 recently); he has averaged 7.08 when called on.
-   Declan Rice — Start him ahead of Martin Zubimendi (6.68 recently); he has averaged 7.02 when called on. 
+   Gabriel Magalhaes — Start him ahead of Riccardo Calafiori (6.72 recently); he has averaged 7.06 when called on.
+   Eberechi Eze — Start him ahead of Mikel Merino (6.78 recently).
+   Bukayo Saka — Start him ahead of Noni Madueke (6.96 recently); he has averaged 7.76 when called on. 
  drop:
     
  form:
-   Kai Havertz — 7.60 average over his last 5 games, 19 goals this season.
-   Kepa Arrizabalaga — 7.46 average over his last 5 games.
-   Bukayo Saka — 7.32 average over his last 5 games, 8 goals this season, 4 assists. 
+   Bukayo Saka — 7.76 average over his last 5 games, 11 goals this season, 6 assists.
+   Christos Tzolis — 7.60 average over his last 5 games, 8 goals this season, 6 assists.
+   Viktor Gyokeres — 7.46 average over his last 5 games, 19 goals this season, 2 assists. 
  under:
-   Viktor Gyokeres — Below the standard we expect from him (6.55 recently).
-   Martin Zubimendi — Below the standard we expect from him (6.68 recently).
-   Martin Odegaard — Below the standard we expect from him (6.65 recently). 
+   Myles Lewis-Skelly — Below the standard we expect from him (5.80 recently).
+   Kai Havertz — Below the standard we expect from him (6.04 recently).
+   Martin Odegaard — Below the standard we expect from him (6.50 recently). 
  sell:
    Illan Meslier — Is not good enough for this squad. Estimated value £14.0m.
-   Kepa Arrizabalaga — Is 32 and his best days are behind him; his contract ends in 2027. Estimated value £3.5m.
+   Kepa Arrizabalaga — Is 32 and his best days are behind him; his contract ends in 2027. Estimated value £3.8m.
 inbox asst msgs 0 | scout msgs 0
-SCOUT Musa Ashworth L:PL win Gianluigi Donnarumma 27y 88/88 Man City £105m | Ruben Dias 29y 87/90 Man City £109m | Erling Haaland 26y 92/92 Man City £236m
-SCOUT Tom Marchetti L:LL young Mamadou Sarr 21y 79/98 Real Sociedad £70.2m | Lucas Stassin 21y 79/97 Sevilla £70.2m | Marc Bernal 19y 80/95 Barcelona £71.5m
-SCOUT Harry Fletcher R:sa wonder Luis Fernandez 16y 54/74 a club in South America £5.1m | Gabriel Rojas 17y 63/85 a club in South America £13.5m | Thiago Medina 18y 64/84 a club in South America £14.9m
-SCOUT2 Musa Ashworth L:SA wonder  Franco Mastantuono AM 19y 80/95 £87.8m | Francesco Camarda ST 18y 72/93 £29.7m | Rodrigo Mora AM 19y 77/93 £51.7m
-SCOUT2 Tom Marchetti L:CH stop D Maximilian Kilman CB 29y 76/76 £24.3m | Kyle Walker-Peters RB 29y 75/80 £21.6m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
-HAP Viktor Gyokeres 32 
-  + Loves being top of the Premier League
+SCOUT Ellis Rowe L:PL win Gianluigi Donnarumma 27y 88/89 Man City £105m | Alexander Isak 26y 88/90 Liverpool £150m | Erling Haaland 26y 92/92 Man City £236m
+SCOUT Hugo Lambert L:LL young Hamza Abdelkarim 19y 67/97 Barcelona £14.4m | Marc Bernal 19y 80/93 Barcelona £68.2m | Obed Vargas 21y 74/94 Atlético £33.0m
+SCOUT Theo Gallagher R:sa wonder Facundo Rojas 18y 56/80 a club in South America £6.1m | Luis Ribeiro 18y 69/84 a club in South America £25.7m | Gabriel Souza 18y 68/95 a club in South America £24.3m
+SCOUT2 Ellis Rowe L:SA wonder  Rodrigo Mora AM 19y 76/99 £47.3m | Franco Mastantuono AM 19y 81/99 £95.9m | Francesco Camarda ST 18y 72/94 £29.7m
+SCOUT2 Hugo Lambert L:CH stop D Maximilian Kilman CB 29y 76/79 £24.3m | Kyle Walker-Peters RB 29y 75/76 £21.6m | Konstantinos Mavropanos CB 28y 74/74 £18.9m
+HAP Ben White 31 
+  + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
-  + Thinks Bukayo Saka is a world-class player 
-  - Unhappy that Kai Havertz keeps starting ahead of him
-  - Low on morale
-HAP Ben White 37 
-  + Loves being top of the Premier League
-  + Excited to be playing Champions League football
-  + Gets on well with Eberechi Eze 
+  + Gets on well with Eberechi Eze
+  + Buoyed by the team's winning run 
   - Has fallen out with Eberechi Eze after a training-ground row
   - Unhappy that Jurrien Timber keeps starting ahead of him
-HAP Max Dowman 76 
-  + Loves being top of the Premier League
-  + Excited to be playing Champions League football
-  + Gets on well with Noni Madueke 
-  - 
-HAP Kai Havertz 100 
-  + Loves being top of the Premier League
+  - Low on morale
+HAP Eberechi Eze 37 
+  + Proud of the club's 2nd place in the league
   + Excited to be playing Champions League football
   + Thinks Martin Odegaard is a great captain
+  + Gets on well with Myles Lewis-Skelly
+  + Buoyed by the team's winning run 
+  - Has fallen out with Ben White after a training-ground row
+  - Unhappy that Mikel Merino keeps starting ahead of him
+  - Low on morale
+HAP Julienne 76 
+  + Proud of the club's 2nd place in the league
+  + Excited to be playing Champions League football
+  + Gets on well with Ibrahim
+  + Buoyed by the team's winning run 
+  - 
+HAP Viktor Gyokeres 100 
+  + Proud of the club's 2nd place in the league
+  + Excited to be playing Champions League football
+  + Thinks William Saliba is a world-class player
   + Happy with his playing time
-  + Enjoying his football (7.56 average in his last games) 
+  + Enjoying his football (7.98 average in his last games)
+  + Buoyed by the team's winning run 
   - 
 after talk {"d":"2026-12-20","k":"praise","l":"praised his form","dh":-4}
-screens 14293 8853 true | errors 0
+screens 14031 8849 true | errors 0

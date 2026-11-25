@@ -1,0 +1,23 @@
+desk ok   volume slider and commentary button {'vol': True, 'cmt': True, 'ctx': True}
+desk ok   volume stored [0.4, '0.4']
+desk ok   commentary, PA and crowd {'cmt': 1, 'last': 'Vieira brings his man down.', 'pa': 'Good afternoon and welcome to Emirates Stadium. Please enjoy the game and look after each other.', 'crowd': 2}
+desk ok   olé after a passing spell (2)
+desk ok   VAR check with offside picture {'on': True, 'txt': 'VARChecking goal...LINE', 'svg': True, 'ear': True}
+desk ok   VAR decision check:goal,done:goal:NO GOAL
+desk ok   goal-line technology graphic
+desk FAIL red card raised, player walks off {'card': False, 'walk': True, 'cmt': 'Red card! Vieira is sent off!'}
+desk ok   no overflow
+desk ok   commentary switched off
+desk errors []
+phone ok   volume slider and commentary button {'vol': True, 'cmt': True, 'ctx': True}
+phone ok   volume stored [0.4, '0.4']
+phone ok   commentary, PA and crowd {'cmt': 1, 'last': 'Silva is a little late there.', 'pa': 'Good afternoon and welcome to Emirates Stadium. Please enjoy the game and look after each other.', 'crowd': 1}
+phone ok   olé after a passing spell (2)
+phone ok   VAR check with offside picture {'on': True, 'txt': 'VARChecking goal...LINE', 'svg': True, 'ear': True}
+phone ok   VAR decision check:goal,done:goal:NO GOAL
+phone ok   goal-line technology graphic
+phone ok   red card raised, player walks off {'card': True, 'walk': True, 'cmt': 'Vieira has to go — straight red!'}
+phone ok   no overflow
+phone ok   commentary switched off
+phone errors []
+FAIL ["desk red card raised, player walks off {'card': False, 'walk': True, 'cmt': 'Red card! Vieira is sent off!'}"]

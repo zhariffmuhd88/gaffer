@@ -1,37 +1,35 @@
-feed 260 | fan 134 jour 68 club 16 | rumours 18 closed 11 came true 2
-   Marcus Hale T1 0/1
+feed 260 | fan 132 jour 52 club 16 | rumours 5 closed 4 came true 0
+   Marcus Hale T1 0/0
    Luca Ferraro T1 0/1
-   Ellie Brennan T2 1/5
-   Gary Pratt T3 1/3
+   Ellie Brennan T2 0/3
+   Gary Pratt T3 0/0
    Javier Montero T1 0/0
-   Paco Ríos T3 0/1
-fans 39 | trending RomaChampions Champions BayernChampions PSGChampions Double
-pundit 17 creator 8 var 14 | varw 60 wrong,debatable,correct,correct
+   Paco Ríos T3 0/0
+fans 17 | trending Champions PSGChampions ManUtdChampions AlHilalChampions BarcelonaChampions
+pundit 22 creator 14 var 18 | varw 60 correct,wrong,correct,correct
 sample:
-  [cre] Kicks & Giggles (banter page): Ref's phone has been ringing nonstop since PSV v Willem II 😂📞
-  [fan] Chloe ⚽ (@WillemIIChloe16): Tonny Vilhena sent off for two soft yellows. Never a red in a million years
-      ↳ Jake: Cry more 😂
-  [pun] Marco Bellandi (former Italy midfielder (ex-Inter, Juventus)): Willem II will moan about the red card, but they didn't lay a glove on them.
-      ↳ Lukas Brenner: Rubbish. The red card decided that game. I'd be livid if I was in that dressing room.
-      ↳ Deano ⚽: Marco always hated us
-      ↳ Robbo: Pundits arguing again 🍿
-  [fan] Amir ⚽ (@GoonerAmir71): Bergkamp is still HIM 🥶 😭😭
-      ↳ Sophie: Thierry Henry. That's the tweet and that's on period
-  [fan] Gav (@BlueGav): Hate-watching Arsenal is my cardio 🍿 Arsenal 1-1 Arsenal Legends fr fr
-      ↳ Deano: Get your own club to support
-  [pun] Danny Shields (former centre-back (ex-Arsenal, Inter)): Arsenal and Arsenal Legends both looked scared to lose. Nobody took a risk.
-      ↳ Tyrone Asante: I'm sorry, I disagree. That was a chess match. Both coaches got it right.
-      ↳ Deano ⚽: Danny always hated us
-      ↳ Liam: Danny spot on as always
-      ↳ Pablo: Bias much? You played for them for years mate
-  [fan] Jonno (@GoonerJonno34): We had 2.5 xG to their 0.8. Football is cruel. Daylight robbery 💀
-      ↳ Becky: Bus parked? We just defended better than you attacked 🚌😂
-      ↳ Priya: Wait till we see you at our place I'm crying
-      ↳ Chloe ⚽: Highlights on loop tonight 🍿 lowkey
-  [fan] Iker (@UtrechtIker): Good riddance Panayiotou. You were never that good anyway (I'm coping)
-      ↳ Chloe: Upgrade 📈
-  [fan] Becky ⚽ (@LincolnBecky): Tom Hamer kissed the badge in May and he's off to Watford in the summer. Snake 🐍
-      ↳ Dan: Cry more, he's ours now 😂 fr fr
-  [fan] Nina (@RomaNina37): DOMESTIC DOUBLE 🏆🏆 Coppa Italia + Serie A. Say it with me: DOUBLE!!!
-      ↳ Priya: Calm down, it's only a double
-errors 0 | html 81328 | save KB 4923 feed KB 70
+  [fan] Pablo (@GoonerPablo): Bergkamp is still HIM 🥶 fr
+      ↳ Macca: Ykb 🔴⚪ it's giving relegation
+  [fan] Iker ⚽ (@BlueIker92): Live-tweeting the Arsenal meltdown 🍿🍿 Arsenal 1-4 Arsenal Legends and that's on period
+      ↳ Macca ⚽: Get your own club to support
+  [fan] Robbo (@COYSRobbo): Live-tweeting the Arsenal meltdown 🍿🍿 Arsenal 1-4 Arsenal Legends
+      ↳ Kev: Source: trust me bro
+  [pun] Tyrone Asante (former winger (ex-Spurs, Arsenal)): Arsenal will moan about the penalty, but you make your own luck.
+      ↳ Danny Shields: Rubbish. The penalty decided that game. Referees have to be braver.
+      ↳ Gav: Finally someone talking sense, Danny
+      ↳ Raj: Least biased Arsenal legend 😂
+  [cre] xG Ollie (stats account): xG: Arsenal 2.36 - 3.82 Arsenal Legends. Possession 46-54. Deserved.
+      ↳ Robbo: Mid
+  [cre] Big Lenny (Arsenal fan channel): I've thrown my remote. Genuinely. 1-4. T has to answer for that second half. Watchalong reaction up now
+      ↳ Robbo: Clip this for the "best fan reactions" compilation 🍿
+  [fan] Marta (@GoonerMarta): That penalty against us was never a penalty. He went down like he'd been shot 🙄
+      ↳ Mo: Who let him cook 😭
+      ↳ Macca: And if your aunt had a moustache she'd be your uncle 🥸
+      ↳ Liam ⚽: Highlights on loop tonight 🍿 I'm crying
+  [fan] Jake (@MarseilleJake28): Willi Orbán kissed the badge in May and he's off to Al-Ittihad in the summer. Snake 🐍
+      ↳ Lucía ⚽: He wanted a club that wins things 🏆 ngl
+  [fan] Jonno (@ParmaJonno81): Loyalty is dead. Frigan chose the money
+      ↳ Mo ⚽: Aura -1000
+  [fan] Robbo ⚽ (@InterRobbo41): Y'all dOMESTIC DOUBLE 🏆🏆 Supercoppa Italiana + Serie A. Say it with me: DOUBLE!!!
+      ↳ Becky ⚽: Asterisk*
+errors 0 | html 84049 | save KB 4921 feed KB 72

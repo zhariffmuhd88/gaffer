@@ -1,6 +1,13 @@
 # Clickable names: run from repo root after build.py. Writes screenshots to the folder given as argv[1] (default .)
 import asyncio, pathlib, sys, time
 from playwright.async_api import async_playwright
+
+async def ivx(pg, n=-1):
+    for _ in range(3):
+        b = await pg.query_selector_all('[data-a^="iv"]')
+        if not b: break
+        await b[n].click(); await pg.wait_for_timeout(150)
+
 out = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 html = pathlib.Path('gaffer.html').read_text()
 w = out / 'wrap_links.html'
@@ -19,7 +26,7 @@ async def main():
             await pg.click('#go'); await pg.wait_for_timeout(60)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]')
-                if await pg.query_selector('[data-a="iv"]'): await pg.click('[data-a="iv"] >> nth=-1')
+                if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)
         print('date', await pg.inner_text('.top .date'))
         # inbox links
         await pg.click('nav [data-v="inbox"]')

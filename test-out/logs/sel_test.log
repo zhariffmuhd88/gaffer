@@ -1,12 +1,12 @@
 best: Raya 31, Timber 25, Magalhaes 28, Saliba 25, Hincapie 24, Rice 27, Guimaraes 28, Merino 30, Saka 25, Havertz 27, Tzolis 24
-played Arsenal 2-0 Arsenal Legends
-conds 89,91,91,91,90,91,91,90,91,90,90 | others 100,100,100,100,98,100,100,100
+played Arsenal 2-1 Arsenal Legends
+conds 89,92,90,91,90,91,91,90,91,90,90 | others 100,100,100,99,99,100,100,100
 rotated: Arrizabalaga 32, White 29, Konsa 29, Mosquera 22, Calafiori 24, Odegaard 27, Zubimendi 27, Eze 28, Madueke 24, Gyokeres 28, Harriman-Annous 18 | changes 11
 save: ok
-youth XI (pool 41, holes 0): Nygaard* 20, Dixon* 19, Salmon 17, Lewis-Skelly 20, Bennett* 20, Dowman 16, Stone* 19, Ibrahim 18, Stevens* 20, Cooper* 21, Harriman-Annous 18 | bench youth 8
-issues after validate: [] | still youth starters 6
-youth match Arsenal 0-5 Brighton | youth who played 10 | youth apps sample Lucas Nygaard 5.5, Jaden Dixon 5.3, Max Bennett 5.7
+youth XI (pool 41, holes 0): Nygaard* 20, Ogunneye* 20, Salmon 17, Lewis-Skelly 20, Ogunnaike* 18, Dowman 16, Nash* 20, Copley* 20, Stevens* 20, Yates* 20, Harriman-Annous 18 | bench youth 7
+issues after validate: [] | still youth starters 7
+youth match Arsenal 0-6 Man Utd | youth who played 12 | youth apps sample Lucas Nygaard 4.5, Habeeb Ogunneye 4.8, Josh Ogunnaike 5.2
 save 2: ok | sets Rotation 4-3-3, Kids 4-3-3
-load Rotation all: ok | form 4-3-3 | ment 3 | matches saved 11
+load Rotation all: Loaded. Not available: Harriman-Annous (replaced by the best fit). | form 4-3-3 | ment 3 | matches saved 10
 load Kids tactics only: ok
 html true | save/restore 2

@@ -2,3 +2,22 @@ user RSO LL | LL clubs 20 | players 26 | Segunda 22 | PF 20 | play nat ESP | eur
 LL fixtures 380 | UCL Spanish BAR,RMA,ATM,BET,VIL | Bellingham RMA caps 60 | Pedri caps 50 | ESP pool 976
 youth 19 15 Ander Domínguez ESP, Joan Vicente ESP, Daniel Larrañaga BRA | comps LLB DHJ
 Supercopa Barcelona v Atlético 2-2 p1-3, Real Sociedad v Real Madrid 0-2 / Atlético v Real Madrid 1-2 | winner Real Madrid
+=== season 2026/27 | user pos 5 LL | sacked false | now 2027-08-07
+LL top5 Real Madrid 93, Barcelona 76, Athletic 76, Atlético 74, Real Sociedad 63 | down Levante, Alavés, Málaga | up Girona, Almería, Real Oviedo | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | LL ts ["Kylian Mbappé","RMA",37,"p1194"] | SCE RMA
+LL awards best Kylian Mbappé | Pichichi Kylian Mbappé 37 | Zamora Thibaut Courtois 0.58 | TOS 11 | GOS Sergio Canales
+LL months 10 | gotmLL 10 | next euro {"UCL":["ARS","MUN","LIV","CHE","FUL","RMA","BAR","ATH","ATM","BAY","RBL","SGE","VFB","PSG","ASM","OL","LOSC","AJX","FEY","ACM","JUV","ROM","LAZ"],"UEL":["TOT","NFO","RSO","VIL","B04","OM","PSV","INT","ATA"],"UECL":["BHA","CEL","BVB","RCL","TWE","NAP"]} | sce next Real Madrid,Atlético,Athletic,Barcelona
+Supercopa Real Madrid v Atlético 2-1, Athletic v Barcelona 2-0 / Real Madrid v Athletic 1-0 | winner Real Madrid
+=== season 2027/28 | user pos 4 LL | sacked false | now 2028-08-05
+LL top5 Real Madrid 85, Barcelona 83, Atlético 80, Real Sociedad 73, Betis 72 | down Getafe, Elche, Deportivo | up Málaga, Levante, Mallorca | CdR Real Madrid
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | LL ts ["Vinícius Júnior","RMA",32,"p1195"] | SCE RMA
+LL awards best Vinícius Júnior | Pichichi Vinícius Júnior 32 | Zamora Mario Pascual 0.59 | TOS 11 | GOS Izan Flores
+LL months 20 | gotmLL 20 | next euro {"UCL":["ARS","CHE","TOT","MUN","LIV","RMA","BAR","ATM","RSO","BAY","VFB","SGE","B04","PSG","ASM","OM","RCSA","AZ","PSV","INT","B_Cremonese","JUV","NAP"],"UEL":["BHA","SUN","BET","SEV","BVB","OL","AJX","ACM","ROM"],"UECL":["FUL","S_Girona","RBL","RCL","FEY","ATA"]} | sce next Real Madrid,Atlético,Real Sociedad,Barcelona
+goals per game this season: PL - | CH - | LL - | CDR -
+cross-league moves 105 Ibrahim -> Al-Riyadh; Ruben Dias -> Hoffenheim; Rayan Ait-Nouri -> Al-Ahli; Josko Gvardiol -> Dortmund; Abdukodir Khusanov -> Sassuolo
+errors 0 | sim time 480.3s
+screens 9637 11118 1344 1923 46166 12025
+save parts KB players 4583, fx 444, teams 251, awards 71, feed 71, yl 54, sq 41, byDate 40
+national team ESP null | games 23 Spain 4-1 Norway | Spain 2-0 Croatia | Germany 0-4 Spain | Netherlands 1-1 Spain | caps leaders Rodri 94, Unai Simón 75, Pedri 73
+save 5858 KB JSON, 630K chars compressed (466 ms, unpack 140 ms, round trip true) | restore ok 20
+time 482.5s

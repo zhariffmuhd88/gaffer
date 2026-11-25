@@ -1,6 +1,13 @@
 # Browser check: intro sting, stadium, board, history and rankings. Run after build.py: python3 tests/club_browser.py OUT_DIR
 import asyncio, pathlib, sys
 from playwright.async_api import async_playwright
+
+async def ivx(pg, n=-1):
+    for _ in range(3):
+        b = await pg.query_selector_all('[data-a^="iv"]')
+        if not b: break
+        await b[n].click(); await pg.wait_for_timeout(150)
+
 out = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 html = pathlib.Path('gaffer.html').read_text()
 w = out / 'wrap_club.html'
@@ -45,7 +52,7 @@ async def main():
             await pg.click('#go'); await pg.wait_for_timeout(40)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await pg.wait_for_timeout(100)
-                if await pg.query_selector('[data-a="iv"]'): await pg.click('[data-a="iv"] >> nth=-1')
+                if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)
             if 'Oct' in await pg.inner_text('.top .date'): break
         print('date', await pg.inner_text('.top .date'))
         await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(150)
@@ -62,7 +69,7 @@ async def main():
             await pg.click('#go'); await pg.wait_for_timeout(40)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await pg.wait_for_timeout(100)
-                if await pg.query_selector('[data-a="iv"]'): await pg.click('[data-a="iv"] >> nth=-1')
+                if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)
             if await pg.evaluate("()=>G.brd.pend.length===0"): break
         print('board replies:', await pg.evaluate("()=>G.news.filter(n=>/^Board /.test(n.title)).map(n=>n.title).join(' | ')"))
         print('works:', await pg.evaluate("()=>G.brd.proj.map(p=>p.k+' '+p.end).join(', ')"), '| home venue works:', await pg.evaluate("()=>{const f=Object.values(G.fx).find(f=>f.h===G.user&&!f.r);return f?JSON.stringify(venueOf(f).works):'-'}"))

@@ -1,0 +1,27 @@
+desk ok   third kit when home and away clash {'kind': 'third', 'dist': 254.04920783186867, 'sets': ['#d61f2c', '#ffffff', '#2b6fd6']}
+desk ok   sprinklers and ball boys at the walk-out {'spr': True, 'masc': True, 'bb': 6}
+desk ok   mascot walks out with the captain
+desk ok   sunset, wind on the flags, puddles {'dusk': 0.8888888888888888, 'bg': 0.6357298474945535, 'flags': 20, 'pud': 7, 'rot': 0}
+desk ok   fog limits the view (far 115)
+desk ok   trophy ceremony starts {'tr': 'cup', 'side': 0, 'banner': True}
+desk ok   podium and medals {'medals': 7, 'pod': True, 'tro': True}
+desk ok   captain lifts the trophy, fireworks, confetti {'y': 3.0732160523028993, 'cy': 0.6366080261514496, 'fw': 8, 'conf': True}
+desk ok   photo mode on the squad photo
+desk ok   kit editor {'cards': 3, 'shirts': 3}
+desk ok   third kit edited and stored {'body': '#7a2bd6', 'pat': 'hoops'}
+desk ok   no overflow on the Club screen
+desk errors []
+phone ok   third kit when home and away clash {'kind': 'third', 'dist': 254.04920783186867, 'sets': ['#d61f2c', '#ffffff', '#2b6fd6']}
+phone ok   sprinklers and ball boys at the walk-out {'spr': True, 'masc': True, 'bb': 4}
+phone ok   mascot walks out with the captain
+phone ok   sunset, wind on the flags, puddles {'dusk': 0.8888888888888888, 'bg': 0.6357298474945535, 'flags': 10, 'pud': 7, 'rot': 0}
+phone ok   fog limits the view (far 115)
+phone ok   trophy ceremony starts {'tr': 'cup', 'side': 0, 'banner': True}
+phone ok   podium and medals {'medals': 10, 'pod': True, 'tro': True}
+phone ok   captain lifts the trophy, fireworks, confetti {'y': 2.9645839551181723, 'cy': 0.5822919775590862, 'fw': 6, 'conf': True}
+phone ok   photo mode on the squad photo
+phone ok   kit editor {'cards': 3, 'shirts': 3}
+phone ok   third kit edited and stored {'body': '#7a2bd6', 'pat': 'hoops'}
+phone ok   no overflow on the Club screen
+phone errors []
+PASS

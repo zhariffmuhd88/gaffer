@@ -10,17 +10,63 @@ m390 intro gone after taps: False
 m390 skip works: True
 key advances to disclaimer: True
 intro ends by itself: False
-date Tue 29 Sep 2026
-stadium tab: True True | stands: 4
-board replies: Board approves: Better training facilities | Board approves: Stand expansion
-works: exp 2027-11-02, tr 2027-04-03 | home venue works: [2]
-honours tab: 2
-history rows: 127 | links in history: 254
-rank rows: 93 | me row: 1
-MUN honours text: English champions	20	17	1907/08	2012/13	-
-manager rankings box: True
-club modal stadium: 1
-game options/about: True True
-finance build row: False
-390 overflow: False
-errors []
+Traceback (most recent call last):
+  File "/home/claude/gaffer/tests/club_browser.py", line 97, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/claude/gaffer/tests/club_browser.py", line 45, in main
+    await pg.click('#go'); await pg.wait_for_timeout(40)
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 11067, in click
+    await self._impl_obj.click(
+    ...<12 lines>...
+    )
+  File "/usr/local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 889, in click
+    return await self._main_frame._click(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 594, in _click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+  File "/usr/local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#go")
+    - locator resolved to <button id="go" class="go" data-a="continue">CONTINUE ▸</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="ov" data-a="closeov">…</div> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="ov" data-a="closeov">…</div> intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="ov" data-a="closeov">…</div> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+

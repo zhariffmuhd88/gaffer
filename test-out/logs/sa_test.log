@@ -3,3 +3,27 @@ SA fixtures 380 | UCL Italian INT,COM,NAP,ROM | UEL JUV,ACM | lites left  | Chal
 CIT R1 16 Sassuolo v Hellas Verona, Parma v Südtirol, Udinese v Palermo | SCI Inter v Lazio 2026-12-22
 youth 19 15 Alessandro Esposito ITA, Emanuele Sartori ITA, Paolo Grassi ITA | comps PRI U18I
 Supercopa Barcelona v Atlético 0-1, Real Sociedad v Real Madrid 0-3 / Atlético v Real Madrid 2-0 | winner Atlético
+Coppa Quarter-final: Como v Atalanta 1-1, Inter v Bologna 1-1, Parma v Roma 2-3, Napoli v Juventus 2-1 / Semi-final: Roma v Como 2-1/0-2, Napoli v Inter 2-0/1-1 / Final: Roma v Napoli 1-0 | winner Roma | SCI Lazio
+gpg PL 2.63 370 | home win % 44
+gpg LL 2.48 380 | home win % 41
+gpg SA 2.51 370 | home win % 45
+=== season 2026/27 | user pos 11 SA | sacked false | now 2027-08-07
+SA top5 Inter 84, Napoli 77, Roma 77, Juventus 75, Milan 69 | down Frosinone, Venezia, Monza | up Hellas Verona, Pisa, Cremonese | CIT Roma | SB top Hellas Verona 75, Pisa 75, Empoli 68
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC | SA ts ["Lautaro Martínez","INT",33,"p1715"] | SCI LAZ | CIT ROM
+SA awards best Lautaro Martínez | Pichichi Lautaro Martínez 33 | Zamora null | TOS 11 | GOS null
+SA months 10 | gotmSA 10 | next euro {"UCL":["LIV","ARS","TOT","CHE","BHA","BAR","RMA","ATH","ATM","BAY","VFB","B04","BVB","PSG","OGCN","ASM","LOSC","AZ","AJX","INT","NAP","ROM","JUV"],"UEL":["CRY","HUL","RSO","CEL","TSG","OL","FEY","ACM","ATA"],"UECL":["MUN","BET","SVW","OM","PSV","FIO"]} | sci next Inter,Roma | seeds INT,NAP,ROM,JUV,ACM,ATA,FIO,COM
+Supercopa Barcelona v Athletic 4-0, Atlético v Real Madrid 2-0 / Barcelona v Atlético 6-2 | winner Barcelona
+Coppa Quarter-final: Napoli v Roma 3-0, Juventus v Inter 0-2, Fiorentina v Lazio 2-3, Como v Atalanta 3-0 / Semi-final: Inter v Lazio 1-1/1-4, Como v Napoli 1-2/2-3 / Final: Inter v Napoli 2-2 | winner Napoli | SCI Inter
+=== season 2027/28 | user pos 12 SA | sacked false | now 2028-08-05
+SA top5 Juventus 88, Inter 88, Milan 85, Napoli 79, Como 74 | down Genoa, Cagliari, Lecce | up Monza, Modena, Padova | CIT Napoli | SB top Monza 72, Modena 66, Cesena 65
+chist PL,CH,LL,SA,FA,LC,PO,CDR,SCE,CIT,SCI,DFB,CDF,UCL,UEL,UECL,CWC,CWX | SA ts ["Lautaro Martínez","INT",37,"p1715"] | SCI INT | CIT NAP
+SA awards best Kenan Yıldız | Pichichi Lautaro Martínez 37 | Zamora null | TOS 11 | GOS null
+SA months 20 | gotmSA 20 | next euro {"UCL":["ARS","LIV","NEW","CHE","BOU","RMA","BAR","VIL","ATM","BAY","SGE","B04","VFB","PSG","RCL","OGCN","RCSA","PSV","AJX","JUV","INT","ACM","NAP"],"UEL":["TOT","MUN","RSO","S_Girona","BVB","ASM","FEY","COM","B_Cremonese"],"UECL":["LEE","ATH","RBL","OM","AZ","B_HellasVerona"]} | sci next Juventus,Napoli | seeds JUV,INT,ACM,NAP,COM,B_Cremonese,B_HellasVerona,B_Pisa
+goals per game this season: PL - | CH - | LL - | SA - | CIT -
+cross-league moves 131 Gianluigi Donnarumma -> Roma; Abdukodir Khusanov -> Villarreal; Elliot Anderson -> Al-Hilal; Rayan Cherki -> Bologna; Phil Foden -> Leipzig
+errors 0 | sim time 485.7s
+screens 9607 10294 true 6674 1656 true 45002 21060 11523
+save parts KB players 4569, fx 444, teams 250, feed 73, awards 71, yl 54, sq 41, byDate 40
+national team ITA null | games 22 Italy 1-2 Austria | Italy 3-0 Scotland | Italy 3-0 Germany | England 1-0 Italy | caps leaders Gianluigi Donnarumma 109, Nicolò Barella 83, Alessandro Bastoni 68
+save 5843 KB JSON, 629K chars compressed (411 ms, unpack 98 ms, round trip true) | restore ok 20 20
+time 490.4s

@@ -1,0 +1,63 @@
+FAIL club_browser (exit 1)
+FAIL intl_browser (exit 1)
+FAIL ll_browser (exit 1)
+FAIL p13_browser (exit 1)
+FAIL sa_browser (exit 1)
+FAIL smoke (exit 1)
+FAIL youth_browser (exit 1)
+ok   aihap_test
+ok   asia2_test
+ok   asia_test
+ok   badge_browser
+ok   ch_test
+ok   cine_real
+ok   clinch_test
+ok   club_test
+ok   clublife_test
+ok   cmp_browser
+ok   cmp_test
+ok   cwc_old_save
+ok   deal_test
+ok   depth_browser
+ok   edlo_browser
+ok   edlo_test
+ok   exnat_browser
+ok   exnat_test
+ok   intl_old_save
+ok   intl_test
+ok   jobs_browser
+ok   jobs_test
+ok   ll_old_save
+ok   ll_test
+ok   lore_browser
+ok   lore_test
+ok   md3d_browser
+ok   move_browser
+ok   multi_test
+ok   p12_browser
+ok   p14_browser
+ok   p15_browser
+ok   p16_browser
+ok   polish_browser
+ok   ps_browser
+ok   ps_test
+ok   rep_browser
+ok   rep_test
+ok   rewards_test
+ok   rot_test
+ok   rv_browser
+ok   rv_quick
+ok   sa_old_save
+ok   sa_test
+ok   sel_browser
+ok   sel_test
+ok   so_browser
+ok   so_test
+ok   social_test
+ok   statue_browser
+ok   trsearch_browser
+ok   xl_browser
+ok   xl_old_save
+ok   xl_test
+ok   xlcup_test
+ok   youth_test

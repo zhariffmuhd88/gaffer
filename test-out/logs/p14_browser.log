@@ -1,0 +1,25 @@
+desk ok   free-kick wall {'n': 4, 'dmin': 9.15000546447925, 'dmax': 9.232301988128423, 'gk': {'x': 0.99, 'y': 0.545}}
+desk ok   wall jumps (0.55 m)
+desk ok   corner jostle and raised arm {'pairs': 5, 'arm': True}
+desk ok   penalty run-up from behind the ball {'pk': True, 'back': 5.000000000000005}
+desk ok   taker reaches the ball (1.0918518518518487)
+desk ok   injury: physios, buggy, player down, limp {'i': True, 'phys': 2, 'buggy': True, 'down': True, 'limp': True}
+desk sub setup True
+desk ok   substitution walk-off {'exit': True, 'pos': [0.821, 0.425], 'vis': True, 'hi5': True, 'on': True}
+desk ok   added-time board {'on': True, 'txt': 'ADDED TIME+2'}
+desk ok   shoot-out on the pitch {'circle': 10, 'tk': 0.823}{'bx': 0.96, 'by': 0.478, 'dive': True}
+desk ok   no overflow
+desk errors []
+phone ok   free-kick wall {'n': 4, 'dmin': 9.15000546447925, 'dmax': 9.232301988128423, 'gk': {'x': 0.99, 'y': 0.545}}
+phone ok   wall jumps (0.61 m)
+phone ok   corner jostle and raised arm {'pairs': 5, 'arm': True}
+phone ok   penalty run-up from behind the ball {'pk': True, 'back': 5.000000000000005}
+phone ok   taker reaches the ball (1.0918518518518487)
+phone ok   injury: physios, buggy, player down, limp {'i': True, 'phys': 2, 'buggy': True, 'down': True, 'limp': True}
+phone sub setup True
+phone ok   substitution walk-off {'exit': True, 'pos': [0.817, 0.427], 'vis': True, 'hi5': True, 'on': True}
+phone ok   added-time board {'on': True, 'txt': 'ADDED TIME+2'}
+phone ok   shoot-out on the pitch {'circle': 10, 'tk': 0.823}{'bx': 0.96, 'by': 0.478, 'dive': True}
+phone ok   no overflow
+phone errors []
+PASS

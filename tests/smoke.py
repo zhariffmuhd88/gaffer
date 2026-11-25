@@ -1,5 +1,12 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
+
+async def ivx(pg, n=-1):
+    for _ in range(3):
+        b = await pg.query_selector_all('[data-a^="iv"]')
+        if not b: break
+        await b[n].click(); await pg.wait_for_timeout(150)
+
 html=pathlib.Path('gaffer.html').read_text()
 page_html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>'+html+'</body></html>'
 pathlib.Path('wrap.html').write_text(page_html)
@@ -47,15 +54,15 @@ async def main():
         await pg.click('[data-a="mskip"]')
         await pg.click('[data-a="mfinish"]')
         await pg.wait_for_timeout(300)
-        print('interview:', bool(await pg.query_selector('[data-a="iv"]')))
-        await pg.click('[data-a="iv"] >> nth=0')
+        print('interview:', bool(await pg.query_selector('[data-a^="iv"]')))
+        await ivx(pg, 0)
         await pg.click('nav [data-v="dyn"]'); await pg.click('tr[data-a="player"] >> nth=0'); await pg.click('[data-a="ptalk"][data-k="time"]'); print('talk:', (await pg.inner_text('#talkreply'))[:100]); await pg.keyboard.press('Escape')
         print('after match main:', (await pg.inner_text('.top'))[:120].replace('\n',' | '))
         # advance several times with quick sims
         for i in range(25):
             await pg.click('#go'); await pg.wait_for_timeout(120)
             if await pg.query_selector('[data-a="quicksim"]'):
-                await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await pg.click('[data-a="iv"] >> nth=-1')
+                await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await ivx(pg, -1)
         print('date now', await pg.inner_text('.top .date'))
         await pg.click('nav [data-v="table"]')
         await pg.click('nav [data-v="squad"]')
