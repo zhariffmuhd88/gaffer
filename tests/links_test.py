@@ -2,6 +2,8 @@
 import asyncio, pathlib, sys, time
 from playwright.async_api import async_playwright
 
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 async def ivx(pg, n=-1):
     for _ in range(3):
         b = await pg.query_selector_all('[data-a^="iv"]')
@@ -23,7 +25,7 @@ async def main():
         await pg.click('[data-v="ARS"]'); await pg.click('[data-a="start"]')
         # play into the season with quick sims
         for i in range(40):
-            await pg.click('#go'); await pg.wait_for_timeout(60)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(60)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]')
                 if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)

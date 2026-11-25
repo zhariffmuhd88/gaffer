@@ -2,6 +2,8 @@
 import asyncio, pathlib, sys
 from playwright.async_api import async_playwright
 
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 out = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.'); out.mkdir(parents=True, exist_ok=True)
 html = pathlib.Path('gaffer.html').read_text()
 w = out / 'wrap_rel.html'
@@ -68,7 +70,7 @@ async def run(p, vw, tag):
     got = None
     for i in range(40):
         if await pg.query_selector('.modal'): await pg.evaluate("()=>{UI.modal=null;render()}")
-        await pg.click('#go'); await pg.wait_for_timeout(60)
+        await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(60)
         if await pg.query_selector('[data-a="quicksim"]'):
             await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await pg.wait_for_timeout(150)
             if await pg.query_selector('[data-a="iv1"]'):

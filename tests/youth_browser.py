@@ -2,6 +2,8 @@
 import asyncio, pathlib, sys
 from playwright.async_api import async_playwright
 
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 async def ivx(pg, n=-1):
     for _ in range(3):
         b = await pg.query_selector_all('[data-a^="iv"]')
@@ -22,7 +24,7 @@ async def main():
         await pg.goto('file://' + str(w.resolve())); await pg.wait_for_timeout(600)
         await pg.click('[data-v="CHE"]'); await pg.click('[data-a="start"]'); await pg.wait_for_timeout(200)
         for i in range(40):
-            await pg.click('#go'); await pg.wait_for_timeout(40)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(40)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await pg.wait_for_timeout(100)
                 if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)

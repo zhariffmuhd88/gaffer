@@ -1,6 +1,8 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
 
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 async def ivx(pg, n=-1):
     for _ in range(3):
         b = await pg.query_selector_all('[data-a^="iv"]')
@@ -35,7 +37,7 @@ async def main():
         await pg.keyboard.press('Escape')
         # continue to first match
         for i in range(6):
-            await pg.click('#go'); await pg.wait_for_timeout(300)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(300)
             if await pg.query_selector('[data-a="kickoff"]'): break
         txt=await pg.inner_text('main')
         print('PREMATCH found:', 'PLAY MATCH' in txt)
@@ -60,7 +62,7 @@ async def main():
         print('after match main:', (await pg.inner_text('.top'))[:120].replace('\n',' | '))
         # advance several times with quick sims
         for i in range(25):
-            await pg.click('#go'); await pg.wait_for_timeout(120)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(120)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]'); await ivx(pg, -1)
         print('date now', await pg.inner_text('.top .date'))

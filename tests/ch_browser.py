@@ -2,6 +2,8 @@
 import asyncio, pathlib, sys
 from playwright.async_api import async_playwright
 
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 async def ivx(pg, n=-1):
     for _ in range(3):
         b = await pg.query_selector_all('[data-a^="iv"]')
@@ -26,7 +28,7 @@ async def main():
         print('started', await pg.inner_text('.top .club-chip'))
         # advance into October with quick sims
         for i in range(60):
-            await pg.click('#go'); await pg.wait_for_timeout(40)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(40)
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]')
                 if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)
@@ -50,7 +52,7 @@ async def main():
         # play a live match at speed to check the matchday with other games
         for i in range(10):
             if await pg.query_selector('[data-a="kickoff"]'): break
-            await pg.click('#go'); await pg.wait_for_timeout(60)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(60)
         if await pg.query_selector('[data-a="kickoff"]'):
             await pg.click('[data-a="kickoff"]'); await pg.wait_for_timeout(300)
             await pg.click('[data-a="mskip"]'); await pg.wait_for_timeout(300)

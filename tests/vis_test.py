@@ -1,5 +1,7 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 html=pathlib.Path('gaffer.html').read_text()
 pathlib.Path('wrap.html').write_text('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>'+html+'</body></html>')
 async def main():
@@ -9,7 +11,7 @@ async def main():
         await pg.goto('file://'+str(pathlib.Path('wrap.html').resolve())); await pg.wait_for_timeout(500)
         await pg.click('[data-v="MUN"]'); await pg.click('[data-a="start"]')
         for i in range(8):
-            await pg.click('#go'); await pg.wait_for_timeout(250)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break
         await pg.click('[data-a="kickoff"]'); await pg.click('[data-a="mspeed"][data-v="2"]')
         await pg.wait_for_timeout(4000)

@@ -1,6 +1,8 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
 
+OFFX = "()=>{if(typeof offersDue==='function'){for(const o of offersDue())respondOffer(o.id,false);if(UI.modal&&UI.modal.includes('class=\"offdue\"')){UI.modal=null;render()}}}"
+
 async def ivx(pg, n=-1):
     for _ in range(3):
         b = await pg.query_selector_all('[data-a^="iv"]')
@@ -16,7 +18,7 @@ async def main():
         await pg.goto('file://'+str(pathlib.Path('wrap.html').resolve())); await pg.wait_for_timeout(500)
         await pg.screenshot(path='md_start.png'); await pg.click('[data-v="LIV"]'); await pg.click('[data-a="start"]'); await pg.click('nav [data-v="club"]'); await pg.screenshot(path='md_club.png')
         for i in range(8):
-            await pg.click('#go'); await pg.wait_for_timeout(250)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break
         await pg.screenshot(path='md_pre.png', full_page=True)
         await pg.click('[data-a="kickoff"]'); await pg.click('[data-a="mspeed"][data-v="2"]')
@@ -49,7 +51,7 @@ async def main():
         await pg.set_viewport_size({'width':390,'height':844})
         await ivx(pg, 0) if await pg.query_selector('[data-a^="iv"]') else None
         for i in range(8):
-            await pg.click('#go'); await pg.wait_for_timeout(250)
+            await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break
         await pg.click('[data-a="kickoff"]'); await pg.wait_for_timeout(5000)
         print('mobile sw', await pg.evaluate('document.documentElement.scrollWidth'))

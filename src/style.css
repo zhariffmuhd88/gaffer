@@ -587,3 +587,6 @@ img.bcB { border: none; border-radius: 0; }
 .relacts .btn{font-size:12px;padding:4px 8px}
 .rellog{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:1.6}
 @media (max-width:600px){.relbar{width:80px}.relt thead{display:none}.relt tr{display:grid;grid-template-columns:1fr auto;border-bottom:1px solid rgba(255,255,255,.08)}.relt td{border:0}.relt td:last-child{grid-column:1/-1;min-width:0!important;padding-top:0}.relacts .btn{white-space:normal}}
+/* offers that need an answer */
+.offdue-it{border:1px solid var(--line,#2a3a4a);border-radius:8px;padding:8px 10px;margin:8px 0;background:rgba(255,255,255,.03)}
+.offdue-it .row{flex-wrap:wrap;gap:6px}
