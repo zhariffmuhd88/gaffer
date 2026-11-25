@@ -17,7 +17,10 @@ async def run(p, vw, tag):
     check(tag, ui['vol'] and ui['cmt'], 'volume slider and commentary button ' + str(ui))
     await pg.evaluate("()=>{const el=document.getElementById('sndVol');el.value=40;el.dispatchEvent(new Event('input',{bubbles:true}));}")
     v = await pg.evaluate("()=>[SND.vol,localStorage.getItem('gaffer.vol')]"); check(tag, abs(v[0] - .4) < 1e-6 and v[1] == '0.4', 'volume stored ' + str(v))
-    await pg.evaluate("()=>{if(!UI.match.run)ACT.mrun();UI.match.cmNext=1;}"); await pg.wait_for_timeout(6000)
+    await pg.evaluate("()=>{if(!UI.match.run)ACT.mrun();UI.match.cmNext=1;}")
+    for _ in range(40):
+        await pg.wait_for_timeout(500)
+        if await pg.evaluate("()=>(UI.match.cmtN||0)>0&&(UI.match.crowdN||0)>=1"): break
     st = await pg.evaluate("()=>({cmt:UI.match.cmtN||0,last:UI.match.cmtLast||'',pa:UI.match.pa?UI.match.pa.txt:'',crowd:UI.match.crowdN||0})")
     check(tag, st['cmt'] > 0 and st['pa'].startswith('Good') and st['crowd'] >= 1, 'commentary, PA and crowd ' + str(st))
     await pg.evaluate("()=>{if(UI.match.run)ACT.mrun();}")

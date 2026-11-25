@@ -27,6 +27,8 @@ async def main():
             if await pg.query_selector('[data-a="quicksim"]'):
                 await pg.click('[data-a="quicksim"]'); await pg.click('[data-a="mfinish"]')
                 if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)
+        print('modal left:', await pg.evaluate("()=>UI.modal?document.querySelector('.modal').innerText.slice(0,120):''"))
+        await pg.evaluate("()=>{UI.modal=null;render()}")
         print('date', await pg.inner_text('.top .date'))
         # inbox links
         await pg.click('nav [data-v="inbox"]')
@@ -49,6 +51,7 @@ async def main():
         await pg.screenshot(path=str(out / 'links_report.png'))
         cl = await pg.query_selector('.modal .lnk[data-a="gocomp"]')
         if cl: await cl.click(); await pg.wait_for_timeout(100); print('comp link ->', await pg.inner_text('main .band'), '| modal open', bool(await pg.query_selector('.modal')))
+        await pg.evaluate("()=>{UI.modal=null;render()}")  # friendlies have no competition link
         # lite club from Europe
         await pg.click('nav [data-v="comps"]'); await pg.click('[data-a="tab"][data-v="UCL"]')
         lites = await pg.query_selector_all('main .lnk[data-a="clubview"]')
