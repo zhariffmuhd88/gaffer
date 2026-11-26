@@ -10,7 +10,7 @@ async def main():
         errs=[]; pg.on('pageerror', lambda e: errs.append(str(e)))
         await pg.goto('file://'+str(pathlib.Path('wrap.html').resolve())); await pg.wait_for_timeout(500)
         await pg.click('[data-v="MUN"]'); await pg.click('[data-a="start"]')
-        for i in range(8):
+        for i in range(20):
             await pg.evaluate(OFFX); await pg.click('#go'); await pg.wait_for_timeout(250)
             if await pg.query_selector('[data-a="kickoff"]'): break
         await pg.click('[data-a="kickoff"]'); await pg.click('[data-a="mspeed"][data-v="2"]')

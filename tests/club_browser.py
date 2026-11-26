@@ -57,7 +57,7 @@ async def main():
                 if await pg.query_selector('[data-a^="iv"]'): await ivx(pg, -1)
             if 'Oct' in await pg.inner_text('.top .date'): break
         print('date', await pg.inner_text('.top .date'))
-        await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(150)
+        await pg.evaluate(OFFX); await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(150)
         txt = await pg.inner_text('main')
         print('stadium tab:', 'Record attendance' in txt, 'Drawn illustration' in txt, '| stands:', await pg.locator('main table.t tbody tr').count())
         await pg.screenshot(path=str(out / 'club_stadium.png'), full_page=True)
@@ -75,7 +75,7 @@ async def main():
             if await pg.evaluate("()=>G.brd.pend.length===0"): break
         print('board replies:', await pg.evaluate("()=>G.news.filter(n=>/^Board /.test(n.title)).map(n=>n.title).join(' | ')"))
         print('works:', await pg.evaluate("()=>G.brd.proj.map(p=>p.k+' '+p.end).join(', ')"), '| home venue works:', await pg.evaluate("()=>{const f=Object.values(G.fx).find(f=>f.h===G.user&&!f.r);return f?JSON.stringify(venueOf(f).works):'-'}"))
-        await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(100)
+        await pg.evaluate(OFFX); await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(100)
         await pg.screenshot(path=str(out / 'club_works.png'), full_page=True)
         await pg.click('[data-a="tab"][data-k="club"][data-v="hon"]'); await pg.wait_for_timeout(80)
         print('honours tab:', (await pg.inner_text('main')).count('English champions'))
@@ -96,7 +96,7 @@ async def main():
         await pg.click('nav [data-v="finance"]'); print('finance build row:', 'Building work' in await pg.inner_text('main'))
         # mobile views
         await pg.set_viewport_size({'width': 390, 'height': 844})
-        await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(150)
+        await pg.evaluate(OFFX); await pg.click('nav [data-v="club"]'); await pg.click('[data-a="tab"][data-k="club"][data-v="stad"]'); await pg.wait_for_timeout(150)
         print('390 overflow:', await pg.evaluate("()=>document.documentElement.scrollWidth>window.innerWidth+1"))
         await pg.screenshot(path=str(out / 'club_stadium_m.png'), full_page=False)
         await pg.click('nav [data-v="history"]'); await pg.click('[data-a="tab"][data-k="hist"][data-v="rank"]'); await pg.wait_for_timeout(100)
