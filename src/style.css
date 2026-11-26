@@ -590,3 +590,15 @@ img.bcB { border: none; border-radius: 0; }
 /* offers that need an answer */
 .offdue-it{border:1px solid var(--line,#2a3a4a);border-radius:8px;padding:8px 10px;margin:8px 0;background:rgba(255,255,255,.03)}
 .offdue-it .row{flex-wrap:wrap;gap:6px}
+/* holiday */
+.holbtn{margin-left:auto;background:transparent;color:var(--yel);border:2px solid var(--yel);font-family:var(--f-disp);font-size:16px;padding:3px 10px;letter-spacing:1px;cursor:pointer}
+.holbtn+.go{margin-left:0}
+.holbtn:hover{background:rgba(255,255,255,.06)}
+.hol-ps{flex-wrap:wrap;gap:6px}
+.holbar{height:8px;border-radius:4px;background:rgba(255,255,255,.12);margin-top:10px;overflow:hidden}
+.holbar i{display:block;height:100%;background:var(--yel);transition:width .2s}
+.hol .grid3{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.hol .grid3 .big{font-size:26px}
+.hol .grid3 .pad{padding:8px}
+.hol select.f{width:100%;max-width:100%}
+@media (max-width:600px){.hol .holrnd{display:none}.hol .t td{padding:4px 5px}}
